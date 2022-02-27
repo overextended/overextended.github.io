@@ -9,12 +9,12 @@ const config = {
   title: 'Overextended',
   tagline: 'Official documentation for Overextended resources',
   url: 'https://overextended.github.io',
-  baseUrl: '/docs/',
+  baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/ox.ico',
   organizationName: 'overextended', // Usually your GitHub org/user name.
-  projectName: 'docs', // Usually your repo name.
+  projectName: 'overextended.github.io', // Usually your repo name.
 
   presets: [
     [
@@ -44,7 +44,7 @@ const config = {
         title: 'Overextended',
         logo: {
           alt: 'Ox Logo',
-          src: 'img/ox_64.png',
+          src: '/img/ox_64.png',
           width: 32,
           height: 32,
         },
