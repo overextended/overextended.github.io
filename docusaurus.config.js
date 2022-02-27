@@ -9,7 +9,7 @@ const config = {
   title: 'Overextended',
   tagline: 'Official documentation for Overextended resources',
   url: 'https://overextended.github.io',
-  baseUrl: '/',
+  baseUrl: '/docs/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/ox.ico',
