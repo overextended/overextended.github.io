@@ -16,6 +16,8 @@ const config = {
   organizationName: 'overextended', // Usually your GitHub org/user name.
   projectName: 'overextended.github.io', // Usually your repo name.
 
+//   plugins: ['@docusaurus/'],
+
   presets: [
     [
       'classic',
@@ -38,7 +40,7 @@ const config = {
     ({
       colorMode: {
         defaultMode: 'dark',
-        disableSwitch: true
+        disableSwitch: true,
       },
       navbar: {
         title: 'Overextended',
@@ -50,14 +52,14 @@ const config = {
         },
         items: [
           {
-            href: "https://www.github.com/overextended",
+            href: 'https://www.github.com/overextended',
             label: 'GitHub',
-            position: 'left'
+            position: 'left',
           },
           {
-            href: "https://www.discord.gg/overextended",
+            href: 'https://www.discord.gg/overextended',
             label: 'Discord',
-            position: 'left'
+            position: 'left',
           },
           {
             to: 'docs/',
@@ -67,8 +69,8 @@ const config = {
           {
             // Still have to add the actual search :(
             type: 'search',
-            position: 'right'
-          }
+            position: 'right',
+          },
         ],
       },
       footer: {
@@ -78,6 +80,7 @@ const config = {
       prism: {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
+		additionalLanguages: ['lua']
       },
     }),
 };
