@@ -4,11 +4,11 @@
 -- callback: function
 -- parameters: table (optional)
 -- help: string (optional)
-lib.commands(principal, command, callback, parameters, help)
+lib.addCommand(principal, command, callback, parameters, help)
 ```
 
 ```lua
-lib.commands('group.admin', {'additem', 'giveitem'}, function(source, args)
+lib.addCommand('group.admin', {'additem', 'giveitem'}, function(source, args)
 	args.item = Items(args.item)
 	if args.item and args.count > 0 then
 		Inventory.AddItem(args.target, args.item.name, args.count, args.metatype)
