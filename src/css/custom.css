@@ -55,3 +55,22 @@
 .navbar {
   background-color: #1d252e;
 }
+
+.icon-button {
+  /* background-color: var(--ifm-color-primary-darkest); */
+  transition: 300ms;
+  border: 0.12rem solid var(--ifm-color-primary-darkest);
+}
+
+.icon-button:hover {
+  background-color: var(--ifm-color-primary-darkest);
+  cursor: pointer;
+}
+
+a,
+a:hover,
+a:focus,
+a:active {
+  text-decoration: none;
+  color: inherit;
+}

@@ -1,0 +1,30 @@
+---
+title: Getting Started
+---
+
+import IconButton from '@site/src/components/IconButton'
+import { BsGithub, BsBookHalf } from 'react-icons/bs'
+
+:::caution
+
+This resource is being designed with the intention of providing advanced functionality while remaining easy to use,
+however it is not recommended for beginners. You must possess a basic understanding of coding and the ability to read;
+otherwise you **should not** install this resource.
+:::
+
+## Dependecies
+
+### OxMySQL
+
+We utilise our own resource to communicate with MySQL databases via the node-mysql2 package.
+The backend is actively maintained and updated unlike the package used by mysql-async, providing improved performance, security, and features.
+We provide full backwards compatibility with mysql-async and build for the current Cfx architecture.
+
+<div style={{display: 'flex'}}>
+    <a href="https://www.github.com/overextended/oxmysql">
+        <IconButton side='left' icon={<BsGithub/>} style={{marginRight: '0.8rem'}}>GitHub</IconButton>
+    </a>
+    <a href="https://overextended.github.io/docs/oxmysql/Installation/">
+        <IconButton side='left' icon={<BsBookHalf/>}>Documentation</IconButton>
+    </a>
+</div>
