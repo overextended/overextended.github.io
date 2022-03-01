@@ -1,3 +1,5 @@
+# Command
+
 ```lua
 -- principal: string or false
 -- command: string
@@ -5,9 +7,7 @@
 -- parameters: table (optional)
 -- help: string (optional)
 lib.addCommand(principal, command, callback, parameters, help)
-```
 
-```lua
 lib.addCommand('group.admin', {'additem', 'giveitem'}, function(source, args)
 	args.item = Items(args.item)
 	if args.item and args.count > 0 then
