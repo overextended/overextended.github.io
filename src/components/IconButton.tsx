@@ -24,10 +24,11 @@ const IconButton: React.FC<Props> = (props) => {
         borderRadius: '0.2rem',
         verticalAlign: 'baseline',
         textAlign: 'center',
-        ...props.style,
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
+        color: 'white',
+        ...props.style,
       }}
       className="icon-button"
     >
