@@ -10,61 +10,61 @@ Prepare can be used to execute frequently called queries faster and accepts mult
 
 When using SELECT, the return value will match `fetchAll, fetchSingle, or fetchScalar` depending on the number of columns and rows selected.
 
-!!! info "Example"
-	=== "Lua"
+:::info Example
+Lua
 
-		**Callback**
-		```lua
-		-- Alias: exports.oxmysql:prepare
-		-- Alias: MySQL.Async.prepare
+**Callback**
+```lua
+-- Alias: exports.oxmysql:prepare
+-- Alias: MySQL.Async.prepare
 
-		MySQL.prepare('SELECT * FROM users WHERE identifier = ?', {playerIdentifier}, function(result)
-			if result then
-				for _, v in pairs(result) do
-					print(v.identifier, v.firstname, v.lastname)
-				end
-			end
-		end)
-		```
-		**Promise**
-		```lua
-		-- Alias: exports.oxmysql:prepare_async
-		-- Alias: MySQL.Sync.prepare
+MySQL.prepare('SELECT * FROM users WHERE identifier = ?', {playerIdentifier}, function(result)
+	if result then
+		for _, v in pairs(result) do
+			print(v.identifier, v.firstname, v.lastname)
+		end
+	end
+end)
+```
+**Promise**
+```lua
+-- Alias: exports.oxmysql:prepare_async
+-- Alias: MySQL.Sync.prepare
 
-		
-		CreateThread(function()
-			local result = MySQL.prepare.await('SELECT * FROM users WHERE identifier = ?', {playerIdentifier})
-			if result then
-				for _, v in pairs(result) do
-					print(v.identifier, v.firstname, v.lastname)
-				end
-			end
-		end)
-		```
+CreateThread(function()
+	local result = MySQL.prepare.await('SELECT * FROM users WHERE identifier = ?', {playerIdentifier})
+	if result then
+		for _, v in pairs(result) do
+			print(v.identifier, v.firstname, v.lastname)
+		end
+	end
+end)
+```
 
-	=== "JavaScript"
+JavaScript
 
-		**Callback**
-		```js
-		exports.oxmysql.prepare('SELECT * FROM users WHERE identifier = ?', [playerIdentifier], function(result) {
-		  if (result) {
-		    result.forEach((v) => {
-		      console.log(v.identifier, v.firstname, v.lastname)
-			})
-		  }
-		})
-		```
-		**Promise**
-		```js
-		(async () => {
-		  const result = await exports.oxmysql.prepare_async('SELECT * FROM users WHERE identifier = ?', [playerIdentifier]) {
-		  if (result) {
-		    result.forEach((v) => {
-		      console.log(v.identifier, v.firstname, v.lastname)
-		    })
-		  }
-		})()
-		```
+**Callback**
+```js
+exports.oxmysql.prepare('SELECT * FROM users WHERE identifier = ?', [playerIdentifier], function(result) {
+  if (result) {
+    result.forEach((v) => {
+      console.log(v.identifier, v.firstname, v.lastname)
+	})
+  }
+})
+```
+**Promise**
+```js
+(async () => {
+  const result = await exports.oxmysql.prepare_async('SELECT * FROM users WHERE identifier = ?', [playerIdentifier]) {
+  if (result) {
+    result.forEach((v) => {
+      console.log(v.identifier, v.firstname, v.lastname)
+    })
+  }
+})()
+```
+:::
 
 As mentioned above, you can utilise an array of parameters for a transaction-like query without the rollback; reducing the number of exports being performed reduces strain on the server. Included below is some examples of using prepare in ESX Legacy.
 
