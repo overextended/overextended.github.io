@@ -1,7 +1,11 @@
-Opens the passed inventory with passed data.
+Opens an inventory using on the passed data.
 
 ```lua
 -- inv: string
--- data: table (optional)
-exports.ox_inventory:openInventory(inv, data)
+-- data: any
+exports.ox_inventory:openInventory(invType, data)
+
+exports.ox_inventory:openInventory('player', 1)
+exports.ox_inventory:openInventory('stash', 1)
+exports.ox_inventory:openInventory('shop', { type = 'PoliceArmoury', id = 1 })
 ```

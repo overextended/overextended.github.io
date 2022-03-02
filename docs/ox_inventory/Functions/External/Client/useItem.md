@@ -1,4 +1,4 @@
-Uses the item passed as an argument.
+Uses the passed item, then triggers the callback function.
 
 ```lua
 -- data: table

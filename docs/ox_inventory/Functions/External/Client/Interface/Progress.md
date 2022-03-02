@@ -21,14 +21,8 @@ Options table values:
 -- prop/propTwo: table (optional)
     -- model: hash or string
     -- bone: number (optional - default is 60309)
-    -- pos: table (optional)
-        -- x: number (default is 0)
-        -- y: number (default is 0)
-        -- z: numebr (default is 0)
-    -- rot: table (optional)
-        -- x: number (default is 0)
-        -- y: number (default is 0)
-        -- z: number (default is 0)
+    -- pos: vector3 (optional)
+    -- rot: vector3 (optional)
 -- disable: table (optional)
     -- move: boolean (optional)
     -- car: boolean (optional)
@@ -48,10 +42,7 @@ exports.ox_inventory:Progress({
     useWhileDead = false,
     canCancel = true,
     disable = {
-        move = false,
-        car = true,
-        combat = true,
-        mouse = false
+        car = true
     },
     anim = {
         dict = 'mp_player_intdrink',
@@ -60,8 +51,8 @@ exports.ox_inventory:Progress({
     },
     prop = {
         model = 'prop_ld_flow_bottle',
-        pos = { x = 0.03, y = 0.03, y = 0.02},
-        rot = { x = 0.0, y = 0.0, y = -1.5},
+        pos = vector3(0.03, 0.03, 0.02),
+        rot = vector3(0.0, 0.0, -1.5),
         bone = 58866
     },
 }, function(cancel)

@@ -1,4 +1,4 @@
-Uses the item on the slot passed in as an argument.
+Uses the item in the given inventory slot.
 
 ```lua
 -- slot: number
