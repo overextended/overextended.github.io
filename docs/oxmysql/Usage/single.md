@@ -1,12 +1,9 @@
----
-title: single
----
+# Single
 Returns the columns for a single row.
 
-:::info Example
-Lua
+## Lua
 
-**Callback**
+### Callback
 ```lua
 -- Alias: exports.oxmysql:single
 -- Alias: MySQL.Async.fetchSingle
@@ -17,7 +14,8 @@ MySQL.single('SELECT * FROM users WHERE identifier = ?', {playerIdentifier}, fun
 	end
 end)
 ```
-**Promise**
+
+### Promise
 ```lua
 -- Alias: exports.oxmysql:single_async
 -- Alias: MySQL.Sync.fetchSingle
@@ -30,16 +28,17 @@ CreateThread(function()
 end)
 ```
 
-JavaScript
+## JavaScript
 
-**Callback**
+### Callback
 ```js
 exports.oxmysql.single('SELECT * FROM users WHERE identifier = ?', [playerIdentifier], function(result) {
   if (result)
     console.log(result.identifier, result.firstname, result.lastname)
 })
 ```
-**Promise**
+
+### Promise
 ```js
 setImmediate(async () => {
   const result = await exports.oxmysql.single_async('SELECT * FROM users WHERE identifier = ?', [playerIdentifier]) {
@@ -47,4 +46,3 @@ setImmediate(async () => {
     console.log(result.identifier, result.firstname, result.lastname)
 })
 ```
-:::

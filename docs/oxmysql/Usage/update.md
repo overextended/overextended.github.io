@@ -1,12 +1,9 @@
----
-title: update
----
+# Update
 Returns the number of affected rows by the query.
 
-:::info Example
-Lua
+## Lua
 
-**Callback**
+### Callback
 ```lua
 -- Alias: exports.oxmysql:update
 -- Alias: MySQL.Async.update
@@ -17,7 +14,8 @@ MySQL.Async.update('UPDATE users SET firstname = ? WHERE identifier = ? ', {newN
 	end
 end)
 ```
-**Promise**
+
+### Promise
 ```lua
 -- Alias: exports.oxmysql:update_async
 -- Alias: MySQL.update
@@ -30,16 +28,17 @@ CreateThread(function()
 end)
 ```
 
-JavaScript
+## JavaScript
 
-**Callback**
+### Callback
 ```js
 exports.oxmysql.update('UPDATE users SET firstname = ? WHERE identifier = ? ', [newName, playerIdentifier], function(affectedRows) {
   if (affectedRows)
     console.log(affectedRows)
 })
 ```
-**Promise**
+
+### Promise
 ```js
 setImmediate(async () => {
   const id = exports.oxmysql.update_async('UPDATE users SET firstname = ? WHERE identifier = ? ', [newName, playerIdentifier]) {
@@ -47,4 +46,3 @@ setImmediate(async () => {
     console.log(affectedRows)
 })
 ```
-:::

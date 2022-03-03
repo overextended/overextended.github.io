@@ -1,12 +1,9 @@
----
-title: scalar
----
+# Scalar
 Returns the first column for a single row.
 
-:::info Example
-Lua
+## Lua
 
-**Callback**
+### Callback
 ```lua
 -- Alias: exports.oxmysql:scalar
 -- Alias: MySQL.Async.fetchScalar
@@ -15,7 +12,8 @@ MySQL.scalar('SELECT firstname FROM users WHERE identifier = ?', {playerIdentifi
 	print(firstname)
 end)
 ```
-**Promise**
+
+### Promise
 ```lua
 -- Alias: exports.oxmysql:scalar_async
 -- Alias: MySQL.Sync.fetchScalar
@@ -26,19 +24,19 @@ CreateThread(function()
 end)
 ```
 
-JavaScript
+## JavaScript
 
-**Callback**
+### Callback
 ```js
 exports.oxmysql.scalar('SELECT firstname FROM users WHERE identifier = ?', [playerIdentifier], function(firstname) {
     console.log(firstname)
 })
 ```
-**Promise**
+
+### Promise
 ```js
 (async () => {
   const firstname = await exports.oxmysql.scalar_async('SELECT firstname FROM users WHERE identifier = ?', [playerIdentifier]) {
     console.log(firstname)
 })()
 ```
-:::

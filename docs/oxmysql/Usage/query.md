@@ -1,13 +1,10 @@
----
-title: query
----
+# Query
 Generic function that can be utilised for any query.  
 When selecting data it will return all matching rows and columns, otherwise it will return field data such as insertid, affectedRows, etc.
 
-:::info Example
-Lua
+## Lua
 
-**Callback**
+### Callback
 ```lua
 -- Alias: exports.oxmysql:query
 -- Alias: MySQL.Async.query
@@ -20,7 +17,7 @@ MySQL.query('SELECT * FROM users WHERE identifier = ?', {playerIdentifier}, func
 	end
 end)
 ```
-**Promise**
+### Promise
 ```lua
 -- Alias: exports.oxmysql:query
 -- Alias: MySQL.Sync.query
@@ -35,9 +32,9 @@ CreateThread(function()
 end)
 ```
 
-JavaScript
+## JavaScript
 
-**Callback**
+### Callback
 ```js
 exports.oxmysql.query('SELECT * FROM users WHERE identifier = ?', [playerIdentifier], function(result) {
   if (result) {
@@ -47,7 +44,7 @@ exports.oxmysql.query('SELECT * FROM users WHERE identifier = ?', [playerIdentif
   }
 })
 ```
-**Promise**
+### Promise
 ```js
 (async () => {
   const result = await exports.oxmysql.query_async('SELECT * FROM users WHERE identifier = ?', [playerIdentifier]) {
@@ -58,4 +55,3 @@ exports.oxmysql.query('SELECT * FROM users WHERE identifier = ?', [playerIdentif
   }
 })()
 ```
-:::

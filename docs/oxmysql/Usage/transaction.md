@@ -1,19 +1,17 @@
----
-title: transaction
----
+# Transaction
 todo - update formatting and information
 
 
-# Transactions
+## Transactions
 A transaction executes multiple queries and commits them only if all succeed. If one fails, none of the queries are committed. The return value is a `boolean`, which is the result of the transaction.
 
-## Specific Format
+### Specific Format
 When using the `Specific` format you must pass one parameter to the oxmysql export. In this case, the `queries` parameter contains your queries and the SQL variables unique to each query.
 
 This is useful for transactions where the queries do not share many SQL variables.
 
 ### Usage
-Lua
+#### Lua
 ```lua
 local queries = {
     { query = 'INSERT INTO `test` (id) VALUES (:someid)', values = { ['someid'] = 1 } },
@@ -30,7 +28,7 @@ local result = exports.oxmysql:transactionSync(queries)
 print(result)
 ```
 
-JavaScript
+#### JavaScript
 ```js
 const queries = [
     { query = 'INSERT INTO `test` (id) VALUES (:someid)', values = { someid = 1 } },
@@ -51,7 +49,7 @@ console.log(result)
 When using the `Shared` format you must pass two parameters to the oxmysql export. The `queries` and the `parameters` those queries will use.  
 This is useful if your queries use the same SQL variables.
 
-Lua
+#### Lua
 ```lua
 local queries = {
     'INSERT INTO `test` (id, name) VALUES (:someid, :somename)',
@@ -70,7 +68,7 @@ local result = exports.oxmysql:transactionSync(queries, parameters)
 print(result)
 ```
 
-JavaScript
+#### JavaScript
 ```js
 const queries = [
     'INSERT INTO `test` (id, name) VALUES (:someid, :somename)',
