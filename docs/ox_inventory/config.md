@@ -1,7 +1,11 @@
 # Configuration
 
-You can add these settings directly to your 'server.cfg', or add them to a separate file and call it with `exec`.  
-Convars must be set before starting ox_inventory.
+You can add these settings directly to your 'server.cfg', or add them to a separate file and call it with `exec`.
+
+:::caution
+
+Convars **must** be set before starting ox_inventory.
+:::
 
 The values below are _defaults_ and should not be explicitly set unless changing the value.
 
