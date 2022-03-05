@@ -25,12 +25,10 @@ set mysql_slow_query_warning 150
 set mysql_debug true
 ```
 ### Using the UI
-:::info
 Before using the UI first you have to make sure you have the `mysql_ui` convar set to true:
 ```
 set mysql_ui true
 ```
 Also make sure that you have `command` ace permission access, then you should be able to use the
 `mysql` command in game to open up the UI and see your query data.
-:::
 

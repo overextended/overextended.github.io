@@ -2,17 +2,30 @@
 title: Creating custom stashes
 ---
 
+import IconButton from '@site/src/components/IconButton'
+import { BsGithub } from 'react-icons/bs'
+
 We can set up custom stashes from outside the resource utilising the exported RegisterStash function. Firstly, we need to define the stashes properties.  
 
-| Argument   | Type     | Optional | Explanation |
----------- | -------- | -------- | ----------- |
-id         | string   | no       | A unique name to identify the stash in the database |
-label      | string   | no       | A display name when viewing the inventory |
-slots      | integer  | no       | Number of slots |
-weight     | integer  | no       | Maximum weight |
-owner      | str/bool | yes      | See below |
-job        | table    | yes      | Key-value pairs of job name and minimum grade to access |
-coords     | vector   | yes      | A vector (or table) containing x, y, z coordinates |
+```lua
+-- id: string
+-- label: string
+-- slots: number
+-- weight: number
+-- owner: string or boolean (optional)
+-- job: table (optional)
+	-- name: string
+	-- grade: number
+-- coords: vector or table (optional)
+```
+
+- `id` - A unique name to identify the stash in the database
+- `label` - Display name when viewing the stash
+- `slots` - Number of slots that the stash will have
+- `weight` - Maximum stash weight
+- `owner` - See below
+- `job` - Key-value pairs of job name and minimum grade to access
+- `coords` - Vector or table containing coordinates
 
 The owner field will set permissions for stash access, with stashes registering to specific identifiers.
 - true: Each player has their own unique stash, but can request to open the stash of another player
@@ -69,3 +82,11 @@ if ox_inventory:openInventory('stash', property.id) == false then
 	ox_inventory:openInventory('stash', property.id)
 end
 ```
+
+## Example resource
+
+We put together an example resoruce showcasing how to properly utilise the stash API:
+
+<a href="https://www.github.com/overextended/ox_inventory_examples">
+    <IconButton side='left' icon={<BsGithub/>}>GitHub</IconButton>
+</a>

@@ -2,29 +2,35 @@
 title: Building inventory UI
 ---
 
-:::info Requirements to build:
+import IconButton from '@site/src/components/IconButton'
+import {FaNodeJs} from 'react-icons/fa'
+
+## Requirements to build:
 
 * Node.js
 * Yarn
-:::
-:::info Installing Node.js:
 
-* Download the LTS version of Node.js from [___here___](https://www.nodejs.org).
+## Installing Node.js:
+
+* Download the LTS version of Node.js.
 * Go through the install and make sure you install all of the features.
-* Run node --version in cmd and make sure that it gives you the version number. If it doesn't then you didn't install it correctly.
-:::
+* Run `node --version` in cmd and make sure that it gives you the version number. If it doesn't then you didn't install it correctly.
 
-:::info Installing Yarn:
+<a href="https://www.nodejs.org">
+    <IconButton side='left' icon={<FaNodeJs/>}>Download</IconButton>
+</a>
+
+## Installing Yarn:
 
 * Now that you've installed Node.js you can install Yarn by running `npm install --global yarn` in cmd.
-:::
-:::info Building the inventory UI:
+
+## Building the UI:
 
 * cd into the web directory of ox_inventory
 * In your cmd type `yarn` and in will start downloading the node modules.
 * After it's done downloading node modules you can run `yarn build` to build the UI.
-:::
-:::tip Hot reloads
+
+:::info Hot reloads
 When working in the browser you can run `yarn start`, which supports hot reloads meaning that
 you will see your changes after saving your file.
 
