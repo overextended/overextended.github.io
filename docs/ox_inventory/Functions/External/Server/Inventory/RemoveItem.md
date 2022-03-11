@@ -8,3 +8,9 @@ Removes the specified item from the specified inventory.
 -- slot: number (optional)
 exports.ox_inventory:RemoveItem(inv, item, count, metadata, slot)
 ```
+
+**Example:**
+```lua
+-- Removes 1 water from the inventory
+exports.ox_inventory:RemoveItem(source, 'water', 1)
+```
