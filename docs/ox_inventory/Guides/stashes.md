@@ -87,6 +87,8 @@ end
 
 We put together an example resoruce showcasing how to properly utilise the stash API:
 
-<a href="https://www.github.com/overextended/ox_inventory_examples">
-    <IconButton side='left' icon={<BsGithub/>}>GitHub</IconButton>
-</a>
+<div style={{width: 'fit-content'}}>
+	<a href="https://www.github.com/overextended/ox_inventory_examples">
+		<IconButton side='left' icon={<BsGithub/>}>GitHub</IconButton>
+	</a>
+</div>

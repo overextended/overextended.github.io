@@ -16,9 +16,11 @@ import {FaNodeJs} from 'react-icons/fa'
 * Go through the install and make sure you install all of the features.
 * Run `node --version` in cmd and make sure that it gives you the version number. If it doesn't then you didn't install it correctly.
 
-<a href="https://www.nodejs.org">
-    <IconButton side='left' icon={<FaNodeJs/>}>Download</IconButton>
-</a>
+<div style={{width: 'fit-content'}}>
+    <a href="https://www.nodejs.org">
+        <IconButton side='left' icon={<FaNodeJs/>}>Download</IconButton>
+    </a>
+</div>
 
 ## Installing Yarn:
 
