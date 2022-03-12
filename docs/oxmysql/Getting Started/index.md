@@ -1,3 +1,7 @@
+---
+slug: ./../ # Sets the url to /docs/oxmysql/
+---
+
 # Getting Started
 
 ## Installation
