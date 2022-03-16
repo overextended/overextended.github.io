@@ -5,7 +5,7 @@ Check if a resource is using a specified version or higher, allowing for compati
 ```lua
 -- repository: string
 -- version: string
-lib.versionCheck(repository, version)
+lib.checkDependency(repository, version)
 
 if not lib.checkDependency('ox_lib', '1.5.0') then error() end
 ```
