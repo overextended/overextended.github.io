@@ -47,7 +47,7 @@ exports.ox_inventory:Progress({
     anim = {
         dict = 'mp_player_intdrink',
         clip = 'loop_bottle',
-        flags = 49,
+        flag = 49,
     },
     prop = {
         model = 'prop_ld_flow_bottle',
