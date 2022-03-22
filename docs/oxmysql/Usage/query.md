@@ -19,7 +19,7 @@ end)
 ```
 ### Promise
 ```lua
--- Alias: exports.oxmysql:query
+-- Alias: exports.oxmysql:query_async
 -- Alias: MySQL.Sync.query
 
 CreateThread(function()
