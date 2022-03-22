@@ -1,6 +1,4 @@
 # Transaction
-todo - update formatting and information
-
 
 ## Transactions
 A transaction executes multiple queries and commits them only if all succeed. If one fails, none of the queries are committed. The return value is a `boolean`, which is the result of the transaction.
@@ -19,12 +17,16 @@ local queries = {
 } -- NOTE, the 'values' tables can be named 'parameters' here for MySQL-Async compatibility.
 
 -- Async
-exports.oxmysql:transaction(queries, function(result) 
-    print(result) 
+-- Alias: exports.oxmysql:transaction
+-- Alias: MySQL.Async.transaction
+MySQL.transaction(queries, function(result)
+    print(result)
 end)
 
 -- Sync
-local result = exports.oxmysql:transactionSync(queries)
+-- Alias: exports.oxmysql:transaction_async
+-- Alias: MySQL.Sync.transaction
+local result = MySQL.transaction.await(queries)
 print(result)
 ```
 
@@ -59,12 +61,16 @@ local queries = {
 local parameters = { ['someid'] = 2, ['somename'] = 'John Doe', ['newname'] = 'John Notdoe' }
 
 -- Async
-exports.oxmysql:transaction(queries, parameters, function(result) 
-    print(result) 
+-- Alias: exports.oxmysql:transaction
+-- Alias: MySQL.Async.transaction
+MySQL.transaction(queries, parameters, function(result)
+    print(result)
 end)
 
 -- Sync
-local result = exports.oxmysql:transactionSync(queries, parameters)
+-- Alias: exports.oxmysql:transaction_async
+-- Alias: MySQL.Sync.transaction
+local result = MySQL.transaction.await(queries, parameters)
 print(result)
 ```
 
