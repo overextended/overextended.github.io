@@ -1,6 +1,6 @@
 # Vehicle Properties
 Mostly follows the format used by ESX and QBCore, with extra data such as damaged/missing props.  
-https://github.com/overextended/ox_lib/blob/master/resource/entities/client/vehicleproperties.lua#L5
+https://github.com/overextended/ox_lib/blob/master/resource/vehicleProperties/client.lua#L5
 
 ### lib.getVehicleProperties
 ```lua
