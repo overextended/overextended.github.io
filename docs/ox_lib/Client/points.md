@@ -20,7 +20,7 @@ function point:onExit()
 	print('left range of point', self.id)
 end
 
-function point:callback()
+function point:nearby()
 	DrawMarker(2, self.coords.x, self.coords.y, self.coords.z, 0.0, 0.0, 0.0, 0.0, 180.0, 0.0, 1.0, 1.0, 1.0, 200, 20, 20, 50, false, true, 2, nil, nil, false)
 
 	if self.currentDistance < 1 and IsControlJustReleased(0, 38) then
