@@ -124,8 +124,16 @@ The inventory will handle disabling the phone when the player has no item, and s
 <TabItem value="fresh_esx" label="Fresh ESX" default>
 
 Use a compatible version of [ESX Legacy](https://github.com/esx-framework/esx-legacy) (1.6.0+)  
-Execute the query inside [install.sql](https://github.com/overextended/ox_inventory/blob/main/setup/install.sql) and [vehicle.sql](https://github.com/overextended/ox_inventory/blob/main/setup/vehicle.sql)
+Execute the query inside [install.sql](https://github.com/overextended/ox_inventory/blob/main/setup/install.sql) and [vehicle.sql](https://github.com/overextended/ox_inventory/blob/main/setup/vehicle.sql)  
 
+Start order should be as is :
+```
+start oxmysql
+start es_extended
+start ox_lib
+start ox_inventory
+everything else
+```
 </TabItem>
 <TabItem value="convert_esx" label="Convert ESX">
 
@@ -134,7 +142,16 @@ Execute the query inside [install.sql](https://github.com/overextended/ox_invent
 and [vehicle.sql](https://github.com/overextended/ox_inventory/blob/main/setup/vehicle.sql)  
 Open `fxmanifest.lua` and uncomment `server_script 'setup/convert.lua'`  
 Start the server and execute the `convertinventory` command from the console  
-Remove the conversion file
+Remove the conversion file  
+
+Start order should be as is :
+```
+start oxmysql
+start es_extended
+start ox_lib
+start ox_inventory
+everything else
+```
 
 </TabItem>
 <TabItem value="convert_linden" label="Upgrade from Linden Inventory">
