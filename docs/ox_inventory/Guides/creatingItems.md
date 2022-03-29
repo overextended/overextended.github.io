@@ -146,32 +146,65 @@ A modified burger item, which gives you notifications on add and remove argument
 
 
 ## Making the item usable
+If you are using ESX you can continue using `ESX.RegisterUsableItem` if desired.  
+Using the built-in system is more secure and provides simple progressbar support.  
 
-To make an item created in `items.lua` usable you have define it's functions in the `/modules/items/server.lua` file.  
-To do this we use the `Item` which returns a callback function with `event`, `item`, `inventory`, `slot` and `data` params.
+An item will be usable when client variables are added to [https://github.com/overextended/ox_inventory/blob/main/data/items.lua](data/items.lua), or has a registered item callback. Item callbacks can be added by defining an export (recommended), or by adding it to [https://github.com/overextended/ox_inventory/blob/main/modules/items/client.lua#L33](items/client.lua). 
 
-`event` - The event triggering depending on the item action, can be `usingItem`, `usedItem` and `buyingItem`
-
-**Example:**
+When defining [https://github.com/overextended/ox_inventory/blob/main/data/items.lua](item data), adding client.export will trigger an event on item use.  
+The correct formatting is `export = resourceName.exportName`.
 
 ```lua
-Item('testburger', function(event, item, inventory, slot, data)
-	if event == 'usingItem' then
-		if Inventory.GetItem(inventory, item, inventory.items[slot].metadata, true) > 0 then
-			-- if we return false here, we can cancel item use
-			return {
-				inventory.label, event, 'external item use poggies'
-			}
-		end
+exports('bandage', function(data, slot)
+	local playerPed = PlayerPedId()
+	local maxHealth = GetEntityMaxHealth(playerPed)
+	local health = GetEntityHealth(playerPed)
 
-	elseif event == 'usedItem' then
-		print(('%s just ate a %s from slot %s'):format(inventory.label, item.label, slot))
-
-	elseif event == 'buying' then
-		print(data.id, data.coords, json.encode(data.items[slot], {indent=true}))
+	-- Does the ped need to heal?
+	if health < maxHealth then
+		-- Use the bandage
+		exports.ox_inventory:useItem(data, function(data)
+			-- The item has been used, so trigger the effects
+			if data then
+				SetEntityHealth(playerPed, math.min(maxHealth, math.floor(health + maxHealth / 16)))
+				exports.ox_inventory:notify({text = 'You feel better already'})
+			end
+		end)
+	else
+		-- Don't use the item
+		exports.ox_inventory:notify({type = 'error', text = 'You don\'t need a bandage right now'})
 	end
 end)
+```
 
+
+## Item events
+Similarly to the client, a callback function can be defined on the server to handle several events (usingItem, usedItem, buyItem).  
+This can either be an export (recommended), or added to [https://github.com/overextended/ox_inventory/blob/main/modules/items/server.lua#L287](items/server.lua).
+
+
+```lua
+exports('bandage', function(event, item, inventory, slot, data)
+    if event == 'usingItem' then
+		local playerPed = GetPlayerPed(inventory.source)
+		local maxHealth = GetEntityMaxHealth(playerPed)
+		local health = GetEntityHealth(playerPed)
+
+        if health >= maxHealth then
+			TriggerClientEvent('ox_inventory:notify', inventory.source, {type = 'error', text = 'You don\'t need a bandage right now'})
+
+			-- Returning 'false' will prevent the item from being used
+            return false
+        end
+
+		return
+    elseif event == 'usedItem' then
+		return TriggerClientEvent('ox_inventory:notify', inventory.source, {text = 'You feel better already'})
+
+    elseif event == 'buying' then
+		return TriggerClientEvent('ox_inventory:notify', inventory.source, {type = 'success', text = 'You bought a bandage'})
+    end
+end)
 ```
 
 ## Creating container items
