@@ -1,4 +1,4 @@
-Returns a table of all registered items. The format is as defined in [https://github.com/overextended/ox_inventory/blob/main/data/items.lua](data/items.lua).
+Returns a table of all registered items. The format is as defined in [data/items.lua](https://github.com/overextended/ox_inventory/blob/main/data/items.lua).
 
 ```lua
 exports.ox_inventory:Items()

@@ -149,9 +149,9 @@ A modified burger item, which gives you notifications on add and remove argument
 If you are using ESX you can continue using `ESX.RegisterUsableItem` if desired.  
 Using the built-in system is more secure and provides simple progressbar support.  
 
-An item will be usable when client variables are added to [https://github.com/overextended/ox_inventory/blob/main/data/items.lua](data/items.lua), or has a registered item callback. Item callbacks can be added by defining an export (recommended), or by adding it to [https://github.com/overextended/ox_inventory/blob/main/modules/items/client.lua#L33](items/client.lua). 
+An item will be usable when client variables are added to [data/items.lua](https://github.com/overextended/ox_inventory/blob/main/data/items.lua), or has a registered item callback. Item callbacks can be added by defining an export (recommended), or by adding it to [items/client.lua](https://github.com/overextended/ox_inventory/blob/main/modules/items/client.lua#L33). 
 
-When defining [https://github.com/overextended/ox_inventory/blob/main/data/items.lua](item data), adding client.export will trigger an event on item use.  
+When defining [item data](https://github.com/overextended/ox_inventory/blob/main/data/items.lua), adding client.export will trigger an event on item use.  
 The correct formatting is `export = resourceName.exportName`.
 
 ```lua
@@ -180,7 +180,7 @@ end)
 
 ## Item events
 Similarly to the client, a callback function can be defined on the server to handle several events (usingItem, usedItem, buyItem).  
-This can either be an export (recommended), or added to [https://github.com/overextended/ox_inventory/blob/main/modules/items/server.lua#L287](items/server.lua).
+This can either be an export (recommended), or added to [items/server.lua](https://github.com/overextended/ox_inventory/blob/main/modules/items/server.lua#L287).
 
 
 ```lua
