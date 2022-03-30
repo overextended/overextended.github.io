@@ -4,7 +4,7 @@ Searches the inventory for a specified item.
 -- search: string
 -- item: table or string
 -- metadata: table or string (optional)
-expors.ox_inventory:Search(search, item, metadata)
+exports.ox_inventory:Search(search, item, metadata)
 ```
 If the `search` argument is defined as `'slots'` the return will be a table
 of slots where the item was found at.
