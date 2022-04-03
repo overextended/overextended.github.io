@@ -25,6 +25,7 @@ options for the item.
 -- close: boolean (optional) -- If set to false will not close the inventory on item use
 -- description: string (optional)
 -- consume: number (optional) -- Number of an item needed to use it, and removed after use (Default: 1)
+-- allowArmed: boolean (optional) -- If set to true will allow use of item while armed with a weapon
 -- client: table (optional)
 -- buttons: table (optional) -- Allows you to define custom context menu functions for the item
 ```
