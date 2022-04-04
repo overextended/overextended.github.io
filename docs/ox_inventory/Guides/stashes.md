@@ -85,7 +85,7 @@ end
 
 ## Example resource
 
-We put together an example resoruce showcasing how to properly utilise the stash API:
+We put together an example resource showcasing how to properly utilise the stash API:
 
 <div style={{width: 'fit-content'}}>
 	<a href="https://www.github.com/overextended/ox_inventory_examples">
