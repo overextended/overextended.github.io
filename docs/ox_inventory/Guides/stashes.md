@@ -13,7 +13,7 @@ We can set up custom stashes from outside the resource utilising the exported Re
 -- slots: number
 -- weight: number
 -- owner: string or boolean (optional)
--- job: table (optional)
+-- group: table (optional)
 	-- name: string
 	-- grade: number
 -- coords: vector or table (optional)
@@ -24,7 +24,7 @@ We can set up custom stashes from outside the resource utilising the exported Re
 - `slots` - Number of slots that the stash will have
 - `weight` - Maximum stash weight
 - `owner` - See below
-- `job` - Key-value pairs of job name and minimum grade to access
+- `group` - Key-value pairs of job name and minimum grade to access
 - `coords` - Vector or table containing coordinates
 
 The owner field will set permissions for stash access, with stashes registering to specific identifiers.
