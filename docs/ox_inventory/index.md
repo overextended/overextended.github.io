@@ -14,7 +14,7 @@ however it is not recommended for beginners. You must possess a basic understand
 otherwise you **should not** install this resource.
 :::
 
-## Dependecies
+## Dependencies
 
 ### OxMySQL
 
