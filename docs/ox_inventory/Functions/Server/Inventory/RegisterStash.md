@@ -24,6 +24,7 @@ exports.ox_inventory:RegisterStash(id, label, slots, maxWeight, owner, groups, c
 :::caution
 
 This function needs to be triggered before a player can open the stash.
+Occasioanlly you can use the `ox_inventory:openInventory` function.
 :::
 
 **Example:**
