@@ -2,6 +2,7 @@
 
 ### lib.disableControls
 ```lua
+-- Call on frame to disable all stored keys.
 lib.disableControls()
 ```
 
