@@ -46,6 +46,7 @@ Opens a registered context menu by it's id.
 
 ```lua
 -- id: string
+
 lib.showContext(id)
 ```
 
