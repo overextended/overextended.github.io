@@ -42,6 +42,7 @@ lib.notify({
     type = 'success'
 })
 ```
+![notification](https://i.imgur.com/cRxJICO.png)
 </TabItem>
 <TabItem value='custom' label="Custom">
 
@@ -59,6 +60,7 @@ lib.notify({
     iconColor = 'purple'
 })
 ```
+![custom_notification](https://i.imgur.com/3gexwWu.png)
 </TabItem>
 </Tabs>
 
@@ -85,3 +87,4 @@ lib.defaultNotify({
     status = 'success'
 })
 ```
+![default_notification](https://i.imgur.com/EIibuY9.png)
