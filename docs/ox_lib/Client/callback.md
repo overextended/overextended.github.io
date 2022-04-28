@@ -22,6 +22,6 @@ The current coroutine is yielded until a response is received.
 -- delay: number or false
 lib.callback.await(name, delay, ...)
 
-local count = lib.callback('ox_inventory:getItemCount', false, 'water', {type = 'fresh'})
+local count = lib.callback.await('ox_inventory:getItemCount', false, 'water', {type = 'fresh'})
 print(count)
 ```
