@@ -14,27 +14,27 @@ Low: 0.1997ms | Avg: 0.25898800ms | Total: 2589.8800ms (10000 queries)
 ```lua
 local val = 10000
 RegisterCommand('luasync', function()
-	local queryTimesLocal = {}
-	local result
-	MySQL.prepare.await('SELECT identifier from users WHERE lastname = ?', {'Linden'})
+    local queryTimesLocal = {}
+    local result
+    MySQL.prepare.await('SELECT identifier from users WHERE lastname = ?', {'Linden'})
 
-	for i=1, val do
-		local time = os.nanotime()
-		local r = MySQL.prepare.await('SELECT identifier from users WHERE lastname = ?', {'Linden'})
-		queryTimesLocal[#queryTimesLocal+1] = (os.nanotime() - time) / 1000000
-		if i==1 then result = r end
-	end
+    for i=1, val do
+        local time = os.nanotime()
+        local r = MySQL.prepare.await('SELECT identifier from users WHERE lastname = ?', {'Linden'})
+        queryTimesLocal[#queryTimesLocal+1] = (os.nanotime() - time) / 1000000
+        if i==1 then result = r end
+    end
 
-	local queryMsLow, queryMsSum = 1000, 0
+    local queryMsLow, queryMsSum = 1000, 0
 
-	for _, v in pairs(queryTimesLocal) do queryMsSum = queryMsSum + v end
-	for _, v in pairs(queryTimesLocal) do
-		if v < queryMsLow then queryMsLow = v end
-	end
+    for _, v in pairs(queryTimesLocal) do queryMsSum = queryMsSum + v end
+    for _, v in pairs(queryTimesLocal) do
+        if v < queryMsLow then queryMsLow = v end
+    end
 
-	local averageQueryTime = queryMsSum / #queryTimesLocal
-	print(json.encode(result))
-	print('Low: '.. queryMsLow ..'ms | Avg: '..averageQueryTime..'ms | Total: '..queryMsSum..'ms ('..#queryTimesLocal..' queries)')
+    local averageQueryTime = queryMsSum / #queryTimesLocal
+    print(json.encode(result))
+    print('Low: '.. queryMsLow ..'ms | Avg: '..averageQueryTime..'ms | Total: '..queryMsSum..'ms ('..#queryTimesLocal..' queries)')
 end)
 ```
 

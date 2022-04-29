@@ -18,7 +18,7 @@ Requires the vehicle to belong to the client. _Do not use NetworkRequestControlO
 lib.setVehicleProperties(vehicle, props)
 
 RegisterNetEvent('lualib:setVehicleProperties', function(netid, data)
-	lib.setVehicleProperties(NetToVeh(netid), data)
+    lib.setVehicleProperties(NetToVeh(netid), data)
 end)
 ```
 

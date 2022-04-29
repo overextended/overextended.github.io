@@ -9,9 +9,9 @@ Returns the number of affected rows by the query.
 -- Alias: MySQL.Async.execute
 
 MySQL.update('UPDATE users SET firstname = ? WHERE identifier = ?', {newName, playerIdentifier}, function(affectedRows)
-	if affectedRows then
-		print(affectedRows)
-	end
+    if affectedRows then
+        print(affectedRows)
+    end
 end)
 ```
 
@@ -21,10 +21,10 @@ end)
 -- Alias: MySQL.Sync.execute
 
 CreateThread(function()
-	local affectedRows = MySQL.update.await('UPDATE users SET firstname = ? WHERE identifier = ?', {newName, playerIdentifier})
-	if affectedRows then
-		print(affectedRows)
-	end
+    local affectedRows = MySQL.update.await('UPDATE users SET firstname = ? WHERE identifier = ?', {newName, playerIdentifier})
+    if affectedRows then
+        print(affectedRows)
+    end
 end)
 ```
 

@@ -9,9 +9,9 @@ Returns the columns for a single row.
 -- Alias: MySQL.Async.fetchSingle
 
 MySQL.single('SELECT * FROM users WHERE identifier = ?', {playerIdentifier}, function(result)
-	if result then
-		print(result.identifier, result.firstname, result.lastname)
-	end
+    if result then
+        print(result.identifier, result.firstname, result.lastname)
+    end
 end)
 ```
 
@@ -21,10 +21,10 @@ end)
 -- Alias: MySQL.Sync.fetchSingle
 
 CreateThread(function()
-	local result = MySQL.single.await('SELECT * FROM users WHERE identifier = ?', {playerIdentifier})
-	if result then
-		print(result.identifier, result.firstname, result.lastname)
-	end
+    local result = MySQL.single.await('SELECT * FROM users WHERE identifier = ?', {playerIdentifier})
+    if result then
+        print(result.identifier, result.firstname, result.lastname)
+    end
 end)
 ```
 

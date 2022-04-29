@@ -37,15 +37,15 @@ We provide full backwards compatibility with mysql-async and build for the curre
 
 ### Ox Lib
 
-A resource designed to provide reusable functions that can be loaded into any resource with simple variable declarations rather than through fxmanifest.
+Provides easily reusable functions that can be imported into your resource or called with exports.
 
-**Currently used for:**
+**Used in the inventory for**
 
 - SetInterval
 - Server Callbacks
-- Table utilities (contains, matches)
 - Requesting models, animations, etc.
-- Disabling control actions
+- Marker management
+- Notifications and progress bar
 
 <div style={{ width: 'fit-content' }}>
   <a href="https://www.github.com/overextended/ox_lib">
@@ -58,7 +58,7 @@ A resource designed to provide reusable functions that can be loaded into any re
 ### Production Build
 
 The interface is written in TypeScript using the React library, so the code included in the repository will not work.
-You either need to build the package yourself (more information in [guides](./Guides) section), or download a release (ox_inventory.zip).
+You either need to build the package yourself (more information in [guides](./Guides) section), or download a release.
 
 <div style={{ width: 'fit-content' }}>
   <a href="https://www.github.com/overextended/ox_inventory/releases/latest" style={{ marginRight: '0.6rem' }}>

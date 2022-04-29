@@ -10,11 +10,11 @@ When selecting data it will return all matching rows and columns, otherwise it w
 -- Alias: MySQL.Async.query
 
 MySQL.query('SELECT * FROM users WHERE identifier = ?', {playerIdentifier}, function(result)
-	if result then
-		for _, v in pairs(result) do
-			print(v.identifier, v.firstname, v.lastname)
-		end
-	end
+    if result then
+        for _, v in pairs(result) do
+            print(v.identifier, v.firstname, v.lastname)
+        end
+    end
 end)
 ```
 ### Promise
@@ -23,12 +23,12 @@ end)
 -- Alias: MySQL.Sync.query
 
 CreateThread(function()
-	local result = MySQL.query.await('SELECT * FROM users WHERE identifier = ?', {playerIdentifier})
-	if result then
-		for _, v in pairs(result) do
-			print(v.identifier, v.firstname, v.lastname)
-		end
-	end
+    local result = MySQL.query.await('SELECT * FROM users WHERE identifier = ?', {playerIdentifier})
+    if result then
+        for _, v in pairs(result) do
+            print(v.identifier, v.firstname, v.lastname)
+        end
+    end
 end)
 ```
 
@@ -40,7 +40,7 @@ exports.oxmysql.query('SELECT * FROM users WHERE identifier = ?', [playerIdentif
   if (result) {
     result.forEach((v) => {
       console.log(v.identifier, v.firstname, v.lastname)
-	})
+    })
   }
 })
 ```

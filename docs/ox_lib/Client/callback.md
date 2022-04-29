@@ -11,7 +11,7 @@ The response is handled in a separate coroutine.
 lib.callback(name, delay, cb, ...)
 
 lib.callback('ox_inventory:getItemCount', false, function(count)
-	print(count)
+    print(count)
 end, 'water', {type = 'fresh'})
 ```
 

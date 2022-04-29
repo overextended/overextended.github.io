@@ -1,6 +1,6 @@
 # Configuration
 
-You can add these settings directly to your 'server.cfg', or add them to a separate file and call it with `exec`.
+You can add these settings directly to your 'server.cfg', or add them to a separate file (i.e. inventory.cfg) and call it with `exec`.
 
 :::caution
 
@@ -88,8 +88,4 @@ set datadog:site "datadoghq.com"
 
 # Set server hostname
 set datadog:hostname "FXServer"
-
-add_principal group.admin ox_inventory
-add_ace resource.ox_inventory command.add_principal allow
-add_ace resource.ox_inventory command.remove_principal allow
 ```

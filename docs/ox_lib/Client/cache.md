@@ -7,19 +7,19 @@ https://github.com/overextended/ox_lib/blob/master/resource/cache/client.lua
 
 ## States
 ```lua
-cache.ped		-- player entity id
-cache.vehicle	-- vehicle entity id
-cache.seat		-- vehicle seat index
+cache.ped        -- player entity id
+cache.vehicle    -- vehicle entity id
+cache.seat        -- vehicle seat index
 ```
 
 ## lib.onCache
 Register a callback function when the value is changed.
 ```lua
 lib.onCache('vehicle', function(value)
-	print('vehicle', value)
+    print('vehicle', value)
 end)
 
 lib.onCache('seat', function(value)
-	print('seat', value)
+    print('seat', value)
 end)
 ```

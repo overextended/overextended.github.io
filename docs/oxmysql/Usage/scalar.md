@@ -9,7 +9,7 @@ Returns the first column for a single row.
 -- Alias: MySQL.Async.fetchScalar
 
 MySQL.scalar('SELECT firstname FROM users WHERE identifier = ?', {playerIdentifier}, function(firstname)
-	print(firstname)
+    print(firstname)
 end)
 ```
 
@@ -19,8 +19,8 @@ end)
 -- Alias: MySQL.Sync.fetchScalar
 
 CreateThread(function()
-	local firstname = MySQL.scalar.await('SELECT firstname FROM users WHERE identifier = ?', {playerIdentifier})
-	print(firstname)
+    local firstname = MySQL.scalar.await('SELECT firstname FROM users WHERE identifier = ?', {playerIdentifier})
+    print(firstname)
 end)
 ```
 

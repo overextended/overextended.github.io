@@ -17,11 +17,11 @@ When using SELECT, the return value will match `query, single, or scalar` depend
 -- Alias: MySQL.Async.prepare
 
 MySQL.prepare('SELECT * FROM users WHERE identifier = ?', {playerIdentifier}, function(result)
-	if result then
-		for _, v in pairs(result) do
-			print(v.identifier, v.firstname, v.lastname)
-		end
-	end
+    if result then
+        for _, v in pairs(result) do
+            print(v.identifier, v.firstname, v.lastname)
+        end
+    end
 end)
 ```
 
@@ -31,12 +31,12 @@ end)
 -- Alias: MySQL.Sync.prepare
 
 CreateThread(function()
-	local result = MySQL.prepare.await('SELECT * FROM users WHERE identifier = ?', {playerIdentifier})
-	if result then
-		for _, v in pairs(result) do
-			print(v.identifier, v.firstname, v.lastname)
-		end
-	end
+    local result = MySQL.prepare.await('SELECT * FROM users WHERE identifier = ?', {playerIdentifier})
+    if result then
+        for _, v in pairs(result) do
+            print(v.identifier, v.firstname, v.lastname)
+        end
+    end
 end)
 ```
 
@@ -48,7 +48,7 @@ exports.oxmysql.prepare('SELECT * FROM users WHERE identifier = ?', [playerIdent
   if (result) {
     result.forEach((v) => {
       console.log(v.identifier, v.firstname, v.lastname)
-	})
+    })
   }
 })
 ```

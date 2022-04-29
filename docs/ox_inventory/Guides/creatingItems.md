@@ -157,24 +157,24 @@ The correct formatting is `export = resourceName.exportName`.
 
 ```lua
 exports('bandage', function(data, slot)
-	local playerPed = PlayerPedId()
-	local maxHealth = GetEntityMaxHealth(playerPed)
-	local health = GetEntityHealth(playerPed)
+    local playerPed = PlayerPedId()
+    local maxHealth = GetEntityMaxHealth(playerPed)
+    local health = GetEntityHealth(playerPed)
 
-	-- Does the ped need to heal?
-	if health < maxHealth then
-		-- Use the bandage
-		exports.ox_inventory:useItem(data, function(data)
-			-- The item has been used, so trigger the effects
-			if data then
-				SetEntityHealth(playerPed, math.min(maxHealth, math.floor(health + maxHealth / 16)))
-				exports.ox_inventory:notify({text = 'You feel better already'})
-			end
-		end)
-	else
-		-- Don't use the item
-		exports.ox_inventory:notify({type = 'error', text = 'You don\'t need a bandage right now'})
-	end
+    -- Does the ped need to heal?
+    if health < maxHealth then
+        -- Use the bandage
+        exports.ox_inventory:useItem(data, function(data)
+            -- The item has been used, so trigger the effects
+            if data then
+                SetEntityHealth(playerPed, math.min(maxHealth, math.floor(health + maxHealth / 16)))
+                exports.ox_inventory:notify({text = 'You feel better already'})
+            end
+        end)
+    else
+        -- Don't use the item
+        exports.ox_inventory:notify({type = 'error', text = 'You don\'t need a bandage right now'})
+    end
 end)
 ```
 
@@ -187,23 +187,23 @@ This can either be an export (recommended), or added to [items/server.lua](https
 ```lua
 exports('bandage', function(event, item, inventory, slot, data)
     if event == 'usingItem' then
-		local playerPed = GetPlayerPed(inventory.source)
-		local maxHealth = GetEntityMaxHealth(playerPed)
-		local health = GetEntityHealth(playerPed)
+        local playerPed = GetPlayerPed(inventory.source)
+        local maxHealth = GetEntityMaxHealth(playerPed)
+        local health = GetEntityHealth(playerPed)
 
         if health >= maxHealth then
-			TriggerClientEvent('ox_inventory:notify', inventory.source, {type = 'error', text = 'You don\'t need a bandage right now'})
+            TriggerClientEvent('ox_inventory:notify', inventory.source, {type = 'error', text = 'You don\'t need a bandage right now'})
 
-			-- Returning 'false' will prevent the item from being used
+            -- Returning 'false' will prevent the item from being used
             return false
         end
 
-		return
+        return
     elseif event == 'usedItem' then
-		return TriggerClientEvent('ox_inventory:notify', inventory.source, {text = 'You feel better already'})
+        return TriggerClientEvent('ox_inventory:notify', inventory.source, {text = 'You feel better already'})
 
     elseif event == 'buying' then
-		return TriggerClientEvent('ox_inventory:notify', inventory.source, {type = 'success', text = 'You bought a bandage'})
+        return TriggerClientEvent('ox_inventory:notify', inventory.source, {type = 'success', text = 'You bought a bandage'})
     end
 end)
 ```
