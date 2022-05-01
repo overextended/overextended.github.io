@@ -192,7 +192,7 @@ exports('bandage', function(event, item, inventory, slot, data)
         local health = GetEntityHealth(playerPed)
 
         if health >= maxHealth then
-            TriggerClientEvent('ox_inventory:notify', inventory.source, {type = 'error', text = 'You don\'t need a bandage right now'})
+            TriggerClientEvent('ox_inventory:notify', inventory.player.source, {type = 'error', text = 'You don\'t need a bandage right now'})
 
             -- Returning 'false' will prevent the item from being used
             return false
@@ -200,10 +200,10 @@ exports('bandage', function(event, item, inventory, slot, data)
 
         return
     elseif event == 'usedItem' then
-        return TriggerClientEvent('ox_inventory:notify', inventory.source, {text = 'You feel better already'})
+        return TriggerClientEvent('ox_inventory:notify', inventory.player.source, {text = 'You feel better already'})
 
     elseif event == 'buying' then
-        return TriggerClientEvent('ox_inventory:notify', inventory.source, {type = 'success', text = 'You bought a bandage'})
+        return TriggerClientEvent('ox_inventory:notify', inventory.player.source, {type = 'success', text = 'You bought a bandage'})
     end
 end)
 ```
