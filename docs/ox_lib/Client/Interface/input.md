@@ -2,6 +2,9 @@
 title: Input Dialog
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 The input dialog window allows you to take data from the user
 by setting input fields.
 
@@ -26,9 +29,16 @@ The input rows will always return a string, if you want a row to be of
 number data type, you can use the `tonumber` function to convert it to
 a number instead.
 
-If a user left an input field empty it will return `nil`
+If a user left an input field empty it will return `nil`.
+
+You can also add checkboxes that will return `true` if checked and `nil` if unchecked.  
+Look at the *Advanced* example for it's usage.
 
 **Example:**
+
+<Tabs>
+<TabItem value="basic" label="Basic">
+
 ```lua
 local input = lib.inputDialog('Police locker', {'Locker number', 'Locker passcode'})
 
@@ -39,5 +49,19 @@ if input then
     print(lockerNumber, lockerPasscode)
 end
 ```
-
 ![Example image](https://i.imgur.com/RvFFZqv.png)
+</TabItem>
+<TabItem value='advanced' label='Advanced'>
+
+```lua
+local input = lib.inputDialog('Police locker', {
+    { type = "input", label = "Locker number" },
+    { type = "checkbox", label = "Some checkbox" },
+    { type = "input", label = "Locker PIN" },
+    { type = "checkbox", label = "Some other checkbox" },
+})
+print(json.encode(input, {indent=true}))
+```
+![Example image](https://i.imgur.com/2NM6yDQ.png)
+</TabItem>
+</Tabs>
