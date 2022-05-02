@@ -55,13 +55,18 @@ end
 
 ```lua
 local input = lib.inputDialog('Police locker', {
-    { type = "input", label = "Locker number" },
-    { type = "checkbox", label = "Some checkbox" },
-    { type = "input", label = "Locker PIN" },
-    { type = "checkbox", label = "Some other checkbox" },
+	{ type = "input", label = "Locker number" },
+	{ type = "checkbox", label = "Some checkbox" },
+	{ type = "input", label = "Locker PIN" },
+	{ type = "checkbox", label = "Some other checkbox" },
+	{ type = 'select', label = 'Value select', options = {
+		{ value = 'option1', label = 'Option 1' },
+		{ value = 'option2', label = 'Option 2' },
+		{ value = 'option3', label = 'Option 3'},
+	}}
 })
 print(json.encode(input, {indent=true}))
 ```
-![Example image](https://i.imgur.com/2NM6yDQ.png)
+![Example image](https://i.imgur.com/BE9Mo7Z.png) ![Select example](https://i.imgur.com/qzDWa7T.png)
 </TabItem>
 </Tabs>
