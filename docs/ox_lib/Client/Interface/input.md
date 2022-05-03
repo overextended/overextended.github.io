@@ -12,7 +12,14 @@ by setting input fields.
 
 ```lua
 -- heading: string
--- rows: strings table
+-- rows: strings array or table
+	-- type: "input" or "checkbox" or "select"
+	-- label: string
+	-- options: table array (optional - used ONLY with "select" type)
+		-- value: string
+		-- label: string
+	-- password: boolean (optional - used ONLY with "input" type)
+	-- icon: string (optional - used ONLY with "input" type)
 
 lib.inputDialog(heading, rows)
 ```
@@ -33,6 +40,15 @@ If a user left an input field empty it will return `nil`.
 
 You can also add checkboxes that will return `true` if checked and `nil` if unchecked.  
 Look at the *Advanced* example for it's usage.
+
+:::caution
+
+When using the advanced method you can define `icon` and `password` **ONLY** with type `"input"` and
+you can define `options` **ONLY** with type `"select"`.
+
+
+Doing so otherwise ***will*** result in errors.
+:::
 
 **Example:**
 
@@ -57,7 +73,7 @@ end
 local input = lib.inputDialog('Police locker', {
 	{ type = "input", label = "Locker number" },
 	{ type = "checkbox", label = "Some checkbox" },
-	{ type = "input", label = "Locker PIN" },
+	{ type = "input", label = "Locker PIN", password = true, icon = 'lock' },
 	{ type = "checkbox", label = "Some other checkbox" },
 	{ type = 'select', label = 'Value select', options = {
 		{ value = 'option1', label = 'Option 1' },
@@ -67,6 +83,6 @@ local input = lib.inputDialog('Police locker', {
 })
 print(json.encode(input, {indent=true}))
 ```
-![Example image](https://i.imgur.com/BE9Mo7Z.png) ![Select example](https://i.imgur.com/qzDWa7T.png)
+![Example image](https://i.imgur.com/RBn53LN.png) ![Select example](https://i.imgur.com/rLJuDu6.png)
 </TabItem>
 </Tabs>
