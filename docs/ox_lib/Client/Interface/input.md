@@ -69,6 +69,15 @@ end
 </TabItem>
 <TabItem value='advanced' label='Advanced'>
 
+:::danger
+
+Everything under this advanced exampled requires ox_lib version at least 2.3.0 and
+as of the time of writing this version **hasn't** been pushed yet.
+
+Optionally you can download the source code and build the UI yourself if you don't
+want to wait for the release.
+:::
+
 ```lua
 local input = lib.inputDialog('Police locker', {
 	{ type = "input", label = "Locker number" },
