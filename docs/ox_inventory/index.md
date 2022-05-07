@@ -245,7 +245,7 @@ To do so please read our [_Building inventory UI_](./Guides/inventory_ui.md) gui
 ### Stashes / trunks are not saved at server restart
 
 The only supported way of doing a restart is **txAdmin scheduled restart**.  
-txAdmin scheduled restart should be your only way of restarting a server in production (server with player in it).
+txAdmin scheduled restart should be your only way of restarting a server in production.
 
 If you need to do a manual restart, you must use `/saveinv` before restarting the server.  
 If you don't do this, all inventory except players inventory will not be saved.
