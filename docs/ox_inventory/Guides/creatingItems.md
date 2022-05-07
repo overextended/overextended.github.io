@@ -187,12 +187,12 @@ This can either be an export (recommended), or added to [items/server.lua](https
 ```lua
 exports('bandage', function(event, item, inventory, slot, data)
     if event == 'usingItem' then
-        local playerPed = GetPlayerPed(inventory.source)
+        local playerPed = GetPlayerPed(inventory.id)
         local maxHealth = GetEntityMaxHealth(playerPed)
         local health = GetEntityHealth(playerPed)
 
         if health >= maxHealth then
-            TriggerClientEvent('ox_inventory:notify', inventory.source, {type = 'error', text = 'You don\'t need a bandage right now'})
+            TriggerClientEvent('ox_inventory:notify', inventory.id, {type = 'error', text = 'You don\'t need a bandage right now'})
 
             -- Returning 'false' will prevent the item from being used
             return false
@@ -200,10 +200,10 @@ exports('bandage', function(event, item, inventory, slot, data)
 
         return
     elseif event == 'usedItem' then
-        return TriggerClientEvent('ox_inventory:notify', inventory.source, {text = 'You feel better already'})
+        return TriggerClientEvent('ox_inventory:notify', inventory.id, {text = 'You feel better already'})
 
     elseif event == 'buying' then
-        return TriggerClientEvent('ox_inventory:notify', inventory.source, {type = 'success', text = 'You bought a bandage'})
+        return TriggerClientEvent('ox_inventory:notify', inventory.id, {type = 'success', text = 'You bought a bandage'})
     end
 end)
 ```
