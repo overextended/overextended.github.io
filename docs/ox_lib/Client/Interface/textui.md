@@ -22,14 +22,13 @@ lib.showTextUI(text, options)
 
 **Example:**
 <Tabs>
-<TabItem label="Default" value="default">
+<TabItem label="Basic" value="basic">
 
 ```lua
-lib.showTextUI('[E] - Fuel vehicle', {
-    position = "top-center",
-    icon = "gas-pump",
-})
+lib.showTextUI('[E] - Fuel vehicle')
 ```
+
+![](https://i.imgur.com/3ptQyAq.png)
 </TabItem>
 <TabItem label="Custom style" value="custom">
 
@@ -37,14 +36,15 @@ lib.showTextUI('[E] - Fuel vehicle', {
 lib.showTextUI('[E] - Pick apple', {
     position = "top-center",
     icon = 'hand',
-    iconColor = "red",
     style = {
         borderRadius = 0,
-        backgroundColor = 'blue',
-        color = 'red'
+        backgroundColor = '#48BB78',
+        color = 'white'
     }
 })
 ```
+
+![](https://i.imgur.com/gNDwPBN.png)
 </TabItem>
 </Tabs>
 

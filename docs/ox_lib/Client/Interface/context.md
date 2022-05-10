@@ -135,3 +135,13 @@ As of the time writing this the buttons are sorted **alphabetically**.
 ![menu_example](https://i.imgur.com/aJu92dv.png)  
 ![metadata](https://i.imgur.com/kFGSlBF.png)  
 ![event_menu](https://i.imgur.com/r0Ln4VP.png)
+
+### lib.getOpenContextMenu
+
+Returns the id of the currently open context menu.
+
+If not context menu is open returns `nil`.
+
+```lua
+lib.getOpenContextMenu()
+```

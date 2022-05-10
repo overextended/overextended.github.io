@@ -53,14 +53,14 @@ lib.notify({
     description = 'Notification description',
     position = 'top',
     style = {
-        backgroundColor = 'red',
-        color = 'blue'
+        backgroundColor = '#141517',
+        color = '#909296'
     },
-    icon = 'bed',
-    iconColor = 'purple'
+    icon = 'ban',
+    iconColor = '#C53030'
 })
 ```
-![custom_notification](https://i.imgur.com/3gexwWu.png)
+![custom_notification](https://i.imgur.com/0EK5APp.png)
 </TabItem>
 </Tabs>
 
