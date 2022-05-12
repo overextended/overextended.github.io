@@ -28,4 +28,6 @@ function point:nearby()
         print(self.dunak)
     end
 end
+
+point:remove()
 ```
