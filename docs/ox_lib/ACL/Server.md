@@ -1,5 +1,3 @@
-# Permissions
-
 Wrapper around the built-in ACL system. Handles lib.addCommand and ox_groups permissions.  
 Refer to [Basic Aces & Principals overview/guide](https://forum.cfx.re/t/basic-aces-principals-overview-guide/90917) for more information.
 

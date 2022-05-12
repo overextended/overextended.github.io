@@ -1,5 +1,3 @@
-# Cache
-
 Caches data related to the player and handling some events or statebags.  
 An interval runs every 100ms to update data that cannot be checked via handlers.  
 

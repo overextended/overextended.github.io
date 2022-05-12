@@ -1,5 +1,3 @@
-# Callbacks
-
 ### lib.callback.register
 ```lua
 -- name: string

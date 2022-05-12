@@ -1,5 +1,3 @@
-# Zones
-
 An alternative to PolyZone utilising [glm.polygon](https://github.com/gottfriedleibniz/lua/blob/luaglm/EXTENDED.md#polygon).
 
 ```lua

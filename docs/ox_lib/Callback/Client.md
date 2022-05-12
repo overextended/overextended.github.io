@@ -1,5 +1,3 @@
-# Callbacks
-
 Triggers a registered server callback and registers an event handler for the response.
 
 ### lib.callback

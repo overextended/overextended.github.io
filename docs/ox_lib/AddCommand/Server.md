@@ -1,5 +1,3 @@
-# Command
-
 ```lua
 -- principal: string or false
 -- command: string

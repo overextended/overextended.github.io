@@ -1,5 +1,5 @@
 ---
-title: Misc
+title: Clipboard
 ---
 
 ### lib.setClipboard

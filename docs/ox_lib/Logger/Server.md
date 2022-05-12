@@ -1,5 +1,3 @@
-# Logger
-
 Submit logs to Datadog.
 
 Register an account with [datadog](https://www.datadoghq.com/). Once registered you need to create an [API key](https://app.datadoghq.com/organization-settings/api-keys).  

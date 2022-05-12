@@ -1,5 +1,3 @@
-# Disable Controls
-
 ### lib.disableControls
 ```lua
 -- Call on frame to disable all stored keys.

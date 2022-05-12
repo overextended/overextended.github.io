@@ -1,5 +1,3 @@
-# Streaming
-
 Check if assets exist, such as models, and loads them into memory.  
 Throws errors for invalid assets and returns true if the asset is loaded.
 

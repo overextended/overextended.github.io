@@ -1,5 +1,3 @@
-# Dependency version
-
 ### lib.checkDependency
 Check if a resource is using a specified version or higher, allowing for compatibility checks or throwing errors.
 ```lua

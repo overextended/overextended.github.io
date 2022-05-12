@@ -1,5 +1,3 @@
-# Version check
-
 ### lib.versionCheck
 Compares the resource version to the latest published release on GitHub. 
 ```lua
