@@ -16,7 +16,7 @@ const config = {
   organizationName: 'overextended', // Usually your GitHub org/user name.
   projectName: 'overextended.github.io', // Usually your repo name.
 
-//   plugins: ['@docusaurus/'],
+  //   plugins: ['@docusaurus/'],
 
   presets: [
     [
@@ -80,7 +80,13 @@ const config = {
       prism: {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
-		    additionalLanguages: ['lua']
+        additionalLanguages: ['lua'],
+      },
+      algolia: {
+        appId: '8XXXVNJ7UW',
+        apiKey: '3680aeb79049744c6629dd0abd2f5dfe',
+        indexName: 'overextended',
+        contextualSearch: true,
       },
     }),
 };

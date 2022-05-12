@@ -73,3 +73,7 @@ a:focus,
 a:active {
   text-decoration: none;
 }
+
+.DocSearch-Hit[aria-selected='true'] a {
+  background-color: #119e7f !important;
+}
