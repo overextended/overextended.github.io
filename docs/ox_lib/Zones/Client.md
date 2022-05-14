@@ -3,13 +3,13 @@ An alternative to PolyZone utilising [glm.polygon](https://github.com/gottfriedl
 ```lua
 -- data: table
     -- points: vector3[] all z values must match
-    -- thickness: number (optional), default 2
+    -- thickness: number (optional), default 4
     -- debug: bool (optional)
 lib.zones.poly(data)
 
 -- data: table
     -- coords: vector3
-    -- size: vector3
+    -- size: vector3 (optional), default is vec3(4, 4, 4)
     -- rotation: number (optional), angle in degrees
     -- debug: bool (optional)
 lib.zones.box(data)
