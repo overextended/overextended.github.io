@@ -16,6 +16,7 @@ for k, v in pairs(water) do
     print('\n______________'..'\n- index '..k)
     print(v.name, 'slot: '..v.slot, 'metadata: '..json.encode(v.metadata))
     water = v
+    break
 end
 water.metadata.type = 'clean'
 ox_inventory:SetMetadata(source, water.slot, water.metadata)

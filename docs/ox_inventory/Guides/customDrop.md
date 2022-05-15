@@ -1,3 +1,0 @@
----
-title: Creating custom drops
----
