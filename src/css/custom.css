@@ -47,13 +47,17 @@
 }
 
 .docs-wrapper {
-  background-color: #182029;
+  background-color: #1f2428;
   justify-content: stretch;
   align-items: stretch;
 }
 
 .navbar {
-  background-color: #1d252e;
+  background-color: #1c2023;
+}
+
+.theme-doc-sidebar-container {
+  background-color: #1c2023;
 }
 
 .icon-button {
