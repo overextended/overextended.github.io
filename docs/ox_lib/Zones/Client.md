@@ -75,3 +75,10 @@ local box = lib.zones.box({
 	onExit = onExit
 })
 ```
+
+Zones can be deleted by using the remove method.
+```lua
+poly:remove()
+sphere:remove()
+box:remove()
+```

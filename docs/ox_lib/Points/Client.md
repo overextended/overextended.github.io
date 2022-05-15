@@ -29,3 +29,8 @@ function point:nearby()
     end
 end
 ```
+
+Points can be deleted by using the remove method.
+```lua
+point:remove()
+```
