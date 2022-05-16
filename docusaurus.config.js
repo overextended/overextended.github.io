@@ -73,10 +73,6 @@ const config = {
           },
         ],
       },
-      footer: {
-        style: 'dark',
-        copyright: `Copyright © ${new Date().getFullYear()} Overextended`,
-      },
       prism: {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
