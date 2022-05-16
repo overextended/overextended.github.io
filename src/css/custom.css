@@ -25,7 +25,7 @@
   --ifm-color-primary-light: #2be8bf;
   --ifm-color-primary-lighter: #37e9c2;
   --ifm-color-primary-lightest: #58edcd;
-  --wrapper-background: #182029;
+  --wrapper-background: #1f2428;
 }
 
 .docusaurus-highlight-code-line {
@@ -42,7 +42,7 @@
 .main-wrapper {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: stretch;
   background-color: var(--wrapper-background);
 }
 
