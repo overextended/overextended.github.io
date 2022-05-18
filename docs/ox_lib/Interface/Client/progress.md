@@ -17,7 +17,6 @@ Displays a running progress bar.
     -- blendIn: float (optional - default is 3.0)
     -- blendOut: float (optional - default is 1.0)
     -- duration: number (optional - default is -1)
-    -- flag: number (optional - default is 49)
     -- playbackRate: number (optional - default is 0)
     -- lockX: boolean (optional)
     -- lockY: boolean (optional)
@@ -27,9 +26,6 @@ Displays a running progress bar.
     -- playEnter: boolean (optional - default is true)
 -- prop: table (optional)
     -- model: hash
-    -- x: number
-    -- y: number
-    -- z: number
     -- bone: number (optional - default is 60309)
     -- pos: table
         -- x: number
@@ -91,7 +87,6 @@ you can define a position.
     -- blendIn: float (optional - default is 3.0)
     -- blendOut: float (optional - default is 1.0)
     -- duration: number (optional - default is -1)
-    -- flag: number (optional - default is 49)
     -- playbackRate: number (optional - default is 0)
     -- lockX: boolean (optional)
     -- lockY: boolean (optional)
@@ -101,9 +96,6 @@ you can define a position.
     -- playEnter: boolean (optional - default is true)
 -- prop: table (optional)
     -- model: hash
-    -- x: number
-    -- y: number
-    -- z: number
     -- bone: number (optional - default is 60309)
     -- pos: table
         -- x: number
