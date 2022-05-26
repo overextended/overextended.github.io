@@ -40,7 +40,6 @@ Displays a running progress bar.
     -- car: boolean (optional)
     -- combat: boolean (optional)
     -- mouse: boolean (optional)
-    --- ...: number (optional - Keys to disable, can have unlimted)
     
 lib.progressBar(data)
 ```
@@ -110,7 +109,6 @@ you can define a position.
     -- car: boolean (optional)
     -- combat: boolean (optional)
     -- mouse: boolean (optional)
-    --- ...: number (optional - Keys to disable, can have unlimted)
 
 lib.progressCircle(data)
 ```
