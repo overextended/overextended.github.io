@@ -42,7 +42,7 @@ Displays a running progress bar.
 -- disable: table (optional)
     -- move: boolean (optional)
     -- car: boolean (optional)
-    -- comabt: boolean (optional)
+    -- combat: boolean (optional)
     -- mouse: boolean (optional)
     --- ...: number (optional - Keys to disable, can have unlimted)
     
@@ -116,7 +116,7 @@ you can define a position.
 -- disable: table (optional)
     -- move: boolean (optional)
     -- car: boolean (optional)
-    -- comabt: boolean (optional)
+    -- combat: boolean (optional)
     -- mouse: boolean (optional)
     --- ...: number (optional - Keys to disable, can have unlimted)
 
