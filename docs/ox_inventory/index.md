@@ -48,7 +48,7 @@ Provides easily reusable functions that can be imported into your resource or ca
 - Notifications and progress bar
 
 <div style={{ width: 'fit-content' }}>
-  <a href="https://www.github.com/overextended/ox_lib">
+  <a href="https://www.github.com/overextended/ox_lib/releases/latest">
     <IconButton side="left" icon={<BsGithub />}>
       GitHub
     </IconButton>
