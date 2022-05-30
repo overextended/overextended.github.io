@@ -60,6 +60,13 @@ Opens a registered context menu by it's id.
 lib.showContext(id)
 ```
 
+### lib.hideContext
+Hides any currently visible context menu
+
+```lua
+lib.hideContext()
+```
+
 ### lib.getOpenContextMenu
 
 Returns the id of the currently open context menu.
