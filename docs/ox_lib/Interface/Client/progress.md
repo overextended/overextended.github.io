@@ -118,6 +118,7 @@ lib.progressCircle(data)
 ```lua
 if lib.progressCircle({
     duration = 2000,
+    label = 'Drinking water',
     position = 'bottom',
     useWhileDead = false,
     canCancel = true,
