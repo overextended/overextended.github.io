@@ -76,6 +76,7 @@ you can define a position.
 
 ```lua
 -- duration: number
+-- label: string (optional)
 -- position: "middle" or "bottom" (optional - default is "middle")
 -- useWhileDead: boolean (optional)
 -- canCancel: boolean (optional)
