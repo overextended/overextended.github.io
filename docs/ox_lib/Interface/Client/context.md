@@ -12,6 +12,7 @@ Used for registering a context menu.
 -- id: string
 -- title: string
 -- menu: string (optional)
+-- onExit: function (optional)
 -- options: table
     -- item: key as string or table
         -- title: string (optional - if item isn't key)
@@ -32,6 +33,7 @@ as you'd like.
 `title` - Every menu must have a title.  
 `menu` - Menu identifier - if defined there will be a back arrow next to the menu title
 that will take you to the menu you defined.  
+`onExit` - Function that will be ran when the user closes their context menu with ESC.
 `options` - Contains all the clickable menu items.  
 `item` - Defined as a key, can be empty if you don't want it to do anything.  
 `item/title` - If not using keys then sets the title for the button.  
@@ -61,10 +63,15 @@ lib.showContext(id)
 ```
 
 ### lib.hideContext
-Hides any currently visible context menu
+Hides any currently visible context menu.
+
+`onExit` param defines whether the onExit function for the
+menu should be ran or not.
 
 ```lua
-lib.hideContext()
+
+-- onExit: boolean
+lib.hideContext(onExit)
 ```
 
 ### lib.getOpenContextMenu
@@ -89,6 +96,9 @@ RegisterCommand('testcontext', function()
     lib.registerContext({
         id = 'example_menu',
         title = 'Example Context',
+        onExit = function()
+            print('Hello there')
+        end,
         options = {
             {title = 'Empty button'},
             {
