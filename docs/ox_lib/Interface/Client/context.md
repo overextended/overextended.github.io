@@ -37,6 +37,7 @@ that will take you to the menu you defined.
 `options` - Contains all the clickable menu items.  
 `item` - Defined as a key, can be empty if you don't want it to do anything.  
 `item/title` - If not using keys then sets the title for the button.  
+`item/image` - Image url, puts the image at the top of the metadata popover.  
 `item/menu` - Menu identifier that the button will take you to, when defined an arrow
 pointing to the right to indicate a menu will be shown.  
 `item/arrow` - Shows an arrow on the right side like `menu` does, useful when you are 
