@@ -13,7 +13,7 @@ by setting input fields.
 ```lua
 -- heading: string
 -- rows: strings array or table
-	-- type: "input" or "checkbox" or "select"
+	-- type: "input" or "number" or "checkbox" or "select"
 	-- label: string
 	-- options: table array (optional - used ONLY with "select" type)
 		-- value: string
@@ -32,9 +32,8 @@ sent to the dialog, so if we want data from the first field that
 would be index `1`, if we want data from the third field, that would
 be index `3`, etc...
 
-The input rows will always return a string, if you want a row to be of
-number data type, you can use the `tonumber` function to convert it to
-a number instead.
+The standard input rows will always return a string, if you want a row to be of
+number data type, you can use set the `type` to `number`.
 
 If a user left an input field empty it will return `nil`.
 
