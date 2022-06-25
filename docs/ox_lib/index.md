@@ -1,5 +1,6 @@
 ---
 title: Getting Started
+sidebar_position: 1
 ---
 
 ox_lib is a collection of Lua and UI functions to utilise in other resources.

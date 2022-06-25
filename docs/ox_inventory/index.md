@@ -1,5 +1,6 @@
 ---
 title: Getting Started
+sidebar_position: 1
 ---
 
 import IconButton from '@site/src/components/IconButton';

@@ -1,3 +1,7 @@
+---
+sidebar_position: 2
+---
+
 # Configuration
 
 You can add these settings directly to your 'server.cfg', or add them to a separate file (i.e. inventory.cfg) and call it with `exec`.
