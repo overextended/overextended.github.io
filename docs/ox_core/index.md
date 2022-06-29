@@ -21,8 +21,15 @@ Refer to [GitHub's guide to setting up Git](https://docs.github.com/en/get-start
 ### Dependencies
 
 - [oxmysql](https://github.com/overextended/oxmysql/)
+  - Database connector
 - [ox_lib](https://github.com/overextended/ox_lib/)
+  - Shared functions through modules and exports
 - [ox_inventory](https://github.com/overextended/ox_inventory)
+  - Implements items, weapons, shops, etc.
+- [fivem-appearance](https://github.com/pedr0fontoura/fivem-appearance)
+  - Player ped customisation.
+- [ox_appearance](https://github.com/overextended/ox_appearance)
+  - Outfits, shops, and player appearance persistence.
 
 ### Optional dependencies
 
