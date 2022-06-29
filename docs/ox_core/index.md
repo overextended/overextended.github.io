@@ -1,6 +1,7 @@
 ---
 title: Getting started
 sidebar_position: 1
+displayed_sidebar: ox_core
 ---
 
 import Tabs from '@theme/Tabs';
