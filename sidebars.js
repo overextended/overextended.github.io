@@ -119,7 +119,7 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: 'Core',
+      label: 'Inventory',
       link: {
         type: 'generated-index',
         title: 'Ox Inventory',
