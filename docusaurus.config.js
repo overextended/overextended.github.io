@@ -58,7 +58,7 @@ const config = {
             position: 'left',
           },
           {
-            href: 'https://www.discord.gg/overextended',
+            href: 'https://discord.gg/mEM6eYdXPm',
             label: 'Discord',
             position: 'left',
           },
