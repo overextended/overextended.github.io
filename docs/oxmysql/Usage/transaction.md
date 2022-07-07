@@ -33,8 +33,8 @@ print(result)
 #### JavaScript
 ```js
 const queries = [
-    { query = 'INSERT INTO `test` (id) VALUES (:someid)', values = { someid = 1 } },
-    { query = 'INSERT INTO `test` (id) VALUES (:someid)', values = { someid = 2 } }
+    { query: 'INSERT INTO `test` (id) VALUES (:someid)', values: { someid = 1 } },
+    { query: 'INSERT INTO `test` (id) VALUES (:someid)', values: { someid = 2 } }
 ] // NOTE, the 'values' objects can be named 'parameters' here for MySQL-Async compatibility.
 
 // Async
@@ -81,7 +81,7 @@ const queries = [
     'SET `name` = :newname IN `test` WHERE `id` = :someid'
 ]
 
-const parameters = { someid = 2, somename = 'John Doe', newname = 'John Notdoe' }
+const parameters = { someid: 2, somename: 'John Doe', newname: 'John Notdoe' }
 
 // Async
 exports.oxmysql.transaction(queries, parameters, (result) => {
