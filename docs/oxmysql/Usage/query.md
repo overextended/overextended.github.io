@@ -6,52 +6,50 @@ When selecting data it will return all matching rows and columns, otherwise it w
 
 ### Callback
 ```lua
--- Alias: exports.oxmysql:query
--- Alias: MySQL.Async.query
+-- alias: exports.oxmysql:query
+-- alias: MySQL.Async.query
 
 MySQL.query('SELECT * FROM users WHERE identifier = ?', {playerIdentifier}, function(result)
     if result then
-        for _, v in pairs(result) do
-            print(v.identifier, v.firstname, v.lastname)
+        for i = 1, #result do
+            local row = result[i]
+            print(row.identifier, row.firstname, row.lastname)
         end
     end
 end)
 ```
 ### Promise
 ```lua
--- Alias: exports.oxmysql:query_async
--- Alias: MySQL.Sync.query
+-- alias: exports.oxmysql:query_async
+-- alias: MySQL.Sync.query
 
-CreateThread(function()
-    local result = MySQL.query.await('SELECT * FROM users WHERE identifier = ?', {playerIdentifier})
-    if result then
-        for _, v in pairs(result) do
-            print(v.identifier, v.firstname, v.lastname)
-        end
+local result = MySQL.query.await('SELECT * FROM users WHERE identifier = ?', {playerIdentifier})
+if result then
+    for i = 1, #result do
+        local row = result[i]
+        print(row.identifier, row.firstname, row.lastname)
     end
-end)
+end
 ```
 
 ## JavaScript
 
 ### Callback
 ```js
-exports.oxmysql.query('SELECT * FROM users WHERE identifier = ?', [playerIdentifier], function(result) {
+exports.oxmysql.query('SELECT * FROM users WHERE identifier = ?', [playerIdentifier], (result) => {
   if (result) {
-    result.forEach((v) => {
-      console.log(v.identifier, v.firstname, v.lastname)
+    result.forEach((row) => {
+      console.log(row.identifier, row.firstname, row.lastname)
     })
   }
 })
 ```
 ### Promise
 ```js
-(async () => {
-  const result = await exports.oxmysql.query_async('SELECT * FROM users WHERE identifier = ?', [playerIdentifier]) {
-  if (result) {
-    result.forEach((v) => {
-      console.log(v.identifier, v.firstname, v.lastname)
-    })
-  }
-})()
+const result = await exports.oxmysql.query_async('SELECT * FROM users WHERE identifier = ?', [playerIdentifier])
+if (result) {
+  result.forEach((row) => {
+    console.log(row.identifier, row.firstname, row.lastname)
+  })
+}
 ```

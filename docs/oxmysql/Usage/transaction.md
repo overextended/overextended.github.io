@@ -17,15 +17,15 @@ local queries = {
 } -- NOTE, the 'values' tables can be named 'parameters' here for MySQL-Async compatibility.
 
 -- Async
--- Alias: exports.oxmysql:transaction
--- Alias: MySQL.Async.transaction
+-- alias: exports.oxmysql:transaction
+-- alias: MySQL.Async.transaction
 MySQL.transaction(queries, function(result)
     print(result)
 end)
 
 -- Sync
--- Alias: exports.oxmysql:transaction_async
--- Alias: MySQL.Sync.transaction
+-- alias: exports.oxmysql:transaction_async
+-- alias: MySQL.Sync.transaction
 local result = MySQL.transaction.await(queries)
 print(result)
 ```
@@ -33,8 +33,8 @@ print(result)
 #### JavaScript
 ```js
 const queries = [
-    { query: 'INSERT INTO `test` (id) VALUES (:someid)', values: { someid = 1 } },
-    { query: 'INSERT INTO `test` (id) VALUES (:someid)', values: { someid = 2 } }
+    { query: 'INSERT INTO `test` (id) VALUES (:someid)', values: { someid: 1 } },
+    { query: 'INSERT INTO `test` (id) VALUES (:someid)', values: { someid: 2 } }
 ] // NOTE, the 'values' objects can be named 'parameters' here for MySQL-Async compatibility.
 
 // Async
@@ -61,15 +61,15 @@ local queries = {
 local parameters = { ['someid'] = 2, ['somename'] = 'John Doe', ['newname'] = 'John Notdoe' }
 
 -- Async
--- Alias: exports.oxmysql:transaction
--- Alias: MySQL.Async.transaction
+-- alias: exports.oxmysql:transaction
+-- alias: MySQL.Async.transaction
 MySQL.transaction(queries, parameters, function(result)
     print(result)
 end)
 
 -- Sync
--- Alias: exports.oxmysql:transaction_async
--- Alias: MySQL.Sync.transaction
+-- alias: exports.oxmysql:transaction_async
+-- alias: MySQL.Sync.transaction
 local result = MySQL.transaction.await(queries, parameters)
 print(result)
 ```

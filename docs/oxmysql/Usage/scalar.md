@@ -5,8 +5,8 @@ Returns the first column for a single row.
 
 ### Callback
 ```lua
--- Alias: exports.oxmysql:scalar
--- Alias: MySQL.Async.fetchScalar
+-- alias: exports.oxmysql:scalar
+-- alias: MySQL.Async.fetchScalar
 
 MySQL.scalar('SELECT firstname FROM users WHERE identifier = ?', {playerIdentifier}, function(firstname)
     print(firstname)
@@ -15,28 +15,24 @@ end)
 
 ### Promise
 ```lua
--- Alias: exports.oxmysql:scalar_async
--- Alias: MySQL.Sync.fetchScalar
+-- alias: exports.oxmysql:scalar_async
+-- alias: MySQL.Sync.fetchScalar
 
-CreateThread(function()
-    local firstname = MySQL.scalar.await('SELECT firstname FROM users WHERE identifier = ?', {playerIdentifier})
-    print(firstname)
-end)
+local firstname = MySQL.scalar.await('SELECT firstname FROM users WHERE identifier = ?', {playerIdentifier})
+print(firstname)
 ```
 
 ## JavaScript
 
 ### Callback
 ```js
-exports.oxmysql.scalar('SELECT firstname FROM users WHERE identifier = ?', [playerIdentifier], function(firstname) {
-    console.log(firstname)
+exports.oxmysql.scalar('SELECT firstname FROM users WHERE identifier = ?', [playerIdentifier], (firstname) => {
+  console.log(firstname)
 })
 ```
 
 ### Promise
 ```js
-(async () => {
-  const firstname = await exports.oxmysql.scalar_async('SELECT firstname FROM users WHERE identifier = ?', [playerIdentifier]) {
-    console.log(firstname)
-})()
+const firstname = await exports.oxmysql.scalar_async('SELECT firstname FROM users WHERE identifier = ?', [playerIdentifier])
+console.log(firstname)
 ```

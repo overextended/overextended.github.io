@@ -6,8 +6,9 @@ Inserts a new entry into the database and returns the insert id for the row, if 
 
 ### Callback
 ```lua
--- Alias: exports.oxmysql:insert
--- Alias: MySQL.Async.insert
+-- alias: exports.oxmysql:insert
+-- alias: MySQL.Async.insert
+
 MySQL.insert('INSERT INTO users (identifier, firstname, lastname) VALUES (?, ?, ?)', {playerIdentifier, firstName, lastName}, function(id)
     print(id)
 end)
@@ -15,28 +16,24 @@ end)
 
 ### Promise
 ```lua
--- Alias: exports.oxmysql:insert_async
--- Alias: MySQL.Sync.insert
-CreateThread(function()
-    local id = MySQL.insert.await('INSERT INTO users (identifier, firstname, lastname) VALUES (?, ?, ?)', {playerIdentifier, firstName, lastName})
-    print(id)
-end)
+-- alias: exports.oxmysql:insert_async
+-- alias: MySQL.Sync.insert
+
+local id = MySQL.insert.await('INSERT INTO users (identifier, firstname, lastname) VALUES (?, ?, ?)', {playerIdentifier, firstName, lastName})
+print(id)
 ```
 
 ## JavaScript
 
 ### Callback
 ```js
-exports.oxmysql.insert('INSERT INTO users (identifier, firstname, lastname) VALUES (?, ?, ?)', [playerIdentifier, firstName, lastName], function(id) {
+exports.oxmysql.insert('INSERT INTO users (identifier, firstname, lastname) VALUES (?, ?, ?)', [playerIdentifier, firstName, lastName], (id) => {
   console.log(id)
 })
 ```
 
 ### Promise
 ```js
-(async () => {
-  const id = exports.oxmysql.insert_async('INSERT INTO users (identifier, firstname, lastname) VALUES (?, ?, ?)',
-[playerIdentifier, firstName, lastName]) {
-  console.log(id)
-})()
+const id = await exports.oxmysql.insert_async('INSERT INTO users (identifier, firstname, lastname) VALUES (?, ?, ?)', [playerIdentifier, firstName, lastName])
+console.log(id)
 ```
