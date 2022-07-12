@@ -38,7 +38,9 @@ end
 
 ### Callback
 ```js
-exports.oxmysql.prepare('SELECT * FROM users WHERE identifier = ?', [playerIdentifier], (result) => {
+// alias: exports.oxmysql.prepare
+
+MySQL.insert('SELECT * FROM users WHERE identifier = ?', [playerIdentifier], (result) => {
   if (result) {
     console.log(v.identifier, v.firstname, v.lastname)
   }
@@ -47,8 +49,9 @@ exports.oxmysql.prepare('SELECT * FROM users WHERE identifier = ?', [playerIdent
 
 ### Promise
 ```js
+// alias: exports.oxmysql.prepare_async
 
-const result = await exports.oxmysql.prepare_async('SELECT * FROM users WHERE identifier = ?', [playerIdentifier])
+const result = await MySQL.insert('SELECT * FROM users WHERE identifier = ?', [playerIdentifier])
 if (result) {
   console.log(v.identifier, v.firstname, v.lastname)
 }

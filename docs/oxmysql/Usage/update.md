@@ -30,7 +30,9 @@ end
 
 ### Callback
 ```js
-exports.oxmysql.update('UPDATE users SET firstname = ? WHERE identifier = ? ', [newName, playerIdentifier], (affectedRows) => {
+// alias: exports.oxmysql.update
+
+MySQL.update('UPDATE users SET firstname = ? WHERE identifier = ? ', [newName, playerIdentifier], (affectedRows) => {
   if (affectedRows) {
     console.log(affectedRows)
   }
@@ -39,7 +41,9 @@ exports.oxmysql.update('UPDATE users SET firstname = ? WHERE identifier = ? ', [
 
 ### Promise
 ```js
-const id = exports.oxmysql.update_async('UPDATE users SET firstname = ? WHERE identifier = ? ', [newName, playerIdentifier])
+// alias: exports.oxmysql.update_async
+
+const id = MySQL.update('UPDATE users SET firstname = ? WHERE identifier = ? ', [newName, playerIdentifier])
 if (affectedRows) {
   console.log(affectedRows)
 }

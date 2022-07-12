@@ -36,7 +36,9 @@ end
 
 ### Callback
 ```js
-exports.oxmysql.query('SELECT * FROM users WHERE identifier = ?', [playerIdentifier], (result) => {
+// alias: exports.oxmysql.query
+
+MySQL.query('SELECT * FROM users WHERE identifier = ?', [playerIdentifier], (result) => {
   if (result) {
     result.forEach((row) => {
       console.log(row.identifier, row.firstname, row.lastname)
@@ -46,7 +48,9 @@ exports.oxmysql.query('SELECT * FROM users WHERE identifier = ?', [playerIdentif
 ```
 ### Promise
 ```js
-const result = await exports.oxmysql.query_async('SELECT * FROM users WHERE identifier = ?', [playerIdentifier])
+// alias: exports.oxmysql.query_async
+
+const result = await MySQL.query('SELECT * FROM users WHERE identifier = ?', [playerIdentifier])
 if (result) {
   result.forEach((row) => {
     console.log(row.identifier, row.firstname, row.lastname)

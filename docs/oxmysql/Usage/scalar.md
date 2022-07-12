@@ -26,13 +26,17 @@ print(firstname)
 
 ### Callback
 ```js
-exports.oxmysql.scalar('SELECT firstname FROM users WHERE identifier = ?', [playerIdentifier], (firstname) => {
+// alias: exports.oxmysql.scalar
+
+MySQL.scalar('SELECT firstname FROM users WHERE identifier = ?', [playerIdentifier], (firstname) => {
   console.log(firstname)
 })
 ```
 
 ### Promise
 ```js
-const firstname = await exports.oxmysql.scalar_async('SELECT firstname FROM users WHERE identifier = ?', [playerIdentifier])
+// alias: exports.oxmysql.scalar_async
+
+const firstname = await MySQL.scalar('SELECT firstname FROM users WHERE identifier = ?', [playerIdentifier])
 console.log(firstname)
 ```

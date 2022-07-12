@@ -27,13 +27,17 @@ print(id)
 
 ### Callback
 ```js
-exports.oxmysql.insert('INSERT INTO users (identifier, firstname, lastname) VALUES (?, ?, ?)', [playerIdentifier, firstName, lastName], (id) => {
+// alias: exports.oxmysql.insert
+
+MySQL.insert('INSERT INTO users (identifier, firstname, lastname) VALUES (?, ?, ?)', [playerIdentifier, firstName, lastName], (id) => {
   console.log(id)
 })
 ```
 
 ### Promise
 ```js
-const id = await exports.oxmysql.insert_async('INSERT INTO users (identifier, firstname, lastname) VALUES (?, ?, ?)', [playerIdentifier, firstName, lastName])
+// alias: exports.oxmysql.insert_async
+
+const id = await MySQL.insert('INSERT INTO users (identifier, firstname, lastname) VALUES (?, ?, ?)', [playerIdentifier, firstName, lastName])
 console.log(id)
 ```
