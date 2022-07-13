@@ -1,7 +1,8 @@
 import React from 'react';
 
 interface Props {
-  icon: Element;
+  icon: React.ReactNode;
+  children: React.ReactNode;
   side: 'left' | 'right';
   style?: React.CSSProperties;
 }
