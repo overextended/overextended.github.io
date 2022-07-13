@@ -17,6 +17,8 @@ Used for registering a context menu.
     -- item: key as string or table
         -- title: string (optional - if item isn't key)
         -- menu: string (optional)
+        -- icon: string (optional)
+        -- iconColor: string (optional)
         -- arrow: boolean (optional)
         -- description: string (optional)
         -- metadata: string table or key, value table or table (optional)
@@ -33,11 +35,13 @@ as you'd like.
 `title` - Every menu must have a title.  
 `menu` - Menu identifier - if defined there will be a back arrow next to the menu title
 that will take you to the menu you defined.  
-`onExit` - Function that will be ran when the user closes their context menu with ESC.
+`onExit` - Function that will be ran when the user closes their context menu with ESC.  
 `options` - Contains all the clickable menu items.  
 `item` - Defined as a key, can be empty if you don't want it to do anything.  
 `item/title` - If not using keys then sets the title for the button.  
 `item/image` - Image url, puts the image at the top of the metadata popover.  
+`item/icon` - FontAwesome icon that will be displayed on the left side, works the same as notification and textui icons.  
+`item/iconColor` - Color of the displayed icon.   
 `item/menu` - Menu identifier that the button will take you to, when defined an arrow
 pointing to the right to indicate a menu will be shown.  
 `item/arrow` - Shows an arrow on the right side like `menu` does, useful when you are 
