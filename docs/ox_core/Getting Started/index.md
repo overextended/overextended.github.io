@@ -1,12 +1,11 @@
 ---
 title: Getting started
 sidebar_position: 1
+slug: ./../
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import IconButton from '@site/src/components/IconButton';
-import { FaNpm } from 'react-icons/fa';
 
 :::caution
 
@@ -59,34 +58,5 @@ pnpm build
 
 - Download a tagged [release](https://github.com/overextended/ox_core/releases).
 
-</TabItem>
-</Tabs>
-
-
-## Convars
-
-| Name | Default | Replicated |
-|------|------------|---------|
-| ox:primaryIdentifier | fivem | false
-
-## Importing the core functions
-
-<Tabs>
-<TabItem value='lua' label='Lua'>
-Functions are imported by simply adding the import files to the fxmanifest.
-
-**Client:**  
-`@ox_core/imports/client.lua`
-
-**Server:**  
-`@ox_core/imports/server.lua`
-</TabItem>
-<TabItem value='js/ts' label='JS/TS'>
-If in case you want to write resources in JS/TS you will need to insteall our node client and server wrapper package,
-which will allow you to use the core's functions with full type and intellisense support.
-
-<a href='https://www.npmjs.com/package/@overextended/ox_core'>
-<IconButton style={{marginTop: '0.7rem'}} side='left' icon={<FaNpm/>}>Package</IconButton>
-</a>
 </TabItem>
 </Tabs>
