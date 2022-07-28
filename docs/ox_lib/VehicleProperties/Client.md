@@ -16,7 +16,7 @@ Requires the vehicle to belong to the client. _Do not use NetworkRequestControlO
 -- props: table
 lib.setVehicleProperties(vehicle, props)
 
-RegisterNetEvent('lualib:setVehicleProperties', function(netid, data)
+RegisterNetEvent('ox_lib:setVehicleProperties', function(netid, data)
     lib.setVehicleProperties(NetToVeh(netid), data)
 end)
 ```
@@ -24,5 +24,5 @@ end)
 #### Recommended usage
 The server should tell the owner of the entity to set properties, using the following trigger.
 ```lua
-TriggerClientEvent('lualib:setVehicleProperties', entityOwner, vehNetId, data)
+TriggerClientEvent('ox_lib:setVehicleProperties', entityOwner, vehNetId, data)
 ```
