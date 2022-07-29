@@ -7,6 +7,10 @@ RegisterNetEvent('ox:playerDeath', function(isDead) end)
 ```
 
 ```lua
+RegisterNetEvent('ox:setPlayerInService', function(job) end)
+```
+
+```lua
 AddEventHandler('ox:playerLoaded', function(source, userid, charid) end)
 ```
 
