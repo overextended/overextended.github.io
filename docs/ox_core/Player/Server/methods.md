@@ -74,7 +74,7 @@ const iq = player.get('iq');
 
 ## player.getAccounts
 
-Returns an instance of [CAccount](../../Accounts) for the player.
+Returns an instance of CAccount for the player.
 
 <Tabs>
 <TabItem value='lua' label='Lua'>
