@@ -17,6 +17,7 @@ Registers and caches a menu under the specified id.
     -- values: table of strings (optional - if provided creates a side scrollable list)
     -- defaultIndex: number (optional - sets the current index for the list to specified number)
     -- args: any (optional)
+  -- position: 'top-left' or 'top-right' or 'bottom-left' or 'bottom-right' (optional - default is top-left)
   -- onClose: function (optional)
   -- onSelected: function (optional - triggers every time a new button is selected)
   -- onSideScroll: function (optional - triggers every time a side list is scrolled)
@@ -78,6 +79,7 @@ Avoid constantly re-registering a menu that does not depend on any outside value
 lib.registerMenu({
 	id = 'some_menu_id',
 	title = 'Menu title',
+  position = 'top-right',
 	onSideScroll = function(selected, scrollIndex, args)
 		print(selected, scrollIndex, args)
 	end,
@@ -103,3 +105,4 @@ RegisterCommand('testmenu', function()
 	lib.showMenu('some_menu_id')
 end)
 ```
+![Example](https://i.imgur.com/Rr3SZlI.png)

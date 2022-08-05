@@ -90,99 +90,105 @@ lib.getOpenContextMenu()
 ```
 
 ### Usage Example
-This is a simple command that will register and open a
-context menu.
+First we register the menu with our specified options then we call the show function in the command.
+
+:::tip
+Avoid constantly re-registering a menu that does not depend on any outside values (A.K.A a static menu).
+:::
 
 <Tabs>
 <TabItem value='custom' label='Custom order'>
 
 ```lua
-RegisterCommand('testcontext', function()
-    lib.registerContext({
-        id = 'example_menu',
-        title = 'Example Context',
-        onExit = function()
-            print('Hello there')
-        end,
-        options = {
-            {title = 'Empty button'},
-            {
-                title = 'Example button',
-                description = 'Example button description',
-                metadata = {
-                    {label = 'Value 1', value = 'Some value'},
-                    {label = 'Value 2', value = 300},
-                }
-            },
-            {
-                title = 'Menu button',
-                menu = 'other_example_menu',
-                description = 'Takes you to another menu!',
-                metadata = {'It also has metadata support'}
-            },
-            {
-                title = 'Event button',
-                description = 'Open a menu and send event data',
-                arrow = true,
-                event = 'some_event',
-                args = {value1 = 300, value2 = 'Other value'}
+lib.registerContext({
+    id = 'example_menu',
+    title = 'Example Context',
+    onExit = function()
+        print('Hello there')
+    end,
+    options = {
+        {title = 'Empty button'},
+        {
+            title = 'Example button',
+            description = 'Example button description',
+            metadata = {
+                {label = 'Value 1', value = 'Some value'},
+                {label = 'Value 2', value = 300},
             }
         },
         {
-            id = 'other_example_menu',
-            title = 'Other Context Menu',
-            menu = 'example_menu',
-            options = {
-                ['Nothing here'] = {}
-            }
+            title = 'Menu button',
+            menu = 'other_example_menu',
+            description = 'Takes you to another menu!',
+            metadata = {'It also has metadata support'}
+        },
+        {
+            title = 'Event button',
+            description = 'Open a menu and send event data',
+            arrow = true,
+            event = 'some_event',
+            args = {value1 = 300, value2 = 'Other value'}
         }
-    })
-    lib.showContext('example_menu')
-end)
+    },
+    {
+        id = 'other_example_menu',
+        title = 'Other Context Menu',
+        menu = 'example_menu',
+        options = {
+            ['Nothing here'] = {}
+        }
+    }
+})
 ```
 </TabItem>
 <TabItem value='ordered' label='Alphabetically ordered'>
 
 ```lua
-RegisterCommand('testcontext', function()
-    lib.registerContext({
-        id = 'example_menu',
-        title = 'Example Context',
-        options = {
-            ['Empty button'] = {},
-            ['Example button'] = {
-                description = 'Example button description',
-                metadata = {
-                    ['Value 1'] = 'Some value',
-                    ['Value 2'] = 300
-                }
-            },
-            ['Menu button'] = {
-                menu = 'other_example_menu',
-                description = 'Takes you to another menu',
-                metadata = {'It also has metadata support'}
-            },
-            ['Event button'] = {
-                description = 'Open a menu and send event data',
-                arrow = true,
-                event = 'some_event',
-                args = {value1 = 300, value2 = 'Other value'}
+lib.registerContext({
+    id = 'example_menu',
+    title = 'Example Context',
+    onExit = function()
+        print('Hello there')
+    end,
+    options = {
+        ['Empty button'] = {},
+        ['Example button'] = {
+            description = 'Example button description',
+            metadata = {
+                ['Value 1'] = 'Some value',
+                ['Value 2'] = 300
             }
         },
-        {
-            id = 'other_example_menu',
-            title = 'Other Context Menu',
-            menu = 'example_menu',
-            options = {
-                ['Nothing here'] = {}
-            }
+        ['Menu button'] = {
+            menu = 'other_example_menu',
+            description = 'Takes you to another menu',
+            metadata = {'It also has metadata support'}
+        },
+        ['Event button'] = {
+            description = 'Open a menu and send event data',
+            arrow = true,
+            event = 'some_event',
+            args = {value1 = 300, value2 = 'Other value'}
         }
-    })
-    lib.showContext('example_menu')
-end)
+    },
+    {
+        id = 'other_example_menu',
+        title = 'Other Context Menu',
+        menu = 'example_menu',
+        options = {
+            ['Nothing here'] = {}
+        }
+    }
+})
 ```
 </TabItem>
 </Tabs>
+
+```lua
+RegisterCommand('testcontext', function()
+    lib.showContext('example_menu')
+end)
+```
 
 To trigger the event from the `Event button` and get it's data we first
 need to register the event properly:
