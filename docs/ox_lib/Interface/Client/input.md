@@ -18,8 +18,12 @@ by setting input fields.
 	-- options: table array (optional - used ONLY with "select" type)
 		-- value: string
 		-- label: string
+		-- default: string (optional - any of the values)
 	-- password: boolean (optional - used ONLY with "input" type)
 	-- icon: string (optional - used ONLY with "input" type)
+	-- placeholder: string (optional - used ONLY with "input" or "number" type)
+	-- default: string or number (optional)
+	-- checked: boolean (optional - used ONLY with "checkbox" type)
 
 lib.inputDialog(heading, rows)
 ```
@@ -70,18 +74,19 @@ end
 
 ```lua
 local input = lib.inputDialog('Police locker', {
-	{ type = "input", label = "Locker number" },
+	{ type = "input", label = "Locker number", placeholder = "123" },
 	{ type = "checkbox", label = "Some checkbox" },
 	{ type = "input", label = "Locker PIN", password = true, icon = 'lock' },
-	{ type = "checkbox", label = "Some other checkbox" },
+	{ type = "checkbox", label = "Some other checkbox", checked = true },
 	{ type = 'select', label = 'Value select', options = {
 		{ value = 'option1', label = 'Option 1' },
 		{ value = 'option2', label = 'Option 2' },
 		{ value = 'option3', label = 'Option 3'},
-	}}
+	}},
+	{ type = "number", label = "Number counter", default = 12 }
 })
 print(json.encode(input, {indent=true}))
 ```
-![Example image](https://i.imgur.com/RBn53LN.png) ![Select example](https://i.imgur.com/rLJuDu6.png)
+![Example image](https://i.imgur.com/9dBA2d2.png) ![Select example](https://i.imgur.com/ILdFeot.png)
 </TabItem>
 </Tabs>
