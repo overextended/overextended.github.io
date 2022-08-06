@@ -1,5 +1,5 @@
 ---
-title: List Menu
+title: Menu
 ---
 
 Keyboard navigation menu with specific event functions.
