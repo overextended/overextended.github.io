@@ -1,5 +1,5 @@
 ```lua
--- principal: string or false
+-- principal: string or string[] or false
 -- command: string
 -- callback: function
 -- parameters: table (optional)
