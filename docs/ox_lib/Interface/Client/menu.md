@@ -15,6 +15,7 @@ Registers and caches a menu under the specified id.
     -- label: string
     -- icon: string (optinal)
     -- values: table of strings (optional - if provided creates a side scrollable list)
+    -- description?: string (optional)
     -- defaultIndex: number (optional - sets the current index for the list to specified number)
     -- args: any (optional)
   -- position: 'top-left' or 'top-right' or 'bottom-left' or 'bottom-right' (optional - default is top-left)
@@ -90,10 +91,10 @@ lib.registerMenu({
 		print('Menu closed')
 	end,
 	options = {
-		{label = 'Simple button'},
+		{label = 'Simple button', description = 'It has a description!'},
 		{label = 'Simple button with icon', icon = 'arrows-up-down-left-right'},
 		{label = 'Button with args', args = 'nice_button'},
-		{label = 'List button', values = {'You', 'can', 'side', 'scroll', 'this'}},
+		{label = 'List button', values = {'You', 'can', 'side', 'scroll', 'this'}, description = 'It also has a description!'},
 		{label = 'List button with default index', values = {'You', 'can', 'side', 'scroll', 'this'}, defaultIndex = 5},
 		{label = 'List button with args', values = {'You', 'can', 'side', 'scroll', 'this'}, args = {someValue = 3, otherValue = 'value'}},
 	}
@@ -105,4 +106,4 @@ RegisterCommand('testmenu', function()
 	lib.showMenu('some_menu_id')
 end)
 ```
-![Example](https://i.imgur.com/Rr3SZlI.png)
+![Example](https://i.imgur.com/lmimH7e.png)
