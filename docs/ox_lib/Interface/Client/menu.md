@@ -19,6 +19,7 @@ Registers and caches a menu under the specified id.
     -- defaultIndex: number (optional - sets the current index for the list to specified number)
     -- args: any (optional)
   -- position: 'top-left' or 'top-right' or 'bottom-left' or 'bottom-right' (optional - default is top-left)
+  -- disableInput: boolean (optional - default false)
   -- onClose: function (optional)
   -- onSelected: function (optional - triggers every time a new button is selected)
   -- onSideScroll: function (optional - triggers every time a side list is scrolled)
@@ -39,7 +40,7 @@ lib.showMenu(id)
 ### lib.hideMenu
 
 ```lua
--- onExit: boolean (optinal - if true runs the menu's onClose function)
+-- onExit: boolean (optional - if true runs the menu's onClose function)
 
 lib.hideMenu(onExit)
 ```
