@@ -47,6 +47,9 @@ setr inventory:keys ["F2", "K", "TAB"]
 # Enable control action when inventory is open
 setr inventory:enablekeys [249]
 
+# Show a list of all nearby players when giving items
+setr inventory:giveplayerlist true
+
 # Jobs with access to police armoury, evidence lockers, etc
 setr inventory:police ["police", "sheriff"]
 

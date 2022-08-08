@@ -2,19 +2,19 @@
 
 ## Convars
 
-| Name                 | Default | Replicated |
-| -------------------- | ------- | ---------- |
-| ox:primaryIdentifier | fivem   | false      |
-| ox:characterSlots    | 5       | true       |
+| Name                 | Replicated | Default |
+| -------------------- | ---------- | ------- |
+| ox:primaryIdentifier | false      | fivem   |
+| ox:characterSlots    | true       | 5       |
 
 ## Convar overrides
 
 Convars for other resources are set when ox_core starts.
 
-| Name                                | Value                                                   | Replicated |
-| ----------------------------------- | ------------------------------------------------------- | ---------- |
-| inventory:framework                 | ox                                                      | true       |
-| inventory:trimplate                 | 5                                                       | true       |
-| pe-basicloading:disableAutoShutdown | 1                                                       | true       |
-| npwd:useResourceIntegration         | true                                                    | false      |
-| npwd:database                       | {playerTable: "characters", identifierColumn: "charid"} | false      |
+| Name                                | Replicated | Value                                                   |
+| ----------------------------------- | ---------- | ------------------------------------------------------- |
+| inventory:framework                 | true       | ox                                                      |
+| inventory:trimplate                 | true       | true                                                    |
+| pe-basicloading:disableAutoShutdown | true       | 1                                                       |
+| npwd:useResourceIntegration         | false      | true                                                    |
+| npwd:database                       | false      | {playerTable: "characters", identifierColumn: "charid"} |
