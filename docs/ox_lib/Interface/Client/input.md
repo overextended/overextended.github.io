@@ -13,7 +13,7 @@ by setting input fields.
 ```lua
 -- heading: string
 -- rows: strings array or table
-	-- type: "input" or "number" or "checkbox" or "select"
+	-- type: "input" or "number" or "checkbox" or "select" or "slider"
 	-- label: string
 	-- options: table array (optional - used ONLY with "select" type)
 		-- value: string
@@ -24,6 +24,9 @@ by setting input fields.
 	-- placeholder: string (optional - used ONLY with "input" or "number" type)
 	-- default: string or number (optional)
 	-- checked: boolean (optional - used ONLY with "checkbox" type)
+	-- min: number (optional - used ONLY with "slider" type)
+	-- max: number (optional - used ONLY with "slider" type)
+	-- step: number (optional - used ONLY with "slider" type)
 
 lib.inputDialog(heading, rows)
 ```
