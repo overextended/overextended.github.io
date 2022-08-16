@@ -9,6 +9,9 @@ Displays a running progress bar.
 -- duration: number
 -- label: string
 -- useWhileDead: boolean (optional)
+-- allowRagdoll: boolean (optional)
+-- allowCuffed: boolean (optional)
+-- allowFalling: boolean (optional)
 -- canCancel: boolean (optional)
 -- anim: table (optional)
     -- dict: string (optional - either scenario or dict)
