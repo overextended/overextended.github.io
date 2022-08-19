@@ -8,5 +8,5 @@ Get the id and coords of the closest vehicle to a set of coordinates.
 ---@param includePlayerVehicle boolean Whether or not to include the player's current vehicle.
 ---@return number? vehicle
 ---@return vector3? vehicleCoords
-function lib.getClosestPlayer(coords, maxDistance, includePlayerVehicle) end
+function lib.getClosestVehicle(coords, maxDistance, includePlayerVehicle) end
 ```
