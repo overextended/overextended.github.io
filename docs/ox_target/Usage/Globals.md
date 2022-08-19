@@ -25,10 +25,12 @@ local optionNames = { 'ox:option1', 'ox:option2' }
 
 ## Create Globals
 
+```lua
 exports.ox_target:addGlobalObject(options)
 exports.ox_target:addGlobalPed(options)
 exports.ox_target:addGlobalPlayer(options)
 exports.ox_target:addGlobalVehicle(options)
+```
 
 ## Remove Globals
 
