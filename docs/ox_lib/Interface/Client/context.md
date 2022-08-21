@@ -39,6 +39,7 @@ that will take you to the menu you defined.
 `options` - Contains all the clickable menu items.  
 `item` - Defined as a key, can be empty if you don't want it to do anything.  
 `item/title` - If not using keys then sets the title for the button.  
+`item/onSelect` - Function that triggers when a button is pressed, returns it's args.  
 `item/image` - Image url, puts the image at the top of the metadata popover.  
 `item/icon` - FontAwesome icon that will be displayed on the left side, works the same as notification and textui icons.  
 `item/iconColor` - Color of the displayed icon.   
@@ -111,6 +112,9 @@ lib.registerContext({
         {
             title = 'Example button',
             description = 'Example button description',
+            onSelect = function(args)
+              print('Pressed the button!')
+            end,
             metadata = {
                 {label = 'Value 1', value = 'Some value'},
                 {label = 'Value 2', value = 300},
