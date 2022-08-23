@@ -14,7 +14,7 @@ Convars **must** be set before starting ox_inventory.
 The values below are _defaults_ and should not be explicitly set unless changing the value.
 
 ```yml
-# Activate specific event handlers and functions (supported: ox, esx)
+# Activate specific event handlers and functions (supported: ox, esx, qb)
 setr inventory:framework "esx"
 
 # Load specific language file from data/locales
@@ -23,7 +23,7 @@ setr inventory:locale "en"
 # Number of slots for player inventories
 setr inventory:slots 50
 
-# Maximum carry capacity for players, in kilograms
+# Maximum carry capacity for players, in grams (will be automatically converted to kilograms in-game)
 setr inventory:weight 30000
 
 # Weapons will reload after reaching 0 ammo
