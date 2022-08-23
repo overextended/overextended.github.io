@@ -147,7 +147,7 @@ A modified burger item, which gives you notifications on add and remove argument
 
 
 ## Making the item usable
-If you are using ESX you can continue using `ESX.RegisterUsableItem` if desired.  
+If you are using ESX you can continue using `ESX.RegisterUsableItem` (for QBCore that is `QBCore.Functions.CreateUseableItem`) if desired.  
 Using the built-in system is more secure and provides simple progressbar support.  
 
 An item will be usable when client variables are added to [data/items.lua](https://github.com/overextended/ox_inventory/blob/main/data/items.lua), or has a registered item callback. Item callbacks can be added by defining an export (recommended), or by adding it to [items/client.lua](https://github.com/overextended/ox_inventory/blob/main/modules/items/client.lua#L33). 
