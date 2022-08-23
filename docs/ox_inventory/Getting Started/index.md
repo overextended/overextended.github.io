@@ -1,6 +1,7 @@
 ---
 title: Getting Started
 sidebar_position: 1
+slug: ./../
 ---
 
 import IconButton from '@site/src/components/IconButton';
@@ -24,19 +25,19 @@ The backend is actively maintained and updated unlike the package used by mysql-
 We provide full backwards compatibility with mysql-async and build for the current Cfx architecture.
 
 <div style={{ display: 'flex' }}>
-  <a href="https://www.github.com/overextended/oxmysql" style={{ marginRight: '0.6rem' }}>
+  <a href="https://www.github.com/overextended/oxmysql/releases/latest" style={{ marginRight: '0.6rem' }}>
     <IconButton side="left" icon={<BsGithub />}>
       GitHub
     </IconButton>
   </a>
-  <a href="https://overextended.github.io/docs/oxmysql/Installation/">
+  <a href="../oxmysql">
     <IconButton side="left" icon={<BsBookHalf />}>
       Documentation
     </IconButton>
   </a>
 </div>
 
-### Ox Lib
+### Ox Library
 
 Provides easily reusable functions that can be imported into your resource or called with exports.
 
@@ -48,28 +49,20 @@ Provides easily reusable functions that can be imported into your resource or ca
 - Marker management
 - Notifications and progress bar
 
-<div style={{ width: 'fit-content' }}>
-  <a href="https://www.github.com/overextended/ox_lib/releases/latest">
+<div style={{ display: 'flex' }}>
+  <a href="https://www.github.com/overextended/ox_lib/releases/latest" style={{ marginRight: '0.6rem' }}>
     <IconButton side="left" icon={<BsGithub />}>
       GitHub
     </IconButton>
   </a>
-</div>
-
-### Production Build
-
-The interface is written in TypeScript using the React library, so the code included in the repository will not work.
-You either need to build the package yourself (more information in [guides](./Guides) section), or download a release.
-
-<div style={{ width: 'fit-content' }}>
-  <a href="https://www.github.com/overextended/ox_inventory/releases/latest" style={{ marginRight: '0.6rem' }}>
-    <IconButton side="left" icon={<BsGithub />}>
-      GitHub
+  <a href="../library">
+    <IconButton side="left" icon={<BsBookHalf />}>
+      Documentation
     </IconButton>
   </a>
 </div>
 
-## Optional resources
+## Optional Dependencies
 
 The resources listed under here **aren't** necessary for the inventory to work but still have full support.
 
@@ -119,15 +112,31 @@ The inventory will handle disabling the phone when the player has no item, and s
   </a>
 </div>
 
-### Installation
+## Installation
+
+### Production Build
+
+The user interface included with the source code must be compiled.  
+You can compile it youself by following the [build guide](./Guides/inventory_ui), otherwise download a production build below.
+
+<div style={{ width: 'fit-content' }}>
+  <a href="https://www.github.com/overextended/ox_inventory/releases/latest" style={{ marginRight: '0.6rem' }}>
+    <IconButton side="left" icon={<BsGithub />}>
+      GitHub
+    </IconButton>
+  </a>
+</div>
+
+### Setup
 
 <Tabs>
 <TabItem value="fresh_esx" label="Fresh ESX" default>
 
 Use a compatible version of [ESX Legacy](https://github.com/esx-framework/esx-legacy) (1.6.0+)  
-Execute the query inside [install.sql](https://github.com/overextended/ox_inventory/blob/main/setup/install.sql) and [vehicle.sql](https://github.com/overextended/ox_inventory/blob/main/setup/vehicle.sql)  
+Execute the query inside [install.sql](https://github.com/overextended/ox_inventory/blob/main/setup/install.sql) and [vehicle.sql](https://github.com/overextended/ox_inventory/blob/main/setup/vehicle.sql)
 
- Start order should look like the following:
+Start order should look like the following:
+
 ```
 start oxmysql
 start es_extended
@@ -135,6 +144,7 @@ start ox_lib
 start ox_inventory
 ...
 ```
+
 </TabItem>
 <TabItem value="convert_esx" label="Convert ESX">
 
@@ -143,9 +153,10 @@ Execute the query inside [install.sql](https://github.com/overextended/ox_invent
 and [vehicle.sql](https://github.com/overextended/ox_inventory/blob/main/setup/vehicle.sql)  
 Open `fxmanifest.lua` and uncomment `server_script 'setup/convert.lua'`  
 Start the server and execute the `convertinventory` command from the console  
-Remove the conversion file  
+Remove the conversion file
 
- Start order should look like the following:
+Start order should look like the following:
+
 ```
 start oxmysql
 start es_extended
@@ -179,74 +190,3 @@ Modifications will need to be made for licenses, owned vehicles, and jobs.
 
 You should restart your server after the first startup to ensure everything has been correctly setup
 :::
-
-## Upgrading ESX
-
-Ox Inventory provides a complete suite of tools to replace the built-in items and inventory system from ESX, and is not intended to be used with resources designed around it.
-
-- ESX loadouts do not exist - resources that use them need to remove references or be modified to look for the weapon as an item
-- Stashes from resources such as esx_policejob, esx_ambulancejob, etc. should be removed
-- Shops from esx_shops or the armoury from esx_policejob should be removed
-- Resources like esx_inventoryhud, esx_trunkinventory, esx_addoninventory, etc. should be removed
-
-### Optional optimisation
-
-All item related functions from xPlayer, such as `xPlayer.getInventoryItem`, have been modified for compatibility purposes; however they are considered deprecated.
-
-The reasoning is fairly simple - there's now additional function references and overhead to consider. Fortunately, the new Inventory functions can be used directly and offer a great deal of improvements over the old ones.
-
-You should read through the functions section for further information, but the following should give you a decent idea.
-
-<Tabs>
-<TabItem value="esx" label="ESX">
-
-```lua
-if xPlayer.getInventoryItem('acetone').count > 2 and xPlayer.getInventoryItem('antifreeze').count > 4 and xPlayer.getInventoryItem('sudo').count > 9 then
-    xPlayer.removeInventoryItem("acetone", 3)
-    xPlayer.removeInventoryItem("antifreeze", 5)
-    xPlayer.removeInventoryItem("sudo", 10)
-end
-```
-
-</TabItem>
-<TabItem value="inventory" label="Inventory">
-
-Add the following code somewhere in your resource to cache the exports metatable.
-
-```lua
-local ox_inventory = exports.ox_inventory
-```
-
-You will be able to reference any functions exposed through the export.
-
-```lua
-local items = ox_inventory:Search(source, 'count', {'acetone', 'antifreeze', 'sudo'})
-if items and items.acetone > 2 and items.antifreeze > 4 and items.sudo > 9 then
-    ox_inventory:RemoveItem(source, 'acetone', 3)
-    ox_inventory:RemoveItem(source, 'antifreeze', 5)
-    ox_inventory:RemoveItem(source, 'sudo', 10)
-end
-```
-
-</TabItem>
-</Tabs>
-
-## Common Issues
-
-### UI has not been built
-
-Because the UI for inventory is written in React it can't run natively under FiveM so it must first be bundled into html/css/js.
-
-We provide an easy way for you to do this by downloading a pre-bundled release, which you can get from [here](https://github.com/overextended/ox_inventory/releases/latest).  
-Make sure you download the `ox_inventory.zip` file as that one contains the bundled files and others are raw source code.
-
-If in case you wanted to edit the inventory UI you would have to build these files yourself.  
-To do so please read our [_Building inventory UI_](./Guides/inventory_ui.md) guide.
-
-### Stashes / trunks are not saved at server restart
-
-The only supported way of doing a restart is **txAdmin scheduled restart**.  
-txAdmin scheduled restart should be your only way of restarting a server in production.
-
-If you need to do a manual restart, you must use `/saveinv` before restarting the server.  
-If you don't do this, all inventory except players inventory will not be saved.
