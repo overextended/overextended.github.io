@@ -1,3 +1,7 @@
+---
+sidebar_position: 1
+---
+
 # Common Issues
 
 ## UI has not been built

@@ -1,10 +1,27 @@
 # QBCore
 
+## Compatibility
+
 Ox Inventory provides a complete suite of tools to replace the built-in items and inventory system from QBCore, and is not intended to be used with resources designed around it.
 
 - Stashes from resources such as qb-policejob, qb-ambulancejob, etc. should be removed, they are not compatible
 - qb-inventory should be removed for optimal compatibility, if you didn't remove it, qb-core will not function properly and will show errors.
 - qb-shops and qb-weapons automatically get stopped by Ox Inventory, so you don't have to worry about those, just don't start them manually after as they will conflict.
+
+## Installation
+
+- Use the latest source code of [qb-core](https://github.com/qbcore-framework/qb-core).
+- Modify your `server.cfg`, starting ox_inventory immediately after qb-core.
+- Execute the query inside [install.sql](https://github.com/overextended/ox_inventory/blob/main/setup/install.sql) to create the ox_inventory database table.
+- To disable the weapon animation of qb-smallresources, use the latest source code of [qb-smallresources](https://github.com/qbcore-framework/qb-smallresources) (it will only disable if qb-inventory is **not** present inside the resources folder)
+
+### Convert QBCore
+
+If you have existing player data, you will need to convert it to a compatible format.
+
+- Open `fxmanifest.lua` and uncomment `server_script 'setup/convert.lua'`
+- Start the server and type `convertinventory qb` into the server console.
+- Disable `setup/convert.lua` and restart the server.
 
 ## Optional optimisation
 

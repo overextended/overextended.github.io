@@ -1,11 +1,52 @@
 # ESX
 
-Ox Inventory provides a complete suite of tools to replace the built-in items and inventory system from ESX, and is not intended to be used with resources designed around it.
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
-- ESX loadouts do not exist - resources that use them need to remove references or be modified to look for the weapon as an item
-- Stashes from resources such as esx_policejob, esx_ambulancejob, etc. should be removed
-- Shops from esx_shops or the armoury from esx_policejob should be removed
-- Resources like esx_inventoryhud, esx_trunkinventory, esx_addoninventory, etc. should be removed
+## Compatibility
+
+Ox Inventory is a complete replacement for existing item, inventory, and weapon systems; it is inherently incompatible with ESX and any resources that rely on default behaviour.
+
+- Loadouts do not exist and weapons are treated as items.
+- Standard shops and stashes (i.e. esx_shops, esx_weaponshop, and esx_policejob).
+- Resources that alter the default esx inventory or provide a ui (i.e. esx_trunkinventory, esx_inventoryhud).
+
+## Installation
+
+- Use a compatible version of [ESX Legacy](https://github.com/esx-framework/esx-legacy) (1.6.0+).
+- Modify your `server.cfg`, starting ox_inventory immediately after es_extended.
+
+```yaml
+start oxmysql
+start ox_lib
+start es_extended
+start qtarget
+start ox_inventory
+```
+
+<Tabs>
+<TabItem value="fresh" label="Clean install" default>
+
+- Execute the query inside [install.sql](https://github.com/overextended/ox_inventory/blob/main/setup/install.sql) to create the ox_inventory database table.
+
+</TabItem>
+<TabItem value="convert_esx" label="Convert ESX">
+
+- Execute the query inside [install.sql](https://github.com/overextended/ox_inventory/blob/main/setup/install.sql) to create the ox_inventory database table.
+- Open `fxmanifest.lua` and uncomment `server_script 'setup/convert.lua'`.
+- Start the server and type `convertinventory linden` into the server console.
+- Disable `setup/convert.lua` and restart the server.
+
+</TabItem>
+<TabItem value="convert_linden" label="Upgrade from Linden Inventory">
+
+- Execute the query inside [upgrade.sql](https://github.com/overextended/ox_inventory/blob/main/setup/upgrade.sql).
+- Open `fxmanifest.lua` and uncomment `server_script 'setup/convert.lua'`.
+- Start the server and type `convertinventory linden` into the server console.
+- Disable `setup/convert.lua` and restart the server.
+
+</TabItem>
+</Tabs>
 
 ## Optional optimisation
 
