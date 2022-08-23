@@ -1,11 +1,7 @@
-Clears the specified inventory.
+Clears the specified inventory. The `keep` argument is either a string or an array of strings containing the name(s) of the item(s) to keep in the inventory after clearing.
 
 ```lua
 -- inv: string or number
--- keep: nil
+-- keep:? string or string[]
 exports.ox_inventory:ClearInventory(inv, keep)
 ```
-:::caution
-
-The `keep` argument is still unsupported and won't do anyting.
-:::
