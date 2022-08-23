@@ -133,7 +133,7 @@ You can compile it youself by following the [build guide](./Guides/inventory_ui)
 <TabItem value="fresh_esx" label="Fresh ESX" default>
 
 Use a compatible version of [ESX Legacy](https://github.com/esx-framework/esx-legacy) (1.6.0+)  
-Execute the query inside [install.sql](https://github.com/overextended/ox_inventory/blob/main/setup/install.sql) and [vehicle.sql](https://github.com/overextended/ox_inventory/blob/main/setup/vehicle.sql)
+Execute the query inside [install.sql](https://github.com/overextended/ox_inventory/blob/main/setup/install.sql)
 
 Start order should look like the following:
 
@@ -150,9 +150,8 @@ start ox_inventory
 
 Use a compatible version of [ESX Legacy](https://github.com/esx-framework/esx-legacy) (1.6.0+)  
 Execute the query inside [install.sql](https://github.com/overextended/ox_inventory/blob/main/setup/install.sql)
-and [vehicle.sql](https://github.com/overextended/ox_inventory/blob/main/setup/vehicle.sql)  
 Open `fxmanifest.lua` and uncomment `server_script 'setup/convert.lua'`  
-Start the server and execute the `convertinventory` command from the console  
+Start the server and execute the `convertinventory esx` command from the console  
 Remove the conversion file
 
 Start order should look like the following:
@@ -162,7 +161,42 @@ start oxmysql
 start es_extended
 start ox_lib
 start ox_inventory
-everything else
+...
+```
+
+</TabItem>
+<TabItem value="fresh_qb" label="Fresh QBCore" default>
+
+Use the latest source code of [qb-core](https://github.com/qbcore-framework/qb-core)
+To disable the weapon animation of qb-smallresources, use the latest source code of [qb-smallresources](https://github.com/qbcore-framework/qb-smallresources) (it will only disable if qb-inventory is **not** present inside the resources folder)
+Execute the query inside [install.sql](https://github.com/overextended/ox_inventory/blob/main/setup/install.sql)
+
+Start order should look like the following:
+
+```
+start oxmysql
+start qb-core
+start ox_lib
+start ox_inventory
+...
+```
+
+</TabItem>
+<TabItem value="convert_qb" label="Convert QBCore">
+
+Use the latest source code of [qb-core](https://github.com/qbcore-framework/qb-core)
+Execute the query inside [install.sql](https://github.com/overextended/ox_inventory/blob/main/setup/install.sql)
+Open `fxmanifest.lua` and uncomment `server_script 'setup/convert.lua'`  
+Start the server and execute the `convertinventory qb` command from the console  
+Remove the conversion file
+
+Start order should look like the following:
+
+```
+start oxmysql
+start qb-core
+start ox_lib
+start ox_inventory
 ...
 ```
 
@@ -170,9 +204,8 @@ everything else
 <TabItem value="convert_linden" label="Upgrade from Linden Inventory">
 
 Execute the query inside [upgrade.sql](https://github.com/overextended/ox_inventory/blob/main/setup/upgrade.sql)
-and [vehicle.sql](https://github.com/overextended/ox_inventory/blob/main/setup/vehicle.sql)  
 Open `fxmanifest.lua` and uncomment `server_script 'setup/convert.lua'`  
-Start the server and execute the `convertinventory` linden command from the console  
+Start the server and execute the `convertinventory linden` command from the console  
 Remove the conversion file
 
 </TabItem>
