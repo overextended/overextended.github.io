@@ -34,7 +34,7 @@ start ox_inventory
 
 - Execute the query inside [install.sql](https://github.com/overextended/ox_inventory/blob/main/setup/install.sql) to create the ox_inventory database table.
 - Open `fxmanifest.lua` and uncomment `server_script 'setup/convert.lua'`.
-- Start the server and type `convertinventory` into the server console.
+- Start the server and type `convertinventory esx` into the server console.
 - Disable `setup/convert.lua` and restart the server.
 
 </TabItem>
