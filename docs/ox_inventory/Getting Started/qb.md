@@ -12,16 +12,14 @@ Ox Inventory provides a complete suite of tools to replace the built-in items an
 
 - Use the latest source code of [qb-core](https://github.com/qbcore-framework/qb-core).
 - Modify your `server.cfg`, starting ox_inventory immediately after qb-core.
-- Execute the query inside [install.sql](https://github.com/overextended/ox_inventory/blob/main/setup/install.sql) to create the ox_inventory database table.
 - To disable the weapon animation of qb-smallresources, use the latest source code of [qb-smallresources](https://github.com/qbcore-framework/qb-smallresources) (it will only disable if qb-inventory is **not** present inside the resources folder)
 
 ### Convert QBCore
 
 If you have existing player data, you will need to convert it to a compatible format.
 
-- Open `fxmanifest.lua` and uncomment `server_script 'setup/convert.lua'`
 - Start the server and type `convertinventory qb` into the server console.
-- Disable `setup/convert.lua` and restart the server.
+- Restart the server once conversion is complete.
 
 ## Optional optimisation
 

@@ -27,23 +27,21 @@ start ox_inventory
 <Tabs>
 <TabItem value="fresh" label="Clean install" default>
 
-- Execute the query inside [install.sql](https://github.com/overextended/ox_inventory/blob/main/setup/install.sql) to create the ox_inventory database table.
+- No extra steps required.
 
 </TabItem>
 <TabItem value="convert_esx" label="Convert ESX">
 
-- Execute the query inside [install.sql](https://github.com/overextended/ox_inventory/blob/main/setup/install.sql) to create the ox_inventory database table.
-- Open `fxmanifest.lua` and uncomment `server_script 'setup/convert.lua'`.
 - Start the server and type `convertinventory esx` into the server console.
-- Disable `setup/convert.lua` and restart the server.
+- Optionally, type `convertinventory esxproperty` into the server console.
+- Restart the server once conversion is complete.
 
 </TabItem>
 <TabItem value="convert_linden" label="Upgrade from Linden Inventory">
 
 - Execute the query inside [upgrade.sql](https://github.com/overextended/ox_inventory/blob/main/setup/upgrade.sql).
-- Open `fxmanifest.lua` and uncomment `server_script 'setup/convert.lua'`.
 - Start the server and type `convertinventory linden` into the server console.
-- Disable `setup/convert.lua` and restart the server.
+- Restart the server once conversion is complete.
 
 </TabItem>
 </Tabs>
