@@ -29,10 +29,12 @@ options for the item.
 -- client: table (optional)
 -- buttons: table (optional) -- Allows you to define custom context menu functions for the item
 ```
+
 </TabItem>
 <TabItem value='client' label='Client'>
 
 All values are optional.
+
 ```lua
 -- event: string -- Event to trigger after item use
 -- status: table -- Adjust esx_status values after use
@@ -49,6 +51,7 @@ All values are optional.
 -- add: function(total) -- Function that triggers when recieving an item (Returns total item count as `total`)
 -- remove: function(total) -- Function that triggers when removing an item (Returns total item count as `total`)
 ```
+
 </TabItem>
 <TabItem value='buttons' label='Buttons'>
 
@@ -56,6 +59,7 @@ All values are optional.
 -- label: string,
 -- action: function(slot) -- Callback function when button is clicked in context menu, returns item slot
 ```
+
 </TabItem>
 </Tabs>
 
@@ -72,7 +76,7 @@ All values are optional.
     client = {
         status = { hunger = 200000 },
         anim = { dict = 'mp_player_inteat@burger', clip = 'mp_player_int_eat_burger_fp' },
-        prop = { 
+        prop = {
             model = 'prop_cs_burger_01',
             pos = { x = 0.02, y = 0.02, y = -0.02},
             rot = { x = 0.0, y = 0.0, y = 0.0}
@@ -81,13 +85,14 @@ All values are optional.
     }
 }
 ```
+
 </TabItem>
 <TabItem value='custom_burger' label='Custom burger'>
 
 A modified burger item, with a description and custom crafting table.
 
-
 Combined with several new functions and events you could easily create your own crafting system.
+
 ```lua
 ['burger'] = {
     label = 'Burger',
@@ -99,8 +104,8 @@ Combined with several new functions and events you could easily create your own 
         status = { hunger = 200000 },
         anim = { dict = 'mp_player_inteat@burger', clip = 'mp_player_int_eat_burger_fp' },
         prop = {
-            model = 'prop_cs_burger_01', 
-            pos = { x = 0.02, y = 0.02, y = -0.02}, 
+            model = 'prop_cs_burger_01',
+            pos = { x = 0.02, y = 0.02, y = -0.02},
             rot = { x = 0.0, y = 0.0, y = 0.0}
         },
         usetime = 2500,
@@ -113,14 +118,16 @@ Combined with several new functions and events you could easily create your own 
         ['pickles'] = 1,
         ['lettuce'] = 1,
         ['tomato'] = 1,
-        ['onion'] = 1, 
+        ['onion'] = 1,
     }
 }
 ```
+
 </TabItem>
 <TabItem value='notify_burger' label='Notify burger'>
 
 A modified burger item, which gives you notifications on add and remove arguments.
+
 ```lua
 ['burger'] = {
     label = 'Burger',
@@ -142,17 +149,22 @@ A modified burger item, which gives you notifications on add and remove argument
     }
 }
 ```
+
 </TabItem>
 </Tabs>
 
-
 ## Making the item usable
-If you are using ESX you can continue using `ESX.RegisterUsableItem` (for QBCore that is `QBCore.Functions.CreateUseableItem`) if desired.  
-Using the built-in system is more secure and provides simple progressbar support.  
 
-An item will be usable when client variables are added to [data/items.lua](https://github.com/overextended/ox_inventory/blob/main/data/items.lua), or has a registered item callback. Item callbacks can be added by defining an export (recommended), or by adding it to [items/client.lua](https://github.com/overextended/ox_inventory/blob/main/modules/items/client.lua#L33). 
+- If you are using ESX, you can continue using `ESX.RegisterUsableItem`.
+- If you are using QBCore, you can continue using `QBCore.Functions.CreateUseableItem`.
 
-When defining [item data](https://github.com/overextended/ox_inventory/blob/main/data/items.lua), adding client.export will trigger an event on item use.  
+Using the built-in system is more secure and provides much more functionality.
+
+### Client callbacks
+
+Item callbacks can be added by defining an export (recommended), or by adding it to [items/client.lua](https://github.com/overextended/ox_inventory/blob/main/modules/items/client.lua#L33).
+
+When defining [item data](https://github.com/overextended/ox_inventory/blob/main/data/items.lua#L11), adding client.export will trigger an event on item use.  
 The correct formatting is `export = resourceName.exportName`.
 
 ```lua
@@ -161,11 +173,12 @@ exports('bandage', function(data, slot)
     local maxHealth = GetEntityMaxHealth(playerPed)
     local health = GetEntityHealth(playerPed)
 
-    -- Does the ped need to heal?
+    -- Does the ped need to heal? We can cancel the item from being used.
     if health < maxHealth then
-        -- Use the bandage
+        -- Triggers internal-code to correctly use items.
+        -- This adds security, removes the item on use, adds progressbar support, and is necessary for server callbacks.
         exports.ox_inventory:useItem(data, function(data)
-            -- The item has been used, so trigger the effects
+            -- The server has verified the item can be used.
             if data then
                 SetEntityHealth(playerPed, math.min(maxHealth, math.floor(health + maxHealth / 16)))
                 exports.ox_inventory:notify({text = 'You feel better already'})
@@ -178,19 +191,22 @@ exports('bandage', function(data, slot)
 end)
 ```
 
+### Server callbacks
 
-## Item events
-Similarly to the client, a callback function can be defined on the server to handle several events (usingItem, usedItem, buyItem).  
-This can either be an export (recommended), or added to [items/server.lua](https://github.com/overextended/ox_inventory/blob/main/modules/items/server.lua#L287).
-
+A callback function can be defined on the server to handle several events (usingItem, usedItem, buyItem).  
+This can either be an export (recommended), or added to the bottom of [items/server.lua](https://github.com/overextended/ox_inventory/blob/main/modules/items/server.lua). 
+When defining [item data](https://github.com/overextended/ox_inventory/blob/main/data/items.lua#L14), adding server.export will trigger an event for the actions above.
+The correct formatting is `export = resourceName.exportName`.
 
 ```lua
 exports('bandage', function(event, item, inventory, slot, data)
+    -- Player is attempting to use the item.
     if event == 'usingItem' then
         local playerPed = GetPlayerPed(inventory.id)
         local maxHealth = GetEntityMaxHealth(playerPed)
         local health = GetEntityHealth(playerPed)
 
+        -- Check if the player needs to be healed.
         if health >= maxHealth then
             TriggerClientEvent('ox_inventory:notify', inventory.id, {type = 'error', text = 'You don\'t need a bandage right now'})
 
@@ -199,10 +215,15 @@ exports('bandage', function(event, item, inventory, slot, data)
         end
 
         return
-    elseif event == 'usedItem' then
-        return TriggerClientEvent('ox_inventory:notify', inventory.id, {text = 'You feel better already'})
+    end
 
-    elseif event == 'buying' then
+    -- Player has finished using the item.
+    if event == 'usedItem' then
+        return TriggerClientEvent('ox_inventory:notify', inventory.id, {text = 'You feel better already'})
+    end
+
+    -- Player is attempting to purchase the item.
+    if event == 'buying' then
         return TriggerClientEvent('ox_inventory:notify', inventory.id, {type = 'success', text = 'You bought a bandage'})
     end
 end)
@@ -210,7 +231,7 @@ end)
 
 ## Creating container items
 
-Like with other items the item must first be registered.  
+Like with other items the item must first be registered.
 
 **Example:**
 
@@ -223,6 +244,7 @@ Like with other items the item must first be registered.
     consume = 0
 },
 ```
+
 When registered you can define the item as a container under the `Items.containers` table in `/modules/items/sever.lua`  
 The key for the container is the `name` you gave it when registering the item.  
 You can also define the number of slots, the maximum weight, blacklist and whitelist items.
