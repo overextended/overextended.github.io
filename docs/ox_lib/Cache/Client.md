@@ -6,8 +6,11 @@ https://github.com/overextended/ox_lib/blob/master/resource/cache/client.lua
 ## States
 ```lua
 cache.ped        -- player entity id
+cache.playerId   -- player id
+cache.serverId   -- player server id
 cache.vehicle    -- vehicle entity id
-cache.seat        -- vehicle seat index
+cache.seat       -- vehicle seat index
+cache.resource   -- invoking resource name
 ```
 
 ## lib.onCache
