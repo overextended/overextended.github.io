@@ -23,6 +23,14 @@ Or if the library is the only shared script you use you can do:
 shared_script '@ox_lib/init.lua'
 ```
 
+**ACE Permissions:**
+```
+add_ace resource.ox_lib command.add_ace allow
+add_ace resource.ox_lib command.remove_ace allow
+add_ace resource.ox_lib command.add_principal allow
+add_ace resource.ox_lib command.remove_principal allow
+```
+
 That's it!  
 You can now use the library functions inside of your resource, check the rest of the
 documentation to see how to utilise them.
