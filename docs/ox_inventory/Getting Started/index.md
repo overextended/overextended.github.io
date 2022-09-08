@@ -131,10 +131,27 @@ You can compile it youself by following the [build guide](./Guides/inventory_ui)
 
 If you are using a supported framework, refer to the dedicated guide in the navigation bar.
 
-Work in progress.
+#### Custom Framework
 
-Refer to the "bridge" module to get an idea of how you setup support for any framework.  
-Modifications will need to be made for licenses, owned vehicles, and jobs.
+Integration between your framework and ox_inventory should be relatively simple if you aren't replacing and attempting to support backwards-compatibility with an existing inventory system.
+
+You should first reference the [mysql](https://github.com/overextended/ox_inventory/blob/main/modules/mysql/server.lua) module and setup appropriate table and column names.
+```lua
+	elseif shared.framework == 'myframework' then
+		playerTable = 'characters' -- table storing player / character data
+		playerColumn = 'charid'    -- primary key for identifying the character (i.e. identifier, citizenid, id)
+		vehicleTable = 'vehicles'  -- table storing owned vehicle data
+		vehicleColumn = 'id'       -- primary key for identifying the vehicle (i.e. plate, vin, id)
+	end
+```
+
+You will need events and functions to handle licenses, owned vehicles, and job systems; these should be handled in the "bridge" module.
+
+If your framework doesn't have its own inventory system or you don't care about compatibility, it may be easier to refer to the incredibly barebones [ox bridge](https://github.com/overextended/ox_inventory/tree/main/modules/bridge/ox) (used by ox_core).
+
+Refer to the [esx bridge](https://github.com/overextended/ox_inventory/tree/main/modules/bridge/esx) or [qbcore bridge](https://github.com/overextended/ox_inventory/tree/main/modules/bridge/qb) to get an idea of replacing existing inventories.
+
+... todo: more information, work on a bridge template
 
 :::caution
 
