@@ -34,7 +34,7 @@ lib.notify(data)
 * duration?: `number`
 * position?: `'top'` or `'top-right'` or `'top-left'` or `'bottom'` or `'bottom-right'` or `'bottom-left'`
   * Default: `'top-right'`
-* type: `'inform'` or `'error'` or `'success'`
+* type?: `'inform'` or `'error'` or `'success'`
   * Default: `'inform'`
 * style?: `table` (`object`)
   * React CSS styling format

@@ -17,6 +17,10 @@ lib.alertDialog(data)
 </TabItem>
 <TabItem value='JS/TS'>
 
+:::caution
+This function is **asynchronous** requiring you to do a `.then` callback on the promise or make your function `async`.
+:::
+
 ```ts
 import lib from '@overextended/ox_lib/client'
 
@@ -40,6 +44,9 @@ or has exited the dialog with ESC the return will be `cancel`.
 
 **Example:**
 
+<Tabs>
+<TabItem value='Lua'>
+
 ```lua
 local alert = lib.alertDialog({
     header = 'Hello there',
@@ -50,5 +57,24 @@ local alert = lib.alertDialog({
 
 print(alert)
 ```
+</TabItem>
+<TabItem value='JS/TS'>
+
+```ts
+import lib from '@overextended/ox_lib/client'
+
+const alert = await lib.alertDialog({
+  header: 'Hello there',
+  content: 'General Kenobi  \n Markdown support!',
+  centered: true,
+  cancel: true
+})
+
+console.log(alert)
+```
+</TabItem>
+</Tabs>
+
+
 
 ![alert_dialog](https://i.imgur.com/TnUT3S1.png)

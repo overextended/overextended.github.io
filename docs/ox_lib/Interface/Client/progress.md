@@ -121,10 +121,11 @@ if (await lib.progressBar({
   },
   prop: {
     model: `prop_ld_flow_bottle`,
-    pos: vec3(0.03, 0.03, 0.02),
-    rot: vec3(0.0, 0.0, -1.5) 
+    pos: {x: 0.03, y: 0.03, z: 0.02},
+    rot: {x: 0.0, y: 0.0, z: -1.5} 
   },
-})) print('Do stuff when complete') else print('Do stuff when cancelled')
+})) console.log('Do stuff when complete');
+else console.log('Do stuff when cancelled')
 ```
 </TabItem>
 </Tabs>
@@ -249,10 +250,11 @@ if (await lib.progressCircle({
   },
   prop: {
     model: `prop_ld_flow_bottle`,
-    pos: vec3(0.03, 0.03, 0.02),
-    rot: vec3(0.0, 0.0, -1.5) 
+    pos: {x: 0.03, y: 0.03, z: 0.02},
+    rot: {x: 0.0, y: 0.0, z: -1.5}
   },
-})) print('Do stuff when complete') else print('Do stuff when cancelled')
+})) console.log('Do stuff when complete')
+else console.log('Do stuff when cancelled')
 ```
 </TabItem>
 </Tabs>
