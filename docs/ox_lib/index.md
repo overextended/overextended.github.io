@@ -44,7 +44,7 @@ You can either import the whole library object which contains all the functions 
 you can deconstruct it and import the functions you find needed at the time.
 
 ```ts
-import lib from '@overextended/ox_lib/client'
+import lib from '@overextended/ox_lib/server'
 ```
 
 ```ts

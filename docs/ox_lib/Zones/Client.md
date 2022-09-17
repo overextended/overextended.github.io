@@ -1,4 +1,6 @@
-An alternative to PolyZone utilising [glm.polygon](https://github.com/gottfriedleibniz/lua/blob/luaglm/EXTENDED.md#polygon).
+Faster alternative to PolyZone utilising [glm.polygon](https://github.com/gottfriedleibniz/lua/blob/luaglm/EXTENDED.md#polygon).
+
+## lib.zones.poly
 
 ```lua
 lib.zones.poly(data)
@@ -8,7 +10,12 @@ lib.zones.poly(data)
     * All z values must match
   * thickness?: `number`
     * Default: `4`
+  * onEnter: `function`(self: `table`)
+  * onExit: `function`(self: `table`)
+  * inside: `function`(self: `table`)
   * debug?: `boolean`
+
+## lib.zones.box
 
 ```lua
 lib.zones.box(data)
@@ -19,8 +26,12 @@ lib.zones.box(data)
     * Default: `vec3(4, 4, 4)`
   * rotation?: `number`
     * Angle in degrees
+  * onEnter: `function`(self: `table`)
+  * onExit: `function`(self: `table`)
+  * inside: `function`(self: `table`)
   * debug?: `boolean`
 
+## lib.zones.sphere
 
 ```lua
 lib.zones.sphere(data)
@@ -29,7 +40,12 @@ lib.zones.sphere(data)
   * coords: `vector3`
   * radius?: `number`
     * Default: `2`
+  * onEnter: `function`(self: `table`)
+  * onExit: `function`(self: `table`)
+  * inside: `function`(self: `table`)
   * debug?: `boolean`
+
+## Usage Examples
 
 ```lua
 function onEnter(self)
@@ -92,3 +108,10 @@ poly:remove()
 sphere:remove()
 box:remove()
 ```
+
+## Zone creation script
+Similarly to PolyZone, there is a zone creation script included.
+
+To use it use the `/zone` with `poly`, `box` or `sphere` as args.
+
+Available controls will be displayed on the right side.
