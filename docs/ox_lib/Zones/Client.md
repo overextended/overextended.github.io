@@ -1,25 +1,35 @@
 An alternative to PolyZone utilising [glm.polygon](https://github.com/gottfriedleibniz/lua/blob/luaglm/EXTENDED.md#polygon).
 
 ```lua
--- data: table
-    -- points: vector3[] all z values must match
-    -- thickness: number (optional), default 4
-    -- debug: bool (optional)
 lib.zones.poly(data)
+```
+* data: `table`
+  * points: `vector3[]`
+    * All z values must match
+  * thickness?: `number`
+    * Default: `4`
+  * debug?: `boolean`
 
--- data: table
-    -- coords: vector3
-    -- size: vector3 (optional), default is vec3(4, 4, 4)
-    -- rotation: number (optional), angle in degrees
-    -- debug: bool (optional)
+```lua
 lib.zones.box(data)
+```
+* data: `table`
+  * coords: `vector3`
+  * size?: `vector3`
+    * Default: `vec3(4, 4, 4)`
+  * rotation?: `number`
+    * Angle in degrees
+  * debug?: `boolean`
 
--- data: table
-    -- coords: vector3
-    -- radius: number (optional), default is 2
-    -- debug: bool (optional)
+
+```lua
 lib.zones.sphere(data)
 ```
+* data: `table`
+  * coords: `vector3`
+  * radius?: `number`
+    * Default: `2`
+  * debug?: `boolean`
 
 ```lua
 function onEnter(self)

@@ -4,10 +4,11 @@ Locale files should use the [ISO Language Code](http://www.lingoes.net/en/transl
 Players can use `setlocale [langcode]`, and admins can use `serverlocale [langcode]` to change the loaded file.
 
 ```lua
--- str: string
--- ...: string | number
 locale(str, ...)
 ```
+
+* str: `string`
+* ...: `string` or `number`
 
 Additional arguments can be sent to format the locale output.
 

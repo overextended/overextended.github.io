@@ -12,12 +12,13 @@ set datadog:site "datadoghq.com"
 ```
 
 ```lua
--- source: string | number
--- event: string
--- message: string
--- ...: string
 lib.logger(source, event, message, ...)
 ```
+* source: `string` or `number`
+* event: `string`
+* message: `string`
+* ...: `string`
+
 
 Source is passed to ddsource and creates a tag. Could be playerId, identifier, -1, or server.  
 Event is passed to ddservice and displays in the logs list.  

@@ -51,8 +51,6 @@ lib.requestAnimSet(set, timeout)
 * timeout: `number`
   * Default: `100`
 
-
-
 ### lib.requestModel
 
 <Tabs>

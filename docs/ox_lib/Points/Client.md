@@ -3,11 +3,13 @@
 Simple and centralised distance checking, supporting callbacks when entering, leaving, and standing in-range of set coordinates.  
 
 ```lua
--- coords: vector3
--- distance: number
--- data: table
 lib.points.new(coords, distance, data)
+```
+* coords: `vector3`
+* distance: `number`
+* data: `table`
 
+```lua
 local point = lib.points.new(playerCoords, 5, {
     dunak = 'nerd',
 })
