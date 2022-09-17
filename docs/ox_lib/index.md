@@ -65,6 +65,29 @@ That's it!
 You can now use the library functions inside of your resource, check the rest of the
 documentation to see how to utilise them.
 
+# Using icons for interface functions
+
+The icon library used is Font Awesome 6.0, if for the icon you define only a string
+the default icon type will be `solid`.  
+If you want to use a different icon type, i.e
+apple as a brand, you need to define icon as a table (`array`) with the first value being
+the icon type (`fas`, `far`, `fab`) as a string, and the second being the icon name.
+
+<Tabs>
+<TabItem value='Lua'>
+
+```lua
+icon = {'fab', 'apple'}
+```
+</TabItem>
+<TabItem value='JS/TS'>
+
+```ts
+icon: ['fab', 'apple']
+```
+</TabItem>
+</Tabs>
+
 # Building the UI
 
 If you wish to edit any of the UI elements you will need to download the *source* code, edit what you need and then
