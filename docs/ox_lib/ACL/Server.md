@@ -74,7 +74,7 @@ lib.addPrincipal(child, parent)
 lib.addPrincipal('player.1', 'group.moderator')
 ```
 </TabItem>
-<TabItem value='js/ts'>
+<TabItem value='JS/TS'>
 
 ```ts
 import lib from '@overextended/ox_lib/server'
