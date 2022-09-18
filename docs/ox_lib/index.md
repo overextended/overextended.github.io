@@ -37,7 +37,7 @@ Npm package for the lib does **not** support all the functions that are availabl
 All supported functions are located inside the `resource` folder in the lib.
 :::
 
-You can get the npm package [here](https://npmjs.com/package/@overextended/ox_library).
+You can get the npm package [here](https://npmjs.com/package/@overextended/ox_lib).
 
 **Usage:**  
 You can either import the whole library object which contains all the functions for that scope (client/server/shared) or
