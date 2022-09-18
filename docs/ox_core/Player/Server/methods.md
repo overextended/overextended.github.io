@@ -5,30 +5,11 @@ title: Methods
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-These functions are inherited by instances of CPlayer.
-
-<Tabs>
-<TabItem value='lua' label='Lua'>
-
-```lua
-local player = Ox.GetPlayer(source)
-```
-
-</TabItem>
-<TabItem value='js/ts' label='JS/TS'>
-
-```ts
-import { GetPlayer } from '@overextended/ox_core/server';
-
-const player = GetPlayer(source);
-```
-
-</TabItem>
-</Tabs>
+These functions are inherited by instances of [CPlayer](../Server/).
 
 ## player.set
 
-Sets the player's metadata for key to the given value.
+Update the player's metadata, optionally syncing it with the client.
 
 <Tabs>
 <TabItem value='lua' label='Lua'>
@@ -44,6 +25,29 @@ player.set(key, value)
 ```ts
 const [key, value] = ['iq', 300];
 player.set(key, value);
+```
+
+</TabItem>
+</Tabs>
+
+## player.setdb
+
+Update the player's metadata and store in the DB, optionally syncing it with the client.
+
+<Tabs>
+<TabItem value='lua' label='Lua'>
+
+```lua
+local key, value = 'iq', 300
+player.setdb(key, value)
+```
+
+</TabItem>
+<TabItem value='js/ts' label='JS/TS'>
+
+```ts
+const [key, value] = ['iq', 300];
+player.setdb(key, value);
 ```
 
 </TabItem>
@@ -87,7 +91,7 @@ player.getAccounts()
 <TabItem value='js/ts' label='JS/TS'>
 
 ```ts
-player.getAccounts()
+player.getAccounts();
 ```
 
 </TabItem>
@@ -95,20 +99,20 @@ player.getAccounts()
 
 ## player.getCoords
 
-Return the player's world position. The value will be cached for future calls, so send true for the first argument to update it.
+Return the player's world position.
 
 <Tabs>
 <TabItem value='lua' label='Lua'>
 
 ```lua
-local coords = player.getCoords(update)
+local coords = player.getCoords()
 ```
 
 </TabItem>
 <TabItem value='js/ts' label='JS/TS'>
 
 ```ts
-const coords = player.getCoords(update);
+const coords = player.getCoords();
 ```
 
 </TabItem>
