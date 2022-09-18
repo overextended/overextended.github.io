@@ -3,10 +3,16 @@ title: Getting Started
 sidebar_position: 1
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 ox_lib is a collection of Lua and UI functions to utilise in other resources.
 
 The UI is built in React so the code needs to be compiled into standard JS.  
 If you don't know how to do this then please download the [release](https://github.com/overextended/ox_lib/releases/latest) (ox_lib.zip) which is *already* compiled into a working resource.
+
+<Tabs>
+<TabItem value='Lua'>
 
 To enable the library inside of your resource just add `@ox_lib/init.lua` to `shared_scripts` or
 a `shared_script` in your `fxmanifest.lua` file.
@@ -22,6 +28,30 @@ Or if the library is the only shared script you use you can do:
 ```lua
 shared_script '@ox_lib/init.lua'
 ```
+</TabItem>
+<TabItem value='JS/TS'>
+
+:::caution
+Npm package for the lib does **not** support all the functions that are available for Lua.
+
+All supported functions are located inside the `resource` folder in the lib.
+:::
+
+You can get the npm package [here](https://npmjs.com/package/@overextended/ox_library).
+
+**Usage:**  
+You can either import the whole library object which contains all the functions for that scope (client/server/shared) or
+you can deconstruct it and import the functions you find needed at the time.
+
+```ts
+import lib from '@overextended/ox_lib/server'
+```
+
+```ts
+import { versionCheck } from '@overextended/ox_lib/server'
+```
+</TabItem>
+</Tabs>
 
 **ACE Permissions:**
 ```
@@ -34,6 +64,29 @@ add_ace resource.ox_lib command.remove_principal allow
 That's it!  
 You can now use the library functions inside of your resource, check the rest of the
 documentation to see how to utilise them.
+
+# Using icons for interface functions
+
+The icon library used is Font Awesome 6.0, if for the icon you define only a string
+the default icon type will be `solid`.  
+If you want to use a different icon type, i.e
+apple as a brand, you need to define icon as a table (`array`) with the first value being
+the icon type (`fas`, `far`, `fab`) as a string, and the second being the icon name.
+
+<Tabs>
+<TabItem value='Lua'>
+
+```lua
+icon = {'fab', 'apple'}
+```
+</TabItem>
+<TabItem value='JS/TS'>
+
+```ts
+icon: ['fab', 'apple']
+```
+</TabItem>
+</Tabs>
 
 # Building the UI
 

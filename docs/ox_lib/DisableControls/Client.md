@@ -1,23 +1,23 @@
 ### lib.disableControls
+Call on frame to disable all stored keys.
+
 ```lua
--- Call on frame to disable all stored keys.
 lib.disableControls()
 ```
-
 ### lib.disableControls:Add
 ```lua
--- vararg: number
 lib.disableControls:Add(...)
 ```
+* vararg: `number`
 
 ### lib.disableControls:Remove
 ```lua
--- vararg: number
 lib.disableControls:Remove(...)
 ```
+* vararg: `number`
 
 ### lib.disableControls:Clear
 ```lua
--- vararg: number
 lib.disableControls:Clear(...)
 ```
+* vararg: `number`

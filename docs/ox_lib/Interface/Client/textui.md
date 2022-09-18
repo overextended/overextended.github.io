@@ -5,32 +5,63 @@ title: TextUI
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-### lib.showTextUI
+## lib.showTextUI
 Show the TextUI window.
 
 **DO NOT** run this every tick, it's intented to be used as a toggle.
 
+<Tabs>
+<TabItem value='Lua'>
+
 ```lua
--- text: string
--- options: table (optional)
-    -- position: "right-center" or "left-center" or "top-center" (default - "right-center")
-    -- icon: string or table
-    -- iconColor: string
-    -- style: React.CSSProperties
 lib.showTextUI(text, options)
 ```
+</TabItem>
+<TabItem value='JS/TS'>
 
-**Example:**
+```ts
+import lib from '@overextended/ox_lib/client'
+
+lib.showTextUI(text, options)
+```
+</TabItem>
+</Tabs>
+
+* text: `string`
+* options?: `table` 
+  * position?: `'right-center'` or `'left-center'` or `'top-center'`
+    * Default: `'right-center'`
+  * icon?: `string` or `table` (`array`)
+  * iconColor?: `string`
+  * style?: React.CSSProperties
+
+### Usage Example
+
+### Basic
+
 <Tabs>
-<TabItem label="Basic" value="basic">
+<TabItem value='Lua'>
 
 ```lua
 lib.showTextUI('[E] - Fuel vehicle')
 ```
+</TabItem>
+<TabItem value='JS/TS'>
+
+```ts
+import lib from '@overextended/ox_lib/client'
+
+lib.showTextUI('[E] - Fuel vehicle')
+```
+</TabItem>
+</Tabs>
 
 ![](https://i.imgur.com/3ptQyAq.png)
-</TabItem>
-<TabItem label="Custom style" value="custom">
+
+### Custom styling
+
+<Tabs>
+<TabItem value='Lua'>
 
 ```lua
 lib.showTextUI('[E] - Pick apple', {
@@ -43,22 +74,46 @@ lib.showTextUI('[E] - Pick apple', {
     }
 })
 ```
+</TabItem>
+<TabItem value='JS/TS'>
 
-![](https://i.imgur.com/gNDwPBN.png)
+```ts
+import lib from '@overextended/ox_lib/client'
+
+lib.showTextUI('[E] - Pick apple', {
+  position: "top-center",
+  icon: 'hand',
+  style: {
+    borderRadius: 0,
+    backgroundColor: '#48BB78',
+    color: 'white'
+  }
+})
+```
 </TabItem>
 </Tabs>
 
-The icon library used is Font Awesome 6.0, if for the icon you define only a string
-the default icon type will be `solid`.  
-If you want to use a different icon type, i.e
-apple as a brand, you need to define icon as a table with the first value being
-the icon type as a string, and the second being the icon name.
+![](https://i.imgur.com/gNDwPBN.png)
 
-`icon = {'fab', 'apple'}`
 
 ### lib.hideTextUI
 Hides the currently visible TextUI window
 
+<Tabs>
+<TabItem value='Lua'>
+
 ```lua
 lib.hideTextUI()
 ```
+</TabItem>
+<TabItem value='JS/TS'>
+
+```ts
+import lib from '@overextended/ox_lib/client'
+
+lib.hideTextUI()
+```
+</TabItem>
+</Tabs>
+
+

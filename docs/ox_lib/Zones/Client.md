@@ -1,25 +1,51 @@
-An alternative to PolyZone utilising [glm.polygon](https://github.com/gottfriedleibniz/lua/blob/luaglm/EXTENDED.md#polygon).
+Faster alternative to PolyZone utilising [glm.polygon](https://github.com/gottfriedleibniz/lua/blob/luaglm/EXTENDED.md#polygon).
+
+## lib.zones.poly
 
 ```lua
--- data: table
-    -- points: vector3[] all z values must match
-    -- thickness: number (optional), default 4
-    -- debug: bool (optional)
 lib.zones.poly(data)
+```
+* data: `table`
+  * points: `vector3[]`
+    * All z values must match
+  * thickness?: `number`
+    * Default: `4`
+  * onEnter: `function`(self: `table`)
+  * onExit: `function`(self: `table`)
+  * inside: `function`(self: `table`)
+  * debug?: `boolean`
 
--- data: table
-    -- coords: vector3
-    -- size: vector3 (optional), default is vec3(4, 4, 4)
-    -- rotation: number (optional), angle in degrees
-    -- debug: bool (optional)
+## lib.zones.box
+
+```lua
 lib.zones.box(data)
+```
+* data: `table`
+  * coords: `vector3`
+  * size?: `vector3`
+    * Default: `vec3(4, 4, 4)`
+  * rotation?: `number`
+    * Angle in degrees
+  * onEnter: `function`(self: `table`)
+  * onExit: `function`(self: `table`)
+  * inside: `function`(self: `table`)
+  * debug?: `boolean`
 
--- data: table
-    -- coords: vector3
-    -- radius: number (optional), default is 2
-    -- debug: bool (optional)
+## lib.zones.sphere
+
+```lua
 lib.zones.sphere(data)
 ```
+* data: `table`
+  * coords: `vector3`
+  * radius?: `number`
+    * Default: `2`
+  * onEnter: `function`(self: `table`)
+  * onExit: `function`(self: `table`)
+  * inside: `function`(self: `table`)
+  * debug?: `boolean`
+
+## Usage Examples
 
 ```lua
 function onEnter(self)
@@ -82,3 +108,10 @@ poly:remove()
 sphere:remove()
 box:remove()
 ```
+
+## Zone creation script
+Similarly to PolyZone, there is a zone creation script included.
+
+To use it use the `/zone` with `poly`, `box` or `sphere` as args.
+
+Available controls will be displayed on the right side.
