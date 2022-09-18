@@ -38,7 +38,7 @@ Return the first CPlayer that matches the filter properties.
 
 ```lua
 local filter = { phoneNumber = '556-560-6609' }
-local player = Ox.GetPlayerByFilter(source, filter)
+local player = Ox.GetPlayerByFilter(filter)
 print(json.encode(player, { indent = true }))
 ```
 
@@ -49,7 +49,7 @@ print(json.encode(player, { indent = true }))
 import { GetPlayerByFilter } from '@overextended/ox_core/server';
 
 const filter = { phoneNumber: '556-560-6609' };
-const player = GetPlayerByFilter(source);
+const player = GetPlayerByFilter(filter);
 console.log(JSON.stringify(player));
 ```
 
