@@ -31,6 +31,8 @@ lib.registerContext(context)
   * Title display in the menu.
 * menu?: `string`
   * Menu identifier - if defined there will be a back arrow next to the menu title that will take you to the menu you defined.
+* canClose: `boolean`
+  * If set to false the user won't be able to exit the menu without pressing one of the buttons.
 * onExit?: `function`
   * Function that will be ran when the user closes their context menu with ESC.
 * options: `table` (`object` or `array`)

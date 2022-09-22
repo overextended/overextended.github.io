@@ -44,6 +44,8 @@ lib.registerMenu(data, cb)
     * Default: `'top-left'`
   * disableInput?: `boolean`
     * Default: `false`
+  * canClose: `boolean`
+    * If set to false the user won't be able to exit the menu without pressing one of the buttons.
   * onClose: `function`
     * Function that runs when the menu is exited via ESC/Backspace.
   * onSelected: `function`(selected: `number`: scrollIndex: `number`: args: `any`)
