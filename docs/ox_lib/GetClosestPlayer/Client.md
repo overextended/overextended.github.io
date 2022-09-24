@@ -14,5 +14,5 @@ function lib.getClosestPlayer(coords, maxDistance, includePlayer) end
 
 Return:
 * playerId?: `number`
-* playerPed?: `nubmer`
+* playerPed?: `number`
 * playerCoords?: `vector3`
