@@ -35,7 +35,6 @@ lib.inputDialog(heading, rows)
     * [ Only used with `'select'` type ]
     * value: `string`
     * label: `string`
-    * default?: `string`
   * password?: `boolean`
     * Hides input characters with ability to toggle them on. Used only with `'input'` type.
   * icon?: `string`
