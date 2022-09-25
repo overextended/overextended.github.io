@@ -46,7 +46,7 @@ lib.registerMenu(data, cb)
     * Default: `false`
   * canClose: `boolean`
     * If set to false the user won't be able to exit the menu without pressing one of the buttons.
-  * onClose: `function`
+  * onClose: `function`(keyPressed?: `'Escape' | 'Backspace'`)
     * Function that runs when the menu is exited via ESC/Backspace.
   * onSelected: `function`(selected: `number`: scrollIndex: `number`: args: `any`)
     * Function being ran when the selected button in the menu changes. 
@@ -190,8 +190,11 @@ lib.registerMenu({
 	onSelected = function(selected, scrollIndex, args)
 		print(selected, scrollIndex, args)
 	end,
-	onClose = function()
+	onClose = function(keyPressed)
 		print('Menu closed')
+                if keyPressed then
+                    print(('Pressed %s to close the menu'):format(keyPressed))
+                end
 	end,
 	options = {
 		{label = 'Simple button', description = 'It has a description!'},
@@ -225,8 +228,11 @@ lib.registerMenu({
   onSelected: (selected, scrollIndex, args) => {
     console.log(selected, scrollIndex, args)
   },
-  onClose: () => {
+  onClose: (keyPressed) => {
     console.log('Menu closed')
+    if (keyPressed) {
+      console.log(`Pressed ${keyPressed} to close the menu`)
+    }
   },
   options: [
     {label: 'Simple button', description: 'It has a description!'},
