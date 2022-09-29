@@ -8,6 +8,8 @@ import TabItem from '@theme/TabItem';
 Simple alert dialog that can display a message to the player.  
 Returns whether the player pressed the confirm button or canceled the dialog.
 
+### lib.alertDialog
+
 <Tabs>
 <TabItem value='Lua'>
 
@@ -41,6 +43,27 @@ lib.alertDialog(data)
 
 Returns `confirm` if the player pressed the confirm button, otherwise if the player pressed the cancel button
 or has exited the dialog with ESC the return will be `cancel`.
+
+### lib.closeAlertDialog
+
+Force closes the active alert dialog and sets its return data as `nil`
+
+<Tabs>
+<TabItem value='Lua'>
+
+```lua
+lib.closeAlertDialog()
+```
+</TabItem>
+<TabItem value='JS/TS'>
+
+```ts
+import lib from '@overextended/ox_lib/client'
+
+lib.closeAlertDialog()
+```
+</TabItem>
+</Tabs>
 
 **Example:**
 
