@@ -40,6 +40,8 @@ lib.registerMenu(data, cb)
     * defaultIndex?: `number`
       * Sets the current index for the list to specified number.
     * args?: `any`
+    * close?: `boolean`
+      * If set to false, it won't close the menu upon interacting with this option.
   * position?: `'top-left'` or `'top-right'` or `'bottom-left'` or `'bottom-right'`
     * Default: `'top-left'`
   * disableInput?: `boolean`
@@ -199,6 +201,7 @@ lib.registerMenu({
 	options = {
 		{label = 'Simple button', description = 'It has a description!'},
 		{label = 'Simple button with icon', icon = 'arrows-up-down-left-right'},
+    {label = 'Simple button that won\'t close the menu', close = false},
 		{label = 'Button with args', args = 'nice_button'},
 		{label = 'List button', values = {'You', 'can', 'side', 'scroll', 'this'}, description = 'It also has a description!'},
 		{label = 'List button with default index', values = {'You', 'can', 'side', 'scroll', 'this'}, defaultIndex = 5},
@@ -237,6 +240,7 @@ lib.registerMenu({
   options: [
     {label: 'Simple button', description: 'It has a description!'},
     {label: 'Simple button with icon', icon: 'arrows-up-down-left-right'},
+    {label: 'Simple button that won\'t close the menu', close: false},
     {label: 'Button with args', args: 'nice_button'},
     {label: 'List button', values: ['You', 'can', 'side', 'scroll', 'this'], description: 'It also has a description!'},
     {label: 'List button with default index', values: ['You', 'can', 'side', 'scroll', 'this'], defaultIndex: 5},
