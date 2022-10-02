@@ -17,7 +17,7 @@ When calling exports to add options, the input is an array of tables with the fo
   -- an item, array of items, or items and counts needed to display
   items? = string | string[] | { [string]: number }
   -- custom check to hide or display the option
-  canInteract? = function(entity, distance, coords, name),
+  canInteract? = function(entity, distance, coords, name, bone),
   -- triggered on option selection (one only)
   onSelect? = function(data),
   export? = string,

@@ -31,7 +31,7 @@ exports.ox_target:addSphereZone({
             event = 'ox_target:debug',
             icon = 'fa-solid fa-circle',
             label = '(Debug) Sphere',
-            canInteract = function(entity, coords, distance)
+            canInteract = function(entity, distance, coords, name)
                 return true
             end
         }
@@ -72,7 +72,7 @@ exports.ox_target:addBoxZone({
             event = 'ox_target:debug',
             icon = 'fa-solid fa-cube',
             label = '(Debug) Box',
-            canInteract = function(entity, coords, distance)
+            canInteract = function(entity, distance, coords, name)
                 return true
             end
         }
