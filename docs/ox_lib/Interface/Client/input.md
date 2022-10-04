@@ -78,6 +78,27 @@ you can define `options` **ONLY** with type `'select'`.
 Doing so otherwise ***will*** result in errors.
 :::
 
+### lib.closeInputDialog
+
+Force closes the active input dialog and sets its return data as `nil`
+
+<Tabs>
+<TabItem value='Lua'>
+
+```lua
+lib.closeInputDialog()
+```
+</TabItem>
+<TabItem value='JS/TS'>
+
+```ts
+import lib from '@overextended/ox_lib/client'
+
+lib.closeInputDialog()
+```
+</TabItem>
+</Tabs>
+
 ## Usage Example
 
 ### Basic
