@@ -137,13 +137,13 @@ A modified burger item, which gives you notifications on add and remove argument
     client = {
         add = function(total)
             if total > 0 then
-                exports.ox_inventory:notify({text = 'Nice burger you got there!'})
+                lib.notify({description = 'Nice burger you got there!'})
             end
         end,
 
         remove = function(total)
             if total < 1 then
-                exports.ox_inventory:notify({text = 'You lost all of your burgers!'})
+                lib.notify({description = 'You lost all of your burgers!'})
             end
         end
     }
@@ -181,12 +181,12 @@ exports('bandage', function(data, slot)
             -- The server has verified the item can be used.
             if data then
                 SetEntityHealth(playerPed, math.min(maxHealth, math.floor(health + maxHealth / 16)))
-                exports.ox_inventory:notify({text = 'You feel better already'})
+                lib.notify({description = 'You feel better already'})
             end
         end)
     else
         -- Don't use the item
-        exports.ox_inventory:notify({type = 'error', text = 'You don\'t need a bandage right now'})
+        lib.notify({type = 'error', description = 'You don\'t need a bandage right now'})
     end
 end)
 ```
@@ -208,7 +208,7 @@ exports('bandage', function(event, item, inventory, slot, data)
 
         -- Check if the player needs to be healed.
         if health >= maxHealth then
-            TriggerClientEvent('ox_inventory:notify', inventory.id, {type = 'error', text = 'You don\'t need a bandage right now'})
+            TriggerClientEvent('ox_lib:notify', inventory.id, {type = 'error', description = 'You don\'t need a bandage right now'})
 
             -- Returning 'false' will prevent the item from being used
             return false
@@ -219,12 +219,12 @@ exports('bandage', function(event, item, inventory, slot, data)
 
     -- Player has finished using the item.
     if event == 'usedItem' then
-        return TriggerClientEvent('ox_inventory:notify', inventory.id, {text = 'You feel better already'})
+        return TriggerClientEvent('ox_lib:notify', inventory.id, {description = 'You feel better already'})
     end
 
     -- Player is attempting to purchase the item.
     if event == 'buying' then
-        return TriggerClientEvent('ox_inventory:notify', inventory.id, {type = 'success', text = 'You bought a bandage'})
+        return TriggerClientEvent('ox_lib:notify', inventory.id, {type = 'success', description = 'You bought a bandage'})
     end
 end)
 ```

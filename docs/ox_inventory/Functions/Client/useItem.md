@@ -20,12 +20,12 @@ exports('bandage', function(data, slot)
             -- The item has been used, so trigger the effects
             if data then
                 SetEntityHealth(playerPed, math.min(maxHealth, math.floor(health + maxHealth / 16)))
-                exports.ox_inventory:notify({text = 'You feel better already'})
+                lib.notify({description = 'You feel better already'})
             end
         end)
     else
         -- Don't use the item
-        exports.ox_inventory:notify({type = 'error', text = 'You don\'t need a bandage right now'})
+        lib.notify({type = 'error', description = 'You don\'t need a bandage right now'})
     end
 end)
 ```
