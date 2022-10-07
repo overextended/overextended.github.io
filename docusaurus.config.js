@@ -63,11 +63,6 @@ const config = {
             position: 'left',
           },
           {
-            to: 'docs/',
-            label: 'Documentation',
-            position: 'right',
-          },
-          {
             // Still have to add the actual search :(
             type: 'search',
             position: 'right',

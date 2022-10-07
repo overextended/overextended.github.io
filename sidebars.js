@@ -20,7 +20,7 @@ const sidebars = {
   docs: [
     {
       type: 'doc',
-      label: 'Documentation',
+      label: 'Home',
       id: 'index',
     },
     {
@@ -52,7 +52,7 @@ const sidebars = {
   ox_target: [
     {
       type: 'link',
-      label: '← Documentation',
+      label: '← Home',
       href: '/docs',
     },
     {
@@ -74,7 +74,7 @@ const sidebars = {
   ox_core: [
     {
       type: 'link',
-      label: '← Documentation',
+      label: '← Home',
       href: '/docs',
     },
     {
@@ -96,7 +96,7 @@ const sidebars = {
   oxmysql: [
     {
       type: 'link',
-      label: '← Documentation',
+      label: '← Home',
       href: '/docs',
     },
     {
@@ -119,7 +119,7 @@ const sidebars = {
   ox_lib: [
     {
       type: 'link',
-      label: '← Documentation',
+      label: '← Home',
       href: '/docs',
     },
     {
@@ -141,7 +141,7 @@ const sidebars = {
   ox_inventory: [
     {
       type: 'link',
-      label: '← Documentation',
+      label: '← Home',
       href: '/docs',
     },
     {
