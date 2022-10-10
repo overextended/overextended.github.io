@@ -76,27 +76,6 @@ const iq = player.get('iq');
 </TabItem>
 </Tabs>
 
-## player.getAccounts
-
-Returns an instance of CAccount for the player.
-
-<Tabs>
-<TabItem value='lua' label='Lua'>
-
-```lua
-player.getAccounts()
-```
-
-</TabItem>
-<TabItem value='js/ts' label='JS/TS'>
-
-```ts
-player.getAccounts();
-```
-
-</TabItem>
-</Tabs>
-
 ## player.getCoords
 
 Return the player's world position.

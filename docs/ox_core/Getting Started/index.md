@@ -22,11 +22,9 @@ Refer to [GitHub's guide to setting up Git](https://docs.github.com/en/get-start
 ### Dependencies
 
 - [oxmysql](https://github.com/overextended/oxmysql/)
-  - Database connector
+  - Database connector.
 - [ox_lib](https://github.com/overextended/ox_lib/)
-  - Shared functions through modules and exports
-- [ox_inventory](https://github.com/overextended/ox_inventory)
-  - Implements items, weapons, shops, etc.
+  - Shared functions through modules and exports.
 - [fivem-appearance](https://github.com/pedr0fontoura/fivem-appearance)
   - Player ped customisation.
 - [ox_appearance](https://github.com/overextended/ox_appearance)
@@ -34,7 +32,12 @@ Refer to [GitHub's guide to setting up Git](https://docs.github.com/en/get-start
 
 ### Optional dependencies
 
+- [ox_inventory](https://github.com/overextended/ox_inventory)
+  - Implements items, weapons, shops, etc.
+- [pefcl](https://github.com/project-error/pefcl)
+  - Banking, shared accounts.
 - [npwd](https://github.com/project-error/npwd)
+  - It's a phone.
 
 ### Installation
 
@@ -60,3 +63,12 @@ pnpm build
 
 </TabItem>
 </Tabs>
+
+If you're using [pefcl](https://github.com/project-error/pefcl) and [ox_inventory](https://github.com/overextended/ox_inventory), open `config.json` and set frameworkIntegration.
+```json
+"frameworkIntegration": {
+  "enabled": true,
+  "resource": "ox_inventory",
+  "syncInitialBankBalance": false
+},
+```
