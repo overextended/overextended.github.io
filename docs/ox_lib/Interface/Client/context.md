@@ -35,6 +35,8 @@ lib.registerContext(context)
   * If set to false the user won't be able to exit the menu without pressing one of the buttons.
 * onExit?: `function`
   * Function that will be ran when the user closes their context menu with ESC.
+* onBack?: `function`
+  * Function that will be ran when the user presses the back button to return to a previous menu.
 * options: `table` (`object` or `array`)
   * item: `key` (`string`) or `table` (`object`)
     * title?: `string`
