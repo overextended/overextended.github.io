@@ -118,7 +118,7 @@ lib.hideTextUI()
 
 
 ### lib.isTextUIOpen
-Hides the currently visible TextUI window
+Returns if the TextUI window is open
 
 <Tabs>
 <TabItem value='Lua'>
