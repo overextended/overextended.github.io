@@ -117,3 +117,24 @@ lib.hideTextUI()
 </Tabs>
 
 
+### lib.isTextUIOpen
+Hides the currently visible TextUI window
+
+<Tabs>
+<TabItem value='Lua'>
+
+```lua
+local isOpen = lib.isTextUIOpen()
+print(isOpen)
+```
+</TabItem>
+<TabItem value='JS/TS'>
+
+```ts
+import lib from '@overextended/ox_lib/client'
+
+let isOpen = lib.isTextUIOpen()
+console.log(isOpen)
+```
+</TabItem>
+</Tabs>
