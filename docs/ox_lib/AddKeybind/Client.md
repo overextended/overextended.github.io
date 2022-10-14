@@ -1,7 +1,3 @@
-# Keybinds
-
-Simple and centralised key mapping management, supporting callbacks when pressing and releasing keybinds.
-
 ```lua
 lib.addKeybind(data)
 ```
