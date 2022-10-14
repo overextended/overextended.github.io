@@ -3,38 +3,31 @@
 Simple and centralised key mapping management, supporting callbacks when pressing and releasing keybinds.
 
 ```lua
-lib.keybinds.new(data)
+lib.addKeybind(data)
 ```
 * data: `table`
   * name: `string`
   * description: `string`
-  * keybind?: `string`
+  * defaultKey?: `string`
     * Default: None
+  * keybind: `string`
+  * disabled?: `boolean`
   * disable?: `function`(self: `table`, toggle: `boolean`)
-  * onPressed?: `function`(self: `table`, toggle: `boolean`)
-  * onReleased?: `function`(self: `table`, toggle: `boolean`)
+  * onPressed?: `function`(self: `table`)
+  * onReleased?: `function`(self: `table`)
 
 ```lua
-local function buttonPressed()
-    print('respects being paid')
-end
-
-local function buttonReleased()
-    print('no longer paying respects')
-end
-
-local keybind = lib.keybinds.new({
+local keybind = lib.addKeybind({
     name = 'respects',
     description = 'press F to pay respects',
-    keybind = 'F',
-    onPressed = buttonPressed,
-    onReleased = buttonReleased
+    defaultKey = 'F',
+    onPressed = function(self)
+        print(('pressed %s (%s)'):format(self.keybind, self.name))
+    end,
+    onReleased = function(self)
+        print(('released %s (%s)'):format(self.keybind, self.name))
+    end,
 })
-```
-
-The keybind object can be retrieved in other scripts by using the getter function.
-```lua
-local keybind = lib.keybinds.get('respects')
 ```
 
 Keybinds can be enabled/disabled by using the disable method.
