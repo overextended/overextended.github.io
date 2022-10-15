@@ -6,7 +6,7 @@ lib.addKeybind(data)
   * description: `string`
   * defaultKey?: `string`
     * Default: None
-  * keybind: `string`
+  * currentKey: `string`
   * disabled?: `boolean`
   * disable?: `function`(self: `table`, toggle: `boolean`)
   * onPressed?: `function`(self: `table`)
@@ -18,10 +18,10 @@ local keybind = lib.addKeybind({
     description = 'press F to pay respects',
     defaultKey = 'F',
     onPressed = function(self)
-        print(('pressed %s (%s)'):format(self.keybind, self.name))
+        print(('pressed %s (%s)'):format(self.currentKey, self.name))
     end,
     onReleased = function(self)
-        print(('released %s (%s)'):format(self.keybind, self.name))
+        print(('released %s (%s)'):format(self.currentKey, self.name))
     end,
 })
 ```
