@@ -32,6 +32,11 @@ The owner field will set permissions for stash access, with stashes registering 
 - false: Only a single stash exists and is shared between all players
 - string: The stash explicitly belongs to the given owner, usually a player identifier
 
+The groups field will restrict access to the given jobs / grades such as below
+```
+groups = {["police"] = 0, ["ambulance"] = 2}
+```
+
 You can set the stash coordinates to prevent the stash from being opened if the player isn't close enough.
 
 ## Example
