@@ -29,6 +29,10 @@ lib.skillCheck(difficulty)
 * difficulty: `easy` or `medium` or `hard` or `object` 
   * Can set custom difficulty by sending a object instead of string
     * { areaSize: `number`, speedMultiplier: `number` }
+      * easy: { areaSize: 275, speedMultiplier: 1 }
+      * medium: { areaSize: 290, speedMultiplier: 1.5 }
+      * hard: { areaSize: 295, speedMultiplier: 1.75 }
+    * `areaSize` works inverse, so smaller value means bigger zone.
   * Sending an array will chain the checks together and return false if one fails and true if all succeed
 
 ### Usage Example
@@ -49,3 +53,5 @@ const success = await lib.skillCheck(['easy', 'easy', {areaSize: 250, speedMulti
 ```
 </TabItem>
 </Tabs>
+
+![Image](https://i.imgur.com/RWSWZ1I.png)
