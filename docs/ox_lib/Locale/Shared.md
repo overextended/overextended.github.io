@@ -1,8 +1,17 @@
-Allows players to set a preferred language and attempt to load locale files in any resources using the module.  
+Allows servers to set a preferred language and attempt to load locale files in any resources using the module.  
 Locale files should use the [ISO Language Code](http://www.lingoes.net/en/translator/langcode.htm) and be saved as `./locales/langcode.json`
 
-Players can use `setlocale [langcode]`, and admins can use `serverlocale [langcode]` to change the loaded file.
+To change the preferred language from English, add the convar to your server.cfg
+```cfg
+setr ox:locale en
+```
 
+Initialise the locale module in your resource (once).
+```lua
+lib.locale()
+```
+
+Format your strings with the new locale global.
 ```lua
 locale(str, ...)
 ```
@@ -22,7 +31,7 @@ SetInterval(function()
 end, 5000)
 ```
 
-```json title="locales/en-US.json"
+```json title="locales/en.json"
 {
   "grand_theft_auto": "grand theft auto",
   "male": "male",
@@ -31,7 +40,7 @@ end, 5000)
 }
 ```
 
-```json title="locales/fr-FR.json"
+```json title="locales/fr.json"
 {
   "grand_theft_auto": "vol de voiture",
   "male": "homme",
