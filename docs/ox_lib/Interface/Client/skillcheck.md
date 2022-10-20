@@ -29,10 +29,10 @@ lib.skillCheck(difficulty)
 * difficulty: `easy` or `medium` or `hard` or `object` 
   * Can set custom difficulty by sending a object instead of string
     * { areaSize: `number`, speedMultiplier: `number` }
-      * easy: { areaSize: 275, speedMultiplier: 1 }
-      * medium: { areaSize: 290, speedMultiplier: 1.5 }
-      * hard: { areaSize: 295, speedMultiplier: 1.75 }
-    * `areaSize` works inverse, so smaller value means bigger zone.
+      * easy: { areaSize: 50, speedMultiplier: 1 }
+      * medium: { areaSize: 40, speedMultiplier: 1.5 }
+      * hard: { areaSize: 25, speedMultiplier: 1.75 }
+    * `areaSize` size of the area in degrees.
   * Sending an array will chain the checks together and return false if one fails and true if all succeed
 
 ### Usage Example
