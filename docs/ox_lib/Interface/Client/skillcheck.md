@@ -41,7 +41,7 @@ lib.skillCheck(difficulty)
 <TabItem value='Lua'>
 
 ```lua
-local success = lib.skillCheck({'easy', 'easy', {areaSize = 250, speedMultiplier = 2}, 'hard'})
+local success = lib.skillCheck({'easy', 'easy', {areaSize = 60, speedMultiplier = 2}, 'hard'})
 ```
 </TabItem>
 <TabItem value='JS/TS'>
@@ -49,7 +49,7 @@ local success = lib.skillCheck({'easy', 'easy', {areaSize = 250, speedMultiplier
 ```ts
 import lib from '@overextended/ox_lib/client'
 
-const success = await lib.skillCheck(['easy', 'easy', {areaSize: 250, speedMultiplier: 2}, 'hard'])
+const success = await lib.skillCheck(['easy', 'easy', {areaSize: 60, speedMultiplier: 2}, 'hard'])
 ```
 </TabItem>
 </Tabs>
