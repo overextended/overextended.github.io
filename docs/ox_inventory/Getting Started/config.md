@@ -18,7 +18,7 @@ The values below are _defaults_ and should not be explicitly set unless changing
 setr inventory:framework "esx"
 
 # Load specific language file from data/locales
-setr inventory:locale "en"
+setr ox:locale "en"
 
 # Number of slots for player inventories
 setr inventory:slots 50
