@@ -61,7 +61,7 @@ Once registered with Grafana Cloud, head to [My Account](https://grafana.com/aut
 
 To setup a grafana instance you'll require docker, and knowledge on containers or kubernetes. Please find a guide to setup a grafana stack (min requirement grafana and grafana loki) and follow that. Once done, setup authentication and use the username and password securing your endpoint.
 
-[*] Please note: By default self-hosted loki instances do not come with authentication and will require an authentication layer on top such as `nginx basic_auth`.
+[*] Please note: By default self-hosted loki instances do not provide any authenication layers and will require an external authentication layer such as NGINX basic auth or Cloudflare Access. 
 
 #### Setting up Server Config
 
