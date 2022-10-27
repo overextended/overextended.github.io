@@ -41,6 +41,8 @@ lib.inputDialog(heading, rows)
     * Used only with `'input'` and `'number'` types.
   * placeholder?: `string`
     * Used only with `'input'` and `'number'` types.
+  * disabled?: `boolean`
+    * Should the field be disabled from input.
   * default?: `string` or `number`
     * Default value for the field.
   * checked?: `boolean`
