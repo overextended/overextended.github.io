@@ -33,8 +33,9 @@ lib.registerMenu(data, cb)
   * options: `table` (`array`)
     * label: `string`
     * icon?: `string`
-    * values?: `table` (`string[]`)
+    * values?: `table` (`Array<string | {label: string; description: string}>`)
       * If provided creates a side scrollabel list.
+      * When using object and setting description, the set description will be displayed in the menu tooltip.
     * description?: `string`
       * Displays tooltip below menu on hovered item with provided description.
     * defaultIndex?: `number`
