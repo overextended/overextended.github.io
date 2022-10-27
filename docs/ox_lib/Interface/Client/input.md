@@ -31,6 +31,8 @@ lib.inputDialog(heading, rows)
 * rows: `string[]` or `table` (`array`)
   * type: `'input'` or `'number'` or `'checkbox'` or `'select'` or `'slider'`
   * label: `string`
+  * description?: `string`
+    * If set will show a ? near the label a user can hover over and the description.
   * options?: `table` (`array`)
     * [ Only used with `'select'` type ]
     * value: `string`
