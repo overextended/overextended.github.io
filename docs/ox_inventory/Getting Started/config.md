@@ -30,7 +30,7 @@ setr inventory:weight 30000
 setr inventory:autoreload false
 
 # Weapons must be aimed before shooting
-setr aimedfiring false
+setr inventory:aimedfiring false
 
 # Blur the screen while accessing the inventory
 setr inventory:screenblur true
