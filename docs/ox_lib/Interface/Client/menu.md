@@ -36,11 +36,17 @@ lib.registerMenu(data, cb)
     * values?: `table` (`Array<string | {label: string; description: string}>`)
       * If provided creates a side scrollabel list.
       * When using object and setting description, the set description will be displayed in the menu tooltip.
+    * checked?: `boolean`
+      * Setting either true or false will make the button a checkbox, if `values` is also provided the button will be a
+      scrollable list.
     * description?: `string`
       * Displays tooltip below menu on hovered item with provided description.
     * defaultIndex?: `number`
       * Sets the current index for the list to specified number.
-    * args?: `any`
+    * args?: {[key: `string`]: `any`}
+      * Allows you to pass any arguments through the button.
+      * If the button has `values` then `isScroll` is automatically passed.
+      * If the button has `checked` to either true or false then `isCheck` is automatically passed.
     * close?: `boolean`
       * If set to false, it won't close the menu upon interacting with this option.
   * position?: `'top-left'` or `'top-right'` or `'bottom-left'` or `'bottom-right'`
@@ -51,11 +57,12 @@ lib.registerMenu(data, cb)
     * If set to false the user won't be able to exit the menu without pressing one of the buttons.
   * onClose: `function`(keyPressed?: `'Escape' | 'Backspace'`)
     * Function that runs when the menu is exited via ESC/Backspace.
-  * onSelected: `function`(selected: `number`: scrollIndex: `number`: args: `any`)
+  * onSelected: `function`(selected: `number`, secondary: `number` | `boolean`, args: {[key: `string`]: `any`})
     * Function being ran when the selected button in the menu changes. 
-  * onSideScroll: `function`(selected: `number`: scrollIndex: `number`: args: `any`)
+  * onSideScroll: `function`(selected: `number`, scrollIndex: `number`, args: {[key: `string`]: `any`})
     * Function ran whenever a scroll list item is changed.
-* cb: `function`(selected: `number`: scrollIndex: `number`: args: `any`)
+  * onCheck: `function`(selected: `number`, checked: `boolean`, args: {[key: `string`]: `any`})
+* cb: `function`(selected: `number`, scrollIndex: `number`, args: {[key: `string`]: `any`})
   * Callback function when the menu item is pressed.
 
 ### lib.showMenu
@@ -184,36 +191,50 @@ Avoid constantly re-registering a menu that does not depend on any outside value
 
 ```lua
 lib.registerMenu({
-	id = 'some_menu_id',
-	title = 'Menu title',
-  position = 'top-right',
-	onSideScroll = function(selected, scrollIndex, args)
-		print(selected, scrollIndex, args)
-	end,
-	onSelected = function(selected, scrollIndex, args)
-		print(selected, scrollIndex, args)
-	end,
-	onClose = function(keyPressed)
-		print('Menu closed')
-                if keyPressed then
-                    print(('Pressed %s to close the menu'):format(keyPressed))
-                end
-	end,
-	options = {
-		{label = 'Simple button', description = 'It has a description!'},
-		{label = 'Simple button with icon', icon = 'arrows-up-down-left-right'},
-    {label = 'Simple button that won\'t close the menu', close = false},
-		{label = 'Button with args', args = 'nice_button'},
-		{label = 'List button', values = {'You', 'can', 'side', 'scroll', 'this'}, description = 'It also has a description!'},
-		{label = 'List button with default index', values = {'You', 'can', 'side', 'scroll', 'this'}, defaultIndex = 5},
-		{label = 'List button with args', values = {'You', 'can', 'side', 'scroll', 'this'}, args = {someValue = 3, otherValue = 'value'}},
-	}
+    id = 'some_menu_id',
+    title = 'Menu title',
+    position = 'top-right',
+    onSideScroll = function(selected, scrollIndex, args)
+        print("Scroll: ", selected, scrollIndex, args)
+    end,
+    onSelected = function(selected, secondary, args)
+        if not secondary then
+            print("Normal button")
+        else
+            if args.isCheck then
+                print("Check button")
+            end
+
+            if args.isScroll then
+                print("Scroll button")
+            end
+        end
+        print(selected, secondary, json.encode(args, {indent=true}))
+    end,
+    onCheck = function(selected, checked, args)
+        print("Check: ", selected, checked, args)
+    end,
+    onClose = function(keyPressed)
+        print('Menu closed')
+        if keyPressed then
+            print(('Pressed %s to close the menu'):format(keyPressed))
+        end
+    end,
+    options = {
+        {label = 'Simple button', description = 'It has a description!'},
+        {label = 'Checkbox button', checked = true},
+        {label = 'Scroll button with icon', icon = 'arrows-up-down-left-right', values={'hello', 'there'}},
+        {label = 'Button with args', args = {someArg = 'nice_button'}},
+        {label = 'List button', values = {'You', 'can', 'side', 'scroll', 'this'}, description = 'It also has a description!'},
+        {label = 'List button with default index', values = {'You', 'can', 'side', 'scroll', 'this'}, defaultIndex = 5},
+        {label = 'List button with args', values = {'You', 'can', 'side', 'scroll', 'this'}, args = {someValue = 3, otherValue = 'value'}},
+    }
 }, function(selected, scrollIndex, args)
-	print(selected, scrollIndex, args)
+    print(selected, scrollIndex, args)
 end)
 
 RegisterCommand('testmenu', function()
-	lib.showMenu('some_menu_id')
+    lib.showMenu('some_menu_id')
 end)
 ```
 </TabItem>
@@ -227,10 +248,24 @@ lib.registerMenu({
   title: 'Menu title',
   position: 'top-right',
   onSideScroll: (selected, scrollIndex, args) => {
-    console.log(selected, scrollIndex, args)
+    console.log("Scroll: ", selected, scrollIndex, args)
   },
-  onSelected: (selected, scrollIndex, args) => {
-    console.log(selected, scrollIndex, args)
+  onSelected: (selected, secondary, args) => {
+    if (!secondary) {
+      console.log("Normal button")
+    } else {
+      if (args.isCheck) {
+        console.log("Check button")
+      }
+
+      if (args.isScroll) {
+        console.log("Scroll button")
+      }
+    }
+    console.log(selected, secondary, JSON.stringify(args, null, 2))
+  },
+  onCheck: (selected, checked, args) => {
+    console.log("Check: ", selected, checked, args)
   },
   onClose: (keyPressed) => {
     console.log('Menu closed')
@@ -240,9 +275,9 @@ lib.registerMenu({
   },
   options: [
     {label: 'Simple button', description: 'It has a description!'},
-    {label: 'Simple button with icon', icon: 'arrows-up-down-left-right'},
-    {label: 'Simple button that won\'t close the menu', close: false},
-    {label: 'Button with args', args: 'nice_button'},
+    {label: 'Checkbox button', checked: true},
+    {label: 'Scroll button with icon', icon: 'arrows-up-down-left-right', values: ['hello', 'there']},
+    {label: 'Button with args', args: {someArg: 'nice_button'}},
     {label: 'List button', values: ['You', 'can', 'side', 'scroll', 'this'], description: 'It also has a description!'},
     {label: 'List button with default index', values: ['You', 'can', 'side', 'scroll', 'this'], defaultIndex: 5},
     {label: 'List button with args', values: ['You', 'can', 'side', 'scroll', 'this'], args: {someValue: 3, otherValue: 'value'}},
@@ -258,4 +293,4 @@ RegisterCommand('testmenu', () => {
 </TabItem>
 </Tabs>
 
-![Example](https://i.imgur.com/lmimH7e.png)
+![Example](https://i.imgur.com/eIdWZ4c.png)
