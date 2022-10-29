@@ -14,7 +14,7 @@ Convars **must** be set before starting ox_inventory.
 The values below are _defaults_ and should not be explicitly set unless changing the value.
 
 ```yml
-# Activate specific event handlers and functions (supported: ox, esx, qb)
+# Activate specific event handlers and functions (supported: ox, esx, qb, nd)
 setr inventory:framework "esx"
 
 # Load specific language file from data/locales
