@@ -69,7 +69,7 @@ set inventory:evidencegrade 2
 set inventory:clearstashes "6 MONTH"
 
 # Set the contents of randomly generated inventories
-# [item name, minimum, maximum, loot chance]
+# [item name, minimum, maximum]
 set inventory:vehicleloot [
     ["cola", 1, 1],
     ["water", 1, 1],
