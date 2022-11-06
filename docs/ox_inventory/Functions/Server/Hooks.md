@@ -22,7 +22,7 @@ By returning `false`, you can cancel the action and revert the inventory state.
 **Payload:**
 
 - source: `number`
-- action: `move` or `stack` or `swap` or `give`
+- action: `'move'` or `'stack'` or `'swap'` or `'give'`
 - fromInventory: `number` or `string`
 - toInventory:` number` or `string`
 - fromType: `string`

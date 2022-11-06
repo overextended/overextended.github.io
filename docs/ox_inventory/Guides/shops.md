@@ -5,7 +5,7 @@ title: Creating shops
 import IconButton from '@site/src/components/IconButton'
 import { BsGithub } from 'react-icons/bs'
 
-Builtin hops are defined in [data/shops.lua](https://github.com/overextended/ox_inventory/blob/main/data/shops.lua), and more can be added here to benefit from the built-in markers or zones support.
+Builtin shops are defined in [data/shops.lua](https://github.com/overextended/ox_inventory/blob/main/data/shops.lua), and more can be added here to benefit from the built-in markers or zones support.
 
 ## Shop definition
 
@@ -41,17 +41,28 @@ Builtin hops are defined in [data/shops.lua](https://github.com/overextended/ox_
 }
 ```
 
-luke i hate this pls fix
-
 - name: `string`
   - The label to display when the shop is open.
 - blip?: `table`
   - Creates a blip with the given settings. Leave it undefined for no blip to be created.
+  - id: `number`
+  - colour: `number`
+  - scale: `number`
 - groups?: `table`
   - Key-value pairs of job name and minimum grade to access the shop.
     - `{["police"] = 0, ["ambulance"] = 2}`
 - inventory: `table`
-  - { name: `string`, price: `number`, currency?: `string`, count?: `number`, license?: `string`, metadata?: `table`, grade?: `number` }
+  - name: `string`
+  - price: `number`
+  - currency?: `string`
+    - Item to be used as currency.
+  - count?: `number`
+    - Amount of the item in the stock.
+  - license?: `string`
+    - License required to purchase the item.
+  - metadata?: `table`
+  - grade?: `number`
+    - Grade required to purchase the item.
 - locations?: `vector3[]`
   - An array of coordinates to create unique instances of the shop archetype at, using markers.
 - targets?: `table[]`

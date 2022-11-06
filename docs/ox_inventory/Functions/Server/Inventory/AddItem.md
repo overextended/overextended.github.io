@@ -8,7 +8,9 @@ exports.ox_inventory:AddItem(inv, item, count, metadata, slot, cb)
 
 - inv: `table` or `string` or `number`
   - The inventory's unique id, or a table with the id and owner.
-    - playerId: `1`, inventoryId: `gloveVGH283`, `{ id = 'personallocker', owner = 'license:xxxxxx'}`
+    - playerId: `1`
+    - inventoryId: `gloveVGH283`
+    - `{ id = 'personallocker', owner = 'license:xxxxxx'}`
 - item: `string`
   - The name of the item to add to the target.
 - count: `number`

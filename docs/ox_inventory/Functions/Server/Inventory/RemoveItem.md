@@ -6,7 +6,9 @@ exports.ox_inventory:RemoveItem(inv, item, count, metadata, slot)
 
 - inv: `table` or `string` or `number`
   - The inventory's unique id, or a table with the id and owner.
-    - playerId: `1`, inventoryId: `gloveVGH283`, `{ id = 'personallocker', owner = 'license:xxxxxx'}`
+    - playerId: `1`
+    - inventoryId: `gloveVGH283`
+    - `{ id = 'personallocker', owner = 'license:xxxxxx'}`
 - item: `string`
   - The name of the item to remove from the target.
 - count: `number`
