@@ -90,7 +90,7 @@ Triggered when an item is created, either by buying it, using AddItem, or when c
 By returning a table you can modify or replace the metadata given to an item.
 
 ```lua
-exports.ox_inventory:registerHook('openInventory', function(payload)
+exports.ox_inventory:registerHook('createItem', function(payload)
     print(json.encode(payload, { indent = true }))
     local metadata = payload.metadata
     metadata.label = 'Mineral Water'
