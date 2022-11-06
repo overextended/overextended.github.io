@@ -1,0 +1,86 @@
+---
+title: Creating shops
+---
+
+import IconButton from '@site/src/components/IconButton'
+import { BsGithub } from 'react-icons/bs'
+
+Builtin hops are defined in [data/shops.lua](https://github.com/overextended/ox_inventory/blob/main/data/shops.lua), and more can be added here to benefit from the built-in markers or zones support.
+
+## Shop definition
+
+```lua
+{
+    General = {
+        name = 'Shop',
+        blip = {
+          id = 59,
+          colour = 69,
+          scale = 0.8
+        },
+        inventory = {
+            { name = 'burger', price = 10 },
+            { name = 'water', price = 10 },
+            { name = 'cola', price = 10 },
+        },
+        locations = {
+            vec3(25.7, -1347.3, 29.49),
+        },
+        targets = {
+            {
+                loc = vec3(25.06, -1347.32, 29.5),
+                length = 0.7,
+                width = 0.5,
+                heading = 0.0,
+                minZ = 29.5,
+                maxZ = 29.9,
+                distance = 1.5
+            },
+        }
+    }
+}
+```
+
+luke i hate this pls fix
+
+- name: `string`
+  - The label to display when the shop is open.
+- blip?: `table`
+  - Creates a blip with the given settings. Leave it undefined for no blip to be created.
+- groups?: `table`
+  - Key-value pairs of job name and minimum grade to access the shop.
+    - `{["police"] = 0, ["ambulance"] = 2}`
+- inventory: `table`
+  - { name: `string`, price: `number`, currency?: `string`, count?: `number`, license?: `string`, metadata?: `table`, grade?: `number` }
+- locations?: `vector3[]`
+  - An array of coordinates to create unique instances of the shop archetype at, using markers.
+- targets?: `table[]`
+  - An array of BoxZone settings to create unique instances of the shop archetype at.
+- model?: `number[]`
+  - An array of models that can be targetted to open a shop. Used for vending machines.
+
+Targets and model are only available when using a targeting resource like ox_target.
+
+## Register during runtime
+
+Shops can be added using `exports.ox_inventory:RegisterShop` on the server, however they cannot utilise any client-only features.
+- Blips, markers, and zones will not be created.
+- Must use "locations" and not "targets" to define each shop using the archetype.
+
+**Example:**
+```lua
+exports.ox_inventory:RegisterShop('TestShop', {
+    name = 'Test shop',
+    inventory = {
+        { name = 'burger', price = 10 },
+        { name = 'water', price = 10 },
+        { name = 'cola', price = 10 },
+    },
+    locations = {
+        vec3(223.832962, -792.619751, 30.695190),
+    },
+    groups = {
+        police = 0
+    },
+})
+```
