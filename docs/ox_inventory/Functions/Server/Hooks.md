@@ -116,3 +116,14 @@ end, {
 ```
 
 Sets the label for "water" to "Mineral Water".
+
+## removeHooks
+
+```lua
+exports.ox_inventory:removeHooks(id)
+```
+
+- id?: `number`
+
+Removes a hook created by the invoking resource with the the specified id.
+If no id is specified then all hooks are removed.
