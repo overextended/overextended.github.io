@@ -16,7 +16,7 @@ exports.ox_inventory:registerHook(eventName, function(payload) end, options)
 
 ## swapItems
 
-Triggered when moving any item from one slot to another, or when "giving" an item.  
+Triggered when moving any item from one slot to another, or when "giving" an item.
 By returning `false`, you can cancel the action and revert the inventory state.
 
 **Payload:**
@@ -31,10 +31,14 @@ By returning `false`, you can cancel the action and revert the inventory state.
 - toSlot?: `table` or `number`
 - count: `number`
 
+Return:
+
+- hookId: `number`
+
 **Example:**
 
 ```lua
-exports.ox_inventory:registerHook('swapItems', function(payload)
+local hookId = exports.ox_inventory:registerHook('swapItems', function(payload)
     print(json.encode(payload, { indent = true }))
     return false
 end, {
@@ -59,11 +63,15 @@ Blacklists "water" from being moved into or from gloveboxes and trunks.
 - inventoryId: `number` or `string`
 - inventoryType: `string`
 
-Triggered when a player tries to open a secondary inventory.  
+Return:
+
+- hookId: `number`
+
+Triggered when a player tries to open a secondary inventory.
 By returning `false`, you can cancel the action and keep the player's inventory closed.
 
 ```lua
-exports.ox_inventory:registerHook('openInventory', function(payload)
+local hookId = exports.ox_inventory:registerHook('openInventory', function(payload)
     print(json.encode(payload, { indent = true }))
     return false
 end, {
@@ -86,11 +94,15 @@ Disables gloveboxes and trunks.
 - item: `table`
 - count: `number`
 
-Triggered when an item is created, either by buying it, using AddItem, or when converting inventory data.  
+Return:
+
+- hookId: `number`
+
+Triggered when an item is created, either by buying it, using AddItem, or when converting inventory data.
 By returning a table you can modify or replace the metadata given to an item.
 
 ```lua
-exports.ox_inventory:registerHook('createItem', function(payload)
+local hookId = exports.ox_inventory:registerHook('createItem', function(payload)
     print(json.encode(payload, { indent = true }))
     local metadata = payload.metadata
     metadata.label = 'Mineral Water'
