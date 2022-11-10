@@ -10,7 +10,7 @@ local options = {
         end
     },
     {
-        name = 'ox:option1',
+        name = 'ox:option2',
         event = 'ox_target:debug',
         icon = 'fa-solid fa-road',
         label = 'Option 2',
