@@ -39,6 +39,7 @@ setr inventory:screenblur true
 setr inventory:trimplate true
 
 # Integrated support for qtarget stashes, shops, etc
+# Note: qtarget is deprecated, a future update may drop support (ox_target only, or gated features)
 setr inventory:qtarget false
 
 # Default hotkeys to access primary and secondary inventories, and hotbar
@@ -52,6 +53,12 @@ setr inventory:giveplayerlist true
 
 # Jobs with access to police armoury, evidence lockers, etc
 setr inventory:police ["police", "sheriff"]
+
+# The URL to load item images from
+setr inventory:imagepath "nui://ox_inventory/web/images"
+
+# Logging via ox_lib (0: Disable, 1: Standard, 2: Include AddItem/RemoveItem, and all shop purchases)
+set inventory:loglevel 1
 
 # Item prices fluctuate in shops
 set inventory:randomprices true
