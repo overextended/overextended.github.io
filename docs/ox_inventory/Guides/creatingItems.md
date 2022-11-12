@@ -24,7 +24,7 @@ options for the item.
 -- degrade: number (optional) -- The amount of time in minutes an item will degrade after
 -- close: boolean (optional) -- If set to false will not close the inventory on item use
 -- description: string (optional)
--- consume: number (optional) -- Number of an item needed to use it, and removed after use (Default: 1)
+-- consume: number (optional) -- Item count needed, and removed, on use. (Default: 1) Set to a decimal for durability loss (0.2 = 20%)
 -- allowArmed: boolean (optional) -- If set to true will allow use of item while armed with a weapon
 -- client: table (optional)
 -- buttons: table (optional) -- Allows you to define custom context menu functions for the item
