@@ -42,18 +42,20 @@ exports.ox_target:removeModel(models, optionNames)
 
 ## addEntity
 
-Add new options when targeting a networked entity or list of entities.
+Add new options when targeting a networked entity matching the given netid or list of netids.  
+Requires the use of [NetworkGetNetworkIdFromEntity](https://docs.fivem.net/natives/?_0x9E35DAB6) on an entity id.
 
 ```lua
-exports.ox_target:addEntity(entities, options)
+exports.ox_target:addEntity(netIds, options)
 ```
 
 ## removeEntity
 
-Remove options from a networked entity or list of entities.
+Remove options from a networked entity matching the given netid or list of netids.  
+Requires the use of [NetworkGetNetworkIdFromEntity](https://docs.fivem.net/natives/?_0x9E35DAB6) on an entity id.
 
 ```lua
-exports.ox_target:removeEntity(entities, optionNames)
+exports.ox_target:removeEntity(netIds, optionNames)
 ```
 
 

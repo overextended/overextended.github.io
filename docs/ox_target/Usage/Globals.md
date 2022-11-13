@@ -1,3 +1,5 @@
+Registers options that will apply to all entities of that type (object, ped, player, vehicle).
+
 ```lua
 local options = {
   {
