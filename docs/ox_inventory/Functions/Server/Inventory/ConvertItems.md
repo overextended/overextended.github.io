@@ -1,10 +1,10 @@
 Takes traditional item data and updates it to support ox_inventory.
 
 ```lua
--- playerId: number
--- items: table
 exports.ox_inventory:ConvertItems(playerId, items)
 ```
+* playerId: `number`
+* items: `table`
 
 Data conversion example:
  ```

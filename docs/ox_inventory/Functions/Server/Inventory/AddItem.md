@@ -5,7 +5,6 @@ Should be used alongside [CanCarryItem](./CanCarryItem.md) otherwise, the maximu
 ```lua
 exports.ox_inventory:AddItem(inv, item, count, metadata, slot, cb)
 ```
-
 - inv: `table` or `string` or `number`
   - The inventory's unique id, or a table with the id and owner.
     - playerId: `1`
@@ -20,6 +19,8 @@ exports.ox_inventory:AddItem(inv, item, count, metadata, slot, cb)
 - slot?: `number`
   - A specific slot to add the item to. If the slot is invalid, the first available slot will be used instead.
 - cb?: function(success: `boolean`, response?: `string`)
+
+If used for glovebox, trunk or stash you must first check the inventory is loaded with [GetInventory](./GetInventory.md)
 
 Returns `success, response` if cb is undefined, otherwise they are used in the callback only.
 
