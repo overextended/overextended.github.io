@@ -1,13 +1,22 @@
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-Opens an inventory using on the passed data.
+Opens an inventory using the passed data.
 
 ```lua
--- invType: string
--- data: number | string | table
 exports.ox_inventory:openInventory(invType, data)
 ```
+* invType: `string`
+  * `'player'`
+  * `'shop'`
+  * `'stash'`
+  * `'crafting'`
+  * `'container'`
+  * `'drop'`
+  * `'glovebox'`
+  * `'trunk'`
+  * `'dumpster'`
+* data: `number` or `string` or `table`
 
 <Tabs>
 <TabItem value="1" label="Player">

@@ -4,17 +4,16 @@ import TabItem from '@theme/TabItem';
 Searches the inventory for an item, or list of items, with the result varying based on the first argument.
 
 ```lua
--- search: string
--- item: table or string
--- metadata: table or string (optional)
 exports.ox_inventory:Search(search, item, metadata)
 ```
-
-If the `search` argument is defined as `'slots'` the return will be a table
-of slots where the item was found at.
-
-Otherwise if the `search` argument is defined as `'count'` the return value
-will be the amount of the specified item in player's inventory.
+* search: `'slots'` or `'count'`
+  * `'slots'` returns a table of slots where the item was found at.
+  * `'count'` returns the count of the specified item in player's inventory. If searching for multiple items
+  returns key-value pairs of itemName = count.
+* item: `table` or `string`
+  * Can be a single item name or array of item names.
+* metadata?: `table` or `string`
+  * If metadata is provided as a string it will search the item's `metadata.type` property.
 
 ### Count
 
