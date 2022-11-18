@@ -1,12 +1,13 @@
 Returns the item from the specified inventory.
 
 ```lua
--- inv: string or number
--- item: table or string
--- metadata: any (optional)
--- returnsCount: boolean (optional)
 exports.ox_inventory:GetItem(inv, item, metadata, returnsCount)
 ```
+* inv: `string` or `number`
+* item: `table` or `string`
+  * Can be items array.
+* metadata?: `any`
+* returnsCount?: `boolean`
 
 If `returnsCount` is set to true, the returned value will be the `count` based on
 how many times the item was found.

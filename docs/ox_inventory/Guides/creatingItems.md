@@ -14,54 +14,58 @@ Key is the name (not the label) of an item and the value is a table containing t
 options for the item.
 
 **Item options:**
-<Tabs>
-<TabItem value='shared' label='Shared'>
 
-```lua
--- label: string
--- weight: number (optional)
--- stack: boolean (optional) -- If set to false will not allow the item to be stacked
--- degrade: number (optional) -- The amount of time in minutes an item will degrade after
--- close: boolean (optional) -- If set to false will not close the inventory on item use
--- description: string (optional)
--- consume: number (optional) -- Item count needed, and removed, on use. (Default: 1) Set to a decimal for durability loss (0.2 = 20%)
--- allowArmed: boolean (optional) -- If set to true will allow use of item while armed with a weapon
--- client: table (optional)
--- buttons: table (optional) -- Allows you to define custom context menu functions for the item
-```
-
-</TabItem>
-<TabItem value='client' label='Client'>
-
-All values are optional.
-
-```lua
--- event: string -- Event to trigger after item use
--- status: table -- Adjust esx_status values after use
--- anim: table -- Animation during progress bar
-    -- dict: string
-    -- clip: string
--- prop: table -- Attached prop during progress bar
-    -- model: string or hash
-    -- pos: table (x, y, z)
-    -- rot: table (x, y, z)
--- disable: boolean -- Disables actions during progress bar
--- usetime: number
--- cancel: boolean -- If set to true the player can cancel item use
--- add: function(total) -- Function that triggers when recieving an item (Returns total item count as `total`)
--- remove: function(total) -- Function that triggers when removing an item (Returns total item count as `total`)
-```
-
-</TabItem>
-<TabItem value='buttons' label='Buttons'>
-
-```lua
--- label: string,
--- action: function(slot) -- Callback function when button is clicked in context menu, returns item slot
-```
-
-</TabItem>
-</Tabs>
+* label: `string`
+* weight?: `number`
+* stack?: `boolean`
+  * If set to false will not allow the item to be stacked.
+* degrade?: `number`
+  * Amount of time in minutes the item will degrade after.
+* close?: `boolean`
+  * If set to false does not close the inventory on item use.
+* description?: `string`
+  * Item description that will be shown in the tooltip
+* consume?: `number`
+  * Item count needed and removed use.
+  * Default: 1
+  * If set to a decimal will consume durability instead (0.2 = 20%).
+* allowArmed?: `boolean`
+  * If set to true will allow use of item while armed with a weapon.
+* client?: `table`
+  * export?: `string`
+    * Export to be triggered after item use.
+  * event?: `string`
+    * Event to be triggered after item use.
+  * status?: `table`
+    * Adjust esx_status values after use.
+  * anim?: `table`
+      * Animation that will be played during the progress bar.
+      * dict: `string`
+      * clip: `string`
+  * prop?: `table`
+      * Attached prop that will be displayed during the progress bar.
+      * model: `string` or `hash`
+      * pos: `table` (x, y, z)
+      * rot: `table` (x, y, z)
+  * disable?: `table`
+    * Actions to be disabled during the progress bar
+    * move?: `boolean`
+    * car?: `boolean`
+    * combat?: `boolean`
+    * mouse?: `boolean`
+  * usetime?: `number`
+  * cancel?: `boolean`
+    * If set to true the player canc cancel item use.
+  * add?: `function`(total: `number`)
+    * Function that triggers when recieving an item
+    * Returns total item count as `total`
+  * remove?: `function`(total: `number`)
+      * Function that triggers when removing an item
+      * Returns total item count as `total`
+* buttons?: `table`
+  * label: `string`
+  * action: `function`(slot: `number`)
+    * Callback function when button is clicked in context menu, returns item slot.
 
 **Examples:**
 <Tabs>
@@ -87,11 +91,9 @@ All values are optional.
 ```
 
 </TabItem>
-<TabItem value='custom_burger' label='Custom burger'>
+<TabItem value='description_burger' label='Description burger'>
 
-A modified burger item, with a description and custom crafting table.
-
-Combined with several new functions and events you could easily create your own crafting system.
+A modified burger item which includes a description.
 
 ```lua
 ['burger'] = {
@@ -109,16 +111,6 @@ Combined with several new functions and events you could easily create your own 
             rot = { x = 0.0, y = 0.0, y = 0.0}
         },
         usetime = 2500,
-    }
-    crafting = {
-        ['bun'] = 2,
-        ['ketchup'] = 1,
-        ['mustard'] = 1,
-        ['cheese'] = 1,
-        ['pickles'] = 1,
-        ['lettuce'] = 1,
-        ['tomato'] = 1,
-        ['onion'] = 1,
     }
 }
 ```
@@ -249,17 +241,16 @@ When registered you can define the item as a container under the `Items.containe
 The key for the container is the `name` you gave it when registering the item.  
 You can also define the number of slots, the maximum weight, blacklist and whitelist items.
 
-```lua
-['name'] = {
-    -- size: {slots, maxWeight}
-        -- slots: number
-        -- maxWeight: number
-    -- blacklist: table (optional)
-        -- ['itemName'] = true
-    -- whitelist: table (optional)
-        -- ['itemName'] = true
-}
-```
+* itemName: `table`
+  * size: `{number, number}`
+    * First index is number of slots the container will have.
+    * Second index is the maximum weight of the container.
+  * blacklist: `table`
+    * Key-value pairs of item name and true
+    * `['itemName'] = true`
+  * whitelist: `table`
+    * Key-value pairs of item name and true
+    * `['itemName'] = true`
 
 **Example:**
 

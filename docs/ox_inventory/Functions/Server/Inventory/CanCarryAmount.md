@@ -1,10 +1,11 @@
 Returns the amount a player can hold based on available weight.
 
 ```lua
----@param inv string | number
----@param item table | string
 exports.ox_inventory:CanCarryAmount(inv, item)
 ```
+* inv: `string` or `number`
+* item: `table` or `string`
+  * Can be array to check multiple items.
 
 Example:
 
