@@ -38,9 +38,9 @@ setr inventory:screenblur true
 # Trim whitespace from vehicle plates when checking owned vehicles
 setr inventory:trimplate true
 
-# Integrated support for qtarget stashes, shops, etc
+# Integrated support for qtarget/ox_target stashes, shops, etc
 # Note: qtarget is deprecated, a future update may drop support (ox_target only, or gated features)
-setr inventory:qtarget false
+setr inventory:target false
 
 # Default hotkeys to access primary and secondary inventories, and hotbar
 setr inventory:keys ["F2", "K", "TAB"]
