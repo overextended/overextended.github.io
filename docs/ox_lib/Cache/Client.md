@@ -18,6 +18,8 @@ An interval runs every 100ms to update data that cannot be checked via handlers.
   - vehicle seat index
 - resource: `string`
   - invoking resource name
+- weapon: `number` or `false`
+  - current ped weapon
 
 ## lib.onCache
 
