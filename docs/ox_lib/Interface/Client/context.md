@@ -40,7 +40,9 @@ lib.registerContext(context)
 * options: `table` (`object` or `array`)
   * item: `key` (`string`) or `table` (`object`)
     * title?: `string`
-      * If not using keys then sets the title for the button.  
+      * If not using keys then sets the title for the button.
+    * disabled?: `boolean`
+      * Grays out the button and makes it unclickable.
     * menu?: `string`
       * Menu identifier that the button will take you to, when defined an arrow.
     * onSelect: `function`
