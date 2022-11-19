@@ -52,7 +52,7 @@ Crafting locations, items and their ingredients are defined in [data/crafting.lu
         set to 0 then the item is required but not consumed.
   * duration: `number`
     * Crafting duration in miliseconds.
-  * amount: `number`
+  * count: `number`
     * Item amount recieved upon crafting.
   * metadata: `table`
     * Metadata applied to the item being crafted.
