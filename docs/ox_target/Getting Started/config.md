@@ -17,4 +17,7 @@ setr ox_target:defaults 1
 
 # Enable debugging / testing options, entity outlines, and a raycast indicator.
 setr ox_target:debug 0
+
+# Enable / Disable leftclick to select options
+setr ox_target:leftClick 1
 ```
