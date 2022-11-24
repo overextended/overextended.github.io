@@ -16,6 +16,8 @@ When calling exports to add options, the input is an array of tables with the fo
   groups? = string | string[] | { [string]: number }
   -- an item, array of items, or items and counts needed to display
   items? = string | string[] | { [string]: number }
+  -- a bone, bones table to select specific parts
+  bones? = string | string[] -> example :  'bonnet' || { 'bonnet', 'boot' }
   -- custom check to hide or display the option
   canInteract? = function(entity, distance, coords, name, bone),
   -- triggered on option selection (one only)
