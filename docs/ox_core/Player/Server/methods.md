@@ -120,6 +120,48 @@ player.setGroup(group, grade);
 </TabItem>
 </Tabs>
 
+## player.getGroup
+
+Returns the player's current grade for a given group.
+
+<Tabs>
+<TabItem value='lua' label='Lua'>
+
+```lua
+local grade = player.getGroup()
+```
+
+</TabItem>
+<TabItem value='js/ts' label='JS/TS'>
+
+```ts
+const grade = player.getGroup();
+```
+
+</TabItem>
+</Tabs>
+
+## player.getGroup
+
+Returns an object of all groups the player is in, with the current grade as the value.
+
+<Tabs>
+<TabItem value='lua' label='Lua'>
+
+```lua
+local groups = player.getGroups()
+```
+
+</TabItem>
+<TabItem value='js/ts' label='JS/TS'>
+
+```ts
+const groups = player.getGroups();
+```
+
+</TabItem>
+</Tabs>
+
 ## player.hasGroup
 
 Check if the player is a member of a given group, and returns the matching group name and grade.  
@@ -139,6 +181,27 @@ local group, grade = player.hasGroup(filter)
 ```ts
 const filter = { police: 0, sheriff: 0 };
 const [group, grade] = player.hasGroup(filter);
+```
+
+</TabItem>
+</Tabs>
+
+## player.getPlayersInScope
+
+Return an array of all player id's inside the player's scope.
+
+<Tabs>
+<TabItem value='lua' label='Lua'>
+
+```lua
+local inScope = player.getPlayersInScope()
+```
+
+</TabItem>
+<TabItem value='js/ts' label='JS/TS'>
+
+```ts
+const inScope = player.getPlayersInScope();
 ```
 
 </TabItem>
