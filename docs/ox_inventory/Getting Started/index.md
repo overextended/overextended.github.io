@@ -4,8 +4,7 @@ sidebar_position: 1
 slug: ./../
 ---
 
-import IconButton from '@site/src/components/IconButton';
-import { BsGithub, BsBookHalf } from 'react-icons/bs';
+import ResourceLinks from '@site/src/components/ResourceLinks';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -18,99 +17,44 @@ otherwise you **should not** install this resource.
 
 ## Dependencies
 
-### OxMySQL
+### oxmysql
 
 We utilise our own resource to communicate with MySQL databases via the node-mysql2 package.
 The backend is actively maintained and updated unlike the package used by mysql-async, providing improved performance, security, and features.
 We provide full backwards compatibility with mysql-async and build for the current Cfx architecture.
 
-<div style={{ display: 'flex' }}>
-  <a href="https://www.github.com/overextended/oxmysql/releases/latest" style={{ marginRight: '0.6rem' }}>
-    <IconButton side="left" icon={<BsGithub />}>
-      GitHub
-    </IconButton>
-  </a>
-  <a href="../oxmysql">
-    <IconButton side="left" icon={<BsBookHalf />}>
-      Documentation
-    </IconButton>
-  </a>
-</div>
+<ResourceLinks repo="https://www.github.com/overextended/oxmysql" docs="../oxmysql"></ResourceLinks>
 
-### Ox Library
+### ox_lib
 
-Provides easily reusable functions that can be imported into your resource or called with exports.
+Provides easily reusable functions that can be imported into your resource or called with exports. Notably used for
 
-**Used in the inventory for**
-
-- SetInterval
-- Server Callbacks
-- Requesting models, animations, etc.
-- Marker management
+- Intervals
+- Event callbacks
+- Streaming
+- Points and markers
 - Notifications and progress bar
 
-<div style={{ display: 'flex' }}>
-  <a href="https://www.github.com/overextended/ox_lib/releases/latest" style={{ marginRight: '0.6rem' }}>
-    <IconButton side="left" icon={<BsGithub />}>
-      GitHub
-    </IconButton>
-  </a>
-  <a href="../ox_lib">
-    <IconButton side="left" icon={<BsBookHalf />}>
-      Documentation
-    </IconButton>
-  </a>
-</div>
+<ResourceLinks repo="https://www.github.com/overextended/ox_lib" docs="../ox_lib"></ResourceLinks>
 
 ## Optional Dependencies
 
 The resources listed under here **aren't** necessary for the inventory to work but still have full support.
 
-### qtarget
+### ox_target
 
-A high performance targeting solution based on bt-target, and the basis for qb-target.
-It is being updated alongside Ox Inventory to improve support as well as add compatibility when using QBCore or migrating from bt-target.
-All stashes and shops will utilise PolyZone's instead of markers to interact with them.
+A performant and flexible standalone "third-eye" targeting resource.  
+Stashes, shops, and crafting benches will be accessible via zone targets instead of using markers.
 
-:::caution
+<ResourceLinks repo="https://www.github.com/overextended/ox_target" docs="../ox_target"></ResourceLinks>
 
-If you wish to use it first you must ensure that qtarget is enabled in the resource convars.
-You will need to enable compatibility manually by adjusting your config - more information provided below.
-
-You must start qtarget before the inventory and after your framework.
-:::
-
-<div style={{ display: 'flex' }}>
-  <a href="https://www.github.com/overextended/qtarget" style={{ marginRight: '0.6rem' }}>
-    <IconButton side="left" icon={<BsGithub />}>
-      GitHub
-    </IconButton>
-  </a>
-  <a href="https://overextended.github.io/qtarget/">
-    <IconButton side="left" icon={<BsBookHalf />}>
-      Documentation
-    </IconButton>
-  </a>
-</div>
-
-### NPWD
+### npwd
 
 A standalone and feature-rich phone created by Project Error.
 
 The inventory will handle disabling the phone when the player has no item, and supports toggling the phone through item use.
 
-<div style={{ display: 'flex' }}>
-  <a href="https://www.github.com/project-error/npwd" style={{ marginRight: '0.6rem' }}>
-    <IconButton side="left" icon={<BsGithub />}>
-      GitHub
-    </IconButton>
-  </a>
-  <a href="https://projecterror.dev/docs">
-    <IconButton side="left" icon={<BsBookHalf />}>
-      Documentation
-    </IconButton>
-  </a>
-</div>
+<ResourceLinks repo="https://github.com/project-error/npwd" docs="https://projecterror.dev/docs/npwd/start/installation"></ResourceLinks>
 
 ## Installation
 
@@ -119,13 +63,7 @@ The inventory will handle disabling the phone when the player has no item, and s
 The user interface included with the source code must be compiled.  
 You can compile it youself by following the [build guide](./Guides/inventory_ui), otherwise download a production build below.
 
-<div style={{ width: 'fit-content' }}>
-  <a href="https://www.github.com/overextended/ox_inventory/releases/latest" style={{ marginRight: '0.6rem' }}>
-    <IconButton side="left" icon={<BsGithub />}>
-      GitHub
-    </IconButton>
-  </a>
-</div>
+<ResourceLinks repo="https://github.com/overextended/ox_inventory/releases/latest"></ResourceLinks>
 
 ### Setup
 
@@ -136,6 +74,7 @@ If you are using a supported framework, refer to the dedicated guide in the navi
 Integration between your framework and ox_inventory should be relatively simple if you aren't replacing and attempting to support backwards-compatibility with an existing inventory system.
 
 You should first reference the [mysql](https://github.com/overextended/ox_inventory/blob/main/modules/mysql/server.lua) module and setup appropriate table and column names.
+
 ```lua
 	elseif shared.framework == 'myframework' then
 		playerTable = 'characters' -- table storing player / character data
