@@ -1,20 +1,16 @@
 # Config
 
-## Convars
+Resource configuration is handled using [convars](https://docs.fivem.net/docs/scripting-reference/convars/).  
 
-| Name                 | Replicated | Default |
-| -------------------- | ---------- | ------- |
-| ox:primaryIdentifier | false      | fivem   |
-| ox:characterSlots    | true       | 5       |
+## Server
 
-## Convar overrides
+```yml
+# Players must have a valid identifier to join the server. Used to fetch userid from the database.
+set ox:primaryIdentifier "fivem"
 
-Convars for other resources are set when ox_core starts.
+# Set the number of active characters a user can have registered.
+setr ox:characterSlots 5
 
-| Name                                | Replicated | Value                                                   |
-| ----------------------------------- | ---------- | ------------------------------------------------------- |
-| inventory:framework                 | true       | ox                                                      |
-| inventory:trimplate                 | true       | true                                                    |
-| pe-basicloading:disableAutoShutdown | true       | 1                                                       |
-| npwd:useResourceIntegration         | false      | true                                                    |
-| npwd:database                       | false      | {playerTable: "characters", identifierColumn: "charid"} |
+# Enables debug and development features. Should only be used in a development environment.
+setr ox:debug 0
+```
