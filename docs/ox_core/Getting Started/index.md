@@ -4,6 +4,7 @@ sidebar_position: 1
 slug: ./../
 ---
 
+import ResourceLinks from '@site/src/components/ResourceLinks';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -14,32 +15,21 @@ Documentation may fall behind and be rendered obsolete.
 
 :::
 
-## Setup
-
 We **strongly** recommend using Git to help with version control and separating your own changes from the original source code.  
-Refer to [GitHub's guide to setting up Git](https://docs.github.com/en/get-started/quickstart/set-up-git#setting-up-git). You can also download a Git GUI client, such as [GitKraken](https://www.gitkraken.com/), to improve your workflow and more easily maintain changes.
+Refer to [GitHub's guide to setting up Git](https://docs.github.com/en/get-started/quickstart/set-up-git#setting-up-git).
 
-### Dependencies
+You can also download a Git GUI client, such as [GitKraken](https://www.gitkraken.com/), to improve your workflow and more easily maintain changes.
+
+## Dependencies
+
+These resources are required for ox_core to function, and must start before it.
 
 - [oxmysql](https://github.com/overextended/oxmysql/)
-  - Database connector.
 - [ox_lib](https://github.com/overextended/ox_lib/)
-  - Shared functions through modules and exports.
 - [fivem-appearance](https://github.com/pedr0fontoura/fivem-appearance)
-  - Player ped customisation.
 - [ox_appearance](https://github.com/overextended/ox_appearance)
-  - Outfits, shops, and player appearance persistence.
 
-### Optional dependencies
-
-- [ox_inventory](https://github.com/overextended/ox_inventory)
-  - Implements items, weapons, shops, etc.
-- [pefcl](https://github.com/project-error/pefcl)
-  - Banking, shared accounts.
-- [npwd](https://github.com/project-error/npwd)
-  - It's a phone.
-
-### Installation
+## Installation
 
 <Tabs>
 <TabItem value="1" label="Recommended">
@@ -64,7 +54,27 @@ pnpm build
 </TabItem>
 </Tabs>
 
-If you're using [pefcl](https://github.com/project-error/pefcl) and [ox_inventory](https://github.com/overextended/ox_inventory), open `config.json` and set frameworkIntegration.
+## Recommended resources
+
+The following resources aren't required, but should offer the best experience for your server.
+
+### ox_inventory
+
+Slot-based inventory system with support for item metadata (uniqueness), shops, crafting, and much more.
+
+<ResourceLinks repo="https://github.com/overextended/ox_inventory" docs="../ox_inventory"></ResourceLinks>
+
+### npwd
+
+Phone with many built-in apps such as Twitter, Marketplace, and Notes; with support for 3rd party app integration.
+
+<ResourceLinks repo="https://github.com/project-error/npwd" docs="https://projecterror.dev/docs/npwd/start/installation"></ResourceLinks>
+
+### pefcl
+
+Banking and financing, with support for multiple, unique, and shared accounts.  
+If using it with [ox_inventory](https://github.com/overextended/ox_inventory), open `pefcl/config.json` and enable framework integration.
+
 ```json
 "frameworkIntegration": {
   "enabled": true,
@@ -72,3 +82,5 @@ If you're using [pefcl](https://github.com/project-error/pefcl) and [ox_inventor
   "syncInitialBankBalance": false
 },
 ```
+
+<ResourceLinks repo="https://github.com/project-error/pefcl" docs="https://projecterror.dev/docs/pefcl/installation"></ResourceLinks>
