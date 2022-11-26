@@ -11,242 +11,114 @@ These functions are inherited by instances of [CPlayer](../Server/).
 
 Update the player's metadata, optionally syncing it with the client.
 
-<Tabs>
-<TabItem value='lua' label='Lua'>
-
 ```lua
-local key, value = 'iq', 300
-player.set(key, value)
+player.set(key, value, replicated)
 ```
 
-</TabItem>
-<TabItem value='js/ts' label='JS/TS'>
-
-```ts
-const [key, value] = ['iq', 300];
-player.set(key, value);
-```
-
-</TabItem>
-</Tabs>
+- key: `string`
+- value: `any`
+- replicated?: `boolean`
 
 ## player.setdb
 
-Update the player's metadata and store in the DB, optionally syncing it with the client.
-
-<Tabs>
-<TabItem value='lua' label='Lua'>
+Update the player's metadata and store in the DB, optionally syncing it with the client.  
+Note: These values are not synced to the client on login; you will need to use `player.set`.
 
 ```lua
-local key, value = 'iq', 300
-player.setdb(key, value)
+player.setdb(key, value, replicated)
 ```
 
-</TabItem>
-<TabItem value='js/ts' label='JS/TS'>
-
-```ts
-const [key, value] = ['iq', 300];
-player.setdb(key, value);
-```
-
-</TabItem>
-</Tabs>
+- key: `string`
+- value: `string | number | table | boolean`
+- replicated?: `boolean`
 
 ## player.get
 
-Return the player's metadata. Sending an argument will retrieve a specific metadata key.
-
-<Tabs>
-<TabItem value='lua' label='Lua'>
+Get a value from the player's metadata, or omit the argument to get all metadata.
 
 ```lua
-local data = player.get()
-local iq = player.get('iq')
+player.get(key)
 ```
 
-</TabItem>
-<TabItem value='js/ts' label='JS/TS'>
+- key?: `string`
 
-```ts
-const data = player.get();
-const iq = player.get('iq');
+## player.getState
+
+Return the player's statebag.
+
+```lua
+player.getState()
 ```
-
-</TabItem>
-</Tabs>
 
 ## player.getCoords
 
-Return the player's world position.
-
-<Tabs>
-<TabItem value='lua' label='Lua'>
+Return the player's position.
 
 ```lua
-local coords = player.getCoords()
+player.getCoords()
 ```
-
-</TabItem>
-<TabItem value='js/ts' label='JS/TS'>
-
-```ts
-const coords = player.getCoords();
-```
-
-</TabItem>
-</Tabs>
 
 ## player.setGroup
 
 Updates the player's grade for the given group. Any value below 1 will remove the group from the player.
 
-<Tabs>
-<TabItem value='lua' label='Lua'>
-
 ```lua
-local group, grade = 'police', 3
 player.setGroup(group, grade)
 ```
 
-</TabItem>
-<TabItem value='js/ts' label='JS/TS'>
-
-```ts
-const [group, grade] = ['police', 3];
-player.setGroup(group, grade);
-```
-
-</TabItem>
-</Tabs>
+- group: `string`
+- grade?: `number`
 
 ## player.getGroup
 
 Returns the player's current grade for a given group.
 
-<Tabs>
-<TabItem value='lua' label='Lua'>
-
 ```lua
-local grade = player.getGroup()
+player.getGroup()
 ```
-
-</TabItem>
-<TabItem value='js/ts' label='JS/TS'>
-
-```ts
-const grade = player.getGroup();
-```
-
-</TabItem>
-</Tabs>
 
 ## player.getGroup
 
 Returns an object of all groups the player is in, with the current grade as the value.
 
-<Tabs>
-<TabItem value='lua' label='Lua'>
-
 ```lua
-local groups = player.getGroups()
+player.getGroups()
 ```
-
-</TabItem>
-<TabItem value='js/ts' label='JS/TS'>
-
-```ts
-const groups = player.getGroups();
-```
-
-</TabItem>
-</Tabs>
 
 ## player.hasGroup
 
 Check if the player is a member of a given group, and returns the matching group name and grade.  
 The filter can be a string, array, or object where key is the group, and value is the minimum grade.
 
-<Tabs>
-<TabItem value='lua' label='Lua'>
-
 ```lua
-local filter = { police = 0, sheriff = 0 }
-local group, grade = player.hasGroup(filter)
+player.hasGroup(filter)
 ```
 
-</TabItem>
-<TabItem value='js/ts' label='JS/TS'>
-
-```ts
-const filter = { police: 0, sheriff: 0 };
-const [group, grade] = player.hasGroup(filter);
-```
-
-</TabItem>
-</Tabs>
+- filter: `string | string[] | { [string]: number }`
 
 ## player.getPlayersInScope
 
 Return an array of all player id's inside the player's scope.
 
-<Tabs>
-<TabItem value='lua' label='Lua'>
-
 ```lua
-local inScope = player.getPlayersInScope()
+player.getPlayersInScope()
 ```
-
-</TabItem>
-<TabItem value='js/ts' label='JS/TS'>
-
-```ts
-const inScope = player.getPlayersInScope();
-```
-
-</TabItem>
-</Tabs>
 
 ## player.isPlayerInScope
 
 Check if the given source is inside the player's scope.
 
-<Tabs>
-<TabItem value='lua' label='Lua'>
-
 ```lua
-local target = 2
-local inScope = player.isPlayerInScope(target)
+player.isPlayerInScope(target)
 ```
 
-</TabItem>
-<TabItem value='js/ts' label='JS/TS'>
-
-```ts
-const target = 2;
-const inScope = player.isPlayerInScope(target);
-```
-
-</TabItem>
-</Tabs>
+- target: `number`
 
 ## player.triggerScopedEvent
 
-Trigger a client event for all players in the player's scope.
-
-<Tabs>
-<TabItem value='lua' label='Lua'>
-
 ```lua
 player.triggerScopedEvent(eventName, ...)
 ```
 
-</TabItem>
-<TabItem value='js/ts' label='JS/TS'>
-
-```ts
-player.triggerScopedEvent(eventName, ...)
-```
-
-</TabItem>
-</Tabs>
+- eventName: `string`
+- ...?: `any[]`
