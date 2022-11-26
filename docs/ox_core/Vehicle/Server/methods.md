@@ -2,37 +2,48 @@
 title: Methods
 ---
 
-These functions are inherited by instances of CVehicle.
-
-```lua
-local vehicle = Ox.GetVehicle(entity)
-```
+These functions are inherited by instances of [CVehicle](../Server/).
 
 ## vehicle.set
 
 Sets the vehicle's metadata for key to the given value.
 
 ```lua
-local key, value = 'vin', '1HGBH41JXMN109186'
 vehicle.set(key, value)
 ```
 
+- key: `string`
+- value: `any`
+
 ## vehicle.get
 
-Return the vehicle's metadata. Sending an argument will retrieve a specific metadata key.
+Get a value from the vehicles's metadata, or omit the argument to get all metadata.
 
 ```lua
-local data = vehicle.get()
-local vin = vehicle.get('vin')
+vehicle.get(key)
+```
+
+- key?: `string`
+
+## vehicle.getState
+
+Return the vehicle's statebag.
+
+```lua
+player.getState()
 ```
 
 ## vehicle.getCoords
 
-Return the vehicle's world position. The value will be cached for future calls, so send true for the first argument to update it.
+Return the vehicle's position.
 
 ```lua
-local coords = vehicle.getCoords(update)
+vehicle.getCoords()
 ```
+
+## vehicle.despawn
+
+Despawns the vehicle but doesn't save it or update the stored value.
 
 ## vehicle.delete
 
@@ -42,11 +53,44 @@ Remove the vehicle from the database and despawns the entity.
 vehicle.delete()
 ```
 
-## vehicle.store
+## vehicle.setStored
 
-Save the vehicle to the database and despawns the entity.
+Updates the vehicle's "stored" value and optionally despawns it.
 
 ```lua
-local store = 'garagea'
-vehicle.store(store)
+vehicle.setStored(value, despawn)
 ```
+
+- value?: `string`
+- despawn?: `boolean`
+
+## vehicle.setOwner
+
+Sets the vehicle's owner, matching a charid or nil to set it as unowned.
+
+```lua
+vehicle.setOwner(owner)
+```
+
+- owner?: `number`
+
+## vehicle.setGroup
+
+Sets the vehicle's group, which can be used for garage restrictions, unowned group vehicles, etc.
+
+```lua
+vehicle.setGroup(group)
+```
+
+- group?: `string`
+
+## vehicle.setPlate
+
+Sets the vehicle's plate, used in the database to ensure uniqueness. Does not necessarily match the plate property (i.e. fake plates).  
+Plate is always formatted to 8 characters.
+
+```lua
+vehicle.setPlate(plate)
+```
+
+- plate: `string`
