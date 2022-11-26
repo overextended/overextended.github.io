@@ -9,7 +9,7 @@ interface Props {
 
 const IconButton: React.FC<Props> = (props) => {
   const iconStyles: React.CSSProperties = {
-    fontSize: '1.7rem',
+    fontSize: '1.3rem',
     paddingRight: props.side === 'left' && '0.6rem',
     paddingLeft: props.side === 'right' && '0.6rem',
     verticalAlign: 'center',
@@ -20,8 +20,8 @@ const IconButton: React.FC<Props> = (props) => {
     <div
       style={{
         width: 'fit-content',
-        height: '3rem',
-        padding: '0.8rem',
+        fontWeight: '600',
+        padding: '0.5rem',
         borderRadius: '0.2rem',
         verticalAlign: 'baseline',
         textAlign: 'center',
