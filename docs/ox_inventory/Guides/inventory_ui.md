@@ -12,7 +12,7 @@ import {FaNodeJs} from 'react-icons/fa'
 
 ## Installing Node.js:
 
-* Download the LTS version of Node.js 16.
+* Download the LTS version of Node.js.
 * Go through the install and make sure you install all of the features.
 * Run `node --version` in cmd and make sure that it gives you the version number. If it doesn't then you didn't install it correctly.
 
