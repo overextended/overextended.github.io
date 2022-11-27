@@ -5,7 +5,9 @@ title: Methods
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-These functions are inherited by instances of [CPlayer](../Server/).
+These functions are inherited from the [Player class](../Server/).
+
+
 
 ## player.set
 

@@ -2,7 +2,7 @@
 title: Methods
 ---
 
-These functions are inherited by instances of [CVehicle](../Server/).
+These functions are inherited from the [Vehicle class](../Server/).
 
 ## vehicle.set
 
@@ -30,7 +30,7 @@ vehicle.get(key)
 Return the vehicle's statebag.
 
 ```lua
-player.getState()
+vehicle.getState()
 ```
 
 ## vehicle.getCoords
