@@ -55,6 +55,8 @@ lib.registerContext(context)
       * Shows an arrow on the right side like `menu` does, useful when you are opening a menu from an event. Can be set to false to hide it.
     * description?: `string`
       * Description that will appear under the button title that is defined as a key.
+    * image?: `string`
+      * Url to an image that will be displayed in the button's metadata.
     * metadata?: `string[]` or `object` or `array`
       * Information that will display on the side upon hovering a button.
     * event?: `string`
