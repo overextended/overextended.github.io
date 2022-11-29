@@ -96,6 +96,30 @@ The filter can be a string, array, or object where key is the group, and value i
 player.hasGroup(filter)
 ```
 
+## player.setStatus
+
+Set the current value for a status (i.e. hunger, thirst).
+
+```lua
+player.setStatus(name, value)
+```
+
+## player.addStatus
+
+Add the given amount to the total value for a status (i.e. hunger, thirst).
+
+```lua
+player.addStatus(name, value)
+```
+
+## player.removeStatus
+
+Remove the given amount from the total value for a status (i.e. hunger, thirst).
+
+```lua
+player.removeStatus(name, value)
+```
+
 - filter: `string | string[] | { [string]: number }`
 
 ## player.getPlayersInScope
