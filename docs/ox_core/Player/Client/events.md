@@ -20,6 +20,14 @@ Triggered when the player enters character selection if they were previously pla
 AddEventHandler('ox:playerLogout', function() end)
 ```
 
+### ox:statusTick
+
+Triggered every 1000ms interval, when status values are updated internally.
+
+```lua
+AddEventHandler('ox:statusTick', function(statuses) end)
+```
+
 ## Networked events
 
 ### ox:setGroup
