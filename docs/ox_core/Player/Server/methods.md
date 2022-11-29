@@ -7,8 +7,6 @@ import TabItem from '@theme/TabItem';
 
 These functions are inherited from the [Player class](../Server/).
 
-
-
 ## player.set
 
 Update the player's metadata, optionally syncing it with the client.
@@ -104,6 +102,9 @@ Set the current value for a status (i.e. hunger, thirst).
 player.setStatus(name, value)
 ```
 
+- name: string
+- value: number
+
 ## player.addStatus
 
 Add the given amount to the total value for a status (i.e. hunger, thirst).
@@ -112,6 +113,9 @@ Add the given amount to the total value for a status (i.e. hunger, thirst).
 player.addStatus(name, value)
 ```
 
+- name: string
+- value: number
+
 ## player.removeStatus
 
 Remove the given amount from the total value for a status (i.e. hunger, thirst).
@@ -119,6 +123,9 @@ Remove the given amount from the total value for a status (i.e. hunger, thirst).
 ```lua
 player.removeStatus(name, value)
 ```
+
+- name: string
+- value: number
 
 - filter: `string | string[] | { [string]: number }`
 
