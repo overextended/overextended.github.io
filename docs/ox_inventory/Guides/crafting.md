@@ -58,6 +58,9 @@ Crafting locations, items and their ingredients are defined in [data/crafting.lu
     * Metadata applied to the item being crafted.
 * points: `vector3[]`
   * Interaction locations that will open the crafting inventory.
+* groups: `table`
+  * Key-value pairs of job name and minimum grade to access the crafting location.
+  * `{["police"] = 0, ["ambulance"] = 2}`
 * zones: `table`
   * ox_lib targeting zones used for ox_target.
   * coords: `vector3`
