@@ -115,3 +115,6 @@ Similarly to PolyZone, there is a zone creation script included.
 To use it use the `/zone` with `poly`, `box` or `sphere` as args.
 
 Available controls will be displayed on the right side.
+
+Once saved you will find the created zone details in created_zones.lua withn ox_lib
+
