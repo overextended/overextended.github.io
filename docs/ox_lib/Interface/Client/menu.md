@@ -297,3 +297,4 @@ RegisterCommand('testmenu', () => {
 </Tabs>
 
 ![Example](https://i.imgur.com/eIdWZ4c.png)
+![Example2](https://i.imgur.com/GxNetwe.png)
