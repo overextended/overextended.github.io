@@ -51,6 +51,11 @@ lib.registerContext(context)
       * FontAwesome icon that will be displayed on the left side, works the same as notification and textui icons.
     * iconColor?: `string`
       * Colour of the displayed icon.
+    * progress?: `number`
+      * Adds a progress bar filled to this percentage
+    * colorScheme?: `string`
+      * Sets the color scheme of the progress bar. Current options available are: 
+        * `whiteAlpha`, `blackAlpha`, `gray`, `red`, `orange`, `yellow`, `green`, `teal`, `blue`, `cyan`, `purple`, `pink`
     * arrow?: `boolean`
       * Shows an arrow on the right side like `menu` does, useful when you are opening a menu from an event. Can be set to false to hide it.
     * description?: `string`
