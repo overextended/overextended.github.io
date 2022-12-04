@@ -32,7 +32,10 @@ lib.registerMenu(data, cb)
   * title: `string`
   * options: `table` (`array`)
     * label: `string`
+    * progress?: `number`
+    * colorScheme?: `string`
     * icon?: `string`
+    * iconColor?: `string`
     * values?: `table` (`Array<string | {label: string; description: string}>`)
       * If provided creates a side scrollabel list.
       * When using object and setting description, the set description will be displayed in the menu tooltip.
@@ -294,3 +297,4 @@ RegisterCommand('testmenu', () => {
 </Tabs>
 
 ![Example](https://i.imgur.com/eIdWZ4c.png)
+![Example2](https://i.imgur.com/GxNetwe.png)
