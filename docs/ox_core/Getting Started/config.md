@@ -11,4 +11,7 @@ setr ox:characterSlots 5
 
 # Enables debug and development features. Should only be used in a development environment.
 setr ox:debug 0
+
+# Disable death system handle by core.
+setr ox:deathSystem 0
 ```
