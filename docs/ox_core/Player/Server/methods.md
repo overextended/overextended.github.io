@@ -94,6 +94,8 @@ The filter can be a string, array, or object where key is the group, and value i
 player.hasGroup(filter)
 ```
 
+- filter: `string | string[] | { [string]: number }`
+
 ## player.setStatus
 
 Set the current value for a status (i.e. hunger, thirst).
@@ -127,7 +129,43 @@ player.removeStatus(name, value)
 - name: string
 - value: number
 
-- filter: `string | string[] | { [string]: number }`
+## player.getLicenses
+
+Get all licenses for the player.
+
+```lua
+player.getLicenses()
+```
+
+## player.getLicense
+
+Get the license of the given name for the player, as an object containing license information.
+
+```lua
+player.getLicense(name)
+```
+
+- name: string
+
+## player.addLicense
+
+Grants a license to the player and triggers 'ox:licenseAdded' on the server and client.
+
+```lua
+player.addLicense(name)
+```
+
+- name: string
+
+## player.removeLicense
+
+Revokes a license from the player and triggers 'ox:licenseRemoved' on the server and client.
+
+```lua
+player.removeLicense(name)
+```
+
+- name: string
 
 ## player.getPlayersInScope
 

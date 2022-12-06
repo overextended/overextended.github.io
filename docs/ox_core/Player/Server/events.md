@@ -22,7 +22,7 @@ AddEventHandler('ox:setGroup', function(source, group, grade) end)
 
 ### ox:playerLogout
 
-Triggered when the player logs out from their current character or disconnects from the server.
+Triggered when a player logs out from their current character or disconnects from the server.
 
 ```lua
 AddEventHandler('ox:playerLogout', function(source, userid, charid) end)
@@ -30,10 +30,26 @@ AddEventHandler('ox:playerLogout', function(source, userid, charid) end)
 
 ### ox:characterDeleted
 
-Triggered when the player has deleted a character.
+Triggered when a player has deleted a character.
 
 ```lua
 AddEventHandler('ox:characterDeleted', function(source, userid, charid) end)
+```
+
+### ox:licenseAdded
+
+Triggered when a player has been granted a license.
+
+```lua
+AddEventHandler('ox:licenseAdded', function(source, name) end)
+```
+
+### ox:licenseAdded
+
+Triggered when a player's license is revoked.
+
+```lua
+AddEventHandler('ox:licenseRemoved', function(source, name) end)
 ```
 
 ## Networked events
