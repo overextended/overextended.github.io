@@ -5,7 +5,7 @@ title: Methods
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-These functions are inherited from the [Player class](../Server/).
+These functions are inherited from the [Player class](..).
 
 ## player.set
 
