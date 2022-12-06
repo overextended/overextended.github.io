@@ -48,7 +48,7 @@ Triggered when the player has been granted a license.
 RegisterNetEvent('ox:licenseAdded', function(name) end)
 ```
 
-### ox:licenseAdded
+### ox:licenseRemoved
 
 Triggered when the player's license is revoked.
 
