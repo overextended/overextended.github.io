@@ -3,7 +3,7 @@ Creates a new custom stash.
 ```lua
 exports.ox_inventory:RegisterStash(id, label, slots, maxWeight, owner, groups, coords)
 ```
-* id: `string` or `number`
+* id: `string`
   * Stash identifier when loading from the database.
 * label: `string`
   * Display name when inventory is open.
