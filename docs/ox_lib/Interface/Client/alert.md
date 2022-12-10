@@ -40,6 +40,10 @@ lib.alertDialog(data)
     * Centers the dialog vertically and horizontally.
   * cancel?: `boolean`
     * Displays a cancel button (ESC is still available if this is not defined).
+  * labels?: `table`
+    * Allows you to define the displayed labels for cancel and/or confirm buttons.
+    * cancel?: `string`
+    * confirm?: `string`
 
 Returns `confirm` if the player pressed the confirm button, otherwise if the player pressed the cancel button
 or has exited the dialog with ESC the return will be `cancel`.
