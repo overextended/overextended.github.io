@@ -2,7 +2,7 @@ Registers options that will apply to all entities of that type (object, ped, pla
 
 ```lua
 local options = {
-  {
+    {
         name = 'ox:option1',
         event = 'ox_target:debug',
         icon = 'fa-solid fa-road',

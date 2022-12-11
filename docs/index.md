@@ -9,7 +9,7 @@ and click the "Edit this page" at the bottom and submit a Pull Request.
 
 ## Support our team
 
-Our projects will always remain free and open-source, with our core developers working voluntarily.  
+Our projects will always remain free and open-source, with our core developers working voluntarily.
 If you love what we do and want to help us continue, why not show your appreciation with a donation?
 
 <div style={{paddingLeft:"50px", lineHeight:"20px", background:"url('https://avatars.githubusercontent.com/u/65407488?s=70&v=4') no-repeat left", backgroundSize:"40px"}}>

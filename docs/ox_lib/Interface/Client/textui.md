@@ -6,9 +6,10 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 ## lib.showTextUI
+
 Show the TextUI window.
 
-**DO NOT** run this every tick, it's intented to be used as a toggle.
+**DO NOT** run this every tick, it's intended to be used as a toggle.
 
 <Tabs>
 <TabItem value='Lua'>
@@ -16,6 +17,7 @@ Show the TextUI window.
 ```lua
 lib.showTextUI(text, options)
 ```
+
 </TabItem>
 <TabItem value='JS/TS'>
 
@@ -24,11 +26,12 @@ import lib from '@overextended/ox_lib/client'
 
 lib.showTextUI(text, options)
 ```
+
 </TabItem>
 </Tabs>
 
 * text: `string`
-* options?: `table` 
+* options?: `table`
   * position?: `'right-center'` or `'left-center'` or `'top-center'`
     * Default: `'right-center'`
   * icon?: `string` or `table` (`array`)
@@ -45,6 +48,7 @@ lib.showTextUI(text, options)
 ```lua
 lib.showTextUI('[E] - Fuel vehicle')
 ```
+
 </TabItem>
 <TabItem value='JS/TS'>
 
@@ -53,10 +57,11 @@ import lib from '@overextended/ox_lib/client'
 
 lib.showTextUI('[E] - Fuel vehicle')
 ```
+
 </TabItem>
 </Tabs>
 
-![](https://i.imgur.com/3ptQyAq.png)
+![basic_example](https://i.imgur.com/3ptQyAq.png)
 
 ### Custom styling
 
@@ -74,6 +79,7 @@ lib.showTextUI('[E] - Pick apple', {
     }
 })
 ```
+
 </TabItem>
 <TabItem value='JS/TS'>
 
@@ -90,13 +96,14 @@ lib.showTextUI('[E] - Pick apple', {
   }
 })
 ```
+
 </TabItem>
 </Tabs>
 
-![](https://i.imgur.com/gNDwPBN.png)
-
+![custom_example](https://i.imgur.com/gNDwPBN.png)
 
 ### lib.hideTextUI
+
 Hides the currently visible TextUI window
 
 <Tabs>
@@ -105,6 +112,7 @@ Hides the currently visible TextUI window
 ```lua
 lib.hideTextUI()
 ```
+
 </TabItem>
 <TabItem value='JS/TS'>
 
@@ -113,7 +121,6 @@ import lib from '@overextended/ox_lib/client'
 
 lib.hideTextUI()
 ```
+
 </TabItem>
 </Tabs>
-
-

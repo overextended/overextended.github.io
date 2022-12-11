@@ -10,11 +10,11 @@ exports.ox_target:addSphereZone(parameters)
 
 ```lua
 {
-  coords = vector3,
-  radius = number,
-  debug? = boolean,
-  drawSprite? = boolean,
-  options = options,
+    coords = vector3,
+    radius = number,
+    debug? = boolean,
+    drawSprite? = boolean,
+    options = options,
 }
 ```
 
@@ -49,12 +49,12 @@ exports.ox_target:addBoxZone(parameters)
 
 ```lua
 {
-  coords = vector3,
-  size = vector3,
-  rotation = number,
-  debug? = boolean,
-  drawSprite? = boolean,
-  options = options,
+    coords = vector3,
+    size = vector3,
+    rotation = number,
+    debug? = boolean,
+    drawSprite? = boolean,
+    options = options,
 }
 ```
 

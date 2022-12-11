@@ -43,7 +43,7 @@ The resources listed under here **aren't** necessary for the inventory to work b
 
 ### ox_target
 
-A performant and flexible standalone "third-eye" targeting resource.  
+A performant and flexible standalone "third-eye" targeting resource.
 Stashes, shops, and crafting benches will be accessible via zone targets instead of using markers.
 
 <ResourceLinks repo="https://www.github.com/overextended/ox_target" docs="../ox_target"></ResourceLinks>
@@ -60,8 +60,8 @@ The inventory will handle disabling the phone when the player has no item, and s
 
 ### Production Build
 
-The user interface included with the source code must be compiled.  
-You can compile it youself by following the [build guide](./Guides/inventory_ui), otherwise download a production build below.
+The user interface included with the source code must be compiled.
+You can compile it yourself by following the [build guide](./Guides/inventory_ui), otherwise download a production build below.
 
 <ResourceLinks repo="https://github.com/overextended/ox_inventory/releases/latest"></ResourceLinks>
 
@@ -76,12 +76,12 @@ Integration between your framework and ox_inventory should be relatively simple 
 You should first reference the [mysql](https://github.com/overextended/ox_inventory/blob/main/modules/mysql/server.lua) module and setup appropriate table and column names.
 
 ```lua
-	elseif shared.framework == 'myframework' then
-		playerTable = 'characters' -- table storing player / character data
-		playerColumn = 'charid'    -- primary key for identifying the character (i.e. identifier, citizenid, id)
-		vehicleTable = 'vehicles'  -- table storing owned vehicle data
-		vehicleColumn = 'id'       -- primary key for identifying the vehicle (i.e. plate, vin, id)
-	end
+elseif shared.framework == 'myframework' then
+    playerTable = 'characters' -- table storing player / character data
+    playerColumn = 'charid'    -- primary key for identifying the character (i.e. identifier, citizenid, id)
+    vehicleTable = 'vehicles'  -- table storing owned vehicle data
+    vehicleColumn = 'id'       -- primary key for identifying the vehicle (i.e. plate, vin, id)
+end
 ```
 
 You will need events and functions to handle licenses, owned vehicles, and job systems; these should be handled in the "bridge" module.

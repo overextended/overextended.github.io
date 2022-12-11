@@ -5,11 +5,13 @@ Can be used for repairing weapons.
 ```lua
 exports.ox_inventory:SetDurability(inv, slot, durability)
 ```
+
 * inv: `string` or `number`
 * slot: `number`
 * durability: `number`
 
 **Example:**
+
 ```lua
 local ox_inventory = exports.ox_inventory
 

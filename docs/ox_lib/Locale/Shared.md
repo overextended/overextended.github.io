@@ -1,17 +1,20 @@
-Allows servers to set a preferred language and attempt to load locale files in any resources using the module.  
+Allows servers to set a preferred language and attempt to load locale files in any resources using the module.
 Locale files should use the [ISO Language Code](http://www.lingoes.net/en/translator/langcode.htm) and be saved as `./locales/langcode.json`
 
 To change the preferred language from English, add the convar to your server.cfg
-```cfg
+
+```yaml
 setr ox:locale en
 ```
 
 Initialise the locale module in your resource (once).
+
 ```lua
 lib.locale()
 ```
 
 Format your strings with the new locale global.
+
 ```lua
 locale(str, ...)
 ```
@@ -26,8 +29,8 @@ Additional arguments can be sent to format the locale output.
 lib.locale()
 
 SetInterval(function()
-	print(locale('grand_theft_auto'))
-	print(locale('suspect_sex', locale('male')))
+    print(locale('grand_theft_auto'))
+    print(locale('suspect_sex', locale('male')))
 end, 5000)
 ```
 
@@ -51,6 +54,6 @@ end, 5000)
 
 ```lua title="fxmanifest.lua"
 files {
-	'locales/*.json'
+  'locales/*.json'
 }
 ```

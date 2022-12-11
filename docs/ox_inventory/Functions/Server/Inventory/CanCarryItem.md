@@ -5,6 +5,7 @@ The function checks for inventory weight and available slots.
 ```lua
 exports.ox_inventory:CanCarryItem(inv, item, count, metadata)
 ```
+
 * inv: `string` or `number`
 * item `table` or `string`
   * Can be array of items.
@@ -13,6 +14,7 @@ exports.ox_inventory:CanCarryItem(inv, item, count, metadata)
   * If metadata is passed as string then `metadata.type` will be checked.
 
 **Example:**
+
 ```lua
 -- Checks if the player calling the event can carry 3 water items
 if exports.ox_inventory:CanCarryItem(source, 'water', 3) then

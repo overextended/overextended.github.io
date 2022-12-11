@@ -1,10 +1,12 @@
 # Query
-Generic function that can be utilised for any query.  
+
+Generic function that can be utilised for any query.
 When selecting data it will return all matching rows and columns, otherwise it will return field data such as insertid, affectedRows, etc.
 
 ## Lua
 
 ### Callback
+
 ```lua
 -- alias: exports.oxmysql:query
 -- alias: MySQL.Async.query
@@ -18,7 +20,9 @@ MySQL.query('SELECT * FROM users WHERE identifier = ?', {playerIdentifier}, func
     end
 end)
 ```
+
 ### Promise
+
 ```lua
 -- alias: exports.oxmysql:query_async
 -- alias: MySQL.Sync.query
@@ -35,6 +39,7 @@ end
 ## JavaScript
 
 ### Callback
+
 ```js
 // alias: exports.oxmysql.query
 
@@ -46,7 +51,9 @@ MySQL.query('SELECT * FROM users WHERE identifier = ?', [playerIdentifier], (res
   }
 })
 ```
+
 ### Promise
+
 ```js
 // alias: exports.oxmysql.query_async
 

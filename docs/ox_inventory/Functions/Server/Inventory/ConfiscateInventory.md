@@ -6,4 +6,5 @@ the player.
 ```lua
 exports.ox_inventory:ConfiscateInventory(source)
 ```
+
 * source: `number`

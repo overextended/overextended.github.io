@@ -10,8 +10,8 @@ Returns whether the player's inventory is currently running an action (i.e. usin
 local isInventoryBusy = LocalPlayer.state.invBusy
 
 if isInventoryBusy then
-  -- Do stuff when busy
+    -- Do stuff when busy
 else
-  -- Do stuff when not busy
+    -- Do stuff when not busy
 end
 ```

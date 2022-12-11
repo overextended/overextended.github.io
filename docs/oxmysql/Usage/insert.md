@@ -5,6 +5,7 @@ Inserts a new entry into the database and returns the insert id for the row, if 
 ## Lua
 
 ### Callback
+
 ```lua
 -- alias: exports.oxmysql:insert
 -- alias: MySQL.Async.insert
@@ -15,6 +16,7 @@ end)
 ```
 
 ### Promise
+
 ```lua
 -- alias: exports.oxmysql:insert_async
 -- alias: MySQL.Sync.insert
@@ -26,6 +28,7 @@ print(id)
 ## JavaScript
 
 ### Callback
+
 ```js
 // alias: exports.oxmysql.insert
 
@@ -35,6 +38,7 @@ MySQL.insert('INSERT INTO users (identifier, firstname, lastname) VALUES (?, ?, 
 ```
 
 ### Promise
+
 ```js
 // alias: exports.oxmysql.insert_async
 

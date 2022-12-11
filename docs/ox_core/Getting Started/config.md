@@ -1,8 +1,8 @@
 # Config
 
-Resource configuration is handled using [convars](https://docs.fivem.net/docs/scripting-reference/convars/).  
+Resource configuration is handled using [convars](https://docs.fivem.net/docs/scripting-reference/convars/).
 
-```yml
+```yaml
 # Players must have a valid identifier to join the server. Used to fetch userid from the database.
 set ox:primaryIdentifier "fivem"
 

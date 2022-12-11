@@ -14,5 +14,6 @@ function lib.getClosestVehicle(coords, maxDistance, includePlayerVehicle) end
   * Whether or not to include the player's current vehicle.
 
 Return:
+
 * vehicle?: `number`
 * vehicleCoords?: `vector3`

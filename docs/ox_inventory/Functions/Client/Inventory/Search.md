@@ -6,6 +6,7 @@ Searches the inventory for an item, or list of items, with the result varying ba
 ```lua
 exports.ox_inventory:Search(search, item, metadata)
 ```
+
 * search: `'slots'` or `'count'`
   * `'slots'` returns a table of slots where the item was found at.
   * `'count'` returns the count of the specified item in player's inventory. If searching for multiple items

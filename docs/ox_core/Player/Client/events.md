@@ -38,8 +38,6 @@ Triggered when the player's grade in a group is modified on the server with `pla
 RegisterNetEvent('ox:setGroup', function(source, group, grade) end)
 ```
 
-
-
 ### ox:licenseAdded
 
 Triggered when the player has been granted a license.

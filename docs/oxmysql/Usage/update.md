@@ -1,9 +1,11 @@
 # Update
+
 Returns the number of affected rows by the query.
 
 ## Lua
 
 ### Callback
+
 ```lua
 -- alias: exports.oxmysql:update
 -- alias: MySQL.Async.execute
@@ -16,6 +18,7 @@ end)
 ```
 
 ### Promise
+
 ```lua
 -- alias: exports.oxmysql:update_async
 -- alias: MySQL.Sync.execute
@@ -29,6 +32,7 @@ end
 ## JavaScript
 
 ### Callback
+
 ```js
 // alias: exports.oxmysql.update
 
@@ -40,6 +44,7 @@ MySQL.update('UPDATE users SET firstname = ? WHERE identifier = ? ', [newName, p
 ```
 
 ### Promise
+
 ```js
 // alias: exports.oxmysql.update_async
 

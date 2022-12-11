@@ -67,7 +67,7 @@ console.log(success);
 
 ## Shared Format
 
-When using the `Shared` format you must pass two parameters to the oxmysql export. The `queries` and the `parameters` those queries will use.  
+When using the `Shared` format you must pass two parameters to the oxmysql export. The `queries` and the `parameters` those queries will use.
 This is useful if your queries use the same SQL variables.
 
 ### Lua

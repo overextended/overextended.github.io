@@ -8,6 +8,7 @@ import TabItem from '@theme/TabItem';
 Keyboard navigation menu with specific event functions.
 
 ### lib.registerMenu
+
 Registers and caches a menu under the specified id.
 
 <Tabs>
@@ -16,6 +17,7 @@ Registers and caches a menu under the specified id.
 ```lua
 lib.registerMenu(data, cb)
 ```
+
 </TabItem>
 <TabItem value='JS/TS'>
 
@@ -24,6 +26,7 @@ import lib from '@overextended/ox_lib/client'
 
 lib.registerMenu(data, cb)
 ```
+
 </TabItem>
 </Tabs>
 
@@ -37,7 +40,7 @@ lib.registerMenu(data, cb)
     * icon?: `string`
     * iconColor?: `string`
     * values?: `table` (`Array<string | {label: string; description: string}>`)
-      * If provided creates a side scrollabel list.
+      * If provided creates a side scrollable list.
       * When using object and setting description, the set description will be displayed in the menu tooltip.
     * checked?: `boolean`
       * Setting either true or false will make the button a checkbox, if `values` is also provided the button will be a
@@ -61,7 +64,7 @@ lib.registerMenu(data, cb)
   * onClose: `function`(keyPressed?: `'Escape' | 'Backspace'`)
     * Function that runs when the menu is exited via ESC/Backspace.
   * onSelected: `function`(selected: `number`, secondary: `number` | `boolean`, args: {[key: `string`]: `any`})
-    * Function being ran when the selected button in the menu changes. 
+    * Function being ran when the selected button in the menu changes.
   * onSideScroll: `function`(selected: `number`, scrollIndex: `number`, args: {[key: `string`]: `any`})
     * Function ran whenever a scroll list item is changed.
   * onCheck: `function`(selected: `number`, checked: `boolean`, args: {[key: `string`]: `any`})
@@ -69,8 +72,8 @@ lib.registerMenu(data, cb)
   * Callback function when the menu item is pressed.
 
 ### lib.showMenu
-Displays the menu with the provided id.
 
+Displays the menu with the provided id.
 
 <Tabs>
 <TabItem value='Lua'>
@@ -78,6 +81,7 @@ Displays the menu with the provided id.
 ```lua
 lib.showMenu(id)
 ```
+
 </TabItem>
 <TabItem value='JS/TS'>
 
@@ -86,12 +90,11 @@ import lib from '@overextended/ox_lib/client'
 
 lib.showMenu(id)
 ```
+
 </TabItem>
 </Tabs>
 
 * id: `string`
-
-
 
 ### lib.hideMenu
 
@@ -101,6 +104,7 @@ lib.showMenu(id)
 ```lua
 lib.hideMenu(onExit)
 ```
+
 </TabItem>
 <TabItem value='JS/TS'>
 
@@ -109,6 +113,7 @@ import lib from '@overextended/ox_lib/client'
 
 lib.hideMenu(onExit)
 ```
+
 </TabItem>
 </Tabs>
 
@@ -116,6 +121,7 @@ lib.hideMenu(onExit)
   * If true runs the menu's `onClose` function.
 
 ### lib.getOpenMenu
+
 Returns the id of the currently open menu.
 
 <Tabs>
@@ -124,6 +130,7 @@ Returns the id of the currently open menu.
 ```lua
 lib.getOpenMenu()
 ```
+
 </TabItem>
 <TabItem value='JS/TS'>
 
@@ -132,9 +139,9 @@ import lib from '@overextended/ox_lib/client'
 
 lib.getOpenMenu()
 ```
+
 </TabItem>
 </Tabs>
-
 
 ### lib.setMenuOptions
 
@@ -144,6 +151,7 @@ lib.getOpenMenu()
 ```lua
 lib.setMenuOptions(id, options, index)
 ```
+
 </TabItem>
 <TabItem value='JS/TS'>
 
@@ -152,6 +160,7 @@ import lib from '@overextended/ox_lib/client'
 
 lib.setMenuOptions(id, options, index)
 ```
+
 </TabItem>
 </Tabs>
 
@@ -170,6 +179,7 @@ Replaces the 3rd index option of the specified menu
 ```lua
 lib.setMenuOptions('some_menu_id', {label = 'New option', icon = 'plus'}, 3)
 ```
+
 </TabItem>
 <TabItem value='JS/TS'>
 
@@ -178,16 +188,17 @@ import lib from '@overextended/ox_lib/client'
 
 lib.setMenuOptions('some_menu_id', {label: 'New option', icon: 'plus'}, 3)
 ```
+
 </TabItem>
 </Tabs>
 
 ### Usage Example
-First we register the menu with our specified options then we call the show function in the command.  
+
+First we register the menu with our specified options then we call the show function in the command.
 
 :::tip
 Avoid constantly re-registering a menu that does not depend on any outside values (A.K.A a static menu).
 :::
-
 
 <Tabs>
 <TabItem value='Lua'>
@@ -240,6 +251,7 @@ RegisterCommand('testmenu', function()
     lib.showMenu('some_menu_id')
 end)
 ```
+
 </TabItem>
 <TabItem value='JS/TS'>
 
@@ -293,6 +305,7 @@ RegisterCommand('testmenu', () => {
   lib.showMenu('some_menu_id')
 }, false)
 ```
+
 </TabItem>
 </Tabs>
 

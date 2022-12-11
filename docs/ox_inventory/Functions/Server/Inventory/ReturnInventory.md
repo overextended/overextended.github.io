@@ -5,4 +5,5 @@ Use it alongside [ConfiscateInventory](./ConfiscateInventory.md).
 ```lua
 exports.ox_inventory:ReturnInventory(source)
 ```
+
 * source: `number`

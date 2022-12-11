@@ -1,4 +1,4 @@
-Check if assets exist, such as models, and loads them into memory.  
+Check if assets exist, such as models, and loads them into memory.
 Throws errors for invalid assets and returns true if the asset is loaded.
 
 import Tabs from '@theme/Tabs';
@@ -12,6 +12,7 @@ import TabItem from '@theme/TabItem';
 ```lua
 lib.requestAnimDict(dict, timeout)
 ```
+
 </TabItem>
 <TabItem value='JS/TS'>
 
@@ -20,13 +21,13 @@ import lib from '@overextended/ox_lib/client'
 
 lib.requestAnimDict(dict, timeout)
 ```
+
 </TabItem>
 </Tabs>
 
 * dict: `string`
 * timeout: `number`
   * Default: `100`
-
 
 ### lib.requestAnimSet
 
@@ -36,6 +37,7 @@ lib.requestAnimDict(dict, timeout)
 ```lua
 lib.requestAnimSet(set, timeout)
 ```
+
 </TabItem>
 <TabItem value='JS/TS'>
 
@@ -44,6 +46,7 @@ import lib from '@overextended/ox_lib/client'
 
 lib.requestAnimSet(set, timeout)
 ```
+
 </TabItem>
 </Tabs>
 
@@ -59,6 +62,7 @@ lib.requestAnimSet(set, timeout)
 ```lua
 lib.requestModel(model, timeout)
 ```
+
 </TabItem>
 <TabItem value='JS/TS'>
 
@@ -67,13 +71,13 @@ import lib from '@overextended/ox_lib/client'
 
 lib.requestModel(model, timeout)
 ```
+
 </TabItem>
 </Tabs>
 
 * model: `string`
 * timeout: `number`
   * Default: `100`
-
 
 ### lib.requestStreamedTextureDict
 
@@ -83,6 +87,7 @@ lib.requestModel(model, timeout)
 ```lua
 lib.requestStreamedTextureDict(dict, timeout)
 ```
+
 </TabItem>
 <TabItem value='JS/TS'>
 
@@ -91,13 +96,13 @@ import lib from '@overextended/ox_lib/client'
 
 lib.requestStreamedTextureDict(dict, timeout)
 ```
+
 </TabItem>
 </Tabs>
 
 * dict: `string`
 * timeout: `number`
   * Default: `100`
-
 
 ### lib.requestNamedPtfxAsset
 
@@ -106,8 +111,8 @@ lib.requestStreamedTextureDict(dict, timeout)
 
 ```lua
 lib.requestNamedPtfxAsset(fxName, timeout)
-
 ```
+
 </TabItem>
 <TabItem value='JS/TS'>
 
@@ -116,10 +121,10 @@ import lib from '@overextended/ox_lib/client'
 
 lib.requestNamedPtfxAsset(fxName, timeout)
 ```
+
 </TabItem>
 </Tabs>
 
 * fxName: `string`
 * timeout: `number`
   * Default: `100`
-

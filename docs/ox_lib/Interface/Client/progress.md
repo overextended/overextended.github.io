@@ -6,6 +6,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 ## lib.progressBar
+
 Displays a running progress bar.
 
 <Tabs>
@@ -14,6 +15,7 @@ Displays a running progress bar.
 ```lua
 lib.progressBar(data)
 ```
+
 </TabItem>
 <TabItem value='JS/TS'>
 
@@ -22,6 +24,7 @@ import lib from '@overextended/ox_lib/client'
 
 lib.progressBar(data)
 ```
+
 </TabItem>
 </Tabs>
 
@@ -88,15 +91,16 @@ if lib.progressBar({
     },
     anim = {
         dict = 'mp_player_intdrink',
-        clip = 'loop_bottle' 
+        clip = 'loop_bottle'
     },
     prop = {
         model = `prop_ld_flow_bottle`,
         pos = vec3(0.03, 0.03, 0.02),
-        rot = vec3(0.0, 0.0, -1.5) 
+        rot = vec3(0.0, 0.0, -1.5)
     },
 }) then print('Do stuff when complete') else print('Do stuff when cancelled') end
 ```
+
 </TabItem>
 <TabItem value='JS/TS'>
 
@@ -117,22 +121,24 @@ if (await lib.progressBar({
   },
   anim: {
     dict: 'mp_player_intdrink',
-    clip: 'loop_bottle' 
+    clip: 'loop_bottle'
   },
   prop: {
     model: `prop_ld_flow_bottle`,
     pos: {x: 0.03, y: 0.03, z: 0.02},
-    rot: {x: 0.0, y: 0.0, z: -1.5} 
+    rot: {x: 0.0, y: 0.0, z: -1.5}
   },
 })) console.log('Do stuff when complete');
 else console.log('Do stuff when cancelled')
 ```
+
 </TabItem>
 </Tabs>
 
 ![progress_bar](https://i.imgur.com/7pAwktr.png)
 
 ## lib.progressCircle
+
 Similar to `lib.progressBar` except it displays a circle and you can define a position.
 
 <Tabs>
@@ -141,6 +147,7 @@ Similar to `lib.progressBar` except it displays a circle and you can define a po
 ```lua
 lib.progressCircle(data)
 ```
+
 </TabItem>
 <TabItem value='JS/TS'>
 
@@ -149,6 +156,7 @@ import lib from '@overextended/ox_lib/client'
 
 lib.progressCircle(data)
 ```
+
 </TabItem>
 </Tabs>
 
@@ -217,15 +225,16 @@ if lib.progressCircle({
     },
     anim = {
         dict = 'mp_player_intdrink',
-        clip = 'loop_bottle' 
+        clip = 'loop_bottle'
     },
     prop = {
         model = `prop_ld_flow_bottle`,
         pos = vec3(0.03, 0.03, 0.02),
-        rot = vec3(0.0, 0.0, -1.5) 
+        rot = vec3(0.0, 0.0, -1.5)
     },
 }) then print('Do stuff when complete') else print('Do stuff when cancelled') end
 ```
+
 </TabItem>
 <TabItem value='JS/TS'>
 
@@ -246,7 +255,7 @@ if (await lib.progressCircle({
   },
   anim: {
     dict: 'mp_player_intdrink',
-    clip: 'loop_bottle' 
+    clip: 'loop_bottle'
   },
   prop: {
     model: `prop_ld_flow_bottle`,
@@ -256,12 +265,14 @@ if (await lib.progressCircle({
 })) console.log('Do stuff when complete')
 else console.log('Do stuff when cancelled')
 ```
+
 </TabItem>
 </Tabs>
 
 ![progress_circle](https://i.imgur.com/nETRm5f.png)
 
 ## lib.progressActive
+
 Returns true if a progress bar is currently active.
 
 <Tabs>
@@ -270,6 +281,7 @@ Returns true if a progress bar is currently active.
 ```lua
 lib.progressActive()
 ```
+
 </TabItem>
 <TabItem value='JS/TS'>
 
@@ -278,11 +290,12 @@ import lib from '@overextended/ox_lib/client'
 
 lib.progressActive()
 ```
+
 </TabItem>
 </Tabs>
 
-
 ## lib.cancelProgress
+
 If there is a progress bar active and the
 progress bar can be cancelled then it cancels it.
 
@@ -292,6 +305,7 @@ progress bar can be cancelled then it cancels it.
 ```lua
 lib.cancelProgress()
 ```
+
 </TabItem>
 <TabItem value='JS/TS'>
 
@@ -300,6 +314,6 @@ import lib from '@overextended/ox_lib/client'
 
 lib.cancelProgress()
 ```
+
 </TabItem>
 </Tabs>
-

@@ -72,10 +72,12 @@ Targets and model are only available when using a targeting resource like ox_tar
 ## Register during runtime
 
 Shops can be added using `exports.ox_inventory:RegisterShop` on the server, however they cannot utilise any client-only features.
+
 - Blips, markers, and zones will not be created.
 - Must use "locations" and not "targets" to define each shop using the archetype.
 
 **Example:**
+
 ```lua
 exports.ox_inventory:RegisterShop('TestShop', {
     name = 'Test shop',

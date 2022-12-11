@@ -21,7 +21,7 @@ player.set(key, value, replicated)
 
 ## player.setdb
 
-Update the player's metadata and store in the DB, optionally syncing it with the client.  
+Update the player's metadata and store in the DB, optionally syncing it with the client.
 Note: These values are not synced to the client on login; you will need to use `player.set`.
 
 ```lua
@@ -77,7 +77,7 @@ Returns the player's current grade for a given group.
 player.getGroup()
 ```
 
-## player.getGroup
+## player.getGroups
 
 Returns an object of all groups the player is in, with the current grade as the value.
 
@@ -87,7 +87,7 @@ player.getGroups()
 
 ## player.hasGroup
 
-Check if the player is a member of a given group, and returns the matching group name and grade.  
+Check if the player is a member of a given group, and returns the matching group name and grade.
 The filter can be a string, array, or object where key is the group, and value is the minimum grade.
 
 ```lua

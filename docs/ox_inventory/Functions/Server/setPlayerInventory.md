@@ -3,6 +3,7 @@ Creates and sets the player's inventory.
 ```lua
 exports.ox_inventory:setPlayerInventory(player, data)
 ```
+
 * player: `table`
   * source: `number`
   * identifier: `string`

@@ -1,6 +1,7 @@
 ```lua
 lib.addCommand(principal, command, callback, parameters, help)
 ```
+
 * principal: `string` or `string[]` or `false`
 * command: `string`
 * callback: `function`

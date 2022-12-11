@@ -86,7 +86,7 @@ vehicle.setGroup(group)
 
 ## vehicle.setPlate
 
-Sets the vehicle's plate, used in the database to ensure uniqueness. Does not necessarily match the plate property (i.e. fake plates).  
+Sets the vehicle's plate, used in the database to ensure uniqueness. Does not necessarily match the plate property (i.e. fake plates).
 Plate is always formatted to 8 characters.
 
 ```lua

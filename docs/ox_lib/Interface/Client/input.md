@@ -16,6 +16,7 @@ by setting input fields.
 ```lua
 lib.inputDialog(heading, rows)
 ```
+
 </TabItem>
 <TabItem value='JS/TS'>
 
@@ -24,6 +25,7 @@ import lib from '@overextended/ox_lib/client'
 
 lib.inputDialog(heading, rows)
 ```
+
 </TabItem>
 </Tabs>
 
@@ -70,14 +72,13 @@ number data type, you can use set the `type` to `number`.
 
 If a user left an input field empty it will return `nil`.
 
-You can also add checkboxes that will return `true` if checked and `nil` if unchecked.  
+You can also add checkboxes that will return `true` if checked and `nil` if unchecked.
 Look at the *Advanced* example for it's usage.
 
 :::caution
 
 When using the advanced method you can define `icon` and `password` **ONLY** with type `'input'` and `'number'` and
 you can define `options` **ONLY** with type `'select'`.
-
 
 Doing so otherwise ***will*** result in errors.
 :::
@@ -92,6 +93,7 @@ Force closes the active input dialog and sets its return data as `nil`
 ```lua
 lib.closeInputDialog()
 ```
+
 </TabItem>
 <TabItem value='JS/TS'>
 
@@ -100,6 +102,7 @@ import lib from '@overextended/ox_lib/client'
 
 lib.closeInputDialog()
 ```
+
 </TabItem>
 </Tabs>
 
@@ -119,6 +122,7 @@ local lockerPasscode = input[2]
 
 print(lockerNumber, lockerPasscode)
 ```
+
 </TabItem>
 <TabItem value='JS/TS'>
 
@@ -126,7 +130,6 @@ print(lockerNumber, lockerPasscode)
 
 This function is **asynchronous** requiring you to do a `.then` callback on the promise or make your function `async`.
 :::
-
 
 ```ts
 const input = await lib.inputDialog('Police locker', ['Locker number', 'Locker passcode'])
@@ -137,6 +140,7 @@ const lockerPasscode = input[1] as number
 
 console.log(lockerNumber, lockerPasscode)
 ```
+
 </TabItem>
 </Tabs>
 
@@ -149,19 +153,21 @@ console.log(lockerNumber, lockerPasscode)
 
 ```lua
 local input = lib.inputDialog('Police locker', {
-	{ type = "input", label = "Locker number", placeholder = "123" },
-	{ type = "checkbox", label = "Some checkbox" },
-	{ type = "input", label = "Locker PIN", password = true, icon = 'lock' },
-	{ type = "checkbox", label = "Some other checkbox", checked = true },
-	{ type = 'select', label = 'Value select', options = {
-		{ value = 'option1', label = 'Option 1' },
-		{ value = 'option2', label = 'Option 2' },
-		{ value = 'option3', label = 'Option 3'},
-	}},
-	{ type = "number", label = "Number counter", default = 12 }
+    { type = "input", label = "Locker number", placeholder = "123" },
+    { type = "checkbox", label = "Some checkbox" },
+    { type = "input", label = "Locker PIN", password = true, icon = 'lock' },
+    { type = "checkbox", label = "Some other checkbox", checked = true },
+    { type = 'select', label = 'Value select', options = {
+        { value = 'option1', label = 'Option 1' },
+        { value = 'option2', label = 'Option 2' },
+        { value = 'option3', label = 'Option 3'},
+    }},
+    { type = "number", label = "Number counter", default = 12 }
 })
+
 print(json.encode(input, {indent=true}))
 ```
+
 </TabItem>
 <TabItem value="JS/TS">
 
@@ -185,7 +191,8 @@ const input = await lib.inputDialog('Police locker', [
 ]);
 
 console.log(JSON.stringify(input, null, 2));
-  ```
+```
+
 </TabItem>
 </Tabs>
 

@@ -3,6 +3,7 @@ Forces the secondary-inventory key to open the passed inventory. Can be useful t
 ```lua
 exports.ox_inventory:setStashTarget(id, owner)
 ```
+
 * id: `string` or `number`
   * Stash id.
 * owner?: `string` or `number`

@@ -39,14 +39,14 @@ options for the item.
   * status?: `table`
     * Adjust esx_status values after use.
   * anim?: `table`
-      * Animation that will be played during the progress bar.
-      * dict: `string`
-      * clip: `string`
+    * Animation that will be played during the progress bar.
+    * dict: `string`
+    * clip: `string`
   * prop?: `table`
-      * Attached prop that will be displayed during the progress bar.
-      * model: `string` or `hash`
-      * pos: `table` (x, y, z)
-      * rot: `table` (x, y, z)
+    * Attached prop that will be displayed during the progress bar.
+    * model: `string` or `hash`
+    * pos: `table` (x, y, z)
+    * rot: `table` (x, y, z)
   * disable?: `table`
     * Actions to be disabled during the progress bar
     * move?: `boolean`
@@ -57,11 +57,11 @@ options for the item.
   * cancel?: `boolean`
     * If set to true the player canc cancel item use.
   * add?: `function`(total: `number`)
-    * Function that triggers when recieving an item
+    * Function that triggers when receiving an item
     * Returns total item count as `total`
   * remove?: `function`(total: `number`)
-      * Function that triggers when removing an item
-      * Returns total item count as `total`
+    * Function that triggers when removing an item
+    * Returns total item count as `total`
 * buttons?: `table`
   * label: `string`
   * action: `function`(slot: `number`)
@@ -147,8 +147,8 @@ A modified burger item, which gives you notifications on add and remove argument
 
 ## Making the item usable
 
-- If you are using ESX, you can continue using `ESX.RegisterUsableItem`.
-- If you are using QBCore, you can continue using `QBCore.Functions.CreateUseableItem`.
+* If you are using ESX, you can continue using `ESX.RegisterUsableItem`.
+* If you are using QBCore, you can continue using `QBCore.Functions.CreateUseableItem`.
 
 Using the built-in system is more secure and provides much more functionality.
 

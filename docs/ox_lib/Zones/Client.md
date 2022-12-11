@@ -5,6 +5,7 @@ Faster alternative to PolyZone utilising [glm.polygon](https://github.com/gottfr
 ```lua
 lib.zones.poly(data)
 ```
+
 * data: `table`
   * points: `vector3[]`
     * All z values must match
@@ -20,6 +21,7 @@ lib.zones.poly(data)
 ```lua
 lib.zones.box(data)
 ```
+
 * data: `table`
   * coords: `vector3`
   * size?: `vector3`
@@ -36,6 +38,7 @@ lib.zones.box(data)
 ```lua
 lib.zones.sphere(data)
 ```
+
 * data: `table`
   * coords: `vector3`
   * radius?: `number`
@@ -75,11 +78,11 @@ local poly = lib.zones.poly({
         vec(420.0, -1030.2, 29),
         vec(409.8, -1028.4, 29),
     },
-  thickness = 2,
-  debug = true,
-  inside = inside,
-  onEnter = onEnter,
-  onExit = onExit
+    thickness = 2,
+    debug = true,
+    inside = inside,
+    onEnter = onEnter,
+    onExit = onExit
 })
 
 local sphere = lib.zones.sphere({
@@ -92,17 +95,18 @@ local sphere = lib.zones.sphere({
 })
 
 local box = lib.zones.box({
-	coords = vec3(442.5363, -1017.666, 28.65637),
-	size = vec3(1, 1, 1),
-	rotation = 45,
-	debug = true,
-	inside = insideZone,
-	onEnter = onEnter,
-	onExit = onExit
+    coords = vec3(442.5363, -1017.666, 28.65637),
+    size = vec3(1, 1, 1),
+    rotation = 45,
+    debug = true,
+    inside = insideZone,
+    onEnter = onEnter,
+    onExit = onExit
 })
 ```
 
 Zones can be deleted by using the remove method.
+
 ```lua
 poly:remove()
 sphere:remove()
@@ -110,11 +114,11 @@ box:remove()
 ```
 
 ## Zone creation script
+
 Similarly to PolyZone, there is a zone creation script included.
 
 To use it use the `/zone` with `poly`, `box` or `sphere` as args.
 
 Available controls will be displayed on the right side.
 
-Once saved you will find the created zone details in created_zones.lua withn ox_lib
-
+Once saved you will find the created zone details in created_zones.lua within ox_lib

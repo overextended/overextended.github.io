@@ -3,6 +3,7 @@ Returns if inventory can carry specified weight and free inventory weight.
 ```lua
 exports.ox_inventory:CanCarryWeight(inv, weight)
 ```
+
 * inv: `string` or `number`
 * weight: `number`
 

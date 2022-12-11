@@ -9,7 +9,7 @@ The following snippet can be used in crafting resources such as okokCrafting or 
 ```lua
 local itemNames = {}
 
-for item, data in pairs(exports.ox_inventory:Items()) do 
+for item, data in pairs(exports.ox_inventory:Items()) do
     itemNames[item] = data.label
 end
 ```

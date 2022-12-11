@@ -5,7 +5,7 @@ title: Alert Dialog
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-Simple alert dialog that can display a message to the player.  
+Simple alert dialog that can display a message to the player.
 Returns whether the player pressed the confirm button or canceled the dialog.
 
 ### lib.alertDialog
@@ -16,6 +16,7 @@ Returns whether the player pressed the confirm button or canceled the dialog.
 ```lua
 lib.alertDialog(data)
 ```
+
 </TabItem>
 <TabItem value='JS/TS'>
 
@@ -28,6 +29,7 @@ import lib from '@overextended/ox_lib/client'
 
 lib.alertDialog(data)
 ```
+
 </TabItem>
 </Tabs>
 
@@ -54,6 +56,7 @@ Force closes the active alert dialog and sets its return data as `nil`
 ```lua
 lib.closeAlertDialog()
 ```
+
 </TabItem>
 <TabItem value='JS/TS'>
 
@@ -62,6 +65,7 @@ import lib from '@overextended/ox_lib/client'
 
 lib.closeAlertDialog()
 ```
+
 </TabItem>
 </Tabs>
 
@@ -80,6 +84,7 @@ local alert = lib.alertDialog({
 
 print(alert)
 ```
+
 </TabItem>
 <TabItem value='JS/TS'>
 
@@ -95,9 +100,8 @@ const alert = await lib.alertDialog({
 
 console.log(alert)
 ```
+
 </TabItem>
 </Tabs>
-
-
 
 ![alert_dialog](https://i.imgur.com/TnUT3S1.png)

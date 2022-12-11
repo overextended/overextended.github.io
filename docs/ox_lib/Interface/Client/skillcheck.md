@@ -15,6 +15,7 @@ Runs a skill check with the defined difficulty.
 ```lua
 lib.skillCheck(difficulty)
 ```
+
 </TabItem>
 <TabItem value='JS/TS'>
 
@@ -23,10 +24,11 @@ import lib from '@overextended/ox_lib/client'
 
 lib.skillCheck(difficulty)
 ```
+
 </TabItem>
 </Tabs>
 
-* difficulty: `easy` or `medium` or `hard` or `object` 
+* difficulty: `easy` or `medium` or `hard` or `object`
   * Can set custom difficulty by sending a object instead of string
     * { areaSize: `number`, speedMultiplier: `number` }
       * easy: { areaSize: 50, speedMultiplier: 1 }
@@ -43,6 +45,7 @@ lib.skillCheck(difficulty)
 ```lua
 local success = lib.skillCheck({'easy', 'easy', {areaSize = 60, speedMultiplier = 2}, 'hard'})
 ```
+
 </TabItem>
 <TabItem value='JS/TS'>
 
@@ -51,7 +54,8 @@ import lib from '@overextended/ox_lib/client'
 
 const success = await lib.skillCheck(['easy', 'easy', {areaSize: 60, speedMultiplier: 2}, 'hard'])
 ```
+
 </TabItem>
 </Tabs>
 
-![Image](https://i.imgur.com/RWSWZ1I.png)
+![skillcheck_example](https://i.imgur.com/RWSWZ1I.png)

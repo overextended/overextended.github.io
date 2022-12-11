@@ -1,16 +1,19 @@
 # Benchmark
 
 Internal benchmark
-```
+
+```md
 Low: 0.1222ms | Avg: 0.14188357ms | Total: 1418.8357ms (10000 queries)
 ```
 
 Round-trip-time for exports
-```
+
+```md
 Low: 0.1997ms | Avg: 0.25898800ms | Total: 2589.8800ms (10000 queries)
 ```
 
-#### Lua (5.4)
+## Lua (5.4)
+
 ```lua
 local val = 10000
 RegisterCommand('luasync', function()
@@ -38,7 +41,8 @@ RegisterCommand('luasync', function()
 end)
 ```
 
-#### JavaScript
+## JavaScript
+
 ```js
 const val = 10000
 RegisterCommand('jssync', async() => {

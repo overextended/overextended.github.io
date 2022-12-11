@@ -4,7 +4,7 @@ We'll try to explain some technical but core concepts used in ox_core here.
 
 ## Classes
 
-Lua doesn't have support for true clases, but rather prototype-based inheritance.  
+Lua doesn't have support for true classes, but rather prototype-based inheritance.
 A prototype can hold its own variables and methods, which another object (an instance) can reference or call.
 
 ```lua

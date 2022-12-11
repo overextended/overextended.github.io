@@ -1,9 +1,11 @@
 # Single
+
 Returns the columns for a single row.
 
 ## Lua
 
 ### Callback
+
 ```lua
 -- alias: exports.oxmysql:single
 -- alias: MySQL.Async.fetchSingle
@@ -16,6 +18,7 @@ end)
 ```
 
 ### Promise
+
 ```lua
 -- alias: exports.oxmysql:single_async
 -- alias: MySQL.Sync.fetchSingle
@@ -29,6 +32,7 @@ end
 ## JavaScript
 
 ### Callback
+
 ```js
 // alias: exports.oxmysql.single
 
@@ -40,6 +44,7 @@ MySQL.single('SELECT * FROM users WHERE identifier = ?', [playerIdentifier],(row
 ```
 
 ### Promise
+
 ```js
 // alias: exports.oxmysql.single_async
 

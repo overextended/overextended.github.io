@@ -3,6 +3,7 @@ Creates a new custom stash.
 ```lua
 exports.ox_inventory:RegisterStash(id, label, slots, maxWeight, owner, groups, coords)
 ```
+
 * id: `string` or `number`
   * Stash identifier when loading from the database.
 * label: `string`
@@ -14,9 +15,9 @@ exports.ox_inventory:RegisterStash(id, label, slots, maxWeight, owner, groups, c
   * `true`: Each player has a unique stash but can request other player's stashes.
   * `nil`: Always shared.
 * groups: `table`
-    * Table of player groups (jobs) able to access the stash.
-    * Table of group names where the numeric value is the minimum grade required.
-    * `{['police'] = 0, ['ambulance'] = 2}`
+  * Table of player groups (jobs) able to access the stash.
+  * Table of group names where the numeric value is the minimum grade required.
+  * `{['police'] = 0, ['ambulance'] = 2}`
 * coords: `vector3`
 
 :::caution

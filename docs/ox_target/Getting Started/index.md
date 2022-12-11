@@ -8,7 +8,7 @@ slug: ./../
 
 We always recommend using Git so you can track changes and update easily.
 
-```
+```bash
 git clone https://github.com/overextended/ox_target.git
 ```
 

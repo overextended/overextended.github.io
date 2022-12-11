@@ -6,6 +6,7 @@ Opens an inventory using the passed data.
 ```lua
 exports.ox_inventory:openInventory(invType, data)
 ```
+
 * invType: `string`
   * `'player'`
   * `'shop'`

@@ -3,5 +3,6 @@ Clears the specified inventory. The `keep` argument is either a string or an arr
 ```lua
 exports.ox_inventory:ClearInventory(inv, keep)
 ```
+
 * inv: `string` or `number`
 * keep?: `string` or `string[]`

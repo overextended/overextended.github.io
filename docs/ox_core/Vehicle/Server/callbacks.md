@@ -12,4 +12,3 @@ lib.callback.await('ox:getNearbyVehicles', playerId, radius)
 
 - playerId: `number`
 - radius?: `number`
-  

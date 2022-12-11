@@ -10,12 +10,12 @@ import TabItem from '@theme/TabItem';
 
 :::caution
 
-This resource is **not production ready**. Breaking changes are guaranteed, and support is limited.  
+This resource is **not production ready**. Breaking changes are guaranteed, and support is limited.
 Documentation may fall behind and be rendered obsolete.
 
 :::
 
-We **strongly** recommend using Git to help with version control and separating your own changes from the original source code.  
+We **strongly** recommend using Git to help with version control and separating your own changes from the original source code.
 Refer to [GitHub's guide to setting up Git](https://docs.github.com/en/get-started/quickstart/set-up-git#setting-up-git).
 
 You can also download a Git GUI client, such as [GitKraken](https://www.gitkraken.com/), to improve your workflow and more easily maintain changes.
@@ -38,7 +38,7 @@ These resources are required for ox_core to function, and must start before it.
 - Open a terminal, command prompt, etc. and navigate to your resources folder.
 - Execute the following commands
 
-```
+```bash
 npm install --location=global pnpm
 git clone https://github.com/overextended/ox_core.git
 cd web
@@ -72,7 +72,7 @@ Phone with many built-in apps such as Twitter, Marketplace, and Notes; with supp
 
 ### pefcl
 
-Banking and financing, with support for multiple, unique, and shared accounts.  
+Banking and financing, with support for multiple, unique, and shared accounts.
 If using it with [ox_inventory](https://github.com/overextended/ox_inventory), open `pefcl/config.json` and enable framework integration.
 
 ```json

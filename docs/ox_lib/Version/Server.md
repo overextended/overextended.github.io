@@ -1,5 +1,6 @@
 ### lib.versionCheck
-Compares the resource version to the latest published release on GitHub. 
+
+Compares the resource version to the latest published release on GitHub.
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -7,6 +8,7 @@ import TabItem from '@theme/TabItem';
 ```lua
 lib.versionCheck(repository)
 ```
+
 * repository: `string`
 
 <Tabs>
@@ -15,6 +17,7 @@ lib.versionCheck(repository)
 ```lua
 lib.versionCheck('overextended/ox_lib')
 ```
+
 </TabItem>
 <TabItem value='JS/TS'>
 
@@ -23,6 +26,7 @@ import lib from '@overextended/ox_lib/server'
 
 lib.versionCheck('overextended/ox_lib')
 ```
+
 </TabItem>
 </Tabs>
 

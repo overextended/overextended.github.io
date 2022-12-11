@@ -1,10 +1,11 @@
 # Points
 
-Simple and centralised distance checking, supporting callbacks when entering, leaving, and standing in-range of set coordinates.  
+Simple and centralised distance checking, supporting callbacks when entering, leaving, and standing in-range of set coordinates.
 
 ```lua
 lib.points.new(coords, distance, data)
 ```
+
 * coords: `vector3`
 * distance: `number`
 * data: `table`
@@ -33,6 +34,7 @@ end
 ```
 
 Points can be deleted by using the remove method.
+
 ```lua
 point:remove()
 ```

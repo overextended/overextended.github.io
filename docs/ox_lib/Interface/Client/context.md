@@ -6,6 +6,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 ### lib.registerContext
+
 Used for registering a context menu.
 
 <Tabs>
@@ -14,6 +15,7 @@ Used for registering a context menu.
 ```lua
 lib.registerContext(context)
 ```
+
 </TabItem>
 <TabItem value='JS/TS'>
 
@@ -22,6 +24,7 @@ import lib from '@overextended/ox_lib/client'
 
 lib.registerContext(context)
 ```
+
 </TabItem>
 </Tabs>
 
@@ -54,7 +57,7 @@ lib.registerContext(context)
     * progress?: `number`
       * Adds a progress bar filled to this percentage
     * colorScheme?: `string`
-      * Sets the color scheme of the progress bar. Current options available are: 
+      * Sets the color scheme of the progress bar. Current options available are:
         * `whiteAlpha`, `blackAlpha`, `gray`, `red`, `orange`, `yellow`, `green`, `teal`, `blue`, `cyan`, `purple`, `pink`
     * arrow?: `boolean`
       * Shows an arrow on the right side like `menu` does, useful when you are opening a menu from an event. Can be set to false to hide it.
@@ -74,12 +77,13 @@ lib.registerContext(context)
 You can register as many context menus in one `lib.registerContext` function
 as you'd like.
 
-The menu can be either in the order you write it in, or sorted alphabetically.  
+The menu can be either in the order you write it in, or sorted alphabetically.
 To sort the menu alphabetically the buttons (and/or metadata) need to be defined as keys,
 otherwise not using keys and instead using tables will make the menu be in the order you
 define it as.
 
 ### lib.showContext
+
 Opens a registered context menu by it's id.
 
 <Tabs>
@@ -88,6 +92,7 @@ Opens a registered context menu by it's id.
 ```lua
 lib.showContext(id)
 ```
+
 </TabItem>
 <TabItem value='JS/TS'>
 
@@ -96,12 +101,14 @@ import lib from '@overextended/ox_lib/client'
 
 lib.showContext(id)
 ```
+
 </TabItem>
 </Tabs>
 
 * id: `string`
 
 ### lib.hideContext
+
 Hides any currently visible context menu.
 
 <Tabs>
@@ -110,6 +117,7 @@ Hides any currently visible context menu.
 ```lua
 lib.hideContext(onExit)
 ```
+
 </TabItem>
 <TabItem value='JS/TS'>
 
@@ -118,6 +126,7 @@ import lib from '@overextended/ox_lib/client'
 
 lib.hideContext(onExit)
 ```
+
 </TabItem>
 </Tabs>
 
@@ -136,6 +145,7 @@ If no context menu is open returns `nil`.
 ```lua
 lib.getOpenContextMenu()
 ```
+
 </TabItem>
 <TabItem value='JS/TS'>
 
@@ -144,10 +154,12 @@ import lib from '@overextended/ox_lib/client'
 
 lib.getOpenContextMenu()
 ```
+
 </TabItem>
 </Tabs>
 
 ### Usage Example
+
 First we register the menu with our specified options then we call the show function in the command.
 
 :::tip
@@ -204,9 +216,10 @@ lib.registerContext({
 
 ```lua
 RegisterCommand('testcontext', function()
-  lib.showContext('example_menu')
+    lib.showContext('example_menu')
 end)
 ```
+
 </TabItem>
 <TabItem value='JS/TS'>
 
@@ -266,9 +279,9 @@ RegisterCommand('testcontext', () => {
   lib.showContext('example_menu')
 }, false)
 ```
+
 </TabItem>
 </Tabs>
-
 
 To trigger the event from the `Event button` and get it's data we first
 need to register the event properly:
@@ -296,6 +309,7 @@ RegisterNetEvent('some_event', function(data)
     lib.showContext('another_context_menu')
 end)
 ```
+
 </TabItem>
 <TabItem value='JS/TS'>
 
@@ -319,6 +333,7 @@ onNet('some_event', () => {
   lib.showContext('another_context_menu');
 });
 ```
+
 </TabItem>
 </Tabs>
 
@@ -327,8 +342,7 @@ the event you register, in this case that argument is called `data`.
 
 Using this event we also register a new context menu with it's own options.
 
-
-By defining a `menu` param to be the id of the first menu we can get the 
+By defining a `menu` param to be the id of the first menu we can get the
 neat back arrow button next to the menu title that will take us back.
 
 If we have a button that does not define either event, serverEvent or menu
@@ -337,7 +351,7 @@ the button will do nothing upon being clicked.
 Of course just registering the event won't do much so we need to display it
 with the `lib.showContext` function, passing in the menu's id.
 
-![menu_example](https://i.imgur.com/aJu92dv.png)  
-![metadata](https://i.imgur.com/kFGSlBF.png)  
+![menu_example](https://i.imgur.com/aJu92dv.png)
+![metadata](https://i.imgur.com/kFGSlBF.png)
 ![event_menu](https://i.imgur.com/r0Ln4VP.png)
 ![example](https://i.imgur.com/dUsil3p.png)

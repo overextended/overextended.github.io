@@ -27,7 +27,7 @@ end
 
 ## Ox.CreateVehicle
 
-Spawns a vehicle and returns the instance of CVehicle.  
+Spawns a vehicle and returns the instance of CVehicle.
 If the first argument is a number, it will attempt to spawn a vehicle from the database with a matching id.
 
 ```lua
@@ -43,8 +43,9 @@ if vehicleId then
 end
 ```
 
-If the first argument is a table and the owner property is a number, or nil, the vehicle will be added to the database.  
+If the first argument is a table and the owner property is a number, or nil, the vehicle will be added to the database.
 Setting the owner as false creates a non-persistent vehicle.
+
 ```lua
 local vehicle = Ox.CreateVehicle({
     model = 'sultanrs',

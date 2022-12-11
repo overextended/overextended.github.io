@@ -6,6 +6,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 ## lib.notify
+
 Custom notifications with a lot of styling options.
 
 <Tabs>
@@ -14,6 +15,7 @@ Custom notifications with a lot of styling options.
 ```lua
 lib.notify(data)
 ```
+
 </TabItem>
 <TabItem value='JS/TS'>
 
@@ -22,6 +24,7 @@ import lib from '@overextended/ox_lib/client'
 
 lib.notify(data)
 ```
+
 </TabItem>
 </Tabs>
 
@@ -44,7 +47,7 @@ lib.notify(data)
 
 ### Usage Example
 
-### Standard
+#### Standard
 
 <Tabs>
 <TabItem value='Lua'>
@@ -56,6 +59,7 @@ lib.notify({
     type = 'success'
 })
 ```
+
 </TabItem>
 <TabItem value='JS/TS'>
 
@@ -68,12 +72,13 @@ lib.notify({
   type: 'success'
 })
 ```
+
 </TabItem>
 </Tabs>
 
 ![notification](https://i.imgur.com/cRxJICO.png)
 
-### Custom
+#### Custom
 
 <Tabs>
 <TabItem value='Lua'>
@@ -92,6 +97,7 @@ lib.notify({
     iconColor = '#C53030'
 })
 ```
+
 </TabItem>
 <TabItem value='JS/TS'>
 
@@ -111,13 +117,14 @@ lib.notify({
   iconColor: '#C53030'
 })
 ```
+
 </TabItem>
 </Tabs>
-
 
 ![custom_notification](https://i.imgur.com/0EK5APp.png)
 
 ## lib.defaultNotify
+
 Default notifications provided by Chakra UI.
 
 <Tabs>
@@ -126,6 +133,7 @@ Default notifications provided by Chakra UI.
 ```lua
 lib.defaultNotify(data)
 ```
+
 </TabItem>
 <TabItem value='JS/TS'>
 
@@ -134,17 +142,17 @@ import lib from '@overextended/ox_lib/client'
 
 lib.defaultNotify(data)
 ```
+
 </TabItem>
 </Tabs>
 
 * id?: `number`
   * Same as id in `lib.notify`
 * title?: `string`
-* description?: `string` 
+* description?: `string`
 * duration?: `number`
 * position?: `'top'` or `'top-right'` or `'top-left'` or `'bottom'` or `'bottom-right'` or `'bottom-left'`
-* status?: `'info'` or `'warning'` or `'success'` or `'error'` 
-
+* status?: `'info'` or `'warning'` or `'success'` or `'error'`
 
 ### Usage Example
 
@@ -158,6 +166,7 @@ lib.defaultNotify({
     status = 'success'
 })
 ```
+
 </TabItem>
 <TabItem value='JS/TS'>
 
@@ -170,6 +179,7 @@ lib.defaultNotify({
   status: 'success'
 })
 ```
+
 </TabItem>
 </Tabs>
 

@@ -1,6 +1,7 @@
 ```lua
 lib.addKeybind(data)
 ```
+
 * data: `table`
   * name: `string`
   * description: `string`
@@ -27,6 +28,7 @@ local keybind = lib.addKeybind({
 ```
 
 Keybinds can be enabled/disabled by using the disable method.
+
 ```lua
 keybind:disable(true) -- disable
 keybind:disable(false) -- enable

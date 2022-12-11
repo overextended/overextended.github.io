@@ -3,6 +3,7 @@ Drops can be created from other resources, containing a variety of items and uti
 ```lua
 exports.ox_inventory:CustomDrop(prefix, items, coords, slots, maxWeight, instance)
 ```
+
 * prefix: `string`
 * items: `table`
   * name: `string`

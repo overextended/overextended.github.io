@@ -15,6 +15,7 @@ Sets the player's clipboard to the specified string value.
 ```lua
 lib.setClipboard(value)
 ```
+
 </TabItem>
 <TabItem value='JS/TS'>
 
@@ -23,6 +24,7 @@ import lib from '@overextended/ox_lib/client'
 
 lib.setClipboard(value)
 ```
+
 </TabItem>
 </Tabs>
 

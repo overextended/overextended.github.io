@@ -5,6 +5,7 @@ Should be used alongside [CanCarryItem](./CanCarryItem.md) otherwise, the maximu
 ```lua
 exports.ox_inventory:AddItem(inv, item, count, metadata, slot, cb)
 ```
+
 - inv: `table` or `string` or `number`
   - The inventory's unique id, or a table with the id and owner.
     - playerId: `1`

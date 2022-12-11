@@ -51,7 +51,7 @@ lib.callback.register(name, cb)
 
 ```lua
 lib.callback.register('ox:getNearbyVehicles', function(radius)
-  local nearbyVehicles = lib.getNearbyVehicles(GetEntityCoords(cache.ped), radius, true)
-  return nearbyVehicles
+    local nearbyVehicles = lib.getNearbyVehicles(GetEntityCoords(cache.ped), radius, true)
+    return nearbyVehicles
 end)
 ```

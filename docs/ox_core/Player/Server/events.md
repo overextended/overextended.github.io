@@ -44,7 +44,7 @@ Triggered when a player has been granted a license.
 AddEventHandler('ox:licenseAdded', function(source, name) end)
 ```
 
-### ox:licenseAdded
+### ox:licenseRemoved
 
 Triggered when a player's license is revoked.
 
