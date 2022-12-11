@@ -9,7 +9,7 @@ import TabItem from '@theme/TabItem';
 
 Before being able to see or use an item in game it **must** first be defined.
 
-All of the items are defined in the `/data/items.lua` file with key, value pairs.  
+All of the items are defined in the `/data/items.lua` file with key, value pairs.
 Key is the name (not the label) of an item and the value is a table containing the
 options for the item.
 
@@ -156,7 +156,7 @@ Using the built-in system is more secure and provides much more functionality.
 
 Item callbacks can be added by defining an export (recommended), or by adding it to [items/client.lua](https://github.com/overextended/ox_inventory/blob/main/modules/items/client.lua#L33).
 
-When defining [item data](https://github.com/overextended/ox_inventory/blob/main/data/items.lua#L11), adding client.export will trigger an event on item use.  
+When defining [item data](https://github.com/overextended/ox_inventory/blob/main/data/items.lua#L11), adding client.export will trigger an event on item use.
 The correct formatting is `export = resourceName.exportName`.
 
 ```lua
@@ -185,8 +185,8 @@ end)
 
 ### Server callbacks
 
-A callback function can be defined on the server to handle several events (usingItem, usedItem, buyItem).  
-This can either be an export (recommended), or added to the bottom of [items/server.lua](https://github.com/overextended/ox_inventory/blob/main/modules/items/server.lua). 
+A callback function can be defined on the server to handle several events (usingItem, usedItem, buyItem).
+This can either be an export (recommended), or added to the bottom of [items/server.lua](https://github.com/overextended/ox_inventory/blob/main/modules/items/server.lua).
 When defining [item data](https://github.com/overextended/ox_inventory/blob/main/data/items.lua#L14), adding server.export will trigger an event for the actions above.
 The correct formatting is `export = resourceName.exportName`.
 
@@ -237,8 +237,8 @@ Like with other items the item must first be registered.
 },
 ```
 
-When registered you can define the item as a container under the `Items.containers` table in `/modules/items/sever.lua`  
-The key for the container is the `name` you gave it when registering the item.  
+When registered you can define the item as a container under the `Items.containers` table in `/modules/items/server.lua`
+The key for the container is the `name` you gave it when registering the item.
 You can also define the number of slots, the maximum weight, blacklist and whitelist items.
 
 * itemName: `table`
