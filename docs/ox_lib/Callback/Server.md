@@ -1,4 +1,4 @@
-## Server -> Client callback
+## Trigger Client Callback
 
 ### lib.callback
 
@@ -41,9 +41,11 @@ for i = 1, #vehicles do
 end
 ```
 
-## Client -> Server callback
+## Register Server Callback
 
 ### lib.callback.register
+
+Register an event handler for responding to client requests.
 
 ```lua
 lib.callback.register(name, cb)

@@ -1,4 +1,4 @@
-## Client -> Server callback
+## Trigger Server Callback
 
 ### lib.callback
 
@@ -36,9 +36,11 @@ local count = lib.callback.await('ox_inventory:getItemCount', false, 'water', {t
 print(count)
 ```
 
-## Server -> Client callback
+## Register Client Callback
 
 ### lib.callback.register
+
+Register an event handler for responding to server requests.
 
 ```lua
 lib.callback.register(name, cb)
