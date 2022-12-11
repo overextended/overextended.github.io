@@ -1,4 +1,4 @@
-Uses the passed item, then triggers the callback function.
+Uses the passed item, then triggers the callback function.  
 Should be calling during item callbacks to utilise the builtin methods (server checks, progress bar, etc.).
 
 ```lua

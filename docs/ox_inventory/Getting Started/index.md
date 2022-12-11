@@ -19,8 +19,8 @@ otherwise you **should not** install this resource.
 
 ### oxmysql
 
-We utilise our own resource to communicate with MySQL databases via the node-mysql2 package.
-The backend is actively maintained and updated unlike the package used by mysql-async, providing improved performance, security, and features.
+We utilise our own resource to communicate with MySQL databases via the node-mysql2 package.  
+The backend is actively maintained and updated unlike the package used by mysql-async, providing improved performance, security, and features.  
 We provide full backwards compatibility with mysql-async and build for the current Cfx architecture.
 
 <ResourceLinks repo="https://www.github.com/overextended/oxmysql" docs="../oxmysql"></ResourceLinks>
@@ -43,7 +43,7 @@ The resources listed under here **aren't** necessary for the inventory to work b
 
 ### ox_target
 
-A performant and flexible standalone "third-eye" targeting resource.
+A performant and flexible standalone "third-eye" targeting resource.  
 Stashes, shops, and crafting benches will be accessible via zone targets instead of using markers.
 
 <ResourceLinks repo="https://www.github.com/overextended/ox_target" docs="../ox_target"></ResourceLinks>
@@ -60,7 +60,7 @@ The inventory will handle disabling the phone when the player has no item, and s
 
 ### Production Build
 
-The user interface included with the source code must be compiled.
+The user interface included with the source code must be compiled.  
 You can compile it yourself by following the [build guide](./Guides/inventory_ui), otherwise download a production build below.
 
 <ResourceLinks repo="https://github.com/overextended/ox_inventory/releases/latest"></ResourceLinks>

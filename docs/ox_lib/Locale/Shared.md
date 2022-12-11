@@ -1,4 +1,4 @@
-Allows servers to set a preferred language and attempt to load locale files in any resources using the module.
+Allows servers to set a preferred language and attempt to load locale files in any resources using the module.  
 Locale files should use the [ISO Language Code](http://www.lingoes.net/en/translator/langcode.htm) and be saved as `./locales/langcode.json`
 
 To change the preferred language from English, add the convar to your server.cfg

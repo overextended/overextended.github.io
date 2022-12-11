@@ -1,6 +1,6 @@
 # Prepare
 
-The only function that provides true [prepared statements](https://github.com/sidorares/node-mysql2#using-prepared-statements), granting native protection and query planning by MySQL.
+The only function that provides true [prepared statements](https://github.com/sidorares/node-mysql2#using-prepared-statements), granting native protection and query planning by MySQL.  
 Prepare can be used to execute frequently called queries faster and accepts multiple sets of parameters to be used with a single query.
 
 - Date will not return the datestring commonly used in FiveM

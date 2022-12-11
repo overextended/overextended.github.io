@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 
 ox_lib is a collection of Lua and UI functions to utilise in other resources.
 
-The UI is built in React so the code needs to be compiled into standard JS.
+The UI is built in React so the code needs to be compiled into standard JS.  
 If you don't know how to do this then please download the [release](https://github.com/overextended/ox_lib/releases/latest) (ox_lib.zip) which is *already* compiled into a working resource.
 
 <Tabs>
@@ -40,9 +40,8 @@ All supported functions are located inside the `resource` folder in the lib.
 
 You can get the npm package [here](https://npmjs.com/package/@overextended/ox_lib).
 
-**Usage:**
-You can either import the whole library object which contains all the functions for that scope (client/server/shared) or
-you can deconstruct it and import the functions you find needed at the time.
+**Usage:**  
+You can either import the whole library object which contains all the functions for that scope (client/server/shared) or you can deconstruct it and import the functions you find needed at the time.
 
 ```ts
 import lib from '@overextended/ox_lib/server'
@@ -64,17 +63,13 @@ add_ace resource.ox_lib command.add_principal allow
 add_ace resource.ox_lib command.remove_principal allow
 ```
 
-That's it!
-You can now use the library functions inside of your resource, check the rest of the
-documentation to see how to utilise them.
+That's it!  
+You can now use the library functions inside of your resource, check the rest of the documentation to see how to utilise them.
 
 ## Using icons for interface functions
 
-The icon library used is Font Awesome 6.0, if for the icon you define only a string
-the default icon type will be `solid`.
-If you want to use a different icon type, i.e
-apple as a brand, you need to define icon as a table (`array`) with the first value being
-the icon type (`fas`, `far`, `fab`) as a string, and the second being the icon name.
+The icon library used is Font Awesome 6.0, if for the icon you define only a string the default icon type will be `solid`.  
+If you want to use a different icon type, i.e apple as a brand, you need to define icon as a table (`array`) with the first value being the icon type (`fas`, `far`, `fab`) as a string, and the second being the icon name.
 
 <Tabs>
 <TabItem value='Lua'>
@@ -95,8 +90,7 @@ icon: ['fab', 'apple']
 
 ## Building the UI
 
-If you wish to edit any of the UI elements you will need to download the *source* code, edit what you need and then
-compile it.
+If you wish to edit any of the UI elements you will need to download the *source* code, edit what you need and then compile it.
 
 :::danger
 

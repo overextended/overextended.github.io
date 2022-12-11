@@ -1,6 +1,6 @@
 ## Submit logs to Datadog
 
-Register an account with [datadog](https://www.datadoghq.com/). Once registered you need to create an [API key](https://app.datadoghq.com/organization-settings/api-keys).
+Register an account with [datadog](https://www.datadoghq.com/). Once registered you need to create an [API key](https://app.datadoghq.com/organization-settings/api-keys).  
 Modify your `server.cfg` with the newly generated API key and [intake server](https://docs.datadoghq.com/api/latest/logs/#send-logs).
 
 - datadoghq.com
@@ -22,8 +22,8 @@ lib.logger(source, event, message, ...)
 - message: `string`
 - ...: `string`
 
-Source is passed to `ddsource` and creates a tag. Could be playerId, identifier, -1, or server.
-Event is passed to `ddservice` and displays in the logs list.
+Source is passed to `ddsource` and creates a tag. Could be playerId, identifier, -1, or server.  
+Event is passed to `ddservice` and displays in the logs list.  
 Additional arguments are converted into tags for additional filtering and search options.
 
 ```lua

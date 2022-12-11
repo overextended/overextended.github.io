@@ -58,21 +58,15 @@ lib.inputDialog(heading, rows)
   * step?: `number`
     * Amount of change per slider step. Used only with `'slider'` type.
 
-The callback data is promise based meaning that the thread will
-not continue executing until the user either sends the data
-or exits the popup.
+The callback data is promise based meaning that the thread will not continue executing until the user either sends the data or exits the popup.
 
-The data returned will be a table (array), indexes represent the rows
-sent to the dialog, so if we want data from the first field that
-would be index `1` (`0`), if we want data from the third field, that would
-be index `3` (`2`), etc...
+The data returned will be a table (array), indexes represent the rows sent to the dialog, so if we want data from the first field that would be index `1` (`0`), if we want data from the third field, that would be index `3` (`2`), etc...
 
-The standard input rows will always return a string, if you want a row to be of
-number data type, you can use set the `type` to `number`.
+The standard input rows will always return a string, if you want a row to be of number data type, you can use set the `type` to `number`.
 
 If a user left an input field empty it will return `nil`.
 
-You can also add checkboxes that will return `true` if checked and `nil` if unchecked.
+You can also add checkboxes that will return `true` if checked and `nil` if unchecked.  
 Look at the *Advanced* example for it's usage.
 
 :::caution

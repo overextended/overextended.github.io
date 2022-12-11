@@ -77,10 +77,8 @@ lib.registerContext(context)
 You can register as many context menus in one `lib.registerContext` function
 as you'd like.
 
-The menu can be either in the order you write it in, or sorted alphabetically.
-To sort the menu alphabetically the buttons (and/or metadata) need to be defined as keys,
-otherwise not using keys and instead using tables will make the menu be in the order you
-define it as.
+The menu can be either in the order you write it in, or sorted alphabetically.  
+To sort the menu alphabetically the buttons (and/or metadata) need to be defined as keys, otherwise not using keys and instead using tables will make the menu be in the order you define it as.
 
 ### lib.showContext
 
@@ -283,8 +281,7 @@ RegisterCommand('testcontext', () => {
 </TabItem>
 </Tabs>
 
-To trigger the event from the `Event button` and get it's data we first
-need to register the event properly:
+To trigger the event from the `Event button` and get it's data we first need to register the event properly:
 
 <Tabs>
 <TabItem value='Lua'>
@@ -337,19 +334,15 @@ onNet('some_event', () => {
 </TabItem>
 </Tabs>
 
-The data from the `args` table in the menu is passed as a first argument to
-the event you register, in this case that argument is called `data`.
+The data from the `args` table in the menu is passed as a first argument to the event you register, in this case that argument is called `data`.
 
 Using this event we also register a new context menu with it's own options.
 
-By defining a `menu` param to be the id of the first menu we can get the
-neat back arrow button next to the menu title that will take us back.
+By defining a `menu` param to be the id of the first menu we can get the neat back arrow button next to the menu title that will take us back.
 
-If we have a button that does not define either event, serverEvent or menu
-the button will do nothing upon being clicked.
+If we have a button that does not define either event, serverEvent or menu the button will do nothing upon being clicked.
 
-Of course just registering the event won't do much so we need to display it
-with the `lib.showContext` function, passing in the menu's id.
+Of course just registering the event won't do much so we need to display it with the `lib.showContext` function, passing in the menu's id.
 
 ![menu_example](https://i.imgur.com/aJu92dv.png)
 ![metadata](https://i.imgur.com/kFGSlBF.png)

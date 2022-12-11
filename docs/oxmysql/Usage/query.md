@@ -1,6 +1,6 @@
 # Query
 
-Generic function that can be utilised for any query.
+Generic function that can be utilised for any query.  
 When selecting data it will return all matching rows and columns, otherwise it will return field data such as insertid, affectedRows, etc.
 
 ## Lua

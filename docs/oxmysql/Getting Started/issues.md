@@ -4,7 +4,7 @@
 
 This is usually the result of incorrect database settings or your password containing reserved characters (`; , / ? : @ & = + $ #`).
 :::tip Solution
-Ensure you have entered the correct database settings in the mysql_connection_string convar.
+Ensure you have entered the correct database settings in the mysql_connection_string convar.  
 You can try using the semicolon-separated format if your password contains reserved characters.
 :::
 

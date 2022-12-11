@@ -43,7 +43,7 @@ import { oxmysql as MySQL } from '@overextended/oxmysql';
 
 ## Placeholders
 
-Safely format queries by using placeholders in the query, and sending arguments in an array or object.
+Safely format queries by using placeholders in the query, and sending arguments in an array or object.  
 Named placeholders are not recommended, and unsupported when using MySQL.prepare.
 
 ```lua
@@ -59,5 +59,5 @@ When uncertain if a row should be inserted into the database, or an existing row
 MySQL.prepare('INSERT INTO ox_inventory (owner, name, data) VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE data = VALUES(data)', { owner, dbId, inventory })
 ```
 
-This is preferred over checking the existence of a row, then inserting or updating depending on the result.
+This is preferred over checking the existence of a row, then inserting or updating depending on the result.  
 Furthermore, unlike using 'REPLACE INTO', the row is not deleted and re-inserted.

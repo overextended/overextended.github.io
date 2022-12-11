@@ -5,7 +5,7 @@ title: Alert Dialog
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-Simple alert dialog that can display a message to the player.
+Simple alert dialog that can display a message to the player.  
 Returns whether the player pressed the confirm button or canceled the dialog.
 
 ### lib.alertDialog

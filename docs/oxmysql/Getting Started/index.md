@@ -26,8 +26,8 @@ XAMPP is not a database, and should not be used solely to start your MySQL/Maria
 
 ## Configuration
 
-You can change the configuration settings by using convars inside your `server.cfg`.
-Reference the following for an idea of how to set your connection options.
+You can change the configuration settings by using convars inside your `server.cfg`.  
+Reference the following for an idea of how to set your connection options.  
 You must include one of the following lines, adjusted for your connection and database settings.
 
 :::caution
@@ -40,7 +40,7 @@ set mysql_connection_string "mysql://root:12345@localhost:3306/es_extended?chars
 set mysql_connection_string "user=root;password=12345;host=localhost;port=3306;database=es_extended;charset=utf8mb4"
 ```
 
-Certain special characters are reserved or blocked and may cause issues when used in your password.
+Certain special characters are reserved or blocked and may cause issues when used in your password.  
 For more optional settings (such as multiple statements) you can reference [pool.d.ts](https://github.com/sidorares/node-mysql2/blob/master/typings/mysql/lib/Pool.d.ts#L10) and [connection.d.ts](https://github.com/sidorares/node-mysql2/blob/master/typings/mysql/lib/Connection.d.ts#L8).
 
 You can also add the following convars if you require extra information when testing queries.
@@ -76,17 +76,16 @@ Before using the UI first you have to make sure you have the `mysql_ui` convar s
 set mysql_ui true
 ```
 
-Also make sure that you have `command` ace permission access, then you should be able to use the
-`mysql` command in game to open up the UI and see your query data.
+Also make sure that you have `command` ace permission access, then you should be able to use the `mysql` command in game to open up the UI and see your query data.
 
 ## Compatibility
 
-You shouldn't run multiple mysql resources to ensure the best experience.
+You shouldn't run multiple mysql resources to ensure the best experience.  
 The resources listed below can be deleted to allow oxmysql to handle the events, without any changes.
 
 ### mysql-async
 
-Standard API for mysql-async uses `server_script '@mysql-async/lib/MySQL.lua'`.
+Standard API for mysql-async uses `server_script '@mysql-async/lib/MySQL.lua'`.  
 Raw exports, mostly used in resources written in JavaScript or C#, are _not supported_.
 
 ### ghmattimysql
