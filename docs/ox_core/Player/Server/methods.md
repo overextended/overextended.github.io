@@ -19,19 +19,6 @@ player.set(key, value, replicated)
 - value: `any`
 - replicated?: `boolean`
 
-## player.setdb
-
-Update the player's metadata and store in the DB, optionally syncing it with the client.  
-Note: These values are not synced to the client on login; you will need to use `player.set`.
-
-```lua
-player.setdb(key, value, replicated)
-```
-
-- key: `string`
-- value: `string | number | table | boolean`
-- replicated?: `boolean`
-
 ## player.get
 
 Get a value from the player's metadata, or omit the argument to get all metadata.
