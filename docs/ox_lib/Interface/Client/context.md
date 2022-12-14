@@ -31,7 +31,7 @@ lib.registerContext(context)
 * id: `string`
   * Unique menu identifier, will be used to open the menu.
 * title: `string`
-  * Title display in the menu.
+  * Title display in the menu; has markdown support.
 * menu?: `string`
   * Menu identifier - if defined there will be a back arrow next to the menu title that will take you to the menu you defined.
 * canClose: `boolean`
@@ -43,7 +43,7 @@ lib.registerContext(context)
 * options: `table` (`object` or `array`)
   * item: `key` (`string`) or `table` (`object`)
     * title?: `string`
-      * If not using keys then sets the title for the button.
+      * If not using keys then sets the title for the button; has markdown support.
     * disabled?: `boolean`
       * Grays out the button and makes it unclickable.
     * menu?: `string`
@@ -62,7 +62,7 @@ lib.registerContext(context)
     * arrow?: `boolean`
       * Shows an arrow on the right side like `menu` does, useful when you are opening a menu from an event. Can be set to false to hide it.
     * description?: `string`
-      * Description that will appear under the button title that is defined as a key.
+      * Description that will appear under the button title that is defined as a key; has markdown support.
     * image?: `string`
       * Url to an image that will be displayed in the button's metadata.
     * metadata?: `string[]` or `object` or `array`
