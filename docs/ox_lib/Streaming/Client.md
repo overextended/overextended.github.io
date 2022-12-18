@@ -128,3 +128,28 @@ lib.requestNamedPtfxAsset(fxName, timeout)
 * fxName: `string`
 * timeout: `number`
   * Default: `100`
+
+### lib.requestScaleformMovie
+
+<Tabs>
+<TabItem value='Lua'>
+
+```lua
+lib.requestScaleformMovie(scaleformMovie, timeout)
+```
+
+</TabItem>
+<TabItem value='JS/TS'>
+
+```ts
+import lib from '@overextended/ox_lib/client'
+
+lib.requestScaleformMovie(scaleformMovie, timeout)
+```
+
+</TabItem>
+</Tabs>
+
+* dict: `string`
+* timeout: `number`
+  * Default: `100`
