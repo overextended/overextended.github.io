@@ -12,6 +12,15 @@ local vehicle = Ox.GetVehicle(entity)
 print(json.encode(vehicle, { indent = true }))
 ```
 
+## Ox.GetVehicleFromNetId
+
+Return an instance of CVehicle for the given entity, this time using it's netId.
+
+```lua
+local vehicle = Ox.GetVehicleFromNetId(netId)
+print(json.encode(vehicle, { indent = true }))
+```
+
 ## Ox.GetVehicles
 
 Returns an array containing all vehicles. Methods will not be applied if the first argument is false.
