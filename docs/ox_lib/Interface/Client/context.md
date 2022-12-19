@@ -51,7 +51,7 @@ lib.registerContext(context)
     * onSelect: `function`
       * Function that's ran when the button is clicked.
     * icon?: `string`
-      * FontAwesome icon that will be displayed on the left side, works the same as notification and textui icons.
+      * FontAwesome icon that will be displayed on the left side, works the same as notification and textui icons. Remove any prefixes like `fas` or `fa` and just use the icon name.
     * iconColor?: `string`
       * Colour of the displayed icon.
     * progress?: `number`
