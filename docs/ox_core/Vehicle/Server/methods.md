@@ -45,6 +45,10 @@ vehicle.getCoords()
 
 Despawns the vehicle but doesn't save it or update the stored value.
 
+```lua
+vehicle.despawn()
+```
+
 ## vehicle.delete
 
 Remove the vehicle from the database and despawns the entity.
