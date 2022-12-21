@@ -33,7 +33,7 @@ lib.notify(data)
 * title?: `string`
   * Must provide if there is no description
 * description?: `string`
-  * Must provide if there is no title
+  * Must provide if there is no title; has markdown support.
 * duration?: `number`
 * position?: `'top'` or `'top-right'` or `'top-left'` or `'bottom'` or `'bottom-right'` or `'bottom-left'`
   * Default: `'top-right'`
