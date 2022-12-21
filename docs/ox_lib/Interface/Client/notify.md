@@ -152,6 +152,7 @@ lib.defaultNotify(data)
 * description?: `string`
 * duration?: `number`
 * position?: `'top'` or `'top-right'` or `'top-left'` or `'bottom'` or `'bottom-right'` or `'bottom-left'`
+* variant?: `'solid'` or `'subtle'` or `'left-accent'` or `'top-accent'`
 * status?: `'info'` or `'warning'` or `'success'` or `'error'`
 
 ### Usage Example
@@ -163,6 +164,7 @@ lib.defaultNotify(data)
 lib.defaultNotify({
     title = 'Notification title',
     description = 'Notification description',
+    variant = 'left-accent',
     status = 'success'
 })
 ```
