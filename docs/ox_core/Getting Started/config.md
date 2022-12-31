@@ -14,4 +14,7 @@ setr ox:debug 0
 
 # Disable death system handle by core.
 setr ox:deathSystem 0
+
+# Disable the spawn selection.
+setr ox:spawnSelect 0
 ```
