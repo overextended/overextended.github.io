@@ -26,6 +26,9 @@ setr inventory:slots 50
 # Maximum carry capacity for players, in grams (will be automatically converted to kilograms in-game)
 setr inventory:weight 30000
 
+# Drops will show a prop rather than a marker
+setr inventory:dropprops 0
+
 # Weapons will reload after reaching 0 ammo
 setr inventory:autoreload false
 
