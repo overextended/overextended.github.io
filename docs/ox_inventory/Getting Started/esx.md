@@ -20,7 +20,7 @@ Ox Inventory is a complete replacement for existing item, inventory, and weapon 
 start oxmysql
 start ox_lib
 start es_extended
-start qtarget
+start ox_target
 start ox_inventory
 ```
 
