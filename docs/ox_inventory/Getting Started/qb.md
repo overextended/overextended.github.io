@@ -12,6 +12,13 @@ Ox Inventory provides a complete suite of tools to replace the built-in items an
 
 - Use the latest source code of [qb-core](https://github.com/qbcore-framework/qb-core).
 - Modify your `server.cfg`, starting ox_inventory immediately after qb-core.
+```yaml
+start oxmysql
+start ox_lib
+start qb-core
+start ox_target
+start ox_inventory
+```
 - To disable the weapon animation of qb-smallresources, use the latest source code of [qb-smallresources](https://github.com/qbcore-framework/qb-smallresources) (it will only disable if qb-inventory is **not** present inside the resources folder)
 
 ### Convert QBCore
