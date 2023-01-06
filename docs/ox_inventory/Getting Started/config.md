@@ -14,33 +14,34 @@ Convars **must** be set before starting ox_inventory.
 The values below are _defaults_ and should not be explicitly set unless changing the value.
 
 ```yaml
+### Shared
+
 # Activate specific event handlers and functions (supported: ox, esx, qb, nd)
 setr inventory:framework "esx"
-
-# Load specific language file from data/locales
-setr ox:locale "en"
 
 # Number of slots for player inventories
 setr inventory:slots 50
 
-# Maximum carry capacity for players, in grams (will be automatically converted to kilograms in-game)
+# Maximum carry capacity for players, in grams (frameworks may override this)
 setr inventory:weight 30000
-
-# Weapons will reload after reaching 0 ammo
-setr inventory:autoreload false
-
-# Weapons must be aimed before shooting
-setr inventory:aimedfiring false
-
-# Blur the screen while accessing the inventory
-setr inventory:screenblur true
-
-# Trim whitespace from vehicle plates when checking owned vehicles
-setr inventory:trimplate true
 
 # Integrated support for qtarget/ox_target stashes, shops, etc
 # Note: qtarget is deprecated, a future update may drop support (ox_target only, or gated features)
 setr inventory:target false
+
+# Jobs with access to police armoury, evidence lockers, etc
+setr inventory:police ["police", "sheriff"]
+
+### Client
+
+# The URL to load item images from
+setr inventory:imagepath "nui://ox_inventory/web/images"
+
+# Weapons will reload after reaching 0 ammo
+setr inventory:autoreload false
+
+# Blur the screen while accessing the inventory
+setr inventory:screenblur true
 
 # Default hotkeys to access primary and secondary inventories, and hotbar
 setr inventory:keys ["F2", "K", "TAB"]
@@ -48,14 +49,32 @@ setr inventory:keys ["F2", "K", "TAB"]
 # Enable control action when inventory is open
 setr inventory:enablekeys [249]
 
+# Weapons must be aimed before shooting
+setr inventory:aimedfiring false
+
 # Show a list of all nearby players when giving items
 setr inventory:giveplayerlist true
 
-# Jobs with access to police armoury, evidence lockers, etc
-setr inventory:police ["police", "sheriff"]
+# Toggle weapon draw/holster animations
+setr inventory:weaponanims true
 
-# The URL to load item images from
-setr inventory:imagepath "nui://ox_inventory/web/images"
+# Toggle item notifications (add/remove)
+setr inventory:itemnotify true
+
+# Disable drop markers and spawn a prop instead
+setr inventory:dropprops true
+
+
+### Server
+
+# Compare current version to latest release on GitHub
+set inventory:versioncheck true
+
+# Stashes will be wiped after remaining unchanged for the given time
+set inventory:clearstashes "6 MONTH"
+
+# Discord webhook url, used for imageurl metadata content moderation (image embeds)
+set inventory:webhook ""
 
 # Logging via ox_lib (0: Disable, 1: Standard, 2: Include AddItem/RemoveItem, and all shop purchases)
 set inventory:loglevel 1
@@ -63,17 +82,14 @@ set inventory:loglevel 1
 # Item prices fluctuate in shops
 set inventory:randomprices true
 
-# Compare current version to latest release on GitHub
-set inventory:versioncheck true
-
 # Loot will randomly generate inside unowned vehicles and dumpsters
 set inventory:randomloot true
 
 # Minimum job grade to remove items from evidence lockers
 set inventory:evidencegrade 2
 
-# Stashes will be wiped after remaining unchanged for the given time
-set inventory:clearstashes "6 MONTH"
+# Trim whitespace from vehicle plates when checking owned vehicles
+setr inventory:trimplate true
 
 # Set the contents of randomly generated inventories
 # [item name, minimum, maximum, loot chance]
@@ -93,13 +109,4 @@ set inventory:dumpsterloot [
     ["money", 1, 10],
     ["burger", 1, 1]
 ]
-
-# Set datadog API key for inventory logging (https://app.datadoghq.com/organization-settings/api-keys)
-set datadog:key ""
-
-# Set server intake (https://docs.datadoghq.com/api/latest/logs/#send-logs)
-set datadog:site "datadoghq.com"
-
-# Set server hostname
-set datadog:hostname "FXServer"
 ```
