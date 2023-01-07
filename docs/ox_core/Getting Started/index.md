@@ -10,8 +10,8 @@ import TabItem from '@theme/TabItem';
 
 :::caution
 
-This resource is **not production ready**. Breaking changes are guaranteed, and support is limited.  
-Documentation may fall behind and be rendered obsolete.
+This resource is does not have a stable (v1.0) release; breaking changes are likely.  
+Documentation may not be kept updated in some cases.
 
 :::
 
