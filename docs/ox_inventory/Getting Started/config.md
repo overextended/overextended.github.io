@@ -19,6 +19,9 @@ The values below are _defaults_ and should not be explicitly set unless changing
 # Activate specific event handlers and functions (supported: ox, esx, qb, nd)
 setr inventory:framework "esx"
 
+# Load specific language file from data/locales (applies to most ox scripts)
+setr ox:locale "en"
+
 # Number of slots for player inventories
 setr inventory:slots 50
 
