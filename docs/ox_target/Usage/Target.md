@@ -1,3 +1,12 @@
+# disableTargeting
+
+Toggles the state on being able to target. true/false
+
+```lua
+exports.ox_target:disableTargeting(state)
+```
+
+
 ```lua
 local options = {
     {
