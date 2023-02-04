@@ -1,12 +1,3 @@
-# disableTargeting
-
-Toggles the state on being able to target. true/false
-
-```lua
-exports.ox_target:disableTargeting(state)
-```
-
-
 ```lua
 local options = {
     {
@@ -31,6 +22,14 @@ local options = {
 
 local models = { `prop_atm_01`, `prop_atm_02` }
 local optionsNames = { 'ox:option1', 'ox:option2' }
+```
+
+## disableTargeting
+
+Toggles the state on being able to target. true/false
+
+```lua
+exports.ox_target:disableTargeting(state)
 ```
 
 ## addModel
