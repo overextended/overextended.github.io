@@ -35,7 +35,7 @@ AddEventHandler('ox:statusTick', function(statuses) end)
 Triggered when the player's grade in a group is modified on the server with `player.setGroup`.
 
 ```lua
-RegisterNetEvent('ox:setGroup', function(source, group, grade) end)
+RegisterNetEvent('ox:setGroup', function(group, grade) end)
 ```
 
 ### ox:licenseAdded
