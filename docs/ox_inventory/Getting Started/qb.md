@@ -1,18 +1,34 @@
 # QBCore
 
+:::warning
+
+QBCore support is experimental and cannot work as a "drag and drop" solution due to many incompatibilities.
+:::
+
 ## Compatibility
 
 Ox Inventory provides a complete suite of tools to replace the built-in items and inventory system from QBCore, and is not intended to be used with resources designed around it.
 
-- Stashes from resources such as qb-policejob, qb-ambulancejob, etc. should be removed, they are not compatible
-- qb-inventory should be removed for optimal compatibility, if you didn't remove it, qb-core will not function properly and will show errors.
-- qb-shops and qb-weapons automatically get stopped by Ox Inventory, so you don't have to worry about those, just don't start them manually after as they will conflict.
+- Stashes used by qb-inventory and its forks do not work, but can _possibly_ be converted.
+- Remove `qb-inventory` (or similar), or qb-core will not function properly.
+- Remove `qb-shops` and `qb-weapons`, as they depend on `qb-inventory` and conflict.
+- Weapon holstering and draw animations (like in `qb-smallresources`) may break our own methods.
+
+## Qbox Project
+
+Qbox is a fork of QBCore being developed by a team of former contributors and developers on QBCore. The team is focused on improving performance and security, as well as converting resources to support our resources (mainly ox_lib and ox_inventory).
+
+We _strongly_ advise using Qbox as an alternative to QBCore.
+
+- [Qbox Project GitHub](https://github.com/Qbox-project/)
+- [Qbox Project Discord](https://discord.gg/AtbwBuJHN5)
 
 ## Installation
 
-- Use the latest source code of [qb-core](https://github.com/qbcore-framework/qb-core).
-- Modify your `server.cfg`, starting ox_inventory immediately after qb-core.
-- To disable the weapon animation of qb-smallresources, use the latest source code of [qb-smallresources](https://github.com/qbcore-framework/qb-smallresources) (it will only disable if qb-inventory is **not** present inside the resources folder)
+- Setup [qb-core](https://github.com/qbcore-framework) or [qbox](https://github.com/Qbox-project/qb-core).
+- Edit your `server.cfg`.
+  - Add `setr inventory:framework "qb"` before starting your resources.
+  - Start ox_inventory immediately after qb-core.
 
 ### Convert QBCore
 
@@ -23,7 +39,7 @@ If you have existing player data, you will need to convert it to a compatible fo
 
 ## Optional optimisation
 
-All item related functions from Player, such as `xPlayer.Functions.GetItemByName`, have been modified for compatibility purposes; however they are considered deprecated.
+All item related functions from Player, such as `Player.Functions.GetItemByName`, have been modified for compatibility purposes; however they are considered deprecated.
 
 The reasoning is fairly simple - there's now additional function references and overhead to consider. Fortunately, the new Inventory functions can be used directly and offer a great deal of improvements over the old ones.
 
