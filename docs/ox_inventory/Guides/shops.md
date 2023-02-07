@@ -24,6 +24,7 @@ Builtin shops are defined in [data/shops.lua](https://github.com/overextended/ox
             vec3(25.7, -1347.3, 29.49),
         },
         targets = {
+            -- Shop using a BoxZone
             {
                 loc = vec3(25.06, -1347.32, 29.5),
                 length = 0.7,
@@ -32,6 +33,13 @@ Builtin shops are defined in [data/shops.lua](https://github.com/overextended/ox
                 minZ = 29.5,
                 maxZ = 29.9,
                 distance = 1.5
+            },
+            -- Shop using a ped
+            {
+                ped = `mp_m_shopkeep_01`,
+                scenario = 'WORLD_HUMAN_AA_COFFEE',
+                loc = vec3(24.407, -1347.283, 28.497),
+                heading = 270.311,
             },
         }
     }
@@ -63,7 +71,7 @@ Builtin shops are defined in [data/shops.lua](https://github.com/overextended/ox
 - locations?: `vector3[]`
   - An array of coordinates to create unique instances of the shop archetype at, using markers.
 - targets?: `table[]`
-  - An array of BoxZone settings to create unique instances of the shop archetype at.
+  - An array of target settings to create unique instances of the shop archetype at, using peds or BoxZones (PolyZone data structure).
 - model?: `number[]`
   - An array of models that can be targetted to open a shop. Used for vending machines.
 
