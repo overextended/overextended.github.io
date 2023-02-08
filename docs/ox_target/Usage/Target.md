@@ -12,7 +12,7 @@ local options = {
         icon = 'fa-solid fa-road',
         label = 'Option 2',
         canInteract = function(entity, distance, coords, name, bone)
-            return entity and not IsEntityDead(entity)
+            return not IsEntityDead(entity)
         end
     }
 }
