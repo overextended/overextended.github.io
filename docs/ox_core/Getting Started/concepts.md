@@ -8,30 +8,30 @@ Lua doesn't have support for true classes, but rather prototype-based inheritanc
 A prototype can hold its own variables and methods, which another object (an instance) can reference or call.
 
 ```lua
--- CPlayer will hold all inherited variables and methods for instances of it.
-local CPlayer = {}
+-- OxPlayer will hold all inherited variables and methods for instances of it.
+local OxPlayer = {}
 
--- Sets the "index metamethod" of CPlayer to reference itself.
+-- Sets the "index metamethod" of OxPlayer to reference itself.
 -- This is how instances will know to look up the table.
-CPlayer.__index = CPlayer
+OxPlayer.__index = OxPlayer
 
 -- Set a new metatable on the table passed to the function.
--- The important code here is { __index = CPlayer }.
-function CPlayer.new(player)
-    return setmetatable(player, CPlayer)
+-- The important code here is { __index = OxPlayer }.
+function OxPlayer.new(player)
+    return setmetatable(player, OxPlayer)
 end
 
 -- Using the `:` syntax will pass the object as the first parameter.
-function CPlayer:getUsername()
+function OxPlayer:getUsername()
     return self.username
 end
 
--- Create our instance of CPlayer.
-local player = CPlayer.new({
+-- Create our instance of OxPlayer.
+local player = OxPlayer.new({
     username = 'Bob the Builder'
 })
 
--- This is the same as CPlayer.getUsername(player).
+-- This is the same as OxPlayer.getUsername(player).
 local username = player:getUsername()
 
 -- 'Bob the Builder'

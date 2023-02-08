@@ -32,5 +32,7 @@ lib.callback.await('ox:getLicense', delay, licenseName, targetId)
 lib.callback.register('ox:getNearbyVehicles', function(radius)
 ```
 
-- radius: `number`
-  - Radius
+Returns an array of vehicle netids within a given radius of the player's location.
+
+- radius?: `number`
+  - The radius from the player's location to return vehicles.
