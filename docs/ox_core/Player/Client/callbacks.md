@@ -26,7 +26,7 @@ lib.callback.await('ox:getLicense', delay, licenseName, targetId)
 - targetId?: `number`
   - The server id to get license data for, defaulting to the current player.
 
-### ox:getLicense
+### ox:getNearbyVehicles
 
 ```lua
 lib.callback.register('ox:getNearbyVehicles', function(radius)
