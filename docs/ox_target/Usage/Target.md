@@ -5,9 +5,6 @@ local options = {
         event = 'ox_target:debug',
         icon = 'fa-solid fa-road',
         label = 'Option 1',
-        canInteract = function(entity, distance, coords, name, bone)
-            return math.random(0, 100) < 51
-        end
     },
     {
         name = 'ox:option2',
@@ -15,7 +12,7 @@ local options = {
         icon = 'fa-solid fa-road',
         label = 'Option 2',
         canInteract = function(entity, distance, coords, name, bone)
-            return math.random(0, 100) < 51
+            return entity and not IsEntityDead(entity)
         end
     }
 }

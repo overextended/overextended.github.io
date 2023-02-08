@@ -2,29 +2,21 @@
 
 When calling exports to add options, the input is an array of tables with the following properties.
 
-```lua
-{
-    -- an identifier used when removing options
-    name? = string,
-    -- an icon from font-awesome
-    icon? = string,
-    -- display text
-    label = string,
-    -- range to display (default: 2, max: 7)
-    distance? = number,
-    -- a group, array of groups, or groups and grades needed to display
-    groups? = string | string[] | { [string]: number }
-    -- an item, array of items, or items and counts needed to display
-    items? = string | string[] | { [string]: number }
-    -- a bone, bones table to select specific parts
-    bones? = string | string[] -> example : 'bonnet' || { 'bonnet', 'boot' }
-    -- custom check to hide or display the option
-    canInteract? = function(entity, distance, coords, name, bone),
-    -- triggered on option selection (one only)
-    onSelect? = function(data),
-    export? = string,
-    event? = string,
-    serverEvent? = string,
-    command? = string
-}
-```
+- label: `string` Display text.
+- name?: `string` Used as an identifier to remove the option.
+- icon?: `string` Name of a [Font Awesome](https://fontawesome.com/icons) icon.
+- iconColor?: `string`
+- distance?: `number`
+- bones?: `string` | `string[]` A bone name or array of bone names.
+  - Refer to [GetEntityBoneIndexByName](https://docs.fivem.net/natives/?_0xFB71170B7E76ACBA).
+- groups?: `string` | `string[]` | `table<string, number>` A group, array of groups, or pairs of groups-grades required to show the option.
+  - Groups are framework dependent, and may refer to jobs, gangs, etc.
+- items?: `string` | `string[]` | `table<string, number`>` An item, array of items, or pairs of items-count required to show the option.
+  - Items are framework dependent.
+- canInteract?: `function(entity, distance, coords, name, bone)` Check if the option should display or be hidden.
+  - Do not use this function to "return true". Options will always display if this is undefined.
+- onSelect?: `function(data)`
+- export?: `string`
+- event?: `string`
+- serverEvent?: `string`
+- command?: `string`
