@@ -17,6 +17,8 @@ exports.ox_inventory:RegisterStash(properties)
     - `{['police'] = 0, ['ambulance'] = 2}`
   - coords?: `vector3`
     - Stash can only be accessed while nearby.
+  - items?: `table<string>`
+    - A table of items that the stash will contain.
 
 Return:
 - inventoryId: `string`
