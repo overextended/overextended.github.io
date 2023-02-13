@@ -1,8 +1,8 @@
 # Event Hooks
 
-## registerHook
-
 Event hooks allow 3rd party resources to define new behaviour without modifying the inventory code directly.
+
+## registerHook
 
 ```lua
 exports.ox_inventory:registerHook(eventName, function(payload) end, options)
