@@ -5,7 +5,7 @@ sidebar_position: 1
 
 ## Ox.GetVehicle
 
-Return an instance of CVehicle for the given entity.
+Return an instance of OxVehicle for the given entity.
 
 ```lua
 local vehicle = Ox.GetVehicle(entity)
@@ -27,7 +27,7 @@ end
 
 ## Ox.CreateVehicle
 
-Spawns a vehicle and returns the instance of CVehicle.  
+Spawns a vehicle and returns the instance of OxVehicle.  
 If the first argument is a number, it will attempt to spawn a vehicle from the database with a matching id.
 
 ```lua

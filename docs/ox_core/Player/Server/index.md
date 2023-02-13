@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 
 ## Ox.GetPlayer
 
-Return an instance of CPlayer for the given player source.
+Return an instance of OxPlayer for the given player source.
 <Tabs>
 <TabItem value='lua' label='Lua'>
 
@@ -32,7 +32,7 @@ console.log(JSON.stringify(player));
 
 ## Ox.GetPlayerByFilter
 
-Return the first CPlayer that matches the filter properties.
+Return the first OxPlayer that matches the filter properties.
 <Tabs>
 <TabItem value='lua' label='Lua'>
 

@@ -25,3 +25,14 @@ lib.callback.await('ox:getLicense', delay, licenseName, targetId)
   - The name of the license to get data for. Can be omitted to return all licenses.
 - targetId?: `number`
   - The server id to get license data for, defaulting to the current player.
+
+### ox:getNearbyVehicles
+
+```lua
+lib.callback.register('ox:getNearbyVehicles', function(radius)
+```
+
+Returns an array of vehicle netids within a given radius of the player's location.
+
+- radius?: `number`
+  - The radius from the player's location to return vehicles.
