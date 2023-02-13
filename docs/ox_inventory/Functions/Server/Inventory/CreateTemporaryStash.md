@@ -1,3 +1,5 @@
+# CreateTemporaryStash
+
 Creates a temporary stash which will be removed after some time.
 
 ```lua
@@ -17,6 +19,25 @@ exports.ox_inventory:RegisterStash(properties)
     - `{['police'] = 0, ['ambulance'] = 2}`
   - coords?: `vector3`
     - Stash can only be accessed while nearby.
+  - items?: `{ [number]: string, [number]: number, [number]?: table }[]`
+    - An array of tables, containing a sequence of itemName, count, metadata.
 
 Return:
 - inventoryId: `string`
+
+**Example**
+
+```lua
+local mystash = exports.ox_inventory:CreateTemporaryStash({
+    label = 'mystash',
+    slots = 5,
+    maxWeight = 5000,
+    items = {
+        { 'WEAPON_MINISMG', 1 },
+        { 'ammo-9', 69 },
+        { 'water', 2, { label = 'Mineral water' } }
+    }
+})
+
+TriggerClientEvent('ox_inventory:openInventory', 1, 'stash', mystash)
+```
