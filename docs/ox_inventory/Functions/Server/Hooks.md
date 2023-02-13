@@ -144,13 +144,45 @@ local hookId = exports.ox_inventory:registerHook('buyItem', function(payload)
     return false
 end, {
     print = true,
-	  typeFilter = {
-		  General = true
+    itemFilter = {
+        water = true
 	  },
 })
+
 ```
 
 Prevents players from purchasing items at General stores.
+
+### craftItem
+
+**Payload:**
+
+- source: `number`
+- benchId: `number`
+- benchIndex: `number`
+- recipe: `table`
+  - count: `number`
+  - duration: `number`
+  - ingredients: `table<string, number>`
+  - name: `string`
+  - slot: `number`
+  - weight: `number`
+- toInventory: `number`
+- toSlot: `number`
+
+**Example:**
+
+local hookId = exports.ox_inventory:registerHook('craftItem', function(payload)
+    print(json.encode(payload, { indent = true, sort_keys = true }))
+    return false
+end, {
+    print = true,
+	itemFilter = {
+		lockpick = true
+	},
+})
+
+Prevent lockpicks from being crafted by players.
 
 ## removeHooks
 
