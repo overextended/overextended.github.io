@@ -1,3 +1,7 @@
+# Event Hooks
+
+## registerHook
+
 Event hooks allow 3rd party resources to define new behaviour without modifying the inventory code directly.
 
 ```lua
@@ -20,7 +24,7 @@ Return:
 
 - hookId: `number`
 
-## swapItems
+### swapItems
 
 Triggered when moving any item from one slot to another, or when "giving" an item.  
 By returning `false`, you can cancel the action and revert the inventory state.
@@ -57,7 +61,7 @@ end, {
 
 Blacklists "water" from being moved into or from gloveboxes and trunks.
 
-## openInventory
+### openInventory
 
 **Payload:**
 
@@ -85,7 +89,7 @@ end, {
 
 Disables gloveboxes and trunks.
 
-## createItem
+### createItem
 
 **Payload:**
 
@@ -115,7 +119,7 @@ end, {
 
 Sets the label for "water" to "Mineral Water".
 
-## buyItem
+### buyItem
 
 **Payload:**
 - source: `number`
