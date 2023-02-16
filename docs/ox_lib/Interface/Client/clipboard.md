@@ -5,9 +5,16 @@ title: Clipboard
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+
+
 ### lib.setClipboard
 
 Sets the player's clipboard to the specified string value.
+
+:::caution
+
+Will not work if focus is already taken by some NUI component.
+:::
 
 <Tabs>
 <TabItem value='Lua'>
