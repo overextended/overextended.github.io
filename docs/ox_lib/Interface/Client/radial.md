@@ -5,6 +5,10 @@ title: Radial Menu
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+* Radial menu has a global menu that's by default accessed with `z` and only displays when there is at least one item.  
+* You can add and remove items from the global menu using `lib.addRadialItem` and `lib.removeRadialItem`.  
+* Use `lib.registerRadial` for creating sub menus and use the `menu` property on the items to open those sub menus.
+
 ### lib.addRadialItem
 
 Item or array of items added to the global radial menu.
@@ -33,6 +37,7 @@ lib.addRadialItem(items)
 * menu?: `string`
   * Id of a menu to open.
 * onSelect: `function`
+  * Function that's ran when a user clicks the item.
 
 ### lib.removeRadialItem
 
@@ -86,6 +91,7 @@ lib.registerRadial(radial)
   * menu?: `string`
     * Id of a menu to open.
   * onSelect?: `function`
+    * Function that's ran when a user clicks the item.
 
 ### lib.hideRadial
 
