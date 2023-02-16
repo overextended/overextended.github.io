@@ -57,8 +57,9 @@ lib.registerContext(context)
     * progress?: `number`
       * Adds a progress bar filled to this percentage
     * colorScheme?: `string`
-      * Sets the color scheme of the progress bar. Current options available are:
-        * `whiteAlpha`, `blackAlpha`, `gray`, `red`, `orange`, `yellow`, `green`, `teal`, `blue`, `cyan`, `purple`, `pink`
+      * Sets the color scheme of the progress bar. Current options can be found here:
+        * https://mantine.dev/theming/colors/#default-colors
+        * For example: `blue` or `teal`
     * arrow?: `boolean`
       * Shows an arrow on the right side like `menu` does, useful when you are opening a menu from an event. Can be set to false to hide it.
     * description?: `string`
@@ -67,6 +68,10 @@ lib.registerContext(context)
       * Url to an image that will be displayed in the button's metadata.
     * metadata?: `string[]` or `object` or `array`
       * Information that will display on the side upon hovering a button.
+      * label: `string`
+      * value: `any`
+      * progress?: `number`
+        * Display a progress bar in the metadata.
     * event?: `string`
       * Event that the button is going to trigger.
     * serverEvent?: `string`
@@ -169,182 +174,217 @@ Avoid constantly re-registering a menu that does not depend on any outside value
 
 ```lua
 lib.registerContext({
-    id = 'example_menu',
-    title = 'Example Context',
-    onExit = function()
-        print('Hello there')
-    end,
-    options = {
-        {title = 'Empty button'},
-        {
-            title = 'Example button',
-            description = 'Example button description',
-            onSelect = function(args)
-              print('Pressed the button!')
-            end,
-            metadata = {
-                {label = 'Value 1', value = 'Some value'},
-                {label = 'Value 2', value = 300},
-            }
-        },
-        {
-            title = 'Menu button',
-            menu = 'other_example_menu',
-            description = 'Takes you to another menu!',
-            metadata = {'It also has metadata support'}
-        },
-        {
-            title = 'Event button',
-            description = 'Open a menu and send event data',
-            arrow = true,
-            event = 'some_event',
-            args = {value1 = 300, value2 = 'Other value'}
-        }
+  id = 'some_menu',
+  title = 'Some context menu',
+  options = {
+    {
+      title = 'Empty button',
     },
     {
-        id = 'other_example_menu',
-        title = 'Other Context Menu',
-        menu = 'example_menu',
-        options = {
-            ['Nothing here'] = {}
-        }
+      title = 'Disabled button',
+      description = 'This button is disabled',
+      icon = 'hand',
+      disabled = true
+    },
+    {
+      title = 'Example button',
+      description = 'Example button description',
+      icon = 'circle',
+      onSelect = function()
+        print("Pressed the button!")
+      end,
+      metadata = {
+        {label = 'Value 1', value = 'Some value'},
+        {label = 'Value 2', value = 300}
+      },
+    },
+    {
+      title = 'Menu button',
+      description = 'Takes you to another menu!',
+      menu = 'other_menu',
+      icon = 'bars'
+    },
+    {
+      title = 'Event button',
+      description = 'Open a menu from the event and send event data',
+      icon = 'check',
+      event = 'test_event',
+      arrow = true,
+      args = {
+        someValue = 500
+      }
     }
+  }
 })
 ```
-
-```lua
-RegisterCommand('testcontext', function()
-    lib.showContext('example_menu')
-end)
-```
-
 </TabItem>
-<TabItem value='JS/TS'>
+
+<TabItem value="JS/TS">
 
 ```ts
 import lib from '@overextended/ox_lib/client'
-```
 
-```ts
-lib.registerContext([
-  {
-    id: 'example_menu',
-    title: 'Example Context',
-    onExit: () => {
-      console.log('Hello there');
+lib.registerContext({
+  id: 'some_menu',
+  title: 'Some context menu',
+  options: [
+    {
+      title: 'Empty button',
     },
-    options: [
-      { title: 'Empty button' },
-      {
-        title: 'Example button',
-        description: 'Example button description',
-        onSelect: (args) => {
-          console.log('Pressed the button!');
-        },
-        metadata: [
-          { label: 'Value 1', value: 'Some value' },
-          { label: 'Value 2', value: 300 },
-        ],
-      },
-      {
-        title: 'Menu button',
-        menu: 'other_example_menu',
-        description: 'Takes you to another menu!',
-        metadata: ['It also has metadata support'],
-      },
-      {
-        title: 'Event button',
-        description: 'Open a menu and send event data',
-        arrow: true,
-        event: 'some_event',
-        args: { value1: 300, value2: 'Other value' },
-      },
-    ],
-  },
-  {
-    id: 'other_example_menu',
-    title: 'Other Context Menu',
-    menu: 'example_menu',
-    options: {
-      ['Nothing here']: {},
+    {
+      title: 'Disabled button',
+      description: 'This button is disabled',
+      icon: 'hand',
+      disabled: true
     },
-  },
-]);
+    {
+      title: 'Example button',
+      description: 'Example button description',
+      icon: 'circle',
+      onSelect: () => {
+        console.log("Pressed the button!")
+      },
+      metadata: [
+        {label: 'Value 1', value: 'Some value'},
+        {label: 'Value 2', value: 300}
+      ],
+    },
+    {
+      title: 'Menu button',
+      description: 'Takes you to another menu!',
+      menu: 'other_menu',
+      icon: 'bars'
+    },
+    {
+      title: 'Event button',
+      description: 'Open a menu from the event and send event data',
+      icon: 'check',
+      event: 'test_event',
+      arrow: true,
+      args: {
+        someValue: 500
+      }
+    }
+  ]
+})
 ```
-
-```ts
-RegisterCommand('testcontext', () => {
-  lib.showContext('example_menu')
-}, false)
-```
-
 </TabItem>
 </Tabs>
 
-To trigger the event from the `Event button` and get it's data we first need to register the event properly:
+Then we can also register our second menu called `other_menu`
 
 <Tabs>
 <TabItem value='Lua'>
 
 ```lua
-RegisterNetEvent('some_event', function(data)
-    print(json.encode(data, {indent=true}))
-    lib.registerContext({
-        id = 'another_context_menu',
-        title = 'Event Menu',
-        menu = 'example_menu',
-        options = {
-            ['Menu data'] = {
-                description = 'Data from the previous menu',
-                metadata = {
-                    ['Value1'] = data.value1,
-                    ['Value2'] = data.value2
-                }
-            }
-        }
-    })
-    lib.showContext('another_context_menu')
-end)
+lib.registerContext({
+  id = 'other_menu',
+  title = 'Other context menu',
+  menu = 'some_menu',
+  onBack = function()
+    print('Went back!')
+  end,
+  options = {
+    {
+      title = 'Nothing here'
+    }
+  }
+})
 ```
-
 </TabItem>
 <TabItem value='JS/TS'>
 
 ```ts
-onNet('some_event', () => {
-  console.log(JSON.stringify(data, null, 2))
-  lib.registerContext({
-    id: 'another_context_menu',
-    title: 'Event Menu',
-    menu: 'example_menu',
-    options: {
-      ['Menu data']: {
-        description: 'Data from the previous menu',
-        metadata: {
-          ['Value1']: data.value1,
-          ['Value2']: data.value2,
-        },
-      },
-    },
-  });
-  lib.showContext('another_context_menu');
-});
+lib.registerContext({
+  id: 'other_menu',
+  title: 'Other context menu',
+  menu: 'some_menu',
+  onBack: () => {
+    console.log('Went back!')
+  },
+  options: [
+    {
+      title: 'Nothing here'
+    }
+  ]
+})
 ```
-
 </TabItem>
 </Tabs>
 
-The data from the `args` table in the menu is passed as a first argument to the event you register, in this case that argument is called `data`.
+And the event that we are going to run from the `some_menu` menu, which is going to open another menu.
+
+<Tabs>
+<TabItem value="Lua">
+
+```lua
+RegisterNetEvent('test_event', function(args)
+  lib.registerContext({
+    id = 'event_menu',
+    title = 'Event menu',
+    menu = 'some_menu',
+    options = {
+      {
+        title = 'Event value: '..args.someValue,
+      }
+    }
+  })
+
+  lib.showContext('event_menu')
+end)
+```
+</TabItem>
+
+<TabItem value="JS/TS">
+
+```ts
+onNet('test_event', (args: {someValue: number}) => {
+  lib.registerContext({
+    id:'event_menu',
+    title:'Event menu',
+    menu:'some_menu',
+    options: [
+      {
+        title: `Event value: ${args.someValue}`,
+      }
+    ]
+  })
+
+  lib.showContext('event_menu')
+})
+```
+</TabItem>
+</Tabs>
+
+
+Lastly we register a test command to show the `some_menu` menu.
+
+<Tabs>
+<TabItem value="Lua">
+
+```lua
+RegisterCommand('testcontext', function()
+  lib.showContext('some_menu')
+end)
+```
+</TabItem>
+<TabItem value="JS/TS">
+
+```ts
+RegisterCommand('testcontext', () => {
+  lib.showContext('some_menu')
+})
+```
+</TabItem>
+</Tabs>
+
+The data from the `args` table in the menu is passed as a first argument to the event you register.
 
 Using this event we also register a new context menu with it's own options.
 
-By defining a `menu` param to be the id of the first menu we can get the neat back arrow button next to the menu title that will take us back.
+By defining a `menu` param to be the id of the first menu we can get the back arrow button next to the menu title that will take us back.
 
-If we have a button that does not define either event, serverEvent or menu the button will do nothing upon being clicked.
-
-Of course just registering the event won't do much so we need to display it with the `lib.showContext` function, passing in the menu's id.
-
-![menu_example](https://i.imgur.com/aJu92dv.png)
-![metadata](https://i.imgur.com/kFGSlBF.png)
-![event_menu](https://i.imgur.com/r0Ln4VP.png)
-![example](https://i.imgur.com/dUsil3p.png)
+![menu_example](https://i.imgur.com/TkaH2P9.png)
+![metadata](https://i.imgur.com/0mMmwgi.png)
+![sub_menu](https://i.imgur.com/RbT1tKX.png)
+![event_menu](https://i.imgur.com/zjIiROj.png)
