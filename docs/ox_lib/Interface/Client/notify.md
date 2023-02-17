@@ -5,7 +5,7 @@ title: Notifications
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-## lib.notify
+### lib.notify
 
 Custom notifications with a lot of styling options.
 
@@ -33,9 +33,10 @@ lib.notify(data)
 * title?: `string`
   * Must provide if there is no description
 * description?: `string`
-  * Must provide if there is no title; has markdown support.
+  * Must provide if there is no title
+  * Markdown support
 * duration?: `number`
-* position?: `'top'` or `'top-right'` or `'top-left'` or `'bottom'` or `'bottom-right'` or `'bottom-left'`
+* position?: `'top'` or `'top-right'` or `'top-left'` or `'bottom'` or `'bottom-right'` or `'bottom-left'` or `'center-right'` or `'center-left'`
   * Default: `'top-right'`
 * type?: `'inform'` or `'error'` or `'success'`
   * Default: `'inform'`
@@ -44,6 +45,11 @@ lib.notify(data)
 * icon?: `string`
   * Font Awesome 6 icon name
 * iconColor: `string`
+
+:::caution
+
+Setting `iconColor` will get rid of the contrasted icon colour and it's circular background.
+:::
 
 ### Usage Example
 
@@ -76,7 +82,7 @@ lib.notify({
 </TabItem>
 </Tabs>
 
-![notification](https://i.imgur.com/cRxJICO.png)
+![notification](https://i.imgur.com/HFeBTLg.png)
 
 #### Custom
 
@@ -121,68 +127,4 @@ lib.notify({
 </TabItem>
 </Tabs>
 
-![custom_notification](https://i.imgur.com/0EK5APp.png)
-
-## lib.defaultNotify
-
-Default notifications provided by Chakra UI.
-
-<Tabs>
-<TabItem value='Lua'>
-
-```lua
-lib.defaultNotify(data)
-```
-
-</TabItem>
-<TabItem value='JS/TS'>
-
-```ts
-import lib from '@overextended/ox_lib/client'
-
-lib.defaultNotify(data)
-```
-
-</TabItem>
-</Tabs>
-
-* id?: `number`
-  * Same as id in `lib.notify`
-* title?: `string`
-* description?: `string`
-* duration?: `number`
-* position?: `'top'` or `'top-right'` or `'top-left'` or `'bottom'` or `'bottom-right'` or `'bottom-left'`
-* variant?: `'solid'` or `'subtle'` or `'left-accent'` or `'top-accent'`
-* status?: `'info'` or `'warning'` or `'success'` or `'error'`
-
-### Usage Example
-
-<Tabs>
-<TabItem value='Lua'>
-
-```lua
-lib.defaultNotify({
-    title = 'Notification title',
-    description = 'Notification description',
-    variant = 'left-accent',
-    status = 'success'
-})
-```
-
-</TabItem>
-<TabItem value='JS/TS'>
-
-```ts
-import lib from '@overextended/ox_lib/client'
-
-lib.defaultNotify({
-  title: 'Notification title',
-  description: 'Notification description',
-  status: 'success'
-})
-```
-
-</TabItem>
-</Tabs>
-
-![default_notification](https://i.imgur.com/EIibuY9.png)
+![custom_notification](https://i.imgur.com/wcjqIlw.png)
