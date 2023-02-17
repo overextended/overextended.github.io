@@ -5,11 +5,14 @@ title: TextUI
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-## lib.showTextUI
+### lib.showTextUI
 
 Show the TextUI window.
 
-**DO NOT** run this every tick, it's intended to be used as a toggle.
+:::danger
+
+**DO NOT** run this function every tick, it's intented to be used as a toggle.
+:::
 
 <Tabs>
 <TabItem value='Lua'>
@@ -38,9 +41,32 @@ lib.showTextUI(text, options)
   * iconColor?: `string`
   * style?: React.CSSProperties
 
+### lib.hideTextUI
+
+Hides the currently visible TextUI window
+
+<Tabs>
+<TabItem value='Lua'>
+
+```lua
+lib.hideTextUI()
+```
+
+</TabItem>
+<TabItem value='JS/TS'>
+
+```ts
+import lib from '@overextended/ox_lib/client'
+
+lib.hideTextUI()
+```
+
+</TabItem>
+</Tabs>
+
 ### Usage Example
 
-### Basic
+#### Basic
 
 <Tabs>
 <TabItem value='Lua'>
@@ -61,9 +87,9 @@ lib.showTextUI('[E] - Fuel vehicle')
 </TabItem>
 </Tabs>
 
-![basic_example](https://i.imgur.com/3ptQyAq.png)
+![basic_example](https://i.imgur.com/uZS40fD.png)
 
-### Custom styling
+#### Custom styling
 
 <Tabs>
 <TabItem value='Lua'>
@@ -100,27 +126,4 @@ lib.showTextUI('[E] - Pick apple', {
 </TabItem>
 </Tabs>
 
-![custom_example](https://i.imgur.com/gNDwPBN.png)
-
-### lib.hideTextUI
-
-Hides the currently visible TextUI window
-
-<Tabs>
-<TabItem value='Lua'>
-
-```lua
-lib.hideTextUI()
-```
-
-</TabItem>
-<TabItem value='JS/TS'>
-
-```ts
-import lib from '@overextended/ox_lib/client'
-
-lib.hideTextUI()
-```
-
-</TabItem>
-</Tabs>
+![custom_example](https://i.imgur.com/sy9lPC0.png)
