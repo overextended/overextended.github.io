@@ -135,7 +135,7 @@ else console.log('Do stuff when cancelled')
 </TabItem>
 </Tabs>
 
-![progress_bar](https://i.imgur.com/7pAwktr.png)
+![progress_bar](https://i.imgur.com/7ZJgLjl.png)
 
 ## lib.progressCircle
 
@@ -269,7 +269,7 @@ else console.log('Do stuff when cancelled')
 </TabItem>
 </Tabs>
 
-![progress_circle](https://i.imgur.com/nETRm5f.png)
+![progress_circle](https://i.imgur.com/2tLbgrW.png)
 
 ## lib.progressActive
 
