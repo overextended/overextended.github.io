@@ -13,7 +13,7 @@ Runs a skill check with the defined difficulty.
 <TabItem value='Lua'>
 
 ```lua
-lib.skillCheck(difficulty)
+lib.skillCheck(difficulty, inputs)
 ```
 
 </TabItem>
@@ -22,7 +22,7 @@ lib.skillCheck(difficulty)
 ```ts
 import lib from '@overextended/ox_lib/client'
 
-lib.skillCheck(difficulty)
+lib.skillCheck(difficulty, inputs)
 ```
 
 </TabItem>
@@ -36,6 +36,8 @@ lib.skillCheck(difficulty)
       * hard: { areaSize: 25, speedMultiplier: 1.75 }
     * `areaSize` size of the area in degrees.
   * Sending an array will chain the checks together and return false if one fails and true if all succeed
+* inputs: `string[]`
+  * Picks a random key from the inputs table to use on each skill check pass.
 
 ### Usage Example
 
@@ -43,7 +45,7 @@ lib.skillCheck(difficulty)
 <TabItem value='Lua'>
 
 ```lua
-local success = lib.skillCheck({'easy', 'easy', {areaSize = 60, speedMultiplier = 2}, 'hard'})
+local success = lib.skillCheck({'easy', 'easy', {areaSize = 60, speedMultiplier = 2}, 'hard'}, {'w', 'a', 's', 'd'})
 ```
 
 </TabItem>
@@ -52,10 +54,10 @@ local success = lib.skillCheck({'easy', 'easy', {areaSize = 60, speedMultiplier 
 ```ts
 import lib from '@overextended/ox_lib/client'
 
-const success = await lib.skillCheck(['easy', 'easy', {areaSize: 60, speedMultiplier: 2}, 'hard'])
+const success = await lib.skillCheck(['easy', 'easy', {areaSize: 60, speedMultiplier: 2}, 'hard'], ['w', 'a', 's', 'd'])
 ```
 
 </TabItem>
 </Tabs>
 
-![skillcheck_example](https://i.imgur.com/RWSWZ1I.png)
+![skillcheck_example](https://i.imgur.com/rgfkn0S.png)
