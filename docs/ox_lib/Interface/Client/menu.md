@@ -309,5 +309,4 @@ RegisterCommand('testmenu', () => {
 </TabItem>
 </Tabs>
 
-![Example](https://i.imgur.com/eIdWZ4c.png)
-![Example2](https://i.imgur.com/GxNetwe.png)
+![Example](https://i.imgur.com/2zxbsnN.png)
