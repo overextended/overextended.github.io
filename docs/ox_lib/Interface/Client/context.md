@@ -52,6 +52,7 @@ lib.registerContext(context)
       * Function that's ran when the button is clicked.
     * icon?: `string`
       * FontAwesome icon that will be displayed on the left side, works the same as notification and textui icons.
+      * Also supports image urls, png and webp files but are not recommend to use over font awesome icons.
     * iconColor?: `string`
       * Colour of the displayed icon.
     * progress?: `number`
