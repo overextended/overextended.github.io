@@ -1,18 +1,50 @@
+Registers commands and simplifies argument validation, permissions, and chat suggestions.
+
 ```lua
-lib.addCommand(principal, command, callback, parameters, help)
+lib.addCommand(commandName, properties, cb)
 ```
 
-* principal: `string` or `string[]` or `false`
-* command: `string`
-* callback: `function`
-* parameters?: `table` (`array`)
-* help?: `string`
+- commandName: `string` or `string[]`
+- properties: `table` or `false`
+  - help?: `string`
+  - restricted?: `boolean` or `string` or `string[]`
+  - params?: `table[]`
+    - name: `string`
+    - help?: `string`
+    - type?: `'number'` or `'playerId'` or `'string'`
+    - optional?: `boolean`
 
 ```lua
-lib.addCommand('group.admin', {'additem', 'giveitem'}, function(source, args)
-    args.item = Items(args.item)
-    if args.item and args.count > 0 then
-        Inventory.AddItem(args.target, args.item.name, args.count, args.metatype)
+lib.addCommand('giveitem', {
+    help = 'Gives an item to a player',
+    params = {
+        {
+            name = 'target',
+            type = 'playerId',
+            help = 'Target player\'s server id', },
+        {
+            name = 'item',
+            type = 'string',
+            help = 'Name of the item to give',
+        },
+        {
+            name = 'count',
+            type = 'number',
+            help = 'Amount of the item to give, or blank to give 1',
+            optional = true,
+        },
+        {
+            name = 'metatype',
+            help = 'Sets the item\'s "metadata.type"',
+            optional = true,
+        },
+    },
+    restricted = 'group.admin'
+}, function(source, args, raw)
+    local item = Items(args.item)
+
+    if item then
+        Inventory.AddItem(args.target, item.name, args.count or 1, args.metatype)
     end
-end, {'target:number', 'item:string', 'count:number', 'metatype:?string'})
+end)
 ```
