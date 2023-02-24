@@ -99,7 +99,7 @@ local box = lib.zones.box({
     size = vec3(1, 1, 1),
     rotation = 45,
     debug = true,
-    inside = insideZone,
+    inside = inside,
     onEnter = onEnter,
     onExit = onExit
 })
