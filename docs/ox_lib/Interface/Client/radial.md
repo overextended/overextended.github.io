@@ -36,7 +36,7 @@ lib.addRadialItem(items)
 * label: `string`
 * menu?: `string`
   * Id of a menu to open.
-* onSelect: `function(currentMenu: string | nil, itemIndex: number)`
+* onSelect: `function(currentMenu: string | nil, itemIndex: number)` | `string`
   * Function that's ran when a user clicks the item.
 
 ### lib.removeRadialItem
@@ -90,7 +90,7 @@ lib.registerRadial(radial)
   * label: `string`
   * menu?: `string`
     * Id of a menu to open.
-  * onSelect?: `function`
+  * onSelect?: `function(currentMenu: string | nil, itemIndex: number)` | `string`
     * Function that's ran when a user clicks the item.
 
 ### lib.hideRadial
@@ -129,15 +129,21 @@ Here's a use case example with some global options and an option utilising the l
 <TabItem value='Lua'>
 
 ```lua
+exports('myMenuHandler', function(menu, item)
+    print(menu, item)
+
+    if menu == 'police_menu' and item == 1 then
+        print('Handcuffs')
+    end
+end)
+
 lib.registerRadial({
   id = 'police_menu',
   items = {
     {
       label = 'Handcuff',
       icon = 'handcuffs',
-      onSelect = function()
-        print('Handcuffs')
-      end
+      onSelect = 'myMenuHandler'
     },
     {
       label = 'Frisk',
@@ -207,15 +213,21 @@ Points system in the lib isn't available for the npm package.
 ```ts
 import lib from '@overextended/ox_lib/client'
 
+exports('myMenuHandler', (menu, item) => {
+    console.log(menu, item)
+
+    if (menu === 'police_menu' and item === 1) {
+        console.log('Handcuffs')
+    }
+})
+
 lib.registerRadial({
   id: 'police_menu',
   items: [
     {
       label: 'Handcuff',
       icon: 'handcuffs',
-      onSelect: () => {
-        console.log('Handcuffs')
-      }
+      onSelect: 'myMenuHandler'
     },
     {
       label: 'Frisk',
