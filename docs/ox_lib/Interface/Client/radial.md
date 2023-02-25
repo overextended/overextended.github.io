@@ -36,7 +36,7 @@ lib.addRadialItem(items)
 * label: `string`
 * menu?: `string`
   * Id of a menu to open.
-* onSelect: `function`
+* onSelect: `function(currentMenu: string | nil, itemIndex: number)`
   * Function that's ran when a user clicks the item.
 
 ### lib.removeRadialItem
