@@ -38,6 +38,8 @@ lib.registerMenu(data, cb)
     * progress?: `number`
     * colorScheme?: `string`
     * icon?: `string`
+      * FontAwesome icon that will be displayed on the left side, works the same as notification and textui icons.
+      * Also supports image urls, png and webp files but are not recommend to use over font awesome icons.
     * iconColor?: `string`
     * values?: `table` (`Array<string | {label: string; description: string}>`)
       * If provided creates a side scrollable list.
@@ -309,5 +311,4 @@ RegisterCommand('testmenu', () => {
 </TabItem>
 </Tabs>
 
-![Example](https://i.imgur.com/eIdWZ4c.png)
-![Example2](https://i.imgur.com/GxNetwe.png)
+![Example](https://i.imgur.com/2zxbsnN.png)

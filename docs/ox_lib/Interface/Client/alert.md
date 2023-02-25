@@ -42,6 +42,8 @@ lib.alertDialog(data)
     * Centers the dialog vertically and horizontally.
   * cancel?: `boolean`
     * Displays a cancel button (ESC is still available if this is not defined).
+  * size?: `'xs'` or `'sm'` or `'md'` or `'lg'` or `'xl'`
+  * overflow?: `boolean`
   * labels?: `table`
     * Allows you to define the displayed labels for cancel and/or confirm buttons.
     * cancel?: `string`
@@ -108,4 +110,4 @@ console.log(alert)
 </TabItem>
 </Tabs>
 
-![alert_dialog](https://i.imgur.com/TnUT3S1.png)
+![alert_dialog](https://i.imgur.com/Xlx86aK.png)

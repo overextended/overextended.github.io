@@ -23,7 +23,7 @@ lib.inputDialog(heading, rows)
 ```ts
 import lib from '@overextended/ox_lib/client'
 
-lib.inputDialog(heading, rows)
+lib.inputDialog(heading, rows, options)
 ```
 
 </TabItem>
@@ -31,50 +31,130 @@ lib.inputDialog(heading, rows)
 
 * heading: `string`
 * rows: `string[]` or `table` (`array`)
-  * type: `'input'` or `'number'` or `'checkbox'` or `'select'` or `'slider'`
+  * type: `'input'` or `'number'` or `'checkbox'` or `'select'` or `'slider'` or `'color'` or `'multi-select'` or `'date'` or `'date-range'` or `'time'` or `'textarea'`
+* options?: `table`(`object`)
+  * allowCancel: `boolean`
+    * If true the user will not be able to cancel and close the input dialog until submitted.
+
+Available properties per field type:
+
+* input
   * label: `string`
   * description?: `string`
-    * If set will show a ? near the label a user can hover over and the description.
-  * options?: `table` (`array`)
-    * [ Only used with `'select'` type ]
-    * value: `string`
-    * label: `string`
-  * password?: `boolean`
-    * Hides input characters with ability to toggle them on. Used only with `'input'` type.
-  * icon?: `string`
-    * Used only with `'input'` and `'number'` types.
   * placeholder?: `string`
-    * Used only with `'input'` and `'number'` types.
+  * icon?: `string`
+  * required? `boolean`
   * disabled?: `boolean`
-    * Should the field be disabled from input.
-  * default?: `string` or `number`
-    * Default value for the field.
-  * checked?: `boolean`
-    * Whether the checkbox should be checked by default. Used only with `'checkbox'` type.
+  * default?: `string`
+  * password?: `boolean`
+
+* number
+  * label: `string`
+  * description?: `string`
+  * placeholder?: `string`
+  * icon?: `string`
+  * required? `boolean`
+  * disabled?: `boolean`
+  * default?: `number`
   * min?: `number`
-    * Used only with `'slider'` and `'number'` types.
   * max?: `number`
-    * Used only with `'slider'` and `'number'` types.
+
+* checkbox
+  * label: `string`
+  * checked?: `boolean`
+  * disabled?: `boolean`
+  * required?: `boolean`
+
+* select and multi-select
+  * label: `string`
+  * options: `table`(`array`)
+    * value: `string`
+    * label?: `string`
+  * description?: `string`
+  * placeholder?: `string`
+  * icon?: `string`
+  * required? `boolean`
+  * disabled?: `boolean`
+  * default?: `string`
+    * value of the default option.
+  * clearable?: `boolean`
+
+* slider
+  * label: `string`
+  * placeholder?: `string`
+  * icon?: `string`
+  * required? `boolean`
+  * disabled?: `boolean`
+  * default?: `number`
+  * min?: `number`
+  * max?: `number`
   * step?: `number`
-    * Amount of change per slider step. Used only with `'slider'` type.
+
+* color
+  * label: `string`
+  * description?: `string`
+  * placeholder?: `string`
+  * icon?: `string`
+  * required? `boolean`
+  * disabled?: `boolean`
+  * default?: `string`
+  * format?: `'hex'` | `'hexa'` | `'rgb'` | `'rgba'` | `'hsl'` | `'hsla'`;
+
+* date
+  * label: `string`
+  * description?: `string`
+  * icon?: `string`
+  * required? `boolean`
+  * disabled?: `boolean`
+  * default?: `string` or `true`
+    * True defaults to current date
+  * format?: `string`
+    * Date format to display in the field
+  * clearable?: `boolean`
+
+* date-range
+  * label: `string`
+  * description?: `string`
+  * icon?: `string`
+  * required? `boolean`
+  * disabled?: `boolean`
+  * default?: `[string, string]`
+  * format?: `string`
+    * Date format to display in the field
+  * clearable?: `boolean`
+
+* time
+  * label: `string`
+  * description?: `string`
+  * icon?: `string`
+  * required? `boolean`
+  * disabled?: `boolean`
+  * default?: `string`
+  * format?: `'12'` or `'24'`
+  * clearable?: `boolean`
+
+* textarea
+  * label: `string`
+  * description?: `string`
+  * placeholder?: `string`
+  * icon?: `string`
+  * required? `boolean`
+  * disabled?: `boolean`
+  * default?: `number`
+  * min?: `number`
+    * Minimum amount of rows the text area will take.
+  * max?: `number`
+    * Maxmimum amount of rows the text area will take, when exceeded goes into overflow.
+  * autosize?: `boolean`
+    * If true text area will grow with content until max rows are reached.
 
 The callback data is promise based meaning that the thread will not continue executing until the user either sends the data or exits the popup.
 
 The data returned will be a table (array), indexes represent the rows sent to the dialog, so if we want data from the first field that would be index `1` (`0`), if we want data from the third field, that would be index `3` (`2`), etc...
 
-The standard input rows will always return a string, if you want a row to be of number data type, you can use set the `type` to `number`.
-
-If a user left an input field empty it will return `nil`.
-
-You can also add checkboxes that will return `true` if checked and `nil` if unchecked.  
-Look at the *Advanced* example for it's usage.
-
 :::caution
 
-When using the advanced method you can define `icon` and `password` **ONLY** with type `'input'` and `'number'` and
-you can define `options` **ONLY** with type `'select'`.
-
-Doing so otherwise ***will*** result in errors.
+Field types such as `date`, `date-range` and `time` return a unix timestamp on the set value.
 :::
 
 ### lib.closeInputDialog
@@ -108,13 +188,10 @@ lib.closeInputDialog()
 <TabItem value='Lua'>
 
 ```lua
-local input = lib.inputDialog('Police locker', {'Locker number', 'Locker passcode'})
+local input = lib.inputDialog('Basic dialog', {'First row', 'Second row'})
 
 if not input then return end
-local lockerNumber = tonumber(input[1])
-local lockerPasscode = input[2]
-
-print(lockerNumber, lockerPasscode)
+print(input, input[1], input[2])
 ```
 
 </TabItem>
@@ -126,19 +203,16 @@ This function is **asynchronous** requiring you to do a `.then` callback on the 
 :::
 
 ```ts
-const input = await lib.inputDialog('Police locker', ['Locker number', 'Locker passcode'])
+const input = await lib.inputDialog('Basic dialog', ['First row', 'Second row'])
 
 if (!input) return
-const lockerNumber = input[0] as number
-const lockerPasscode = input[1] as number
-
-console.log(lockerNumber, lockerPasscode)
+console.log(input, input[0], input[1])
 ```
 
 </TabItem>
 </Tabs>
 
-![Example image](https://i.imgur.com/RvFFZqv.png)
+![Example image](https://i.imgur.com/KnZ0sEW.png)
 
 ### Advanced
 
@@ -146,20 +220,15 @@ console.log(lockerNumber, lockerPasscode)
 <TabItem value="Lua">
 
 ```lua
-local input = lib.inputDialog('Police locker', {
-    { type = "input", label = "Locker number", placeholder = "123" },
-    { type = "checkbox", label = "Some checkbox" },
-    { type = "input", label = "Locker PIN", password = true, icon = 'lock' },
-    { type = "checkbox", label = "Some other checkbox", checked = true },
-    { type = 'select', label = 'Value select', options = {
-        { value = 'option1', label = 'Option 1' },
-        { value = 'option2', label = 'Option 2' },
-        { value = 'option3', label = 'Option 3'},
-    }},
-    { type = "number", label = "Number counter", default = 12 }
+local input = lib.inputDialog('Dialog title', {
+  {type = 'input', label = 'Text input', description = 'Some input description'},
+  {type = 'number', label = 'Number input', description = 'Some number desrciption', icon = 'hashtag'},
+  {type = 'checkbox', label = 'Simple checkbox'},
+  {type = 'color', label = 'Colour input', default = '#eb4034'},
+  {type = 'date', label = 'Date input', icon = {'far', 'calendar'}, default = true, format = "DD/MM/YYYY"}
 })
 
-print(json.encode(input, {indent=true}))
+print(json.encode(input))
 ```
 
 </TabItem>
@@ -172,16 +241,11 @@ This function is **asynchronous** requiring you to do a `.then` callback on the 
 
 ```ts
 const input = await lib.inputDialog('Police locker', [
-  { type: 'input', label: 'Locker number', placeholder: '123' },
-  { type: 'checkbox', label: 'Some checkbox' },
-  { type: 'input', label: 'Locker PIN', password: true, icon: 'lock' },
-  { type: 'checkbox', label: 'Some other checkbox', checked: true },
-  { type: 'select',   label: 'Value select', options: [
-    { value: 'option1', label: 'Option 1' },
-    { value: 'option2', label: 'Option 2' },
-    { value: 'option3', label: 'Option 3' },
-  ]},
-  { type: 'number', label: 'Number counter', default: 12 },
+  {type: 'input', label: 'Text input', description: 'Some input description'},
+  {type: 'number', label: 'Number input', description: 'Some number desrciption', icon: 'hashtag'},
+  {type: 'checkbox', label: 'Simple checkbox'},
+  {type: 'color', label: 'Colour input', default: '#eb4034'},
+  {type: 'date', label: 'Date input', icon: ['far', 'calendar'], default: true, format: "DD/MM/YYYY"}
 ]);
 
 console.log(JSON.stringify(input, null, 2));
@@ -190,4 +254,4 @@ console.log(JSON.stringify(input, null, 2));
 </TabItem>
 </Tabs>
 
-![Example image](https://i.imgur.com/9dBA2d2.png) ![Select example](https://i.imgur.com/ILdFeot.png)
+![Example image](https://i.imgur.com/v44YEkC.png)
