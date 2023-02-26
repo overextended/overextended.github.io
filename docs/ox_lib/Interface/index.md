@@ -9,8 +9,8 @@ They don't require you to build the UI, just restart the resource.
 Convars:
 
 ```yaml
-set ox:primaryColor blue
-set ox:primaryShade 8
+setr ox:primaryColor blue
+setr ox:primaryShade 8
 ```
 
 Changing the primary colour will change the colour in elements such as the progress bar/circle, skill check, radial menu center button and hover,
