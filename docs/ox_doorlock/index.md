@@ -18,7 +18,7 @@ You can ignore this if you downloaded a release build.
 
 ```bash
 npm install --location=global pnpm
-git clone https://github.com/overextended/ox_core.git
+git clone https://github.com/overextended/ox_doorlock.git
 cd web
 pnpm i
 pnpm build
