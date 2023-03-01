@@ -114,6 +114,28 @@ lib.hideRadial()
 </TabItem>
 </Tabs>
 
+
+### lib.disableRadial
+
+Disallow players from opening the radial menu.
+
+<Tabs>
+<TabItem value='Lua'>
+
+```lua
+lib.disableRadial()
+```
+</TabItem>
+<TabItem value='JS/TS'>
+
+```ts
+import lib from '@overextended/ox_lib/client'
+
+lib.disableRadial()
+```
+</TabItem>
+</Tabs>
+
 ### Usage Example
 
 :::tip
