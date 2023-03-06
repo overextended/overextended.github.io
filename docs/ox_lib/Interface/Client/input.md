@@ -14,7 +14,7 @@ by setting input fields.
 <TabItem value='Lua'>
 
 ```lua
-lib.inputDialog(heading, rows)
+lib.inputDialog(heading, rows, options)
 ```
 
 </TabItem>
