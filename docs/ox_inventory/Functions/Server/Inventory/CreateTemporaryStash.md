@@ -3,7 +3,7 @@
 Creates a temporary stash which will be removed after some time.
 
 ```lua
-exports.ox_inventory:RegisterStash(properties)
+exports.ox_inventory:CreateTemporaryStash(properties)
 ```
 
 - properties: `table`
