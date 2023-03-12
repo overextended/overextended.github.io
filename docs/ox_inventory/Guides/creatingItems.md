@@ -31,6 +31,8 @@ options for the item.
   * If set to a decimal will consume durability instead (0.2 = 20%).
 * allowArmed?: `boolean`
   * If set to true will allow use of item while armed with a weapon.
+* server?: `table`
+  * export?: `string`
 * client?: `table`
   * export?: `string`
     * Export to be triggered after item use.
