@@ -62,6 +62,27 @@ lib.removeRadialItem(item)
 
 * id: `string`
 
+### lib.clearRadialItems
+
+Removes all items from the radial menu.
+
+<Tabs>
+<TabItem value='Lua'>
+
+```lua
+lib.clearRadialItems()
+```
+</TabItem>
+<TabItem value='JS/TS'>
+
+```ts
+import lib from '@overextended/ox_lib/client'
+
+lib.clearRadialItems()
+```
+</TabItem>
+</Tabs>
+
 ### lib.registerRadial
 
 Registers a radial sub menu with predefined options.
