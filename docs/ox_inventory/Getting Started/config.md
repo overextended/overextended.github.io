@@ -64,6 +64,12 @@ setr inventory:itemnotify true
 # Disable drop markers and spawn a prop instead
 setr inventory:dropprops true
 
+# Disarm the player if an unexpected weapon is in use (i.e. did not use the weapon item)
+setr inventory:weaponmismatch true
+
+# Ignore weapon mismatch checks for the given weapon type (e.g. ['WEAPON_SHOVEL', 'WEAPON_HANDCUFFS'])
+setr inventory:ignoreweapons []
+
 
 ### Server
 
