@@ -123,7 +123,7 @@ Disallow players from opening the radial menu.
 <TabItem value='Lua'>
 
 ```lua
-lib.disableRadial()
+lib.disableRadial(state)
 ```
 </TabItem>
 <TabItem value='JS/TS'>
@@ -131,10 +131,13 @@ lib.disableRadial()
 ```ts
 import lib from '@overextended/ox_lib/client'
 
-lib.disableRadial()
+lib.disableRadial(state)
 ```
 </TabItem>
 </Tabs>
+
+* state: `boolean`
+  * Whether or not radial menu should be disabled
 
 ### Usage Example
 
