@@ -3,7 +3,7 @@
 Creates a new drop with the contents of a player's inventory.
 
 ```lua
-exports.ox_inventory:CreateTemporaryStash(playerId)
+exports.ox_inventory:CreateDropFromPlayer(playerId)
 ```
 
 - playerId: `number`
