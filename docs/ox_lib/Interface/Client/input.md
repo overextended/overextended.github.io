@@ -222,7 +222,7 @@ console.log(input, input[0], input[1])
 ```lua
 local input = lib.inputDialog('Dialog title', {
   {type = 'input', label = 'Text input', description = 'Some input description'},
-  {type = 'number', label = 'Number input', description = 'Some number desrciption', icon = 'hashtag'},
+  {type = 'number', label = 'Number input', description = 'Some number description', icon = 'hashtag'},
   {type = 'checkbox', label = 'Simple checkbox'},
   {type = 'color', label = 'Colour input', default = '#eb4034'},
   {type = 'date', label = 'Date input', icon = {'far', 'calendar'}, default = true, format = "DD/MM/YYYY"}
@@ -242,7 +242,7 @@ This function is **asynchronous** requiring you to do a `.then` callback on the 
 ```ts
 const input = await lib.inputDialog('Police locker', [
   {type: 'input', label: 'Text input', description: 'Some input description'},
-  {type: 'number', label: 'Number input', description: 'Some number desrciption', icon: 'hashtag'},
+  {type: 'number', label: 'Number input', description: 'Some number description', icon: 'hashtag'},
   {type: 'checkbox', label: 'Simple checkbox'},
   {type: 'color', label: 'Colour input', default: '#eb4034'},
   {type: 'date', label: 'Date input', icon: ['far', 'calendar'], default: true, format: "DD/MM/YYYY"}
