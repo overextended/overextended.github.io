@@ -239,28 +239,28 @@ Like with other items the item must first be registered.
 },
 ```
 
-When registered you can define the item as a container under the `Items.containers` table in `/modules/items/server.lua`
+When registered you can define the item as a container  in `/modules/items/containers.lua`
 The key for the container is the `name` you gave it when registering the item.
 You can also define the number of slots, the maximum weight, blacklist and whitelist items.
 
-* itemName: `table`
-  * size: `{number, number}`
-    * First index is number of slots the container will have.
-    * Second index is the maximum weight of the container.
-  * blacklist: `table`
-    * Key-value pairs of item name and true
-    * `['itemName'] = true`
-  * whitelist: `table`
-    * Key-value pairs of item name and true
-    * `['itemName'] = true`
+* itemName:
+  * slots: number
+  * The number represents the amount of slots
+  * maxWeight: number
+  * The number represents the maximum weight within the container
+  * blacklist:
+    * Supports single and multiple items
+    * `{ 'testburger`, 'testburger2' }
+  * whitelist:
+    * Supports single and multiple items
+    * `{ 'testburger`, 'testburger2' }
 
 **Example:**
 
 ```lua
-['paperbag'] = {
-    size = {5, 1000},
-    blacklist = {
-        ['testburger'] = true -- No burgers!
-    }
-},
+setContainerProperties('paperbag', {
+	slots = 5,
+	maxWeight = 1000,
+	blacklist = { 'testburger' }
+})
 ```
