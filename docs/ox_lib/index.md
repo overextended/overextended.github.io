@@ -63,6 +63,13 @@ add_ace resource.ox_lib command.add_principal allow
 add_ace resource.ox_lib command.remove_principal allow
 ```
 
+**Configuration**
+
+```yaml
+set ox:primaryColor "blue"
+set ox:ox:primaryShade 8
+```
+
 That's it!  
 You can now use the library functions inside of your resource, check the rest of the documentation to see how to utilise them.
 
