@@ -250,10 +250,10 @@ You can also define the number of slots, the maximum weight, blacklist and white
   * The number represents the maximum weight within the container
   * blacklist:
     * Supports single and multiple items
-    * `{ 'testburger`, 'testburger2' }
+    * `{ 'testburger', 'testburger2' }`
   * whitelist:
     * Supports single and multiple items
-    * `{ 'testburger`, 'testburger2' }
+    * `{ 'testburger', 'testburger2' }`
 
 **Example:**
 
