@@ -14,6 +14,13 @@ Make sure you download the `ox_inventory.zip` file as that one contains the bund
 If in case you wanted to edit the inventory UI you would have to build these files yourself.  
 To do so please read our [_Building inventory UI_](../Guides/inventory_ui.md) guide.
 
+## No such export * in resource ox_inventory
+
+There are several likely causes for this "issue".
+- An error occurred while starting ox_inventory or one of its dependencies (e.g. ox_lib).
+- The resource trying to use the export (e.g. esx_addoninventory) is being started _before_ ox_inventory.
+- You're literally trying to call an export that does not exist, which is a you issue.
+
 ## Stashes / trunks are not saved at server restart
 
 The only supported way of doing a restart is **txAdmin scheduled restart**.  
