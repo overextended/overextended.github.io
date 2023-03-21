@@ -20,6 +20,8 @@ An interval runs every 100ms to update data that cannot be checked via handlers.
   - invoking resource name
 - weapon: `number` or `false`
   - current ped weapon
+- coords: `vec3`
+  - current player coords
 
 ## lib.onCache
 
