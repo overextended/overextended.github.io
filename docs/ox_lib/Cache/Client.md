@@ -23,7 +23,7 @@ An interval runs every 100ms to update data that cannot be checked via handlers.
 - coords: `vec3`
   - current player coords
   - only populated if using `zones` or `points`
-  - cannot be listened for with `onCache
+  - cannot be listened for with `onCache`
 
 ## lib.onCache
 
