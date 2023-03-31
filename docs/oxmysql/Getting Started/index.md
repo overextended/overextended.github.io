@@ -68,15 +68,11 @@ oxmysql_debug remove ox_core
 oxmysql_debug add ox_core
 ```
 
-### Using the UI
+### Debug UI
 
-Before using the UI first you have to make sure you have the `mysql_ui` convar set to true:
+Debug UI is used to see your total query number, speeds, per resource queries and their speeds, etc...
 
-```yaml
-set mysql_ui true
-```
-
-Also make sure that you have `command` ace permission access, then you should be able to use the `mysql` command in game to open up the UI and see your query data.
+You can read more about using the debug UI on the [Using the Debug UI](/docs/oxmysql/Getting%20Started/ui) page
 
 ## Compatibility
 
