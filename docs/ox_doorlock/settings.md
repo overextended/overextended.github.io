@@ -4,6 +4,8 @@
 
 - Door name
   - Used to easily identify the door.
+- Door label
+  - Used to display a label on the door instead of the standard lock/unlock text.
 - Passcode
   - Door can be unlocked by anybody by using the code or phrase.
 - Autolock interval
