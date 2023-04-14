@@ -66,7 +66,7 @@ Builtin shops are defined in [data/shops.lua](https://github.com/overextended/ox
   - license?: `string`
     - License required to purchase the item.
   - metadata?: `table`
-  - grade?: `number`
+  - grade?: `number` | `number[]`
     - Grade required to purchase the item.
 - locations?: `vector3[]`
   - An array of coordinates to create unique instances of the shop archetype at, using markers.

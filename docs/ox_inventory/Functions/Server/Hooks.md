@@ -172,6 +172,7 @@ Prevents players from purchasing items at General stores.
 
 **Example:**
 
+```lua
 local hookId = exports.ox_inventory:registerHook('craftItem', function(payload)
     print(json.encode(payload, { indent = true, sort_keys = true }))
     return false
@@ -181,6 +182,8 @@ end, {
 		lockpick = true
 	},
 })
+
+```
 
 Prevent lockpicks from being crafted by players.
 

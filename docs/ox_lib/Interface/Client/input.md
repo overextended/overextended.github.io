@@ -229,6 +229,12 @@ local input = lib.inputDialog('Dialog title', {
 })
 
 print(json.encode(input))
+
+-- Getting r, g and b values from colour picker
+local r, g, b = string.match(input[4], "rgb%((%d+), (%d+), (%d+)%)")
+
+-- Transforming unit date return to be used with Lua's os library
+local date = input[5] / 1000
 ```
 
 </TabItem>
@@ -249,6 +255,16 @@ const input = await lib.inputDialog('Police locker', [
 ]);
 
 console.log(JSON.stringify(input, null, 2));
+
+// Getting r, g and b values from colour picker
+const regExp = /rgb\((\d+),\s*(\d+),\s*(\d+)\)/;
+const colourInput = input[3];
+
+const color = regExp.exec(colourInput);
+
+if (!color) return
+
+console.log(+color[1], +color[2], +color[3])
 ```
 
 </TabItem>

@@ -19,7 +19,13 @@ exports.ox_inventory:RemoveItem(inv, item, count, metadata, slot)
   - A specific slot to remove the item from. If the slot is invalid, the first available slot will be used instead.
 - cb?: function(success: `boolean`, response?: `string`)
 
-Returns `success` as a boolean, stating whether the item was successfully removed.
+Returns success: `boolean`, response: `string?`.
+
+**Possible value of "response" on failure:**
+
+- "invalid_item": the item doesn't exist
+- "invalid_inventory": the inventory doesn't exist
+- "not_enough_items": inventory did not contain enough of the given item
 
 **Example:**
 
