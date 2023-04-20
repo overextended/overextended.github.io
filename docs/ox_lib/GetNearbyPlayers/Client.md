@@ -3,7 +3,7 @@
 Get the id, ped, and coords of all players within range of a set of coordinates.
 
 ```lua
-function lib.getNearbyPlayers(coords, maxDistance, includePlayer) end
+lib.getNearbyPlayers(coords, maxDistance, includePlayer)
 ```
 
 * coords: `vector3`

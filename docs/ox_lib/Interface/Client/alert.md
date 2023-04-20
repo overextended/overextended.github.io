@@ -13,9 +13,22 @@ Returns whether the player pressed the confirm button or canceled the dialog.
 <Tabs>
 <TabItem value='Lua'>
 
+<Tabs>
+<TabItem value='Client'>
+
 ```lua
 lib.alertDialog(data)
 ```
+
+</TabItem>
+<TabItem value='Server'>
+
+```lua
+TriggerClientEvent('ox_lib:alertDialog', source, data)
+```
+
+</TabItem>
+</Tabs>
 
 </TabItem>
 <TabItem value='JS/TS'>

@@ -3,7 +3,7 @@
 Get the id and coords of the closest vehicle to a set of coordinates.
 
 ```lua
-function lib.getClosestVehicle(coords, maxDistance, includePlayerVehicle) end
+lib.getClosestVehicle(coords, maxDistance, includePlayerVehicle)
 ```
 
 * coords: `vector3`

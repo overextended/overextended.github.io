@@ -9,6 +9,7 @@ Returns the first column for a single row.
 ```lua
 -- alias: exports.oxmysql:scalar
 -- alias: MySQL.Async.fetchScalar
+-- alias: exports.ghmattimysql:scalar
 
 MySQL.scalar('SELECT firstname FROM users WHERE identifier = ?', {playerIdentifier}, function(firstname)
     print(firstname)
@@ -20,6 +21,7 @@ end)
 ```lua
 -- alias: exports.oxmysql:scalar_async
 -- alias: MySQL.Sync.fetchScalar
+-- alias: exports.ghmattimysql:scalarSync
 
 local firstname = MySQL.scalar.await('SELECT firstname FROM users WHERE identifier = ?', {playerIdentifier})
 print(firstname)

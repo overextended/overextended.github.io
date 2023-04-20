@@ -9,6 +9,7 @@ Inserts a new entry into the database and returns the insert id for the row, if 
 ```lua
 -- alias: exports.oxmysql:insert
 -- alias: MySQL.Async.insert
+-- alias: exports.ghmattimysql:execute
 
 MySQL.insert('INSERT INTO users (identifier, firstname, lastname) VALUES (?, ?, ?)', {playerIdentifier, firstName, lastName}, function(id)
     print(id)
@@ -20,6 +21,7 @@ end)
 ```lua
 -- alias: exports.oxmysql:insert_async
 -- alias: MySQL.Sync.insert
+-- alias: exports.ghmattimysql:executeSync
 
 local id = MySQL.insert.await('INSERT INTO users (identifier, firstname, lastname) VALUES (?, ?, ?)', {playerIdentifier, firstName, lastName})
 print(id)

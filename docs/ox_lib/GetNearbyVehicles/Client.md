@@ -3,7 +3,7 @@
 Get the id and coords of all vehicles within range of a set of coordinates.
 
 ```lua
-function lib.getNearbyVehicles(coords, maxDistance, includePlayerVehicle) end
+lib.getNearbyVehicles(coords, maxDistance, includePlayerVehicle)
 ```
 
 * coords: `vector3`

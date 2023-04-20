@@ -22,6 +22,7 @@ local queries = {
 ```lua
 -- alias: exports.oxmysql:transaction
 -- alias: MySQL.Async.transaction
+-- alias: exports.ghmattimysql:transaction
 
 MySQL.transaction(queries, function(success)
     print(success)
@@ -33,6 +34,8 @@ end)
 ```lua
 -- alias: exports.oxmysql:transaction_async
 -- alias: MySQL.Sync.transaction
+-- alias: exports.ghmattimysql:transactionSync
+
 local success = MySQL.transaction.await(queries)
 print(success)
 ```

@@ -12,9 +12,22 @@ Custom notifications with a lot of styling options.
 <Tabs>
 <TabItem value='Lua'>
 
+<Tabs>
+<TabItem value='Client'>
+
 ```lua
 lib.notify(data)
 ```
+
+</TabItem>
+<TabItem value='Server'>
+
+```lua
+TriggerClientEvent('ox_lib:notify', source, data)
+```
+
+</TabItem>
+</Tabs>
 
 </TabItem>
 <TabItem value='JS/TS'>
