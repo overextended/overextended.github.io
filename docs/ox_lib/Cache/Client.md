@@ -24,6 +24,8 @@ An interval runs every 100ms to update data that cannot be checked via handlers.
   - current player coords
   - only populated if using `zones` or `points`
   - cannot be listened for with `onCache`
+- mount: `number` or `false` (RedM only)
+  - mount entity id
 
 ## lib.onCache
 

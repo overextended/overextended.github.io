@@ -153,3 +153,58 @@ lib.requestScaleformMovie(scaleformMovie, timeout)
 * dict: `string`
 * timeout: `number`
   * Default: `100`
+
+### lib.requestWeaponAsset
+
+<Tabs>
+<TabItem value='Lua'>
+
+```lua
+lib.requestWeaponAsset(weaponType, timeout, weaponResourceFlags, extraWeaponComponentFlags)
+```
+
+</TabItem>
+<TabItem value='JS/TS'>
+
+```ts
+import lib from '@overextended/ox_lib/client'
+
+lib.requestWeaponAsset(weaponType, timeout, weaponResourceFlags, extraWeaponComponentFlags)
+```
+
+</TabItem>
+</Tabs>
+
+* weaponType: `string | number`
+* timeout: `number?`
+  * Number of ticks to wait for the asset to load. Default is `500`
+* weaponResourceFlags: `WeaponResourceFlags?`
+  * Default is `31`
+* extraWeaponComponentFlags: `ExtraWeaponComponentFlags?`
+  * Default is `0`
+
+Return:
+* `string | number?` weaponType
+
+### WeaponResourceFlags
+
+```
+1 WRF_REQUEST_BASE_ANIMS
+2 WRF_REQUEST_COVER_ANIMS
+4 WRF_REQUEST_MELEE_ANIMS
+8 WRF_REQUEST_MOTION_ANIMS
+16 WRF_REQUEST_STEALTH_ANIMS
+32 WRF_REQUEST_ALL_MOVEMENT_VARIATION_ANIMS
+31 WRF_REQUEST_ALL_ANIMS
+```
+
+### ExtraWeaponComponentFlags
+
+```
+0 WEAPON_COMPONENT_NONE
+1 WEAPON_COMPONENT_FLASH
+2 WEAPON_COMPONENT_SCOPE
+4 WEAPON_COMPONENT_SUPP
+8 WEAPON_COMPONENT_SCLIP2
+16 WEAPON_COMPONENT_GRIP
+```

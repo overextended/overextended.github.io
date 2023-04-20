@@ -3,7 +3,7 @@
 Get the id, ped, and coords of the closest player to a set of coordinates.
 
 ```lua
-function lib.getClosestPlayer(coords, maxDistance, includePlayer) end
+lib.getClosestPlayer(coords, maxDistance, includePlayer)
 ```
 
 * coords: `vector3`
