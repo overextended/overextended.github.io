@@ -2,16 +2,36 @@
 
 Simple and centralised distance checking, supporting callbacks when entering, leaving, and standing in-range of set coordinates.
 
-```lua
-lib.points.new(coords, distance, data)
-```
+### CPoint
 
+A table representing a point, with the following properties.
+
+* id: `number`
 * coords: `vector3`
 * distance: `number`
-* data: `table`
+  * The distance for the player to be "inside" a point (i.e. the point's radius).
+* currentDistance: `number`
+  * The players current distance from the centre of the point.
+* isClosest?: `boolean`
+* remove: `function()`
+  * Removes the point from the points registry.
+
+### lib.points.new
 
 ```lua
-local point = lib.points.new(playerCoords, 5, {
+lib.points.new(data)
+```
+
+* data: `table`
+  * coords: `vector3`
+  * distance: `number`
+
+**Returns:** CPoint
+
+```lua
+local point = lib.points.new({
+    coords = GetEntityCoords(cache.ped),
+    distance = 5,
     dunak = 'nerd',
 })
 
@@ -27,14 +47,37 @@ function point:nearby()
     DrawMarker(2, self.coords.x, self.coords.y, self.coords.z, 0.0, 0.0, 0.0, 0.0, 180.0, 0.0, 1.0, 1.0, 1.0, 200, 20, 20, 50, false, true, 2, nil, nil, false)
 
     if self.currentDistance < 1 and IsControlJustReleased(0, 38) then
-        print('inside marker', self.id)
-        print(self.dunak)
+        print('inside marker', self.id, 'dunak is a '.. self.dunak)
     end
 end
 ```
 
-Points can be deleted by using the remove method.
+### lib.points.getAllPoints
+
+Get a table of all points created in the resource.
 
 ```lua
-point:remove()
+lib.points.getAllPoints()
 ```
+
+**Return:** `table<number, CPoint>`
+
+### lib.points.getNearbyPoints
+
+Get an array of all points in range of the player.
+
+```lua
+lib.points.getNearbyPoints()
+```
+
+**Return:** `CPoint[]`
+
+### lib.points.getClosestPoint
+
+Get the data for the closest point to the player.
+
+```lua
+lib.points.getClosestPoint()
+```
+
+**Returns:** `CPoint`
