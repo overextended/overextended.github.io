@@ -1,4 +1,4 @@
-The input for zones differs slightly from all other options, instead taking the [zone](../../ox_lib/Zones/Client.md) properties and two additional properties (drawSprite, and options).
+The input for zones differs slightly from all other options, instead taking the [zone](../../ox_lib/Zones/Shared.md) properties and two additional properties (drawSprite, and options).
 
 ## addSphereZone
 
