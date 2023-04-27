@@ -4,7 +4,7 @@ Searches an inventory for a specified item.
 exports.ox_inventory:Search(inv, search, item, metadata)
 ```
 
-* inv: `string` or `number`
+* inv: `table` or `string` or `number`
 * search: `string`
 * item: `table` or `string`
 * metadata?: `table` or `string`

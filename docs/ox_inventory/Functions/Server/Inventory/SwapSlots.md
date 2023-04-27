@@ -4,7 +4,7 @@ Swaps slots in specified inventories.
 exports.ox_inventory:SwapSlots(fromInventory, toInventory, slot1, slot2)
 ```
 
-* fromInventory: `any`
-* toInventory: `any`
+* fromInventory: `table` or `string` or `number`
+* toInventory: `table` or `string` or `number`
 * slot1: `number`
 * slot2: `number`

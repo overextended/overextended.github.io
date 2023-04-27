@@ -6,7 +6,7 @@ Can be used for repairing weapons.
 exports.ox_inventory:SetDurability(inv, slot, durability)
 ```
 
-* inv: `string` or `number`
+* inv: `table` or `string` or `number`
 * slot: `number`
 * durability: `number`
 

@@ -4,7 +4,7 @@ Sets the number of slots available for an inventory.
 exports.ox_inventory:SetSlotCount(inv, slots)
 ```
 
-* inv: `string` or `number` or `table`
+* inv: `table` or `string` or `number`
 * slots: `number`
 
 **Example:**

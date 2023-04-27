@@ -5,4 +5,4 @@ Returns the player's currently equipped weapon as a table.
 exports.ox_inventory:GetCurrentWeapon(inv)
 ```
 
-* inv: `string` or `number`
+* inv: `table` or `string` or `number`

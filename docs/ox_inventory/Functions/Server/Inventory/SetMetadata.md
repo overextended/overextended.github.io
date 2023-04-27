@@ -4,7 +4,7 @@ Sets metadata on the specified slot.
 ox_inventory:SetMetadata(inv, slot, metadata)
 ```
 
-* inv: `string` or `number`
+* inv: `table` or `string` or `number`
 * slot: `number`
 * metadata: `table`
 

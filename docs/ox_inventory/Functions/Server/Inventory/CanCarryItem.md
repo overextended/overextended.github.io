@@ -6,7 +6,7 @@ The function checks for inventory weight and available slots.
 exports.ox_inventory:CanCarryItem(inv, item, count, metadata)
 ```
 
-* inv: `string` or `number`
+* inv: `table` or `string` or `number`
 * item `table` or `string`
   * Can be array of items.
 * count: `number`

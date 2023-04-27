@@ -5,7 +5,7 @@ Returns the specified slot data as a table.
 exports.ox_inventory:GetSlot(inv, slot)
 ```
 
-* inv: `string` or `number`
+* inv: `table` or `string` or `number`
 * slot: `number`
 
 **Example:**

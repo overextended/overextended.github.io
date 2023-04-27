@@ -4,5 +4,5 @@ Clears the specified inventory. The `keep` argument is either a string or an arr
 exports.ox_inventory:ClearInventory(inv, keep)
 ```
 
-* inv: `string` or `number`
+* inv: `table` or `string` or `number`
 * keep?: `string` or `string[]`

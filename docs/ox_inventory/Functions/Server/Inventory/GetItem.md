@@ -4,7 +4,7 @@ Returns the item from the specified inventory.
 exports.ox_inventory:GetItem(inv, item, metadata, returnsCount)
 ```
 
-* inv: `string` or `number`
+* inv: `table` or `string` or `number`
 * item: `table` or `string`
   * Can be items array.
 * metadata?: `any`

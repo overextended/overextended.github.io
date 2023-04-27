@@ -33,8 +33,8 @@ By returning `false`, you can cancel the action and revert the inventory state.
 
 - source: `number`
 - action: `'move'` or `'stack'` or `'swap'` or `'give'`
-- fromInventory: `number` or `string`
-- toInventory: `number` or `string`
+- fromInventory: `table` or `string` or `number`
+- toInventory: `table` or `string` or `number`
 - fromType: `string`
 - toType: `string`
 - fromSlot: `table`

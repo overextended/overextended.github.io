@@ -4,7 +4,7 @@ Sets the maximum weight available for an inventory.
 exports.ox_inventory:SetMaxWeight(inv, maxWeight)
 ```
 
-* inv: `string` or `number` or `table`
+* inv: `table` or `string` or `number`
 * maxWeight: `number`
 
 **Example:**
