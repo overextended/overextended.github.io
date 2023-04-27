@@ -36,6 +36,6 @@ import {FaNodeJs} from 'react-icons/fa'
 When working in the browser you can run `pnpm start`, which supports hot reloads meaning that
 you will see your changes after saving your file.
 
-If you want to work in game you can run `pnpm start:game` which writes changes to disk, so
+If you want to work in game you can run `pnpm watch` which writes changes to disk, so
 the only thing you have to do is restart the resource for it take affect.
 :::
