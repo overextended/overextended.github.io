@@ -16,6 +16,11 @@ Sets the player's clipboard to the specified string value.
 Will not work if focus is already taken by some NUI component.
 :::
 
+:::caution
+
+To create a new line use `\t\n` not just `\n` in your string.
+:::
+
 <Tabs>
 <TabItem value='Lua'>
 
