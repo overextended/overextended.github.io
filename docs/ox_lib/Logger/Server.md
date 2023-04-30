@@ -72,7 +72,7 @@ Open your server.cfg and if you have previously used datadog logging, change the
 ```yaml
 set ox:logger "loki"
 set loki:user "<insert your user>"
-set loki:key "<insert the api key or password>"
+set loki:password "<insert the api key or password>"
 set loki:endpoint "<insert loki url without http:// or https://>"
 ```
 
@@ -81,7 +81,7 @@ Here is an example
 ```yaml
 set ox:logger "loki"
 set loki:user "1337"
-set loki:key "alongcomplicatedsecurepassword"
+set loki:password "alongcomplicatedsecurepassword"
 set loki:endpoint "logs.mywebsite.com"
 ```
 
