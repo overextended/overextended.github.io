@@ -47,6 +47,8 @@ Available properties per field type:
   * disabled?: `boolean`
   * default?: `string`
   * password?: `boolean`
+  * min?: `number`
+  * max?: `number`
 
 * number
   * label: `string`
@@ -221,7 +223,7 @@ console.log(input, input[0], input[1])
 
 ```lua
 local input = lib.inputDialog('Dialog title', {
-  {type = 'input', label = 'Text input', description = 'Some input description'},
+  {type = 'input', label = 'Text input', description = 'Some input description', required = true, min = 4, max = 16},
   {type = 'number', label = 'Number input', description = 'Some number description', icon = 'hashtag'},
   {type = 'checkbox', label = 'Simple checkbox'},
   {type = 'color', label = 'Colour input', default = '#eb4034'},
@@ -247,7 +249,7 @@ This function is **asynchronous** requiring you to do a `.then` callback on the 
 
 ```ts
 const input = await lib.inputDialog('Police locker', [
-  {type: 'input', label: 'Text input', description: 'Some input description'},
+  {type: 'input', label: 'Text input', description: 'Some input description', required = true, min: 3, max: 16},
   {type: 'number', label: 'Number input', description: 'Some number description', icon: 'hashtag'},
   {type: 'checkbox', label: 'Simple checkbox'},
   {type: 'color', label: 'Colour input', default: '#eb4034'},
