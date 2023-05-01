@@ -249,7 +249,7 @@ This function is **asynchronous** requiring you to do a `.then` callback on the 
 
 ```ts
 const input = await lib.inputDialog('Police locker', [
-  {type: 'input', label: 'Text input', description: 'Some input description', required = true, min: 3, max: 16},
+  {type: 'input', label: 'Text input', description: 'Some input description', required: true, min: 3, max: 16},
   {type: 'number', label: 'Number input', description: 'Some number description', icon: 'hashtag'},
   {type: 'checkbox', label: 'Simple checkbox'},
   {type: 'color', label: 'Colour input', default: '#eb4034'},
