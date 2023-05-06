@@ -18,7 +18,7 @@ exports.ox_inventory:RegisterStash(id, label, slots, maxWeight, owner, groups, c
   * Table of player groups (jobs) able to access the stash.
   * Table of group names where the numeric value is the minimum grade required.
   * `{['police'] = 0, ['ambulance'] = 2}`
-* coords: `vector3`
+* coords?: `vector3` or `vector3[]`
 
 :::caution
 

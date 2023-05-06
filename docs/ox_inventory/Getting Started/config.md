@@ -53,7 +53,7 @@ setr inventory:enablekeys [249]
 setr inventory:aimedfiring false
 
 # Show a list of all nearby players when giving items
-setr inventory:giveplayerlist true
+setr inventory:giveplayerlist false
 
 # Toggle weapon draw/holster animations
 setr inventory:weaponanims true
@@ -63,6 +63,9 @@ setr inventory:itemnotify true
 
 # Disable drop markers and spawn a prop instead
 setr inventory:dropprops true
+
+# Set the default model used for drop props
+setr inventory:dropmodel "prop_med_bag_01b"
 
 # Disarm the player if an unexpected weapon is in use (i.e. did not use the weapon item)
 setr inventory:weaponmismatch true
