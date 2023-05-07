@@ -18,7 +18,7 @@ import { Point, cache } from '@overextended/ox_lib/client'
 
 function nearby(this: Point<{dunak: string}>) {
   // @ts-ignore
-  DrawMarker(2, this.coords.x, this.coords.y, this.coords.z, 0, 0, 0, 0, 180, 0, 1, 1, 1, 200, 20, 20, 50, false, true, 2, null, null, false, false)
+  DrawMarker(2, this.coords.x, this.coords.y, this.coords.z, 0, 0, 0, 0, 180, 0, 1, 1, 1, 200, 20, 20, 50, false, true, 2, false, null, null, false)
 
   if (this.currentDistance && this.currentDistance < 1 && IsControlJustReleased(0, 38)) {
     console.log('Inside marker', this.id)
