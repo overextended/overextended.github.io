@@ -44,7 +44,7 @@ function point:onExit()
 end
 
 function point:nearby()
-    DrawMarker(2, self.coords.x, self.coords.y, self.coords.z, 0.0, 0.0, 0.0, 0.0, 180.0, 0.0, 1.0, 1.0, 1.0, 200, 20, 20, 50, false, true, 2, nil, nil, false)
+    DrawMarker(2, self.coords.x, self.coords.y, self.coords.z, 0.0, 0.0, 0.0, 0.0, 180.0, 0.0, 1.0, 1.0, 1.0, 200, 20, 20, 50, false, true, 2, false, nil, nil, false)
 
     if self.currentDistance < 1 and IsControlJustReleased(0, 38) then
         print('inside marker', self.id, 'dunak is a '.. self.dunak)
