@@ -34,6 +34,7 @@ lib.addRadialItem(items)
   * Id that is used for removing options.
 * icon: `string`
 * label: `string`
+  * Label uses `  \n` to insert a newline
 * menu?: `string`
   * Id of a menu to open.
 * onSelect: `function(currentMenu: string | nil, itemIndex: number)` | `string`
@@ -110,6 +111,7 @@ lib.registerRadial(radial)
 * items: `array`
   * icon: `string`
   * label: `string`
+    * Label uses `  \n` to insert a newline
   * menu?: `string`
     * Id of a menu to open.
   * onSelect?: `function(currentMenu: string | nil, itemIndex: number)` | `string`
