@@ -111,7 +111,7 @@ lib.notify({
     style = {
         backgroundColor = '#141517',
         color = '#C1C2C5',
-        '.description' = {
+        ['.description'] = {
           color = '#909296'
         }
     },
