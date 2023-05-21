@@ -73,6 +73,8 @@ setr inventory:weaponmismatch true
 # Ignore weapon mismatch checks for the given weapon type (e.g. ['WEAPON_SHOVEL', 'WEAPON_HANDCUFFS'])
 setr inventory:ignoreweapons []
 
+# Suppress weapon and ammo pickups
+setr inventory:suppresspickups 1
 
 ### Server
 
