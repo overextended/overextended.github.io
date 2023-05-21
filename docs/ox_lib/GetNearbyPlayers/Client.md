@@ -15,4 +15,4 @@ lib.getNearbyPlayers(coords, maxDistance, includePlayer)
 
 Return:
 
-* `number[]`
+* `{ id: number, ped: number, coords: vector3 }[]`
