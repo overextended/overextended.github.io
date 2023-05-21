@@ -1,0 +1,71 @@
+## lib.math
+
+Extends the standard Lua math table with extra functions.
+
+```
+math = lib.math
+```
+
+### math.toscalars
+
+Takes a string and returns a set of scalar values.
+
+```lua
+math.toscalars(input, min, max, round)
+```
+
+- input: `string`
+- min?: `number`
+- max?: `number`
+- round?: `boolean`
+
+Return:
+
+- ...: `number`
+
+### math.tovector
+
+Takes a string or table and returns a vector value, or a number if only one value was found.
+
+```lua
+math.tovector(input, min, max, round)
+```
+
+- input: `string` or `table`
+- min?: `number`
+- max?: `number`
+- round?: `boolean`
+
+Return:
+
+- value: `number` or `vector2` or `vector3` or `vector4`
+
+### math.torgba
+
+Takes a string or table and returns a vector value, or a number if only one value was found.  
+Values are rounded and must be within the range of 0-255.
+
+```lua
+math.torgba(input)
+```
+
+- input: `string` or `table`
+
+Return:
+
+- value: `number` or `vector2` or `vector3` or `vector4`
+
+### math.tohex
+
+Takes a number or string and formats it as a hexadecimal string.
+
+```lua
+math.tohex(n, upper)
+```
+
+- n: `number` or `string`
+- upper?: `boolean`
+
+Return:
+
+- hex: `string`

@@ -15,4 +15,4 @@ lib.getNearbyVehicles(coords, maxDistance, includePlayerVehicle)
 
 Return:
 
-* `number[]`
+* `{ vehicle: number, coords: vector3 }[]`

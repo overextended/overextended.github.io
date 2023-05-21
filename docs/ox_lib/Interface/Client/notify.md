@@ -110,7 +110,10 @@ lib.notify({
     position = 'top',
     style = {
         backgroundColor = '#141517',
-        color = '#909296'
+        color = '#C1C2C5',
+        ['.description'] = {
+          color = '#909296'
+        }
     },
     icon = 'ban',
     iconColor = '#C53030'
@@ -130,7 +133,10 @@ lib.notify({
   position: 'top',
   style: {
     backgroundColor: '#141517',
-    color: '#909296'
+    color: '#C1C2C5',
+    '.decription': {
+      color: '#909296',
+    },
   },
   icon: 'ban',
   iconColor: '#C53030'
@@ -140,4 +146,4 @@ lib.notify({
 </TabItem>
 </Tabs>
 
-![custom_notification](https://i.imgur.com/wcjqIlw.png)
+![custom_notification](https://i.imgur.com/WpqiW5f.png)
