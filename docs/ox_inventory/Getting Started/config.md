@@ -67,6 +67,9 @@ setr inventory:dropprops true
 # Set the default model used for drop props
 setr inventory:dropmodel "prop_med_bag_01b"
 
+# Suppress pickups for weapons and ammo.
+setr inventory:suppresspickups 1
+
 # Disarm the player if an unexpected weapon is in use (i.e. did not use the weapon item)
 setr inventory:weaponmismatch true
 
