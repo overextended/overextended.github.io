@@ -61,7 +61,7 @@ The inventory will handle disabling the phone when the player has no item, and s
 ### Production Build
 
 The user interface included with the source code must be compiled.  
-You can compile it yourself by following the [build guide](../Guides/inventory_ui), otherwise download a production build below.
+You can compile it yourself by following the [build guide](./Guides/inventory_ui), otherwise download a production build below.
 
 <ResourceLinks repo="https://github.com/overextended/ox_inventory/releases/latest"></ResourceLinks>
 
