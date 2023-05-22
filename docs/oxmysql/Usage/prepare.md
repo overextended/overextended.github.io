@@ -15,7 +15,6 @@ When using SELECT, the return value will match `query, single, or scalar` depend
 
 ```lua
 -- alias: exports.oxmysql:prepare
--- alias: MySQL.Async.prepare
 
 MySQL.prepare('SELECT * FROM users WHERE identifier = ?', {playerIdentifier}, function(result)
     if result then
@@ -28,7 +27,6 @@ end)
 
 ```lua
 -- alias: exports.oxmysql:prepare_async
--- alias: MySQL.Sync.prepare
 
 local result = MySQL.prepare.await('SELECT * FROM users WHERE identifier = ?', {playerIdentifier})
 if result then

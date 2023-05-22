@@ -1,3 +1,7 @@
+---
+keywords: ['execute']
+---
+
 # Update
 
 Returns the number of affected rows by the query.
@@ -40,9 +44,9 @@ end
 
 MySQL.update('UPDATE users SET firstname = ? WHERE identifier = ? ', [newName, playerIdentifier], (affectedRows) => {
   if (affectedRows) {
-    console.log(affectedRows)
+    console.log(affectedRows);
   }
-})
+});
 ```
 
 ### Promise
@@ -50,8 +54,8 @@ MySQL.update('UPDATE users SET firstname = ? WHERE identifier = ? ', [newName, p
 ```js
 // alias: exports.oxmysql.update_async
 
-const id = MySQL.update('UPDATE users SET firstname = ? WHERE identifier = ? ', [newName, playerIdentifier])
+const id = MySQL.update('UPDATE users SET firstname = ? WHERE identifier = ? ', [newName, playerIdentifier]);
 if (affectedRows) {
-  console.log(affectedRows)
+  console.log(affectedRows);
 }
 ```

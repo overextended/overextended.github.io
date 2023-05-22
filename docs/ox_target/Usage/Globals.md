@@ -1,3 +1,16 @@
+---
+keywords: [
+    'addGlobalObject'
+    'addGlobalPed'
+    'addGlobalPlayer'
+    'addGlobalVehicle'
+    'removeGlobalObject'
+    'removeGlobalPed'
+    'removeGlobalPlayer'
+    'removeGlobalVehicle',
+  ]
+---
+
 Registers options that will apply to all entities of that type (object, ped, player, vehicle).
 
 ```lua

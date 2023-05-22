@@ -1,3 +1,7 @@
+---
+keywords: ['execute',  'insert']
+---
+
 # Insert
 
 Inserts a new entry into the database and returns the insert id for the row, if valid.

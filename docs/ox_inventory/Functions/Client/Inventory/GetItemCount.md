@@ -1,3 +1,7 @@
+---
+keywords: ['hasitem']
+---
+
 Get the total item count for all items in the player's inventory with the given name and metadata.
 
 ```lua

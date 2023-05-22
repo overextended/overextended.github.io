@@ -8,7 +8,6 @@ Returns the columns for a single row.
 
 ```lua
 -- alias: exports.oxmysql:single
--- alias: MySQL.Async.fetchSingle
 
 MySQL.single('SELECT * FROM users WHERE identifier = ?', {playerIdentifier}, function(row)
     if row then
@@ -21,7 +20,6 @@ end)
 
 ```lua
 -- alias: exports.oxmysql:single_async
--- alias: MySQL.Sync.fetchSingle
 
 local row = MySQL.single.await('SELECT * FROM users WHERE identifier = ?', {playerIdentifier})
 if row then

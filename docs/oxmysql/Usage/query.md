@@ -1,3 +1,7 @@
+---
+keywords: ['execute',  'fetchall']
+---
+
 # Query
 
 Generic function that can be utilised for any query.  
@@ -9,7 +13,7 @@ When selecting data it will return all matching rows and columns, otherwise it w
 
 ```lua
 -- alias: exports.oxmysql:query
--- alias: MySQL.Async.query
+-- alias: MySQL.Async.fetchAll
 -- alias: exports.ghmattimysql:execute
 
 MySQL.query('SELECT * FROM users WHERE identifier = ?', {playerIdentifier}, function(result)
@@ -26,7 +30,7 @@ end)
 
 ```lua
 -- alias: exports.oxmysql:query_async
--- alias: MySQL.Sync.query
+-- alias: MySQL.Sync.fetchAll
 -- alias: exports.ghmattimysql:executeSync
 
 local result = MySQL.query.await('SELECT * FROM users WHERE identifier = ?', {playerIdentifier})

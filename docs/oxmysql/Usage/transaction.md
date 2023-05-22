@@ -1,3 +1,7 @@
+---
+keywords: ['transaction']
+---
+
 # Transaction
 
 A transaction executes multiple queries and commits them only if all succeed. If one fails, none of the queries are committed. The return value is a `boolean`, which is the result of the transaction.

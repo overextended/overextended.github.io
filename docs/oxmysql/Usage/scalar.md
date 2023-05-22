@@ -1,3 +1,7 @@
+---
+keywords: ['scalar',  'fetchscalar']
+---
+
 # Scalar
 
 Returns the first column for a single row.
