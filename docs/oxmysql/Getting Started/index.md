@@ -1,4 +1,7 @@
-# Getting started
+---
+title: Getting started
+slug: ./../
+---
 
 ## MySQL or MariaDB?
 
