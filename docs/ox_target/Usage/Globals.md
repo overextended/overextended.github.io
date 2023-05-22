@@ -1,12 +1,13 @@
 ---
-keywords: [
-    'addGlobalObject'
-    'addGlobalPed'
-    'addGlobalPlayer'
-    'addGlobalVehicle'
-    'removeGlobalObject'
-    'removeGlobalPed'
-    'removeGlobalPlayer'
+keywords:
+  [
+    'addGlobalObject',
+    'addGlobalPed',
+    'addGlobalPlayer',
+    'addGlobalVehicle',
+    'removeGlobalObject',
+    'removeGlobalPed',
+    'removeGlobalPlayer',
     'removeGlobalVehicle',
   ]
 ---
