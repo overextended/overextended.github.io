@@ -1,0 +1,6 @@
+label: Ox Inventory
+collapsible: true
+collapsed: true
+link:
+  type: generated-index
+  description: An slot-based inventory with item metadata for "item uniqueness".

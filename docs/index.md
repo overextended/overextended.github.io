@@ -1,5 +1,6 @@
 ---
 title: Home
+sidebar_position: 1
 ---
 
 Here you can find all of the official documentation for resources developed by the Overextended team

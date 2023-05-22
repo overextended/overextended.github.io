@@ -1,7 +1,6 @@
 ---
 title: Getting started
 sidebar_position: 1
-slug: ./../
 ---
 
 import ResourceLinks from '@site/src/components/ResourceLinks';

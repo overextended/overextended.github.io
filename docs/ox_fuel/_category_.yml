@@ -1,0 +1,6 @@
+label: Ox Fuel
+collapsible: true
+collapsed: true
+link:
+  type: generated-index
+  description: A simple fuel resource meant to replace LegacyFuel or serve as a showcase for using petrol cans as an item.
