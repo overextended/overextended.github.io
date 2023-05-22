@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkwebsite=self.webpackChunkwebsite||[]).push([[1136],{7526:e=>{e.exports=JSON.parse('{"title":"Ox Doorlock","description":"Door management resource.","slug":"/category/doorlock","permalink":"/docs/category/doorlock","navigation":{"next":{"title":"Getting started","permalink":"/docs/ox_doorlock/"}}}')}}]);
