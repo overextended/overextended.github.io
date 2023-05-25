@@ -63,7 +63,6 @@ const config = {
             position: 'left',
           },
           {
-            // Still have to add the actual search :(
             type: 'search',
             position: 'right',
           },
