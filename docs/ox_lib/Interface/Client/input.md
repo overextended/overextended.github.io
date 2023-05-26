@@ -111,9 +111,10 @@ Available properties per field type:
   * format?: `string`
     * Date format to display in the field
   * clearable?: `boolean`
-    * Min/Max e.g "01/01/1970", "31/12/2023"
   * min?: `string`
+     * "01/01/2000"
   * max?: `string`
+     * "12/12/2023"
 
 * date-range
   * label: `string`
