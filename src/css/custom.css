@@ -25,7 +25,7 @@
   --ifm-color-primary-light: #2be8bf;
   --ifm-color-primary-lighter: #37e9c2;
   --ifm-color-primary-lightest: #58edcd;
-  --wrapper-background: #1f2428;
+  --wrapper-background: rgb(26, 26, 30);
 }
 
 .docusaurus-highlight-code-line {
@@ -47,17 +47,16 @@
 }
 
 .docs-wrapper {
-  background-color: #1f2428;
   justify-content: stretch;
   align-items: stretch;
 }
 
 .navbar {
-  background-color: #1c2023;
+  background-color: rgb(24, 24, 28);
 }
 
 .theme-doc-sidebar-container {
-  background-color: #1c2023;
+  background-color: rgb(24, 24, 28);
 }
 
 .icon-button {
@@ -80,4 +79,31 @@ a:active {
 
 .DocSearch-Hit[aria-selected='true'] a {
   background-color: #119e7f !important;
+}
+
+.theme-admonition {
+  border: 1px inset rgba(255, 255, 255, 0.25);
+}
+
+h2:after {
+  content: '';
+  display: block;
+  margin-top: 4px;
+  border-top: 1px solid rgba(100, 100, 100, 0.25);
+}
+
+.card {
+  background: rgba(100, 100, 100, 0.1);
+}
+
+ul.menu__list {
+  margin-left: 1em;
+  border-left: 1px solid rgba(100, 100, 100, 0.5);
+  overflow: visible;
+  display: block;
+}
+
+ul.theme-doc-sidebar-menu {
+  border-left: none;
+  margin-left: 4px;
 }
