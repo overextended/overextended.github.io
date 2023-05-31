@@ -13,7 +13,7 @@ Returns all selected columns for a single row.
 <TabItem value="1" label="Lua">
 
 ```lua
-local row = MySQL.scalar.await('SELECT `firstname`, `lastname` FROM `users` WHERE `identifier` = ? LIMIT 1', {
+local row = MySQL.single.await('SELECT `firstname`, `lastname` FROM `users` WHERE `identifier` = ? LIMIT 1', {
     identifier
 })
 
@@ -26,7 +26,7 @@ print(row.firstname, row.lastname)
 <TabItem value="2" label="JS">
 
 ```js
-const row = await MySQL.scalar('SELECT `firstname`, `lastname` FROM `users` WHERE `identifier` = ? LIMIT 1', [
+const row = await MySQL.single('SELECT `firstname`, `lastname` FROM `users` WHERE `identifier` = ? LIMIT 1', [
   identifier
 ])
 
@@ -48,7 +48,7 @@ console.log(row.firstname, row.lastname)
 <TabItem value="1" label="Lua">
 
 ```lua
-MySQL.scalar('SELECT `firstname`, `lastname` FROM `users` WHERE `identifier` = ? LIMIT 1', {
+MySQL.single('SELECT `firstname`, `lastname` FROM `users` WHERE `identifier` = ? LIMIT 1', {
     identifier
 }, function(row)
     if not row then return end
@@ -61,7 +61,7 @@ end)
 <TabItem value="2" label="JS">
 
 ```js
-MySQL.scalar('SELECT `firstname`, `lastname` FROM `users` WHERE `identifier` = ? LIMIT 1', [
+MySQL.single('SELECT `firstname`, `lastname` FROM `users` WHERE `identifier` = ? LIMIT 1', [
   identifier
 ], (row) => {
   if (!row) return;
