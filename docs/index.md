@@ -9,8 +9,8 @@ If you feel like the documentation is lacking in some department then feel free 
 
 ## Support our team
 
-Our projects will always remain free and open-source, with our core developers working voluntarily.  
-If you love what we do and want to help us continue, why not show your appreciation with a donation?
+Providing and maintaining free open-source resources to the community takes a lot of time and hard work.  
+If you appreciate what we do, consider supporting us so we can continue our work.
 
 <div style={{paddingLeft:"50px", lineHeight:"20px", background:"url('https://avatars.githubusercontent.com/u/65407488?s=70&v=4') no-repeat left", backgroundSize:"40px"}}>
 Linden

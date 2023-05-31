@@ -1,53 +1,75 @@
 ---
-keywords: ['scalar',  'fetchscalar']
+keywords: ['scalar', 'fetchScalar']
+title: Scalar
 ---
 
-# Scalar
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 Returns the first column for a single row.
 
-## Lua
+## Promise
 
-### Callback
+<Tabs>
+<TabItem value="1" label="Lua">
 
 ```lua
--- alias: exports.oxmysql:scalar
--- alias: MySQL.Async.fetchScalar
--- alias: exports.ghmattimysql:scalar
+local firstName = MySQL.scalar.await('SELECT `firstname` FROM `users` WHERE `identifier` = ? LIMIT 1', {
+    identifier
+})
 
-MySQL.scalar('SELECT firstname FROM users WHERE identifier = ?', {playerIdentifier}, function(firstname)
-    print(firstname)
+print(firstName)
+```
+
+</TabItem>
+<TabItem value="2" label="JS">
+
+```js
+const firstName = await MySQL.scalar('SELECT `firstname` FROM `users` WHERE `identifier` = ? LIMIT 1', [
+  identifier
+])
+
+console.log(firstName)
+```
+
+</TabItem>
+</Tabs>
+
+**Aliases**
+
+- `MySQL.Sync.fetchScalar`
+- `exports.ghmattimysql.scalar`
+- `exports.oxmysql.scalar_async`
+
+## Callback
+
+<Tabs>
+<TabItem value="1" label="Lua">
+
+```lua
+MySQL.scalar('SELECT `firstname` FROM `users` WHERE `identifier` = ? LIMIT 1', {
+    identifier
+}, function(firstName)
+    print(firstName)
 end)
 ```
 
-### Promise
-
-```lua
--- alias: exports.oxmysql:scalar_async
--- alias: MySQL.Sync.fetchScalar
--- alias: exports.ghmattimysql:scalarSync
-
-local firstname = MySQL.scalar.await('SELECT firstname FROM users WHERE identifier = ?', {playerIdentifier})
-print(firstname)
-```
-
-## JavaScript
-
-### Callback
+</TabItem>
+<TabItem value="2" label="JS">
 
 ```js
-// alias: exports.oxmysql.scalar
-
-MySQL.scalar('SELECT firstname FROM users WHERE identifier = ?', [playerIdentifier], (firstname) => {
-  console.log(firstname)
+MySQL.scalar('SELECT `firstname` FROM `users` WHERE `identifier` = ? LIMIT 1', [
+  identifier
+], (firstName) => {
+  console.log(firstName)
 })
 ```
 
-### Promise
+</TabItem>
+</Tabs>
 
-```js
-// alias: exports.oxmysql.scalar_async
+**Aliases**
 
-const firstname = await MySQL.scalar('SELECT firstname FROM users WHERE identifier = ?', [playerIdentifier])
-console.log(firstname)
-```
+- `MySQL.Async.fetchScalar`
+- `exports.ghmattimysql.scalar`
+- `exports.oxmysql.scalar`

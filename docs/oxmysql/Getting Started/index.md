@@ -10,79 +10,133 @@ Most resources for FiveM were designed to be used with MySQL 5.7 and may hit com
 - More reserved keywords, like 'stored' and 'group'.
 - Longtext / JSON fields do not support default values.
 
-[MariaDB](https://mariadb.org/) is strongly recommended for compatibility, and improved performance (over all versions of MySQL).
+[MariaDB](https://mariadb.com/downloads/community/) is highly recommended for compatibility, and improved performance (over all versions of MySQL).
 
-## XAMPP
+## Should I use XAMPP?
 
-XAMPP is not a database, and should not be used solely to start your MySQL/MariaDB service. Please _do not_ use XAMPP.
+**No.** XAMPP is a webserver stack intended to be used for development, allowing easy local development and testing.  
+Do not setup XAMPP just to run your database, and install [MariaDB](https://mariadb.com/downloads/community/) directly instead.
 
 ## Installation
 
-- Download the [latest build](https://github.com/overextended/oxmysql/releases/latest) of oxmysql (not the source code).
-- Extract the contents of the archive to your resources folder.
-- Start the resource near the top of your resources in your `server.cfg`.
-- If you have a lot of streamed assets, load them first to prevent timing out the connection.
+### Download the [latest release](https://github.com/overextended/oxmysql/releases/latest)
 
-## Configuration
-
-You can change the configuration settings by using convars inside your `server.cfg`.  
-Reference the following for an idea of how to set your connection options.  
-You must include one of the following lines, adjusted for your connection and database settings.
+### Configure your server
 
 :::caution
-When using convars do not replicate sensitive information to the client.
-**set** will only be set on the server, while **setr** is replicated.
+When using convars do not replicate sensitive information to the client. **set** will only be set on the server, while **setr** is replicated.
 :::
 
-```yaml
-set mysql_connection_string "mysql://root:12345@localhost:3306/es_extended?charset=utf8mb4"
-set mysql_connection_string "user=root;password=12345;host=localhost;port=3306;database=es_extended;charset=utf8mb4"
+- Start by opening your server configuration (i.e. server.cfg) and adding `start oxmysql` before any of its dependents (usually it's the first resource you start).
+- Set a mysql connection string using either of the following formats, using your server authentication details and target database.
+
+```bash
+set mysql_connection_string "mysql://root:12345@localhost:3306/es_extended"
+set mysql_connection_string "user=root;password=12345;host=localhost;port=3306;database=es_extended"
 ```
 
-Certain special characters are reserved or blocked and may cause issues when used in your password.  
-For more optional settings (such as multiple statements) you can reference [pool.d.ts](https://github.com/sidorares/node-mysql2/blob/master/typings/mysql/lib/Pool.d.ts#L10) and [connection.d.ts](https://github.com/sidorares/node-mysql2/blob/master/typings/mysql/lib/Connection.d.ts#L8).
+:::info
+Certain special characters are reserved or unsupported depending on your connection string.  
+Avoid using these characters `; , / ? : @ & = + $ #`, and try swapping connection string format.
+:::
 
-You can also add the following convars if you require extra information when testing queries.
+### Slow query warnings
 
-```yaml
+By default you will receive warnings if a query took ~150ms to complete, however
+
+1. Query time is calculated on fxserver based on response time, and may not be entirely accurate.
+2. Server hitches may delay the query response, and may not indicate a database issue.
+3. Excessive queries in a short timeframe may report with higher response times.
+
+You can adjust the minimum response time with a convar.
+
+```bash
 set mysql_slow_query_warning 150
-set mysql_debug true
 ```
 
-### Debug options
+### Debug
 
-When using the `mysql_debug` convar, rather than setting the value as true, you can send an array and enable debug prints for a set list of resources instead.
+Enabling the debug option will print all queries in the server console; you can also use an array to only print from a list of resources instead.
 
-```yaml
+```bash
+set mysql_debug true
 set mysql_debug [
-    "ox_core",
-    "ox_inventory"
+  "ox_core",
+  "ox_inventory"
 ]
 ```
 
-This list can be adjusted during runtime with commands, temporarily adding or removing resources until the resource is restarted.
+This value can be changed without restarting oxmysql, and you can temporarily modify the list with commands.
 
-```yaml
+```bash
 oxmysql_debug remove ox_core
 oxmysql_debug add ox_core
 ```
 
-### Debug UI
+### mysql-async compatibility
 
-Debug UI is used to see your total query number, speeds, per resource queries and their speeds, etc...
+The `mysql-async` directory must be deleted to properly provide support.
 
-You can read more about using the debug UI on the [Using the Debug UI](/docs/oxmysql/Getting%20Started/ui) page
+- 🗹 Supports server_script '@mysql-async/lib/MySQL.lua'.
+- 🗹 Supports MySQL.Sync and MySQL.Async methods.
+- ☐ Raw exports are not supported (i.e. exports['mysql-async].mysql_execute).
+- ☐ Multi-statements are disabled for security reasons (see [#102](https://github.com/overextended/oxmysql/issues/102)).
 
-## Compatibility
+### ghmattimysql compatibility
 
-You shouldn't run multiple mysql resources to ensure the best experience.  
-The resources listed below can be deleted to allow oxmysql to handle the events, without any changes.
+The `ghmattimysql` resource must be stopped to properly provide support.
 
-### mysql-async
+- 🗹 Supports exports.ghmattimysql.execute and other similar exports.
+- 🗹 Supports exports.ghmattimysql.executeSync and other similar exports.
 
-Standard API for mysql-async uses `server_script '@mysql-async/lib/MySQL.lua'`.  
-Raw exports, mostly used in resources written in JavaScript or C#, are _not supported_.
+## Usage
 
-### ghmattimysql
+Resources can import oxmysql methods by including our library, granting some type-checking and minor performance improvements over raw export calls.
 
-As of v2.4.0, oxmysql can be utilised with ghmattimysql's exports, such as `exports.ghmattimysql:execute`.
+### Lua
+
+Modify `fxmanifest.lua` for your resource, and add the following above any other script files.
+
+```lua
+server_script '@oxmysql/lib/MySQL.lua'
+```
+
+If you're using [Lua Language Server](https://marketplace.visualstudio.com/items?itemName=sumneko.lua) you can get access to basic types and intellisense.
+
+```json
+"Lua.workspace.library": [
+  "C:/pathtoserver/resources/oxmysql/lib/define.lua",
+]
+```
+
+### JavaScript
+
+You can use raw exports, or install [our npm package](https://www.npmjs.com/package/@overextended/oxmysql) for intellisense and similar usage as Lua.
+
+```bash
+# With pnpm
+pnpm add @overextended/oxmysql
+
+# With Yarn
+yarn add @overextended/oxmysql
+
+# With npm
+npm install @overextended/oxmysql
+```
+
+Import the oxmysql object into your resource.
+
+```js
+import { oxmysql as MySQL } from '@overextended/oxmysql';
+```
+
+## Upserting
+
+When uncertain if a row should be inserted into the database, or an existing row should be updated, queries should check for duplicate keys.
+
+```lua
+MySQL.prepare('INSERT INTO ox_inventory (owner, name, data) VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE data = VALUES(data)', { owner, dbId, inventory })
+```
+
+This is preferred over checking the existence of a row, then inserting or updating depending on the result.  
+Furthermore, unlike using 'REPLACE INTO', the row is not deleted and re-inserted.

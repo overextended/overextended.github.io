@@ -1,53 +1,78 @@
-# Single
+---
+title: Single
+---
 
-Returns the columns for a single row.
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
-## Lua
+Returns all selected columns for a single row.
 
-### Callback
+## Promise
+
+<Tabs>
+<TabItem value="1" label="Lua">
 
 ```lua
--- alias: exports.oxmysql:single
+local row = MySQL.scalar.await('SELECT `firstname`, `lastname` FROM `users` WHERE `identifier` = ? LIMIT 1', {
+    identifier
+})
 
-MySQL.single('SELECT * FROM users WHERE identifier = ?', {playerIdentifier}, function(row)
-    if row then
-        print(row.identifier, row.firstname, row.lastname)
-    end
+if not row then return end
+
+print(row.firstname, row.lastname)
+```
+
+</TabItem>
+<TabItem value="2" label="JS">
+
+```js
+const row = await MySQL.scalar('SELECT `firstname`, `lastname` FROM `users` WHERE `identifier` = ? LIMIT 1', [
+  identifier
+])
+
+if (!row) return;
+
+console.log(row.firstname, row.lastname)
+```
+
+</TabItem>
+</Tabs>
+
+**Aliases**
+
+- `exports.oxmysql.single_async`
+
+## Callback
+
+<Tabs>
+<TabItem value="1" label="Lua">
+
+```lua
+MySQL.scalar('SELECT `firstname`, `lastname` FROM `users` WHERE `identifier` = ? LIMIT 1', {
+    identifier
+}, function(row)
+    if not row then return end
+
+    print(row.firstname, row.lastname)
 end)
 ```
 
-### Promise
-
-```lua
--- alias: exports.oxmysql:single_async
-
-local row = MySQL.single.await('SELECT * FROM users WHERE identifier = ?', {playerIdentifier})
-if row then
-    print(row.identifier, row.firstname, row.lastname)
-end
-```
-
-## JavaScript
-
-### Callback
+</TabItem>
+<TabItem value="2" label="JS">
 
 ```js
-// alias: exports.oxmysql.single
+MySQL.scalar('SELECT `firstname`, `lastname` FROM `users` WHERE `identifier` = ? LIMIT 1', [
+  identifier
+], (row) => {
+  if (!row) return;
 
-MySQL.single('SELECT * FROM users WHERE identifier = ?', [playerIdentifier],(row) => {
-  if (row) {
-    console.log(row.identifier, row.firstname, row.lastname)
-  }
+  console.log(row.firstname, row.lastname)
 })
 ```
 
-### Promise
+</TabItem>
+</Tabs>
 
-```js
-// alias: exports.oxmysql.single_async
+**Aliases**
 
-const row = await MySQL.single('SELECT * FROM users WHERE identifier = ?', [playerIdentifier])
-if (row) {
-  console.log(row.identifier, row.firstname, row.lastname)
-}
-```
+- `exports.oxmysql.single`

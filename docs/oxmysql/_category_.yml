@@ -3,5 +3,5 @@ collapsible: true
 collapsed: true
 link:
   type: generated-index
-  description: A drop-in replacement of mysql-async and ghmattimysql with expanded API and improved compatibility for MySQL 8.
+  description: A replacement of mysql-async and ghmattimysql with expanded API and improved compatibility for MySQL 8.
 position: 2

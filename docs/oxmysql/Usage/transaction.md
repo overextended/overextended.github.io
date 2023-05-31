@@ -1,147 +1,125 @@
 ---
-keywords: ['transaction']
+title: Transaction
 ---
 
-# Transaction
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
-A transaction executes multiple queries and commits them only if all succeed. If one fails, none of the queries are committed. The return value is a `boolean`, which is the result of the transaction.
+A transaction executes multiple queries and commits them only if all succeed.  
+If one fails, none of the queries are committed.
 
-## Specific Format
+The return value is a boolean, which is the result of the transaction.
 
-When using the `Specific` format you must pass one parameter to the oxmysql export. In this case, the `queries` parameter contains your queries and the SQL variables unique to each query.
+## Specific format
 
-This is useful for transactions where the queries do not share many SQL variables.
-
-### Lua
+When using this format, you must pass an array containing sets of queries and parameters to the transaction method.  
+In this case, your queries do not necessarily match and the values are unique to each query.
 
 ```lua
+-- You might rename "values" as "parameters" for mysql-async compatibility.
 local queries = {
-    { query = 'INSERT INTO `test` (id) VALUES (:someid)', values = { ['someid'] = 1 } },
-    { query = 'INSERT INTO `test` (id) VALUES (:someid)', values = { ['someid'] = 2 } }
-} -- NOTE, the 'values' tables can be named 'parameters' here for MySQL-Async compatibility.
+    { query = 'INSERT INTO `test` (id) VALUES (?)', values = { 1 }},
+    { query = 'INSERT INTO `test` (id, name) VALUES (?, ?)', values = { 2, 'bob' }},
+}
+
+-- You can also pass an array of arrays.
+local queries = {
+  { 'INSERT INTO `test` (id) VALUES (?)', { 1 } },
+  { 'INSERT INTO `test` (id, name) VALUES (?, ?)', { 2, 'bob' } },
+}
 ```
 
-#### Callback
+## Shared format
+
+When using this format, you must pass an array containing queries and a set containing shared parameters to the transaction method.  
+In this case, your queries do not necessarily match and the values are unique to each query.
 
 ```lua
--- alias: exports.oxmysql:transaction
--- alias: MySQL.Async.transaction
--- alias: exports.ghmattimysql:transaction
+-- You might rename "values" as "parameters" for mysql-async compatibility.
+local queries = {
+    'INSERT INTO `test` (id, name) VALUES (@someid, @somename)',
+    'SET `name` = @newname IN `test` WHERE `id` = @someid'
+}
 
+local values = {
+    someid = 2,
+    somename = 'John Doe',
+    newname = 'John Notdoe'
+}
+```
+
+## Promise
+
+<Tabs>
+<TabItem value="1" label="Lua">
+
+```lua
+local success = MySQL.transaction.await(queries, values --[[leave nil for specific format]])
+print(success)
+```
+
+</TabItem>
+<TabItem value="2" label="JS">
+
+```js
+const success = await MySQL.transaction(queries, values /*leave nil for specific format*/)
+console.log(success)
+```
+
+</TabItem>
+</Tabs>
+
+**Aliases**
+
+- `MySQL.Sync.transaction`
+- `exports.ghmattimysql.transaction`
+- `exports.oxmysql.transaction_async`
+
+## Callback
+
+<Tabs>
+<TabItem value="1" label="Lua">
+
+```lua
+-- specific
+MySQL.transaction(queries, values, function(success)
+    print(success)
+end)
+
+-- shared
 MySQL.transaction(queries, function(success)
     print(success)
 end)
 ```
 
-#### Promise
-
-```lua
--- alias: exports.oxmysql:transaction_async
--- alias: MySQL.Sync.transaction
--- alias: exports.ghmattimysql:transactionSync
-
-local success = MySQL.transaction.await(queries)
-print(success)
-```
-
-### JavaScript
+</TabItem>
+<TabItem value="2" label="JS">
 
 ```js
-const queries = [
-  { query: 'INSERT INTO `test` (id) VALUES (:someid)', values: { someid: 1 } },
-  { query: 'INSERT INTO `test` (id) VALUES (:someid)', values: { someid: 2 } },
-]; // NOTE, the 'values' objects can be named 'parameters' here for MySQL-Async compatibility.
-```
-
-#### Callback
-
-```js
-// alias: exports.oxmysql.transaction
-
+// specific
 MySQL.transaction(queries, (success) => {
-  console.log(success);
-});
+  console.log(success)
+})
+
+// shared
+MySQL.transaction(queries, values, (success) => {
+  console.log(success)
+})
 ```
 
-#### Promise
+</TabItem>
+</Tabs>
 
-```js
-// alias: exports.oxmysql.transaction_async
+**Aliases**
 
-const success = await MySQL.transaction(queries);
-console.log(success);
-```
-
-## Shared Format
-
-When using the `Shared` format you must pass two parameters to the oxmysql export. The `queries` and the `parameters` those queries will use.  
-This is useful if your queries use the same SQL variables.
-
-### Lua
-
-```lua
-local queries = {
-    'INSERT INTO `test` (id, name) VALUES (:someid, :somename)',
-    'SET `name` = :newname IN `test` WHERE `id` = :someid'
-}
-
-local parameters = { ['someid'] = 2, ['somename'] = 'John Doe', ['newname'] = 'John Notdoe' }
-```
-
-#### Callback
-
-```lua
--- alias: exports.oxmysql:transaction
--- alias: MySQL.Async.transaction
-
-MySQL.transaction(queries, parameters, function(success)
-    print(success)
-end)
-```
-
-#### Promise
-
-```lua
--- alias: exports.oxmysql:transaction_async
--- alias: MySQL.Sync.transaction
-
-local success = MySQL.transaction.await(queries, parameters)
-print(success)
-```
-
-### JavaScript
-
-```js
-const queries = [
-  'INSERT INTO `test` (id, name) VALUES (:someid, :somename)',
-  'SET `name` = :newname IN `test` WHERE `id` = :someid',
-];
-
-const parameters = { someid: 2, somename: 'John Doe', newname: 'John Notdoe' };
-```
-
-#### Callback
-
-```js
-// alias: exports.oxmysql.transaction
-
-MySQL.transaction(queries, parameters, (success) => {
-  console.log(success);
-});
-```
-
-#### Promise
-
-```js
-// exports.oxmysql.transaction_async
-
-const success = await MySQL.transaction(queries, parameters);
-console.log(success);
-```
+- `MySQL.Async.transaction`
+- `exports.ghmattimysql.transaction`
+- `exports.oxmysql.transaction`
 
 ## Transaction Isolation Level
 
-This can be set through the convar `mysql_transaction_isolation_level` which should be an integer ranging from `1-4`. The default convar value set by oxmysql is `2`.
+This can be set through the convar `mysql_transaction_isolation_level`, and is an integer ranging from `1-4`.  
+The default value is 2.
 
 | Convar Value | Result           |
 | ------------ | ---------------- |

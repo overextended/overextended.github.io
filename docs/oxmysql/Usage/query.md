@@ -1,72 +1,93 @@
 ---
-keywords: ['execute',  'fetchall']
+keywords: ['fetchAll', 'execute']
+title: Query
 ---
 
-# Query
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
-Generic function that can be utilised for any query.  
-When selecting data it will return all matching rows and columns, otherwise it will return field data such as insertid, affectedRows, etc.
+When selecting data, returns all matching rows and columns; otherwise, returns data like insertId, affectedRows, etc.
 
-## Lua
+## Promise
 
-### Callback
-
-```lua
--- alias: exports.oxmysql:query
--- alias: MySQL.Async.fetchAll
--- alias: exports.ghmattimysql:execute
-
-MySQL.query('SELECT * FROM users WHERE identifier = ?', {playerIdentifier}, function(result)
-    if result then
-        for i = 1, #result do
-            local row = result[i]
-            print(row.identifier, row.firstname, row.lastname)
-        end
-    end
-end)
-```
-
-### Promise
+<Tabs>
+<TabItem value="1" label="Lua">
 
 ```lua
--- alias: exports.oxmysql:query_async
--- alias: MySQL.Sync.fetchAll
--- alias: exports.ghmattimysql:executeSync
+local response = MySQL.query.await('SELECT `firstname`, `lastname` FROM `users` WHERE `identifier` = ?', {
+    identifier
+})
 
-local result = MySQL.query.await('SELECT * FROM users WHERE identifier = ?', {playerIdentifier})
-if result then
-    for i = 1, #result do
-        local row = result[i]
-        print(row.identifier, row.firstname, row.lastname)
+if response then
+    for i = 1, #response do
+        local row = response[i]
+        print(row.firstname, row.lastname)
     end
 end
 ```
 
-## JavaScript
-
-### Callback
-
-```js
-// alias: exports.oxmysql.query
-
-MySQL.query('SELECT * FROM users WHERE identifier = ?', [playerIdentifier], (result) => {
-  if (result) {
-    result.forEach((row) => {
-      console.log(row.identifier, row.firstname, row.lastname)
-    })
-  }
-})
-```
-
-### Promise
+</TabItem>
+<TabItem value="2" label="JS">
 
 ```js
-// alias: exports.oxmysql.query_async
+const response = await MySQL.query('SELECT `firstname`, `lastname` FROM `users` WHERE `identifier` = ?', [
+  identifier
+])
 
-const result = await MySQL.query('SELECT * FROM users WHERE identifier = ?', [playerIdentifier])
-if (result) {
-  result.forEach((row) => {
+if (response) {
+  response.forEach((row) => {
     console.log(row.identifier, row.firstname, row.lastname)
   })
 }
 ```
+
+</TabItem>
+</Tabs>
+
+**Aliases**
+
+- `MySQL.Sync.fetchAll`
+- `exports.ghmattimysql.execute`
+- `exports.oxmysql.query_async`
+
+## Callback
+
+<Tabs>
+<TabItem value="1" label="Lua">
+
+  ```lua
+  MySQL.query('SELECT `firstname`, `lastname` FROM `users` WHERE `identifier` = ?', {
+      identifier
+  }, function(response)
+      if response then
+          for i = 1, #response do
+              local row = response[i]
+              print(row.firstname, row.lastname)
+          end
+      end
+  end)
+  ```
+
+</TabItem>
+<TabItem value="2" label="JS">
+
+  ```js
+  MySQL.query('SELECT `firstname`, `lastname` FROM `users` WHERE `identifier` = ?', [
+    identifier
+  ], (response) => {
+    if (response) {
+      response.forEach((row) => {
+        console.log(row.firstname, row.lastname)
+      })
+    }
+  })
+  ```
+
+</TabItem>
+</Tabs>
+
+**Aliases**
+
+- `MySQL.Async.fetchAll`
+- `exports.ghmattimysql.execute`
+- `exports.oxmysql.query`

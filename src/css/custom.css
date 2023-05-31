@@ -108,3 +108,13 @@ ul.theme-doc-sidebar-menu {
   border-left: none;
   margin-left: 0.2rem;
 }
+
+code {
+  background-color: var(--ifm-code-background);
+  border: 0.1rem solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--ifm-code-border-radius);
+  font-family: var(--ifm-font-family-monospace);
+  font-size: var(--ifm-code-font-size);
+  padding: var(--ifm-code-padding-vertical) var(--ifm-code-padding-horizontal);
+  vertical-align: middle;
+}

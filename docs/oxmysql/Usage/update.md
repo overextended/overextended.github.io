@@ -1,61 +1,75 @@
 ---
 keywords: ['execute']
+title: Update
 ---
 
-# Update
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
-Returns the number of affected rows by the query.
+Returns the number of rows affected by the query.
 
-## Lua
+## Promise
 
-### Callback
+<Tabs>
+<TabItem value="1" label="Lua">
 
 ```lua
--- alias: exports.oxmysql:update
--- alias: MySQL.Async.execute
--- alias: exports.ghmattimysql:execute
+local affectedRows = MySQL.update.await('UPDATE users SET firstname = ? WHERE identifier = ?', {
+    newName, identifier
+})
 
-MySQL.update('UPDATE users SET firstname = ? WHERE identifier = ?', {newName, playerIdentifier}, function(affectedRows)
-    if affectedRows then
-        print(affectedRows)
-    end
+print(affectedRows)
+```
+
+</TabItem>
+<TabItem value="2" label="JS">
+
+```js
+const affectedRows = await MySQL.update('UPDATE users SET firstname = ? WHERE identifier = ?', [
+  newName, identifier
+])
+
+console.log(affectedRows)
+```
+
+</TabItem>
+</Tabs>
+
+**Aliases**
+
+- `MySQL.Sync.execute`
+- `exports.ghmattimysql.executeSync`
+- `exports.oxmysql.update_async`
+
+## Callback
+
+<Tabs>
+<TabItem value="1" label="Lua">
+
+```lua
+MySQL.update('UPDATE users SET firstname = ? WHERE identifier = ?', {
+    newName, identifier
+}, function(affectedRows)
+    print(affectedRows)
 end)
 ```
 
-### Promise
-
-```lua
--- alias: exports.oxmysql:update_async
--- alias: MySQL.Sync.execute
--- alias: exports.ghmattimysql:executeSync
-
-local affectedRows = MySQL.update.await('UPDATE users SET firstname = ? WHERE identifier = ?', {newName, playerIdentifier})
-if affectedRows then
-    print(affectedRows)
-end
-```
-
-## JavaScript
-
-### Callback
+</TabItem>
+<TabItem value="2" label="JS">
 
 ```js
-// alias: exports.oxmysql.update
-
-MySQL.update('UPDATE users SET firstname = ? WHERE identifier = ? ', [newName, playerIdentifier], (affectedRows) => {
-  if (affectedRows) {
-    console.log(affectedRows);
-  }
-});
+MySQL.update('UPDATE users SET firstname = ? WHERE identifier = ?', [
+  newName, identifier
+], (affectedRows) => {
+  console.log(affectedRows)
+})
 ```
 
-### Promise
+</TabItem>
+</Tabs>
 
-```js
-// alias: exports.oxmysql.update_async
+**Aliases**
 
-const id = MySQL.update('UPDATE users SET firstname = ? WHERE identifier = ? ', [newName, playerIdentifier]);
-if (affectedRows) {
-  console.log(affectedRows);
-}
-```
+- `MySQL.Async.execute`
+- `exports.ghmattimysql.execute`
+- `exports.oxmysql.update`

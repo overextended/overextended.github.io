@@ -1,53 +1,75 @@
 ---
-keywords: ['execute',  'insert']
+keywords: ['execute', 'insert']
+title: Insert
 ---
 
-# Insert
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 Inserts a new entry into the database and returns the insert id for the row, if valid.
 
-## Lua
+## Promise
 
-### Callback
+<Tabs>
+<TabItem value="1" label="Lua">
 
 ```lua
--- alias: exports.oxmysql:insert
--- alias: MySQL.Async.insert
--- alias: exports.ghmattimysql:execute
+local id = MySQL.insert.await('INSERT INTO `users` (identifier, firstname, lastname) VALUES (?, ?, ?)', {
+    identifier, firstName, lastName
+})
 
-MySQL.insert('INSERT INTO users (identifier, firstname, lastname) VALUES (?, ?, ?)', {playerIdentifier, firstName, lastName}, function(id)
+print(id)
+```
+
+</TabItem>
+<TabItem value="2" label="JS">
+
+```js
+const id = await MySQL.insert('INSERT INTO `users` (identifier, firstname, lastname) VALUES (?, ?, ?)', [
+  identifier, firstName, lastName
+])
+
+console.log(id)
+```
+
+</TabItem>
+</Tabs>
+
+**Aliases**
+
+- `MySQL.Sync.insert`
+- `exports.ghmattimysql.executeSync`
+- `exports.oxmysql.insert_async`
+
+## Callback
+
+<Tabs>
+<TabItem value="1" label="Lua">
+
+```lua
+MySQL.insert('INSERT INTO `users` (identifier, firstname, lastname) VALUES (?, ?, ?)', {
+    identifier, firstName, lastName
+}, function(id)
     print(id)
 end)
 ```
 
-### Promise
-
-```lua
--- alias: exports.oxmysql:insert_async
--- alias: MySQL.Sync.insert
--- alias: exports.ghmattimysql:executeSync
-
-local id = MySQL.insert.await('INSERT INTO users (identifier, firstname, lastname) VALUES (?, ?, ?)', {playerIdentifier, firstName, lastName})
-print(id)
-```
-
-## JavaScript
-
-### Callback
+</TabItem>
+<TabItem value="2" label="JS">
 
 ```js
-// alias: exports.oxmysql.insert
-
-MySQL.insert('INSERT INTO users (identifier, firstname, lastname) VALUES (?, ?, ?)', [playerIdentifier, firstName, lastName], (id) => {
+MySQL.insert('INSERT INTO `users` (identifier, firstname, lastname) VALUES (?, ?, ?)', [
+  identifier, firstName, lastName
+], (id) => {
   console.log(id)
 })
 ```
 
-### Promise
+</TabItem>
+</Tabs>
 
-```js
-// alias: exports.oxmysql.insert_async
+**Aliases**
 
-const id = await MySQL.insert('INSERT INTO users (identifier, firstname, lastname) VALUES (?, ?, ?)', [playerIdentifier, firstName, lastName])
-console.log(id)
-```
+- `MySQL.Async.insert`
+- `exports.ghmattimysql.execute`
+- `exports.oxmysql.insert`

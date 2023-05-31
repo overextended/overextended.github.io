@@ -1,11 +1,20 @@
 # Placeholders
 
-This allows queries to be properly prepared and escaped; the following lines are equivalent.
+Placeholders allow for query parameters to be safely executed, preventing [common SQL injection methods](https://bobby-tables.com/).
+
+Parameters can be passed an an array or map (referred to as named named parameters).
 
 ```lua
-"SELECT group FROM users WHERE identifier = ?", {identifier}
-"SELECT group FROM users WHERE identifier = :identifier", {identifier = identifier}
-"SELECT group FROM users WHERE identifier = @identifier", {['@identifier'] = identifier}
+local identifier = 'license:abc123'
+local group = 'admin'
+
+MySQL.scalar('SELECT `username` FROM `users` WHERE `identifier` = ? AND `group` = ?', { identifier, group })
+
+-- Named placeholders (deprecated)
+MySQL.scalar('SELECT `username` FROM `users` WHERE `identifier` = @identifier AND `group` = @group', {
+    group = group
+    identifier = identifier
+})
 ```
 
-Named placeholders are deprecated and should be avoided as much as possible.
+These are distinct from prepared statements which are handled by the MySQL server; you can use `MySQL.prepare` for more optimised and secure queries.
