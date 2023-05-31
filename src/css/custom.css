@@ -14,6 +14,7 @@
   --ifm-color-primary-lighter: #359962;
   --ifm-color-primary-lightest: #3cad6e;
   --ifm-code-font-size: 95%;
+  --ifm-menu-link-padding-horizontal: 0.65rem;
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
@@ -97,7 +98,7 @@ h2:after {
 }
 
 ul.menu__list {
-  margin-left: 1em;
+  margin-left: 0.75rem;
   border-left: 1px solid rgba(100, 100, 100, 0.5);
   overflow: visible;
   display: block;
@@ -105,5 +106,5 @@ ul.menu__list {
 
 ul.theme-doc-sidebar-menu {
   border-left: none;
-  margin-left: 4px;
+  margin-left: 0.2rem;
 }
