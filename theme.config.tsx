@@ -4,13 +4,10 @@ import { useRouter } from 'next/router';
 import Search from '@components/Search';
 
 function useHead() {
-  const { title } = useConfig();
-
   return (
     <>
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="icon" type="image/x-icon" href="ox.ico" />
-      <title>{`${title} – Overextended`}</title>
     </>
   );
 }
@@ -21,7 +18,7 @@ function useNextSeoProps() {
   const title = arr[arr.length - 1].replace(/[-_]/g, ' ');
 
   return {
-    titleTemplate: /[a-z]/.test(title) && /[A-Z]/.test(title) ? title : '%s',
+    titleTemplate: `${/[a-z]/.test(title) && /[A-Z]/.test(title) ? title : '%s'} - Overextended`,
   };
 }
 
