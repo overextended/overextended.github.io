@@ -1,0 +1,157 @@
+import { Callout } from 'nextra/components';
+import { Tabs, Tab, Steps } from 'nextra-theme-docs';
+import ResourceLinks from '@components/resource-links';
+
+A standalone library for providing easily reusable code as importable modules and exports.
+
+<ResourceLinks repo="https://github.com/overextended/ox_lib" />
+
+## Installation
+
+<Callout type="info">
+
+We **strongly** recommend referring to [Guides](../guides) for setting up Git, Node.js, and pnpm.
+
+</Callout>
+
+<Steps>
+
+### Download a [release](https://github.com/overextended/ox_lib/releases) or build the source code.
+
+```bash
+git clone https://github.com/overextended/ox_lib.git
+cd ox_lib/web
+pnpm i
+pnpm build
+```
+
+### Config
+
+Resource configuration is handled using [convars](https://docs.fivem.net/docs/scripting-reference/convars/).
+
+```bash
+# https://mantine.dev/theming/colors/#default-colors
+setr ox:primaryColor blue
+setr ox:primaryShade 8
+```
+
+You'll also need to grant ace permissions to the resource.
+
+```bash
+add_ace resource.ox_lib command.add_ace allow
+add_ace resource.ox_lib command.remove_ace allow
+add_ace resource.ox_lib command.add_principal allow
+add_ace resource.ox_lib command.remove_principal allow
+```
+
+</Steps>
+
+## Usage
+
+<Tabs items={["Lua", "JS"]}>
+<Tab>
+
+To enable the library inside of your resource just add `@ox_lib/init.lua` to `shared_scripts` or
+a `shared_script` in your `fxmanifest.lua` file.
+
+```lua
+shared_scripts {
+    '@ox_lib/init.lua'
+}
+```
+
+Or if the library is the only shared script you use you can do:
+
+```lua
+shared_script '@ox_lib/init.lua'
+```
+
+</Tab>
+<Tab>
+
+<Callout>
+Npm package for the lib does **not** support all the functions that are available for Lua.
+
+All supported functions are located inside the `resource` folder in the lib.
+
+</Callout>
+
+You can get the npm package [here](https://npmjs.com/package/@overextended/ox_lib).
+
+**Usage:**  
+You can either import the whole library object which contains all the functions for that scope (client/server/shared) or you can deconstruct it and import the functions you find needed at the time.
+
+```ts
+import lib from '@overextended/ox_lib/server';
+```
+
+```ts
+import { versionCheck } from '@overextended/ox_lib/server';
+```
+
+</Tab>
+</Tabs>
+
+That's it!  
+You can now use the library functions inside of your resource, check the rest of the documentation to see how to utilise them.
+
+## Using icons for interface functions
+
+The icon library used is Font Awesome 6.0, if for the icon you define only a string the default icon type will be `solid`.  
+If you want to use a different icon type, i.e apple as a brand, you need to define icon as a table (`array`) with the first value being the icon type (`fas`, `far`, `fab`) as a string, and the second being the icon name.
+
+<Tabs items={["Lua", "JS"]}>
+<Tab>
+
+```lua
+icon = {'fab', 'apple'}
+```
+
+</Tab>
+<Tab>
+
+```ts
+icon: ['fab', 'apple'];
+```
+
+</Tab>
+</Tabs>
+
+## Building the UI
+
+If you wish to edit any of the UI elements you will need to download the _source_ code, edit what you need and then compile it.
+
+<Callout type="warning">
+
+**DO NOT** de-bundle and un-minify the release CSS and JS files to edit them.
+
+</Callout>
+**Requirements:**
+
+- [Node.js (LTS)](https://nodejs.org/)
+- pnpm
+
+**Installing Node.js:**
+
+- Download the LTS version of Node.js.
+- Go through the install and make sure you install all of the features.
+- Run node --version in cmd and make sure that it gives you the version number. If it doesn't then you didn't install it correctly.
+
+**Installing pnpm:**
+
+- After installing NodeJS you can install pnpm by running `npm install -g pnpm`.
+
+**Building the UI:**
+
+- cd into the web directory.
+- run `pnpm i` to install the dependencies.
+- run `pnpm build` to build the source files.
+
+<Callout type="info">
+When working in the browser you can run `pnpm start`, which supports hot reloads meaning that
+you will see your changes after saving your file.
+
+If you want to work in game you can run `pnpm start:game` which writes changes to disk, so
+the only thing you have to do is restart the resource for it take affect.
+
+</Callout>

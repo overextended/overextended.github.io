@@ -1,0 +1,32 @@
+### lib.versionCheck
+
+Compares the resource version to the latest published release on GitHub.
+
+import { Tabs, Tab } from 'nextra-theme-docs';
+
+```lua
+lib.versionCheck(repository)
+```
+
+* repository: `string`
+
+<Tabs items={["Lua", "JS"]}>
+<Tab>
+
+```lua
+lib.versionCheck('overextended/ox_lib')
+```
+
+</Tab>
+<Tab>
+
+```ts
+import lib from '@overextended/ox_lib/server'
+
+lib.versionCheck('overextended/ox_lib')
+```
+
+</Tab>
+</Tabs>
+
+[Utilises GitHub's release API](https://docs.github.com/en/rest/reference/releases)

@@ -1,0 +1,32 @@
+### lib.checkDependency
+
+Check if a resource is using a specified version or higher, allowing for compatibility checks or throwing errors.
+
+import { Tabs, Tab } from 'nextra-theme-docs';
+
+```lua
+lib.checkDependency(resource, version)
+```
+
+* resource: `string`
+* version: `string`
+
+<Tabs items={["Lua", "JS"]}>
+<Tab>
+
+```lua
+if not lib.checkDependency('ox_lib', '1.5.0') then error() end
+```
+
+</Tab>
+<Tab>
+
+```ts
+import lib from '@overextended/ox_lib/shared'
+// import { checkDependency } from '@overextended/ox_lib/shared'
+
+if (!lib.checkDependency('ox_lib', '1.5.0')) error()
+```
+
+</Tab>
+</Tabs>

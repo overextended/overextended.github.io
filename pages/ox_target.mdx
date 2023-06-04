@@ -1,0 +1,59 @@
+import ResourceLinks from '@components/resource-links';
+import { Steps, Tabs, Tab } from 'nextra-theme-docs';
+import { Callout } from 'nextra/components';
+
+<ResourceLinks repo="https://github.com/overextended/ox_target" />
+
+A performant and flexible standalone targeting resource or "third-eye", with additional functionality for ox_inventory, ox_core, qb-core, and es_extended.
+
+## Installation
+
+<Callout type="info">
+
+We **strongly** recommend referring to [Guides](../guides) for setting up Git, Node.js, and pnpm.
+
+</Callout>
+
+<Steps>
+### Install all resource dependencies
+- [ox_lib](../ox_lib/)
+
+### Download a [release](https://github.com/overextended/ox_target/releases) or clone the source code.
+
+```bash
+git clone https://github.com/overextended/ox_target.git
+```
+
+### Config
+
+Resource configuration is handled using [convars](https://docs.fivem.net/docs/scripting-reference/convars/).
+
+```bash
+# Toggle targeting when pressing the hotkey, instead of holding it down.
+setr ox_target:toggleHotkey 0
+
+# Change the key to enable targeting (https://docs.fivem.net/docs/game-references/input-mapper-parameter-ids/keyboard)
+setr ox_target:defaultHotkey LMENU
+
+# Draw a sprite (circle) at the centroid of a zone.
+setr ox_target:drawSprite 1
+
+# Enable built-in targeting options, e.g. toggling vehicle doors.
+setr ox_target:defaults 1
+
+# Enable debugging / testing options, entity outlines, and a raycast indicator.
+setr ox_target:debug 0
+
+# Enable / Disable leftclick to select options
+setr ox_target:leftClick 1
+```
+
+</Steps>
+
+## Supported Frameworks
+
+These aren't necessary to run ox_target, but they will add additional features.
+
+- [ox_core](https://github.com/overextended/ox_core)
+- [esx](https://github.com/esx-framework/esx-legacy)
+- [qb-core](https://github.com/qbcore-framework/qb-core)

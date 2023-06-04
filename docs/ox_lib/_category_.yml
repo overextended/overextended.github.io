@@ -1,7 +1,0 @@
-label: Ox Lib
-collapsible: true
-collapsed: true
-link:
-  type: generated-index
-  description: A standalone library for providing easily reusable code as importable modules and exports.
-position: 3

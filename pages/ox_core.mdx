@@ -1,0 +1,123 @@
+import { Steps, Tabs, Tab } from 'nextra-theme-docs';
+import { Callout } from 'nextra/components';
+import ResourceLinks from '@components/resource-links';
+import { NpmButton } from '@components/button';
+
+<ResourceLinks repo="https://github.com/overextended/ox_core" />
+
+An experimental framework for FiveM. Limited support and breaking changes guaranteed.
+
+<Callout type="warning">
+
+This resource does not have a stable (v1.0) release; breaking changes are likely.  
+Documentation may not be kept updated in some cases.
+
+</Callout>
+
+## Installation
+
+<Callout type="info">
+
+We **strongly** recommend referring to [Guides](../guides) for setting up Git, Node.js, and pnpm.
+
+</Callout>
+
+<Steps>
+### Install all resource dependencies.
+- [oxmysql](../oxmysql)
+- [ox_lib](../ox_lib/)
+- [fivem-appearance](https://github.com/pedr0fontoura/fivem-appearance)
+- [ox_appearance](https://github.com/overextended/ox_appearance)
+
+### Download a [release](https://github.com/overextended/ox_core/releases) or build the source code.
+
+```bash
+git clone https://github.com/overextended/ox_core.git
+cd ox_core/web
+pnpm i
+pnpm build
+```
+
+### Install optional dependencies.
+
+These resources aren't required but provide additional functionality.
+
+- [ox_inventory](../ox_inventory/)
+- [npwd](https://github.com/project-error/npwd)
+- [pefcl](https://github.com/project-error/pefcl)
+
+### (Optional) Configure pefcl
+
+If using it with ox_inventory, open `pefcl/config.json` and enable framework integration.
+
+```json
+"frameworkIntegration": {
+  "enabled": true,
+  "resource": "ox_inventory",
+  "syncInitialBankBalance": false
+},
+```
+
+</Steps>
+
+## Importing into resources
+
+### Lua
+
+Lua imports can be defined as part of fxmanifest, or loaded with the load function.
+
+<Tabs items={['fxmanifest', 'load']}>
+  <Tab>
+
+    ```lua
+    client_scripts {
+        '@ox_core/imports/client.lua',
+        'client/main.lua',
+    }
+
+    server_scripts {
+        '@oxmysql/lib/MySQL.lua',
+        '@ox_core/imports/server.lua',
+        'server/main.lua',
+    }
+    ```
+
+  </Tab>
+  <Tab>
+
+    ```lua
+    local file = ('imports/%s.lua'):format(IsDuplicityVersion() and 'server' or 'client')
+    local import = LoadResourceFile('ox_core', file)
+    local chunk = assert(load(import, ('@@ox_core/%s'):format(file)))
+    chunk()
+    ```
+
+  </Tab>
+</Tabs>
+
+### JavaScript
+
+To use ox_core with your JS/TS resources you'll need to use our npm package, allowing you to import core functions with full type and intellisense support.
+
+<NpmButton link="https://www.npmjs.com/package/@overextended/ox_core" />
+
+## Config
+
+Resource configuration is handled using [convars](https://docs.fivem.net/docs/scripting-reference/convars/).
+
+```bash
+# Players must have a valid identifier to join the server. Used to fetch userid from the database.
+set ox:primaryIdentifier "fivem"
+
+# Set the number of active characters a user can have registered.
+setr ox:characterSlots 5
+
+# Enables debug and development features. Should only be used in a development environment.
+setr ox:debug 0
+
+# Disable death system handle by core.
+setr ox:deathSystem 0
+
+# Disable the spawn selection.
+setr ox:spawnSelect 0
+```

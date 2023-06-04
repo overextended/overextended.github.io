@@ -1,0 +1,29 @@
+---
+title: Common issues
+---
+
+## UI has not been built
+
+Because the UI for inventory is written in React it can't run natively under FiveM so it must first be bundled into html/css/js.
+
+We provide an easy way for you to do this by downloading a pre-bundled release, which you can get from [here](https://github.com/overextended/ox_inventory/releases/latest).  
+Make sure you download the `ox_inventory.zip` file as that one contains the bundled files and others are raw source code.
+
+If in case you wanted to edit the inventory UI you would have to build these files yourself.  
+To do so please read our [_Building inventory UI_](../Guides/inventory_ui.md) guide.
+
+## No such export * in resource ox_inventory
+
+There are several likely causes for this "issue".
+- An error occurred while starting ox_inventory or one of its dependencies (e.g. ox_lib).
+- The resource trying to use the export (e.g. esx_addoninventory) is being started _before_ ox_inventory.
+- You're literally trying to call an export that does not exist, which is a you issue.
+
+## Stashes / trunks are not saved at server restart
+
+Stopping a server or "restarting" it does not trigger any events or allow for saving.
+
+- Inventories are saved at a 5 minute interval.
+- txAdmin scheduled restarts and shutdowns will trigger a save.
+- The `saveinv` command can be used manually or triggered in the console.
+- All inventories are saved when the number of online players hits 0.

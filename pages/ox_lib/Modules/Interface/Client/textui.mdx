@@ -1,0 +1,130 @@
+---
+title: TextUI
+---
+
+import { Tabs, Tab } from 'nextra-theme-docs';
+import { Callout } from 'nextra/components';
+
+### lib.showTextUI
+
+Show the TextUI window.
+
+<Callout type="warning">
+
+**DO NOT** run this function every tick, it's intented to be used as a toggle.
+
+</Callout>
+
+<Tabs items={["Lua", "JS"]}>
+<Tab>
+
+```lua
+lib.showTextUI(text, options)
+```
+
+</Tab>
+<Tab>
+
+```ts
+import lib from '@overextended/ox_lib/client';
+
+lib.showTextUI(text, options);
+```
+
+</Tab>
+</Tabs>
+
+- text: `string`
+- options?: `table`
+  - position?: `'right-center'` or `'left-center'` or `'top-center'`
+    - Default: `'right-center'`
+  - icon?: `string` or `table` (`array`)
+  - iconColor?: `string`
+  - style?: React.CSSProperties
+
+### lib.hideTextUI
+
+Hides the currently visible TextUI window
+
+<Tabs items={["Lua", "JS"]}>
+<Tab>
+
+```lua
+lib.hideTextUI()
+```
+
+</Tab>
+<Tab>
+
+```ts
+import lib from '@overextended/ox_lib/client';
+
+lib.hideTextUI();
+```
+
+</Tab>
+</Tabs>
+
+### Usage Example
+
+#### Basic
+
+<Tabs items={["Lua", "JS"]}>
+<Tab>
+
+```lua
+lib.showTextUI('[E] - Fuel vehicle')
+```
+
+</Tab>
+<Tab>
+
+```ts
+import lib from '@overextended/ox_lib/client';
+
+lib.showTextUI('[E] - Fuel vehicle');
+```
+
+</Tab>
+</Tabs>
+
+![basic_example](https://i.imgur.com/uZS40fD.png)
+
+#### Custom styling
+
+<Tabs items={["Lua", "JS"]}>
+<Tab>
+
+```lua
+lib.showTextUI('[E] - Pick apple', {
+    position = "top-center",
+    icon = 'hand',
+    style = {
+        borderRadius = 0,
+        backgroundColor = '#48BB78',
+        color = 'white'
+    }
+})
+```
+
+</Tab>
+<Tab>
+
+```ts
+import lib from '@overextended/ox_lib/client';
+
+lib.showTextUI('[E] - Pick apple', {
+  position: 'top-center',
+  icon: 'hand',
+  style: {
+    borderRadius: 0,
+    backgroundColor: '#48BB78',
+    color: 'white',
+  },
+});
+```
+
+</Tab>
+</Tabs>
+
+![custom_example](https://i.imgur.com/sy9lPC0.png)

@@ -1,0 +1,89 @@
+import { Tabs, Tab } from 'nextra-theme-docs';
+
+## Ox.GetPlayer
+
+Return an instance of OxPlayer for the given player source.
+<Tabs items={['Lua', 'JS']}>
+<Tab>
+
+```lua
+local player = Ox.GetPlayer(source)
+print(json.encode(player, { indent = true }))
+```
+
+</Tab>
+<Tab>
+
+```ts
+import { GetPlayer } from '@overextended/ox_core/server';
+
+const player = GetPlayer(source);
+console.log(JSON.stringify(player));
+```
+
+</Tab>
+</Tabs>
+
+## Ox.GetPlayerByFilter
+
+Return the first OxPlayer that matches the filter properties.
+<Tabs items={['Lua', 'JS']}>
+<Tab>
+
+```lua
+local filter = { phoneNumber = '556-560-6609' }
+local player = Ox.GetPlayerByFilter(filter)
+print(json.encode(player, { indent = true }))
+```
+
+</Tab>
+<Tab>
+
+```ts
+import { GetPlayerByFilter } from '@overextended/ox_core/server';
+
+const filter = { phoneNumber: '556-560-6609' };
+const player = GetPlayerByFilter(filter);
+console.log(JSON.stringify(player));
+```
+
+</Tab>
+</Tabs>
+
+## Ox.GetPlayers
+
+Returns an array containing all players. Methods will not be applied if the first argument is false.
+Players can be filtered to only return players that match the given properties, or groups.
+
+<Tabs items={['Lua', 'JS']}>
+<Tab>
+
+```lua
+-- Get an array containing all players in the police or sheriff groups, with grade 3 or higher.
+local filter = { groups = {['sheriff'] = 3, ['police'] = 3} })
+local players = Ox.GetPlayers(usemetatable, filter)
+
+for i = 1, #players do
+    local player = players[i]
+    print(json.encode(player, { indent = true }))
+end
+```
+
+</Tab>
+<Tab>
+
+```ts
+import { GetPlayers } from '@overextended/ox_core/server';
+
+// Get an array containing all players in the police or sheriff groups, with grade 3 or higher.
+const filter = { groups: { sheriff: 3, police: 3 } })
+
+const players = GetPlayers(useclass, filter);
+for (let i = 0; i < players.length; i++) {
+  const player = players[i];
+  console.log(JSON.stringify(player));
+}
+```
+
+</Tab>
+</Tabs>

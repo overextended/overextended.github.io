@@ -1,0 +1,17 @@
+When ox_core is imported into a resource it will create the `player` global.  
+If `player` is nil, then the client has not yet selected a character and spawned.
+
+**Example:**
+
+```lua
+print(json.encode(player, { indent = true }))
+```
+
+- player?: `table`
+  - name: `string`
+  - firstname: `string`
+  - lastname: `string`
+  - userid: `number`
+  - charid: `number`
+  - groups: `table`
+  - gender: `string`

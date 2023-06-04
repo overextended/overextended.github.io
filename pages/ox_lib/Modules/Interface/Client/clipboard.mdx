@@ -1,0 +1,43 @@
+---
+title: Clipboard
+---
+
+import { Tabs, Tab } from 'nextra-theme-docs';
+import { Callout } from 'nextra/components';
+
+### lib.setClipboard
+
+Sets the player's clipboard to the specified string value.
+
+<Callout>
+
+Will not work if focus is already taken by some NUI component.
+
+</Callout>
+
+<Callout>
+
+To create a new line use `\t\n` not just `\n` in your string.
+
+</Callout>
+
+<Tabs items={["Lua", "JS"]}>
+<Tab>
+
+```lua
+lib.setClipboard(value)
+```
+
+</Tab>
+<Tab>
+
+```ts
+import lib from '@overextended/ox_lib/client';
+
+lib.setClipboard(value);
+```
+
+</Tab>
+</Tabs>
+
+- value: `string`

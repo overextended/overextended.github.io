@@ -1,6 +1,0 @@
-label: Ox Doorlock
-collapsible: true
-collapsed: true
-link:
-  type: generated-index
-  description: A door management resource that can be used standalone or alongside ox_core, qb-core, and es_extended.
