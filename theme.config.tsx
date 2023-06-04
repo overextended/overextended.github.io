@@ -40,7 +40,7 @@ const config: DocsThemeConfig = {
     link: 'https://github.com/overextended/overextended.github.io',
   },
   chat: {
-    link: 'https://discord.gg/hmcmv3P7YW',
+    link: 'https://discord.overextended.dev',
   },
   docsRepositoryBase: 'https://github.com/overextended/overextended.github.io/blob/main',
   footer: {
