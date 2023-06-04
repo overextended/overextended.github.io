@@ -7,7 +7,7 @@ function useHead() {
   return (
     <>
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <link rel="icon" type="image/x-icon" href="ox.ico" />
+      <link rel="icon" type="image/x-icon" href="/static/ox.ico" />
     </>
   );
 }
