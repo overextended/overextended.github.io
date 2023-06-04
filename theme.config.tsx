@@ -49,9 +49,9 @@ const config: DocsThemeConfig = {
   footer: {
     text: 'Overextended',
   },
-  search: {
-    component: <Search />,
-  },
+  // search: {
+  //   component: <Search />,
+  // },
   head: useHead,
   primaryHue: { dark: 200, light: 200 },
   sidebar: {
