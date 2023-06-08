@@ -1,0 +1,883 @@
+import { Tabs, Tab } from 'nextra-theme-docs';
+import { Callout } from 'nextra/components';
+
+```lua
+local itemNames
+ESX.RegisterServerCallback('crafting:itemNames', function(source, cb)
+    if not itemNames then
+        itemNames = {}
+        for item, data in pairs(exports.ox_inventory:Items()) do
+            itemNames[item] = data.label
+        end
+    end
+    cb(itemNames)
+end)
+```
+
+## setPlayerInventory
+
+Creates and sets the player's inventory.
+
+```lua
+exports.ox_inventory:setPlayerInventory(player, data)
+```
+
+- player: `table`
+  - source: `number`
+  - identifier: `string`
+  - name: `string`
+  - groups?: `table`
+  - sex?: `string`
+  - dateofbirth?: `string`
+- data?: `table`
+  - If not provided will load player's inventory data from the db.
+
+## forceOpenInventory
+
+Opens an inventory using the passed data.
+Forces a player to open an inventory, without usual security checks (groups, coords).
+
+```lua
+exports.ox_inventory:forceOpenInventory(playerId, invType, data)
+```
+
+- playerId: `number`
+- invType: `string`
+  - `'player'`
+  - `'stash'`
+  - `'container'`
+  - `'drop'`
+  - `'glovebox'`
+  - `'trunk'`
+  - `'dumpster'`
+- data: `number` or `string` or `table`
+
+<Tabs items={["Player", "Stash"]}>
+<Tab>
+
+**Open the target player's inventory.**
+
+```lua
+exports.ox_inventory:forceOpenInventory(1, 'player', 3)
+```
+
+**Admin command to open a player's inventory.**
+
+```lua
+RegisterCommand('openplayerinv', function(source, args)
+	  exports.ox_inventory:forceOpenInventory(source, 'player', tonumber(args[1]))
+end, true)
+```
+
+</Tab>
+<Tab>
+
+**Open the first stash in [data/stashes](https://github.com/overextended/ox_inventory/blob/main/data/stashes.lua#L2-L19).**
+
+```lua
+exports.ox_inventory:forceOpenInventory(1, 'stash', 'apartment420')
+```
+
+**Open a custom stash (created on the server with RegisterStash).**
+
+```lua
+exports.ox_inventory:forceOpenInventory(1, 'stash', 'society_police')
+```
+
+**Open a stash with a specific owner.**
+
+```lua
+exports.ox_inventory:forceOpenInventory(1, 'stash', { id = 'police_locker', owner = 'license:xxxxxxxx' })
+```
+
+</Tab>
+</Tabs>
+
+## UpdateVehicle
+
+Update the internal reference to vehicle stashes, without triggering a save or updating the database.
+
+```lua
+exports.ox_inventory:UpdateVehicle(oldPlate, newPlate)
+```
+
+- oldPlate: `string`
+- newPlate: `string`
+
+## Items
+
+Returns a table of all registered items. The format is as defined in [data/items.lua](https://github.com/overextended/ox_inventory/blob/main/data/items.lua).
+
+```lua
+exports.ox_inventory:Items()
+```
+
+The following snippet can be used in crafting resources such as okokCrafting or core_crafting, rather than querying the database.
+
+## AddItem
+
+Adds an item into the specified inventory.
+
+Should be used alongside [CanCarryItem](./CanCarryItem.md) otherwise, the maximum weight may be exceeded.
+
+```lua
+exports.ox_inventory:AddItem(inv, item, count, metadata, slot, cb)
+```
+
+- inv: `table` or `string` or `number`
+  - The inventory's unique id, or a table with the id and owner.
+    - playerId: `1`
+    - inventoryId: `gloveVGH283`
+    - `{ id = 'personallocker', owner = 'license:xxxxxx'}`
+- item: `string`
+  - The name of the item to add to the target.
+- count: `number`
+  - The number of items to add.
+- metadata?: `table` or `string`
+  - A table of unique data to attach to the item object. A string will create a table with the "type" field.
+- slot?: `number`
+  - A specific slot to add the item to. If the slot is invalid, the first available slot will be used instead.
+- cb?: function(success: `boolean`, response?: `string`)
+
+If used for glovebox, trunk or stash you must first check the inventory is loaded with [GetInventory](./GetInventory.md)
+
+Returns `success, response` if cb is undefined, otherwise they are used in the callback only.
+
+**Example:**
+
+```lua
+local success, response = exports.ox_inventory:AddItem('gloveVGH283', 'bread', 4)
+
+if not success then
+    -- if no slots are available, the value will be "inventory_full"
+    return print(response)
+end
+
+print(json.encode(response, {indent=true}))
+--[[
+    {
+        "metadata": [],
+        "label": "Bread",
+        "slot": 1,
+        "stack": true,
+        "close": true,
+        "name": "bread",
+        "count": 1,
+        "weight": 150
+    }
+]]
+```
+
+**Possible value of the "response" argument, on failure:**
+
+- "invalid_item": the item doesn't exist
+- "invalid_inventory": the inventory doesn't exist
+- "inventory_full": no free slots
+
+## RemoveItem
+
+Removes the specified item from the specified inventory.
+
+```lua
+exports.ox_inventory:RemoveItem(inv, item, count, metadata, slot)
+```
+
+- inv: `table` or `string` or `number`
+  - The inventory's unique id, or a table with the id and owner.
+    - playerId: `1`
+    - inventoryId: `gloveVGH283`
+    - `{ id = 'personallocker', owner = 'license:xxxxxx'}`
+- item: `string`
+  - The name of the item to remove from the target.
+- count: `number`
+  - The number of items to remove.
+- metadata?: `table` or `string`
+  - Only remove items with matching metadata properties.
+- slot?: `number`
+  - A specific slot to remove the item from. If the slot is invalid, the first available slot will be used instead.
+- cb?: function(success: `boolean`, response?: `string`)
+
+Returns success: `boolean`, response: `string?`.
+
+**Possible value of "response" on failure:**
+
+- "invalid_item": the item doesn't exist
+- "invalid_inventory": the inventory doesn't exist
+- "not_enough_items": inventory did not contain enough of the given item
+
+**Example:**
+
+```lua
+-- Removes 2 water from the glovebox for the given plate.
+local success = exports.ox_inventory:RemoveItem('gloveVGH283', 'water', 2)
+```
+
+## GetItem
+
+Returns _generic_ item data from the specified inventory, with the total count.
+
+```lua
+exports.ox_inventory:GetItem(inv, item, metadata, returnsCount)
+```
+
+- inv: `table` or `string` or `number`
+- item: `table` or `string`
+  - Can be items array.
+- metadata?: `any`
+  - Only returns the count of items that strictly match the given metadata.
+- returnsCount?: `boolean`
+
+If `returnsCount` is set to true, the returned value will be the `count` based on
+how many times the item was found.
+
+Otherwise returns the data related to the item _and_ its total count found in the inventory.
+
+**Example**:
+
+```lua
+local item = ox_inventory:GetItem(source, 'water', nil, false)
+
+print(json.encode(item, {indent=true}))
+--[[
+    {
+        "consume": 1,
+        "count": 15,
+        "stack": true,
+        "name": "water",
+        "weight": 500,
+        "label": "Water",
+        "close": true
+    }
+]]
+```
+
+## ConvertItems
+
+Takes traditional item data and updates it to support ox_inventory.
+
+```lua
+exports.ox_inventory:ConvertItems(playerId, items)
+```
+
+- playerId: `number`
+- items: `table`
+
+Data conversion example:
+
+```lua
+Old: [{"cola":1, "bread":3}]
+New: [{"slot":1,"name":"cola","count":1},
+{"slot":2,"name":"bread","count":3}]
+```
+
+## CanCarryItem
+
+Returns true or false depending if the inventory can carry the specified item.
+
+The function checks for inventory weight and available slots.
+
+```lua
+exports.ox_inventory:CanCarryItem(inv, item, count, metadata)
+```
+
+- inv: `table` or `string` or `number`
+- item `table` or `string`
+  - Can be array of items.
+- count: `number`
+- metadata?: `table` or `string`
+  - If metadata is passed as string then `metadata.type` will be checked.
+
+**Example:**
+
+```lua
+-- Checks if the player calling the event can carry 3 water items
+if exports.ox_inventory:CanCarryItem(source, 'water', 3) then
+    -- Do stuff if can carry
+else
+    -- Do stuff if can't carry
+end
+```
+
+## CanCarryAmount
+
+Returns the amount a player can hold based on available weight.
+
+```lua
+exports.ox_inventory:CanCarryAmount(inv, item)
+```
+
+- inv: `table` or `string` or `number`
+- item: `table` or `string`
+  - Can be array to check multiple items.
+
+Example:
+
+```lua
+-- Checks how much you can carry
+amountToAdd = exports.ox_inventory:CanCarryAmount(inv, 'stone')
+-- Adds the amount
+exports.ox_inventory:AddItem(inv, 'stone', amountToAdd)
+```
+
+## CanCarryWeight
+
+Returns if inventory can carry specified weight and free inventory weight.
+
+```lua
+exports.ox_inventory:CanCarryWeight(inv, weight)
+```
+
+- inv: `table` or `string` or `number`
+- weight: `number`
+
+Example:
+
+```lua
+-- Checks if player can carry 1000 grams.
+local fillAmount = 1000
+local canCarryWeight, freeWeight = ox_inventory:CanCarryWeight(playerId, fillAmount)
+
+if freeWeight == 0 then
+  -- Player can't carry weight.
+  return
+elseif not canCarryWeight then
+  -- Modify fillAmount, because inventory can't carry specified weight
+  fillAmount = freeWeight
+end
+
+-- Do something
+```
+
+## SetMaxWeight
+
+Sets the maximum weight available for an inventory.
+
+```lua
+exports.ox_inventory:SetMaxWeight(inv, maxWeight)
+```
+
+- inv: `table` or `string` or `number`
+- maxWeight: `number`
+
+**Example:**
+
+```lua
+local ox_inventory = exports.ox_inventory
+
+-- Set the max weight for player 1's inventory to 20kg.
+ox_inventory:SetMaxWeight(1, 20000)
+```
+
+## CanSwapItem
+
+Returns true if the item swap is possible based on inventory weight.
+
+```lua
+exports.ox_inventory:CanSwapItem(inv, firstItem, firstItemCount, testItem, testItemCount)
+```
+
+- inv: `table` or `string` or `number`
+- firstItem: `string`
+- firstItemCount: `number`
+- testItem: `string`
+- testItemCount: `number`
+
+## GetItemCount
+
+Get the total item count for all items in an inventory with the given name and metadata.
+
+```lua
+exports.ox_inventory:GetItemCount(inv, itemName, metadata, strict)
+```
+
+- inv: `table` or `string` or `number`
+- itemName: `string`
+- metadata?: `table`
+- strict?: `boolean`
+  - Strictly match metadata properties, otherwise use partial matching.
+
+**Returns:** `number?`
+
+## GetItemSlots
+
+Returns the number of slots the specified item is in, the item's total count and the remaining empty slots.
+
+```lua
+exports.ox_inventory:GetItemSlots(inv, item, metadata)
+```
+
+- inv: `table` or `string` or `number`
+- item: `table` or `string`
+- metadata?: `table`
+
+## GetSlot
+
+Returns the specified slot data as a table.
+
+```lua
+
+exports.ox_inventory:GetSlot(inv, slot)
+```
+
+- inv: `table` or `string` or `number`
+- slot: `number`
+
+**Example:**
+
+```lua
+local slot = exports.ox_inventory:GetSlot(source, 1)
+
+print(json.encode(slot, {indent=true}))
+--[[
+    {
+        "weight": 2000,
+        "name": "water",
+        "metadata": [],
+        "slot": 1,
+        "label": "Water",
+        "close": true,
+        "stack": true,
+        "count: 4
+    }
+]]
+```
+
+## GetSlotForItem
+
+Get the slot id of an existing item matching the given data, or an empty slot.
+
+```lua
+exports.ox_inventory:GetSlotForItem(inv, itemName, metadata)
+```
+
+- inv: `table` or `string` or `number`
+- itemName: `string`
+- metadata: `table?`
+
+**Returns:** `number?`
+
+## GetSlotIdWithItem
+
+Get a slot id in an inventory matching the given name and metadata.
+
+```lua
+exports.ox_inventory:GetSlotIdWithItem(inv, itemName, metadata, strict)
+```
+
+- inv: `table` or `string` or `number`
+- itemName: `string`
+- metadata?: `table`
+- strict?: `boolean`
+  - Strictly match metadata properties, otherwise use partial matching.
+
+**Returns:** `number?`
+
+## GetSlotIdsWithItem
+
+Get all slot ids in an inventory matching the given name and metadata.
+
+```lua
+exports.ox_inventory:GetSlotIdsWithItem(inv, itemName, metadata, strict)
+```
+
+- inv: `table` or `string` or `number`
+- itemName: `string`
+- metadata?: `table`
+- strict?: `boolean`
+  - Strictly match metadata properties, otherwise use partial matching.
+
+**Returns:** `number[]?`
+
+## GetSlotWithItem
+
+Get data for a slot in an inventory matching the given name and metadata.
+
+```lua
+exports.ox_inventory:GetSlotWithItem(inv, itemName, metadata, strict)
+```
+
+- inv: `table` or `string` or `number`
+- itemName: `string`
+- metadata?: `table`
+- strict?: `boolean`
+  - Strictly match metadata properties, otherwise use partial matching.
+
+**Returns:** `table?`
+
+## GetSlotsWithItem
+
+Get data all slots in an inventory matching the given name and metadata.
+
+```lua
+exports.ox_inventory:GetSlotsWithItem(inv, itemName, metadata, strict)
+```
+
+- inv: `table` or `string` or `number`
+- itemName: `string`
+- metadata?: `table`
+- strict?: `boolean`
+  - Strictly match metadata properties, otherwise use partial matching.
+
+**Returns:** `table[]?`
+
+## GetEmptySlot
+
+Get the first available empty slot in an inventory.
+
+```lua
+exports.ox_inventory:GetEmptySlot(inv)
+```
+
+- inv: `table` or `string` or `number`
+
+**Returns:** `number?`
+
+## GetContainerFromSlot
+
+Returns the inventory associated with the container linked in the slot of the given inventory.
+
+```lua
+exports.ox_inventory:GetContainerFromSlot(inv, slotId)
+```
+
+- inv: `table` or `string` or `number`
+- slotId: `number`
+
+**Returns:** `table?`
+
+## SetSlotCount
+
+Sets the number of slots available for an inventory.
+
+```lua
+exports.ox_inventory:SetSlotCount(inv, slots)
+```
+
+- inv: `table` or `string` or `number`
+- slots: `number`
+
+**Example:**
+
+```lua
+local ox_inventory = exports.ox_inventory
+
+-- Set the slot count for player 1's inventory to 10.
+ox_inventory:SetSlotCount(1, 10)
+```
+
+## GetInventory
+
+Returns the inventory associated with the ID (and owner if defined). Otherwise returns null.
+
+```lua
+exports.ox_inventory:GetInventory(inv, owner)
+```
+
+- inv: `number` or `table`
+- owner?: `string` or `boolean`
+
+**Example:**
+
+```lua
+local inventory = exports.ox_inventory:GetInventory('example_stash', false)
+print(json.encode(inventory, {indent = true}))
+--[[
+    {
+        "id": "example_stash,
+        "label": "Police Stash",
+        "type": "stash,
+        "slots": 50,
+        "weight": 0,
+        "maxWeight": 100000,
+        "owner": false,
+        ...
+    }
+]]
+```
+
+## GetInventoryItems
+
+Returns all slots with items in a inventory.
+
+```lua
+exports.ox_inventory:GetInventoryItems(inv, owner)
+```
+
+- inv: `number` or `table`
+- owner?: `string` or `boolean`
+
+**Example:**
+
+```lua
+local playerItems = exports.ox_inventory:GetInventoryItems(source)
+```
+
+## ConfiscateInventory
+
+Clears a player's inventory and saves it to a stash.
+
+Use [ReturnInventory](./Server/#returninventory) to return the confiscated inventory back to
+the player.
+
+```lua
+exports.ox_inventory:ConfiscateInventory(source)
+```
+
+- source: `number`
+
+## ReturnInventory
+
+Returns the confiscated inventory back to the player.
+
+Use it alongside [ConfiscateInventory](./Server/#confiscateinventory.md).
+
+```lua
+exports.ox_inventory:ReturnInventory(source)
+```
+
+- source: `number`
+
+## ClearInventory
+
+Clears the specified inventory. The `keep` argument is either a string or an array of strings containing the name(s) of the item(s) to keep in the inventory after clearing.
+
+```lua
+exports.ox_inventory:ClearInventory(inv, keep)
+```
+
+- inv: `table` or `string` or `number`
+- keep?: `string` or `string[]`
+
+## Search
+
+Searches an inventory for a specified item.
+
+```lua
+exports.ox_inventory:Search(inv, search, item, metadata)
+```
+
+- inv: `table` or `string` or `number`
+- search: `string`
+- item: `table` or `string`
+- metadata?: `table` or `string`
+
+`search` can be either `'slots'` or `'count'`, where slots will return a table of data
+and count will return the found amount of the specified item.
+
+## SwapSlots
+
+Swaps slots in specified inventories.
+
+```lua
+exports.ox_inventory:SwapSlots(fromInventory, toInventory, slot1, slot2)
+```
+
+- fromInventory: `table` or `string` or `number`
+- toInventory: `table` or `string` or `number`
+- slot1: `number`
+- slot2: `number`
+
+## RegisterStash
+
+Creates a new custom stash.
+
+```lua
+exports.ox_inventory:RegisterStash(id, label, slots, maxWeight, owner, groups, coords)
+```
+
+- id: `string` or `number`
+  - Stash identifier when loading from the database.
+- label: `string`
+  - Display name when inventory is open.
+- slots: `number`
+- maxWeight: `number`
+- owner: `string` or `boolean` or `nil`
+  - `string`: Can only access the stash linked to the owner.
+  - `true`: Each player has a unique stash but can request other player's stashes.
+  - `nil`: Always shared.
+- groups: `table`
+  - Table of player groups (jobs) able to access the stash.
+  - Table of group names where the numeric value is the minimum grade required.
+  - `{['police'] = 0, ['ambulance'] = 2}`
+- coords?: `vector3` or `vector3[]`
+
+<Callout>
+
+This function needs to be triggered before a player can open the stash.
+
+</Callout>
+
+**Example:**
+
+For a use case example on this function check out the written [Guide](../../../Guides/stashes.md) for it.
+
+## CreateTemporaryStash
+
+# CreateTemporaryStash
+
+Creates a temporary stash which will be removed after some time.
+
+```lua
+exports.ox_inventory:CreateTemporaryStash(properties)
+```
+
+- properties: `table`
+  - label: `string`
+  - slots: `number`
+  - maxWeight: `number`
+  - owner?: `string` `number` or `boolean`
+    - `string`: Can only access the stash linked to the owner.
+    - `true`: Each player has a unique stash but can request other player's stashes.
+    - The inventory is always shared if `false` or `nil`.
+  - groups?: `table<string, number>`
+    - Table of group names (e.g. jobs) where the numeric value is the minimum grade required.
+    - `{['police'] = 0, ['ambulance'] = 2}`
+  - coords?: `vector3`
+    - Stash can only be accessed while nearby.
+  - items?: `{ [number]: string, [number]: number, [number]?: table }[]`
+    - An array of tables, containing a sequence of itemName, count, metadata.
+
+Return:
+
+- inventoryId: `string`
+
+**Example**
+
+```lua
+local mystash = exports.ox_inventory:CreateTemporaryStash({
+    label = 'mystash',
+    slots = 5,
+    maxWeight = 5000,
+    items = {
+        { 'WEAPON_MINISMG', 1 },
+        { 'ammo-9', 69 },
+        { 'water', 2, { label = 'Mineral water' } }
+    }
+})
+
+TriggerClientEvent('ox_inventory:openInventory', 1, 'stash', mystash)
+```
+
+## CustomDrop
+
+Drops can be created from other resources, containing a variety of items and utilising a custom label (instead of 'Drop 32648').
+
+```lua
+exports.ox_inventory:CustomDrop(prefix, items, coords, slots, maxWeight, instance, model)
+```
+
+- prefix: `string`
+- items: `table`
+  - name: `string`
+  - count: `number`
+  - metadata?: `table`
+- coords: `vector3`
+- slots?: `number`
+- maxWeight?: `number`
+- instance?: `string` or `number`
+- model?: `number`
+
+```lua
+-- Create a generic drop with a marker
+exports.ox_inventory:CustomDrop('Carcass', {
+    {'meat', 5, { grade = 2, type = 'deer' }},
+    {'hide', 5, { grade = 2, type = 'deer' }}
+}, coords)
+
+-- Create a drop with an entity
+exports.ox_inventory:CustomDrop('SMG', {
+    { 'WEAPON_MINISMG', 1 },
+    { 'ammo-9', 69 },
+}, GetEntityCoords(GetPlayerPed(1)), 5, 10000, nil, `w_sb_minismg`)
+```
+
+## CreateDropFromPlayer
+
+Creates a new drop with the contents of a player's inventory.
+
+```lua
+exports.ox_inventory:CreateDropFromPlayer(playerId)
+```
+
+- playerId: `number`
+
+Return:
+
+- dropId: `string`
+
+**Example**
+
+```lua
+local dropId = exports.ox_inventory:CreateDropFromPlayer(1)
+```
+
+## GetCurrentWeapon
+
+Returns the player's currently equipped weapon as a table.
+
+```lua
+-- inv: string or number
+exports.ox_inventory:GetCurrentWeapon(inv)
+```
+
+- inv: `table` or `string` or `number`
+
+## SetDurability
+
+Sets durability onto the specified slot.
+
+Can be used for repairing weapons.
+
+```lua
+exports.ox_inventory:SetDurability(inv, slot, durability)
+```
+
+- inv: `table` or `string` or `number`
+- slot: `number`
+- durability: `number`
+
+**Example:**
+
+```lua
+local ox_inventory = exports.ox_inventory
+
+-- Set the durability of the item in slot 3 of source player's inventory to 100
+ox_inventory:SetDurability(source, 3, 100)
+
+-- Set the durability of the source player's current weapon to 100
+local weapon = ox_inventory:GetCurrentWeapon(source)
+
+if weapon then
+    ox_inventory:SetDurability(source, weapon.slot, 100)
+end
+```
+
+## SetMetadata
+
+Sets metadata on the specified slot.
+
+```lua
+ox_inventory:SetMetadata(inv, slot, metadata)
+```
+
+- inv: `table` or `string` or `number`
+- slot: `number`
+- metadata: `table`
+
+**Example:**
+
+```lua
+local ox_inventory = exports.ox_inventory
+
+local water = ox_inventory:Search(source, 1, 'water')
+for k, v in pairs(water) do
+    print('\n______________'..'\n- index '..k)
+    print(v.name, 'slot: '..v.slot, 'metadata: '..json.encode(v.metadata))
+    water = v
+    break
+end
+
+water.metadata.type = 'clean'
+ox_inventory:SetMetadata(source, water.slot, water.metadata)
+print(('modified %sx water in slot %s with new metadata'):format(water.count, water.slot))
+```
