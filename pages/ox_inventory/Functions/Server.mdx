@@ -1,19 +1,6 @@
 import { Tabs, Tab } from 'nextra-theme-docs';
 import { Callout } from 'nextra/components';
 
-```lua
-local itemNames
-ESX.RegisterServerCallback('crafting:itemNames', function(source, cb)
-    if not itemNames then
-        itemNames = {}
-        for item, data in pairs(exports.ox_inventory:Items()) do
-            itemNames[item] = data.label
-        end
-    end
-    cb(itemNames)
-end)
-```
-
 ## setPlayerInventory
 
 Creates and sets the player's inventory.
@@ -113,6 +100,19 @@ exports.ox_inventory:Items()
 ```
 
 The following snippet can be used in crafting resources such as okokCrafting or core_crafting, rather than querying the database.
+
+```lua
+local itemNames
+ESX.RegisterServerCallback('crafting:itemNames', function(source, cb)
+    if not itemNames then
+        itemNames = {}
+        for item, data in pairs(exports.ox_inventory:Items()) do
+            itemNames[item] = data.label
+        end
+    end
+    cb(itemNames)
+end)
+```
 
 ## AddItem
 
@@ -712,8 +712,6 @@ This function needs to be triggered before a player can open the stash.
 For a use case example on this function check out the written [Guide](../../../Guides/stashes.md) for it.
 
 ## CreateTemporaryStash
-
-# CreateTemporaryStash
 
 Creates a temporary stash which will be removed after some time.
 
