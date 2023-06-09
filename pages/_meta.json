@@ -3,8 +3,13 @@
   "guides": "Guides",
   "oxmysql": "OxMySQL",
   "ox_lib": "Ox Lib",
+  "creator_codes": {
+    "title": "Creator codes",
+    "type": "page",
+    "href": "https://overextended.dev/#creator-codes"
+  },
   "support": {
-    "title": "Support Us",
+    "title": "Support us",
     "type": "page",
     "href": "https://overextended.dev/#support-our-team"
   }
