@@ -1,4 +1,6 @@
-Faster alternative to PolyZone utilising [glm.polygon](https://github.com/gottfriedleibniz/lua/blob/luaglm/EXTENDED.md#polygon).
+import { Tabs, Tab } from 'nextra-theme-docs';
+
+Faster alternative to PolyZone utilising [glm.polygon](https://github.com/citizenfx/lua/blob/luaglm-dev/cfx/EXTENDED.md).
 
 ## lib.zones.poly
 
@@ -6,15 +8,15 @@ Faster alternative to PolyZone utilising [glm.polygon](https://github.com/gottfr
 lib.zones.poly(data)
 ```
 
-* data: `table`
-  * points: `vector3[]`
-    * All z values must match
-  * thickness?: `number`
-    * Default: `4`
-  * onEnter: `function`(self: `table`)
-  * onExit: `function`(self: `table`)
-  * inside: `function`(self: `table`)
-  * debug?: `boolean`
+- data: `table`
+  - points: `vector3[]`
+    - All z values must match
+  - thickness?: `number`
+    - Default: `4`
+  - onEnter: `function`(self: `table`)
+  - onExit: `function`(self: `table`)
+  - inside: `function`(self: `table`)
+  - debug?: `boolean`
 
 ## lib.zones.box
 
@@ -22,16 +24,16 @@ lib.zones.poly(data)
 lib.zones.box(data)
 ```
 
-* data: `table`
-  * coords: `vector3`
-  * size?: `vector3`
-    * Default: `vec3(4, 4, 4)`
-  * rotation?: `number`
-    * Angle in degrees
-  * onEnter: `function`(self: `table`)
-  * onExit: `function`(self: `table`)
-  * inside: `function`(self: `table`)
-  * debug?: `boolean`
+- data: `table`
+  - coords: `vector3`
+  - size?: `vector3`
+    - Default: `vec3(4, 4, 4)`
+  - rotation?: `number`
+    - Angle in degrees
+  - onEnter: `function`(self: `table`)
+  - onExit: `function`(self: `table`)
+  - inside: `function`(self: `table`)
+  - debug?: `boolean`
 
 ## lib.zones.sphere
 
@@ -39,14 +41,38 @@ lib.zones.box(data)
 lib.zones.sphere(data)
 ```
 
-* data: `table`
-  * coords: `vector3`
-  * radius?: `number`
-    * Default: `2`
-  * onEnter: `function`(self: `table`)
-  * onExit: `function`(self: `table`)
-  * inside: `function`(self: `table`)
-  * debug?: `boolean`
+- data: `table`
+  - coords: `vector3`
+  - radius?: `number`
+    - Default: `2`
+  - onEnter: `function`(self: `table`)
+  - onExit: `function`(self: `table`)
+  - inside: `function`(self: `table`)
+  - debug?: `boolean`
+
+## Methods
+
+### remove
+
+Zones can be deleted by using the remove method. The data will not be cleared from the script, and can be used to recreate a zone later.
+
+```lua
+zone:remove()
+
+SetTimeout(500, function()
+    lib.zones.poly(zone)
+end)
+```
+
+### contains
+
+Tests if a point exists inside the zone, returning a `boolean`.
+
+```lua
+if zone:contains(vec3(1, 1, 1)) then
+    print('point is inside zone!')
+end
+```
 
 ## Usage Examples
 
@@ -105,20 +131,57 @@ local box = lib.zones.box({
 })
 ```
 
-Zones can be deleted by using the remove method.
-
-```lua
-poly:remove()
-sphere:remove()
-box:remove()
-```
-
 ## Zone creation script
 
-Similarly to PolyZone, there is a zone creation script included.
-
-To use it use the `/zone` with `poly`, `box` or `sphere` as args.
-
+You can use our builtin zone-creator with `/zone` - with `poly`, `box` or `sphere` as an argument.  
 Available controls will be displayed on the right side.
 
-Once saved you will find the created zone details in created_zones.lua within ox_lib
+Zones will be saved to `ox_lib/created_zones.lua` with your chosen format.
+
+<Tabs items={["function", "array", "ox_target"]}>
+  <Tab>
+    ```lua
+    local poly = lib.zones.poly({
+        name = poly,
+        points = {
+            vec(447.9, -998.8, 25.8),
+            vec(450.3, -998.2, 25.8),
+            vec(449.9, -995.5, 25.8),
+            vec(447.2, -995.6, 25.8),
+            vec(446.3, -997.9, 25.8),
+        },
+      thickness = 2,
+    })
+    ```
+  </Tab>
+  <Tab>
+    ```lua
+    {
+        name = poly,
+        points = {
+            vec(447.9, -998.8, 25.8),
+            vec(450.3, -998.2, 25.8),
+            vec(449.9, -995.5, 25.8),
+            vec(447.2, -995.6, 25.8),
+            vec(446.3, -997.9, 25.8),
+        },
+      thickness = 2,
+    },
+    ```
+  </Tab>
+  <Tab>
+    ```lua
+    exports.ox_target:addPolyZone({
+        name = poly,
+        points = {
+            vec(447.9, -998.8, 25.8),
+            vec(450.3, -998.2, 25.8),
+            vec(449.9, -995.5, 25.8),
+            vec(447.2, -995.6, 25.8),
+            vec(446.3, -997.9, 25.8),
+        },
+      thickness = 2,
+    })
+    ```
+  </Tab>
+</Tabs>
