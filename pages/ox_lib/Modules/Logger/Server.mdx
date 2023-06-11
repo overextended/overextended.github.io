@@ -1,94 +1,92 @@
-## Submit logs to Datadog
+import { Steps, Tabs, Tab } from 'nextra-theme-docs';
 
-Register an account with [datadog](https://www.datadoghq.com/). Once registered you need to create an [API key](https://app.datadoghq.com/organization-settings/api-keys).  
-Modify your `server.cfg` with the newly generated API key and [intake server](https://docs.datadoghq.com/api/latest/logs/#send-logs).
-
-- datadoghq.com
-- us3.datadoghq.com
-- us5.datadoghq.com
-- datadoghq.eu
-
-```yaml
-set datadog:key "yourapikey"
-set datadog:site "datadoghq.com"
-```
+## lib.logger
 
 ```lua
 lib.logger(source, event, message, ...)
 ```
 
-- source: `string` or `number`
+- source: `number` or `string`
+  - Preferably an active player id, otherwise an identifier, or wherever else it originated from.
 - event: `string`
+  - A name for the log event (i.e. the trigerring event or a description)
 - message: `string`
+  - The content for the log.
 - ...: `string`
+  - Additional arguments are converted to tags for additional filtering and searching.
 
-Source is passed to `ddsource` and creates a tag. Could be playerId, identifier, -1, or server.  
-Event is passed to `ddservice` and displays in the logs list.  
-Additional arguments are converted into tags for additional filtering and search options.
+### Example
 
 ```lua
-local vehicle = Ox.CreateVehicle(false, `sultanrs`, vec(-56.479122, -1116.870362, 26.432250, 0.000030517578))
+local vehicle = Ox.CreateVehicle(false, `sultanrs`, vector4(-56.479122, -1116.870362, 26.432250, 0.000030517578))
 lib.logger(-1, 'CreateVehicle', json.encode(vehicle))
 ```
 
-![image](https://user-images.githubusercontent.com/65407488/165902870-4c938da7-a068-4d19-af5b-20402c325e87.png)
+## Datadog
 
-![image](https://user-images.githubusercontent.com/65407488/165902834-702a738d-9ae2-4725-ad85-8b8835115f7d.png)
+<Steps>
+### Create your [Datadog](https://www.datadoghq.com/) account
+You will receive a free 14 day trial, otherwise refer to their [pricing](https://www.datadoghq.com/pricing/) guide.  
+Free accounts are limited, however logs will still be retained for 14 days.
 
-## Submit logs to Grafana Loki
+### Create an [API key](https://app.datadoghq.com/organization-settings/api-keys)
 
-Loki is a horizontally scalable, highly available, multi-tenant log aggregation system inspired by Prometheus. It is designed to be very cost effective and easy to operate. It does not index the contents of the logs, but rather a set of labels for each log stream.
+This is a UUID used to submit logs to your Datadog organisation.
 
-You can take two routes with Grafana Loki:
+### Config
 
-[Grafana Cloud](https://grafana.com/)
+Set your API key and [Datadog site](https://docs.datadoghq.com/getting_started/site/) using the following convars.
 
-- Has free tier with some restrictions
-- Easy to manage
-- Easier to setup
-- Mostly Managed by Grafana
-
-Self-Host [Grafana Stack](https://grafana.com/get/?plcmt=top-nav&cta=downloads&tab=self-managed)
-
-- No imposed restrictions
-- Requires own server
-- Complicated to setup
-- Self-Managed
-
-### Grafana Cloud Setup (Easy)
-
-Once registered with Grafana Cloud, head to [My Account](https://grafana.com/auth/sign-in/?plcmt=top-nav&cta=myaccount) click your named stack (should be under Grafana Cloud section) and then click Details on the Loki section. Click Generate Now where it says password. Save the key for later. Save your user and url also, you don't need the `https://`
-
-### Grafana Self-Hosted Setup (Experience Required)
-
-To setup a grafana instance you'll require docker, and knowledge on containers or kubernetes. Please find a guide to setup a grafana stack (min requirement grafana and grafana loki) and follow that. Once done, setup authentication and use the username and password securing your endpoint.
-
-[*] Please note: By default self-hosted loki instances do not provide any authentication layers and will require an external authentication layer such as NGINX basic auth or Cloudflare Access.
-
-#### Setting up Server Config
-
-Open your server.cfg and if you have previously used datadog logging, change the `ox:logger` tag to be loki if not add the following tags to your cfg.
-
-```yaml
-set ox:logger "loki"
-set loki:user "<insert your user>"
-set loki:password "<insert the api key or password>"
-set loki:endpoint "<insert loki url without http:// or https://>"
+```bash
+set datadog:key "yourapikey"
+set datadog:site "datadoghq.com"
 ```
 
-Here is an example
+</Steps>
 
-```yaml
-set ox:logger "loki"
-set loki:user "1337"
-set loki:password "alongcomplicatedsecurepassword"
-set loki:endpoint "logs.mywebsite.com"
-```
+## Grafana Loki
 
-#### Inserting data
+Loki is a horizontally scalable, highly available, multi-tenant log aggregation system inspired by Prometheus.  
+It is designed to be very cost effective and easy to operate.
 
-The data can be inserted into Loki the same way as datadog so you can follow the log format from the above datadog section.
+<Tabs items={["Cloud", "Self-hosted"]}>
+  <Tab>
 
-#### Browsing Data
+    - Has free tier with some restrictions
+    - Easy to manage
+    - Easier to setup
+    - Mostly managed by Grafana
 
-If you're unfamiliar with how to use Loki please follow an online guide or a youtube video. You can get quite in-depth with what you can do, you can even track metrics and economic health all from logs.
+    <Steps>
+    ### Create your [Grafana](https://grafana.com/) account
+    ### Head to [My Account](https://grafana.com/auth/sign-in/?plcmt=top-nav&cta=myaccount)
+    ### Setup Loki
+    Find the Loki section in your account panel, and click "Details".
+    Generate a password and save the API key, as well as your `user` and `url`.
+
+    </Steps>
+
+  </Tab>
+  <Tab>
+    To setup a grafana instance you'll require docker, and knowledge on containers or kubernetes.  
+    Please find a guide to setup a grafana stack (min requirement grafana and grafana loki) and follow that.
+    
+    Once done, setup authentication and use the username and password securing your endpoint.
+
+    - By default self-hosted loki instances do not provide any authentication layers and will require an external authentication layer such as NGINX basic auth or Cloudflare Access.
+
+  </Tab>
+</Tabs>
+
+<Steps>
+    ### Config
+    Use the following convars to set your logging service, endpoint, and authentication details.
+
+    ```bash
+    set ox:logger "loki"
+    set loki:user "<insert your user>"
+    set loki:password "<insert the api key or password>"
+    set loki:endpoint "<insert loki url without http:// or https://>"
+    ```
+
+</Steps>
