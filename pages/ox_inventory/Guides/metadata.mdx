@@ -1,0 +1,119 @@
+---
+title: Metadata
+---
+
+# Metadata
+
+Item metadata is a very powerful tool that can be used to create multiple different items out of a single item.
+
+In this guide we'll use pokemon cards as an example, but you can find an already integrated example in the inventory
+with the `garbage` item.
+
+## Creating the base item
+
+First of all we need to create a base item that we'll use to apply metadata to.
+
+```lua filename="/data/items.lua"
+['pokemon_card'] = {
+    label = 'Pokemon card',
+    weight = 10,
+    consume = 0,
+    server = {
+        export = 'pokemon.pokemon_card'
+    }
+}
+```
+
+In this case we define the label and the weight as well since we are going to have all the cards weigh the same, but if you
+do not want them all to weigh the same you can leave it out and apply weight through metadata.
+
+We'll also make the item usable by calling the `pokemon_card` export in the `pokemon` resource.
+
+```lua filename="pokemon/server.lua"
+exports('pokemon_card', function(event, item, inventory, slot, data)
+    if event == 'usingItem' then
+        local itemSlot = exports.ox_inventory:GetSlot(inventory.id, slot)
+        print(json.encode(itemSlot.metadata, {indent=true}))
+    end
+end)
+```
+
+## Special metadata properties
+
+You can define any metadata property with any value you want it to have, but there are a couple metadata properties that
+have special use cases.
+
+These properties are:
+
+- label: `string`
+  - Display name of the item
+- weight: `number`
+  - Amount the item will weigh
+- description: `string`
+  - Description of the item that will be displayed in the tooltip
+- image: `string`
+  - Image inside the image path that the item will use
+- imageurl: `string`
+  - Url to the image that the item will use
+- type: `any`
+  - Item type that is displayed in top right of the tooltip
+
+We'll use these properties to create our pokemon cards out of the `pokemon_card` item that we created earlier.
+
+## Creating metadata items
+
+We can easily create metadata items by defining a hook using [createItem](../Functions/Server/Hooks#creatitem) and assign
+the metadata we want by adding a `type` to the item in the shop inventory.
+
+```lua filename="/data/shops.lua"
+inventory = {
+    {name = 'pokemon_card', price = 300, metadata = {
+        label = 'Charizard',
+        description = 'It is said that Charizard’s fire burns hotter if it has experienced harsh battles.',
+        image = 'panties',
+        type = 'Fire',
+        hp = 78,
+        attack = 84,
+        defense = 78
+    }}
+}
+```
+
+```lua filename="pokemon/server.lua"
+local pokemonMetadata = {
+    charizard = {
+        label = 'Charizard',
+        description = 'It is said that Charizard’s fire burns hotter if it has experienced harsh battles.',
+        image = 'panties',
+        type = 'Fire',
+        hp = 78,
+        attack = 84,
+        defense = 78
+    }
+}
+
+local hookId = exports.ox_inventory:registerHook('createItem', function(payload)
+    local pokemon = pokemonMetadata[payload.metadata.type]
+    if not pokemon then return end
+    return pokemon
+end, {
+    itemFilter = {
+        pokemon_card = true
+    }
+})
+```
+
+As seen above when our item is usable, the metadata properties are all there and accessible through the slot.
+
+## Displaying custom metadata properties
+
+We can display our custom metadata we set on our charizard card by either using string concatenation and adding them to
+the description or by using the [displayMetadata](../Functions/Client#displaymetadata) _client_ function.
+
+```lua
+exports.ox_inventory:displayMetadata({
+    hp = 'HP',
+    attack = 'ATK',
+    defense = 'DEF'
+})
+```
