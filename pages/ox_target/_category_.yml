@@ -1,6 +1,0 @@
-label: Ox Target
-collapsible: true
-collapsed: true
-link:
-  type: generated-index
-  description: A performant and flexible standalone targeting resource or "third-eye", with additional functionality for ox_inventory, ox_core, qb-core, and es_extended.

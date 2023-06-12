@@ -1,0 +1,187 @@
+## disableTargeting
+
+Toggle the availability of the targeting menu.
+
+```lua
+exports.ox_target:disableTargeting(state)
+```
+
+- state: `boolean`
+
+## addGlobalObject
+
+Creates new targetable options for all Object entity types.
+
+```lua
+exports.ox_target:addGlobalObject(options)
+```
+
+## removeGlobalObject
+
+Removes all options from the global Object list with the option names.
+
+```lua
+exports.ox_target:removeGlobalObject(optionNames)
+```
+
+- optionNames: `string` or `string[]`
+
+## addGlobalPed
+
+Creates new targetable options for all Ped entity types (excluding players).
+
+```lua
+exports.ox_target:addGlobalPed(options)
+```
+
+## removeGlobalPed
+
+Removes all options from the global Ped list with the option names.
+
+```lua
+exports.ox_target:removeGlobalPed(optionNames)
+```
+
+- optionNames: `string` or `string[]`
+
+## addGlobalPlayer
+
+Creates new targetable options for all Player entities.
+
+```lua
+exports.ox_target:addGlobalPlayer(options)
+```
+
+## removeGlobalPlayer
+
+Removes all options from the global Ped list with the option names.
+
+```lua
+exports.ox_target:removeGlobalPlayer(optionNames)
+```
+
+- optionNames: `string` or `string[]`
+
+## addGlobalVehicle
+
+Creates new targetable options for all Vehicle entity types.
+
+```lua
+exports.ox_target:addGlobalVehicle(options)
+```
+
+## removeGlobalVehicle
+
+Removes all options from the global Vehicle list with the option names.
+
+```lua
+exports.ox_target:removeGlobalVehicle(optionNames)
+```
+
+- optionNames: `string` or `string[]`
+
+## addModel
+
+Creates new targetable options for a specific model or list of models.
+
+```lua
+exports.ox_target:addModel(models, options)
+```
+
+- models: `number` or `number[]`
+
+## removeModel
+
+Removes all options from the models list with the option names.
+
+```lua
+exports.ox_target:removeModel(models, optionNames)
+```
+
+- models: `number` or `number[]`
+- optionNames: `string` or `string[]`
+
+## addEntity
+
+Creates new targetable options for a specific network id (see [NetworkGetNetworkIdFromEntity](https://docs.fivem.net/natives/?_0x9E35DAB6)).
+
+```lua
+exports.ox_target:addEntity(netIds, options)
+```
+
+- netIds: `number` or `number[]`
+
+## removeEntity
+
+Removes all options from the networked entities list with the option names.
+
+```lua
+exports.ox_target:removeEntity(netIds, optionNames)
+```
+
+- netIds: `number` or `number[]`
+- optionNames: `string` or `string[]`
+
+## addLocalEntity
+
+Creates new targetable options for a specific entity or list of entities.
+
+```lua
+exports.ox_target:addLocalEntity(entities, options)
+```
+
+- entities: `number` or `number[]`
+
+## removeLocalEntity
+
+Removes all options from the entities list with the option names.
+
+```lua
+exports.ox_target:removeLocalEntity(entities, optionNames)
+```
+
+- entities: `number` or `number[]`
+- optionNames: `string` or `string[]`
+
+## addSphereZone
+
+Creates a new targetable [sphere zone](../../ox_lib/Modules/Zones/Shared#libzonessphere).
+
+```lua
+exports.ox_target:addSphereZone(parameters)
+```
+
+- parameters: `table`
+  - coords: `vector`
+  - radius: `number`
+  - debug?: `boolean`
+  - drawSprite?: `boolean`
+  - options: `table`
+
+**Returns:** `number`
+
+## addBoxZone
+
+Creates a new targetable [box zone](../../ox_lib/Modules/Zones/Shared#libzonesbox).
+
+```lua
+exports.ox_target:addBoxZone(parameters)
+```
+
+- parameters: `table`
+  - coords: `vector`
+  - size: `vector3`
+  - rotation: `number`
+  - debug?: `boolean`
+  - drawSprite?: `boolean`
+  - options: `table`
+
+**Returns:** `number`
+
+## removeZone
+
+Removes a targetable zone with the given id (returned by addBoxZone/addSphereZone).
+
+```lua
+exports.ox_target:removeZone(id)
+```

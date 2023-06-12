@@ -1,0 +1,38 @@
+When creating a targetable option you must send an array of options with the following properties.
+
+## Options
+
+- label: `string`
+- name?: `string`
+  - An identifier used when removing an option.
+- icon?: `string`
+  - Name of a [Font Awesome](https://fontawesome.com/icons) icon.
+- iconColor?: `string`
+- distance?: `number`
+- bones?: `string` or `string[]`
+  - A bone name or array of bone names (see [GetEntityBoneIndexByName](https://docs.fivem.net/natives/?_0xFB71170B7E76ACBA)).
+- groups?: `string` or `string[]` or `table<string, number>`
+  - A group, array of groups, or pairs of groups-grades required to show the option.
+  - Groups are framework dependent, and may refer to jobs, gangs, etc.
+- items?: `string` or `string[]` or `table<string, number>`
+  - An item, array of items, or pairs of items-count required to show the option.
+  - Items are framework dependent.
+- anyItem?: `boolean`
+  - Only require a single item from the items table to exist.
+- canInteract?: `function(entity, distance, coords, name, bone)`
+  - Options will always display if this is undefined.
+- onSelect?: `function(data)`
+- export?: `string`
+- event?: `string`
+- serverEvent?: `string`
+- command?: `string`
+
+## Option effect
+
+When selecting an option it will trigger a single action, in order of priority:
+
+1. onSelect function
+2. export
+3. event
+4. server event
+5. command
