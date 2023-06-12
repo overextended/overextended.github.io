@@ -18,6 +18,10 @@ ul.nx-list-disc li li li {
   list-style-type: square;
 }
 
+ol.nx-list-decimal {
+  margin-top: 0 !important;
+}
+
 :root {
   --docsearch-highlight-color: #0ea5e9;
   --docsearch-primary-color: #0ea5e9;
@@ -89,4 +93,8 @@ ul.nx-list-disc li li li {
 
 .DocSearch-Dropdown::-webkit-scrollbar-thumb {
   @apply dark:border-neutral-800 dark:bg-neutral-600 dark:hover:bg-neutral-500;
+}
+
+.nextra-code-block pre {
+  @apply dark:!bg-zinc-800;
 }
