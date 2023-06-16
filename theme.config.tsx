@@ -25,11 +25,12 @@ function useHead() {
 function useNextSeoProps() {
   const { asPath } = useRouter();
   const arr = asPath.replace(/[-_]/g, ' ').split('/');
-  const category = arr[1].replace(/(^\w|\s\w)/g, m => m.toUpperCase()) || 'Overextended'
-  const title = arr[arr.length - 1]
+  const category = arr[1][0] !== '#' && arr[1]
+  const rawTitle = arr[arr.length - 1]
+  const title = /[a-z]/.test(rawTitle) && /[A-Z]/.test(rawTitle) ? rawTitle : '%s'
 
   return {
-    titleTemplate: `${/[a-z]/.test(title) && /[A-Z]/.test(title) ? title : '%s'} - ${category}`,
+    titleTemplate: `${title} - ${rawTitle === category ? 'Overextended' : category.replace(/(^\w|\s\w)/g, m => m.toUpperCase())}`,
   };
 }
 
