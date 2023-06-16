@@ -247,11 +247,12 @@ local input = lib.inputDialog('Dialog title', {
 
 print(json.encode(input))
 
--- Getting r, g and b values from colour picker
-local r, g, b = string.match(input[4], "rgb%((%d+), (%d+), (%d+)%)")
+-- Getting rgbb values from colour picker
+local rgb = lib.math.torgba(input[4])
 
--- Transforming unit date return to be used with Lua's os library
-local date = input[5] / 1000
+-- Transforming date timestamp to a readable format with Lua's os library (server-only)
+local timestamp = math.floor(input[5] / 1000)
+local date = os.date('%Y-%m-%d %H:%M:%S', timestamp)
 ```
 
 </Tab>
