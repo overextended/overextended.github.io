@@ -1,3 +1,5 @@
+All exports with the `options` argument expect a table with the targeting properties [here](../Options).
+
 ## disableTargeting
 
 Toggle the availability of the targeting menu.
@@ -15,6 +17,8 @@ Creates new targetable options for all Object entity types.
 ```lua
 exports.ox_target:addGlobalObject(options)
 ```
+
+- options: `table`
 
 ## removeGlobalObject
 
@@ -34,6 +38,8 @@ Creates new targetable options for all Ped entity types (excluding players).
 exports.ox_target:addGlobalPed(options)
 ```
 
+- options: `table`
+
 ## removeGlobalPed
 
 Removes all options from the global Ped list with the option names.
@@ -52,6 +58,8 @@ Creates new targetable options for all Player entities.
 exports.ox_target:addGlobalPlayer(options)
 ```
 
+- options: `table`
+
 ## removeGlobalPlayer
 
 Removes all options from the global Ped list with the option names.
@@ -69,6 +77,8 @@ Creates new targetable options for all Vehicle entity types.
 ```lua
 exports.ox_target:addGlobalVehicle(options)
 ```
+
+- options: `table`
 
 ## removeGlobalVehicle
 
@@ -89,6 +99,7 @@ exports.ox_target:addModel(models, options)
 ```
 
 - models: `number` or `number[]`
+- options: `table`
 
 ## removeModel
 
@@ -110,6 +121,7 @@ exports.ox_target:addEntity(netIds, options)
 ```
 
 - netIds: `number` or `number[]`
+- options: `table`
 
 ## removeEntity
 
@@ -131,6 +143,7 @@ exports.ox_target:addLocalEntity(entities, options)
 ```
 
 - entities: `number` or `number[]`
+- options: `table`
 
 ## removeLocalEntity
 
