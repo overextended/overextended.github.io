@@ -14,61 +14,64 @@ options for the item.
 
 **Item options:**
 
-* label: `string`
-* weight?: `number`
-* stack?: `boolean`
-  * If set to false will not allow the item to be stacked.
-* degrade?: `number`
-  * Amount of time in minutes the item will degrade after.
-* close?: `boolean`
-  * If set to false does not close the inventory on item use.
-* description?: `string`
-  * Item description that will be shown in the tooltip
-* consume?: `number`
-  * Item count needed and removed use.
-  * Default: 1
-  * If set to a decimal will consume durability instead (0.2 = 20%).
-* allowArmed?: `boolean`
-  * If set to true will allow use of item while armed with a weapon.
-* server?: `table`
-  * export?: `string`
-* client?: `table`
-  * export?: `string`
-    * Export to be triggered after item use.
-  * event?: `string`
-    * Event to be triggered after item use.
-  * status?: `table`
-    * Adjust esx_status values after use.
-  * anim?: `table`
-    * Animation that will be played during the progress bar.
-    * dict: `string`
-    * clip: `string`
-  * prop?: `table`
-    * Attached prop that will be displayed during the progress bar.
-    * model: `string` or `hash`
-    * pos: `table` (x, y, z)
-    * rot: `table` (x, y, z)
-  * disable?: `table`
-    * Actions to be disabled during the progress bar
-    * move?: `boolean`
-    * car?: `boolean`
-    * combat?: `boolean`
-    * mouse?: `boolean`
-  * usetime?: `number`
-  * cancel?: `boolean`
-    * If set to true the player canc cancel item use.
-  * add?: `function`(total: `number`)
-    * Function that triggers when receiving an item
-    * Returns total item count as `total`
-  * remove?: `function`(total: `number`)
-    * Function that triggers when removing an item
-    * Returns total item count as `total`
-* buttons?: `table`
-  * label: `string`
-  * action: `function`(slot: `number`)
-    * Callback function when button is clicked in context menu, returns item slot.
+- label: `string`
+- weight?: `number`
+- stack?: `boolean`
+  - If set to false will not allow the item to be stacked.
+- degrade?: `number`
+  - Amount of time in minutes the item will degrade after.
+- decay?: `boolean`
+  - If true the item will be deleted when durability reaches 0 (not instant for degraded items).
+- close?: `boolean`
+  - If set to false does not close the inventory on item use.
+- description?: `string`
+  - Item description that will be shown in the tooltip
+- consume?: `number`
+  - Item count needed and removed use.
+  - Default: 1
+  - If set to a decimal will consume durability instead (0.2 = 20%).
+- allowArmed?: `boolean`
+  - If set to true will allow use of item while armed with a weapon.
+- server?: `table`
+  - export?: `string`
+- client?: `table`
+  - export?: `string`
+    - Export to be triggered after item use.
+  - event?: `string`
+    - Event to be triggered after item use.
+  - status?: `table`
+    - Adjust esx_status values after use.
+  - anim?: `table`
+    - Animation that will be played during the progress bar.
+    - dict: `string`
+    - clip: `string`
+  - prop?: `table`
+    - Attached prop that will be displayed during the progress bar.
+    - model: `string` or `hash`
+    - pos: `table` (x, y, z)
+    - rot: `table` (x, y, z)
+  - disable?: `table`
+    - Actions to be disabled during the progress bar
+    - move?: `boolean`
+    - car?: `boolean`
+    - combat?: `boolean`
+    - mouse?: `boolean`
+  - usetime?: `number`
+  - cancel?: `boolean`
+    - If set to true the player canc cancel item use.
+  - add?: `function`(total: `number`)
+    - Function that triggers when receiving an item
+    - Returns total item count as `total`
+  - remove?: `function`(total: `number`)
+    - Function that triggers when removing an item
+    - Returns total item count as `total`
+- buttons?: `table`
+  - label: `string`
+  - action: `function`(slot: `number`)
+    - Callback function when button is clicked in context menu, returns item slot.
 
 **Examples:**
+
 <Tabs items={["Burger", "Burger with description", "Burger with notification"]}>
 <Tab>
 
@@ -148,8 +151,8 @@ A modified burger item, which gives you notifications on add and remove argument
 
 ## Making the item usable
 
-* If you are using ESX, you can continue using `ESX.RegisterUsableItem`.
-* If you are using QBCore, you can continue using `QBCore.Functions.CreateUseableItem`.
+- If you are using ESX, you can continue using `ESX.RegisterUsableItem`.
+- If you are using QBCore, you can continue using `QBCore.Functions.CreateUseableItem`.
 
 Using the built-in system is more secure and provides much more functionality.
 
@@ -238,21 +241,21 @@ Like with other items the item must first be registered.
 },
 ```
 
-When registered you can define the item as a container  in `/modules/items/containers.lua`
+When registered you can define the item as a container in `/modules/items/containers.lua`
 The key for the container is the `name` you gave it when registering the item.
 You can also define the number of slots, the maximum weight, blacklist and whitelist items.
 
-* itemName:
-  * slots: number
-  * The number represents the amount of slots
-  * maxWeight: number
-  * The number represents the maximum weight within the container
-  * blacklist:
-    * Supports single and multiple items
-    * `{ 'testburger', 'testburger2' }`
-  * whitelist:
-    * Supports single and multiple items
-    * `{ 'testburger', 'testburger2' }`
+- itemName:
+  - slots: number
+  - The number represents the amount of slots
+  - maxWeight: number
+  - The number represents the maximum weight within the container
+  - blacklist:
+    - Supports single and multiple items
+    - `{ 'testburger', 'testburger2' }`
+  - whitelist:
+    - Supports single and multiple items
+    - `{ 'testburger', 'testburger2' }`
 
 **Example:**
 
