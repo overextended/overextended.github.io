@@ -27,16 +27,19 @@ lib.skillCheck(difficulty, inputs);
 </Tab>
 </Tabs>
 
-- difficulty: `easy` or `medium` or `hard` or `object`
-  - Can set custom difficulty by sending a object instead of string
-    - `{ areaSize: number, speedMultiplier: number }`
-      - easy: `{ areaSize: 50, speedMultiplier: 1 }`
-      - medium: `{ areaSize: 40, speedMultiplier: 1.5 }`
-      - hard: `{ areaSize: 25, speedMultiplier: 1.75 }`
-    - `areaSize` size of the area in degrees.
-  - Sending an array will chain the checks together and return false if one fails and true if all succeed
-- inputs: `string[]`
-  - Picks a random key from the inputs table to use on each skill check pass.
+- difficulty: `'easy'` or `'medium'` or `'hard'` or `table`
+  - Preset difficulties:
+    - 'easy' - `{ areaSize: 50, speedMultiplier: 1 }`
+    - 'medium' - `{ areaSize: 40, speedMultiplier: 1.5 }`
+    - 'hard' - `{ areaSize: 25, speedMultiplier: 1.75 }`
+  - Custom difficulties can be set by sending an object instead of one of the preset strings above
+    - areaSize: `number`
+      - Size of the success area in degrees
+    - speedMultiplier: `number`
+      - Multiplier for the speed of the indicator
+- inputs?: `string[]`
+  - A random key will be picked from the inputs table for each skill check
+  - If no inputs are defined the key is defaulted to `e`
 
 ### Usage Example
 

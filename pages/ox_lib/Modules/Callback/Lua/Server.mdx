@@ -5,11 +5,11 @@
 The response is handled in a separate coroutine.
 
 ```lua
-lib.callback(name, source, cb, ...)
+lib.callback(name, playerId, cb, ...)
 ```
 
 - name: `string`
-- source: `number`
+- playerId: `number`
 - cb: `function`
 - ...: `any`
 
@@ -26,11 +26,11 @@ end, args.radius)
 The current coroutine is yielded until a response is received.
 
 ```lua
-lib.callback.await(name, source, ...)
+lib.callback.await(name, playerId, ...)
 ```
 
 - name: `string`
-- source: `number`
+- playerId: `number`
 - ...: `any`
 
 ```lua

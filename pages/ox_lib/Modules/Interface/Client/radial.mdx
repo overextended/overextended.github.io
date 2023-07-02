@@ -32,16 +32,17 @@ lib.addRadialItem(items);
 </Tab>
 </Tabs>
 
-- id: `string`
-  - Id that is used for removing options.
-- icon: `string`
-- label: `string`
-  - Label uses `  \n` to insert a newline
-- menu?: `string`
-  - Id of a menu to open.
-- onSelect: `function(currentMenu: string | nil, itemIndex: number)` | `string`
-  - Function that's ran when a user clicks the item.
-- keepOpen?: `boolean`
+- items: `table` (`object` or `array`)
+  - id: `string`
+    - Id that is used for removing options.
+  - icon: `string`
+  - label: `string`
+    - Label uses `  \n` to insert a newline
+  - menu?: `string`
+    - Id of a menu to open.
+  - onSelect: `function(currentMenu: string | nil, itemIndex: number)` | `string`
+    - Function that's ran when a user clicks the item.
+  - keepOpen?: `boolean`
 
 ### lib.removeRadialItem
 
@@ -114,16 +115,17 @@ lib.registerRadial(radial);
 </Tab>
 </Tabs>
 
-- id: `string`
-  - Unique menu id used to open with `menu` prop on an item.
-- items: `array`
-  - icon: `string`
-  - label: `string`
-    - Label uses `  \n` to insert a newline
-  - menu?: `string`
-    - Id of a menu to open.
-  - onSelect?: `function(currentMenu: string | nil, itemIndex: number)` | `string`
-    - Function that's ran when a user clicks the item.
+- radial: `table` (`object`)
+  - id: `string`
+    - Unique menu id used to open with `menu` prop on an item.
+  - items: `array`
+    - icon: `string`
+    - label: `string`
+      - Label uses `  \n` to insert a newline
+    - menu?: `string`
+      - Id of a menu to open.
+    - onSelect?: `function(currentMenu: string | nil, itemIndex: number)` | `string`
+      - Function that's ran when a user clicks the item.
 
 ### lib.hideRadial
 
@@ -174,12 +176,35 @@ lib.disableRadial(state);
 - state: `boolean`
   - Whether or not radial menu should be disabled
 
+### lib.getCurrentRadialId
+
+Returns the id of the currently open radial menu.
+
+<Tabs items={["Lua", "JS"]}>
+<Tab>
+
+```lua
+local id = lib.getCurrentRadialId()
+```
+
+</Tab>
+<Tab>
+
+```ts
+import lib from '@overextended/ox_lib/client';
+
+let id = lib.getCurrentRadialId();
+```
+
+</Tab>
+</Tabs>
+
 ### Usage Example
 
 <Callout>
 
 When adding radial menu items whether they are global or for a sub menu, make sure to stick to short as possible labels
-as long labels will look out of place and should not be used with the radial menu because of it's density.
+as long labels will look out of place and should not be used with the radial menu because of its density.
 
 </Callout>
 

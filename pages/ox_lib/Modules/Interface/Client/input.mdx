@@ -207,7 +207,7 @@ lib.closeInputDialog();
 local input = lib.inputDialog('Basic dialog', {'First row', 'Second row'})
 
 if not input then return end
-print(input, input[1], input[2])
+print(json.encode(input), input[1], input[2])
 ```
 
 </Tab>
@@ -247,7 +247,7 @@ local input = lib.inputDialog('Dialog title', {
 
 print(json.encode(input))
 
--- Getting rgbb values from colour picker
+-- Getting rgb values from colour picker
 local rgb = lib.math.torgba(input[4])
 
 -- Transforming date timestamp to a readable format with Lua's os library (server-only)

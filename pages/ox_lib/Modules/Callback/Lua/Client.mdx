@@ -10,6 +10,7 @@ lib.callback(name, delay, cb, ...)
 
 - name: `string`
 - delay: `number` or `false`
+  - Amount of time until this callback can be triggered again
 - cb: `function`
 - ...: `any`
 
@@ -29,6 +30,7 @@ lib.callback.await(name, delay, ...)
 
 - name: `string`
 - delay: `number` or `false`
+  - Amount of time until this callback can be triggered again
 - ...: `any`
 
 ```lua

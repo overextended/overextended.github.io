@@ -38,11 +38,10 @@ Creates a new [cronjob](https://en.wikipedia.org/wiki/Cron), scheduling a task t
 lib.cron.new(expression, job, options)
 ```
 
-* expression:
-  * string A cron expression such as `* * * * *` representing minute, hour, day, month, and day of the week
-* job:
-  * fun(task: `OxTask`, date: `osdate`)
-* options?:
-  * debug?: `boolean`
+- expression: `string`
+  - A cron expression such as `* * * * *` representing minute, hour, day, month, and day of the week
+- job: `fun(task: OxTask, date: osdate)`
+- options?: `table`
+  - debug?: `boolean`
 
 **returns**: OxTask

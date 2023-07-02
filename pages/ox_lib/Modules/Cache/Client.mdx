@@ -1,6 +1,6 @@
 import { Tabs, Tab } from 'nextra-theme-docs';
 
-Caches data related to the player and handling some events or statebags.  
+Caches data related to the player.  
 An interval runs every 100ms to update data that cannot be checked via handlers.
 
 ## States
@@ -11,18 +11,18 @@ An interval runs every 100ms to update data that cannot be checked via handlers.
   - player id
 - serverId: `number`
   - player server id
+- weapon: `number` or `false`
+  - current weapon hash
 - vehicle: `number` or `false`
   - vehicle entity id
 - seat: `number` or `false`
   - vehicle seat index
-- resource: `string`
-  - invoking resource name
-- weapon: `number` or `false`
-  - current ped weapon
-- coords: `vec3`
+- coords: `vector3`
   - current player coords
   - only populated if using `zones` or `points`
-  - cannot be listened for with `onCache`
+  - cannot be listened for with `lib.onCache`
+- resource: `string`
+  - invoking resource name
 - mount: `number` or `false` (RedM only)
   - mount entity id
 
@@ -38,6 +38,11 @@ lib.onCache(key, function(value) end)
 ```
 
 - key: `string`
+  - `ped`
+  - `vehicle`
+  - `seat`
+  - `weapon`
+  - `mount` (RedM only)
 - value: `any`
 
 ```lua
