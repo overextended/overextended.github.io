@@ -1,11 +1,18 @@
+Adds additional functions alongside the standard table library
+
 ## lib.table.contains
 
 ```lua
-lib.table.contains(table, value)
+lib.table.contains(tbl, value)
 ```
 
-* table: `table`
-* value: `any`
+Checks if `table` contains the given `value`. Only intended for simple values and unnested tables.
+
+- tbl: `table`
+- value: `any`
+
+Return:
+- isContained: `boolean`
 
 ## lib.table.matches
 
@@ -13,22 +20,63 @@ lib.table.contains(table, value)
 lib.table.matches(tableOne, tableTwo)
 ```
 
-* tableOne: `table`.
-* tableTwo: `table`
+Compares if two values are equal, iterating over tables and matching both keys and values.
+
+- tableOne: `table`
+- tableTwo: `table`
+
+Return:
+- matches: `boolean`
 
 ## lib.table.deepclone
 
+Recursively clones a table to ensure no table references remain.
+
 ```lua
-lib.table.deepclone(table)
+lib.table.deepclone(tbl)
 ```
 
-* table: `table`
+- tbl: `table`
+
+Return:
+- clonedTable: `table`
 
 ## lib.table.merge
+
+Merges two tables together. Duplicate keys will be added together if they are numbers, otherwise `tableTwo`'s value will be used.
 
 ```lua
 lib.table.merge(tableOne, tableTwo)
 ```
 
-* tableOne: `table`
-* tableTwo: `table`
+- tableOne: `table`
+- tableTwo: `table`
+
+Return:
+- tableOne: `table`
+
+## lib.table.freeze
+
+Makes a table read-only, preventing further modification. Unfrozen tables stored within `table` are still mutable.
+
+```lua
+lib.table.freeze(tbl)
+```
+
+- tbl: `table`
+
+Return:
+- frozenTable: `table`
+
+## lib.table.isFrozen
+
+Returns true if `tbl` is set as read-only.
+
+```lua
+lib.table.isFrozen(tbl)
+```
+
+- tbl: `table`
+
+Return:
+- isFrozen: `boolean`

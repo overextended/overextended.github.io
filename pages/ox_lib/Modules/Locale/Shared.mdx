@@ -2,7 +2,7 @@ Allows servers to set a preferred language and attempt to load locale files in a
 Locale files should use the [ISO Language Code](http://www.lingoes.net/en/translator/langcode.htm) and be saved as `./locales/langcode.json`
 
 ## Setup
-To change the preferred language from English, add the convar to your server.cfg
+To change the preferred language from English, add the convar to your server.cfg and change `en` to the desired language code.
 
 ```yaml
 setr ox:locale en
@@ -10,25 +10,25 @@ setr ox:locale en
 
 Create a locales directory and a file for your language.
 
-```json title="locales/en.json"
+```json filename="locales/en.json"
 {
   "grand_theft_auto": "grand theft auto",
   "male": "male",
   "female": "female",
-  "suspect_sex": "suspect is %s",
+  "suspect_sex": "suspect is %s"
 }
 ```
 
-```json title="locales/fr.json"
+```json filename="locales/fr.json"
 {
   "grand_theft_auto": "vol de voiture",
   "male": "homme",
   "female": "femme",
-  "suspect_sex": "le suspect est %s",
+  "suspect_sex": "le suspect est %s"
 }
 ```
 
-```lua title="fxmanifest.lua"
+```lua filename="fxmanifest.lua"
 files {
   'locales/*.json'
 }
@@ -49,8 +49,8 @@ Additional arguments can be sent to format the locale output.
 locale(str, ...)
 ```
 
-* str: `string`
-* ...: `string` or `number`
+- str: `string`
+- vararg?: `string` or `number`
 
 ```lua
 -- Load the locale module
@@ -72,6 +72,7 @@ You can create a locale string that references other locales to construct a phra
   "hello_my_name_is": "${hello}! ${my_name_is}."
 }
 ```
+
 ```lua
 print(locale('hello_my_name_is', 'doka', 'linden'))
 ```

@@ -12,7 +12,7 @@ lib.logger(source, event, message, ...)
   - A name for the log event (i.e. the trigerring event or a description)
 - message: `string`
   - The content for the log.
-- ...: `string`
+- vararg: `string`
   - Additional arguments are converted to tags for additional filtering and searching.
 
 ### Example
@@ -68,7 +68,7 @@ It is designed to be very cost effective and easy to operate.
 
   </Tab>
   <Tab>
-    To setup a grafana instance you'll require docker, and knowledge on containers or kubernetes.  
+    To setup a grafana instance you'll need docker, and knowledge on containers or kubernetes.  
     Please find a guide to setup a grafana stack (min requirement grafana and grafana loki) and follow that.
     
     Once done, setup authentication and use the username and password securing your endpoint.

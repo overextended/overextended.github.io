@@ -1,5 +1,31 @@
 Registers keybinds and simplifies interactions of the keybinds.
 
+### CKeybind
+
+A table representing a keybind with the following properties.
+
+- name: `string`
+- description: `string`
+- currentKey: `string`
+  - Key that the current user has this keybind set to
+- disabled: `boolean`
+  - Whether or not the keybind is currently disabled
+- hash: `number`
+  - Internal hash of the keybind that is used to reference it within the game itself
+- defaultKey?: `string`
+  - Default key to set the keybind to for new players
+  - NOTE: Changing this will not change the key for existing players
+- defaultMapper?: `string`
+  - See [Input Mapper Ids](https://docs.fivem.net/docs/game-references/input-mapper-parameter-ids/) for more information
+- disable: `function(self: CKeybind, disable: boolean)`
+  - Built-in function to enable / disable a keybind
+- onPressed?: `function(self: CKeybind)`
+  - User-defined function triggered on keybind press
+- onReleased?: `function(self: CKeybind)`
+  - User-defined function triggered on keybind release
+
+### lib.addKeybind
+
 ```lua
 lib.addKeybind(data)
 ```
@@ -8,12 +34,15 @@ lib.addKeybind(data)
   - name: `string`
   - description: `string`
   - defaultKey?: `string`
-    - Default: None
-  - currentKey: `string`
+    - Default: `None`
+  - defaultMapper?: `string`
+    - Default: `keyboard`
   - disabled?: `boolean`
-  - disable?: `function`(self: `table`, toggle: `boolean`)
-  - onPressed?: `function`(self: `table`)
-  - onReleased?: `function`(self: `table`)
+    - Whether or not the keybind should be disabled by default
+  - onPressed?: `function(self: CKeybind)`
+    - Function triggered on keybind press
+  - onReleased?: `function(self: CKeybind)`
+    - Function triggered on keybind release
 
 ```lua
 local keybind = lib.addKeybind({
@@ -29,7 +58,9 @@ local keybind = lib.addKeybind({
 })
 ```
 
-Keybinds can be enabled/disabled by using the disable method.
+### Enable / Disable Keybinds
+
+Keybinds can be enabled / disabled by using the disable method.
 
 ```lua
 keybind:disable(true) -- disables the keybind

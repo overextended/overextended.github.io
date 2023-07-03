@@ -8,10 +8,12 @@ lib.getClosestVehicle(coords, maxDistance, includePlayerVehicle)
 
 - coords: `vector3`
   - The coords to check from.
-- maxDistance: `number`
+- maxDistance?: `number`
   - The max distance to check.
-- includePlayerVehicle: `boolean`
+  - Default: `2.0`
+- includePlayerVehicle?: `boolean`
   - Whether or not to include the player's current vehicle.
+  - Default: `false`
 
 Return:
 

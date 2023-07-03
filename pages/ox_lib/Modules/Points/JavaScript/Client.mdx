@@ -6,12 +6,12 @@ Simple and centralised distance checking, supporting callbacks when entering, le
 Point<T>({coords, distance, onEnter, onExit, nearby, args})
 ```
 
-* coords: `number[]`
-* distance: `number`
-* onEnter?: `function`
-* onExit?: `function`
-* nearby?: `function`
-* args?: `T`
+- coords: `number[]`
+- distance: `number`
+- onEnter?: `function`
+- onExit?: `function`
+- nearby?: `function`
+- args?: `T`
 
 ```ts
 import { Point, cache } from '@overextended/ox_lib/client'
@@ -43,4 +43,3 @@ point.onExit = () => {
   console.log('Left range of point', point.id)
 }
 ```
-
