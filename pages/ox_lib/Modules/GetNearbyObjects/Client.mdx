@@ -6,11 +6,12 @@ Get the object handle and coords of all objects within range of a set of coordin
 lib.getNearbyObjects(coords, maxDistance)
 ```
 
-* coords: `vector3`
-  * The coords to check from.
-* maxDistance: `number`
-  * The max distance to check.
+- coords: `vector3`
+  - The coords to check from.
+- maxDistance?: `number`
+  - The max distance to check.
+  - Default: `2.0`
 
 Return:
 
-* `{ object: number, coords: vector3 }[]`
+- objects: `{ object: number, coords: vector3 }[]`

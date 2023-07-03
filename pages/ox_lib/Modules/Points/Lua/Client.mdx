@@ -4,17 +4,23 @@ Simple and centralised distance checking, supporting callbacks when entering, le
 
 ### CPoint
 
-A table representing a point, with the following properties.
+A table representing a point with the following properties.
 
-* id: `number`
-* coords: `vector3`
-* distance: `number`
-  * The distance for the player to be "inside" a point (i.e. the point's radius).
-* currentDistance: `number`
-  * The players current distance from the centre of the point.
-* isClosest?: `boolean`
-* remove: `function()`
-  * Removes the point from the points registry.
+- id: `number`
+- coords: `vector3`
+- distance: `number`
+  - The distance for the player to be "inside" a point (i.e. the point's radius).
+- currentDistance: `number`
+  - The players current distance from the centre of the point.
+- isClosest?: `boolean`
+- remove: `function()`
+  - Removes the point from the points registry.
+- onEnter?: `function(self: CPoint)`
+  - Function triggered when player gets within `distance` of the point
+- onExit?: `function(self: CPoint)`
+  - Function triggered when player goes beyond `distance` of the point
+- nearby?: `function(self: CPoint)`
+  - Function triggered on frame when within `distance` of the point
 
 ### lib.points.new
 
@@ -22,12 +28,15 @@ A table representing a point, with the following properties.
 lib.points.new(data)
 ```
 
-* data: `table`
-  * coords: `vector3`
-  * distance: `number`
+- data: `table`
+  - coords: `vector3`
+  - distance: `number`
 
-**Returns:** CPoint
+Returns:
 
+- point: `CPoint`
+
+#### Example
 ```lua
 local point = lib.points.new({
     coords = GetEntityCoords(cache.ped),
@@ -60,7 +69,9 @@ Get a table of all points created in the resource.
 lib.points.getAllPoints()
 ```
 
-**Return:** `table<number, CPoint>`
+Return:
+
+- points: `CPoint[]`
 
 ### lib.points.getNearbyPoints
 
@@ -70,7 +81,9 @@ Get an array of all points in range of the player.
 lib.points.getNearbyPoints()
 ```
 
-**Return:** `CPoint[]`
+Return:
+
+- nearbyPoints: `CPoint[]`
 
 ### lib.points.getClosestPoint
 
@@ -80,4 +93,6 @@ Get the data for the closest point to the player.
 lib.points.getClosestPoint()
 ```
 
-**Returns:** `CPoint`
+Return:
+
+- closestPoint?: `CPoint`

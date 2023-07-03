@@ -1,6 +1,13 @@
 import { Tabs, Tab } from 'nextra-theme-docs';
+import { Callout } from 'nextra/components';
 
 Faster alternative to PolyZone utilising [glm.polygon](https://github.com/citizenfx/lua/blob/luaglm-dev/cfx/EXTENDED.md).
+
+<Callout>
+
+Currently zones only have basic support on the server side. Some features will not work such as `onEnter`, `onExit`, and `inside`.
+
+</Callout>
 
 ## lib.zones.poly
 
@@ -13,9 +20,9 @@ lib.zones.poly(data)
     - All z values must match
   - thickness?: `number`
     - Default: `4`
-  - onEnter: `function`(self: `table`)
-  - onExit: `function`(self: `table`)
-  - inside: `function`(self: `table`)
+  - onEnter: `function(self: table)`
+  - onExit: `function(self: table)`
+  - inside: `function(self: table)`
   - debug?: `boolean`
 
 ## lib.zones.box
@@ -30,9 +37,9 @@ lib.zones.box(data)
     - Default: `vec3(4, 4, 4)`
   - rotation?: `number`
     - Angle in degrees
-  - onEnter: `function`(self: `table`)
-  - onExit: `function`(self: `table`)
-  - inside: `function`(self: `table`)
+  - onEnter: `function(self: table)`
+  - onExit: `function(self: table)`
+  - inside: `function(self: table)`
   - debug?: `boolean`
 
 ## lib.zones.sphere
@@ -140,6 +147,7 @@ Zones will be saved to `ox_lib/created_zones.lua` with your chosen format.
 
 <Tabs items={["function", "array", "ox_target"]}>
   <Tab>
+
     ```lua
     local poly = lib.zones.poly({
         name = poly,
@@ -150,11 +158,13 @@ Zones will be saved to `ox_lib/created_zones.lua` with your chosen format.
             vec(447.2, -995.6, 25.8),
             vec(446.3, -997.9, 25.8),
         },
-      thickness = 2,
+        thickness = 2,
     })
     ```
+
   </Tab>
   <Tab>
+
     ```lua
     {
         name = poly,
@@ -165,11 +175,12 @@ Zones will be saved to `ox_lib/created_zones.lua` with your chosen format.
             vec(447.2, -995.6, 25.8),
             vec(446.3, -997.9, 25.8),
         },
-      thickness = 2,
+        thickness = 2,
     },
     ```
   </Tab>
   <Tab>
+
     ```lua
     exports.ox_target:addPolyZone({
         name = poly,
@@ -180,8 +191,9 @@ Zones will be saved to `ox_lib/created_zones.lua` with your chosen format.
             vec(447.2, -995.6, 25.8),
             vec(446.3, -997.9, 25.8),
         },
-      thickness = 2,
+        thickness = 2,
     })
     ```
+
   </Tab>
 </Tabs>

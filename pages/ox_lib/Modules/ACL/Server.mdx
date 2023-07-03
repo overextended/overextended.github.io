@@ -5,7 +5,7 @@ import { Tabs, Tab } from 'nextra-theme-docs';
 
 ### lib.addAce
 
-Assigns the ace permission to a principal. Third parameter defaults to 'allow', while false sets the permission to 'deny'.
+Assigns the ace permission to a principal. Third parameter defaults to 'allow', while passing `false` sets the permission to 'deny'.
 
 <Tabs items={["Lua", "JS"]}>
 <Tab>
@@ -36,7 +36,7 @@ lib.addAce('group.admin', 'command.say')
 
 ### lib.removeAce
 
-Removes the ace permission from a principal. Third parameter defaults to 'allow', while false sets the permission to 'deny'.
+Removes the ace permission from a principal. Third parameter defaults to 'allow', while passing `false` sets the permission to 'deny'.
 
 <Tabs items={["Lua", "JS"]}>
 <Tab>

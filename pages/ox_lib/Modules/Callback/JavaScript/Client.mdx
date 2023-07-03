@@ -6,9 +6,10 @@
 triggerServerCallback(eventName, delay, ...args)
 ```
 
-* eventName: `string`
-* delay: `number` or `null`
-* ..args: `any`
+- eventName: `string`
+- delay: `number` or `null`
+  - Amount of time until this callback can be triggered again
+- ..args: `any`
 
 ## Register Client Callback
 
@@ -18,8 +19,8 @@ triggerServerCallback(eventName, delay, ...args)
 onServerCallback(eventName, cb)
 ```
 
-* eventName: `string`
-* cb: `function`(...args: `any`)
+- eventName: `string`
+- cb: `function`(...args: `any`)
 
 ## Usage Example
 

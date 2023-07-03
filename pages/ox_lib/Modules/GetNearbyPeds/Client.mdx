@@ -6,11 +6,12 @@ Get the ped handle and coords of all peds within range of a set of coordinates.
 lib.getNearbyPeds(coords, maxDistance)
 ```
 
-* coords: `vector3`
-  * The coords to check from.
-* maxDistance: `number`
-  * The max distance to check.
+- coords: `vector3`
+  - The coords to check from.
+- maxDistance?: `number`
+  - The max distance to check.
+  - Default: `2.0`
 
 Return:
 
-* `{ ped: number, coords: vector3 }[]`
+- peds: `{ ped: number, coords: vector3 }[]`

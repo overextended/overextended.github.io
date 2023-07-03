@@ -24,9 +24,10 @@ lib.requestAnimDict(dict, timeout)
 </Tab>
 </Tabs>
 
-* dict: `string`
-* timeout: `number`
-  * Default: `100`
+- dict: `string`
+- timeout?: `number`
+  - Number of ticks to wait for the asset to load.
+  - Default: `500`
 
 ### lib.requestAnimSet
 
@@ -49,9 +50,10 @@ lib.requestAnimSet(set, timeout)
 </Tab>
 </Tabs>
 
-* set: `string`
-* timeout: `number`
-  * Default: `100`
+- set: `string`
+- timeout?: `number`
+  - Number of ticks to wait for the asset to load.
+  - Default: `500`
 
 ### lib.requestModel
 
@@ -74,9 +76,10 @@ lib.requestModel(model, timeout)
 </Tab>
 </Tabs>
 
-* model: `string`
-* timeout: `number`
-  * Default: `100`
+- model: `string`
+- timeout?: `number`
+  - Number of ticks to wait for the asset to load.
+  - Default: `500`
 
 ### lib.requestStreamedTextureDict
 
@@ -99,9 +102,10 @@ lib.requestStreamedTextureDict(dict, timeout)
 </Tab>
 </Tabs>
 
-* dict: `string`
-* timeout: `number`
-  * Default: `100`
+- dict: `string`
+- timeout?: `number`
+  - Number of ticks to wait for the asset to load.
+  - Default: `500`
 
 ### lib.requestNamedPtfxAsset
 
@@ -109,7 +113,7 @@ lib.requestStreamedTextureDict(dict, timeout)
 <Tab>
 
 ```lua
-lib.requestNamedPtfxAsset(fxName, timeout)
+lib.requestNamedPtfxAsset(ptFxName, timeout)
 ```
 
 </Tab>
@@ -118,15 +122,16 @@ lib.requestNamedPtfxAsset(fxName, timeout)
 ```ts
 import lib from '@overextended/ox_lib/client'
 
-lib.requestNamedPtfxAsset(fxName, timeout)
+lib.requestNamedPtfxAsset(ptFxName, timeout)
 ```
 
 </Tab>
 </Tabs>
 
-* fxName: `string`
-* timeout: `number`
-  * Default: `100`
+- ptFxName: `string`
+- timeout?: `number`
+  - Number of ticks to wait for the asset to load.
+  - Default: `500`
 
 ### lib.requestScaleformMovie
 
@@ -134,7 +139,7 @@ lib.requestNamedPtfxAsset(fxName, timeout)
 <Tab>
 
 ```lua
-lib.requestScaleformMovie(scaleformMovie, timeout)
+lib.requestScaleformMovie(scaleformName, timeout)
 ```
 
 </Tab>
@@ -143,15 +148,16 @@ lib.requestScaleformMovie(scaleformMovie, timeout)
 ```ts
 import lib from '@overextended/ox_lib/client'
 
-lib.requestScaleformMovie(scaleformMovie, timeout)
+lib.requestScaleformMovie(scaleformName, timeout)
 ```
 
 </Tab>
 </Tabs>
 
-* dict: `string`
-* timeout: `number`
-  * Default: `100`
+- scaleformName: `string`
+- timeout?: `number`
+  - Number of ticks to wait for the asset to load.
+  - Default: `500`
 
 ### lib.requestWeaponAsset
 
@@ -174,18 +180,16 @@ lib.requestWeaponAsset(weaponType, timeout, weaponResourceFlags, extraWeaponComp
 </Tab>
 </Tabs>
 
-* weaponType: `string | number`
-* timeout: `number?`
-  * Number of ticks to wait for the asset to load. Default is `500`
-* weaponResourceFlags: `WeaponResourceFlags?`
-  * Default is `31`
-* extraWeaponComponentFlags: `ExtraWeaponComponentFlags?`
-  * Default is `0`
+- weaponType: `string | number`
+- timeout?: `number`
+  - Number of ticks to wait for the asset to load.
+  - Default: `500`
+- weaponResourceFlags?: `WeaponResourceFlags`
+  - Default: `31`
+- extraWeaponComponentFlags?: `ExtraWeaponComponentFlags`
+  - Default: `0`
 
-Return:
-* `string | number?` weaponType
-
-### WeaponResourceFlags
+#### WeaponResourceFlags
 
 ```
 1 WRF_REQUEST_BASE_ANIMS
@@ -197,7 +201,7 @@ Return:
 31 WRF_REQUEST_ALL_ANIMS
 ```
 
-### ExtraWeaponComponentFlags
+#### ExtraWeaponComponentFlags
 
 ```
 0 WEAPON_COMPONENT_NONE
