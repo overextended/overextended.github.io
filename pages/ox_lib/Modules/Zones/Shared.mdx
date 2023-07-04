@@ -20,9 +20,9 @@ lib.zones.poly(data)
     - All z values must match
   - thickness?: `number`
     - Default: `4`
-  - onEnter: `function(self: table)`
-  - onExit: `function(self: table)`
-  - inside: `function(self: table)`
+  - onEnter?: `function(self: table)`
+  - onExit?: `function(self: table)`
+  - inside?: `function(self: table)`
   - debug?: `boolean`
 
 ## lib.zones.box
@@ -34,12 +34,13 @@ lib.zones.box(data)
 - data: `table`
   - coords: `vector3`
   - size?: `vector3`
-    - Default: `vec3(4, 4, 4)`
+    - Default: `vec3(2, 2, 2)`
   - rotation?: `number`
     - Angle in degrees
-  - onEnter: `function(self: table)`
-  - onExit: `function(self: table)`
-  - inside: `function(self: table)`
+    - Default: `0`
+  - onEnter?: `function(self: table)`
+  - onExit?: `function(self: table)`
+  - inside?: `function(self: table)`
   - debug?: `boolean`
 
 ## lib.zones.sphere
@@ -52,9 +53,9 @@ lib.zones.sphere(data)
   - coords: `vector3`
   - radius?: `number`
     - Default: `2`
-  - onEnter: `function`(self: `table`)
-  - onExit: `function`(self: `table`)
-  - inside: `function`(self: `table`)
+  - onEnter?: `function(self: table)`
+  - onExit?: `function(self: table)`
+  - inside?: `function(self: table)`
   - debug?: `boolean`
 
 ## Methods

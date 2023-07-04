@@ -1,4 +1,4 @@
-All exports with the `options` argument expect a table with the targeting properties [here](../Options).
+All exports with the `options` argument expect a table with the [targeting properties](../Options).
 
 ## disableTargeting
 
@@ -9,6 +9,7 @@ exports.ox_target:disableTargeting(state)
 ```
 
 - state: `boolean`
+  - Setting `state` to `true` will turn off the targeting eye if it is active and prevent it from reopening until `state` is set to `false` again.
 
 ## addGlobalObject
 
@@ -62,7 +63,7 @@ exports.ox_target:addGlobalPlayer(options)
 
 ## removeGlobalPlayer
 
-Removes all options from the global Ped list with the option names.
+Removes all options from the global Player list with the option names.
 
 ```lua
 exports.ox_target:removeGlobalPlayer(optionNames)
@@ -98,7 +99,7 @@ Creates new targetable options for a specific model or list of models.
 exports.ox_target:addModel(models, options)
 ```
 
-- models: `number` or `number[]`
+- models: `number` or `string` or `Array<number | string>`
 - options: `table`
 
 ## removeModel
@@ -109,12 +110,12 @@ Removes all options from the models list with the option names.
 exports.ox_target:removeModel(models, optionNames)
 ```
 
-- models: `number` or `number[]`
+- models: `number` or `string` or `Array<number | string>`
 - optionNames: `string` or `string[]`
 
 ## addEntity
 
-Creates new targetable options for a specific network id (see [NetworkGetNetworkIdFromEntity](https://docs.fivem.net/natives/?_0x9E35DAB6)).
+Creates new targetable options for a specific network id or list of network ids (see [NetworkGetNetworkIdFromEntity](https://docs.fivem.net/natives/?_0x9E35DAB6)).
 
 ```lua
 exports.ox_target:addEntity(netIds, options)
@@ -136,7 +137,7 @@ exports.ox_target:removeEntity(netIds, optionNames)
 
 ## addLocalEntity
 
-Creates new targetable options for a specific entity or list of entities.
+Creates new targetable options for a specific entity handle or list of entity handles.
 
 ```lua
 exports.ox_target:addLocalEntity(entities, options)
@@ -166,12 +167,13 @@ exports.ox_target:addSphereZone(parameters)
 
 - parameters: `table`
   - coords: `vector`
-  - radius: `number`
+  - radius?: `number`
   - debug?: `boolean`
   - drawSprite?: `boolean`
   - options: `table`
 
-**Returns:** `number`
+Return:
+- id: `number`
 
 ## addBoxZone
 
@@ -183,13 +185,33 @@ exports.ox_target:addBoxZone(parameters)
 
 - parameters: `table`
   - coords: `vector`
-  - size: `vector3`
-  - rotation: `number`
+  - size?: `vector3`
+  - rotation?: `number`
   - debug?: `boolean`
   - drawSprite?: `boolean`
   - options: `table`
 
-**Returns:** `number`
+Return:
+- id: `number`
+
+## addPolyZone
+
+Creates a new targetable [poly zone](../../ox_lib/Modules/Zones/Shared#libzonespoly).
+
+```lua
+exports.ox_target:addPolyZone(parameters)
+```
+
+- parameters: `table`
+  - points: `vector3[]`
+    - All z values must match
+  - thickness?: `number`
+  - debug?: `boolean`
+  - drawSprite?: `boolean`
+  - options: `table`
+
+Return:
+- id: `number`
 
 ## removeZone
 
