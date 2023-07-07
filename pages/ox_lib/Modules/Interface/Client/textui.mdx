@@ -65,6 +65,29 @@ lib.hideTextUI();
 </Tab>
 </Tabs>
 
+### lib.isTextUIOpen
+
+Returns whether Text UI is opened or not
+
+<Tabs items={["Lua", "JS"]}>
+<Tab>
+
+```lua
+lib.isTextUIOpen()
+```
+
+</Tab>
+<Tab>
+
+```ts
+import lib from '@overextended/ox_lib/client';
+
+lib.isTextUIOpen();
+```
+
+</Tab>
+</Tabs>
+
 ### Usage Example
 
 #### Basic
@@ -126,29 +149,5 @@ lib.showTextUI('[E] - Pick apple', {
 
 </Tab>
 </Tabs>
-
-### lib.isTextUIOpen
-
-Returns whether Text UI is opened or not
-
-<Tabs items={["Lua", "JS"]}>
-<Tab>
-
-```lua
-lib.isTextUIOpen()
-```
-
-</Tab>
-<Tab>
-
-```ts
-import lib from '@overextended/ox_lib/client';
-
-lib.isTextUIOpen();
-```
-
-</Tab>
-</Tabs>
-
 
 ![custom_example](https://i.imgur.com/sy9lPC0.png)
