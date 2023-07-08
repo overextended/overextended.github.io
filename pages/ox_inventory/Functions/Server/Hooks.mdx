@@ -21,6 +21,7 @@ exports.ox_inventory:registerHook(eventName, function(payload) end, options)
     - The event will only trigger for inventories with one of the provided types (e.g. 'player', 'stash')
 
 Return:
+
 - hookId: `number`
 
 ### swapItems
@@ -39,7 +40,7 @@ By returning `false`, you can cancel the action and revert the inventory state.
   - toSlot?: `table` or `number`
   - count: `number`
 
-#### Example
+**Example**
 
 Blacklists "water" from being moved into or from gloveboxes and trunks.
 
@@ -59,7 +60,7 @@ end, {
 })
 ```
 
-### openInventory
+openInventory
 
 - Payload: `table`
   - source: `number`
@@ -69,7 +70,7 @@ end, {
 Triggered when a player tries to open a secondary inventory.  
 By returning `false`, you can cancel the action and keep the player's inventory closed.
 
-#### Example
+**Example**
 
 Disables gloveboxes and trunks.
 
@@ -97,7 +98,7 @@ end, {
 Triggered when an item is created, either by buying it, using AddItem, or when converting inventory data.  
 By returning a table you can modify or replace the metadata given to an item.
 
-#### Example
+**Example**
 
 Sets the label for "water" to "Mineral Water".
 
@@ -132,7 +133,7 @@ end, {
 
 Triggered when an item is about to be purchased and can return `false` to prevent the transaction.
 
-#### Example
+**Example**
 
 Prevents players from purchasing items at General stores.
 
@@ -165,7 +166,7 @@ end, {
   - toInventory: `number`
   - toSlot: `number`
 
-#### Example
+**Example**
 
 Prevent lockpicks from being crafted by players.
 
