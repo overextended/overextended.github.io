@@ -1,10 +1,14 @@
-# Server events
+import { Callout } from 'nextra/components';
+
+# Server
 
 This is not a comprehensive list of events and is missing events intended for internal use only.
 
 ## Handlers
 
-These events shouldn't be triggered by any other scripts.
+<Callout type="warning">
+  These events **should not** be triggered by any other scripts.
+</Callout>
 
 ### ox_inventory:openedInventory
 
@@ -22,5 +26,5 @@ AddEventHandler('ox_inventory:openedInventory', function(playerId, inventoryId) 
 Triggered after an inventory is closed by a player.
 
 ```lua
-AddEventHandler('ox_inventory:closeInventory', function(playerId, inventoryId) end)
+AddEventHandler('ox_inventory:closeInventory', function() end)
 ```

@@ -1,12 +1,14 @@
-Adds additional functions alongside the standard table library
+# Shared
+
+Adds additional functions alongside the standard table library.
 
 ## lib.table.contains
+
+Checks if `table` contains the given `value`. Only intended for simple values and unnested tables.
 
 ```lua
 lib.table.contains(tbl, value)
 ```
-
-Checks if `table` contains the given `value`. Only intended for simple values and unnested tables.
 
 - tbl: `table`
 - value: `any`
@@ -16,11 +18,11 @@ Return:
 
 ## lib.table.matches
 
+Compares if two values are equal, iterating over tables and matching both keys and values.
+
 ```lua
 lib.table.matches(tableOne, tableTwo)
 ```
-
-Compares if two values are equal, iterating over tables and matching both keys and values.
 
 - tableOne: `table`
 - tableTwo: `table`

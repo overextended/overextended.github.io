@@ -5,10 +5,10 @@ title: QBCore
 import { Callout } from 'nextra/components';
 import { Tabs, Tab } from 'nextra-theme-docs';
 
+# QBCore
+
 <Callout type="warning">
-
-QBCore support is experimental and cannot work as a "drag and drop" solution due to many incompatibilities.
-
+  QBCore support is experimental and cannot work as a "drag and drop" solution due to many incompatibilities.
 </Callout>
 
 ## Compatibility
@@ -43,7 +43,7 @@ If you have existing player data, you will need to convert it to a compatible fo
 - Start the server and type `convertinventory qb` into the server console.
 - Restart the server once conversion is complete.
 
-## Optional optimisation
+## Optional Optimisation
 
 All item related functions from Player, such as `Player.Functions.GetItemByName`, have been modified for compatibility purposes; however they are considered deprecated.
 
@@ -52,38 +52,34 @@ The reasoning is fairly simple - there's now additional function references and 
 You should read through the functions section for further information, but the following should give you a decent idea.
 
 <Tabs items={["QBCore", "Ox Inventory"]}>
-<Tab>
+  <Tab>
+    ```lua
+    local acetone = Player.Functions.GetItemByName('acetone')
+    local antifreeze = Player.Functions.GetItemByName('antifreeze')
+    local sudo = Player.Functions.GetItemByName('sudo')
+    if acetone?.amount > 2 and antifreeze?.amount > 4 and sudo?.amount > 9 then
+        Player.Functions.RemoveItem("acetone", 3)
+        Player.Functions.RemoveItem("antifreeze", 5)
+        Player.Functions.RemoveItem("sudo", 10)
+    end
+    ```
+  </Tab>
+  <Tab>
+    Add the following code somewhere in your resource to cache the exports metatable.
 
-```lua
-local acetone = Player.Functions.GetItemByName('acetone')
-local antifreeze = Player.Functions.GetItemByName('antifreeze')
-local sudo = Player.Functions.GetItemByName('sudo')
-if acetone?.amount > 2 and antifreeze?.amount > 4 and sudo?.amount > 9 then
-    Player.Functions.RemoveItem("acetone", 3)
-    Player.Functions.RemoveItem("antifreeze", 5)
-    Player.Functions.RemoveItem("sudo", 10)
-end
-```
+    ```lua
+    local ox_inventory = exports.ox_inventory
+    ```
 
-</Tab>
-<Tab>
+    You will be able to reference any functions exposed through the export.
 
-Add the following code somewhere in your resource to cache the exports metatable.
-
-```lua
-local ox_inventory = exports.ox_inventory
-```
-
-You will be able to reference any functions exposed through the export.
-
-```lua
-local items = ox_inventory:Search(source, 'count', {'acetone', 'antifreeze', 'sudo'})
-if items and items.acetone > 2 and items.antifreeze > 4 and items.sudo > 9 then
-    ox_inventory:RemoveItem(source, 'acetone', 3)
-    ox_inventory:RemoveItem(source, 'antifreeze', 5)
-    ox_inventory:RemoveItem(source, 'sudo', 10)
-end
-```
-
-</Tab>
+    ```lua
+    local items = ox_inventory:Search(source, 'count', {'acetone', 'antifreeze', 'sudo'})
+    if items and items.acetone > 2 and items.antifreeze > 4 and items.sudo > 9 then
+        ox_inventory:RemoveItem(source, 'acetone', 3)
+        ox_inventory:RemoveItem(source, 'antifreeze', 5)
+        ox_inventory:RemoveItem(source, 'sudo', 10)
+    end
+    ```
+  </Tab>
 </Tabs>

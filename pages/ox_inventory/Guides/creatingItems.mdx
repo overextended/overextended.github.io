@@ -1,152 +1,147 @@
 ---
-title: Creating items
+title: Creating Items
 ---
 
 import { Tabs, Tab } from 'nextra-theme-docs';
+
+# Creating Items
 
 ## Defining item data
 
 Before being able to see or use an item in game it **must** first be defined.
 
-All of the items are defined in the `/data/items.lua` file with key, value pairs.
+All of the items are defined in the [/data/items.lua](https://github.com/overextended/ox_inventory/blob/main/data/items.lua) file with key, value pairs.
 Key is the name (not the label) of an item and the value is a table containing the
 options for the item.
 
-**Item options:**
-
-- label: `string`
-- weight?: `number`
-- stack?: `boolean`
-  - If set to false will not allow the item to be stacked.
-- degrade?: `number`
-  - Amount of time in minutes the item will degrade after.
-- decay?: `boolean`
-  - If true the item will be deleted when durability reaches 0 (not instant for degraded items).
-- close?: `boolean`
-  - If set to false does not close the inventory on item use.
-- description?: `string`
-  - Item description that will be shown in the tooltip
-- consume?: `number`
-  - Item count needed and removed use.
-  - Default: 1
-  - If set to a decimal will consume durability instead (0.2 = 20%).
-- allowArmed?: `boolean`
-  - If set to true will allow use of item while armed with a weapon.
-- server?: `table`
-  - export?: `string`
-- client?: `table`
-  - export?: `string`
-    - Export to be triggered after item use.
-  - event?: `string`
-    - Event to be triggered after item use.
-  - status?: `table`
-    - Adjust esx_status values after use.
-  - anim?: `table`
-    - Animation that will be played during the progress bar.
-    - dict: `string`
-    - clip: `string`
-  - prop?: `table`
-    - Attached prop that will be displayed during the progress bar.
-    - model: `string` or `hash`
-    - pos: `table` (x, y, z)
-    - rot: `table` (x, y, z)
-  - disable?: `table`
-    - Actions to be disabled during the progress bar
-    - move?: `boolean`
-    - car?: `boolean`
-    - combat?: `boolean`
-    - mouse?: `boolean`
-  - usetime?: `number`
-  - cancel?: `boolean`
-    - If set to true the player canc cancel item use.
-  - add?: `function`(total: `number`)
-    - Function that triggers when receiving an item
-    - Returns total item count as `total`
-  - remove?: `function`(total: `number`)
-    - Function that triggers when removing an item
-    - Returns total item count as `total`
-- buttons?: `table`
+- Item options: `table`
   - label: `string`
-  - action: `function`(slot: `number`)
-    - Callback function when button is clicked in context menu, returns item slot.
+  - weight?: `number`
+  - stack?: `boolean`
+    - If set to false will not allow the item to be stacked.
+  - degrade?: `number`
+    - Amount of time in minutes the item will degrade after.
+  - decay?: `boolean`
+    - If true the item will be deleted when durability reaches 0 (not instant for degraded items).
+  - close?: `boolean`
+    - If set to false does not close the inventory on item use.
+  - description?: `string`
+    - Item description that will be shown in the tooltip
+  - consume?: `number`
+    - Item count needed and removed use.
+    - Default: 1
+    - If set to a decimal will consume durability instead (0.2 = 20%).
+  - allowArmed?: `boolean`
+    - If set to true will allow use of item while armed with a weapon.
+  - server?: `table`
+    - export?: `string`
+  - client?: `table`
+    - export?: `string`
+      - Export to be triggered after item use.
+    - event?: `string`
+      - Event to be triggered after item use.
+    - status?: `table`
+      - Adjust esx_status values after use.
+    - anim?: `table`
+      - Animation that will be played during the progress bar.
+      - dict: `string`
+      - clip: `string`
+    - prop?: `table`
+      - Attached prop that will be displayed during the progress bar.
+      - model: `string` or `hash`
+      - pos: `table` (x, y, z)
+      - rot: `table` (x, y, z)
+    - disable?: `table`
+      - Actions to be disabled during the progress bar
+      - move?: `boolean`
+      - car?: `boolean`
+      - combat?: `boolean`
+      - mouse?: `boolean`
+    - usetime?: `number`
+    - cancel?: `boolean`
+      - If set to true the player canc cancel item use.
+    - add?: `function`(total: `number`)
+      - Function that triggers when receiving an item
+      - Returns total item count as `total`
+    - remove?: `function`(total: `number`)
+      - Function that triggers when removing an item
+      - Returns total item count as `total`
+  - buttons?: `table`
+    - label: `string`
+    - action: `function`(slot: `number`)
+      - Callback function when button is clicked in context menu, returns item slot.
 
-**Examples:**
+### Examples
 
 <Tabs items={["Burger", "Burger with description", "Burger with notification"]}>
-<Tab>
-
-```lua
-['burger'] = {
-    label = 'Burger',
-    weight = 220,
-    stack = true,
-    close = true,
-    client = {
-        status = { hunger = 200000 },
-        anim = { dict = 'mp_player_inteat@burger', clip = 'mp_player_int_eat_burger_fp' },
-        prop = {
-            model = 'prop_cs_burger_01',
-            pos = { x = 0.02, y = 0.02, y = -0.02},
-            rot = { x = 0.0, y = 0.0, y = 0.0}
-        },
-        usetime = 2500,
+  <Tab>
+    ```lua
+    ['burger'] = {
+        label = 'Burger',
+        weight = 220,
+        stack = true,
+        close = true,
+        client = {
+            status = { hunger = 200000 },
+            anim = { dict = 'mp_player_inteat@burger', clip = 'mp_player_int_eat_burger_fp' },
+            prop = {
+                model = 'prop_cs_burger_01',
+                pos = { x = 0.02, y = 0.02, y = -0.02},
+                rot = { x = 0.0, y = 0.0, y = 0.0}
+            },
+            usetime = 2500,
+        }
     }
-}
-```
+    ```
+  </Tab>
+  <Tab>
+    A modified burger item which includes a description.
 
-</Tab>
-<Tab>
-
-A modified burger item which includes a description.
-
-```lua
-['burger'] = {
-    label = 'Burger',
-    description = 'Just what is the secret formula?'
-    weight = 220,
-    stack = true,
-    close = true,
-    client = {
-        status = { hunger = 200000 },
-        anim = { dict = 'mp_player_inteat@burger', clip = 'mp_player_int_eat_burger_fp' },
-        prop = {
-            model = 'prop_cs_burger_01',
-            pos = { x = 0.02, y = 0.02, y = -0.02},
-            rot = { x = 0.0, y = 0.0, y = 0.0}
-        },
-        usetime = 2500,
+    ```lua
+    ['burger'] = {
+        label = 'Burger',
+        description = 'Just what is the secret formula?'
+        weight = 220,
+        stack = true,
+        close = true,
+        client = {
+            status = { hunger = 200000 },
+            anim = { dict = 'mp_player_inteat@burger', clip = 'mp_player_int_eat_burger_fp' },
+            prop = {
+                model = 'prop_cs_burger_01',
+                pos = { x = 0.02, y = 0.02, y = -0.02},
+                rot = { x = 0.0, y = 0.0, y = 0.0}
+            },
+            usetime = 2500,
+        }
     }
-}
-```
+    ```
+  </Tab>
+  <Tab>
+    A modified burger item, which gives you notifications on add and remove arguments.
 
-</Tab>
-<Tab>
+    ```lua
+    ['burger'] = {
+        label = 'Burger',
+        weight = 220,
+        stack = true,
+        consume = 0,
+        client = {
+            add = function(total)
+                if total > 0 then
+                    lib.notify({description = 'Nice burger you got there!'})
+                end
+            end,
 
-A modified burger item, which gives you notifications on add and remove arguments.
-
-```lua
-['burger'] = {
-    label = 'Burger',
-    weight = 220,
-    stack = true,
-    consume = 0,
-    client = {
-        add = function(total)
-            if total > 0 then
-                lib.notify({description = 'Nice burger you got there!'})
+            remove = function(total)
+                if total < 1 then
+                    lib.notify({description = 'You lost all of your burgers!'})
+                end
             end
-        end,
-
-        remove = function(total)
-            if total < 1 then
-                lib.notify({description = 'You lost all of your burgers!'})
-            end
-        end
+        }
     }
-}
-```
-
-</Tab>
+    ```
+  </Tab>
 </Tabs>
 
 ## Making the item usable
@@ -229,18 +224,6 @@ end)
 
 Like with other items the item must first be registered.
 
-**Example:**
-
-```lua
-['paperbag'] = {
-    label = 'Paper Bag',
-    weight = 1,
-    stack = false,
-    close = false,
-    consume = 0
-},
-```
-
 When registered you can define the item as a container in `/modules/items/containers.lua`
 The key for the container is the `name` you gave it when registering the item.
 You can also define the number of slots, the maximum weight, blacklist and whitelist items.
@@ -257,9 +240,19 @@ You can also define the number of slots, the maximum weight, blacklist and white
     - Supports single and multiple items
     - `{ 'testburger', 'testburger2' }`
 
-**Example:**
+### Example
 
-```lua
+```lua filename="Register Example"
+['paperbag'] = {
+    label = 'Paper Bag',
+    weight = 1,
+    stack = false,
+    close = false,
+    consume = 0
+},
+```
+
+```lua filename="Properties Example"
 setContainerProperties('paperbag', {
 	slots = 5,
 	maxWeight = 1000,

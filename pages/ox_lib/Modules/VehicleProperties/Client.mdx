@@ -1,9 +1,11 @@
+# Client
+
 Mostly follows the format used by ESX and QBCore, with extra data such as damaged/missing props.  
-https://github.com/overextended/ox_lib/blob/master/resource/vehicleProperties/client.lua#L5
+https://github.com/overextended/ox_lib/blob/master/resource/vehicleProperties/client.lua#L3
 
 import { Tabs, Tab } from 'nextra-theme-docs';
 
-### lib.getVehicleProperties
+## lib.getVehicleProperties
 
 ```ts
 lib.getVehicleProperties(vehicle)
@@ -14,25 +16,21 @@ lib.getVehicleProperties(vehicle)
 
 
 <Tabs items={["Lua", "JS"]}>
-<Tab>
+  <Tab>
+    ```lua
+    lib.getVehicleProperties(GetVehiclePedIsUsing(PlayerPedId()))
+    ```
+  </Tab>
+  <Tab>
+    ```ts
+    import lib from '@overextended/ox_lib/client'
 
-```lua
-lib.getVehicleProperties(GetVehiclePedIsUsing(PlayerPedId()))
-```
-
-</Tab>
-<Tab>
-
-```ts
-import lib from '@overextended/ox_lib/client'
-
-lib.getVehicleProperties(GetVehiclePedIsUsing(PlayerPedId()))
-```
-
-</Tab>
+    lib.getVehicleProperties(GetVehiclePedIsUsing(PlayerPedId()))
+    ```
+  </Tab>
 </Tabs>
 
-### lib.setVehicleProperties
+## lib.setVehicleProperties
 
 Requires the vehicle to belong to the client. _Do not use NetworkRequestControlOfEntity_.
 
@@ -44,29 +42,25 @@ lib.setVehicleProperties(vehicle, props)
 - props: `table` (`object`)
 
 <Tabs items={["Lua", "JS"]}>
-<Tab>
+  <Tab>
+    ```lua
+    RegisterNetEvent('ox_lib:setVehicleProperties', function(netid, data)
+        lib.setVehicleProperties(NetToVeh(netid), data)
+    end)
+    ```
+  </Tab>
+  <Tab>
+    ```ts
+    import lib from '@overextended/ox_lib/client'
 
-```lua
-RegisterNetEvent('ox_lib:setVehicleProperties', function(netid, data)
-    lib.setVehicleProperties(NetToVeh(netid), data)
-end)
-```
-
-</Tab>
-<Tab>
-
-```ts
-import lib from '@overextended/ox_lib/client'
-
-onNet('ox_lib:setVehicleProperties', (netid, data) => {
-  lib.setVehicleProperties(NetToVeh(netid), data)
-})
-```
-
-</Tab>
+    onNet('ox_lib:setVehicleProperties', (netid, data) => {
+      lib.setVehicleProperties(NetToVeh(netid), data)
+    })
+    ```
+  </Tab>
 </Tabs>
 
-#### Recommended Usage
+### Recommended Usage
 
 The server should tell the owner of the entity to set properties, using the following trigger.
 
@@ -74,7 +68,7 @@ The server should tell the owner of the entity to set properties, using the foll
 TriggerClientEvent('ox_lib:setVehicleProperties', entityOwner, vehNetId, data)
 ```
 
-### Vehicle Properties
+## Vehicle Properties
 
 - model?: `number`
 - plate?: `string`

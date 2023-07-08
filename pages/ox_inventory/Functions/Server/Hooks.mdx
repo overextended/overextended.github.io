@@ -1,4 +1,4 @@
-# Event Hooks
+# Hooks
 
 Event hooks allow 3rd party resources to define new behaviour without modifying the inventory code directly.
 
@@ -21,7 +21,6 @@ exports.ox_inventory:registerHook(eventName, function(payload) end, options)
     - The event will only trigger for inventories with one of the provided types (e.g. 'player', 'stash')
 
 Return:
-
 - hookId: `number`
 
 ### swapItems
@@ -29,19 +28,20 @@ Return:
 Triggered when moving any item from one slot to another, or when "giving" an item.  
 By returning `false`, you can cancel the action and revert the inventory state.
 
-**Payload:**
+- Payload: `table`
+  - source: `number`
+  - action: `'move'` or `'stack'` or `'swap'` or `'give'`
+  - fromInventory: `table` or `string` or `number`
+  - toInventory: `table` or `string` or `number`
+  - fromType: `string`
+  - toType: `string`
+  - fromSlot: `table`
+  - toSlot?: `table` or `number`
+  - count: `number`
 
-- source: `number`
-- action: `'move'` or `'stack'` or `'swap'` or `'give'`
-- fromInventory: `table` or `string` or `number`
-- toInventory: `table` or `string` or `number`
-- fromType: `string`
-- toType: `string`
-- fromSlot: `table`
-- toSlot?: `table` or `number`
-- count: `number`
+#### Example
 
-**Example:**
+Blacklists "water" from being moved into or from gloveboxes and trunks.
 
 ```lua
 local hookId = exports.ox_inventory:registerHook('swapItems', function(payload)
@@ -59,20 +59,19 @@ end, {
 })
 ```
 
-Blacklists "water" from being moved into or from gloveboxes and trunks.
-
 ### openInventory
 
-**Payload:**
-
-- source: `number`
-- inventoryId: `number` or `string`
-- inventoryType: `string`
+- Payload: `table`
+  - source: `number`
+  - inventoryId: `number` or `string`
+  - inventoryType: `string`
 
 Triggered when a player tries to open a secondary inventory.  
 By returning `false`, you can cancel the action and keep the player's inventory closed.
 
-**Example:**
+#### Example
+
+Disables gloveboxes and trunks.
 
 ```lua
 local hookId = exports.ox_inventory:registerHook('openInventory', function(payload)
@@ -87,21 +86,20 @@ end, {
 })
 ```
 
-Disables gloveboxes and trunks.
-
 ### createItem
 
-**Payload:**
-
-- inventoryId?: `number` or `string`
-- metadata: `table`
-- item: `table`
-- count: `number`
+- Payload: `table`
+  - inventoryId?: `number` or `string`
+  - metadata: `table`
+  - item: `table`
+  - count: `number`
 
 Triggered when an item is created, either by buying it, using AddItem, or when converting inventory data.  
 By returning a table you can modify or replace the metadata given to an item.
 
-**Example:**
+#### Example
+
+Sets the label for "water" to "Mineral Water".
 
 ```lua
 local hookId = exports.ox_inventory:registerHook('createItem', function(payload)
@@ -117,26 +115,26 @@ end, {
 })
 ```
 
-Sets the label for "water" to "Mineral Water".
-
 ### buyItem
 
-**Payload:**
-- source: `number`
-- shopType: `string`
-- shopId: `number`
-- toInventory: `number`
-- toSlot: `number`
-- itemName: `string`
-- metadata: `table`
-- count: `number`
-- price: `number`
-- totalPrice: `number`
-- currency?: `string`
+- Payload: `table`
+  - source: `number`
+  - shopType: `string`
+  - shopId: `number`
+  - toInventory: `number`
+  - toSlot: `number`
+  - itemName: `string`
+  - metadata: `table`
+  - count: `number`
+  - price: `number`
+  - totalPrice: `number`
+  - currency?: `string`
 
 Triggered when an item is about to be purchased and can return `false` to prevent the transaction.
 
-**Example:**
+#### Example
+
+Prevents players from purchasing items at General stores.
 
 ```lua
 local hookId = exports.ox_inventory:registerHook('buyItem', function(payload)
@@ -151,26 +149,25 @@ end, {
 
 ```
 
-Prevents players from purchasing items at General stores.
-
 ### craftItem
 
-**Payload:**
+- Payload: `table`
+  - source: `number`
+  - benchId: `number`
+  - benchIndex: `number`
+  - recipe: `table`
+    - count: `number`
+    - duration: `number`
+    - ingredients: `table<string, number>`
+    - name: `string`
+    - slot: `number`
+    - weight: `number`
+  - toInventory: `number`
+  - toSlot: `number`
 
-- source: `number`
-- benchId: `number`
-- benchIndex: `number`
-- recipe: `table`
-  - count: `number`
-  - duration: `number`
-  - ingredients: `table<string, number>`
-  - name: `string`
-  - slot: `number`
-  - weight: `number`
-- toInventory: `number`
-- toSlot: `number`
+#### Example
 
-**Example:**
+Prevent lockpicks from being crafted by players.
 
 ```lua
 local hookId = exports.ox_inventory:registerHook('craftItem', function(payload)
@@ -185,15 +182,13 @@ end, {
 
 ```
 
-Prevent lockpicks from being crafted by players.
-
 ## removeHooks
+
+Removes a hook created by the invoking resource with the the specified id.  
+If no id is specified then all hooks registered by the resource are removed.
 
 ```lua
 exports.ox_inventory:removeHooks(id)
 ```
 
 - id?: `number`
-
-Removes a hook created by the invoking resource with the the specified id.  
-If no id is specified then all hooks registered by the resource are removed.
