@@ -5,40 +5,34 @@ title: Notifications
 import { Tabs, Tab } from 'nextra-theme-docs';
 import { Callout } from 'nextra/components';
 
-### lib.notify
+# Notifications
+
+## lib.notify
 
 Custom notifications with a lot of styling options.
 
 <Tabs items={["Lua", "JS"]}>
-<Tab>
+  <Tab>
+    <Tabs items={["Client", "Server"]}>
+      <Tab>
+        ```lua
+        lib.notify(data)
+        ```
+      </Tab>
+      <Tab>
+        ```lua
+        TriggerClientEvent('ox_lib:notify', source, data)
+        ```
+      </Tab>
+    </Tabs>
+  </Tab>
+  <Tab>
+    ```ts
+    import lib from '@overextended/ox_lib/client';
 
-<Tabs items={["Client", "Server"]}>
-<Tab>
-
-```lua
-lib.notify(data)
-```
-
-</Tab>
-<Tab>
-
-```lua
-TriggerClientEvent('ox_lib:notify', source, data)
-```
-
-</Tab>
-</Tabs>
-
-</Tab>
-<Tab>
-
-```ts
-import lib from '@overextended/ox_lib/client';
-
-lib.notify(data);
-```
-
-</Tab>
+    lib.notify(data);
+    ```
+  </Tab>
 </Tabs>
 
 - id?: `string`
@@ -57,94 +51,84 @@ lib.notify(data);
   - React CSS styling format
 - icon?: `string`
   - Font Awesome 6 icon name
-- iconColor: `string`
+- iconColor?: `string`
 
 <Callout>
-
-Setting `iconColor` will get rid of the contrasted icon colour and it's circular background.
-
+  Setting `iconColor` will get rid of the contrasted icon colour and it's circular background.
 </Callout>
 
-### Usage Example
+## Usage Example
 
-#### Standard
+### Standard
 
 <Tabs items={["Lua", "JS"]}>
-<Tab>
+  <Tab>
+    ```lua
+    lib.notify({
+        title = 'Notification title',
+        description = 'Notification description',
+        type = 'success'
+    })
+    ```
+  </Tab>
+  <Tab>
+    ```ts
+    import lib from '@overextended/ox_lib/client';
 
-```lua
-lib.notify({
-    title = 'Notification title',
-    description = 'Notification description',
-    type = 'success'
-})
-```
-
-</Tab>
-<Tab>
-
-```ts
-import lib from '@overextended/ox_lib/client';
-
-lib.notify({
-  title: 'Notification title',
-  description: 'Notification description',
-  type: 'success',
-});
-```
-
-</Tab>
+    lib.notify({
+      title: 'Notification title',
+      description: 'Notification description',
+      type: 'success',
+    });
+    ```
+  </Tab>
 </Tabs>
 
 ![notification](https://i.imgur.com/HFeBTLg.png)
 
-#### Custom
+### Custom
 
 <Tabs items={["Lua", "JS"]}>
-<Tab>
+  <Tab>
+    ```lua
+    lib.notify({
+        id = 'some_identifier',
+        title = 'Notification title',
+        description = 'Notification description',
+        position = 'top',
+        style = {
+            backgroundColor = '#141517',
+            color = '#C1C2C5',
+            ['.description'] = {
+              color = '#909296'
+            }
+        },
+        icon = 'ban',
+        iconColor = '#C53030'
+    })
+    ```
+  </Tab>
+  <Tab>
+    ```ts
+    import lib from '@overextended/ox_lib/client';
 
-```lua
-lib.notify({
-    id = 'some_identifier',
-    title = 'Notification title',
-    description = 'Notification description',
-    position = 'top',
-    style = {
-        backgroundColor = '#141517',
-        color = '#C1C2C5',
-        ['.description'] = {
-          color = '#909296'
-        }
-    },
-    icon = 'ban',
-    iconColor = '#C53030'
-})
-```
-
-</Tab>
-<Tab>
-
-```ts
-import lib from '@overextended/ox_lib/client';
-
-lib.notify({
-  id: 'some_identifier',
-  title: 'Notification title',
-  description: 'Notification description',
-  position: 'top',
-  style: {
-    backgroundColor: '#141517',
-    color: '#C1C2C5',
-    '.decription': {
-      color: '#909296',
-    },
-  },
-  icon: 'ban',
-  iconColor: '#C53030',
-});
-```
-
-</Tab>
+    lib.notify({
+      id: 'some_identifier',
+      title: 'Notification title',
+      description: 'Notification description',
+      position: 'top',
+      style: {
+        backgroundColor: '#141517',
+        color: '#C1C2C5',
+        '.decription': {
+          color: '#909296',
+        },
+      },
+      icon: 'ban',
+      iconColor: '#C53030',
+    });
+    ```
+  </Tab>
 </Tabs>
 
 ![custom_notification](https://i.imgur.com/WpqiW5f.png)

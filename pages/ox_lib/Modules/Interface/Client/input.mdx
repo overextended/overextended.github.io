@@ -5,28 +5,25 @@ title: Input Dialog
 import { Tabs, Tab } from 'nextra-theme-docs';
 import { Callout } from 'nextra/components';
 
-The input dialog window allows you to take data from the user
-by setting input fields.
+# Input Dialog
 
-### lib.inputDialog
+The input dialog window allows you to take data from the user by setting input fields.
+
+## lib.inputDialog
 
 <Tabs items={["Lua", "JS"]}>
-<Tab>
+  <Tab>
+    ```lua
+    lib.inputDialog(heading, rows, options)
+    ```
+  </Tab>
+  <Tab>
+    ```ts
+    import lib from '@overextended/ox_lib/client';
 
-```lua
-lib.inputDialog(heading, rows, options)
-```
-
-</Tab>
-<Tab>
-
-```ts
-import lib from '@overextended/ox_lib/client';
-
-lib.inputDialog(heading, rows, options);
-```
-
-</Tab>
+    lib.inputDialog(heading, rows, options);
+    ```
+  </Tab>
 </Tabs>
 
 - heading: `string`
@@ -36,7 +33,7 @@ lib.inputDialog(heading, rows, options);
   - allowCancel: `boolean`
     - If true the user will not be able to cancel and close the input dialog until submitted.
 
-Available properties per field type:
+### Field Type Properties
 
 - input
 
@@ -168,32 +165,26 @@ The callback data is promise based meaning that the thread will not continue exe
 The data returned will be a table (array), indexes represent the rows sent to the dialog, so if we want data from the first field that would be index `1` (`0`), if we want data from the third field, that would be index `3` (`2`), etc...
 
 <Callout>
-
-Field types such as `date`, `date-range` and `time` return a unix timestamp on the set value.
-
+  Field types such as `date`, `date-range` and `time` return a unix timestamp on the set value.
 </Callout>
 
-### lib.closeInputDialog
+## lib.closeInputDialog
 
-Force closes the active input dialog and sets its return data as `nil`
+Force closes the active input dialog and sets its return data as `nil`.
 
 <Tabs items={["Lua", "JS"]}>
-<Tab>
+  <Tab>
+    ```lua
+    lib.closeInputDialog()
+    ```
+  </Tab>
+  <Tab>
+    ```ts
+    import lib from '@overextended/ox_lib/client';
 
-```lua
-lib.closeInputDialog()
-```
-
-</Tab>
-<Tab>
-
-```ts
-import lib from '@overextended/ox_lib/client';
-
-lib.closeInputDialog();
-```
-
-</Tab>
+    lib.closeInputDialog();
+    ```
+  </Tab>
 </Tabs>
 
 ## Usage Example
@@ -201,32 +192,26 @@ lib.closeInputDialog();
 ### Basic
 
 <Tabs items={["Lua", "JS"]}>
-<Tab>
+  <Tab>
+    ```lua
+    local input = lib.inputDialog('Basic dialog', {'First row', 'Second row'})
 
-```lua
-local input = lib.inputDialog('Basic dialog', {'First row', 'Second row'})
+    if not input then return end
+    print(json.encode(input), input[1], input[2])
+    ```
+  </Tab>
+  <Tab>
+    <Callout>
+      This function is **asynchronous** requiring you to do a `.then` callback on the promise or make your function `async`.
+    </Callout>
 
-if not input then return end
-print(json.encode(input), input[1], input[2])
-```
+    ```ts
+    const input = await lib.inputDialog('Basic dialog', ['First row', 'Second row']);
 
-</Tab>
-<Tab>
-
-<Callout>
-
-This function is **asynchronous** requiring you to do a `.then` callback on the promise or make your function `async`.
-
-</Callout>
-
-```ts
-const input = await lib.inputDialog('Basic dialog', ['First row', 'Second row']);
-
-if (!input) return;
-console.log(input, input[0], input[1]);
-```
-
-</Tab>
+    if (!input) return;
+    console.log(input, input[0], input[1]);
+    ```
+  </Tab>
 </Tabs>
 
 ![Example image](https://i.imgur.com/KnZ0sEW.png)
@@ -234,59 +219,53 @@ console.log(input, input[0], input[1]);
 ### Advanced
 
 <Tabs items={["Lua", "JS"]}>
-<Tab>
+  <Tab>
+    ```lua
+    local input = lib.inputDialog('Dialog title', {
+      {type = 'input', label = 'Text input', description = 'Some input description', required = true, min = 4, max = 16},
+      {type = 'number', label = 'Number input', description = 'Some number description', icon = 'hashtag'},
+      {type = 'checkbox', label = 'Simple checkbox'},
+      {type = 'color', label = 'Colour input', default = '#eb4034'},
+      {type = 'date', label = 'Date input', icon = {'far', 'calendar'}, default = true, format = "DD/MM/YYYY"}
+    })
 
-```lua
-local input = lib.inputDialog('Dialog title', {
-  {type = 'input', label = 'Text input', description = 'Some input description', required = true, min = 4, max = 16},
-  {type = 'number', label = 'Number input', description = 'Some number description', icon = 'hashtag'},
-  {type = 'checkbox', label = 'Simple checkbox'},
-  {type = 'color', label = 'Colour input', default = '#eb4034'},
-  {type = 'date', label = 'Date input', icon = {'far', 'calendar'}, default = true, format = "DD/MM/YYYY"}
-})
+    print(json.encode(input))
 
-print(json.encode(input))
+    -- Getting rgb values from colour picker
+    local rgb = lib.math.torgba(input[4])
 
--- Getting rgb values from colour picker
-local rgb = lib.math.torgba(input[4])
+    -- Transforming date timestamp to a readable format with Lua's os library (server-only)
+    local timestamp = math.floor(input[5] / 1000)
+    local date = os.date('%Y-%m-%d %H:%M:%S', timestamp)
+    ```
+  </Tab>
+  <Tab>
+    <Callout>
+      This function is **asynchronous** requiring you to do a `.then` callback on the promise or make your function `async`.
+    </Callout>
 
--- Transforming date timestamp to a readable format with Lua's os library (server-only)
-local timestamp = math.floor(input[5] / 1000)
-local date = os.date('%Y-%m-%d %H:%M:%S', timestamp)
-```
+    ```ts
+    const input = await lib.inputDialog('Police locker', [
+      { type: 'input', label: 'Text input', description: 'Some input description', required: true, min: 3, max: 16 },
+      { type: 'number', label: 'Number input', description: 'Some number description', icon: 'hashtag' },
+      { type: 'checkbox', label: 'Simple checkbox' },
+      { type: 'color', label: 'Colour input', default: '#eb4034' },
+      { type: 'date', label: 'Date input', icon: ['far', 'calendar'], default: true, format: 'DD/MM/YYYY' },
+    ]);
 
-</Tab>
-<Tab>
+    console.log(JSON.stringify(input, null, 2));
 
-<Callout>
+    // Getting r, g and b values from colour picker
+    const regExp = /rgb\((\d+),\s*(\d+),\s*(\d+)\)/;
+    const colourInput = input[3];
 
-This function is **asynchronous** requiring you to do a `.then` callback on the promise or make your function `async`.
+    const color = regExp.exec(colourInput);
 
-</Callout>
+    if (!color) return;
 
-```ts
-const input = await lib.inputDialog('Police locker', [
-  { type: 'input', label: 'Text input', description: 'Some input description', required: true, min: 3, max: 16 },
-  { type: 'number', label: 'Number input', description: 'Some number description', icon: 'hashtag' },
-  { type: 'checkbox', label: 'Simple checkbox' },
-  { type: 'color', label: 'Colour input', default: '#eb4034' },
-  { type: 'date', label: 'Date input', icon: ['far', 'calendar'], default: true, format: 'DD/MM/YYYY' },
-]);
-
-console.log(JSON.stringify(input, null, 2));
-
-// Getting r, g and b values from colour picker
-const regExp = /rgb\((\d+),\s*(\d+),\s*(\d+)\)/;
-const colourInput = input[3];
-
-const color = regExp.exec(colourInput);
-
-if (!color) return;
-
-console.log(+color[1], +color[2], +color[3]);
-```
-
-</Tab>
+    console.log(+color[1], +color[2], +color[3]);
+    ```
+  </Tab>
 </Tabs>
 
 ![Example image](https://i.imgur.com/v44YEkC.png)

@@ -5,31 +5,29 @@ title: Radial Menu
 import { Tabs, Tab } from 'nextra-theme-docs';
 import { Callout } from 'nextra/components';
 
+# Radial Menu
+
 - Radial menu has a global menu that's by default accessed with `z` and only displays when there is at least one item.
 - You can add and remove items from the global menu using `lib.addRadialItem` and `lib.removeRadialItem`.
 - Use `lib.registerRadial` for creating sub menus and use the `menu` property on the items to open those sub menus.
 
-### lib.addRadialItem
+## lib.addRadialItem
 
 Item or array of items added to the global radial menu.
 
 <Tabs items={["Lua", "JS"]}>
-<Tab>
+  <Tab>
+    ```lua
+    lib.addRadialItem(items)
+    ```
+  </Tab>
+  <Tab>
+    ```ts
+    import lib from '@overextended/ox_lib/client';
 
-```lua
-lib.addRadialItem(items)
-```
-
-</Tab>
-<Tab>
-
-```ts
-import lib from '@overextended/ox_lib/client';
-
-lib.addRadialItem(items);
-```
-
-</Tab>
+    lib.addRadialItem(items);
+    ```
+  </Tab>
 </Tabs>
 
 - items: `table` (`object` or `array`)
@@ -44,75 +42,63 @@ lib.addRadialItem(items);
     - Function that's ran when a user clicks the item.
   - keepOpen?: `boolean`
 
-### lib.removeRadialItem
+## lib.removeRadialItem
 
 Id of an item to be removed from the global menu.
 
 <Tabs items={["Lua", "JS"]}>
-<Tab>
+  <Tab>
+    ```lua
+    lib.removeRadialItem(item)
+    ```
+  </Tab>
+  <Tab>
+    ```ts
+    import lib from '@overextended/ox_lib/client';
 
-```lua
-lib.removeRadialItem(item)
-```
-
-</Tab>
-<Tab>
-
-```ts
-import lib from '@overextended/ox_lib/client';
-
-lib.removeRadialItem(item);
-```
-
-</Tab>
+    lib.removeRadialItem(item);
+    ```
+  </Tab>
 </Tabs>
 
 - id: `string`
 
-### lib.clearRadialItems
+## lib.clearRadialItems
 
 Removes all items from the radial menu.
 
 <Tabs items={["Lua", "JS"]}>
-<Tab>
+  <Tab>
+    ```lua
+    lib.clearRadialItems()
+    ```
+  </Tab>
+  <Tab>
+    ```ts
+    import lib from '@overextended/ox_lib/client';
 
-```lua
-lib.clearRadialItems()
-```
-
-</Tab>
-<Tab>
-
-```ts
-import lib from '@overextended/ox_lib/client';
-
-lib.clearRadialItems();
-```
-
-</Tab>
+    lib.clearRadialItems();
+    ```
+  </Tab>
 </Tabs>
 
-### lib.registerRadial
+## lib.registerRadial
 
 Registers a radial sub menu with predefined options.
 
 <Tabs items={["Lua", "JS"]}>
-<Tab>
+  <Tab>
+    ```lua
+    lib.registerRadial(radial)
+    ```
+  </Tab>
+  <Tab>
+    ```ts
+    import lib from '@overextended/ox_lib/client';
 
-```lua
-lib.registerRadial(radial)
-```
-
-</Tab>
-<Tab>
-
-```ts
-import lib from '@overextended/ox_lib/client';
-
-lib.registerRadial(radial);
-```
-
-</Tab>
+    lib.registerRadial(radial);
+    ```
+  </Tab>
 </Tabs>
 
 - radial: `table` (`object`)
@@ -127,236 +113,216 @@ lib.registerRadial(radial);
     - onSelect?: `function(currentMenu: string | nil, itemIndex: number)` | `string`
       - Function that's ran when a user clicks the item.
 
-### lib.hideRadial
+## lib.hideRadial
 
 Hides the radial menu if one is open.
 
 <Tabs items={["Lua", "JS"]}>
-<Tab>
+  <Tab>
+    ```lua
+    lib.hideRadial()
+    ```
+  </Tab>
+  <Tab>
+    ```ts
+    import lib from '@overextended/ox_lib/client';
 
-```lua
-lib.hideRadial()
-```
-
-</Tab>
-<Tab>
-
-```ts
-import lib from '@overextended/ox_lib/client';
-
-lib.hideRadial();
-```
-
-</Tab>
+    lib.hideRadial();
+    ```
+  </Tab>
 </Tabs>
 
-### lib.disableRadial
+## lib.disableRadial
 
 Disallow players from opening the radial menu.
 
 <Tabs items={["Lua", "JS"]}>
-<Tab>
+  <Tab>
+    ```lua
+    lib.disableRadial(state)
+    ```
+  </Tab>
+  <Tab>
+    ```ts
+    import lib from '@overextended/ox_lib/client';
 
-```lua
-lib.disableRadial(state)
-```
-
-</Tab>
-<Tab>
-
-```ts
-import lib from '@overextended/ox_lib/client';
-
-lib.disableRadial(state);
-```
-
-</Tab>
+    lib.disableRadial(state);
+    ```
+  </Tab>
 </Tabs>
 
 - state: `boolean`
   - Whether or not radial menu should be disabled
 
-### lib.getCurrentRadialId
+## lib.getCurrentRadialId
 
 Returns the id of the currently open radial menu.
 
 <Tabs items={["Lua", "JS"]}>
-<Tab>
+  <Tab>
+    ```lua
+    local id = lib.getCurrentRadialId()
+    ```
+  </Tab>
+  <Tab>
+    ```ts
+    import lib from '@overextended/ox_lib/client';
 
-```lua
-local id = lib.getCurrentRadialId()
-```
-
-</Tab>
-<Tab>
-
-```ts
-import lib from '@overextended/ox_lib/client';
-
-let id = lib.getCurrentRadialId();
-```
-
-</Tab>
+    let id = lib.getCurrentRadialId();
+    ```
+  </Tab>
 </Tabs>
 
-### Usage Example
+## Usage Example
 
 <Callout>
-
-When adding radial menu items whether they are global or for a sub menu, make sure to stick to short as possible labels
-as long labels will look out of place and should not be used with the radial menu because of its density.
-
+  When adding radial menu items whether they are global or for a sub menu, make sure to stick to short as possible labels
+  as long labels will look out of place and should not be used with the radial menu because of its density.
 </Callout>
 
 Here's a use case example with some global options and an option utilising the lib's points system.
 
 <Tabs items={["Lua", "JS"]}>
-<Tab>
+  <Tab>
+    ```lua
+    exports('myMenuHandler', function(menu, item)
+        print(menu, item)
 
-```lua
-exports('myMenuHandler', function(menu, item)
-    print(menu, item)
+        if menu == 'police_menu' and item == 1 then
+            print('Handcuffs')
+        end
+    end)
 
-    if menu == 'police_menu' and item == 1 then
-        print('Handcuffs')
-    end
-end)
-
-lib.registerRadial({
-  id = 'police_menu',
-  items = {
-    {
-      label = 'Handcuff',
-      icon = 'handcuffs',
-      onSelect = 'myMenuHandler'
-    },
-    {
-      label = 'Frisk',
-      icon = 'hand'
-    },
-    {
-      label = 'Fingerprint',
-      icon = 'fingerprint'
-    },
-    {
-      label = 'Jail',
-      icon = 'bus'
-    },
-    {
-      label = 'Search',
-      icon = 'magnifying-glass',
-      onSelect = function()
-        print('Search')
-      end
-    }
-  }
-})
-
-lib.addRadialItem({
-  {
-    id = 'police',
-    label = 'Police',
-    icon = 'shield-halved',
-    menu = 'police_menu'
-  },
-  {
-    id = 'business_stuff',
-    label = 'Business',
-    icon = 'briefcase',
-    onSelect = function()
-      print("Business")
-    end
-  }
-})
-
-local coords = GetEntityCoords(cache.ped)
-local point = lib.points.new(coords, 5)
-
-function point:onEnter()
-  lib.addRadialItem({
-    id = 'garage_access',
-    icon = 'warehouse',
-    label = 'Garage',
-    onSelect = function()
-      print('Garage')
-    end
-  })
-end
-
-function point:onExit()
-  lib.removeRadialItem('garage_access')
-end
-```
-
-</Tab>
-<Tab>
-
-<Callout>
-
-Points system in the lib isn't available for the npm package.
-
-</Callout>
-
-```ts
-import lib from '@overextended/ox_lib/client'
-
-exports('myMenuHandler', (menu, item) => {
-    console.log(menu, item)
-
-    if (menu === 'police_menu' and item === 1) {
-        console.log('Handcuffs')
-    }
-})
-
-lib.registerRadial({
-  id: 'police_menu',
-  items: [
-    {
-      label: 'Handcuff',
-      icon: 'handcuffs',
-      onSelect: 'myMenuHandler'
-    },
-    {
-      label: 'Frisk',
-      icon: 'hand'
-    },
-    {
-      label: 'Fingerprint',
-      icon: 'fingerprint'
-    },
-    {
-      label: 'Jail',
-      icon: 'bus'
-    },
-    {
-      label: 'Search',
-      icon: 'magnifying-glass',
-      onSelect: () => {
-        console.log('Search')
+    lib.registerRadial({
+      id = 'police_menu',
+      items = {
+        {
+          label = 'Handcuff',
+          icon = 'handcuffs',
+          onSelect = 'myMenuHandler'
+        },
+        {
+          label = 'Frisk',
+          icon = 'hand'
+        },
+        {
+          label = 'Fingerprint',
+          icon = 'fingerprint'
+        },
+        {
+          label = 'Jail',
+          icon = 'bus'
+        },
+        {
+          label = 'Search',
+          icon = 'magnifying-glass',
+          onSelect = function()
+            print('Search')
+          end
+        }
       }
-    }
-  ]
-})
+    })
 
-lib.addRadialItem([
-  {
-    id: 'police',
-    label: 'Police',
-    icon: 'shield-halved',
-    menu: 'police_menu'
-  },
-  {
-    id: 'business_stuff',
-    label: 'Business',
-    icon: 'briefcase',
-    onSelect: () => {
-      console.log('Business')
-    }
-  }
-])
-```
+    lib.addRadialItem({
+      {
+        id = 'police',
+        label = 'Police',
+        icon = 'shield-halved',
+        menu = 'police_menu'
+      },
+      {
+        id = 'business_stuff',
+        label = 'Business',
+        icon = 'briefcase',
+        onSelect = function()
+          print("Business")
+        end
+      }
+    })
 
-</Tab>
+    local coords = GetEntityCoords(cache.ped)
+    local point = lib.points.new(coords, 5)
+
+    function point:onEnter()
+      lib.addRadialItem({
+        id = 'garage_access',
+        icon = 'warehouse',
+        label = 'Garage',
+        onSelect = function()
+          print('Garage')
+        end
+      })
+    end
+
+    function point:onExit()
+      lib.removeRadialItem('garage_access')
+    end
+    ```
+  </Tab>
+  <Tab>
+    <Callout>
+      Points system in the lib isn't available for the npm package.
+    </Callout>
+
+    ```ts
+    import lib from '@overextended/ox_lib/client'
+
+    exports('myMenuHandler', (menu, item) => {
+        console.log(menu, item)
+
+        if (menu === 'police_menu' and item === 1) {
+            console.log('Handcuffs')
+        }
+    })
+
+    lib.registerRadial({
+      id: 'police_menu',
+      items: [
+        {
+          label: 'Handcuff',
+          icon: 'handcuffs',
+          onSelect: 'myMenuHandler'
+        },
+        {
+          label: 'Frisk',
+          icon: 'hand'
+        },
+        {
+          label: 'Fingerprint',
+          icon: 'fingerprint'
+        },
+        {
+          label: 'Jail',
+          icon: 'bus'
+        },
+        {
+          label: 'Search',
+          icon: 'magnifying-glass',
+          onSelect: () => {
+            console.log('Search')
+          }
+        }
+      ]
+    })
+
+    lib.addRadialItem([
+      {
+        id: 'police',
+        label: 'Police',
+        icon: 'shield-halved',
+        menu: 'police_menu'
+      },
+      {
+        id: 'business_stuff',
+        label: 'Business',
+        icon: 'briefcase',
+        onSelect: () => {
+          console.log('Business')
+        }
+      }
+    ])
+    ```
+  </Tab>
 </Tabs>
 
 ![radial1](https://i.imgur.com/4eYU94s.png)

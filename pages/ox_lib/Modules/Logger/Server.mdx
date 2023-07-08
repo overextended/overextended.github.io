@@ -1,5 +1,7 @@
 import { Steps, Tabs, Tab } from 'nextra-theme-docs';
 
+# Server
+
 ## lib.logger
 
 ```lua
@@ -25,23 +27,22 @@ lib.logger(-1, 'CreateVehicle', json.encode(vehicle))
 ## Datadog
 
 <Steps>
-### Create your [Datadog](https://www.datadoghq.com/) account
-You will receive a free 14 day trial, otherwise refer to their [pricing](https://www.datadoghq.com/pricing/) guide.  
-Free accounts are limited, however logs will still be retained for 14 days.
+  ### Create your [Datadog](https://www.datadoghq.com/) account
+  You will receive a free 14 day trial, otherwise refer to their [pricing](https://www.datadoghq.com/pricing/) guide.  
+  Free accounts are limited, however logs will still be retained for 14 days.
 
-### Create an [API key](https://app.datadoghq.com/organization-settings/api-keys)
+  ### Create an [API key](https://app.datadoghq.com/organization-settings/api-keys)
 
-This is a UUID used to submit logs to your Datadog organisation.
+  This is a UUID used to submit logs to your Datadog organisation.
 
-### Config
+  ### Config
 
-Set your API key and [Datadog site](https://docs.datadoghq.com/getting_started/site/) using the following convars.
+  Set your API key and [Datadog site](https://docs.datadoghq.com/getting_started/site/) using the following convars.
 
-```bash
-set datadog:key "yourapikey"
-set datadog:site "datadoghq.com"
-```
-
+  ```bash
+  set datadog:key "yourapikey"
+  set datadog:site "datadoghq.com"
+  ```
 </Steps>
 
 ## Grafana Loki
@@ -51,21 +52,18 @@ It is designed to be very cost effective and easy to operate.
 
 <Tabs items={["Cloud", "Self-hosted"]}>
   <Tab>
-
     - Has free tier with some restrictions
     - Easy to manage
     - Easier to setup
     - Mostly managed by Grafana
 
     <Steps>
-    ### Create your [Grafana](https://grafana.com/) account
-    ### Head to [My Account](https://grafana.com/auth/sign-in/?plcmt=top-nav&cta=myaccount)
-    ### Setup Loki
-    Find the Loki section in your account panel, and click "Details".
-    Generate a password and save the API key, as well as your `user` and `url`.
-
+      ### Create your [Grafana](https://grafana.com/) account
+      ### Head to [My Account](https://grafana.com/auth/sign-in/?plcmt=top-nav&cta=myaccount)
+      ### Setup Loki
+      Find the Loki section in your account panel, and click "Details".
+      Generate a password and save the API key, as well as your `user` and `url`.
     </Steps>
-
   </Tab>
   <Tab>
     To setup a grafana instance you'll need docker, and knowledge on containers or kubernetes.  
@@ -74,19 +72,15 @@ It is designed to be very cost effective and easy to operate.
     Once done, setup authentication and use the username and password securing your endpoint.
 
     - By default self-hosted loki instances do not provide any authentication layers and will require an external authentication layer such as NGINX basic auth or Cloudflare Access.
-
   </Tab>
 </Tabs>
 
-<Steps>
-    ### Config
-    Use the following convars to set your logging service, endpoint, and authentication details.
+  ### Config
+  Use the following convars to set your logging service, endpoint, and authentication details.
 
-    ```bash
-    set ox:logger "loki"
-    set loki:user "<insert your user>"
-    set loki:password "<insert the api key or password>"
-    set loki:endpoint "<insert loki url without http:// or https://>"
-    ```
-
-</Steps>
+  ```bash
+  set ox:logger "loki"
+  set loki:user "<insert your user>"
+  set loki:password "<insert the api key or password>"
+  set loki:endpoint "<insert loki url without http:// or https://>"
+  ```

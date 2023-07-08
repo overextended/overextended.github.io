@@ -1,5 +1,7 @@
 import { Tabs, Tab } from 'nextra-theme-docs';
 
+# Client
+
 ## openInventory
 
 Opens an inventory using the passed data.
@@ -20,46 +22,42 @@ exports.ox_inventory:openInventory(invType, data)
   - `'dumpster'`
 - data: `number` or `string` or `table`
 
+### Examples
+
 <Tabs items={['Player', 'Shop', 'Stash']}>
-<Tab>
+  <Tab>
+    Open the target player's inventory.
 
-**Open the target player's inventory.**
+    ```lua
+    exports.ox_inventory:openInventory('player', 3)
+    ```
+  </Tab>
+  <Tab>
+    Open the fourth "General Store" [location](https://github.com/overextended/ox_inventory/blob/main/data/shops.lua#L14).
 
-```lua
-exports.ox_inventory:openInventory('player', 3)
-```
+    ```lua
+    exports.ox_inventory:openInventory('shop', { type = 'General', id = 4 })
+    ```
+  </Tab>
+  <Tab>
+    Open the first stash in [data/stashes](https://github.com/overextended/ox_inventory/blob/main/data/stashes.lua#L2-L19).
 
-</Tab>
-<Tab>
+    ```lua
+    exports.ox_inventory:openInventory('stash', 1)
+    ```
 
-**Open the fourth "General Store" [location](https://github.com/overextended/ox_inventory/blob/main/data/shops.lua#L14).**
+    Open a custom stash (created on the server with RegisterStash).
 
-```lua
-exports.ox_inventory:openInventory('shop', { type = 'General', id = 4 })
-```
+    ```lua
+    exports.ox_inventory:openInventory('stash', 'society_police')
+    ```
 
-</Tab>
-<Tab>
+    Open a stash with a specific owner.
 
-**Open the first stash in [data/stashes](https://github.com/overextended/ox_inventory/blob/main/data/stashes.lua#L2-L19).**
-
-```lua
-exports.ox_inventory:openInventory('stash', 1)
-```
-
-**Open a custom stash (created on the server with RegisterStash).**
-
-```lua
-exports.ox_inventory:openInventory('stash', 'society_police')
-```
-
-**Open a stash with a specific owner.**
-
-```lua
-exports.ox_inventory:openInventory('stash', { id = 'police_locker', owner = 'license:xxxxxxxx' })
-```
-
-</Tab>
+    ```lua
+    exports.ox_inventory:openInventory('stash', { id = 'police_locker', owner = 'license:xxxxxxxx' })
+    ```
+  </Tab>
 </Tabs>
 
 ## openNearbyInventory
@@ -157,7 +155,7 @@ exports.ox_inventory:setStashTarget(id, owner)
   - Stash id.
 - owner?: `string` or `number`
 
-**Example:**
+### Example
 
 ```lua
 exports.ox_inventory:setStashTarget('motel5', 'bobsmith')
@@ -208,7 +206,7 @@ exports.ox_inventory:displayMetadata(metadata, value)
 - value?: `string`
   - Label for the string metadata property to be displayed.
 
-**Example:**
+### Example
 
 ```lua
 exports.ox_inventory:displayMetadata('mustard', 'Mustard')
@@ -250,68 +248,64 @@ exports.ox_inventory:Search(search, item, metadata)
 - metadata?: `table` or `string`
   - If metadata is provided as a string it will search the item's `metadata.type` property.
 
-**Count**
+### Count
 
 <Tabs items={["Single item", "Multiple items"]}>
-<Tab>
+  <Tab>
+    ```lua
+    local count = exports.ox_inventory:Search('count', 'water')
+    print('You have '..count.. ' water')
+    ```
+  </Tab>
+  <Tab>
+    ```lua
+    local inventory = exports.ox_inventory:Search('count', {'meat', 'skin'}, {grade="1"})
 
-```lua
-local count = exports.ox_inventory:Search('count', 'water')
-print('You have '..count.. ' water')
-```
-
-</Tab>
-<Tab>
-
-```lua
-local inventory = exports.ox_inventory:Search('count', {'meat', 'skin'}, {grade="1"})
-
-if inventory then
-    for name, count in pairs(inventory) do
-        print('You have '..count..' '..name)
+    if inventory then
+        for name, count in pairs(inventory) do
+            print('You have '..count..' '..name)
+        end
     end
-end
-```
-
-</Tab>
+    ```
+  </Tab>
 </Tabs>
 
-**Slots**
+### Slots
 
 <Tabs items={["Single item", "Multiple items"]}>
-<Tab>
+  <Tab>
+    ```lua
+    local water = exports.ox_inventory:Search('slots', 'water')
+    local count = 0
 
-```lua
-local water = exports.ox_inventory:Search('slots', 'water')
-local count = 0
-for _, v in pairs(water) do
-    print(v.slot..' contains '..v.count..' water '..json.encode(v.metadata))
-    count = count + v.count
-end
-print('You have '..count..' water')
-```
-
-</Tab>
-<Tab>
-
-```lua
-local items = exports.ox_inventory:Search('slots', {'meat', 'skin'}, 'deer')
-
-if items then
-    for name, data in pairs(items) do
-        local count = 0
-        for _, v in pairs(data) do
-            if v.slot then
-                print(v.slot..' contains '..v.count..' '..name..' '..json.encode(v.metadata))
-                count = count + v.count
-            end
-        end
-        print('You have '..count..' '..name)
+    for _, v in pairs(water) do
+        print(v.slot..' contains '..v.count..' water '..json.encode(v.metadata))
+        count = count + v.count
     end
-end
-```
 
-</Tab>
+    print('You have '..count..' water')
+    ```
+  </Tab>
+  <Tab>
+    ```lua
+    local items = exports.ox_inventory:Search('slots', {'meat', 'skin'}, 'deer')
+
+    if items then
+        for name, data in pairs(items) do
+            local count = 0
+
+            for _, v in pairs(data) do
+                if v.slot then
+                    print(v.slot..' contains '..v.count..' '..name..' '..json.encode(v.metadata))
+                    count = count + v.count
+                end
+            end
+
+            print('You have '..count..' '..name)
+        end
+    end
+    ```
+  </Tab>
 </Tabs>
 
 ## GetItemCount
@@ -327,7 +321,8 @@ exports.ox_inventory:GetItemCount(itemName, metadata, strict)
 - strict?: `boolean`
   - Strictly match metadata properties, otherwise use partial matching.
 
-**Returns:** `number`
+Return:
+- count: `number`
 
 ## GetPlayerItems
 
@@ -337,7 +332,8 @@ Get all items in the player's inventory.
 exports.ox_inventory:GetPlayerItems()
 ```
 
-**Returns:** `table`
+Return:
+- items: `table`
 
 ## GetPlayerWeight
 
@@ -347,7 +343,8 @@ Get the total weight of all items in the player's inventory.
 exports.ox_inventory:GetPlayerWeight()
 ```
 
-**Returns:** `number`
+Return:
+- totalWeight: `number`
 
 ## GetPlayerMaxWeight
 
@@ -357,7 +354,8 @@ Get the maximum carry weight of the player's inventory.
 exports.ox_inventory:GetPlayerMaxWeight()
 ```
 
-**Returns:** `number`
+Return:
+- maxWeight: `number`
 
 ## GetSlotIdWithItem
 
@@ -372,7 +370,8 @@ exports.ox_inventory:GetSlotIdWithItem(itemName, metadata, strict)
 - strict?: `boolean`
   - Strictly match metadata properties, otherwise use partial matching.
 
-**Returns:** `number?`
+Return:
+- slotId: `number?`
 
 ## GetSlotsIdWithItem
 
@@ -387,7 +386,8 @@ exports.ox_inventory:GetSlotIdsWithItem(itemName, metadata, strict)
 - strict?: `boolean`
   - Strictly match metadata properties, otherwise use partial matching.
 
-**Returns:** `number[]?`
+Return:
+- slotIds: `number[]?`
 
 ## GetSlotWithItem
 
@@ -402,7 +402,8 @@ exports.ox_inventory:GetSlotWithItem(itemName, metadata, strict)
 - strict?: `boolean`
   - Strictly match metadata properties, otherwise use partial matching.
 
-**Returns:** `table?`
+Return:
+- slotData: `table?`
 
 ## GetSlotsWithItem
 
@@ -417,7 +418,8 @@ exports.ox_inventory:GetSlotsWithItem(itemName, metadata, strict)
 - strict?: `boolean`
   - Strictly match metadata properties, otherwise use partial matching.
 
-**Returns:** `table[]?`
+Return:
+- slotsData: `table[]?`
 
 ## Statebags
 
@@ -438,7 +440,7 @@ else
 end
 ```
 
-**Disable opening inventory**
+#### Disable opening inventory
 
 ```lua
 LocalPlayer.state.invBusy = true

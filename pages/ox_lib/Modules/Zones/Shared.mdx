@@ -1,12 +1,12 @@
 import { Tabs, Tab } from 'nextra-theme-docs';
 import { Callout } from 'nextra/components';
 
+# Shared
+
 Faster alternative to PolyZone utilising [glm.polygon](https://github.com/citizenfx/lua/blob/luaglm-dev/cfx/EXTENDED.md).
 
 <Callout>
-
-Currently zones only have basic support on the server side. Some features will not work such as `onEnter`, `onExit`, and `inside`.
-
+  Currently zones only have basic support on the server side. Some features will not work such as `onEnter`, `onExit`, and `inside`.
 </Callout>
 
 ## lib.zones.poly
@@ -147,7 +147,6 @@ Zones will be saved to `ox_lib/created_zones.lua` with your chosen format.
 
 <Tabs items={["function", "array", "ox_target"]}>
   <Tab>
-
     ```lua
     local poly = lib.zones.poly({
         name = poly,
@@ -161,10 +160,8 @@ Zones will be saved to `ox_lib/created_zones.lua` with your chosen format.
         thickness = 2,
     })
     ```
-
   </Tab>
   <Tab>
-
     ```lua
     {
         name = poly,
@@ -180,7 +177,6 @@ Zones will be saved to `ox_lib/created_zones.lua` with your chosen format.
     ```
   </Tab>
   <Tab>
-
     ```lua
     exports.ox_target:addPolyZone({
         name = poly,
@@ -194,6 +190,5 @@ Zones will be saved to `ox_lib/created_zones.lua` with your chosen format.
         thickness = 2,
     })
     ```
-
   </Tab>
 </Tabs>

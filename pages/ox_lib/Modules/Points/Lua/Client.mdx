@@ -1,8 +1,8 @@
-# Points
+# Client
 
 Simple and centralised distance checking, supporting callbacks when entering, leaving, and standing in-range of set coordinates.
 
-### CPoint
+## CPoint Class
 
 A table representing a point with the following properties.
 
@@ -22,7 +22,7 @@ A table representing a point with the following properties.
 - nearby?: `function(self: CPoint)`
   - Function triggered on frame when within `distance` of the point
 
-### lib.points.new
+## lib.points.new
 
 ```lua
 lib.points.new(data)
@@ -36,7 +36,7 @@ Returns:
 
 - point: `CPoint`
 
-#### Example
+### Example
 ```lua
 local point = lib.points.new({
     coords = GetEntityCoords(cache.ped),
@@ -61,7 +61,7 @@ function point:nearby()
 end
 ```
 
-### lib.points.getAllPoints
+## lib.points.getAllPoints
 
 Get a table of all points created in the resource.
 
@@ -73,7 +73,7 @@ Return:
 
 - points: `CPoint[]`
 
-### lib.points.getNearbyPoints
+## lib.points.getNearbyPoints
 
 Get an array of all points in range of the player.
 
@@ -85,7 +85,7 @@ Return:
 
 - nearbyPoints: `CPoint[]`
 
-### lib.points.getClosestPoint
+## lib.points.getClosestPoint
 
 Get the data for the closest point to the player.
 

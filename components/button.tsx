@@ -6,6 +6,7 @@ interface Props {
   children?: React.ReactNode;
   side?: 'left' | 'right';
   link?: string;
+  label?: string;
 }
 
 const Button: React.FC = ({ side = 'left', children, icon, link }: Props) => {
@@ -27,7 +28,7 @@ export default Button;
 export function GhButton(props: Props) {
   return (
     <Button icon={<IconBrandGithub />} side={props.side} link={props.link}>
-      GitHub
+      {props.label || "Github"}
     </Button>
   );
 }
@@ -35,7 +36,7 @@ export function GhButton(props: Props) {
 export function DocButton(props: Props) {
   return (
     <Button icon={<IconFileText />} side={props.side} link={props.link}>
-      Documentation
+      {props.label || "Documentation"}
     </Button>
   );
 }
@@ -43,7 +44,7 @@ export function DocButton(props: Props) {
 export function DownloadButton(props: Props) {
   return (
     <Button icon={<IconDownload />} side={props.side} link={props.link}>
-      Download
+      {props.label || "Download"}
     </Button>
   );
 }
@@ -51,7 +52,7 @@ export function DownloadButton(props: Props) {
 export function ReleaseButton(props: Props) {
   return (
     <Button icon={<IconTag />} side={props.side} link={props.link}>
-      Releases
+      {props.label || "Releases"}
     </Button>
   );
 }
@@ -59,7 +60,7 @@ export function ReleaseButton(props: Props) {
 export function NpmButton(props: Props) {
   return (
     <Button icon={<IconBrandNpm />} side={props.side} link={props.link}>
-      Package
+      {props.label || "Package"}
     </Button>
   );
 }
