@@ -1,8 +1,10 @@
-# Triggers
+# Events
+
+## Triggers
 
 These events are safe to trigger and handle in other scripts.
 
-## ox_doorlock:setState
+### ox_doorlock:setState
 
 Can be triggered to lock or unlock a door.
 
@@ -14,11 +16,11 @@ TriggerEvent('ox_doorlock:setState', doorId, state, lockpick)
 - state: `0` or `1` or `boolean`
 - lockpick: `boolean`
 
-# Handlers
+## Handlers
 
 These events **should not** be triggered by any other scripts.
 
-## ox_doorlock:stateChanged
+### ox_doorlock:stateChanged
 
 Triggered when a doors state is updated.
 

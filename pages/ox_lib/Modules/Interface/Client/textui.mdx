@@ -5,33 +5,29 @@ title: TextUI
 import { Tabs, Tab } from 'nextra-theme-docs';
 import { Callout } from 'nextra/components';
 
-### lib.showTextUI
+# TextUI
+
+## lib.showTextUI
 
 Show the TextUI window.
 
 <Callout type="warning">
-
-**DO NOT** run this function every tick, it's intended to be used as a toggle.
-
+  **DO NOT** run this function every tick, it's intended to be used as a toggle.
 </Callout>
 
 <Tabs items={["Lua", "JS"]}>
-<Tab>
+  <Tab>
+    ```lua
+    lib.showTextUI(text, options)
+    ```
+  </Tab>
+  <Tab>
+    ```ts
+    import lib from '@overextended/ox_lib/client';
 
-```lua
-lib.showTextUI(text, options)
-```
-
-</Tab>
-<Tab>
-
-```ts
-import lib from '@overextended/ox_lib/client';
-
-lib.showTextUI(text, options);
-```
-
-</Tab>
+    lib.showTextUI(text, options);
+    ```
+  </Tab>
 </Tabs>
 
 - text: `string`
@@ -42,112 +38,96 @@ lib.showTextUI(text, options);
   - iconColor?: `string`
   - style?: React.CSSProperties
 
-### lib.hideTextUI
+## lib.hideTextUI
 
 Hides the currently visible TextUI window
 
 <Tabs items={["Lua", "JS"]}>
-<Tab>
+  <Tab>
+    ```lua
+    lib.hideTextUI()
+    ```
+  </Tab>
+  <Tab>
+    ```ts
+    import lib from '@overextended/ox_lib/client';
 
-```lua
-lib.hideTextUI()
-```
-
-</Tab>
-<Tab>
-
-```ts
-import lib from '@overextended/ox_lib/client';
-
-lib.hideTextUI();
-```
-
-</Tab>
+    lib.hideTextUI();
+    ```
+  </Tab>
 </Tabs>
 
-### lib.isTextUIOpen
+## lib.isTextUIOpen
 
 Returns whether Text UI is opened or not
 
 <Tabs items={["Lua", "JS"]}>
-<Tab>
+  <Tab>
+    ```lua
+    lib.isTextUIOpen()
+    ```
+  </Tab>
+  <Tab>
+    ```ts
+    import lib from '@overextended/ox_lib/client';
 
-```lua
-lib.isTextUIOpen()
-```
-
-</Tab>
-<Tab>
-
-```ts
-import lib from '@overextended/ox_lib/client';
-
-lib.isTextUIOpen();
-```
-
-</Tab>
+    lib.isTextUIOpen();
+    ```
+  </Tab>
 </Tabs>
 
-### Usage Example
+## Usage Example
 
-#### Basic
+### Basic
 
 <Tabs items={["Lua", "JS"]}>
-<Tab>
+  <Tab>
+    ```lua
+    lib.showTextUI('[E] - Fuel vehicle')
+    ```
+  </Tab>
+  <Tab>
+    ```ts
+    import lib from '@overextended/ox_lib/client';
 
-```lua
-lib.showTextUI('[E] - Fuel vehicle')
-```
-
-</Tab>
-<Tab>
-
-```ts
-import lib from '@overextended/ox_lib/client';
-
-lib.showTextUI('[E] - Fuel vehicle');
-```
-
-</Tab>
+    lib.showTextUI('[E] - Fuel vehicle');
+    ```
+  </Tab>
 </Tabs>
 
 ![basic_example](https://i.imgur.com/uZS40fD.png)
 
-#### Custom styling
+### Custom styling
 
 <Tabs items={["Lua", "JS"]}>
-<Tab>
+  <Tab>
+    ```lua
+    lib.showTextUI('[E] - Pick apple', {
+        position = "top-center",
+        icon = 'hand',
+        style = {
+            borderRadius = 0,
+            backgroundColor = '#48BB78',
+            color = 'white'
+        }
+    })
+    ```
+  </Tab>
+  <Tab>
+    ```ts
+    import lib from '@overextended/ox_lib/client';
 
-```lua
-lib.showTextUI('[E] - Pick apple', {
-    position = "top-center",
-    icon = 'hand',
-    style = {
-        borderRadius = 0,
-        backgroundColor = '#48BB78',
-        color = 'white'
-    }
-})
-```
-
-</Tab>
-<Tab>
-
-```ts
-import lib from '@overextended/ox_lib/client';
-
-lib.showTextUI('[E] - Pick apple', {
-  position: 'top-center',
-  icon: 'hand',
-  style: {
-    borderRadius: 0,
-    backgroundColor: '#48BB78',
-    color: 'white',
-  },
-});
-```
-
-</Tab>
+    lib.showTextUI('[E] - Pick apple', {
+      position: 'top-center',
+      icon: 'hand',
+      style: {
+        borderRadius: 0,
+        backgroundColor: '#48BB78',
+        color: 'white',
+      },
+    });
+    ```
+  </Tab>
 </Tabs>
 
 ![custom_example](https://i.imgur.com/sy9lPC0.png)
