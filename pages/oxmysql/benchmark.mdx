@@ -1,71 +1,69 @@
+# Benchmark
+
+Benchmarking is based on the time spent when to receive a response from exports.  
+Real query speeds will be reported in the debug UI and in the server console.
+
+**Direct query**
+- `SELECT username FROM test_table WHERE id = 68 LIMIT 1`
+- Takes ~0.184ms
+
+**Export**
+- `MySQL.query.await('SELECT username FROM test_table WHERE id = ? LIMIT 1', { 68 }`
+- Takes ~1.956ms
+
+Speeds will vary greatly based on system hardware, database settings, and the current workload.
+
+>[         script:test] initialise test_table  
+>[         script:test] Executed 3 queries in 25.2018ms  
+>[         script:test] insert test users  
+>[         script:test] Executed 10000 queries in 2411.9601ms  
+>[         script:test] select every 4th userid  
+>[         script:test] Executed 2500 queries in 2891.9658ms  
+
 ```lua
--- Internal benchmark
-Low: 0.1222ms | Avg: 0.14188357ms | Total: 1418.8357ms (10000 queries)
+CreateThread(function()
+    local function execQuery(fn, tbl, query)
+        local start = os.nanotime()
+        local result = fn(query or tbl, tbl)
+        local finish = os.nanotime()
 
--- Round-trip-time for exports
-Low: 0.1997ms | Avg: 0.25898800ms | Total: 2589.8800ms (10000 queries)
-```
+        print('Executed ' .. #tbl .. ' queries in ' .. (finish - start) / 1e6 .. 'ms')
 
-## Lua (5.4)
-
-```lua
-local val = 10000
-RegisterCommand('luasync', function()
-    local queryTimesLocal = {}
-    local result
-    MySQL.prepare.await('SELECT identifier from users WHERE lastname = ?', {'Linden'})
-
-    for i=1, val do
-        local time = os.nanotime()
-        local r = MySQL.prepare.await('SELECT identifier from users WHERE lastname = ?', {'Linden'})
-        queryTimesLocal[#queryTimesLocal+1] = (os.nanotime() - time) / 1000000
-        if i==1 then result = r end
+        return result
     end
 
-    local queryMsLow, queryMsSum = 1000, 0
+    local initTable = {
+        [[CREATE TABLE IF NOT EXISTS `test_table` (
+        `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+        `username` VARCHAR(50) NOT NULL DEFAULT '0',
+        `identifier` VARCHAR(50) NOT NULL DEFAULT '0',
+        PRIMARY KEY (`id`)
+        );]],
+        'TRUNCATE `test_table`',
+        'ALTER TABLE `test_table` AUTO_INCREMENT = 1'
+    }
 
-    for _, v in pairs(queryTimesLocal) do queryMsSum = queryMsSum + v end
-    for _, v in pairs(queryTimesLocal) do
-        if v < queryMsLow then queryMsLow = v end
+    print('initialise test_table')
+    execQuery(MySQL.transaction.await, initTable)
+
+    local insertUsers = {}
+
+    for i = 1, 10000 do
+        insertUsers[i] = { 'INSERT INTO `test_table` (username, identifier) VALUES (?, ?)', { 'Testuser_'..i, 'abcdef'..i }}
     end
 
-    local averageQueryTime = queryMsSum / #queryTimesLocal
-    print(json.encode(result))
-    print('Low: '.. queryMsLow ..'ms | Avg: '..averageQueryTime..'ms | Total: '..queryMsSum..'ms ('..#queryTimesLocal..' queries)')
+    print('insert test users')
+    execQuery(MySQL.transaction.await, insertUsers)
+
+    local selectUserIds = {}
+
+    for i = 1, 10000 do
+        if i % 4 == 0 then
+            selectUserIds[math.tointeger(i/4)] = { 'abcdef'..i }
+        end
+    end
+
+    print('select every 4th userid')
+    execQuery(MySQL.prepare.await, selectUserIds, 'SELECT `id` FROM `test_table` WHERE `identifier` = ? LIMIT 1')
 end)
-```
-
-## JavaScript
-
-```js
-const val = 10000;
-RegisterCommand('jssync', async () => {
-  const queryTimesLocal = [];
-  let result;
-  await exports.oxmysql.prepare_async('SELECT identifier from users WHERE lastname = ?', ['Linden']);
-
-  for (let i = 0; i < val; i++) {
-    const startTime = process.hrtime();
-    const r = await exports.oxmysql.prepare_async('SELECT identifier from users WHERE lastname = ?', ['Linden']);
-    queryTimesLocal.push(process.hrtime(startTime)[1] / 1000000);
-    if (i === 0) result = r;
-  }
-
-  const queryMsSum = queryTimesLocal.reduce((a, b) => a + b, 0);
-  const queryMsLow = queryTimesLocal.sort((a, b) => a - b)[0];
-  const averageQueryTime = queryMsSum / queryTimesLocal.length;
-
-  console.log(result);
-  console.log(
-    'Low: ' +
-      queryMsLow +
-      'ms | Avg: ' +
-      averageQueryTime +
-      'ms | Total: ' +
-      queryMsSum +
-      'ms (' +
-      queryTimesLocal.length +
-      ' queries)'
-  );
-});
 ```

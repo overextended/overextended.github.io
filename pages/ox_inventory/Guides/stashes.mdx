@@ -1,14 +1,16 @@
 ---
-title: Custom stashes
+title: Custom Stashes
 ---
 
 import { GhButton } from '@components/button';
+
+# Custom Stashes
 
 We can set up custom stashes from outside the resource utilising the exported RegisterStash function.
 
 Firstly, we need to define the stashes properties.
 
-### Stash properties
+## Stash properties
 
 - id: `string`
   - Unique name to identify the stash in the database.
@@ -81,8 +83,8 @@ if ox_inventory:openInventory('stash', property.id) == false then
 end
 ```
 
-## Example resource
+## Example Resource
 
 We put together an example resource showcasing how to properly utilise the stash API:
 
-<GhButton link="https://www.github.com/overextended/ox_inventory_examples" />
+<GhButton link="https://www.github.com/overextended/ox_inventory_examples" label="Ox Inventory Examples" />

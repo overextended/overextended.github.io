@@ -4,27 +4,25 @@ title: Skill Check
 
 import { Tabs, Tab } from 'nextra-theme-docs';
 
-### lib.skillCheck
+# Skill Check
+
+## lib.skillCheck
 
 Runs a skill check with the defined difficulty.
 
 <Tabs items={["Lua", "JS"]}>
-<Tab>
+  <Tab>
+    ```lua
+    lib.skillCheck(difficulty, inputs)
+    ```
+  </Tab>
+  <Tab>
+    ```ts
+    import lib from '@overextended/ox_lib/client';
 
-```lua
-lib.skillCheck(difficulty, inputs)
-```
-
-</Tab>
-<Tab>
-
-```ts
-import lib from '@overextended/ox_lib/client';
-
-lib.skillCheck(difficulty, inputs);
-```
-
-</Tab>
+    lib.skillCheck(difficulty, inputs);
+    ```
+  </Tab>
 </Tabs>
 
 - difficulty: `'easy'` or `'medium'` or `'hard'` or `table`
@@ -41,28 +39,24 @@ lib.skillCheck(difficulty, inputs);
   - A random key will be picked from the inputs table for each skill check
   - If no inputs are defined the key is defaulted to `e`
 
-### Usage Example
+## Usage Example
 
 <Tabs items={["Lua", "JS"]}>
-<Tab>
+  <Tab>
+    ```lua
+    local success = lib.skillCheck({'easy', 'easy', {areaSize = 60, speedMultiplier = 2}, 'hard'}, {'w', 'a', 's', 'd'})
+    ```
+  </Tab>
+  <Tab>
+    ```ts
+    import lib from '@overextended/ox_lib/client';
 
-```lua
-local success = lib.skillCheck({'easy', 'easy', {areaSize = 60, speedMultiplier = 2}, 'hard'}, {'w', 'a', 's', 'd'})
-```
-
-</Tab>
-<Tab>
-
-```ts
-import lib from '@overextended/ox_lib/client';
-
-const success = await lib.skillCheck(
-  ['easy', 'easy', { areaSize: 60, speedMultiplier: 2 }, 'hard'],
-  ['w', 'a', 's', 'd']
-);
-```
-
-</Tab>
+    const success = await lib.skillCheck(
+      ['easy', 'easy', { areaSize: 60, speedMultiplier: 2 }, 'hard'],
+      ['w', 'a', 's', 'd']
+    );
+    ```
+  </Tab>
 </Tabs>
 
 ![skillcheck_example](https://i.imgur.com/rgfkn0S.png)

@@ -1,9 +1,11 @@
 import { Tabs, Tab } from 'nextra-theme-docs';
 
+# Client
+
 Caches data related to the player.  
 An interval runs every 100ms to update data that cannot be checked via handlers.
 
-## States
+## Cache States
 
 - ped: `number`
   - player entity id
@@ -31,47 +33,48 @@ An interval runs every 100ms to update data that cannot be checked via handlers.
 Register an event handler that is triggered when the cached value is updated.
 
 <Tabs items={["Lua", "JS"]}>
-<Tab>
+  <Tab>
+    ```lua
+    lib.onCache(key, function(value) end)
+    ```
 
-```lua
-lib.onCache(key, function(value) end)
-```
+    - key: `string`
+      - `ped`
+      - `vehicle`
+      - `seat`
+      - `weapon`
+      - `mount` (RedM only)
+    - value: `any`
 
-- key: `string`
-  - `ped`
-  - `vehicle`
-  - `seat`
-  - `weapon`
-  - `mount` (RedM only)
-- value: `any`
+    ```lua
+    lib.onCache('vehicle', function(value)
+        print('old vehicle:', cache.vehicle)
+        print('new vehicle:', value)
+    end)
+    ```
+  </Tab>
+  <Tab>
+    ```ts
+    import { onCache } from '@overextended/ox_lib/client';
 
-```lua
-lib.onCache('vehicle', function(value)
-    print('old vehicle:', cache.vehicle)
-    print('new vehicle:', value)
-end)
-```
+    onCache(key, (value) => {});
+    ```
 
-</Tab>
-<Tab>
+    - key: `string`
+      - `ped`
+      - `vehicle`
+      - `seat`
+      - `weapon`
+      - `mount` (RedM only)
+    - value: `any`
 
-```ts
-import { onCache } from '@overextended/ox_lib/client';
+    ```ts
+    import { cache, onCache } from '@overextended/ox_lib/client';
 
-onCache(key, (value) => {});
-```
-
-- key: `string`
-- value: `any`
-
-```ts
-import { cache, onCache } from '@overextended/ox_lib/client';
-
-lib.onCache('vehicle', (value) => {
-  console.log('old vehicle:', cache.vehicle);
-  console.log('new vehicle:', value);
-});
-```
-
-</Tab>
+    lib.onCache('vehicle', (value) => {
+      console.log('old vehicle:', cache.vehicle);
+      console.log('new vehicle:', value);
+    });
+    ```
+  </Tab>
 </Tabs>

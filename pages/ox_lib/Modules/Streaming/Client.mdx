@@ -1,27 +1,25 @@
+import { Tabs, Tab } from 'nextra-theme-docs';
+
+# Client
+
 Check if assets exist, such as models, and loads them into memory.  
 Throws errors for invalid assets and returns true if the asset is loaded.
 
-import { Tabs, Tab } from 'nextra-theme-docs';
-
-### lib.requestAnimDict
+## lib.requestAnimDict
 
 <Tabs items={["Lua", "JS"]}>
-<Tab>
+  <Tab>
+    ```lua
+    lib.requestAnimDict(dict, timeout)
+    ```
+  </Tab>
+  <Tab>
+    ```ts
+    import lib from '@overextended/ox_lib/client'
 
-```lua
-lib.requestAnimDict(dict, timeout)
-```
-
-</Tab>
-<Tab>
-
-```ts
-import lib from '@overextended/ox_lib/client'
-
-lib.requestAnimDict(dict, timeout)
-```
-
-</Tab>
+    lib.requestAnimDict(dict, timeout)
+    ```
+  </Tab>
 </Tabs>
 
 - dict: `string`
@@ -29,25 +27,21 @@ lib.requestAnimDict(dict, timeout)
   - Number of ticks to wait for the asset to load.
   - Default: `500`
 
-### lib.requestAnimSet
+## lib.requestAnimSet
 
 <Tabs items={["Lua", "JS"]}>
-<Tab>
+  <Tab>
+    ```lua
+    lib.requestAnimSet(set, timeout)
+    ```
+  </Tab>
+  <Tab>
+    ```ts
+    import lib from '@overextended/ox_lib/client'
 
-```lua
-lib.requestAnimSet(set, timeout)
-```
-
-</Tab>
-<Tab>
-
-```ts
-import lib from '@overextended/ox_lib/client'
-
-lib.requestAnimSet(set, timeout)
-```
-
-</Tab>
+    lib.requestAnimSet(set, timeout)
+    ```
+  </Tab>
 </Tabs>
 
 - set: `string`
@@ -55,25 +49,21 @@ lib.requestAnimSet(set, timeout)
   - Number of ticks to wait for the asset to load.
   - Default: `500`
 
-### lib.requestModel
+## lib.requestModel
 
 <Tabs items={["Lua", "JS"]}>
-<Tab>
+  <Tab>
+    ```lua
+    lib.requestModel(model, timeout)
+    ```
+  </Tab>
+  <Tab>
+    ```ts
+    import lib from '@overextended/ox_lib/client'
 
-```lua
-lib.requestModel(model, timeout)
-```
-
-</Tab>
-<Tab>
-
-```ts
-import lib from '@overextended/ox_lib/client'
-
-lib.requestModel(model, timeout)
-```
-
-</Tab>
+    lib.requestModel(model, timeout)
+    ```
+  </Tab>
 </Tabs>
 
 - model: `string`
@@ -81,25 +71,21 @@ lib.requestModel(model, timeout)
   - Number of ticks to wait for the asset to load.
   - Default: `500`
 
-### lib.requestStreamedTextureDict
+## lib.requestStreamedTextureDict
 
 <Tabs items={["Lua", "JS"]}>
-<Tab>
+  <Tab>
+    ```lua
+    lib.requestStreamedTextureDict(dict, timeout)
+    ```
+  </Tab>
+  <Tab>
+    ```ts
+    import lib from '@overextended/ox_lib/client'
 
-```lua
-lib.requestStreamedTextureDict(dict, timeout)
-```
-
-</Tab>
-<Tab>
-
-```ts
-import lib from '@overextended/ox_lib/client'
-
-lib.requestStreamedTextureDict(dict, timeout)
-```
-
-</Tab>
+    lib.requestStreamedTextureDict(dict, timeout)
+    ```
+  </Tab>
 </Tabs>
 
 - dict: `string`
@@ -107,25 +93,21 @@ lib.requestStreamedTextureDict(dict, timeout)
   - Number of ticks to wait for the asset to load.
   - Default: `500`
 
-### lib.requestNamedPtfxAsset
+## lib.requestNamedPtfxAsset
 
 <Tabs items={["Lua", "JS"]}>
-<Tab>
+  <Tab>
+    ```lua
+    lib.requestNamedPtfxAsset(ptFxName, timeout)
+    ```
+  </Tab>
+  <Tab>
+    ```ts
+    import lib from '@overextended/ox_lib/client'
 
-```lua
-lib.requestNamedPtfxAsset(ptFxName, timeout)
-```
-
-</Tab>
-<Tab>
-
-```ts
-import lib from '@overextended/ox_lib/client'
-
-lib.requestNamedPtfxAsset(ptFxName, timeout)
-```
-
-</Tab>
+    lib.requestNamedPtfxAsset(ptFxName, timeout)
+    ```
+  </Tab>
 </Tabs>
 
 - ptFxName: `string`
@@ -133,25 +115,21 @@ lib.requestNamedPtfxAsset(ptFxName, timeout)
   - Number of ticks to wait for the asset to load.
   - Default: `500`
 
-### lib.requestScaleformMovie
+## lib.requestScaleformMovie
 
 <Tabs items={["Lua", "JS"]}>
-<Tab>
+  <Tab>
+    ```lua
+    lib.requestScaleformMovie(scaleformName, timeout)
+    ```
+  </Tab>
+  <Tab>
+    ```ts
+    import lib from '@overextended/ox_lib/client'
 
-```lua
-lib.requestScaleformMovie(scaleformName, timeout)
-```
-
-</Tab>
-<Tab>
-
-```ts
-import lib from '@overextended/ox_lib/client'
-
-lib.requestScaleformMovie(scaleformName, timeout)
-```
-
-</Tab>
+    lib.requestScaleformMovie(scaleformName, timeout)
+    ```
+  </Tab>
 </Tabs>
 
 - scaleformName: `string`
@@ -159,25 +137,21 @@ lib.requestScaleformMovie(scaleformName, timeout)
   - Number of ticks to wait for the asset to load.
   - Default: `500`
 
-### lib.requestWeaponAsset
+## lib.requestWeaponAsset
 
 <Tabs items={["Lua", "JS"]}>
-<Tab>
+  <Tab>
+    ```lua
+    lib.requestWeaponAsset(weaponType, timeout, weaponResourceFlags, extraWeaponComponentFlags)
+    ```
+  </Tab>
+  <Tab>
+    ```ts
+    import lib from '@overextended/ox_lib/client'
 
-```lua
-lib.requestWeaponAsset(weaponType, timeout, weaponResourceFlags, extraWeaponComponentFlags)
-```
-
-</Tab>
-<Tab>
-
-```ts
-import lib from '@overextended/ox_lib/client'
-
-lib.requestWeaponAsset(weaponType, timeout, weaponResourceFlags, extraWeaponComponentFlags)
-```
-
-</Tab>
+    lib.requestWeaponAsset(weaponType, timeout, weaponResourceFlags, extraWeaponComponentFlags)
+    ```
+  </Tab>
 </Tabs>
 
 - weaponType: `string | number`
@@ -189,7 +163,7 @@ lib.requestWeaponAsset(weaponType, timeout, weaponResourceFlags, extraWeaponComp
 - extraWeaponComponentFlags?: `ExtraWeaponComponentFlags`
   - Default: `0`
 
-#### WeaponResourceFlags
+### WeaponResourceFlags
 
 ```
 1 WRF_REQUEST_BASE_ANIMS
@@ -201,7 +175,7 @@ lib.requestWeaponAsset(weaponType, timeout, weaponResourceFlags, extraWeaponComp
 31 WRF_REQUEST_ALL_ANIMS
 ```
 
-#### ExtraWeaponComponentFlags
+### ExtraWeaponComponentFlags
 
 ```
 0 WEAPON_COMPONENT_NONE

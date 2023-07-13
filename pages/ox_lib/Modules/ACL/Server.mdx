@@ -1,126 +1,112 @@
+import { Tabs, Tab } from 'nextra-theme-docs';
+
+# Server
+
 Wrapper around the built-in ACL system. Handles lib.addCommand and ox_groups permissions.  
 Refer to [Basic Aces & Principals overview/guide](https://forum.cfx.re/t/basic-aces-principals-overview-guide/90917) for more information.
 
-import { Tabs, Tab } from 'nextra-theme-docs';
-
-### lib.addAce
+## lib.addAce
 
 Assigns the ace permission to a principal. Third parameter defaults to 'allow', while passing `false` sets the permission to 'deny'.
 
 <Tabs items={["Lua", "JS"]}>
-<Tab>
+    <Tab>
+        ```lua
+        lib.addAce(principal, ace, allow)
 
-```lua
-lib.addAce(principal, ace, allow)
+        lib.addAce('group.admin', 'command.say')
+        ```
+    </Tab>
+    <Tab>
+        ```ts
+        import lib from '@overextended/ox_lib/server'
 
-lib.addAce('group.admin', 'command.say')
-```
+        lib.addAce(principal, ace, allow)
 
-</Tab>
-<Tab>
-
-```ts
-import lib from '@overextended/ox_lib/server'
-
-lib.addAce(principal, ace, allow)
-
-lib.addAce('group.admin', 'command.say')
-```
-
-</Tab>
+        lib.addAce('group.admin', 'command.say')
+        ```
+    </Tab>
 </Tabs>
 
-* principal: `string`
-* ace: `string`
-* allow: `boolean`
+- principal: `string`
+- ace: `string`
+- allow: `boolean`
 
-### lib.removeAce
+## lib.removeAce
 
 Removes the ace permission from a principal. Third parameter defaults to 'allow', while passing `false` sets the permission to 'deny'.
 
 <Tabs items={["Lua", "JS"]}>
-<Tab>
+    <Tab>
+        ```lua
+        lib.removeAce(principal, ace, allow)
 
-```lua
-lib.removeAce(principal, ace, allow)
+        lib.removeAce('group.admin', 'command.say')
+        ```
+    </Tab>
+    <Tab>
+        ```ts
+        import lib from '@overextended/ox_lib/server'
 
-lib.removeAce('group.admin', 'command.say')
-```
+        lib.removeAce(principal, ace, allow)
 
-</Tab>
-<Tab>
-
-```ts
-import lib from '@overextended/ox_lib/server'
-
-lib.removeAce(principal, ace, allow)
-
-lib.removeAce('group.admin', 'command.say')
-```
-
-</Tab>
+        lib.removeAce('group.admin', 'command.say')
+        ```
+    </Tab>
 </Tabs>
 
-* principal: `string`
-* ace: `string`
-* allow: `boolean`
+- principal: `string`
+- ace: `string`
+- allow: `boolean`
 
-### lib.addPrincipal
+## lib.addPrincipal
 
 Assigns a principal to a parent principal. Children inherit permissions from the parent.
 
 <Tabs items={["Lua", "JS"]}>
-<Tab>
+    <Tab>
+        ```lua
+        lib.addPrincipal(child, parent)
 
-```lua
-lib.addPrincipal(child, parent)
+        lib.addPrincipal('player.1', 'group.moderator')
+        ```
+    </Tab>
+    <Tab>
+        ```ts
+        import lib from '@overextended/ox_lib/server'
 
-lib.addPrincipal('player.1', 'group.moderator')
-```
+        lib.addPrincipal(child, parent)
 
-</Tab>
-<Tab>
-
-```ts
-import lib from '@overextended/ox_lib/server'
-
-lib.addPrincipal(child, parent)
-
-lib.addPrincipal('player.1', 'group.moderator')
-```
-
-</Tab>
+        lib.addPrincipal('player.1', 'group.moderator')
+        ```
+    </Tab>
 </Tabs>
 
-* child: `string`
-* parent: `string`
+- child: `string`
+- parent: `string`
 
-### lib.removePrincipal
+## lib.removePrincipal
 
 Removes a principal from a parent principal.
 
 <Tabs items={["Lua", "JS"]}>
-<Tab>
+    <Tab>
+        ```lua
+        lib.removePrincipal(child, parent)
 
-```lua
-lib.removePrincipal(child, parent)
+        lib.removePrincipal('player.1', 'group.moderator')
+        ```
+    </Tab>
+    <Tab>
+        ```ts
+        import lib from '@overextended/ox_lib/server'
 
-lib.removePrincipal('player.1', 'group.moderator')
-```
+        lib.removePrincipal(child, parent)
 
-</Tab>
-<Tab>
-
-```ts
-import lib from '@overextended/ox_lib/server'
-
-lib.removePrincipal(child, parent)
-
-lib.removePrincipal('player.1', 'group.moderator')
-```
-
-</Tab>
+        lib.removePrincipal('player.1', 'group.moderator')
+        ```
+    </Tab>
 </Tabs>
 
-* child: `string`
-* parent: `string`
+- child: `string`
+- parent: `string`

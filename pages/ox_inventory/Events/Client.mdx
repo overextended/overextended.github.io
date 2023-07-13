@@ -1,10 +1,14 @@
-# Client events
+import { Callout } from 'nextra/components';
+
+# Client
 
 This is not a comprehensive list of events and is missing events intended for internal use only.
 
-## Triggers
+## Event Triggers
 
-These events are safe to trigger and handle in other scripts.
+<Callout type="info">
+  These events **are safe** to trigger and handle in other scripts.
+</Callout>
 
 ### ox_inventory:disarm
 
@@ -14,14 +18,20 @@ Can be triggered to force the player to disarm.
 TriggerClientEvent('ox_inventory:disarm', playerId, noAnim)
 ```
 
-## Handlers
+- playerId: `number`
+- noAnim: `boolean`
+  - If `true`, disarm animation will be skipped
 
-These events shouldn't be triggered by any other scripts.
+## Event Handlers
+
+<Callout type="warning">
+  These events **should not** be triggered by any other scripts.
+</Callout>
 
 ### ox_inventory:updateInventory
 
 Triggered after inventory slots have been updated, included on load.  
-Changes is a table containing all updated slot data indexed by slotId. Empty slots are "false".
+Changes is a table containing all updated slot data indexed by slotId. Empty slots are `false`.
 
 ```lua
 AddEventHandler('ox_inventory:updateInventory', function(changes) end)
@@ -47,3 +57,6 @@ _Note: Not available for ESX, use esx:addInventoryItem or esx:removeInventoryIte
 ```lua
 AddEventHandler('ox_inventory:itemCount', function(itemName, totalCount) end)
 ```
+
+- itemName: `string`
+- totalCount: `number`
