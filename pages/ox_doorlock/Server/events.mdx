@@ -6,14 +6,15 @@ These events are safe to trigger and handle in other scripts.
 
 ### ox_doorlock:setState
 
-Can be triggered to lock or unlock a door.
+Can be triggered to lock or unlock a door and authorise whether or not a lock pick can be used.
 
 ```
-TriggerEvent('ox_doorlock:setState', doorId, state)
+TriggerEvent('ox_doorlock:setState', doorId, state, lockpick)
 ```
 
 - doorId: `number`
 - state: `0` or `1`
+- lockpick: `boolean`
 
 ## Handlers
 
