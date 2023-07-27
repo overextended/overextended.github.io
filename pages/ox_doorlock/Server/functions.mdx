@@ -8,15 +8,13 @@ Gets data for a door with the given id, matching the id for the database entry.
 exports.ox_doorlock:getDoor(id)
 ```
 
-### Parameters
+Gets data for a door with the given `id`, matching the id for the database entry.
 
 - id: `number`
 
-### Returns
+Return:
 
-- `table`
-
-Gets data for a door with the given name, matching the name for the database entry.
+- door: `table`
 
 ## getDoorFromName
 
@@ -24,10 +22,19 @@ Gets data for a door with the given name, matching the name for the database ent
 exports.ox_doorlock:getDoorFromName(name)
 ```
 
-### Parameters
+Gets data for a door with the given `name`, matching the name for the database entry.
 
 - name: `string`
 
-### Returns
+Return:
 
-- `table`
+- door: `table`
+
+## editDoor
+
+```lua
+exports.ox_doorlock:editDoor(id, data)
+```
+
+- id: `number`
+- data: `table`
