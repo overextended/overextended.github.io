@@ -200,9 +200,10 @@ Sets a metadata property to display in the tooltip.
 exports.ox_inventory:displayMetadata(metadata, value)
 ```
 
-- metadata: `table` or `string`
+- metadata: `string` or `table<string, string>` or `{ [string], [string] }`
   - If metadata is a string then it's the metadata property you want to display, value is **not** optional then.
   - Can be a table of key-value pairs, key being the metadata property and value being the label for that property.
+  - Can be an array of string arrays, i.e. `{ {'key', 'label' }, {'key2', 'label2' }` to set the display order.
 - value?: `string`
   - Label for the string metadata property to be displayed.
 
@@ -219,6 +220,20 @@ exports.ox_inventory:displayMetadata({
 })
 ```
 
+## giveItemToTarget
+
+Gives an item from the player's inventory to another player.
+
+```lua
+exports.ox_inventory:giveItemToTarget(serverId, slotId, count)
+```
+
+- serverId: `number`
+  - The serverId of the target player.
+- slotId: `number`
+  - The slotId of the item to give.
+- count?: `number`
+  - The amount of the item to give, with `nil`, `0` or a value above the slot count giving the entire stack away.
 ## weaponWheel
 
 Enables the weapon wheel, but disables the use of inventory items.
