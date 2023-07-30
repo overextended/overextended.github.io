@@ -21,10 +21,10 @@ AddEventHandler('ox_inventory:openedInventory', function(playerId, inventoryId) 
 - playerId: `number`
 - inventoryId: `string`
 
-### ox_inventory:closeInventory
+### ox_inventory:closedInventory
 
 Triggered after an inventory is closed by a player.
 
 ```lua
-AddEventHandler('ox_inventory:closeInventory', function() end)
+AddEventHandler('ox_inventory:closedInventory', function(playerId, inventoryId) end)
 ```
