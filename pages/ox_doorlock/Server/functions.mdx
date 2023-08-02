@@ -5,7 +5,7 @@ Gets data for a door with the given id, matching the id for the database entry.
 ## getDoor
 
 ```lua
-exports.ox_doorlock:getDoor(id)
+exports.ox_doorlock:getDoor(doorId)
 ```
 
 Gets data for a door with the given `id`, matching the id for the database entry.
@@ -33,8 +33,21 @@ Return:
 ## editDoor
 
 ```lua
-exports.ox_doorlock:editDoor(id, data)
+exports.ox_doorlock:editDoor(doorId, data)
 ```
 
-- id: `number`
+Edit configuration for the given doorId.
+
+- doorId: `number`
 - data: `table`
+
+### setState
+
+```
+exports.ox_doorlock:setState(doorId, state)
+```
+
+Sets a door with the given doorId as locked if state is `true` or `1`.
+
+- doorId: `number`
+- state: `0` or `1` or `boolean`
