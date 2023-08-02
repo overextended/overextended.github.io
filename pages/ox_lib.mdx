@@ -53,12 +53,11 @@ add_ace resource.ox_lib command.remove_principal allow
 <Tabs items={["Lua", "JS"]}>
 <Tab>
 
-To enable the library inside of your resource just add `@ox_lib/init.lua` to `shared_scripts` or
-a `shared_script` in your `fxmanifest.lua` file.
+To enable the library inside of your resource just add `@ox_lib/init.lua` as a shared_script in your `fxmanifest.lua` file.
 
 ```lua
 shared_scripts {
-    '@ox_lib/init.lua'
+    '@ox_lib/init.lua',
 }
 ```
 
@@ -67,6 +66,21 @@ Or if the library is the only shared script you use you can do:
 ```lua
 shared_script '@ox_lib/init.lua'
 ```
+
+You can specify modules to import from inside your `fxmanifest.lua`, or load them dynamically.
+
+```lua
+ox_libs {
+    'locale',
+    'math',
+    'table',
+}
+```
+
+When ox_lib has been imported into your script, it will make several new globals available:
+- `lib` for dynamically importing ox_lib modules into your script.
+- `require` for importing modules from your own script.
+- `cache` see [here](./ox_lib/Modules/Cache/Shared).
 
 </Tab>
 <Tab>
@@ -94,7 +108,6 @@ import { versionCheck } from '@overextended/ox_lib/server';
 </Tab>
 </Tabs>
 
-That's it!  
 You can now use the library functions inside of your resource, check the rest of the documentation to see how to utilise them.
 
 ## Using icons for interface functions

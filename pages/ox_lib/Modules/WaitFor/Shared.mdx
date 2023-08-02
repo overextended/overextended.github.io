@@ -1,0 +1,24 @@
+# Shared
+
+## lib.waitFor
+
+Calls a function repeatedly until it receives a non-nil value, or it times out.  
+The function result is then returned.
+
+```lua
+lib.waitFor(cb, errMessage, timeout)
+```
+
+- cb: `function`
+  - A function to call each frame.
+- errMessage?: `string`
+  - The error message to display if the function times out.
+- timeout?: `number`
+  - The duration to run the function for, defaulting to 1000ms.
+
+
+```lua
+local value --[['abc']] = lib.waitFor(function()
+    if math.random(0, 1) == 1 then return 'abc' end
+end)
+```
