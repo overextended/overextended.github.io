@@ -21,10 +21,10 @@ Runs a skill check with the defined difficulty.
     import lib from '@overextended/ox_lib/client';
 
     lib.skillCheck(difficulty, inputs);
-    ```
+    ``` 
   </Tab>
 </Tabs>
-
+ 
 - difficulty: `'easy'` or `'medium'` or `'hard'` or `table`
   - Preset difficulties:
     - 'easy' - `{ areaSize: 50, speedMultiplier: 1 }`
@@ -60,3 +60,42 @@ Runs a skill check with the defined difficulty.
 </Tabs>
 
 ![skillcheck_example](https://i.imgur.com/rgfkn0S.png)
+
+## lib.skillCheckActive
+
+Returns true if a skill check bar is currently active.
+
+<Tabs items={["Lua", "JS"]}>
+  <Tab>
+    ```lua
+    lib.skillCheckActive()
+    ```
+  </Tab>
+  <Tab>
+    ```ts
+    import lib from '@overextended/ox_lib/client'
+
+    lib.skillCheckActive()
+    ```
+  </Tab>
+</Tabs>
+
+## lib.cancelSkillCheck
+
+If there is a skill check active and the
+skill check can be cancelled then it cancels it.
+
+<Tabs items={["Lua", "JS"]}>
+  <Tab>
+    ```lua
+    lib.cancelSkillCheck()
+    ```
+  </Tab>
+  <Tab>
+    ```ts
+    import lib from '@overextended/ox_lib/client'
+
+    lib.cancelSkillCheck()
+    ```
+  </Tab>
+</Tabs>
