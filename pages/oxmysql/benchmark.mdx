@@ -94,40 +94,42 @@ end)
 
 ## Results
 
-> [         script:test] initialise test_table
-> [         script:test] Executed 4 queries in 42.7789ms
-> [         script:test]
-> [         script:test] { query: string, values: string }> [] transaction
-> [         script:test] Executed 2 queries in 8.0145ms
-> [         script:test]
-> [         script:test] > [string, any> []]> [] transaction
-> [         script:test] Executed 2 queries in 4.0278ms
-> [         script:test]
-> [         script:test] string> [] transaction
-> [         script:test] Executed 2 queries in 3.4743ms
-> [         script:test]
-> [         script:test] insert 10000 test users
-> [         script:test] Executed 10000 queries in 2064.211ms
-> [         script:test]
-> [         script:test] select every 4th userid
-> [         script:test] Executed 1 queries in 2803.7134ms
-> [         script:test]
-> [         script:test] insert
-> [         script:test] Executed 1 queries in 2.8743ms
-> [         script:test]
-> [         script:test] update
-> [         script:test] Executed 1 queries in 2.8675ms
-> [         script:test]
-> [         script:test] scalar
-> [         script:test] Executed 1 queries in 1.5387ms
-> [         script:test]
-> [         script:test] single
-> [         script:test] Executed 1 queries in 1.3389ms
-> [         script:test]
-> [         script:test] prepare
-> [         script:test] Executed 1 queries in 1.6577ms
-> [         script:test] "bobby"
-> [         script:test] 10004    1       bobby   {"identifier":"abcdef","username":"bobby","id":10004}
-> [         script:test]
-> [         script:test] query
-> [         script:test] Executed 1 queries in 1.1588ms
+```yaml
+[script:test] initialise test_table
+[script:test] Executed 4 queries in 42.7789ms
+[script:test]
+[script:test] { query: string, values: string }[] transaction
+[script:test] Executed 2 queries in 8.0145ms
+[script:test]
+[script:test] [string, any[]][] transaction
+[script:test] Executed 2 queries in 4.0278ms
+[script:test]
+[script:test] string[] transaction
+[script:test] Executed 2 queries in 3.4743ms
+[script:test]
+[script:test] insert 10000 test users
+[script:test] Executed 10000 queries in 2064.211ms
+[script:test]
+[script:test] select every 4th userid
+[script:test] Executed 1 queries in 2803.7134ms
+[script:test]
+[script:test] insert
+[script:test] Executed 1 queries in 2.8743ms
+[script:test]
+[script:test] update
+[script:test] Executed 1 queries in 2.8675ms
+[script:test]
+[script:test] scalar
+[script:test] Executed 1 queries in 1.5387ms
+[script:test]
+[script:test] single
+[script:test] Executed 1 queries in 1.3389ms
+[script:test]
+[script:test] prepare
+[script:test] Executed 1 queries in 1.6577ms
+[script:test] "bobby"
+[script:test] 10004    1       bobby   {"identifier":"abcdef","username":"bobby","id":10004}
+[script:test]
+[script:test] query
+[script:test] Executed 1 queries in 1.1588ms
+```
