@@ -1,0 +1,24 @@
+import { Steps } from 'nextra-theme-docs';
+
+<Steps>
+    ### Setup git, vscode, and vscode extensions
+
+    ### Download our Lua type definitions
+
+    ```bash
+    git clone https://github.com/overextended/ox_types.git`
+    ```
+
+    ### Update your settings
+
+    You can modify the user, workspace, or folder settings for vscode.  
+    Create an entry in `Lua.workspace.library` pointing to the cloned directory, or specific subdirectories.
+
+    ```json
+    "Lua.workspace.library": [
+        "F:/GitHub/ox_types/types",
+        "F:/GitHub/ox_lib"
+    ],
+    ```
+
+</Steps>
