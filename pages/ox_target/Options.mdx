@@ -13,6 +13,12 @@ When creating a targetable option you must send an array of options with the fol
 - distance?: `number`
 - bones?: `string` or `string[]`
   - A bone name or array of bone names (see [GetEntityBoneIndexByName](https://docs.fivem.net/natives/?_0xFB71170B7E76ACBA)).
+- offset?: `vector3`
+  - Offset the targetable area of an entity, relative to the model dimensions.
+- offsetAbsolute?: `vector3`
+  - Offset the targetable area of an entity, relative to the entity's world coords.
+- offsetSize?: `number`
+  - The radius of the targetable area for an entity offset.
 - groups?: `string` or `string[]` or `table<string, number>`
   - A group, array of groups, or pairs of groups-grades required to show the option.
   - Groups are framework dependent, and may refer to jobs, gangs, etc.
