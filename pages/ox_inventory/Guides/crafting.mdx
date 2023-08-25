@@ -54,8 +54,9 @@ Crafting locations, items and their ingredients are defined in [data/crafting.lu
         set to 0 then the item is required but not consumed.
   - duration: `number`
     - Crafting duration in milliseconds.
-  - count: `number`
+  - count: `number` or `table` (min, max)
     - Item amount received upon crafting.
+    - If set it to table it requires two number first one is minimum number and second one is maximum, it will generate a random number between those two numbers to add the crafted item to player.
   - metadata: `table`
     - Metadata applied to the item being crafted.
 - points: `vector3[]`
