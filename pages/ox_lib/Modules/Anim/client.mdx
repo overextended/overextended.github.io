@@ -1,0 +1,99 @@
+# Animation
+
+This library provides a simple way to manage animations in GTA V. It allows you to start animations, stop them, and manipulate multiple animation instances.
+
+## AnimProperties Class
+
+A table defining the animation properties.
+
+- `ped`: `number`
+- `anim`: `string`
+- `dict`: `string`
+- `options`: `table`
+
+## AnimInstance Class
+
+A table inheriting from `AnimProperties` with additional methods.
+
+- `stop`: `function()`
+  - Stops the animation for the ped.
+
+### Options Table
+
+The `options` table can have the following keys:
+
+- `speed`: `number` (default: `1.0`)
+  - The speed at which the animation should be played.
+- `speedMultiplier`: `number` (default: `1.0`)
+  - A multiplier applied to the animation speed.
+- `duration`: `number` (default: `1.0`)
+  - The duration for how long the animation should last.
+- `flag`: `number` (default: `0`)
+  - The animation flag. Various flags can be set to control the behavior of the animation.
+- `playbackRate`: `number` (default: `0`)
+  - Rate at which the animation is played back.
+- `lockx`: `boolean` (default: `false`)
+  - Whether to lock the X coordinate during the animation.
+- `locky`: `boolean` (default: `false`)
+  - Whether to lock the Y coordinate during the animation.
+- `lockz`: `boolean` (default: `false`)
+  - Whether to lock the Z coordinate during the animation.
+
+## lib.anim.new
+
+```lua
+lib.anim.new(ped, dict, anim, options)
+```
+- `ped`: `number`
+  - The ped on which the animation should be applied.
+- `dict`: `string`
+  - The animation dictionary.
+- `anim`: `string`
+  - The specific animation within the dictionary.
+- `options`: `table`
+  - See the `Options Table` section.
+
+Returns:
+
+- `AnimInstance`
+
+### Example
+
+```lua
+RegisterCommand('testAnim', function()
+  local animation = lib.anim.new('mini@tennis', 'forehand_ts_md_far', cache.ped, {
+      speed = 1.0,
+      duration = -1,
+      flag = 49,
+      lockx = false,
+      locky = false,
+      lockz = false
+  })
+
+  Wait(3000)
+
+  animation:stop()
+end)
+```
+
+## lib.anim.stopAll
+
+Stops all animation instances.
+
+```lua
+lib.anim.stopAll()
+```
+
+## lib.anim.getAllInstances
+
+Returns a list of all active animation instances.
+
+```lua
+lib.anim.getAllInstances()
+```
+
+Returns:
+
+- `AnimInstance[]`
+
+I hope this helps! Let me know if you need further clarification or additional sections.
