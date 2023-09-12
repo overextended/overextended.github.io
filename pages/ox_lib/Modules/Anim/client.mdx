@@ -1,97 +1,121 @@
-# Animation
+# Animation Library
 
-This library provides a simple way to manage animations in GTA V. It allows you to start animations, stop them, and manipulate multiple animation instances.
+This library provides an interface for creating, managing, and deleting animation instances in GTA V, simplifying the management of animations.
 
-## AnimProperties Class
+## AnimOptions Class
 
-A table defining the animation properties.
+A table representing the options for an animation.
 
-- `ped`: `number`
-- `anim`: `string`
-- `dict`: `string`
-- `options`: `table`
+- `wait`: `boolean` (optional, default: `false`)
+- `speed`: `number` (optional, default: `1.0`)
+- `speedMultiplier`: `number` (optional, default: `1.0`)
+- `duration`: `number` (optional, default: `1.0`)
+- `flag`: `number` (optional, default: `0`)
+- `playbackRate`: `number` (optional, default: `0`)
+- `lockx`: `boolean` (optional, default: `false`)
+- `locky`: `boolean` (optional, default: `false`)
+- `lockz`: `boolean` (optional, default: `false`)
 
 ## AnimInstance Class
 
-A table inheriting from `AnimProperties` with additional methods.
+A class representing an animation instance with additional methods.
 
-- `stop`: `function()`
-  - Stops the animation for the ped.
+- `ped`: `number`
+- `dict`: `string` (optional)
+- `anim`: `string`
+- `options`: `AnimOptions` (optional)
+- `play`: `function(self: AnimInstance)`
+- `stop`: `function(self: AnimInstance)`
+- `delete`: `function(self: AnimInstance)`
+- `isPlaying`: `function(self: AnimInstance) -> boolean`
 
-### Options Table
+## lib.anim
 
-The `options` table can have the following keys:
-
-- `speed`: `number` (default: `1.0`)
-  - The speed at which the animation should be played.
-- `speedMultiplier`: `number` (default: `1.0`)
-  - A multiplier applied to the animation speed.
-- `duration`: `number` (default: `1.0`)
-  - The duration for how long the animation should last.
-- `flag`: `number` (default: `0`)
-  - The animation flag. Various flags can be set to control the behavior of the animation.
-- `playbackRate`: `number` (default: `0`)
-  - Rate at which the animation is played back.
-- `lockx`: `boolean` (default: `false`)
-  - Whether to lock the X coordinate during the animation.
-- `locky`: `boolean` (default: `false`)
-  - Whether to lock the Y coordinate during the animation.
-- `lockz`: `boolean` (default: `false`)
-  - Whether to lock the Z coordinate during the animation.
-
-## lib.anim.new
+Creates a new animation instance. `lib.anim` is a callable table, so you can call it like a function.
 
 ```lua
-lib.anim.new(ped, dict, anim, options)
+local instance = lib.anim(ped, dict, anim, options)
 ```
+
 - `ped`: `number`
-  - The ped on which the animation should be applied.
-- `dict`: `string`
-  - The animation dictionary.
+- `dict`: `string` (optional)
 - `anim`: `string`
-  - The specific animation within the dictionary.
-- `options`: `table`
-  - See the `Options Table` section.
+- `options`: `AnimOptions` (optional)
 
 Returns:
 
-- `AnimInstance`
-
-### Example
-
-```lua
-RegisterCommand('testAnim', function()
-  local animation = lib.anim.new('mini@tennis', 'forehand_ts_md_far', cache.ped, {
-      speed = 1.0,
-      duration = -1,
-      flag = 49,
-      lockx = false,
-      locky = false,
-      lockz = false
-  })
-
-  Wait(3000)
-
-  animation:stop()
-end)
-```
+- `instance`: `AnimInstance`
 
 ## lib.anim.stopAll
 
-Stops all animation instances.
+Stops all active animation instances and clears the animation instances table.
 
 ```lua
 lib.anim.stopAll()
 ```
 
-## lib.anim.getAllInstances
+## Methods
 
-Returns a list of all active animation instances.
+### AnimInstance:play()
+
+Starts the animation instance.
 
 ```lua
-lib.anim.getAllInstances()
+instance:play()
+```
+
+### AnimInstance:stop()
+
+Stops the animation instance.
+
+```lua
+instance:stop()
+```
+
+### AnimInstance:delete()
+
+Stops the animation instance and removes it from the animation instances table.
+
+```lua
+instance:delete()
+```
+
+### AnimInstance:isPlaying()
+
+Checks if the animation instance is currently playing.
+
+```lua
+local playing = instance:isPlaying()
 ```
 
 Returns:
 
-- `AnimInstance[]`
+- `playing`: `boolean`
+
+## Example
+
+```lua
+local ped = PlayerPedId()
+local dict = 'amb@world_human_smoking@male@male_a@enter'
+local anim = 'enter'
+local options = {
+    speed = 1.0,
+    duration = -1,
+    flag = 49,
+    lockx = false,
+    locky = false,
+    lockz = false
+}
+
+local instance = lib.anim(ped, dict, anim, options)
+
+RegisterCommand('toggleAnim', function()
+    if instance:isPlaying() then
+        instance:stop()
+    else
+        instance:play()
+    end
+end)
+```
+
+In this example, the `toggleAnim` command will start or stop the animation depending on whether it is currently playing.
