@@ -3,6 +3,7 @@
   "guides": "Guides",
   "oxmysql": "OxMySQL",
   "ox_lib": "Ox Lib",
+  "ox_mdt": "Ox MDT",
   "creator_codes": {
     "title": "Creator codes",
     "type": "page",

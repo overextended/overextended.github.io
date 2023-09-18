@@ -1,0 +1,53 @@
+# Server
+
+## createCall
+
+Creates a dispatch call and sends an alert to all active officers.
+
+```lua
+exports.ox_mdt:createCall(data)
+```
+
+- data
+  - offense: `string`
+  - code: `string`
+  - blip: `number`
+    - Blip id of one of the available blips under `/web/build/blips`
+  - coords: `table`
+  - isEmergency?: `boolean`
+  - info?: `table[]`
+    - label: `string`
+    - icon: `string`
+    - Icon is one of the [tabler icons](https://tabler-icons.io/) names.
+
+Returns:
+
+- id: `number`
+
+## updateCallCoords
+
+Updates the coordinates of a call with the specified id.
+
+```lua
+exports.ox_mdt:updateCallCoords(callId, coords)
+```
+
+- callId: `number`
+  - Id of the call returned by `createCall`
+- coords: `table`
+
+## createProfileCard
+
+Creates an info card on the profile which can be used to display data (licenses, vehicles, etc...).
+
+```lua
+exports.ox_mdt:createProfileCard(data)
+```
+
+- data
+  - id: `string`
+  - title: `string`
+  - icon: `string`
+    - Icon is one of the [tabler icons](https://tabler-icons.io/) names.
+  - getData: function(profile: `Profile`)
+    - Function that **must** return an array of strings, which will be displayed as individual badges on the card.
