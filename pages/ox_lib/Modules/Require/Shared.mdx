@@ -1,0 +1,47 @@
+# Shared
+
+## require
+
+Loads the given module. The function starts by indexing the `loaded` table to determine whether `modname` is already loaded. If it is, then `require` returns the value stored at `loaded[modname]`.
+
+- Module names are the path to a file relative to the resource.
+- The module name must point to a `.lua` file.
+- Use `.` to separate directories in a path.
+- Modules can be loaded from external resources using `@resource.modname`.
+
+```lua
+require 'modname'
+```
+
+### Example
+
+```
+- resources/
+  - mylib/
+    - import.lua
+    - data/
+      - events.lua
+  - myresource/
+    - server.lua
+```
+
+```lua filename="mylib/import.lua"
+local mylib = {
+  events = require 'data.events'
+}
+
+print('Loaded mylib')
+
+return mylib
+```
+
+```lua filename="mylib/data/events.lua"
+return {
+  disconnect = 'onPlayerDropped',
+}
+```
+
+```lua filename="myresource/server.lua"
+local mylib = require '@mylib.import'
+print(mylib.events.disconnect)
+```
