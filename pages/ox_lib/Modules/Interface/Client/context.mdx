@@ -23,6 +23,7 @@ Used for registering a context menu.
 
     lib.registerContext(context);
     ```
+
   </Tab>
 </Tabs>
 
@@ -57,7 +58,7 @@ Used for registering a context menu.
       - Adds a progress bar filled to this percentage
     - colorScheme?: `string`
       - Sets the color scheme of the progress bar. Current options can be found here:
-        - https://mantine.dev/theming/colors/#default-colors
+        - https://v6.mantine.dev/theming/colors/#default-colors
         - For example: `blue` or `teal`
     - arrow?: `boolean`
       - Shows an arrow on the right side like `menu` does, useful when you are opening a menu from an event. Can be set to false to hide it.
@@ -100,6 +101,7 @@ Opens a registered context menu by its id.
 
     lib.showContext(id);
     ```
+
   </Tab>
 </Tabs>
 
@@ -121,6 +123,7 @@ Hides any currently visible context menu.
 
     lib.hideContext(onExit);
     ```
+
   </Tab>
 </Tabs>
 
@@ -145,6 +148,7 @@ If no context menu is open returns `nil`.
 
     lib.getOpenContextMenu();
     ```
+
   </Tab>
 </Tabs>
 
@@ -252,6 +256,7 @@ First we register the menu with our specified options then we call the show func
       ],
     });
     ```
+
   </Tab>
 </Tabs>
 
@@ -314,6 +319,7 @@ And the event that we are going to run from the `some_menu` menu, which is going
       lib.showContext('event_menu')
     end)
     ```
+
   </Tab>
   <Tab>
     ```ts
@@ -332,6 +338,7 @@ And the event that we are going to run from the `some_menu` menu, which is going
       lib.showContext('event_menu');
     });
     ```
+
   </Tab>
 </Tabs>
 
