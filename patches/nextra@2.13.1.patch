@@ -1,0 +1,14 @@
+diff --git a/dist/index.js b/dist/index.js
+index 7666bafbdb4b5fd48b8a52b907d40ab8ee74d3c4..b3d97747d12ca5c07bedec1bd973fdeb87ae7742 100644
+--- a/dist/index.js
++++ b/dist/index.js
+@@ -101,7 +101,8 @@ function normalizePageRoute(parentRoute, route) {
+   return (0, import_slash.default)(import_node_path2.default.join(parentRoute, route.replace(/^index$/, "")));
+ }
+ function pageTitleFromFilename(fileName) {
+-  return (0, import_title.default)(fileName.replaceAll(/[-_]/g, " "));
++  fileName = fileName.replace(/[-_]/g, ' ');
++  return /[a-z]/.test(fileName) && /[A-Z]/.test(fileName) ? fileName : (0, import_title.default)(fileName);
+ }
+ function sortPages(pages, locale) {
+   if (locale === "") {
