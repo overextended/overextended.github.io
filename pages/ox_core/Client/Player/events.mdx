@@ -30,6 +30,14 @@ Triggered every 1000ms interval, when status values are updated internally.
 AddEventHandler('ox:statusTick', function(statuses) end)
 ```
 
+### ox:playerDeath
+
+Triggered on player death and revival.
+
+```lua
+AddEventHandler('ox:playerDeath', function(isDead) end)
+```
+
 ## Networked events
 
 ### ox:setGroup

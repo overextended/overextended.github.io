@@ -26,6 +26,16 @@ console.log(JSON.stringify(player));
 </Tab>
 </Tabs>
 
+- player?: `table`
+  - source: `number`
+  - userId: `number`
+  - charId: `number`
+  - stateId: `string`
+  - firstName: `string`
+  - lastName: `string`
+  - name: `string`
+  - username: `string`
+
 ## Ox.GetPlayerByFilter
 
 Return the first OxPlayer that matches the filter properties.
@@ -63,7 +73,7 @@ Players can be filtered to only return players that match the given properties, 
 ```lua
 -- Get an array containing all players in the police or sheriff groups, with grade 3 or higher.
 local filter = { groups = {['sheriff'] = 3, ['police'] = 3} })
-local players = Ox.GetPlayers(usemetatable, filter)
+local players = Ox.GetPlayers(filter)
 
 for i = 1, #players do
     local player = players[i]
@@ -80,7 +90,7 @@ import { GetPlayers } from '@overextended/ox_core/server';
 // Get an array containing all players in the police or sheriff groups, with grade 3 or higher.
 const filter = { groups: { sheriff: 3, police: 3 } })
 
-const players = GetPlayers(useclass, filter);
+const players = GetPlayers(filter);
 for (let i = 0; i < players.length; i++) {
   const player = players[i];
   console.log(JSON.stringify(player));
