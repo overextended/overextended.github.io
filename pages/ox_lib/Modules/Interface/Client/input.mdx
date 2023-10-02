@@ -31,7 +31,8 @@ The input dialog window allows you to take data from the user by setting input f
   - type: `'input'` or `'number'` or `'checkbox'` or `'select'` or `'slider'` or `'color'` or `'multi-select'` or `'date'` or `'date-range'` or `'time'` or `'textarea'`
 - options?: `table`(`object`)
   - allowCancel: `boolean`
-    - If true the user will not be able to cancel and close the input dialog until submitted.
+    - If false the user will not be able to cancel and close the input dialog until submitted.
+    - If not defined, the user is able to cancel and close the input dialog.
 
 ### Field Type Properties
 
@@ -60,6 +61,7 @@ The input dialog window allows you to take data from the user by setting input f
   - min?: `number`
   - max?: `number`
   - precision?:  `number`
+  - step?: `number`
 
 - checkbox
 
@@ -117,6 +119,8 @@ The input dialog window allows you to take data from the user by setting input f
     - True defaults to current date
   - format?: `string`
     - Date format to display in the field
+  - returnString?: `boolean`
+    - Returns the date as a string, default format is `DD/MM/YYYY`, but if `format` is defined it will use that.
   - clearable?: `boolean`
   - min?: `string`
     - "01/01/2000"
@@ -133,6 +137,8 @@ The input dialog window allows you to take data from the user by setting input f
   - default?: `[string, string]`
   - format?: `string`
     - Date format to display in the field
+  - returnString?: `boolean`
+    - Returns the date as a string, default format is `DD/MM/YYYY`, but if `format` is defined it will use that.
   - clearable?: `boolean`
 
 - time

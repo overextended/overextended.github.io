@@ -11,6 +11,7 @@ When creating a targetable option you must send an array of options with the fol
   - Name of a [Font Awesome](https://fontawesome.com/icons) icon.
 - iconColor?: `string`
 - distance?: `number`
+  - The max distance to display the option.
 - bones?: `string` or `string[]`
   - A bone name or array of bone names (see [GetEntityBoneIndexByName](https://docs.fivem.net/natives/?_0xFB71170B7E76ACBA)).
 - offset?: `vector3`
@@ -29,6 +30,10 @@ When creating a targetable option you must send an array of options with the fol
   - Only require a single item from the items table to exist.
 - canInteract?: `function(entity, distance, coords, name, bone)`
   - Options will always display if this is undefined.
+- menuName?: `string`
+  - The option is only displayed when a menu has been set with openMenu.
+- openMenu?: `string`
+  - Sets the current menu name, displaying only options for the menuName.
 - onSelect?: `function(data)`
 - export?: `string`
 - event?: `string`
