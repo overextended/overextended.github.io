@@ -143,7 +143,8 @@ Returns `success, response` if cb is undefined, otherwise they are used in the c
 - "invalid_inventory": the inventory doesn't exist
 - "inventory_full": no free slots
 
-### Example
+<br />
+<u>**Example**</u>
 
 ```lua
 local success, response = exports.ox_inventory:AddItem('gloveVGH283', 'bread', 4)
@@ -193,13 +194,14 @@ exports.ox_inventory:RemoveItem(inv, item, count, metadata, slot)
 
 Returns success: `boolean`, response: `string?`.
 
-**Possible value of "response" on failure:**
+**Possible values of "response" on failure:**
 
 - "invalid_item": the item doesn't exist
 - "invalid_inventory": the inventory doesn't exist
 - "not_enough_items": inventory did not contain enough of the given item
 
-### Example
+<br />
+<u>**Example**</u>
 
 ```lua
 -- Removes 2 water from the glovebox for the given plate.
@@ -223,10 +225,10 @@ exports.ox_inventory:GetItem(inv, item, metadata, returnsCount)
 
 If `returnsCount` is set to true, the returned value will be the `count` based on
 how many times the item was found.
-
 Otherwise returns the data related to the item _and_ its total count found in the inventory.
 
-### Example
+<br />
+<u>**Example**</u>
 
 ```lua
 local item = ox_inventory:GetItem(source, 'water', nil, false)
@@ -256,7 +258,8 @@ exports.ox_inventory:ConvertItems(playerId, items)
 - playerId: `number`
 - items: `table`
 
-Data conversion example:
+<br />
+<u>**Data Conversion Example**</u>
 
 ```lua
 Old: [{"cola":1, "bread":3}]
@@ -281,7 +284,8 @@ exports.ox_inventory:CanCarryItem(inv, item, count, metadata)
 - metadata?: `table` or `string`
   - If metadata is passed as string then `metadata.type` will be checked.
 
-### Example
+<br />
+<u>**Example**</u>
 
 ```lua
 -- Checks if the player calling the event can carry 3 water items
@@ -304,7 +308,8 @@ exports.ox_inventory:CanCarryAmount(inv, item)
 - item: `table` or `string`
   - Can be array to check multiple items.
 
-### Example
+<br />
+<u>**Example**</u>
 
 ```lua
 -- Checks how much you can carry
@@ -324,7 +329,8 @@ exports.ox_inventory:CanCarryWeight(inv, weight)
 - inv: `table` or `string` or `number`
 - weight: `number`
 
-Example:
+<br />
+<u>**Example**</u>
 
 ```lua
 -- Checks if player can carry 1000 grams.
@@ -353,7 +359,8 @@ exports.ox_inventory:SetMaxWeight(inv, maxWeight)
 - inv: `table` or `string` or `number`
 - maxWeight: `number`
 
-### Example
+<br />
+<u>**Example**</u>
 
 ```lua
 local ox_inventory = exports.ox_inventory
@@ -417,7 +424,8 @@ exports.ox_inventory:GetSlot(inv, slot)
 - inv: `table` or `string` or `number`
 - slot: `number`
 
-### Example
+<br />
+<u>**Example**</u>
 
 ```lua
 local slot = exports.ox_inventory:GetSlot(source, 1)
@@ -558,7 +566,8 @@ exports.ox_inventory:SetSlotCount(inv, slots)
 - inv: `table` or `string` or `number`
 - slots: `number`
 
-### Example
+<br />
+<u>**Example**</u>
 
 ```lua
 local ox_inventory = exports.ox_inventory
@@ -578,7 +587,8 @@ exports.ox_inventory:GetInventory(inv, owner)
 - inv: `number` or `table`
 - owner?: `string` or `boolean`
 
-### Example
+<br />
+<u>**Example**</u>
 
 ```lua
 local inventory = exports.ox_inventory:GetInventory('example_stash', false)
@@ -608,7 +618,8 @@ exports.ox_inventory:GetInventoryItems(inv, owner)
 - inv: `number` or `table`
 - owner?: `string` or `boolean`
 
-### Example
+<br />
+<u>**Example**</u>
 
 ```lua
 local playerItems = exports.ox_inventory:GetInventoryItems(source)
@@ -707,8 +718,8 @@ exports.ox_inventory:RegisterStash(id, label, slots, maxWeight, owner, groups, c
   This function needs to be triggered before a player can open the stash.
 </Callout>
 
-### Example
-
+<br />
+<u>**Example**</u><br />
 For a use case example on this function check out the written [Guide](../Guides/stashes) for it.
 
 ## CreateTemporaryStash
@@ -738,7 +749,8 @@ exports.ox_inventory:CreateTemporaryStash(properties)
 Return:
 - inventoryId: `string`
 
-### Example
+<br />
+<u>**Example**</u>
 
 ```lua
 local mystash = exports.ox_inventory:CreateTemporaryStash({
@@ -801,7 +813,8 @@ exports.ox_inventory:CreateDropFromPlayer(playerId)
 Return:
 - dropId: `string`
 
-### Example
+<br />
+<u>**Example**</u>
 
 ```lua
 local dropId = exports.ox_inventory:CreateDropFromPlayer(1)
@@ -832,7 +845,8 @@ exports.ox_inventory:SetDurability(inv, slot, durability)
 - slot: `number`
 - durability: `number`
 
-### Example
+<br />
+<u>**Example**</u>
 
 ```lua
 local ox_inventory = exports.ox_inventory
@@ -860,7 +874,8 @@ ox_inventory:SetMetadata(inv, slot, metadata)
 - slot: `number`
 - metadata: `table`
 
-### Example
+<br />
+<u>**Example**</u>
 
 ```lua
 local ox_inventory = exports.ox_inventory
