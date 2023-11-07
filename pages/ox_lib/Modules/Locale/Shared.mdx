@@ -1,9 +1,10 @@
-# Shared
+import { Tabs, Tab } from 'nextra-theme-docs';
 
-Allows servers to set a preferred language and attempt to load locale files in any resources using the module.  
+Allows servers to set a preferred language and attempt to load locale files in any resources using the module.
 Locale files should use the [ISO Language Code](http://www.lingoes.net/en/translator/langcode.htm) and be saved as `./locales/langcode.json`
 
 ## Setup
+
 To change the preferred language from English, add the convar to your server.cfg and change `en` to the desired language code.
 
 ```yaml
@@ -40,33 +41,80 @@ files {
 
 Initialise the locale module in your resource (once).
 
-```lua
-lib.locale()
-```
+<Tabs items={["Lua", "JS"]}>
+  <Tab>
+  ```lua
+  lib.locale()
+  ```
+  </Tab>
+  <Tab>
+  ```ts
+  import {initLocale} from '@overextended/ox_lib/shared'
 
-Format your strings with the new locale global.  
+  initLocale()
+  ```
+  </Tab>
+</Tabs>
+
+Format your strings with the new locale global.
 Additional arguments can be sent to format the locale output.
 
-```lua
-locale(str, ...)
-```
+<Tabs items={['Lua', 'JS']}>
+  <Tab>
+
+    ```lua
+    locale(str, ...)
+    ```
+  </Tab>
+  <Tab>
+
+    ```ts
+    import { locale } from '@overextended/ox_lib/shared'
+
+    locale(str, ...)
+    ```
+  </Tab>
+</Tabs>
 
 - str: `string`
 - vararg?: `string` or `number`
 
-```lua
--- Load the locale module
-lib.locale()
+<u>**Example**</u>
 
-SetInterval(function()
-    print(locale('grand_theft_auto'))
-    print(locale('suspect_sex', locale('male')))
-end, 5000)
-```
+<Tabs items={['JS', 'Lua']}>
+  <Tab>
+
+  ```lua
+  -- Load the locale module
+  lib.locale()
+
+  SetInterval(function()
+      print(locale('grand_theft_auto'))
+      print(locale('suspect_sex', locale('male')))
+  end, 5000)
+  ```
+  </Tab>
+  <Tab>
+
+    ```ts
+    import { initLocale, locale } from '@overextended/ox_lib/shared
+
+    // Load the locale module
+    initLocale()
+
+    setInterval(() => {
+      console.log(locale('grand_theft_auto'))
+      console.log(locale('suspect_sex', locale('male')))
+    }, 5000)
+    ```
+  </Tab>
+</Tabs>
+
 
 ## Phrases
 
 You can create a locale string that references other locales to construct a phrase, rather than calling locale multiple times.
+
 ```json
 {
   "hello": "hello %s",
@@ -75,6 +123,20 @@ You can create a locale string that references other locales to construct a phra
 }
 ```
 
-```lua
-print(locale('hello_my_name_is', 'doka', 'linden'))
-```
+<Tabs items={['Lua', 'JS']}>
+  <Tab>
+
+  ```lua
+  print(locale('hello_my_name_is', 'doka', 'linden'))
+  ```
+  </Tab>
+  <Tab>
+
+    ```ts
+    import { locale } from '@overextended/ox_lib/shared'
+
+    console.log(locale('hello_my_name_is', 'doka', 'linden'))
+    ```
+  </Tab>
+</Tabs>
+
