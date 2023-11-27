@@ -48,9 +48,9 @@ local point = lib.points.new({
   distance = 10,
 })
 
-local marker = lib.marker.create({
+local marker = lib.marker.new({
   type = MarkerTypes.VerticalCylinder,
-  location = GetEntityCoords(cache.ped)
+  coords = GetEntityCoords(cache.ped)
 })
 
 function point:nearby()
