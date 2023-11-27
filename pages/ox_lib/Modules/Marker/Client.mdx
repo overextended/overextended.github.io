@@ -1,0 +1,75 @@
+# Client
+
+## lib.marker
+
+Simple way to create markers
+
+## Marker Class
+
+A table repredenting a marker with the following properties.
+
+- type: `number` or `MarkerTypes`
+- color?: `{ r: number, g: number, b: number, a: number}`
+- coords?: `vector3`
+- size?: `{ width: number, height: number }`
+- direction?: `vector3`
+- rotation?: `vector3`
+
+## lib.marker.new
+
+```lua
+lib.marker.new(data)
+```
+- Returns: `Marker`
+
+### Usage Example
+```lua
+local marker = lib.marker.new({
+	type = MarkerTypes.ChevronUpx1,            -- or 52,
+	coords = GetEntityCoords(cache.ped),
+	color = { r = 255, g = 0, b = 0, a = 255 }, -- optional
+	direction = vector3(0, 0, 0),              -- optional
+	rotation = vector3(0, 0, 0)                -- optional,
+})
+
+Citizen.CreateThread(function()
+	while true do
+		marker:draw()
+
+		Citizen.Wait(1)
+	end
+end)
+```
+
+### Interactive Example
+```lua
+local point = lib.points.new({
+  coords = SharedConfig.Warehouse.coords,
+  distance = 10,
+})
+
+local marker = lib.marker.create({
+  type = MarkerTypes.VerticalCylinder,
+  location = GetEntityCoords(cache.ped)
+})
+
+function point:nearby()
+  marker:draw()
+
+  if self.currentDistance < 1.5 then
+    if not lib.isTextUIOpen() then
+      lib.showTextUI("Press [E] to get notified")
+    end
+
+    if IsControlJustPressed(0, 51) then
+      lib.notify({
+        description = "Hello, World!"
+      })
+    end
+  else
+    if lib.isTextUIOpen() then
+      lib.hideTextUI()
+    end
+  end
+end
+```
