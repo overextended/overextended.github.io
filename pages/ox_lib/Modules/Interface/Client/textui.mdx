@@ -62,19 +62,19 @@ Hides the currently visible TextUI window
 
 ## lib.isTextUIOpen
 
-Returns whether Text UI is opened or not
+Returns whether Text UI is opened or not. The currently displayed text is returned as the second value.
 
 <Tabs items={["Lua", "JS"]}>
   <Tab>
     ```lua
-    lib.isTextUIOpen()
+    local isOpen, text = lib.isTextUIOpen()
     ```
   </Tab>
   <Tab>
     ```ts
     import lib from '@overextended/ox_lib/client';
 
-    lib.isTextUIOpen();
+    const [isOpen, text] = lib.isTextUIOpen();
     ```
   </Tab>
 </Tabs>
