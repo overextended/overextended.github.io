@@ -71,6 +71,23 @@ Return:
 
 - value: `number` or `vector2` or `vector3` or `vector4`
 
+### math.hextorgb
+
+Takes a hexadecimal string and returns three integers.
+
+```lua
+math.hextorgb(input)
+```
+
+- input: `string`
+  - A hexadecimal value, e.g. `'eb4034'`.
+
+Return:
+
+- r: `number`
+- g: `number`
+- b: `number`
+
 ### math.tohex
 
 Takes a number or string and formats it as a hexadecimal string.
@@ -101,3 +118,18 @@ math.groupdigits(number, seperator)
 Return:
 
 - groupedDigits: `string`
+
+### math.clamp
+
+Clamps a number between a lower and upper limit.
+
+```lua
+math.clamp(number, lower, upper)
+```
+
+- number: `number`
+- lower: `number`
+- upper: `number`
+
+Return:
+- number: `number`
