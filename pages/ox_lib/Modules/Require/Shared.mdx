@@ -1,5 +1,7 @@
 # Shared
 
+_This module is always loaded by default._
+
 ## require
 
 Loads the given module. The function starts by indexing the `loaded` table to determine whether `modname` is already loaded. If it is, then `require` returns the value stored at `loaded[modname]`.
@@ -44,4 +46,56 @@ return {
 ```lua filename="myresource/server.lua"
 local mylib = require '@mylib.import'
 print(mylib.events.disconnect)
+```
+
+## lib.load
+
+Loads and runs a Lua file at the given path. Unlike require, the chunk is not cached for future use.
+
+```lua
+lib.load(filePath, env)
+```
+
+- filePath: `string`
+  - A path to the Lua file, using the same rules as `require`.
+- env?: `table`
+  - A table to use as the global environment, defaulting to `_ENV`.
+
+### Usage Example
+
+```lua filename="mylib/import.lua"
+local events = lib.load('data.events')
+
+print('Loaded events')
+```
+
+```lua filename="myresource/data/events.lua"
+return {
+  disconnect = 'onPlayerDropped',
+}
+```
+
+## lib.loadJson
+
+Loads a JSON file at the given path and decodes it as a table.
+
+```lua
+lib.loadJson(filePath)
+```
+
+- filePath: `string`
+  - A path to the Lua file, using the same rules as `require`.
+
+### Usage Example
+
+```lua filename="mylib/import.lua"
+local events = lib.load('data.events')
+
+print('Loaded events')
+```
+
+```json filename="myresource/data/events.json"
+{
+  "disconnect": "onPlayerDropped"
+}
 ```
