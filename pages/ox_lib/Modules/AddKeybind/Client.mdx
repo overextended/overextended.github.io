@@ -19,6 +19,10 @@ A table representing a keybind with the following properties.
   - NOTE: Changing this will not change the key for existing players
 - defaultMapper?: `string`
   - See [Input Mapper Ids](https://docs.fivem.net/docs/game-references/input-mapper-parameter-ids/) for more information
+- secondaryKey?: `string`
+  - An optional secondary keybind.
+- secondaryMapper?: `string`
+  - An optional mapper for the secondary key, otherwise using the default mapper.
 - disable: `function(self: CKeybind, disable: boolean)`
   - Built-in function to enable / disable a keybind
 - onPressed?: `function(self: CKeybind)`
@@ -39,6 +43,8 @@ lib.addKeybind(data)
     - Default: `None`
   - defaultMapper?: `string`
     - Default: `keyboard`
+  - secondaryKey?: `string`
+  - secondaryMapper?: `string`
   - disabled?: `boolean`
     - Whether or not the keybind should be disabled by default
   - onPressed?: `function(self: CKeybind)`
