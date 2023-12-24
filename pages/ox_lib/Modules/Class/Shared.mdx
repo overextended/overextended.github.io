@@ -1,0 +1,74 @@
+# Shared
+
+## lib.class
+
+Creates a new class.
+
+```lua
+local MyClass = lib.class(name, super)
+```
+
+- name: `string`
+- super?: `table`
+  - Sets the new class as a subset of the super class, inheriting its methods and fields.
+
+Return:
+- class: `table`
+
+todo: more class info blah, look at the example
+
+### Example
+
+```lua
+local fruits = {}
+local Fruit = lib.class('Fruit')
+
+function Fruit:init()
+    print(('Created a %s %s'):format(self:getColour(), self:getName()))
+    fruits[self.name] = self
+end
+
+function Fruit:remove()
+    print('Removed', self:getName(), self)
+    fruits[self.name] = nil
+end
+
+function Fruit:getName() return self.name end
+
+function Fruit:getColour() return self.colour end
+
+function Fruit:getSeeds() return self.private.seeds end
+
+-- Inherits methods and properties from the Fruit class.
+local SpoiledFruit = lib.class('SpoiledFruit', Fruit)
+
+function SpoiledFruit:getStench() return self.stench end
+
+CreateThread(function()
+    local apple = Fruit:new({
+        name = 'apple',
+        colour = math.random(0, 1) == 1 and 'red' or 'green'
+    })
+
+    local orange = Fruit:new({
+        name = 'orange',
+        colour = 'orange',
+        -- the private table is not serialisable (data is hidden cross-resource)
+        private = {
+            seeds = 7
+        }
+    })
+
+    print(('the apple is %s; the orange contains %d seeds'):format(apple:getColour(), orange:getSeeds()))
+
+    apple:remove()
+
+    local rottenBanana = SpoiledFruit:new({
+        name = 'banana',
+        colour = 'black',
+        stench = 'musty'
+    })
+
+    print(('the banana is %s and %s - gross!'):format(rottenBanana:getColour(), rottenBanana:getStench()))
+end)
+```
