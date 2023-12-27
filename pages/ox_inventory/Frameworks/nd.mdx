@@ -1,0 +1,49 @@
+---
+title: ND Core
+---
+
+# ND Core
+
+## Compatibility
+ND Core is build to work with ox inventory and supports all features.
+
+## Installation
+- Install [ND_Core](https://github.com/ND-Framework/ND_Core/releases)
+- Modify your `server.cfg`, starting ox_inventory immediately after ND_Core.
+
+```yaml
+start oxmysql
+start ox_lib
+start ND_Core
+start ox_inventory
+```
+
+## Create vehicle keys item
+If you use `setr core:useInventoryForKeys true` in [`ndcore.cfg`](https://ndcore.dev/setup#configuration) then you need to create the vehicle key item in `ox_inventory/data/items.lua`.
+
+```lua
+["keys"] = {
+    label = "Car keys",
+    weight = 50,
+    stack = false,
+    close = true,
+    allowArmed = false,
+    server = {
+        export = "ND_Core.keys"
+    },
+    buttons = {
+        {
+            label = "Trunk",
+            action = function(slot)
+                exports["ND_Core"]:keyControl("trunk", slot)
+            end
+        },
+        {
+            label = "Disable key",
+            action = function(slot)
+                exports["ND_Core"]:keyControl("disable", slot)
+            end
+        }
+    }
+},
+```
