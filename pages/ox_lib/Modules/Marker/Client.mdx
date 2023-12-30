@@ -6,9 +6,10 @@ Simple way to create markers
 
 ## Marker Class
 
-A table repredenting a marker with the following properties.
+A table representing a marker with the following properties.
 
-- type: `number` or `MarkerTypes`
+- type: `number` or `string`
+  - This field accepts either a numerical value representing the marker ID or a string containing the name of a marker as documented on [FiveM Docs](https://docs.fivem.net/docs/game-references/markers/).
 - coords?: `vector3`
 - width?: `number`
 - height?: `number`
@@ -19,16 +20,16 @@ A table repredenting a marker with the following properties.
 ## lib.marker.new
 
 ```lua
-lib.marker.new(data)
+lib.marker.new(options)
 ```
 - Returns: `Marker`
 
 ### Usage Example
 ```lua
 local marker = lib.marker.new({
-	type = MarkerTypes.ChevronUpx1, -- or 52,
+	type = 1,
 	coords = GetEntityCoords(cache.ped),
-	color = { r = 255, g = 0, b = 0, a = 255 },
+	color = { r = 255, g = 0, b = 0, a = 200 },
 })
 
 Citizen.CreateThread(function()
@@ -44,12 +45,12 @@ end)
 ```lua
 local point = lib.points.new({
   coords = SharedConfig.Warehouse.coords,
-  distance = 10,
+  distance = 20,
 })
 
 local marker = lib.marker.new({
-  type = MarkerTypes.VerticalCylinder,
-  coords = GetEntityCoords(cache.ped)
+  coords = GetEntityCoords(SharedConfig.Warehouse.coords),
+  type = 1,
 })
 
 function point:nearby()
