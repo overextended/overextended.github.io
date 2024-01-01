@@ -474,10 +474,6 @@ Allows you to enable/disable a player's access to inventory hotkeys.
 LocalPlayer.state.invHotkeys = false
 ```
 
-```lua
-LocalPlayer.state.invHotkeys = true
-```
-
 ### invOpen
 
 Returns whether the player's inventory is currently open or not.
@@ -492,4 +488,12 @@ if invOpen then
 else
     -- Do stuff when closed
 end
+```
+
+### canUseWeapons
+
+Allows you to enable/disable the use of weapons for a player.
+
+```lua
+LocalPlayer.state.canUseWeapons = false
 ```

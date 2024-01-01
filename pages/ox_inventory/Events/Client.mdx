@@ -60,3 +60,23 @@ AddEventHandler('ox_inventory:itemCount', function(itemName, totalCount) end)
 
 - itemName: `string`
 - totalCount: `number`
+
+### ox_inventory:updateWeaponComponent
+
+```lua
+AddEventHandler('ox_inventory:updateWeaponComponent', function(action, componentHash, componentItem) end)
+```
+
+- action: `'added' | 'removed'`
+- componentHash: `number`
+- componentItem: `string`
+
+### ox_inventory:usedItem
+
+```lua
+AddEventHandler('ox_inventory:usedItem', function(name, slotId, metadata) end)
+```
+
+- name: `string`
+- slotId: `number`
+- metadata?: `table`

@@ -28,3 +28,14 @@ Triggered after an inventory is closed by a player.
 ```lua
 AddEventHandler('ox_inventory:closedInventory', function(playerId, inventoryId) end)
 ```
+
+### ox_inventory:usedItem
+
+```lua
+AddEventHandler('ox_inventory:usedItem', function(playerId, name, slotId, metadata) end)
+```
+
+- playerId: `number`
+- name: `string`
+- slotId: `number`
+- metadata?: `table`
