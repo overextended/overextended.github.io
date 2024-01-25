@@ -677,19 +677,6 @@ exports.ox_inventory:Search(inv, search, item, metadata)
 `search` can be either `'slots'` or `'count'`, where slots will return a table of data
 and count will return the found amount of the specified item.
 
-## SwapSlots
-
-Swaps slots in specified inventories.
-
-```lua
-exports.ox_inventory:SwapSlots(fromInventory, toInventory, slot1, slot2)
-```
-
-- fromInventory: `table` or `string` or `number`
-- toInventory: `table` or `string` or `number`
-- slot1: `number`
-- slot2: `number`
-
 ## RegisterStash
 
 Creates a new custom stash.
