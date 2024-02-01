@@ -27,7 +27,7 @@ If you use `setr core:useInventoryForKeys true` in [`ndcore.cfg`](https://ndcore
     weight = 50,
     stack = false,
     close = true,
-    allowArmed = false,
+    allowArmed = true,
     server = {
         export = "ND_Core.keys"
     },
@@ -44,6 +44,34 @@ If you use `setr core:useInventoryForKeys true` in [`ndcore.cfg`](https://ndcore
                 exports["ND_Core"]:keyControl("disable", slot)
             end
         }
+    }
+},
+```
+
+
+## Create lockpick & tools items
+Lockpicks are used to get into locked vehicles, tools are used to hotwire vehicles add these items to `ox_inventory/data/items.lua`.
+
+```lua
+["lockpick"] = {
+    label = "Lockpick",
+    weight = 160,
+    consume = 1,
+    stack = true,
+    close = true,
+    client = {
+        export = "ND_Core.lockpick"
+    }
+},
+["tools"] = {
+    label = "Tools",
+    description = "Can be used to hotwire vehicles.",
+    weight = 800,
+    consume = 1,
+    stack = true,
+    close = true,
+    client = {
+        export = "ND_Core.hotwire"
     }
 },
 ```
