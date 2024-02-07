@@ -1,0 +1,75 @@
+# Client
+
+## lib.marker
+
+Simple way to create markers
+
+## Marker Class
+
+A table representing a marker with the following properties.
+
+- type: `number` or `string`
+  - This field accepts either a numerical value representing the marker ID or a string containing the name of a marker as documented on [FiveM Docs](https://docs.fivem.net/docs/game-references/markers/).
+- coords?: `vector3`
+- width?: `number`
+- height?: `number`
+- color?: `{ r: number, g: number, b: number, a: number}`
+- direction?: `vector3`
+- rotation?: `vector3`
+
+## lib.marker.new
+
+```lua
+lib.marker.new(options)
+```
+- Returns: `Marker`
+
+### Usage Example
+```lua
+local marker = lib.marker.new({
+	type = 1,
+	coords = GetEntityCoords(cache.ped),
+	color = { r = 255, g = 0, b = 0, a = 200 },
+})
+
+Citizen.CreateThread(function()
+	while true do
+		marker:draw()
+
+		Citizen.Wait(1)
+	end
+end)
+```
+
+### Interactive Example
+```lua
+local point = lib.points.new({
+  coords = SharedConfig.Warehouse.coords,
+  distance = 20,
+})
+
+local marker = lib.marker.new({
+  coords = GetEntityCoords(SharedConfig.Warehouse.coords),
+  type = 1,
+})
+
+function point:nearby()
+  marker:draw()
+
+  if self.currentDistance < 1.5 then
+    if not lib.isTextUIOpen() then
+      lib.showTextUI("Press [E] to get notified")
+    end
+
+    if IsControlJustPressed(0, 51) then
+      lib.notify({
+        description = "Hello, World!"
+      })
+    end
+  else
+    if lib.isTextUIOpen() then
+      lib.hideTextUI()
+    end
+  end
+end
+```
