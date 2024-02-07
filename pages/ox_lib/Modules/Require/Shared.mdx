@@ -1,3 +1,5 @@
+import { Callout } from 'nextra/components';
+
 # Shared
 
 _This module is always loaded by default._
@@ -14,6 +16,22 @@ Loads the given module. The function starts by indexing the `loaded` table to de
 ```lua
 require 'modname'
 ```
+
+<Callout type="warning">
+
+Client modules must be defined in the `file` section of the resource manifest.
+
+```lua filename="fxmanifest.lua"
+file 'modname.lua'
+-- or
+files {
+  'modname.lua'
+}
+```
+
+</Callout>
+
+
 
 ### Usage Example
 
