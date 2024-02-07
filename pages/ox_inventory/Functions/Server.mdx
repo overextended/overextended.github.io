@@ -174,7 +174,7 @@ print(json.encode(response, {indent=true}))
 Removes the specified item from the specified inventory.
 
 ```lua
-exports.ox_inventory:RemoveItem(inv, item, count, metadata, slot)
+exports.ox_inventory:RemoveItem(inv, item, count, metadata, slot, ignoreTotal)
 ```
 
 - inv: `table` or `string` or `number`
@@ -190,7 +190,8 @@ exports.ox_inventory:RemoveItem(inv, item, count, metadata, slot)
   - Only remove items with matching metadata properties.
 - slot?: `number`
   - A specific slot to remove the item from. If the slot is invalid, the first available slot will be used instead.
-- cb?: function(success: `boolean`, response?: `string`)
+- ignoreTotal?: `boolean`
+  - Removes as many items as possible up to count.
 
 Returns success: `boolean`, response: `string?`.
 
