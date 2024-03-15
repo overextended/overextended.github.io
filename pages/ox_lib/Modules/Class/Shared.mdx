@@ -1,74 +1,132 @@
 # Shared
 
+## Classes
+
+A class is a template for creating objects with set attributes and behaviours.
+
+- Though Lua does not typically support object-oriented programming, it is possible to simulate it with [metatables](https://www.lua.org/manual/5.4/manual.html#2.4).
+- Our implementation of classes are loosely based on [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes).
+
+### Inheritance
+
+Classes can inherit attributes and behaviors from other classes, similar to how instances inherit from their parent class.
+
+When specifying a "super" class in a class declaration, you create a derived or "sub" class. This subclass inherits both fields and methods from its parent. This inheritance extends across multiple levels of derived classes, enabling class attributes to be shared throughout the class hierarchy.
+
+### Encapsulation
+
+Encapsulation is the practice of bundling data (attributes) and methods (behaviors) within a class.
+
+This practice helps to organize related functionalities and prevents outside interference with the internal workings of the class. By encapsulating these elements, we promote modularity, maintain data integrity, and control how data is accessed and manipulated within a program.
+
+## OxClass
+
+OxClass is a blueprint used for all classes created with `lib.class`. It provides some some basic attributes and behaviours shared by all classes.
+
+### Attributes
+
+- __name: `string`
+  - A protected field representing the name of the class.
+- constructor?: `function`
+  - A protected method used to instantiate a new object inheriting from a class.
+  - Called by `class:new(...)` if `class:constructor()` exists.
+- private?: `table`
+  - A protected field which holds all private data in a class.
+  - Private data cannot be accessed outside of class methods, enforcing security and data integrity.
+- super?: `class`
+  - A protected method referencing the constructor of a superclass.
+  - Must be called inside a class constructor when instantiating a class.
+
 ## lib.class
 
-Creates a new class.
+This function allows you to define a new class, optionally inheriting from a parent or "super" class.
 
 ```lua
 local MyClass = lib.class(name, super)
 ```
 
+### Parameters
+
 - name: `string`
 - super?: `table`
-  - Sets the new class as a subset of the super class, inheriting its methods and fields.
+  - Sets the new class as a subset of the super class.
 
-Return:
-- class: `table`
-
-todo: more class info blah, look at the example
+### Returns
+- `table`
+  - The newly created class.
 
 ### Example
 
 ```lua
-local fruits = {}
-local Fruit = lib.class('Fruit')
+---@class Person : OxClass
+---@field name string
+local Person = lib.class('Person')
 
-function Fruit:init()
-    print(('Created a %s %s'):format(self:getColour(), self:getName()))
-    fruits[self.name] = self
+function Person:constructor(name)
+    print('calling Person constructor for', name)
+    self.name = name
 end
 
-function Fruit:remove()
-    print('Removed', self:getName(), self)
-    fruits[self.name] = nil
+-- Professor Class (extends Person)
+
+---@class Professor : Person
+---@field teaches string
+local Professor = lib.class('Professor', Person)
+
+function Professor:constructor(name, teaches)
+    print('calling Professor constructor for', name)
+    self:super(name)
+    self.teaches = teaches
 end
 
-function Fruit:getName() return self.name end
+function Professor:introduceSelf()
+    print(("My name is %s, and I will be your %s professor."):format(self.name, self.teaches))
+end
 
-function Fruit:getColour() return self.colour end
-
-function Fruit:getSeeds() return self.private.seeds end
-
--- Inherits methods and properties from the Fruit class.
-local SpoiledFruit = lib.class('SpoiledFruit', Fruit)
-
-function SpoiledFruit:getStench() return self.stench end
+function Professor:grade(paper)
+    local grade = math.random(1, 4)
+    print(grade)
+end
 
 CreateThread(function()
-    local apple = Fruit:new({
-        name = 'apple',
-        colour = math.random(0, 1) == 1 and 'red' or 'green'
-    })
+    local walter = Professor:new('Walter', 'Chemistry')
 
-    local orange = Fruit:new({
-        name = 'orange',
-        colour = 'orange',
-        -- the private table is not serialisable (data is hidden cross-resource)
-        private = {
-            seeds = 7
-        }
-    })
+    walter:introduceSelf()
+    walter:grade('my paper')
+end)
 
-    print(('the apple is %s; the orange contains %d seeds'):format(apple:getColour(), orange:getSeeds()))
 
-    apple:remove()
+-- Student Class (extends Person)
 
-    local rottenBanana = SpoiledFruit:new({
-        name = 'banana',
-        colour = 'black',
-        stench = 'musty'
-    })
+---@class Student : Person
+---@field private private { year: number }
+local Student = lib.class('Student', Person)
 
-    print(('the banana is %s and %s - gross!'):format(rottenBanana:getColour(), rottenBanana:getStench()))
+---@param name string
+---@param year number
+function Student:constructor(name, year)
+    print('calling Student constructor for', name)
+    self:super(name)
+    self.private.year = year
+end
+
+function Student:introduceSelf()
+    print(("Hi! I'm %s, and I'm in year %s."):format(self.name, self.private.year))
+end
+
+---@param year number
+function Student:setYear(year)
+    self.private.year = year
+end
+
+CreateThread(function()
+    local jesse = Student:new('Jesse', 2)
+
+    jesse:introduceSelf() -- Hi! I'm Jesse, and I'm in year 2.
+    jesse:setYear(3)
+    jesse:introduceSelf() -- Hi! I'm Jesse, and I'm in year 3.
+    print(jesse.private.year) -- nil
+    print(getmetatable(jesse.private)) -- private
+    jesse.private.year = 4 -- error
 end)
 ```
