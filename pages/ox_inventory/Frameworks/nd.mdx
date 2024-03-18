@@ -1,0 +1,77 @@
+---
+title: ND Core
+---
+
+# ND Core
+
+## Compatibility
+ND Core is build to work with ox inventory and supports all features.
+
+## Installation
+- Install [ND_Core](https://github.com/ND-Framework/ND_Core/releases)
+- Modify your `server.cfg`, starting ox_inventory immediately after ND_Core.
+
+```yaml
+start oxmysql
+start ox_lib
+start ND_Core
+start ox_inventory
+```
+
+## Create vehicle keys item
+If you use `setr core:useInventoryForKeys true` in [`ndcore.cfg`](https://ndcore.dev/setup#configuration) then you need to create the vehicle key item in `ox_inventory/data/items.lua`.
+
+```lua
+["keys"] = {
+    label = "Car keys",
+    weight = 50,
+    stack = false,
+    close = true,
+    allowArmed = true,
+    server = {
+        export = "ND_Core.keys"
+    },
+    buttons = {
+        {
+            label = "Trunk",
+            action = function(slot)
+                exports["ND_Core"]:keyControl("trunk", slot)
+            end
+        },
+        {
+            label = "Disable key",
+            action = function(slot)
+                exports["ND_Core"]:keyControl("disable", slot)
+            end
+        }
+    }
+},
+```
+
+
+## Create lockpick & tools items
+Lockpicks are used to get into locked vehicles, tools are used to hotwire vehicles add these items to `ox_inventory/data/items.lua`.
+
+```lua
+["lockpick"] = {
+    label = "Lockpick",
+    weight = 160,
+    consume = 1,
+    stack = true,
+    close = true,
+    client = {
+        export = "ND_Core.lockpick"
+    }
+},
+["tools"] = {
+    label = "Tools",
+    description = "Can be used to hotwire vehicles.",
+    weight = 800,
+    consume = 1,
+    stack = true,
+    close = true,
+    client = {
+        export = "ND_Core.hotwire"
+    }
+},
+```
