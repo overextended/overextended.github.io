@@ -55,7 +55,12 @@ Custom notifications with a lot of styling options.
 - iconAnimation?: `'spin'` `'spinPulse'` `'spinReverse'` `'pulse'` `'beat'` `'fade'` `'beatFade'` `'bounce'` `'shake'`
 - alignIcon?: `'top'` or `'center'`
   - Default: `'center'`
-
+- sound?: `table` (`object`)
+  - bank?: `string`
+    - name of soundbank that contains the soundset provided
+  - set: `string`
+   - Soundset the soundname is a member of.
+  - name: `string`
 <Callout>
   Setting `iconColor` will get rid of the contrasted icon colour and it's circular background.
 </Callout>
