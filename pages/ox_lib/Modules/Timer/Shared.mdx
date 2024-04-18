@@ -1,0 +1,183 @@
+# Shared
+
+Provides a versatile timer system with options for asynchronous operation, pause and resume functionality, and callbacks on timer completion.
+
+## Timer
+
+### lib.timer
+
+this function is blocking and will halt the code from running until completion. similar to using a Wait, but with more utility.
+
+```lua
+lib.timer(time, onEnd)
+```
+
+- time: `number`
+- onEnd: `function`
+
+Returns:
+
+- timer: `OxTimer`
+
+#### Example
+```lua
+print("before")
+
+local timer = lib.timer(5000, function()
+   print("timer ended")
+end)
+
+print("after")
+```
+
+### lib.timer.async
+
+the function is non-blocking and will continue the code execution.
+
+```lua
+lib.timer.async(time, onEnd)
+```
+- time: `number`
+- onEnd: `function`
+
+Returns:
+- timer: `OxTimer`
+
+#### Example
+```lua
+local timer = lib.timer.async(5000, function()
+    print("timer ended")
+end)
+```
+
+## Methods
+
+### pause
+
+this will pause a running timer until `timer:play()` or `timer:forceEnd()` is called.
+
+```lua
+timer:pause()
+```
+
+#### Example
+```lua
+local timer = lib.timer.async(5000, function()
+    print("timer ended")
+end)
+
+timer:pause()
+```
+
+### play
+this will resume a timer if it is paused with `timer:pause()`
+
+```lua
+timer:play()
+```
+
+#### Example
+```lua
+local timer = lib.timer.async(5000, function()
+    print("timer ended")
+end)
+
+timer:pause()
+
+Wait(1000)
+
+timer:play()
+--timer finishes in 6 seconds rather than 5 because of the pause
+```
+
+### forceEnd
+
+this will immediately end the timer and optionally trigger the onEnd callback.
+
+```lua
+timer:forceEnd(triggerOnEnd)
+```
+
+- triggerOnEnd: `boolean`
+
+#### Example
+```lua
+local timer = lib.timer.async(5000, function()
+    print("timer ended")
+end)
+
+timer:pause()
+
+Wait(1000)
+
+timer:forceEnd(false)
+--timer finishes in 1 second rather than 5 because of the forceEnd and the call back never runs
+```
+
+### isPaused
+wether or not the timer is in a paused state from calling `timer:pause()` previously
+
+```lua
+timer:isPaused()
+```
+
+Returns:
+- isPaused: `boolean`
+
+#### Example
+```lua
+local timer = lib.timer.async(5000, function()
+    print("timer ended")
+end)
+
+print(timer:isPaused()) -- false
+
+timer:pause()
+
+print(timer:isPaused()) -- true
+```
+
+### getTimeLeft
+gets the time left on the timer in the given format rounded to 2 decimal places
+
+```lua
+timer:getTimeLeft(format)
+-- format: 'ms' = miliseconds, 's' = seconds, 'm' = minutes, 'h' = hours, nil = all returned in a table
+```
+- format?: `'ms'` or `'s'` or `'m'` or `'h'`
+
+Returns:
+- time: `number` | `{ms: number, s: number, m: number, h: number}`
+
+#### Example
+```lua
+local timer = lib.timer.async(5000, function()
+    print("timer ended")
+end)
+
+print(timer:getTimeLeft('ms')) -- 5000 miliseconds
+print(timer:getTimeLeft('s'))  -- 5.00 seconds
+print(timer:getTimeLeft('m'))  -- 0.08 minutes
+print(timer:getTimeLeft('h'))  -- 0.00 hours
+print(timer:getTimeLeft())     -- {ms = 5000, s = 5.00, m = 0.08, h = 0.00 }
+```
+
+### restart
+restarts the timer from the original time given
+
+```lua
+timer:restart()
+```
+
+#### Example
+
+```lua
+-- this will create a timer that just keeps restarting itself
+local timer
+
+timer = lib.timer.async(5000, function()
+    print("timer ended")
+    timer:restart()
+end)
+
+```
