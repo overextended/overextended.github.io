@@ -6,14 +6,14 @@ Provides a versatile timer system with options for asynchronous operation, pause
 
 ### lib.timer
 
-this function is blocking and will halt the code from running until completion. similar to using a Wait, but with more utility.
-
 ```lua
-lib.timer(time, onEnd)
+lib.timer(time, onEnd, async)
 ```
 
 - time: `number`
 - onEnd: `function`
+- async?: `boolean`
+  - If `true` then the timer does not block script execution on the calling thread.
 
 Returns:
 
@@ -21,32 +21,9 @@ Returns:
 
 #### Example
 ```lua
-print("before")
 
 local timer = lib.timer(5000, function()
    print("timer ended")
-end)
-
-print("after")
-```
-
-### lib.timer.async
-
-the function is non-blocking and will continue the code execution.
-
-```lua
-lib.timer.async(time, onEnd)
-```
-- time: `number`
-- onEnd: `function`
-
-Returns:
-- timer: `OxTimer`
-
-#### Example
-```lua
-local timer = lib.timer.async(5000, function()
-    print("timer ended")
 end)
 ```
 
@@ -54,7 +31,7 @@ end)
 
 ### pause
 
-this will pause a running timer until `timer:play()` or `timer:forceEnd()` is called.
+Pauses an active timer until `timer:play()` or `timer:forceEnd()` is called.
 
 ```lua
 timer:pause()
@@ -62,15 +39,15 @@ timer:pause()
 
 #### Example
 ```lua
-local timer = lib.timer.async(5000, function()
+local timer = lib.timer(5000, function()
     print("timer ended")
-end)
+end, true)
 
 timer:pause()
 ```
 
 ### play
-this will resume a timer if it is paused with `timer:pause()`
+Resume a timer if it is paused with `timer:pause()`.
 
 ```lua
 timer:play()
@@ -78,9 +55,9 @@ timer:play()
 
 #### Example
 ```lua
-local timer = lib.timer.async(5000, function()
+local timer = lib.timer(5000, function()
     print("timer ended")
-end)
+end, true)
 
 timer:pause()
 
@@ -92,7 +69,7 @@ timer:play()
 
 ### forceEnd
 
-this will immediately end the timer and optionally trigger the onEnd callback.
+Immediately ends the timer and optionally triggers the onEnd callback.
 
 ```lua
 timer:forceEnd(triggerOnEnd)
@@ -102,9 +79,9 @@ timer:forceEnd(triggerOnEnd)
 
 #### Example
 ```lua
-local timer = lib.timer.async(5000, function()
+local timer = lib.timer(5000, function()
     print("timer ended")
-end)
+end, true)
 
 timer:pause()
 
@@ -115,7 +92,7 @@ timer:forceEnd(false)
 ```
 
 ### isPaused
-wether or not the timer is in a paused state from calling `timer:pause()` previously
+Checks if the timer is paused from calling `timer:pause()` previously.
 
 ```lua
 timer:isPaused()
@@ -126,9 +103,9 @@ Returns:
 
 #### Example
 ```lua
-local timer = lib.timer.async(5000, function()
+local timer = lib.timer(5000, function()
     print("timer ended")
-end)
+end, true)
 
 print(timer:isPaused()) -- false
 
@@ -138,7 +115,7 @@ print(timer:isPaused()) -- true
 ```
 
 ### getTimeLeft
-gets the time left on the timer in the given format rounded to 2 decimal places
+Returns the remaining time on the timer in the given format rounded to 2 decimal places
 
 ```lua
 timer:getTimeLeft(format)
@@ -151,9 +128,9 @@ Returns:
 
 #### Example
 ```lua
-local timer = lib.timer.async(5000, function()
+local timer = lib.timer(5000, function()
     print("timer ended")
-end)
+end, true)
 
 print(timer:getTimeLeft('ms')) -- 5000 miliseconds
 print(timer:getTimeLeft('s'))  -- 5.00 seconds
@@ -163,7 +140,7 @@ print(timer:getTimeLeft())     -- {ms = 5000, s = 5.00, m = 0.08, h = 0.00 }
 ```
 
 ### restart
-restarts the timer from the original time given
+Resets and starts the timer.
 
 ```lua
 timer:restart()
@@ -175,9 +152,9 @@ timer:restart()
 -- this will create a timer that just keeps restarting itself
 local timer
 
-timer = lib.timer.async(5000, function()
+timer = lib.timer(5000, function()
     print("timer ended")
     timer:restart()
-end)
+end, true)
 
 ```
