@@ -32,7 +32,7 @@ lib.getVehicleProperties(vehicle)
 
 ## lib.setVehicleProperties
 
-Requires the vehicle to belong to the client. _Do not use NetworkRequestControlOfEntity_.
+Sets properties on a vehicle (i.e. mods, plate text, etc.) and returns true if the client owns the entity.
 
 ```lua
 lib.setVehicleProperties(vehicle, props)
@@ -51,14 +51,17 @@ lib.setVehicleProperties(vehicle, props)
   </Tab>
   <Tab>
     ```ts
-    import lib from '@overextended/ox_lib/client'
+    import { setVehicleProperties } from '@overextended/ox_lib/client'
 
     onNet('ox_lib:setVehicleProperties', (netid, data) => {
-      lib.setVehicleProperties(NetToVeh(netid), data)
+      setVehicleProperties(NetToVeh(netid), data)
     })
     ```
   </Tab>
 </Tabs>
+
+**Returns:**
+- isEntityOwner: `boolean`
 
 ### Recommended Usage
 
