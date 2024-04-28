@@ -85,3 +85,21 @@ It is designed to be very cost effective and easy to operate.
   set loki:password "<insert the api key or password>"
   set loki:endpoint "<insert loki url without http:// or https://>"
   ```
+
+
+## Fivemanage
+Fivemanage is an easy-to-use, all-in-one SaaS for game servers that provides logging.
+
+<Steps>
+    ### Create an account
+    Sign up at [Fivemanage](https://fivemanage.com).
+    ### Make sure you have the `Hobby` or `Pro` plan. 
+    You'll get a 14-days free trial if you do not already have an subscription, you can find more information [here](https://fivemanage.com/profile/billing) and on the [pricing](https://fivemanage.com/pricing) page.
+    ### Create a new token
+    You'll need to create a new token with the type `Logs`.
+    ### Config
+  ```bash
+  set ox:logger "fivemanage"
+  set fivemanage:key "YOUR_API_KEY"
+  ```
+</Steps>
