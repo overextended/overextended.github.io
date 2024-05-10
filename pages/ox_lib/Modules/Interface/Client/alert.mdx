@@ -49,15 +49,22 @@ Returns whether the player pressed the confirm button or canceled the dialog.
     - Centers the dialog vertically and horizontally.
   - cancel?: `boolean`
     - Displays a cancel button (ESC is still available if this is not defined).
+  - confirm?: `boolean`
+    - Displays the confirm button
   - size?: `'xs'` or `'sm'` or `'md'` or `'lg'` or `'xl'`
   - overflow?: `boolean`
   - labels?: `table`
     - Allows you to define the displayed labels for cancel and/or confirm buttons.
     - cancel?: `string`
     - confirm?: `string`
+  - actions?: `table` (`array`)
+    - id: `string`
+    - label: `string`
+    - variant?: `'filled'` or `'outline'` or `'light'` or `'white'` or `'default'` or `'subtle'` or `'gradient'`
 
 Returns `'confirm'` if the player pressed the confirm button, otherwise if the player pressed the cancel button
-or has exited the dialog with ESC the return will be `'cancel'`.
+or has exited the dialog with ESC the return will be `'cancel'`.\
+When the user clicks on a custom button, the returned value is the ID of the action.
 
 ## lib.closeAlertDialog
 
