@@ -85,9 +85,13 @@ exports.ox_inventory:closeInventory()
 
 Returns a table of all registered items. The format is as defined in [data/items.lua](https://github.com/overextended/ox_inventory/blob/main/data/items.lua).
 
+Optionally takes the name of an item, returning only data for that item (getting all data is not recommended).
+
 ```lua
-exports.ox_inventory:Items()
+exports.ox_inventory:Items(itemName)
 ```
+
+- itemName?: `string`
 
 The following snippet can be used in crafting resources such as okokCrafting or core_crafting, rather than retrieving information from the server.
 
