@@ -13,8 +13,8 @@ lib.waitFor(cb, errMessage, timeout)
   - A function to call each frame.
 - errMessage?: `string`
   - The error message to display if the function times out.
-- timeout?: `number`
-  - The duration to run the function for, defaulting to 1000ms.
+- timeout?: `number | false`
+  - The duration to run the function for, defaulting to 1000ms, unless set to `false`.
 
 
 ```lua
