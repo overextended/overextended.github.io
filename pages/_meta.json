@@ -3,6 +3,11 @@
   "guides": "Guides",
   "oxmysql": "OxMySQL",
   "ox_lib": "Ox Lib",
+  "fivemanage": {
+    "title": "Fivemanage",
+    "type": "page",
+    "href": "https://fivemanage.com/?ref=overextended"
+  },
   "creator_codes": {
     "title": "Creator codes",
     "type": "page",
