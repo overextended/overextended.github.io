@@ -1,0 +1,61 @@
+# Client Events
+
+## ox:playerLoaded
+
+Description..
+
+```lua
+function(playerId: number, isNew: boolean)
+```
+
+## ox:statusTick
+
+Description..
+
+```lua
+function(statuses: Record<string, OxStatus>)
+```
+
+---
+
+# Net Events
+
+## ox:setGroup
+
+Description..
+
+```lua
+function(groupName: string, grade?: number)
+```
+
+## ox:licenseAdded
+
+Description..
+
+```lua
+function(licenseName: string)
+```
+
+## ox:licenseRemoved
+
+Description..
+
+```lua
+function(licenseName: string)
+```
+
+## ox:startCharacterSelect
+
+Description..
+
+```lua
+function(userId: number, characters: Character[])
+```
+
+## ox:setActiveCharacter
+
+Description..
+
+```lua
+function(character: Character, groups: Record<string, number>)
+```
