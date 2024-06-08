@@ -3,5 +3,5 @@ collapsible: true
 collapsed: true
 link:
   type: generated-index
-  description: An experimental framework for FiveM. Limited support and breaking changes guaranteed.
+  description: A modern FiveM framework.
 position: 4
