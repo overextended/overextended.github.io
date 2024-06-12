@@ -1,0 +1,67 @@
+# Server Events
+
+## ox:savedPlayers
+
+```lua
+function(playersSaved: number)
+```
+
+## ox:setActiveGroup
+
+```lua
+function(playerId: number, groupName: string)
+```
+
+## ox:setGroup
+
+```lua
+function(playerId: number, groupName: string, grade?: number)
+```
+
+## ox:licenseAdded
+
+```lua
+function(playerId: number, licenseName: string)
+```
+
+## ox:licenseRemoved
+
+```lua
+function(playerId: number, licenseName: string)
+```
+
+## ox:playerLogout
+
+```lua
+function(playerId: number, userId: number, charId: number)
+```
+
+## ox:createdCharacter
+
+```lua
+function(playerId: number, userId: number, charId: number)
+```
+
+## ox:playerLoaded
+
+```lua
+function(playerId: number, userId: number, charId: number)
+```
+
+## ox:deletedCharacter
+
+```lua
+function(playerId: number, userId: number, charId: number)
+```
+
+## ox:savedVehicles
+
+```lua
+function(vehiclesSaved: number)
+```
+
+## ox:spawnedVehicle
+
+```lua
+function(entityId: number, id: number)
+```
