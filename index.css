@@ -105,3 +105,11 @@ ol.nx-list-decimal {
 .nextra-code-block pre {
   @apply dark:!bg-zinc-800;
 }
+
+:is([dir="ltr"] .ltr\:nx-pl-3) {
+  padding-left: 0.6rem;
+}
+
+:is([dir="ltr"] .ltr\:nx-ml-3) {
+  margin-left: 0.6rem;
+}

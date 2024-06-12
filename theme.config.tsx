@@ -68,6 +68,9 @@ const config: DocsThemeConfig = {
   sidebar: {
     defaultMenuCollapseLevel: 1,
   },
+  toc: {
+    backToTop: true,
+  },
 
   useNextSeoProps: useNextSeoProps,
 };
