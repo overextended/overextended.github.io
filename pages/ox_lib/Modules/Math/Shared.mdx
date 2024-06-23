@@ -132,4 +132,58 @@ math.clamp(number, lower, upper)
 - upper: `number`
 
 Return:
+
 - number: `number`
+
+### math.round
+
+Rounds a number to a whole number or to the specified number of decimal places.
+
+```lua
+math.round(value, places)
+```
+
+- value: `number` | `string`
+- places?: `number` | `string`
+
+Return:
+
+- roundedValue: `number`
+
+### math.interp
+
+Calculates an intermediate value between `start` and `finish` based on the interpolation `factor`.
+
+```lua
+math.interp(start, finish, factor)
+```
+
+- generic `T`: `number` | `vector2` | `vector3` | `vector4`
+- start: `T`
+- finish: `T`
+- factor: `integer`
+  - The interpolation factor between 0 and 1.
+
+Return:
+
+- result: `T`
+
+### math.lerp
+
+Linearly interpolates between two values over a specified duration, returning an iterator function that will run once per game-frame.
+
+```lua
+math.lerp(start, finish, duration)
+```
+
+- generic `T`: `number` | `table` | `vector2` | `vector3` | `vector4`
+- start: `T`
+  - The starting value of the interpolation
+- finish: `T`
+  - The ending value of the interpolation
+- duration: `number`
+  - The duration over which to interpolate over in milliseconds.
+
+Return:
+
+- iteratorFunction: `fun(): T, number`
