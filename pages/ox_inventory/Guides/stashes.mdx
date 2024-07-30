@@ -64,7 +64,7 @@ local properties
 
 MySQL.query('SELECT * FROM `properties`', {}, function(result)
     properties = result
-end
+end)
 
 RegisterNetEvent('ox:loadStashes', function(id)
 local stash = properties[id]
