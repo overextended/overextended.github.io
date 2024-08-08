@@ -30,23 +30,20 @@ Do not setup XAMPP just to run your database, and install [MariaDB](https://mari
 
 <Steps>
 
-### Download the [latest release](https://github.com/overextended/oxmysql/releases/latest).
+### Download and install [MariaDB](https://mariadb.com/downloads/community/)
+
+### Download the [latest release](https://github.com/overextended/oxmysql/releases/latest) of oxmysql
 
 ### Configure your server
 
-<Callout type="warning">
-
-When using convars do not replicate sensitive information to the client.  
-**set** will only be set on the server, while **setr** is replicated.
-
-</Callout>
-
-- Start by opening your server configuration (i.e. server.cfg) and adding `start oxmysql` before any of its dependents (usually it's the first resource you start).
-- Set a mysql connection string using either of the following formats, using your server authentication details and target database.
+- Open your server [configuration file](https://docs.fivem.net/docs/server-manual/setting-up-a-server-vanilla/#servercfg).
+- Add `start oxmysql` to the top of your resource list.
+- Configure your mysql connection string and set it before starting any resources.
 
 ```bash
-set mysql_connection_string "mysql://root:12345@localhost:3306/es_extended"
-set mysql_connection_string "user=root;password=12345;host=localhost;port=3306;database=es_extended"
+# Use your preferred format. Make sure you only ever use set.
+set mysql_connection_string "mysql://root:12345@localhost:3306/fivem"
+set mysql_connection_string "user=root;password=12345;host=localhost;port=3306;database=fivem"
 ```
 
 <Callout type="info">
@@ -58,23 +55,14 @@ Avoid using these characters `; , / ? : @ & = + $ #`, and try swapping connectio
 
 ### Slow query warnings
 
-By default you will receive warnings if a query took ~150ms to complete, however
-
-1. Query time is calculated on fxserver based on response time, and may not be entirely accurate.
-2. Server hitches may delay the query response, and may not indicate a database issue.
-3. Excessive queries in a short timeframe may report with higher response times.
-
-You can adjust the minimum response time with a convar.
+You will receive warnings if a query took a long time to complete, configurable with a convar.  
+- Query time may not be entirely accurate.
+- Slow queries may not indicate a database issue (e.g. server hitches).
+- Slow queries on server startup are not necessarily problematic.
 
 ```bash
 set mysql_slow_query_warning 150
 ```
-
-<Callout type="info">
-
-Slow query warnings are only shown if **mysql_ui** or **mysql_debug** is enabled.
-
-</Callout>
 
 ### Debug
 
@@ -88,30 +76,21 @@ set mysql_debug [
 ]
 ```
 
-This value can be changed without restarting oxmysql, and you can temporarily modify the list with commands.
+You can temporarily modify the resource list with commands.
 
 ```bash
 oxmysql_debug remove ox_core
 oxmysql_debug add ox_core
 ```
 
-### mysql-async compatibility
-
-The `mysql-async` directory must be deleted to properly provide support.
-
-- 🗹 Supports `server_script '@mysql-async/lib/MySQL.lua'`.
-- 🗹 Supports `MySQL.Sync` and `MySQL.Async` methods.
-- ☐ Raw exports are not supported (i.e. `exports['mysql-async].mysql_execute`).
-- ☐ Multi-statements are disabled for security reasons (see [#102](https://github.com/overextended/oxmysql/issues/102)).
-
-### ghmattimysql compatibility
-
-The `ghmattimysql` resource must be stopped to properly provide support.
-
-- 🗹 Supports `exports.ghmattimysql.execute` and other similar exports.
-- 🗹 Supports `exports.ghmattimysql.executeSync` and other similar exports.
-
 </Steps>
+
+## Compatibility
+
+You can delete the following resources and allow oxmysql to provide their functionality.
+
+- mysql-async
+- ghmattimysql
 
 ## Usage
 
@@ -123,14 +102,6 @@ Modify `fxmanifest.lua` for your resource, and add the following above any other
 
 ```lua
 server_script '@oxmysql/lib/MySQL.lua'
-```
-
-If you're using [Lua Language Server](https://marketplace.visualstudio.com/items?itemName=sumneko.lua) you can get access to basic types and intellisense.
-
-```json
-"Lua.workspace.library": [
-  "C:/pathtoserver/resources/oxmysql/lib/define.lua",
-]
 ```
 
 ### JavaScript
