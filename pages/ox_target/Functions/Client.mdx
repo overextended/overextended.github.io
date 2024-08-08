@@ -174,7 +174,7 @@ exports.ox_target:addSphereZone(parameters)
   - radius?: `number`
   - debug?: `boolean`
   - drawSprite?: `boolean`
-  - options: `table`
+  - options: `table[]`
 
 Return:
 - id: `number`
@@ -193,7 +193,7 @@ exports.ox_target:addBoxZone(parameters)
   - rotation?: `number`
   - debug?: `boolean`
   - drawSprite?: `boolean`
-  - options: `table`
+  - options: `table[]`
 
 Return:
 - id: `number`
@@ -212,7 +212,7 @@ exports.ox_target:addPolyZone(parameters)
   - thickness?: `number`
   - debug?: `boolean`
   - drawSprite?: `boolean`
-  - options: `table`
+  - options: `table[]`
 
 Return:
 - id: `number`
@@ -222,10 +222,12 @@ Return:
 Removes a targetable zone with the given id (returned by addBoxZone/addSphereZone).
 
 ```lua
-exports.ox_target:removeZone(id)
+exports.ox_target:removeZone(id, suppressWarning)
 ```
 
 - id: `number` or `string`
   - The `number` id that is returned by [addSphereZone](#addspherezone), [addBoxZone](#addboxzone), or [addPolyZone](#addpolyzone)  
   **OR**
   - The `string` name that can be specified by the user
+- suppressWarning?: `boolean`
+  - Suppress the warning message when trying to delete a non existent zone
