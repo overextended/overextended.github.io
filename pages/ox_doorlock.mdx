@@ -6,7 +6,7 @@ import ResourceLinks from '@components/resource-links';
 
 <ResourceLinks repo="https://github.com/overextended/ox_doorlock" />
 
-A door management resource that can be used standalone or alongside ox_core, qb-core, and es_extended.
+A door management resource that can be used standalone or alongside ox_core, qbx_core, and es_extended.
 
 ## Installation
 
@@ -34,7 +34,7 @@ pnpm build
 
 These resources aren't required but provide additional functionality.
 
-- [ox_target](../ox_target/) or [qb-target](https://github.com/qbcore-framework/qb-target)
+- [ox_target](../ox_target/)
 
 </Steps>
 
@@ -49,7 +49,7 @@ If you have installed and started the resource, you can use `/doorlock` to open 
 
 ## Convert doors
 
-Door configuration files written for nui_doorlock (and its fork, qb-doorlock) can be automatically added to your MySQL database.
+Door configuration files written for nui_doorlock can be automatically added to your MySQL database.
 
 - Any files with the `.lua` extension placed in the `ox_doorlock/convert` directory will be read on resource start.
 - If the directory doesn't exist, you can create it.
