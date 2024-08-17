@@ -15,6 +15,26 @@ exports.ox_target:disableTargeting(state)
 - state: `boolean`
   - Setting `state` to `true` will turn off the targeting eye if it is active and prevent it from reopening until `state` is set to `false` again.
 
+## addGlobalOption
+
+Creates new targetable options which are displayed at all times.
+
+```lua
+exports.ox_target:addGlobalOption(options)
+```
+
+- options: `TargetOptions`
+
+## removeGlobalOption
+
+Removes all options from the global options list with the option names.
+
+```lua
+exports.ox_target:removeGlobalOption(optionNames)
+```
+
+- optionNames: `string` or `string[]`
+
 ## addGlobalObject
 
 Creates new targetable options for all Object entity types.
@@ -23,7 +43,7 @@ Creates new targetable options for all Object entity types.
 exports.ox_target:addGlobalObject(options)
 ```
 
-- options: `table`
+- options: `TargetOptions`
 
 ## removeGlobalObject
 
@@ -43,7 +63,7 @@ Creates new targetable options for all Ped entity types (excluding players).
 exports.ox_target:addGlobalPed(options)
 ```
 
-- options: `table`
+- options: `TargetOptions`
 
 ## removeGlobalPed
 
@@ -63,7 +83,7 @@ Creates new targetable options for all Player entities.
 exports.ox_target:addGlobalPlayer(options)
 ```
 
-- options: `table`
+- options: `TargetOptions`
 
 ## removeGlobalPlayer
 
@@ -83,7 +103,7 @@ Creates new targetable options for all Vehicle entity types.
 exports.ox_target:addGlobalVehicle(options)
 ```
 
-- options: `table`
+- options: `TargetOptions`
 
 ## removeGlobalVehicle
 
@@ -104,7 +124,7 @@ exports.ox_target:addModel(models, options)
 ```
 
 - models: `number` or `string` or `Array<number | string>`
-- options: `table`
+- options: `TargetOptions`
 
 ## removeModel
 
@@ -126,7 +146,7 @@ exports.ox_target:addEntity(netIds, options)
 ```
 
 - netIds: `number` or `number[]`
-- options: `table`
+- options: `TargetOptions`
 
 ## removeEntity
 
@@ -148,7 +168,7 @@ exports.ox_target:addLocalEntity(entities, options)
 ```
 
 - entities: `number` or `number[]`
-- options: `table`
+- options: `TargetOptions`
 
 ## removeLocalEntity
 
@@ -174,7 +194,7 @@ exports.ox_target:addSphereZone(parameters)
   - radius?: `number`
   - debug?: `boolean`
   - drawSprite?: `boolean`
-  - options: `table`
+  - options: `TargetOptions`
 
 Return:
 - id: `number`
@@ -193,7 +213,7 @@ exports.ox_target:addBoxZone(parameters)
   - rotation?: `number`
   - debug?: `boolean`
   - drawSprite?: `boolean`
-  - options: `table`
+  - options: `TargetOptions`
 
 Return:
 - id: `number`
@@ -212,7 +232,7 @@ exports.ox_target:addPolyZone(parameters)
   - thickness?: `number`
   - debug?: `boolean`
   - drawSprite?: `boolean`
-  - options: `table`
+  - options: `TargetOptions`
 
 Return:
 - id: `number`
