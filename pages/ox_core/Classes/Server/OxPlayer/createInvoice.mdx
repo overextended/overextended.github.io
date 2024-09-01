@@ -1,0 +1,19 @@
+---
+title: createInvoice
+---
+
+# OxPlayer.createInvoice
+
+Description..
+
+```lua
+player.createInvoice(invoice: Omit<OxCreateInvoice, 'actorId'>): Promise<number | "no_charId" | "no_permission" | "no_target_account" | undefined>
+
+- fromAccount: number;
+- toAccount: number;
+- amount: number;
+- message: string;
+- dueDate: string;
+    - Date string (i.e YYYY-MM-DD HH:MM)
+
+```
