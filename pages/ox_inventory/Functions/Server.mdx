@@ -42,8 +42,8 @@ exports.ox_inventory:forceOpenInventory(playerId, invType, data)
 - data: `number` or `string` or `table`
 
 <Tabs items={["Player", "Stash"]}>
-  <Tab>
-    Open the target player's inventory.
+<Tab>
+Open the target player's inventory.
 
     ```lua
     exports.ox_inventory:forceOpenInventory(1, 'player', 3)
@@ -629,6 +629,16 @@ exports.ox_inventory:GetInventoryItems(inv, owner)
 ```lua
 local playerItems = exports.ox_inventory:GetInventoryItems(source)
 ```
+
+## InspectInventory
+
+Inspect the player their inventory. You will not be able to modify the inventory.
+
+```lua
+exports.ox_inventory:InspectInventory(target, source)
+```
+- target: `number`
+- source: `number`
 
 ## ConfiscateInventory
 
