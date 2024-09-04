@@ -630,6 +630,16 @@ exports.ox_inventory:GetInventoryItems(inv, owner)
 local playerItems = exports.ox_inventory:GetInventoryItems(source)
 ```
 
+## InspectInventory
+
+Inspect the player their inventory. You will not be able to modify the inventory.
+
+```lua
+exports.ox_inventory:InspectInventory(target, source)
+```
+- target: `number`
+- source: `number`
+
 ## ConfiscateInventory
 
 Clears a player's inventory and saves it to a stash.
