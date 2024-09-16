@@ -9,7 +9,7 @@ interface Props {
     percentOff: number;
 }
 
-const CreatorCode: React.FC<Props> = ({storeName, storeLink, storeImage, code, percentOff}) => {
+const CreatorCode: React.FC<Props> = ([storeName, storeLink, code, percentOff, storeImage]) => {
     const [copied, setCopied] = React.useState(false)
 
     function copyCode() {
