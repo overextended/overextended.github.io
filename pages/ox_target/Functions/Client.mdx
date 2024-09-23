@@ -191,6 +191,8 @@ exports.ox_target:addSphereZone(parameters)
 
 - parameters: `table`
   - coords: `vector`
+  - name?: `string`
+    - An optional name to refer to the zone instead of using the `id`.
   - radius?: `number`
   - debug?: `boolean`
   - drawSprite?: `boolean`
@@ -209,6 +211,8 @@ exports.ox_target:addBoxZone(parameters)
 
 - parameters: `table`
   - coords: `vector`
+  - name?: `string`
+    - An optional name to refer to the zone instead of using the `id`.
   - size?: `vector3`
   - rotation?: `number`
   - debug?: `boolean`
@@ -229,6 +233,8 @@ exports.ox_target:addPolyZone(parameters)
 - parameters: `table`
   - points: `vector3[]`
     - All z values must match
+  - name?: `string`
+    - An optional name to refer to the zone instead of using the `id`.
   - thickness?: `number`
   - debug?: `boolean`
   - drawSprite?: `boolean`
@@ -248,4 +254,4 @@ exports.ox_target:removeZone(id)
 - id: `number` or `string`
   - The `number` id that is returned by [addSphereZone](#addspherezone), [addBoxZone](#addboxzone), or [addPolyZone](#addpolyzone)  
   **OR**
-  - The `string` name that can be specified by the user
+  - The `string` name given to the zone.
