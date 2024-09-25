@@ -1,67 +1,61 @@
-# Server Events
+# Client Events
 
-## ox:savedPlayers
+## ox:playerLoaded
 
-```lua
-function(playersSaved: number)
-```
-
-## ox:setActiveGroup
+Description..
 
 ```lua
-function(playerId: number, groupName: string)
+function(playerId: number, isNew: boolean)
 ```
+
+## ox:statusTick
+
+Description..
+
+```lua
+function(statuses: Record<string, OxStatus>)
+```
+
+---
+
+# Net Events
 
 ## ox:setGroup
 
+Description..
+
 ```lua
-function(playerId: number, groupName: string, grade?: number)
+function(groupName: string, grade?: number)
 ```
 
 ## ox:licenseAdded
 
+Description..
+
 ```lua
-function(playerId: number, licenseName: string)
+function(licenseName: string)
 ```
 
 ## ox:licenseRemoved
 
+Description..
+
 ```lua
-function(playerId: number, licenseName: string)
+function(licenseName: string)
 ```
 
-## ox:playerLogout
+## ox:startCharacterSelect
+
+Description..
 
 ```lua
-function(playerId: number, userId: number, charId: number)
+function(userId: number, characters: Character[])
 ```
 
-## ox:createdCharacter
+## ox:setActiveCharacter
+
+Description..
 
 ```lua
-function(playerId: number, userId: number, charId: number)
-```
-
-## ox:playerLoaded
-
-```lua
-function(playerId: number, userId: number, charId: number)
-```
-
-## ox:deletedCharacter
-
-```lua
-function(playerId: number, userId: number, charId: number)
-```
-
-## ox:savedVehicles
-
-```lua
-function(vehiclesSaved: number)
-```
-
-## ox:spawnedVehicle
-
-```lua
-function(entityId: number, id: number)
+function(character: Character, groups: Record<string, number>)
 ```
