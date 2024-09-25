@@ -190,12 +190,13 @@ exports.ox_target:addSphereZone(parameters)
 ```
 
 - parameters: `table`
-  - coords: `vector`
+  - coords: `vector3`
   - name?: `string`
     - An optional name to refer to the zone instead of using the `id`.
   - radius?: `number`
   - debug?: `boolean`
   - drawSprite?: `boolean`
+    - Draw a sprite at the centroid of the zone. Defaults to `true`.
   - options: `TargetOptions`
 
 Return:
@@ -210,13 +211,14 @@ exports.ox_target:addBoxZone(parameters)
 ```
 
 - parameters: `table`
-  - coords: `vector`
+  - coords: `vector3`
   - name?: `string`
     - An optional name to refer to the zone instead of using the `id`.
   - size?: `vector3`
   - rotation?: `number`
   - debug?: `boolean`
   - drawSprite?: `boolean`
+    - Draw a sprite at the centroid of the zone. Defaults to `true`.
   - options: `TargetOptions`
 
 Return:
@@ -232,12 +234,14 @@ exports.ox_target:addPolyZone(parameters)
 
 - parameters: `table`
   - points: `vector3[]`
-    - All z values must match
+    - An array of 3d points defining the polygon's shape.
   - name?: `string`
     - An optional name to refer to the zone instead of using the `id`.
   - thickness?: `number`
+    - The height of the polygon, defaulting to `4`.
   - debug?: `boolean`
   - drawSprite?: `boolean`
+    - Draw a sprite at the centroid of the zone. Defaults to `true`.
   - options: `TargetOptions`
 
 Return:

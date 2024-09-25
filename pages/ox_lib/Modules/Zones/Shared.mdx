@@ -18,9 +18,9 @@ lib.zones.poly(data)
 
 - data: `table`
   - points: `vector3[]`
-    - All z values must match
+    - An array of 3d points defining the polygon's shape.
   - thickness?: `number`
-    - Default: `4`
+    - The height of the polygon, defaulting to `4`.
   - onEnter?: `function(self: table)`
   - onExit?: `function(self: table)`
   - inside?: `function(self: table)`
@@ -37,8 +37,7 @@ lib.zones.box(data)
   - size?: `vector3`
     - Default: `vec3(2, 2, 2)`
   - rotation?: `number`
-    - Angle in degrees
-    - Default: `0`
+    - Angle in degrees, defaulting to `0`.
   - onEnter?: `function(self: table)`
   - onExit?: `function(self: table)`
   - inside?: `function(self: table)`
