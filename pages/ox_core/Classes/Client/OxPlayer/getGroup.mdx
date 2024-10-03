@@ -2,12 +2,41 @@
 title: getGroup
 ---
 
+import { Tabs, Tab } from 'nextra/components';
+import { Callout } from 'nextra/components';
+
 # OxPlayer.getGroup
 
-Description..
+<Callout>
+  Documentation is work in progress as ox_core is still in development.<br />
+  This is written for `ox_core v0.31.1`
+</Callout>
 
-```lua
-player.getGroup(filter: string): number
-player.getGroup(filter: string[]): [string, number]
-player.getGroup(filter: Record<string, number>): [string, number]
-```
+A method used to retrieve a players groups with grade, filtered by type.
+
+<Tabs items={["Lua", "JS"]}>
+  <Tab>
+    ```lua
+    player.getGroup(filter: string): number
+    ```
+
+    - filter: `string`
+
+    Returns:
+
+    - grade: `number`
+  </Tab>
+  <Tab>
+    ```ts
+    player.getGroup(filter: string): number
+    player.getGroup(filter: string[]): [string, number]
+    player.getGroup(filter: Record<string, number>): [string, number]
+    ```
+    - filter: `string|array|object`
+
+    Returns:
+
+    - grade: `number|table`
+  </Tab>
+</Tabs>
+
