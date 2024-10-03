@@ -2,10 +2,25 @@
 title: setStatus
 ---
 
+import { Callout } from 'nextra/components';
+
 # OxPlayer.setStatus
 
-Description..
+<Callout>
+  Documentation is work in progress as ox_core is still in development.<br />
+  This is written for `ox_core v0.31.1`
+</Callout>
+
+A method used to set the value of a specific status of the player.
+
 
 ```lua
-player.setStatus(statusName: string, value: number): boolean
+player.setStatus(statusName, value)
 ```
+
+- statusName: `string`
+- value: `number`
+
+Return:
+
+- success: `boolean`
