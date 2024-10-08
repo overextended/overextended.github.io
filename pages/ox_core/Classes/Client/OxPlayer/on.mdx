@@ -2,10 +2,23 @@
 title: on
 ---
 
+import { Callout } from 'nextra/components';
+
 # OxPlayer.on
 
-Description..
+<Callout>
+  Documentation is work in progress as ox_core is still in development.<br />
+  This is written for `ox_core v0.31.1`
+</Callout>
+
+Creates a listener for when a value of a specific key changes (e.g. is set as replicated by [set()](../../Server/OxPlayer/set)).
 
 ```lua
-player.on(key: string, cb: (data: unknown) => void): unknown
+player.on(key, cb(data))
 ```
+
+- key: `string`
+- cb: `function`
+  - this will be called when the value of `key` changes
+- data: `unknown`
+  - new value of `key`
