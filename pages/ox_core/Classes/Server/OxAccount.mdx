@@ -2,7 +2,12 @@
 title: OxAccount
 ---
 
-# OxAccount
+## OxAccount
+
+- accountId` number`
+
+
+## OxAccountMetadata
 
 - id: `number`
 - balance: `number`
@@ -10,9 +15,247 @@ title: OxAccount
 - label?: `boolean`
 - owner?: `number`
 - group?: `string`
-- type: `string`, possible values: `personal`, `shared`, `group`
-- role: `OxAccountRole`
-- ownerName: `string`
+- type: `personal` | `shared` | `group`
+
+## OxAccount.get
+
+Get the value of specific key(s) from account metadata.
+
+```lua
+account.get(key)
+```
+
+**Parameters**
+
+- key: `string` | `string[]`
+
+**Returns**
+
+- `OxAccountMetadata[key]` | `OxAccountMetadata[key][]`
+  - Returns an array if passing multiple keys.
 
 
-**OxAccountRole**: `string`, possible values: `viewer`, `contributor`, `manager`, `owner`
+## OxAccount.addBalance
+
+Add funds to the account.
+
+```lua
+account.addBalance({ amount, message })
+```
+
+**Parameters**
+
+- `object`
+  - amount: `number`
+  - message?: `string`
+
+**Returns**
+
+- `object`
+  - success: `boolean`
+  - message: `'amount_not_number'` | `'no_balance'` | `'something_went_wrong'`
+
+
+## OxAccount.removeBalance
+
+Remove funds from the account.
+
+```lua
+account.removeBalance({ amount, message, overdraw })
+```
+
+**Parameters**
+
+- `object`
+  - amount: `number`
+  - message?: `string`
+  - overdraw?: `boolean`
+
+**Returns**
+
+- `object`
+  - success: `boolean`
+  - message: `'amount_not_number'` | `'no_balance'` | `'something_went_wrong'`
+
+
+## OxAccount.transferBalance
+
+Transfer funds to another account.
+
+```lua
+account.transferBalance({ toId, amount, overdraw, message, note, actorId })
+```
+
+**Parameters**
+
+- `object`
+  - toId: `number`
+    - The accountId to transfer funds to.
+  - amount: `number`
+  - message?: `string`
+  - overdraw?: `boolean`
+  - note?: `string`
+  - actorId? `number`
+    - The charId of the player initiating the transfer.
+
+**Returns**
+
+- `object`
+  - success: `boolean`
+  - message: `'amount_not_number'` | `'no_balance'` | `'something_went_wrong'`
+
+
+## OxAccount.depositMoney
+
+Deposit money into the account.
+
+```lua
+account.transferBalance(playerId, amount, message, note)
+```
+
+**Parameters**
+
+- playerId: `number`
+- amount: `number`
+- message?: `string`
+- note?: `string`
+
+**Returns**
+
+- `object`
+  - success: `boolean`
+  - message: `'amount_not_number'` | `'insufficient_funds'` | `'no_balance'` | `'no_access'` | `'something_went_wrong'`
+
+
+
+## OxAccount.withdrawMoney
+
+Withdraw money from the account.
+
+```lua
+account.transferBalance(playerId, amount, message, note)
+```
+
+**Parameters**
+
+- playerId: `number`
+- amount: `number`
+- message?: `string`
+- note?: `string`
+
+**Returns**
+
+- `object`
+  - success: `boolean`
+  - message: `'amount_not_number'` | `'no_charId'` | `'insufficient_funds'` | `'no_balance'` | `'no_access'` | `'something_went_wrong'`
+
+
+## OxAccount.deleteAccount
+
+Mark the account as deleted. It can no longer be accessed, but remains in the database.
+
+```lua
+account.deleteAccount()
+```
+
+**Returns**
+
+- `object`
+  - success: `boolean`
+  - message: `'something_went_wrong'`
+
+
+## OxAccount.getCharacterRole
+
+Get the account access role of a character by charId or stateId.
+
+```lua
+account.getCharacterRole(id)
+```
+
+**Parameters**
+
+- id: `number` | `string`
+
+**Returns**
+
+- `string`
+
+
+## OxAccount.setCharacterRole
+
+Set the account access role of a character by charId or stateId.
+
+```lua
+account.setCharacterRole(id, role)
+```
+
+**Parameters**
+
+- id: `number` | `string`
+- role?: `string`
+
+**Returns**
+
+- `object`
+  - success: `boolean`
+  - message: `'something_went_wrong'`
+
+
+## OxAccount.playerHasPermission
+
+Checks if a player's active character has permission to perform an action on the account.
+
+```lua
+account.playerHasPermission(playerId, permission)
+```
+
+**Parameters**
+
+- playerId: `number`
+- permission: `string`
+
+**Returns**
+
+- `boolean`
+
+
+## OxAccount.setShared
+
+Set the account as shared, allowing permissions to be assigned to other characters.
+
+```lua
+account.setShared()
+```
+
+**Returns**
+
+- `object`
+  - success: `boolean`
+  - message: `'update_account_error'`
+
+
+## OxAccount.createInvoice
+
+Create an unpaid invoice on the account.
+
+```lua
+account.createInvoice(invoice)
+```
+
+**Parameters**
+
+- invoice: `object`
+  - actorId?: number;
+    - The charId of the player creating the invoice.
+  - toAccount: number;
+    - The accountId of the account receiving the invoice.
+  - amount: number;
+  - message: string;
+  - dueDate: string;
+
+**Returns**
+
+- `object`
+  - success: `boolean`
+  - message: `'no_charId'` | `'no_permission'` | `'no_target_account'`
