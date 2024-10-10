@@ -104,7 +104,7 @@ player.emit(eventName, ...args)
 
 ## OxPlayer.get
 
-Returns a value from the players metadata.
+Get the value of specific key from the player's metadata.
 
 ```lua
 player.get(key)
@@ -117,6 +117,19 @@ player.get(key)
 **Returns**
 
 - `unknown`
+
+
+## OxPlayer.getAccount
+
+Returns the player's default account.
+
+```lua
+player.getAccount()
+```
+
+**Returns**
+
+- `OxAccount`
 
 
 ## OxPlayer.getCoords
@@ -216,6 +229,19 @@ player.getLicenses()
     - `issued: number`
     - `suspended?: [number, number]`
     - `[key: string]: any`
+
+
+## OxPlayer.getState
+
+Returns the player's statebag interface.
+
+```lua
+player.getState()
+```
+
+**Returns**
+
+- `StateBagInterface`
 
 
 ## OxPlayer.getStatus
@@ -346,7 +372,7 @@ player.save()
 
 ## OxPlayer.set
 
-Stores a value in the players metadata, which can be optionally synced with the client.
+Stores a value in the player's metadata, which can be optionally synced with the client.
 
 ```lua
 player.set(key, value, replicated)
