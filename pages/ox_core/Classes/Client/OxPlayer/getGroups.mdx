@@ -2,10 +2,23 @@
 title: getGroups
 ---
 
+import { Callout } from 'nextra/components';
+
 # OxPlayer.getGroups
 
-Description..
+<Callout>
+  Documentation is work in progress as ox_core is still in development.<br />
+  This is written for `ox_core v0.31.1`
+</Callout>
+
+A method used to retrieve a players groups with grade.
 
 ```lua
-player.getGroups(): Record<string, number>
+player.hasPermission(permission)
 ```
+
+Returns:
+
+- groups: `table`
+  - group: `string`
+  - grade: `number`

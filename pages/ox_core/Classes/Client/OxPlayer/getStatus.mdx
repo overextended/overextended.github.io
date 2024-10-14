@@ -2,10 +2,23 @@
 title: getStatus
 ---
 
+import { Callout } from 'nextra/components';
+
 # OxPlayer.getStatus
 
-Description..
+<Callout>
+  Documentation is work in progress as ox_core is still in development.<br />
+  This is written for `ox_core v0.31.1`
+</Callout>
+
+A method used to retrieve the value of a specific status of the player.
 
 ```lua
-player.getStatus(statusName: string): number
+player.getStatus(statusName)
 ```
+
+- statusName: `string`
+
+Return:
+
+- value: `number`

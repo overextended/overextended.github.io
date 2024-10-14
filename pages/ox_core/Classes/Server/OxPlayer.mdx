@@ -2,7 +2,7 @@
 title: OxPlayer
 ---
 
-# OxPlayer
+## OxPlayer
 
 - charId: `number`
 - identifier: `string`
@@ -12,3 +12,481 @@ title: OxPlayer
 - stateId: `string`
 - userId: `number`
 - username: `string`
+
+
+## OxPlayer.addLicense
+
+Grants a license to the player.
+
+```lua
+player.addLicense(licenseName)
+```
+
+**Parameters**
+
+- licenseName: `string`
+
+**Returns**
+
+- `boolean`
+
+
+## OxPlayer.addStatus
+
+Increases the value of a status.
+
+```lua
+player.addStatus(statusName, value)
+```
+
+**Parameters**
+
+- statusName: `string`
+- value: `number`
+
+**Returns**
+
+- `boolean`
+
+
+## OxPlayer.createCharacter
+
+Registers a new character for a player that has not already selected a character.
+
+```lua
+player.createCharacter(data)
+```
+
+**Parameters**
+
+- data: `object`
+  - firstName: `string`
+  - lastName: `string`
+  - gender: `string`
+  - date: `number`
+
+**Returns**
+
+- `number`
+  - The index of the new character in an array of all characters owned by the player.
+
+
+## OxPlayer.deleteCharacter
+
+Deletes a character with the given charId, if owned by the player and they have not selected a character.
+
+```lua
+player.deleteCharacter(charId)
+```
+
+**Parameters**
+
+- charId: `number`
+
+**Returns**
+
+- `boolean`
+
+
+## OxPlayer.emit
+
+Triggers a client event for the player.
+
+```lua
+player.emit(eventName, ...args)
+```
+
+**Parameters**
+
+- eventName: `string`
+- ...args: `any`
+
+
+## OxPlayer.get
+
+Get the value of specific key from the player's metadata.
+
+```lua
+player.get(key)
+```
+
+**Parameters**
+
+- key: `string`
+
+**Returns**
+
+- `unknown`
+
+
+## OxPlayer.getAccount
+
+Returns the player's default account.
+
+```lua
+player.getAccount()
+```
+
+**Returns**
+
+- `OxAccount`
+
+
+## OxPlayer.getCoords
+
+Returns the player's current coordinates.
+
+```lua
+player.getCoords()
+```
+
+**Returns**
+
+- `vector3`
+
+
+## OxPlayer.getGroup
+
+Returns the player's grade of a given group name, or the first matched name and grade in a filter.
+
+```lua
+player.getGroup(filter)
+```
+
+**Parameters**
+
+- filter: `string` | `string[]` | `{ [string]: number }`
+
+**Returns**
+
+- `number` | `string`
+- `number?`
+
+
+## OxPlayer.getGroupByType
+
+Returns the player's name and grade of a group with a matching type.
+
+```lua
+player.getGroupByType(type)
+```
+
+**Parameters**
+
+- type: `string`
+
+**Returns**
+
+- `string`
+- `number`
+
+
+## OxPlayer.getGroups
+
+Returns an object of all groups the player is currently in, using the group name as a key.
+
+```lua
+player.getGroups()
+```
+
+**Returns**
+
+- `{ [string]: number }`
+
+
+## OxPlayer.getLicense
+
+Returns an object containing information for the specified license.
+
+```lua
+player.getLicense(licenseName: string): object
+```
+
+**Parameters**
+
+- licenseName: `string`
+
+**Returns**
+
+- `object`
+  - `issued: number`
+  - `suspended?: [number, number]`
+  - `[key: string]: any`
+
+
+## OxPlayer.getLicenses
+
+Returns an object containing information for all licenses.
+
+```lua
+player.getLicenses()
+```
+
+**Returns**
+
+- `object`
+  - `{ [string]: object }`
+    - `issued: number`
+    - `suspended?: [number, number]`
+    - `[key: string]: any`
+
+
+## OxPlayer.getState
+
+Returns the player's statebag interface.
+
+```lua
+player.getState()
+```
+
+**Returns**
+
+- `StateBagInterface`
+
+
+## OxPlayer.getStatus
+
+Returns the value of the status.
+
+```lua
+player.getStatus(statusName)
+```
+
+**Parameters**
+
+- statusName: `string`
+
+**Returns**
+
+- `number`
+
+
+## OxPlayer.getStatuses
+
+Returns an object containing all statuses, using the status name as the key.
+
+```lua
+player.getStatuses()
+```
+
+**Returns**
+
+- `{ [string]: number }`
+
+
+## OxPlayer.hasPermission
+
+Checks if a user has been granted a permission by one of their groups.
+
+```lua
+player.hasPermission(permission)
+```
+
+**Parameters**
+
+- permission: `string`
+
+**Returns**
+
+- `boolean`
+
+
+## OxPlayer.logout
+
+Clears data for the active character and transitions the player to character selection, if valid.
+
+```lua
+player.logout(save, dropped)
+```
+
+**Parameters**
+
+- save?: `boolean`
+  - If the active character data should be saved to the database, defaulting to `true`.
+- dropped?: `boolean`
+  - If the player has been disconnected from the server.
+
+
+## OxPlayer.payInvoice
+
+Pays an account invoice with the given invoiceId.
+
+```lua
+player.payInvoice(invoiceId)
+```
+
+**Parameters**
+
+- invoiceId: `number`
+
+**Returns**
+
+- `object`
+  - success: `boolean`
+  - message?: `"no_charId"` | `"no_permission"` | `"no_balance"` | `"no_invoice"` | `"invoice_paid"` | `"insufficient_balance"`
+
+
+## OxPlayer.removeLicense
+
+Remove a license from the player.
+
+```lua
+player.removeLicense(licenseName)
+```
+
+**Parameters**
+
+- licenseName: `string`
+
+**Returns**
+
+- `boolean`
+
+
+## OxPlayer.removeStatus
+
+Reduces the value of a status.
+
+```lua
+player.removeStatus(statusName, value)
+```
+
+**Parameters**
+
+- statusName: `string`
+- value: `number`
+
+**Returns**
+
+- `boolean`
+
+
+## OxPlayer.save
+
+Saves the active character to the database.
+
+```lua
+player.save()
+```
+
+
+## OxPlayer.set
+
+Stores a value in the player's metadata, which can be optionally synced with the client.
+
+```lua
+player.set(key, value, replicated)
+```
+
+**Parameters**
+
+- key: `string`
+- value: `any`
+- replicated?: `boolean`
+
+
+## OxPlayer.setActiveCharacter
+
+Loads and sets a character as the player's active character. Takes a charId or an object containing new character data.
+
+```lua
+player.setActiveCharacter(data)
+```
+
+**Parameters**
+
+- data: `number` | `object`
+  - firstName: `string`
+  - lastName: `string`
+  - gender: `string`
+  - date: `number`
+
+**Returns**
+
+- `object`
+  - charId: `number`
+  - stateId: `string`
+  - firstName: `string`
+  - lastName: `string`
+  - x?: `number`
+  - y?: `number`
+  - z?: `number`
+  - heading?: `number`
+  - lastPlayed?: `string`
+  - health?: `number`
+  - armour?: `number`
+  - isNew?: `boolean`
+
+
+## OxPlayer.setActiveGroup
+
+Sets a group the player is in as their active or "primary" group. If no arguments are passed, no active group will be set.
+
+```lua
+player.setActiveGroup(groupName?: string, temp?: boolean)
+```
+
+**Parameters**
+
+- groupName: `string`
+- temporary?: `boolean`
+  - If `true` it will persist through sessions.
+
+**Returns**
+
+- `boolean`
+
+
+## OxPlayer.setGroup
+
+Sets the player's grade within a group. If grade is undefined or 0 they will be removed from the group.
+
+```lua
+player.setGroup(groupName, grade)
+```
+
+**Parameters**
+
+- groupName: `string`
+- grade?: `number`
+
+**Returns**
+
+- `boolean`
+
+
+# OxPlayer.setStatus
+
+Sets the value of a status.
+
+```lua
+player.setStatus(statusName, value)
+```
+
+**Parameters**
+
+- statusName: `string`
+- value: `number`
+
+**Returns**
+
+- `boolean`
+
+
+## OxPlayer.updateLicense
+
+Sets information on a player license.
+
+```lua
+player.updateLicense(licenseName, key, value)
+```
+
+**Parameters**
+
+- licenseName: `string`
+- key: `string`
+- value: `unknown`
+
+**Returns**
+
+- `boolean`
