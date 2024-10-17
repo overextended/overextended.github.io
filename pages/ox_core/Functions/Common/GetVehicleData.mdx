@@ -2,12 +2,29 @@
 title: GetVehicleData
 ---
 
-# Ox.GetVehicleData
+## Ox.GetVehicleData
 
-Description..
+Returns VehicleData for all vehicles, or optionally a specific model or array of models.
 
 ```lua
-Ox.GetVehicleData(): Record<string, VehicleData>
-Ox.GetVehicleData(filter: string): VehicleData
-OX.GetVehicleData(filter: string[]): Record<string, VehicleData>
+Ox.GetVehicleData(filter)
 ```
+
+**Parameters**
+
+- filter?: `string` | `string[]`
+
+**Returns**
+
+- `{ [string]: VehicleData }` | `VehicleData`
+
+## VehicleData
+- `object`
+  - class: `VehicleClasses`
+  - doors: `number`
+  - make: `string`
+  - name: `string`
+  - price: `number`
+  - seats: `number`
+  - type: `string`
+  - weapons?: `true`

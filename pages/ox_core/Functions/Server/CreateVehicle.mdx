@@ -4,14 +4,29 @@ title: CreateVehicle
 
 # Ox.CreateVehicle
 
-Description..
+Creates a new vehicle, which will be saved to the database if it has an assigned owner or group.
 
 ```lua
 Ox.CreateVehicle({
     model: string,
     owner?: number,
     group?: string,
-    stored?: number,
+    stored?: string,
     properties?: object
 }, coords?: Vector3, heading?: number): OxVehicle
 ```
+
+**Parameters**
+
+- data: `string` | `object`
+  - model: `string`
+  - owner?: `number`
+  - group?: `string`
+  - stored?: `string`
+  - properties?: `object`
+- coords?: `vector3`
+- heading?: `number`
+
+**Returns**
+
+- `OxVehicle`
