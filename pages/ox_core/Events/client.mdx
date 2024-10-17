@@ -1,8 +1,14 @@
+import { Callout } from 'nextra/components';
+
 # Client Events
+
+<Callout type="warning">
+All these events are send by ox_core, you should not trigger them.
+</Callout>
 
 ## ox:playerLoaded
 
-Description..
+When a character is loaded
 
 ```lua
 function(playerId: number, isNew: boolean)
@@ -10,7 +16,7 @@ function(playerId: number, isNew: boolean)
 
 ## ox:statusTick
 
-Description..
+On each status tick
 
 ```lua
 function(statuses: Record<string, OxStatus>)
@@ -22,7 +28,7 @@ function(statuses: Record<string, OxStatus>)
 
 ## ox:setGroup
 
-Description..
+When the character is added or removed from a group
 
 ```lua
 function(groupName: string, grade?: number)
@@ -30,7 +36,7 @@ function(groupName: string, grade?: number)
 
 ## ox:licenseAdded
 
-Description..
+When the character got a new license
 
 ```lua
 function(licenseName: string)
@@ -38,7 +44,7 @@ function(licenseName: string)
 
 ## ox:licenseRemoved
 
-Description..
+When the character got one of his license removed
 
 ```lua
 function(licenseName: string)
@@ -46,7 +52,7 @@ function(licenseName: string)
 
 ## ox:startCharacterSelect
 
-Description..
+When the client has spawned, sending all characters for this client
 
 ```lua
 function(userId: number, characters: Character[])
@@ -54,7 +60,7 @@ function(userId: number, characters: Character[])
 
 ## ox:setActiveCharacter
 
-Description..
+When the client has chosen their character
 
 ```lua
 function(character: Character, groups: Record<string, number>)
