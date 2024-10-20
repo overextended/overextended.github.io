@@ -7,14 +7,11 @@ import { NpmButton } from '@components/button';
 
 <ResourceLinks repo="https://github.com/overextended/ox_core" />
 
-A modern FiveM framework. Limited support and breaking changes guaranteed.
+A modern FiveM framework, designed to properly support features like OneSync, statebags, and server-side entities.
 
-<Callout type="warning">
+## txAdmin recipe
 
-This resource does not have a stable (v1.0) release; breaking changes are likely.  
-Documentation may not be kept updated in some cases.
-
-</Callout>
+If you're looking to quickly install and setup ox_core, try using [our recipe](https://github.com/overextended/txAdminRecipe).
 
 ## Installation
 
@@ -61,8 +58,7 @@ You can import ox_core definitions by loading `@ox_core/lib/init.lua` into your 
 <Tabs items={['fxmanifest.lua', 'require']}>
   <Tab>
 
-    Add the import path into your resource's fxmanifest.lua, like any other script file.  
-    This can be a client_script or server_script, if necessary.
+    This can be a client_script or server_script, if preferred.
     ```lua
     shared_script '@ox_core/lib/init.lua'
     ```
