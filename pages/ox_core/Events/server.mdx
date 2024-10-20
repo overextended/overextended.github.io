@@ -3,12 +3,12 @@ import { Callout } from 'nextra/components';
 # Server Events
 
 <Callout type="warning">
-All these events are send by ox_core, you should not trigger them.
+These events are triggered by ox_core when an action occurs. You should not trigger them from other scripts.
 </Callout>
 
 ## ox:savedPlayers
 
-When players are saved in database
+When players are saved to the database.
 
 ```lua
 function(playersSaved: number)
@@ -16,7 +16,7 @@ function(playersSaved: number)
 
 ## ox:setActiveGroup
 
-When the active group of a character has changed
+When the active group of a character has changed.
 
 ```lua
 function(playerId: number, groupName: string)
@@ -24,7 +24,7 @@ function(playerId: number, groupName: string)
 
 ## ox:setGroup
 
-When a character is added or removed from a group
+When a character is added or removed from a group.
 
 ```lua
 function(playerId: number, groupName: string, grade?: number)
@@ -32,7 +32,7 @@ function(playerId: number, groupName: string, grade?: number)
 
 ## ox:licenseAdded
 
-When a character got a new license
+When a character receives a new license.
 
 ```lua
 function(playerId: number, licenseName: string)
@@ -40,7 +40,7 @@ function(playerId: number, licenseName: string)
 
 ## ox:licenseRemoved
 
-When a character got one of his license removed
+When a character's license is removed.
 
 ```lua
 function(playerId: number, licenseName: string)
@@ -48,7 +48,7 @@ function(playerId: number, licenseName: string)
 
 ## ox:playerLogout
 
-When a player logout, crash, disconnect etc
+When a player logs out from their current character, crashes, or otherwise disconnects from the server.
 
 ```lua
 function(playerId: number, userId: number, charId: number)
@@ -56,7 +56,7 @@ function(playerId: number, userId: number, charId: number)
 
 ## ox:createdCharacter
 
-When a client created a new character
+When a player has created a new character.
 
 ```lua
 function(playerId: number, userId: number, charId: number)
@@ -64,7 +64,7 @@ function(playerId: number, userId: number, charId: number)
 
 ## ox:playerLoaded
 
-When a character is loaded
+When a player selects and loads a character.
 
 ```lua
 function(playerId: number, userId: number, charId: number)
@@ -72,7 +72,7 @@ function(playerId: number, userId: number, charId: number)
 
 ## ox:deletedCharacter
 
-When a character is deleted
+When a character is deleted.
 
 ```lua
 function(playerId: number, userId: number, charId: number)
@@ -80,7 +80,7 @@ function(playerId: number, userId: number, charId: number)
 
 ## ox:savedVehicles
 
-When vehicles are saved in database
+When vehicles are saved to the database.
 
 ```lua
 function(vehiclesSaved: number)
@@ -88,7 +88,7 @@ function(vehiclesSaved: number)
 
 ## ox:spawnedVehicle
 
-When a `OxVehicle` has spawned
+When a `OxVehicle` has spawned.
 
 ```lua
 function(entityId: number, id: number)

@@ -1,0 +1,21 @@
+---
+title: GetPlayers
+---
+
+## Ox.GetPlayers
+
+Get an array of containing `OxPlayer` for all players matching a filter, if given.
+
+```lua
+Ox.GetPlayers(filter)
+```
+
+**Parameters**
+
+- filter?: `{ [string]: any }`
+  - Compare player fields and metadata against the given key-value pairs.
+  - Groups can be given as a string or array of strings to match.
+
+**Returns**
+
+- `OxPlayer[]`

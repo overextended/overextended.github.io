@@ -3,7 +3,7 @@ import { Callout } from 'nextra/components';
 # Client Events
 
 <Callout type="warning">
-All these events are send by ox_core, you should not trigger them.
+These events are triggered by ox_core when an action occurs. You should not trigger them from other scripts.
 </Callout>
 
 ## ox:playerLoaded
@@ -44,7 +44,7 @@ function(licenseName: string)
 
 ## ox:licenseRemoved
 
-When the character got one of his license removed
+When a character's license is removed.
 
 ```lua
 function(licenseName: string)
@@ -52,7 +52,7 @@ function(licenseName: string)
 
 ## ox:startCharacterSelect
 
-When the client has spawned, sending all characters for this client
+When the player has spawned.
 
 ```lua
 function(userId: number, characters: Character[])
@@ -60,7 +60,7 @@ function(userId: number, characters: Character[])
 
 ## ox:setActiveCharacter
 
-When the client has chosen their character
+When the player has chosen their character.
 
 ```lua
 function(character: Character, groups: Record<string, number>)
