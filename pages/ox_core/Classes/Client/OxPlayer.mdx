@@ -38,21 +38,6 @@ player.get(key)
 **Returns**
 - `unknown`
 
-**Example**
-```lua
-local player = Ox.GetPlayer()
-
-print(player.get('name'))         -- output: "firstName lastName"
-print(player.get('firstName'))    -- output: "firstName"
-print(player.get('lastName'))     -- output: "lastName"
-print(player.get('gender'))       -- output: "gender"
-print(player.get('dateOfBirth'))  -- output: "DD/MM/YYYY"
-print(player.get('phoneNumber'))  -- output: "000-000-0000"
-print(player.get('activeGroup'))  -- output: "activeGroup"
-
-print(player.get('customKey'))    -- output: customValue
-```
-
 ## OxPlayer.getCoords
 
 Returns the player's current coordinates.
