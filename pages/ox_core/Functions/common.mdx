@@ -1,0 +1,67 @@
+## Ox.GetTopVehicleStats
+
+Returns an object containing the top vehicle stats, either overall or for a specific category (land, air, sea).
+
+```lua
+Ox.GetTopVehicleStats(category)
+```
+
+**Parameters**
+
+- category?: `string`
+
+**Returns**
+
+- `VehicleStats` | `{ [string]: VehicleStats }`
+
+### VehicleStats
+- `object`
+  - acceleration: `number`
+  - braking: `number`
+  - handling: `number`
+  - speed: `number`
+  - traction: `number`
+
+
+## Ox.GetVehicleData
+
+Returns VehicleData for all vehicles, or optionally a specific model or array of models.
+
+```lua
+Ox.GetVehicleData(filter)
+```
+
+**Parameters**
+
+- filter?: `string` | `string[]`
+
+**Returns**
+
+- `{ [string]: VehicleData }` | `VehicleData`
+
+### VehicleData
+- `object`
+  - class: `VehicleClasses`
+  - doors: `number`
+  - make: `string`
+  - name: `string`
+  - price: `number`
+  - seats: `number`
+  - type: `string`
+  - weapons?: `true`
+
+## Ox.GetVehicleNetworkType
+
+Returns the netobj type of a vehicle model, which may differ from the vehicle type (e.g. blimp is networked as heli).
+
+```lua
+Ox.GetVehicleNetworkType(modelName)
+```
+
+**Parameters**
+
+- modelName: `string`
+
+**Returns**
+
+- `string`
