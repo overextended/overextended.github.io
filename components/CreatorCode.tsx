@@ -19,7 +19,7 @@ const CreatorCode: React.FC<Props> = ([storeName, storeLink, code, percentOff, s
     }
 
     
-    return <div className="flex flex-col border border-neutral-200 dark:border-neutral-700 rounded-lg shadow-md">
+    return <div key={storeName} className="flex flex-col border border-neutral-200 dark:border-neutral-700 rounded-lg shadow-md">
         <a href={storeLink} target='_blank' className="h-[150px] flex items-center justify-center bg-neutral-800 dark:hover:bg-neutral-800 hover:bg-neutral-700 dark:bg-neutral-900 rounded-none rounded-tl-lg rounded-tr-lg">
             <img className="self-center" width="150" src={storeImage} alt={storeName}/>
         </a>
