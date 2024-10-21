@@ -1,3 +1,4 @@
+@tailwind base;
 @tailwind components;
 @tailwind utilities;
 
@@ -34,6 +35,10 @@ ol.nx-list-decimal {
   --docsearch-primary-color: #0ea5e9;
 }
 
+.DocSearch--active {
+  overflow: unset !important;
+}
+
 .DocSearch-Modal {
   @apply !rounded-md shadow-none dark:bg-neutral-800;
 }
@@ -43,7 +48,20 @@ ol.nx-list-decimal {
 }
 
 .DocSearch-Search-Icon {
-  @apply !text-gray-800 dark:!text-gray-400;
+  @apply !text-gray-800 dark:!text-gray-400 !flex !items-center !justify-center;
+}
+
+.DocSearch-Screen-Icon {
+  @apply flex justify-center;
+}
+
+.DocSearch-Button-Keys {
+  height: 100%;
+  align-items: center;
+}
+
+.DocSearch-Button-Key {
+  top: 0;
 }
 
 .DocSearch-Button-Key {
