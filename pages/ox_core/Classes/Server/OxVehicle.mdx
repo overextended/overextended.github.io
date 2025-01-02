@@ -58,8 +58,25 @@ vehicle.get(key)
 Returns the vehicle's current coordinates.
 
 ```lua
-vehicle.getCoords(): Vector3
+vehicle.getCoords()
 ```
+
+**Returns**
+
+- `vector3`
+
+## OxVehicle.getProperties
+
+Returns the vehicle's properties object.
+
+```lua
+vehicle.getProperties()
+```
+
+**Returns**
+
+- `VehicleProperties`
+
 
 
 ## OxVehicle.getState
@@ -115,7 +132,7 @@ vehicle.save()
 - `number`
 
 
-### OxVehicle.set
+## OxVehicle.set
 
 Stores a value in the vehicle's metadata, which will be saved to the database (_this behaviour is likely to be removed_).
 
@@ -182,7 +199,7 @@ vehicle.setProperties(properties, apply)
 
 ## OxVehicle.setStored
 
-Sets the vehicle as "stored" at the given value (e.g. impound, garage, null), and optionally despawns the vehicle.
+Sets the vehicle as "stored" at the given value (e.g. impound, garage, null), and optionally despawns and saves the vehicle.
 
 ```lua
 vehicle.setStored(value, despawn)

@@ -1,9 +1,25 @@
+## Ox.GetGroupPermissions
+
+Returns the `OxGroupPermissions` object for the group
+
+```lua
+Ox.GetGroupPermissions(groupName)
+```
+
+**Parameters**
+
+- groupName: `string`
+
+**Returns**
+
+- `OxGroupPermissions`
+
 ## Ox.GetTopVehicleStats
 
 Returns an object containing the top vehicle stats, either overall or for a specific category (land, air, sea).
 
 ```lua
-Ox.GetTopVehicleStats(category)
+Ox.GetTopVehicleStats(category?)
 ```
 
 **Parameters**
@@ -28,7 +44,7 @@ Ox.GetTopVehicleStats(category)
 Returns VehicleData for all vehicles, or optionally a specific model or array of models.
 
 ```lua
-Ox.GetVehicleData(filter)
+Ox.GetVehicleData(filter?)
 ```
 
 **Parameters**

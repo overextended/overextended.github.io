@@ -2,6 +2,8 @@
 title: OxAccount
 ---
 
+import { Tabs, Tab } from 'nextra-theme-docs';
+
 ## OxAccount
 
 - accountId` number`
@@ -40,12 +42,12 @@ account.get(key)
 Add funds to the account.
 
 ```lua
-account.addBalance({ amount, message })
+account.addBalance(data)
 ```
 
 **Parameters**
 
-- `object`
+- data: `object`
   - amount: `number`
   - message?: `string`
 
@@ -55,13 +57,22 @@ account.addBalance({ amount, message })
   - success: `boolean`
   - message: `'amount_not_number'` | `'no_balance'` | `'something_went_wrong'`
 
+<Tabs items={['Lua']}>
+  <Tab>
+    ```lua
+    account.addBalance({ amount = 1000, message = 'Paycheck' })
+    ```
+
+  </Tab>
+</Tabs>
+
 
 ## OxAccount.removeBalance
 
 Remove funds from the account.
 
 ```lua
-account.removeBalance({ amount, message, overdraw })
+account.removeBalance(data)
 ```
 
 **Parameters**
@@ -70,6 +81,7 @@ account.removeBalance({ amount, message, overdraw })
   - amount: `number`
   - message?: `string`
   - overdraw?: `boolean`
+    - Removes balance even if not enough is present (Negative balance)
 
 **Returns**
 
@@ -77,13 +89,21 @@ account.removeBalance({ amount, message, overdraw })
   - success: `boolean`
   - message: `'amount_not_number'` | `'no_balance'` | `'something_went_wrong'`
 
+<Tabs items={['Lua']}>
+  <Tab>
+    ```lua
+    account.removeBalance({ amount = 1000, message = 'Impound', overdraw = true })
+    ```
+
+  </Tab>
+</Tabs>
 
 ## OxAccount.transferBalance
 
 Transfer funds to another account.
 
 ```lua
-account.transferBalance({ toId, amount, overdraw, message, note, actorId })
+account.transferBalance(data)
 ```
 
 **Parameters**
@@ -93,8 +113,10 @@ account.transferBalance({ toId, amount, overdraw, message, note, actorId })
     - The accountId to transfer funds to.
   - amount: `number`
   - message?: `string`
+    - Message for the receiver
   - overdraw?: `boolean`
   - note?: `string`
+    - Note for the initiator
   - actorId? `number`
     - The charId of the player initiating the transfer.
 
@@ -104,13 +126,28 @@ account.transferBalance({ toId, amount, overdraw, message, note, actorId })
   - success: `boolean`
   - message: `'amount_not_number'` | `'no_balance'` | `'something_went_wrong'`
 
+<Tabs items={['Lua']}>
+  <Tab>
+    ```lua
+    account.transferBalance({
+      toId = 100000000,
+      amount = 20,
+      message = 'Impound charge for plate ABC123',
+      overdraw = false,
+      note = 'Impound payment',
+    })
+    ```
+
+  </Tab>
+</Tabs>
+
 
 ## OxAccount.depositMoney
 
 Deposit money into the account.
 
 ```lua
-account.transferBalance(playerId, amount, message, note)
+account.depositMoney(playerId, amount, message, note)
 ```
 
 **Parameters**
@@ -133,7 +170,7 @@ account.transferBalance(playerId, amount, message, note)
 Withdraw money from the account.
 
 ```lua
-account.transferBalance(playerId, amount, message, note)
+account.withdrawMoney(playerId, amount, message, note)
 ```
 
 **Parameters**
