@@ -2,6 +2,8 @@
 title: OxPlayer
 ---
 
+import { Callout } from 'nextra/components';
+
 ## OxPlayer
 
 - state: `StateBagInterface`
@@ -124,6 +126,12 @@ player.hasPermission(permission)
 
 **Parameters**
 - permission: `string`
+
+<Callout type="info">
+
+While permissions are currently configured for groups, the system is designed to be flexible and not strictly limited to groups. The input permission for this function should include a group.[groupname] prefix to ensure proper functionality.
+
+</Callout>
 
 **Returns**
 - `boolean`
