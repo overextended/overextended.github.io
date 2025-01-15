@@ -8,7 +8,6 @@ title: OxPlayer
 - identifier: `string`
 - ped: `number`
 - source: `number`
-- state: `StateBagInterface`
 - stateId: `string`
 - userId: `number`
 - username: `string`
@@ -104,7 +103,7 @@ player.emit(eventName, ...args)
 
 ## OxPlayer.get
 
-Get the value of specific key from the player's metadata.
+Get the value of a specific key from the player's metadata.
 
 ```lua
 player.get(key)
@@ -121,7 +120,7 @@ player.get(key)
 
 ## OxPlayer.getAccount
 
-Returns the player's default account.
+Returns the player's default OxAccount object.
 
 ```lua
 player.getAccount()
@@ -129,7 +128,7 @@ player.getAccount()
 
 **Returns**
 
-- `OxAccount`
+- [`OxAccount`](/ox_core/Classes/Server/OxAccount)
 
 
 ## OxPlayer.getCoords
@@ -177,8 +176,8 @@ player.getGroupByType(type)
 
 **Returns**
 
-- `string`
-- `number`
+- `string?`
+- `number?`
 
 
 ## OxPlayer.getGroups
@@ -231,19 +230,6 @@ player.getLicenses()
     - `[key: string]: any`
 
 
-## OxPlayer.getState
-
-Returns the player's statebag interface.
-
-```lua
-player.getState()
-```
-
-**Returns**
-
-- `StateBagInterface`
-
-
 ## OxPlayer.getStatus
 
 Returns the value of the status.
@@ -258,7 +244,7 @@ player.getStatus(statusName)
 
 **Returns**
 
-- `number`
+- value: `number`
 
 
 ## OxPlayer.getStatuses
@@ -423,14 +409,14 @@ player.setActiveCharacter(data)
 Sets a group the player is in as their active or "primary" group. If no arguments are passed, no active group will be set.
 
 ```lua
-player.setActiveGroup(groupName?: string, temp?: boolean)
+player.setActiveGroup(groupName?: string, temporary?: boolean)
 ```
 
 **Parameters**
 
 - groupName: `string`
 - temporary?: `boolean`
-  - If `true` it will persist through sessions.
+  - If `true` it will not persist through sessions.
 
 **Returns**
 

@@ -68,7 +68,7 @@ You can import ox_core definitions by loading `@ox_core/lib/init.lua` into your 
 
     If you prefer, you can use our [require](../ox_lib/Modules/Require/Shared) function from [ox_lib](../ox_lib).
     ```lua
-    local Ox = require '@ox_core/lib/init'
+    local Ox = require '@ox_core.lib.init'
     ```
 
   </Tab>
@@ -96,7 +96,7 @@ These convars should use the `setr` command to be read by clients.
 
 - `ox:debug`
   - Default: `false`
-  - Enables debug messages and commands. Enabled by default when using `pnpm watch`.
+  - Enables debug messages and commands. Also allows players to have the same identifiers. Enabled by default when using `pnpm watch`.
 - `ox:characterSlots`
   - Default: `1`
   - Sets the number of character slots available for character selection resources (e.g. ox_charselect).
