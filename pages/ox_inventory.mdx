@@ -71,6 +71,12 @@ setr inventory:slots 50
 # Maximum carry capacity for players, in grams (frameworks may override this)
 setr inventory:weight 30000
 
+# Number of slots for drop inventories
+setr inventory:dropslots 50
+
+# Maximum drop capacity, in grams
+setr inventory:dropweight 30000
+
 # Integrated support for qtarget/ox_target stashes, shops, etc
 # Note: qtarget is deprecated, a future update may drop support (ox_target only, or gated features)
 setr inventory:target false
@@ -125,6 +131,9 @@ setr inventory:ignoreweapons []
 # Suppress weapon and ammo pickups
 setr inventory:suppresspickups 1
 
+# Disables weapons for all players 
+setr inventory:disableweapons 0
+
 ### Server
 
 # Compare current version to latest release on GitHub
@@ -132,6 +141,9 @@ set inventory:versioncheck true
 
 # Stashes will be wiped after remaining unchanged for the given time
 set inventory:clearstashes "6 MONTH"
+
+# Stashes will be saved in groups and not individually per query
+set inventory:bulkstashsave 1
 
 # Discord webhook url, used for imageurl metadata content moderation (image embeds)
 set inventory:webhook ""
