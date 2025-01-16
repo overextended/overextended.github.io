@@ -143,8 +143,11 @@ print(timer:getTimeLeft())     -- {ms = 5000, s = 5.00, m = 0.08, h = 0.00 }
 Resets and starts the timer.
 
 ```lua
-timer:restart()
+timer:restart(async, onEnd)
 ```
+
+- async: `boolean`: `false` to block the execution, `true` to create a new thread and avoid blocking the execution.
+- onEnd: `boolean` | `function` : Specifies a custom onEnd function, or controls whether the original onEnd function will execute or not
 
 #### Example
 
