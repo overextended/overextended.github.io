@@ -16,11 +16,19 @@ function(playerId: number, isNew: boolean)
 
 ## ox:statusTick
 
-On each status tick
+On each status tick, returning changed statuses
 
 ```lua
-function(statuses: Record<string, OxStatus>)
+function(statuses: Record<string, number>)
 ```
+
+## ox:playerDeath
+
+When the character has died
+
+## ox:playerRevived
+
+When the character is revived
 
 ---
 
