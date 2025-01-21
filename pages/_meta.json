@@ -11,11 +11,11 @@
   "creator_codes": {
     "title": "Creator codes",
     "type": "page",
-    "href": "https://overextended.dev/#creator-codes"
+    "href": "/#creator-codes"
   },
   "support": {
     "title": "Support us",
     "type": "page",
-    "href": "https://overextended.dev/#support-our-team"
+    "href": "/#support-our-team"
   }
 }
