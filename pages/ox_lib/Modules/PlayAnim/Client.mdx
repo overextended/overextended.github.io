@@ -1,0 +1,41 @@
+# Client
+
+## lib.playAnim
+
+Plays an animation with the given arguments. This function also automatically loads and unloads the given animation dictionary so you don't have to manage that.
+This function can directly replace TaskPlayAnim.
+
+```lua
+lib.playAnim(ped, animDictionary, animationName, blendInSpeed, blendOutSpeed, duration, animFlags, startPhase, phaseControlled, controlFlags, overrideCloneUpdate)
+```
+
+- ped: `number`
+  - The ped that will play the animation
+- animDictionary: `string`
+  - The animation dictionary.
+- animationName: `string`
+  - The name of the animation within the dictionary.
+- blendInSpeed?: `number`
+  - The speed to blend in the animation with.
+  - Default: `8.0`
+- blendOutSpeed?: `number`
+  - The speed to blend out the animation with.
+  - Default: `8.0`
+- duration?: `number`
+  - The amount of milliseconds the animations will take. -1 to play until cancelled.
+  - Default: `-1`
+- animFlags?: `AnimationFlags`
+  - The animation flags. You can find these in the code.
+  - Default: `0`
+- startPhase?: `number`
+  - At what percentage of the animation it should start at. (Number between 0.0 and 1.0)
+  - Default: `0.0`
+- phaseControlled?: `boolean`
+  - Whether the startPhase is used.
+  - Default: `false`
+- controlFlags?: `ControlFlags`
+  - Flags to manipulate how the character is controlled by the animation. You can find these in the code.
+  - Default: `0`
+- overrideCloneUpdate?: `boolean`
+  - Whether any clone updates should override.
+  - Default: `false`
