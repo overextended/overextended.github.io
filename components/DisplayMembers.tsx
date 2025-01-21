@@ -55,11 +55,15 @@ const DisplayMembers = () => {
     (async() => setMembers(await FetchMembers()))()
   }, [])
 
-  //@ts-ignore ???
-  return (members?.data ? <div className="grid md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 grid-cols-1 mt-4 gap-16">
-    {members.data
-        .map((member) => MemberLink({ image: member.avatar_url, name: member.name ?? member.login, sponsor: sponsor[member.login] }))}
-  </div> : "")
+  return (
+    <>
+      {members?.data && (
+        <div className='grid md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 grid-cols-1 mt-4 gap-16 place-items-center'>
+          {members.data.map((member) => MemberLink({ image: member.avatar_url, name: member.name ?? member.login, sponsor: sponsor[member.login] }))}
+        </div>
+      )}
+    </>
+  )
 };
 
 export default DisplayMembers;
