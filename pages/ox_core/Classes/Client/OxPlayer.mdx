@@ -128,6 +128,18 @@ player.hasPermission(permission)
 **Returns**
 - `boolean`
 
+**Example**
+
+```lua
+-- Adding a permission to a group (server side)
+Ox.SetGroupPermission('police', 1, 'handcuff', 'allow')
+
+-- Checking if a player has the 'handcuff' permission
+if player.hasPermission('group.police.handcuff') then
+    -- Do something
+end
+```
+
 ## OxPlayer.removeStatus
 
 Reduces the value of a status.
