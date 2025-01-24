@@ -12,6 +12,8 @@ A table representing a keybind with the following properties.
   - Key that the current user has this keybind set to
 - disabled: `boolean`
   - Whether or not the keybind is currently disabled
+- isPressed: `boolean`
+  - "A state indicating whether the keybind is pressed or not
 - hash: `number`
   - Internal hash of the keybind that is used to reference it within the game itself
 - defaultKey?: `string`
@@ -25,6 +27,8 @@ A table representing a keybind with the following properties.
   - An optional mapper for the secondary key, otherwise using the default mapper.
 - disable: `function(self: CKeybind, disable: boolean)`
   - Built-in function to enable / disable a keybind
+- isControlPressed: `function(self: CKeybind)`
+  - Built-in function to get the current pressed state for the keybind
 - onPressed?: `function(self: CKeybind)`
   - User-defined function triggered on keybind press
 - onReleased?: `function(self: CKeybind)`
@@ -73,4 +77,14 @@ Keybinds can be enabled / disabled by using the disable method.
 ```lua
 keybind:disable(true) -- disables the keybind
 keybind:disable(false) -- enables the keybind
+```
+
+### Keybind pressed states
+
+All keybinds registered with `lib.addKeybind()` gets a boolean state, that shows if its pressed or not. 
+
+You can get the state with the following method
+
+```lua
+local state = keybind:isControlPressed()
 ```
