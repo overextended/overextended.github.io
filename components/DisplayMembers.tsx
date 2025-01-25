@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react';
 import MemberLink from './MemberLink';
 
 interface GithubMember {
@@ -16,25 +16,32 @@ const cacheKey = 'overextendedMembers';
 const cacheExpiry = 24 * 60 * 60 * 1000;
 
 const sponsor = {
-  thelindat: `thelindat`,
-  LukeWasTakenn: `lukewastaken`,
-  DokaDoka: `dokadoka`,
-}
+  thelindat: 'thelindat',
+  LukeWasTakenn: 'lukewastaken',
+  DokaDoka: 'dokadoka',
+};
+
+const priorityOrder = ['thelindat', 'LukeWasTakenn'];
 
 async function FetchMembers() {
   const raw = localStorage.getItem(cacheKey);
   const members: MemberData = raw ? JSON.parse(raw) : {};
-  const isCacheExpired = members.timestamp ? new Date().getTime() - members.timestamp > cacheExpiry : true;
+  const isCacheExpired = members.timestamp
+    ? new Date().getTime() - members.timestamp > cacheExpiry
+    : true;
 
   if (!isCacheExpired) return members;
 
-  const headers = {}
+  const headers = {};
 
   if (members.etag) headers['If-None-Match'] = members.etag;
 
-  const response = await fetch(`https://api.github.com/orgs/overextended/members`, {
-      headers: headers
-  })
+  const response = await fetch(
+    `https://api.github.com/orgs/overextended/members`,
+    {
+      headers: headers,
+    }
+  );
 
   if (response.status === 304) return members;
 
@@ -43,27 +50,47 @@ async function FetchMembers() {
   members.timestamp = new Date().getTime();
 
   localStorage.setItem(cacheKey, JSON.stringify(members));
-  console.log(`fetched data and set cache (etag ${members.etag})`, members.timestamp)
-  
+  console.log(`fetched data and set cache (etag ${members.etag})`, members.timestamp);
+
   return members;
 }
 
 const DisplayMembers = () => {
-  const [members, setMembers] = useState(null);
+  const [members, setMembers] = useState<MemberData | null>(null);
 
   useEffect(() => {
-    (async() => setMembers(await FetchMembers()))()
-  }, [])
+    (async () => setMembers(await FetchMembers()))();
+  }, []);
+
+  const sortMembers = (data: GithubMember[]) => {
+    return data.sort((a, b) => {
+      const aIndex = priorityOrder.indexOf(a.login);
+      const bIndex = priorityOrder.indexOf(b.login);
+
+      if (aIndex !== -1 && bIndex === -1) return -1;
+      if (aIndex === -1 && bIndex !== -1) return 1;
+
+      if (aIndex !== -1 && bIndex !== -1) return aIndex - bIndex;
+
+      return 0;
+    });
+  };
 
   return (
     <>
       {members?.data && (
-        <div className='grid md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 grid-cols-1 mt-4 gap-16 place-items-center'>
-          {members.data.map((member) => MemberLink({ image: member.avatar_url, name: member.name ?? member.login, sponsor: sponsor[member.login] }))}
+        <div className="grid md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 grid-cols-1 mt-4 gap-16 place-items-center">
+          {sortMembers(members.data).map((member) =>
+            MemberLink({
+              image: member.avatar_url,
+              name: member.login,
+              sponsor: sponsor[member.login],
+            })
+          )}
         </div>
       )}
     </>
-  )
+  );
 };
 
 export default DisplayMembers;
