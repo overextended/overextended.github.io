@@ -19,6 +19,7 @@ const sponsor = {
   thelindat: `thelindat`,
   LukeWasTakenn: `lukewastaken`,
   DokaDoka: `dokadoka`,
+  jag3dagster: `jag3dagster`,
 }
 
 async function FetchMembers() {
