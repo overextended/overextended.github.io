@@ -33,6 +33,7 @@ OxClass is a blueprint used for all classes created with `lib.class`. It provide
 - private?: `table`
   - A protected field which holds all private data in a class.
   - Private data cannot be accessed outside of class methods, enforcing security and data integrity.
+  - Is always defined in the `constructor`, but must be explicitly defined if no private propertiees are set.
 - super?: `class`
   - A protected method referencing the constructor of a superclass.
   - Must be called inside a class constructor when instantiating a class.
