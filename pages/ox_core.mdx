@@ -105,11 +105,14 @@ These convars should use the `setr` command to be read by clients.
   - See [SET_DEFAULT_VEHICLE_NUMBER_PLATE_TEXT_PATTERN](https://docs.fivem.net/natives/?_0x79780FD2).
 - `ox:deathSystem`
   - Default: `true`
-  - Enables the built-in death and respawn system.
+  - Enables the built-in death and respawn system. When disabled the `isDead` player state will still be set to `true` and the `ox:playerDeath` event will be triggered.
 - `ox:characterSelect`
   - Default: `true`
   - Enables built-in character registration, and uses that character when joining.
 - `ox:spawnLocation`
   - Default: `[-258.211, -293.077, 21.6132, 206.0]`
   - Sets the default spawn location for newly created characters.
+- `ox:defaultVehicleStore`
+  - Default: `'impound'`
+  - On resource start any vehicles that were previously spawned will be stored here. An empty string will not update the database.
   
