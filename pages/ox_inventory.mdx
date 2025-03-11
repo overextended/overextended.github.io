@@ -170,6 +170,32 @@ set inventory:dumpsterloot [
     ["burger", 1, 1]
 ]
 
+# Set the markers for the various drops, stashes, shops
+# These all follow the same strucutre, if the json strings are invalid it will fallback to a generic marker
+setr inventory:dropmarker {
+    "type": 2,
+    "colour": [150, 30, 30],
+    "scale": [0.3, 0.2, 0.15]
+}
+
+setr inventory:shopmarker {
+    "type": 29,
+    "colour": [30, 150, 30],
+    "scale": [0.5, 0.5, 0.5]
+}
+
+setr inventory:evidencemarker {
+    "type": 2,
+    "colour": [30, 30, 150],
+    "scale": [0.3, 0.2, 0.15]
+}
+
+setr inventory:craftingmarker {
+    "type": 2,
+    "colour": [150, 150, 30],
+    "scale": [0.3, 0.2, 0.15]
+}
+
 # Set items to sync with framework accounts
 set inventory:accounts ["money"]
 ```
