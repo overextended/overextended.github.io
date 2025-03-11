@@ -58,6 +58,32 @@ Throws errors for invalid assets and returns true if the asset is loaded.
   - Number of ticks to wait for the asset to load.
   - Default: `10000`
 
+## lib.requestAudioBank
+
+<Callout>
+    Remember to call `ReleaseScriptAudioBank(set)` at the end of you code!
+</Callout>
+
+<Tabs items={["Lua", "JS"]}>
+  <Tab>
+    ```lua
+    lib.requestAudioBank(audioBank, timeout)
+    ```
+  </Tab>
+  <Tab>
+    ```ts
+    import lib from '@overextended/ox_lib/client'
+
+    lib.requestAudioBank(audioBank, timeout)
+    ```
+  </Tab>
+</Tabs>
+
+- audioBank: `string`
+- timeout?: `number`
+  - Number of ticks to wait for the asset to load.
+  - Default: `10000`
+
 ## lib.requestModel
 
 <Callout>
