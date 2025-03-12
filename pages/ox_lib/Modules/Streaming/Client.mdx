@@ -64,25 +64,15 @@ Throws errors for invalid assets and returns true if the asset is loaded.
     Remember to call `ReleaseScriptAudioBank(set)` at the end of you code!
 </Callout>
 
-<Tabs items={["Lua", "JS"]}>
-  <Tab>
-    ```lua
-    lib.requestAudioBank(audioBank, timeout)
-    ```
-  </Tab>
-  <Tab>
-    ```ts
-    import lib from '@overextended/ox_lib/client'
-
-    lib.requestAudioBank(audioBank, timeout)
-    ```
-  </Tab>
-</Tabs>
+```lua
+lib.requestAudioBank(audioBank, timeout)
+```
+  
 
 - audioBank: `string`
 - timeout?: `number`
   - Number of ticks to wait for the asset to load.
-  - Default: `10000`
+  - Default: `30000`
 
 ## lib.requestModel
 
