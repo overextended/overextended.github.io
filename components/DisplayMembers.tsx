@@ -21,6 +21,7 @@ const sponsor = {
   DokaDoka: 'dokadoka',
   juddisjudd: 'ohitsjudd',
   jag3dagster: `jag3dagster`,
+  'tom-osborne': `stanocs5`,
 };
 
 const priorityOrder = ['thelindat', 'LukeWasTakenn'];
