@@ -78,7 +78,7 @@ const DisplayMembers = () => {
   return (
     <>
       {members?.data && (
-        <div className="mt-4 grid grid-cols-1 place-items-center gap-16 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4">
+        <div className="mt-4 grid grid-cols-2 place-items-center gap-y-6 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
           {members.data.map((member) =>
             MemberLink({
               image: member.avatar_url,
