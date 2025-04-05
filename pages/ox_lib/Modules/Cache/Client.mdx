@@ -32,7 +32,7 @@ Register an event handler that is triggered when the cached value is updated.
 <Tabs items={["Lua", "JS"]}>
   <Tab>
     ```lua
-    lib.onCache(key, function(value) end)
+    lib.onCache(key, function(value, oldValue) end)
     ```
 
     - key: `string`
@@ -44,7 +44,7 @@ Register an event handler that is triggered when the cached value is updated.
     - value: `any`
 
     ```lua
-    lib.onCache('vehicle', function(value)
+    lib.onCache('vehicle', function(value, oldValue)
         print('old vehicle:', cache.vehicle)
         print('new vehicle:', value)
     end)

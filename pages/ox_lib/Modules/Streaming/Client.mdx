@@ -9,7 +9,7 @@ Throws errors for invalid assets and returns true if the asset is loaded.
 ## lib.requestAnimDict
 
 <Callout>
-    Remember to call `RemoveAnimDict(dict)` at the end of you code!
+    Remember to call `RemoveAnimDict(dict)` at the end of your code!
 </Callout>
 
 <Tabs items={["Lua", "JS"]}>
@@ -57,6 +57,22 @@ Throws errors for invalid assets and returns true if the asset is loaded.
 - timeout?: `number`
   - Number of ticks to wait for the asset to load.
   - Default: `10000`
+
+## lib.requestAudioBank
+
+<Callout>
+    Remember to call `ReleaseScriptAudioBank(set)` at the end of you code!
+</Callout>
+
+```lua
+lib.requestAudioBank(audioBank, timeout)
+```
+  
+
+- audioBank: `string`
+- timeout?: `number`
+  - Number of ticks to wait for the asset to load.
+  - Default: `30000`
 
 ## lib.requestModel
 

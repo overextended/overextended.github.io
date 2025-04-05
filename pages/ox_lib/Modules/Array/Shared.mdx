@@ -8,39 +8,53 @@ A table used as a prototype for the Array class. Functions can be used as class 
 
 Constructs instance of Array containing the given elements.
 
+- ...: `any`
+
 ```lua
 lib.array:new(...)
 ```
-
-- ...: `any`
 
 **Returns:**
 
 - arr: `Array`
 
-### lib.isArray
+### lib.array.from
 
-Determines if the given table is an instance of Array or an array-like table.
+Creates a new array from an iterable value.
+
+- iter: `function` | `table` | `string`
+  - Iterator functions such as string.gmatch can be used to construct arrays.
 
 ```lua
-lib.array.isArray(tbl)
+lib.array.from(iter)
 ```
-
-- tbl: `table`
 
 **Returns:**
 
-- isArray: `boolean`
+- arr: `Array`
+
+### lib.array.at
+
+Returns the element at the given index, with negative numbers counting backwards from the end of the array.
+
+- index: `integer`
+
+```lua
+lib.array.at(index)
+```
+
+**Returns:**
+
+- element: `unknown`
 
 ### lib.array.merge
 
-Combines the elements of two arrays into a new array.
+Combines the elements of two or more arrays into a new array.
 
-- a: `Array`
-- b: `Array`
+- ...: `Array`
 
 ```lua
-lib.array.merge(a, b)
+lib.array.merge(...)
 ```
 
 **Returns:**
@@ -52,7 +66,7 @@ lib.array.merge(a, b)
 Tests if all elements in an array succeed in passing the provided test function.
 
 - arr: `Array`
-- testFn: `function`
+- testFn: `function(element: unknown): boolean`
 
 ```lua
 lib.array.every(arr, testFn)
@@ -62,12 +76,29 @@ lib.array.every(arr, testFn)
 
 - success: `boolean`
 
+### lib.array.fill
+
+Sets all elements within a range to the given value and returns the modified array.
+
+- arr: `Array`
+- value: `any`
+- start?: `integer`
+- endIndex?: `integer`
+
+```lua
+lib.array.fill(arr, value, start, endIndex)
+```
+
+**Returns:**
+
+- arr: `Array`
+
 ### lib.array.filter
 
 Creates a new array containing the elements from an array that pass the provided test function.
 
 - arr: `Array`
-- testFn: `function`
+- testFn: `function(element: unknown): boolean`
 
 ```lua
 lib.array.filter(arr, testFn)
@@ -75,19 +106,19 @@ lib.array.filter(arr, testFn)
 
 **Returns:**
 
-- arr: `Array`
+- newArr: `Array`
 
 ### lib.array.find
 
 Returns the first element of an array the passes the provided test function.
 
 - arr: `Array`
-- testFn: `function`
+- testFn: `function(element: unknown): boolean`
 - reverse?: `boolean`
   - Iterate over the array in reverse order.
 
 ```lua
-lib.array.find(arr, function(element) end, reverse)
+lib.array.find(arr, testFn, reverse)
 ```
 
 **Returns:**
@@ -99,17 +130,17 @@ lib.array.find(arr, function(element) end, reverse)
 Returns the index of the first element of an array the passes the provided test function.
 
 - arr: `Array`
-- testFn: `function`
+- testFn: `function(element: unknown): boolean`
 - reverse?: `boolean`
   - Iterate over the array in reverse order.
 
 ```lua
-lib.array.findIndex(arr, function(element) end, reverse)
+lib.array.findIndex(arr, testFn, reverse)
 ```
 
 **Returns:**
 
-- index: `number`
+- index: `integer`
 
 ### lib.array.indexOf
 
@@ -126,22 +157,22 @@ lib.array.indexOf(arr, value, reverse)
 
 **Returns:**
 
-- index: `number`
+- index: `integer`
 
 ### lib.array.forEach
 
 Executes the provided function for each element in an array.
 
 - arr: `Array`
-- cb: `function`
+- cb: `function(element: unknown)`
 
 ```lua
-lib.array.forEach(arr, function(element) end, reverse)
+lib.array.forEach(arr, cb, reverse)
 ```
 
 **Returns:**
 
-- index: `number`
+- index: `integer`
 
 ### lib.array.join
 
@@ -157,6 +188,20 @@ lib.array.join(arr, seperator)
 **Returns:**
 
 - str: `string`
+
+### lib.array.map
+
+Create a new array containing the results from calling the provided function on each element in an array.
+
+- fn: `function(element: unknown, index: integer, arr: Array): unknown`
+
+```lua
+lib.array.map(arr, fn)
+```
+
+**Returns:**
+
+- newArr: `Array`
 
 ### lib.array.pop
 
@@ -185,7 +230,7 @@ lib.array.push(arr, ...)
 
 **Returns:**
 
-- length: `number`
+- length: `integer`
 
 ### lib.array.shift
 
@@ -201,19 +246,92 @@ lib.array.shift(arr)
 
 - element: `unknown`
 
+### lib.array.slice
+
+Creates a shallow copy of a portion of an array as a new array.
+
+- arr: `Array`
+- start?: `integer`
+- finish?: `integer`
+
+```lua
+lib.array.slice(arr, start, finish)
+```
+
+**Returns:**
+
+- newArr: `Array`
+
+### lib.array.toReversed
+
+Creates a new array with the order of its elements reversed from the given array.
+
+- arr: `Array`
+
+```lua
+lib.array.toReversed(arr)
+```
+
+**Returns:**
+
+- newArr: `Array`
+
+### lib.array.unshift
+
+Inserts new elements at the start of an array and returns the new array length.
+
+- arr: `Array`
+- ...: `any`
+
+```lua
+lib.array.unshift(arr, ...)
+```
+
+**Returns:**
+
+- length: `integer`
+
 ### lib.array.reduce
 
 The "reducer" function is applied to every element in an array, with the previous result serving as the accumulator.  
 If an initial value is provided it's used as the accumulator for the first index; otherwise iteration starts at the second index, with the first index as the accumulator.
 
 - arr: `Array`
-- reducer: `function`
+- reducer: `function(accumulator: unknown, element: unknown, index?: integer)`
 - initialValue?: `any`
 
 ```lua
-lib.array.reduce(arr, function(accumulator, element, index) end)
+lib.array.reduce(arr, reducer)
 ```
 
 **Returns:**
 
 - accumulator: `unknown`
+
+### lib.array.reverse
+
+Reverses the order of elements inside an array.
+
+- arr: `Array`
+
+```lua
+lib.array.reverse(arr)
+```
+
+**Returns:**
+
+- arr: `Array`
+
+### lib.isArray
+
+Determines if the given table is an instance of Array or an array-like table.
+
+- tbl: `table`
+
+```lua
+lib.array.isArray(tbl)
+```
+
+**Returns:**
+
+- isArray: `boolean`

@@ -68,7 +68,7 @@ You can import ox_core definitions by loading `@ox_core/lib/init.lua` into your 
 
     If you prefer, you can use our [require](../ox_lib/Modules/Require/Shared) function from [ox_lib](../ox_lib).
     ```lua
-    local Ox = require '@ox_core/lib/init'
+    local Ox = require '@ox_core.lib.init'
     ```
 
   </Tab>
@@ -96,7 +96,7 @@ These convars should use the `setr` command to be read by clients.
 
 - `ox:debug`
   - Default: `false`
-  - Enables debug messages and commands. Enabled by default when using `pnpm watch`.
+  - Enables debug messages and commands. Also allows players to have the same identifiers. Enabled by default when using `pnpm watch`.
 - `ox:characterSlots`
   - Default: `1`
   - Sets the number of character slots available for character selection resources (e.g. ox_charselect).
@@ -105,7 +105,7 @@ These convars should use the `setr` command to be read by clients.
   - See [SET_DEFAULT_VEHICLE_NUMBER_PLATE_TEXT_PATTERN](https://docs.fivem.net/natives/?_0x79780FD2).
 - `ox:deathSystem`
   - Default: `true`
-  - Enables the built-in death and respawn system.
+  - Enables the built-in death and respawn system. When disabled the `isDead` player state will still be set to `true` and the `ox:playerDeath` event will be triggered.
 - `ox:hospitalBlips`
   - Default: `true`
   - Enables the hospital blips used when reviving with the default deathSystem.
@@ -115,4 +115,7 @@ These convars should use the `setr` command to be read by clients.
 - `ox:spawnLocation`
   - Default: `[-258.211, -293.077, 21.6132, 206.0]`
   - Sets the default spawn location for newly created characters.
+- `ox:defaultVehicleStore`
+  - Default: `'impound'`
+  - On resource start any vehicles that were previously spawned will be stored here. An empty string will not update the database.
   
