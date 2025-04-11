@@ -67,6 +67,64 @@ Id of an item to be removed from the global menu.
 
 - id: `string`
 
+## lib.addRadialSubItem
+
+Add an item or array of items to a specific radial sub menu.
+
+<Tabs items={["Lua", "JS"]}>
+  <Tab>
+    ```lua
+    lib.addRadialSubItem(parentMenuId, items)
+    ```
+  </Tab>
+  <Tab>
+    ```ts
+    import lib from '@overextended/ox_lib/client';
+
+    lib.addRadialSubItem(parentMenuId, items);
+    ```
+  </Tab>
+</Tabs>
+
+- parentMenuId: `string`
+- items: `table` (`object` or `array`)
+  - id: `string`
+    - Id that is used for removing options.
+  - icon: `string`
+    - Either a font awesome or a custom URI.1
+  - iconWidth?: `number`
+  - iconHeight?: `number`
+    - In the case of a custom URI, adjust the size of the icon.
+  - label: `string`
+    - Label uses `  \n` to insert a newline
+  - menu?: `string`
+    - Id of a menu to open.
+  - onSelect: `function(currentMenu: string | nil, itemIndex: number)` | `string`
+    - Function that's ran when a user clicks the item.
+  - keepOpen?: `boolean`
+
+## lib.removeRadialSubItem
+
+Remove an item from a specific radial sub menu.
+
+<Tabs items={["Lua", "JS"]}>
+  <Tab>
+    ```lua
+    lib.removeRadialSubItem(parentMenuId, item)
+    ```
+  </Tab>
+  <Tab>
+    ```ts
+    import lib from '@overextended/ox_lib/client';
+
+    lib.removeRadialSubItem(parentMenuId, item);
+    ```
+  </Tab>
+</Tabs>
+
+- parentMenuId: `string`
+- id: `string`
+
 ## lib.clearRadialItems
 
 Removes all items from the radial menu.
