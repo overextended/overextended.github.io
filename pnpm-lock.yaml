@@ -6,7 +6,7 @@ settings:
 
 patchedDependencies:
   nextra@2.13.4:
-    hash: 83fa49590048c96c31e9acbc827a4955c8d7b18eeaadcd54017e65ec57ed322e
+    hash: lmtsof477bkdpd5wo5qlmftqea
     path: patches/nextra@2.13.4.patch
 
 importers:
@@ -30,10 +30,10 @@ importers:
         version: 4.2.3(next@13.5.6(react-dom@18.3.1(react@18.3.1))(react@18.3.1))
       nextra:
         specifier: ^2.13.4
-        version: 2.13.4(patch_hash=83fa49590048c96c31e9acbc827a4955c8d7b18eeaadcd54017e65ec57ed322e)(next@13.5.6(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 2.13.4(patch_hash=lmtsof477bkdpd5wo5qlmftqea)(next@13.5.6(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       nextra-theme-docs:
         specifier: ^2.13.4
-        version: 2.13.4(next@13.5.6(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(nextra@2.13.4(patch_hash=83fa49590048c96c31e9acbc827a4955c8d7b18eeaadcd54017e65ec57ed322e)(next@13.5.6(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 2.13.4(next@13.5.6(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(nextra@2.13.4(patch_hash=lmtsof477bkdpd5wo5qlmftqea)(next@13.5.6(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react:
         specifier: ^18.3.1
         version: 18.3.1
@@ -3764,7 +3764,7 @@ snapshots:
       - '@babel/core'
       - babel-plugin-macros
 
-  nextra-theme-docs@2.13.4(next@13.5.6(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(nextra@2.13.4(patch_hash=83fa49590048c96c31e9acbc827a4955c8d7b18eeaadcd54017e65ec57ed322e)(next@13.5.6(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+  nextra-theme-docs@2.13.4(next@13.5.6(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(nextra@2.13.4(patch_hash=lmtsof477bkdpd5wo5qlmftqea)(next@13.5.6(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
       '@headlessui/react': 1.7.19(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@popperjs/core': 2.11.8
@@ -3778,13 +3778,13 @@ snapshots:
       next: 13.5.6(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       next-seo: 6.5.0(next@13.5.6(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       next-themes: 0.2.1(next@13.5.6(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      nextra: 2.13.4(patch_hash=83fa49590048c96c31e9acbc827a4955c8d7b18eeaadcd54017e65ec57ed322e)(next@13.5.6(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      nextra: 2.13.4(patch_hash=lmtsof477bkdpd5wo5qlmftqea)(next@13.5.6(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
       scroll-into-view-if-needed: 3.1.0
       zod: 3.23.8
 
-  nextra@2.13.4(patch_hash=83fa49590048c96c31e9acbc827a4955c8d7b18eeaadcd54017e65ec57ed322e)(next@13.5.6(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+  nextra@2.13.4(patch_hash=lmtsof477bkdpd5wo5qlmftqea)(next@13.5.6(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
       '@headlessui/react': 1.7.19(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@mdx-js/mdx': 2.3.0
