@@ -28,7 +28,7 @@ By default this event is triggered:
   ```ts copy
   on('ox:savedPlayers', (playersSaved: number) => {
     console.log(playersSaved);
-  })
+  });
   ```
   </Tabs.Tab>
 </Tabs>
@@ -50,7 +50,7 @@ When the active group of a character has changed.
   ```ts copy
   on('ox:setActiveGroup', (playerId: number, groupName: string) => {
     console.log(playersSaved);
-  })
+  });
   ```
   </Tabs.Tab>
 </Tabs>
@@ -74,7 +74,7 @@ When a character is added or removed from a group.
   ```ts copy
   on('ox:setGroup', (playerId: number, groupName: string, grade?: number) => {
     console.log(playerId, groupName, grade);
-  })
+  });
   ```
   </Tabs.Tab>
 </Tabs>
@@ -100,7 +100,7 @@ When a character receives a new license.
   ```ts copy
   on('ox:licenseAdded', (playerId: number, licenseName: string) => {
     console.log(playerId, licenseName);
-  })
+  });
   ```
   </Tabs.Tab>
 </Tabs>
@@ -124,7 +124,7 @@ When a character's license is removed.
   ```ts copy
   on('ox:licenseRemoved', (playerId: number, licenseName: string) => {
     console.log(playerId, licenseName);
-  })
+  });
   ```
   </Tabs.Tab>
 </Tabs>
@@ -148,7 +148,7 @@ When a player logs out from their current character, crashes, or otherwise disco
   ```ts copy
   on('ox:playerLogout', (playerId: number, userId: number, charId: number) => {
     console.log(playerId, userId, charId);
-  })
+  });
   ```
   </Tabs.Tab>
 </Tabs>
@@ -173,7 +173,7 @@ When a player has created a new character.
   ```ts copy
   on('ox:createdCharacter', (playerId: number, userId: number, charId: number) => {
     console.log(playerId, userId, charId);
-  })
+  });
   ```
   </Tabs.Tab>
 </Tabs>
@@ -198,7 +198,7 @@ When a player selects and loads a character.
   ```ts copy
   on('ox:playerLoaded', (playerId: number, userId: number, charId: number) => {
     console.log(playerId, userId, charId);
-  })
+  });
   ```
   </Tabs.Tab>
 </Tabs>
@@ -223,7 +223,7 @@ When a character is deleted.
   ```ts copy
   on('ox:deletedCharacter', (playerId: number, userId: number, charId: number) => {
     console.log(playerId, userId, charId);
-  })
+  });
   ```
   </Tabs.Tab>
 </Tabs>
@@ -248,7 +248,7 @@ When vehicles are saved to the database.
   ```ts copy
   on('ox:savedVehicles', (vehiclesSaved: number) => {
     console.log(vehiclesSaved);
-  })
+  });
   ```
   </Tabs.Tab>
 </Tabs>
@@ -271,7 +271,7 @@ When an [`OxVehicle`](/ox_core/Classes/Server/OxVehicle) has spawned.
   ```ts copy
   on('ox:spawnedVehicle', (entityId: number, id: number) => {
     console.log(entityId, id);
-  })
+  });
   ```
   </Tabs.Tab>
 </Tabs>
@@ -295,7 +295,7 @@ Before an [`OxVehicle`](/ox_core/Classes/Server/OxVehicle) gets despawned.
   ```ts copy
   on('ox:despawnVehicle', (entityId: number, id: number) => {
     console.log(entityId, id);
-  })
+  });
   ```
   </Tabs.Tab>
 </Tabs>
@@ -307,60 +307,145 @@ Before an [`OxVehicle`](/ox_core/Classes/Server/OxVehicle) gets despawned.
 
 When an account's balance is updated.
 
-```lua
-function(data: object)
-```
-* data `object`
-  * accountId: `number`
-  * amount: `number`
-  * action: `'add' | 'remove'`
-
+<Tabs items={['lua', 'TS']}>
+  <Tabs.Tab>
+    ```lua copy
+    AddEventHandler('ox:updatedBalance', function(data)
+        print(json.encode(data))
+    end)
+    ```
+    * data `table`
+      * accountId: `number`
+      * amount: `number`
+      * action: `'add' | 'remove'`
+  </Tabs.Tab>
+  <Tabs.Tab>
+  ```ts copy
+  on('ox:updatedBalance', (data: object) => {
+    console.log(data);
+  });
+  ```
+  * data `object`
+    * accountId: `number`
+    * amount: `number`
+    * action: `'add' | 'remove'`
+  </Tabs.Tab>
+</Tabs>
 
 ## ox:transferredMoney
 
 When an account's money is transferred.
 
-```lua
-function(data: object)
-```
-* data `object`
-  * fromAccountId: `number`
-  * toAccountId: `number`
-  * amount: `number`
+<Tabs items={['lua', 'TS']}>
+  <Tabs.Tab>
+    ```lua copy
+    AddEventHandler('ox:transferredMoney', function(data)
+        print(json.encode(data))
+    end)
+    ```
+    * data `table`
+      * fromAccountId: `number`
+      * toAccountId: `number`
+      * amount: `'add' | 'remove'`
+  </Tabs.Tab>
+  <Tabs.Tab>
+  ```ts copy
+  on('ox:transferredMoney', (data: object) => {
+    console.log(data);
+  });
+  ```
+  * data `object`
+    * fromAccountId: `number`
+    * toAccountId: `number`
+    * amount: `'add' | 'remove'`
+  </Tabs.Tab>
+</Tabs>
 
 ## ox:depositedMoney
 
 When money is deposited into an account.
 
-```lua
-function(data: object)
-```
-* data `object`
-  * playerId: `number`
-  * accountId: `number`
-  * amount: `number`
+<Tabs items={['lua', 'TS']}>
+  <Tabs.Tab>
+    ```lua copy
+    AddEventHandler('ox:depositedMoney', function(data)
+        print(json.encode(data))
+    end)
+    ```
+    * data `table`
+      * playerId: `number`
+      * accountId: `number`
+      * amount: `number`
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```ts copy
+    on('ox:depositedMoney', (data: object) => {
+      console.log(data);
+    });
+    ```
+    * data `object`
+      * playerId: `number`
+      * accountId: `number`
+      * amount: `number`
+  </Tabs.Tab>
+</Tabs>
 
 ## ox:withdrewMoney
 
 When money is withdrawn from an account.
 
-```lua
-function(data: object)
-```
-* data `object`
-  * playerId: `number`
-  * accountId: `number`
-  * amount: `number`
+<Tabs items={['lua', 'TS']}>
+  <Tabs.Tab>
+    ```lua copy
+    AddEventHandler('ox:withdrewMoney', function(data)
+        print(json.encode(data))
+    end)
+    ```
+    * data `table`
+      * playerId: `number`
+      * accountId: `number`
+      * amount: `number`
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```ts copy
+    on('ox:withdrewMoney', (data: object) => {
+      console.log(data);
+    });
+    ```
+    * data `object`
+      * playerId: `number`
+      * accountId: `number`
+      * amount: `number`
+  </Tabs.Tab>
+</Tabs>
 
 ## ox:invoicePaid
 
 When an invoice is paid.
 
-```lua
-function(data: object)
-```
-* data `object`
-  * amount: `number`
-  * payerId: `number`
-  * fromAccount: `number`
-  * toAccount: `number`
+<Tabs items={['lua', 'TS']}>
+  <Tabs.Tab>
+    ```lua copy
+    AddEventHandler('ox:invoicePaid', function(data)
+        print(json.encode(data))
+    end)
+    ```
+    * data `table`
+      * amount: `number`
+      * payerId: `number`
+      * fromAccount: `number`
+      * toAccount: `number`
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```ts copy
+    on('ox:invoicePaid', (data: object) => {
+      console.log(data);
+    });
+    ```
+    * data `object`
+      * amount: `number`
+      * payerId: `number`
+      * fromAccount: `number`
+      * toAccount: `number`
+  </Tabs.Tab>
+</Tabs>
