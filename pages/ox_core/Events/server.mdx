@@ -16,7 +16,7 @@ By default this event is triggered:
 * When [`Ox.SaveAllPlayers`](/ox_core/Functions/server#oxsaveallplayers) is called.
 * When the command `saveplayers` is used.
 </Callout>
-<Tabs items={['lua', 'TS']}>
+<Tabs items={['Lua', 'JS']}>
   <Tabs.Tab>
     ```lua copy
     AddEventHandler('ox:savedPlayers', function(playersSaved)
@@ -38,7 +38,7 @@ By default this event is triggered:
 
 When the active group of a character has changed.
 
-<Tabs items={['lua', 'TS']}>
+<Tabs items={['Lua', 'JS']}>
   <Tabs.Tab>
     ```lua copy
     AddEventHandler('ox:setActiveGroup', function(playerId, groupName)
@@ -62,7 +62,7 @@ When the active group of a character has changed.
 
 When a character is added or removed from a group.
 
-<Tabs items={['lua', 'TS']}>
+<Tabs items={['Lua', 'JS']}>
   <Tabs.Tab>
     ```lua copy
     AddEventHandler('ox:setGroup', function(playerId, groupName, grade)
@@ -88,7 +88,7 @@ When a character is added or removed from a group.
 
 When a character receives a new license.
 
-<Tabs items={['lua', 'TS']}>
+<Tabs items={['Lua', 'JS']}>
   <Tabs.Tab>
     ```lua copy
     AddEventHandler('ox:licenseAdded', function(playerId, licenseName)
@@ -112,7 +112,7 @@ When a character receives a new license.
 
 When a character's license is removed.
 
-<Tabs items={['lua', 'TS']}>
+<Tabs items={['Lua', 'JS']}>
   <Tabs.Tab>
     ```lua copy
     AddEventHandler('ox:licenseRemoved', function(playerId, licenseName)
@@ -136,7 +136,7 @@ When a character's license is removed.
 
 When a player logs out from their current character, crashes, or otherwise disconnects from the server.
 
-<Tabs items={['lua', 'TS']}>
+<Tabs items={['Lua', 'JS']}>
   <Tabs.Tab>
     ```lua copy
     AddEventHandler('ox:playerLogout', function(playerId, userId, charId)
@@ -161,7 +161,7 @@ When a player logs out from their current character, crashes, or otherwise disco
 
 When a player has created a new character.
 
-<Tabs items={['lua', 'TS']}>
+<Tabs items={['Lua', 'JS']}>
   <Tabs.Tab>
     ```lua copy
     AddEventHandler('ox:createdCharacter', function(playerId, userId, charId)
@@ -186,7 +186,7 @@ When a player has created a new character.
 
 When a player selects and loads a character.
 
-<Tabs items={['lua', 'TS']}>
+<Tabs items={['Lua', 'JS']}>
   <Tabs.Tab>
     ```lua copy
     AddEventHandler('ox:playerLoaded', function(playerId, userId, charId)
@@ -211,7 +211,7 @@ When a player selects and loads a character.
 
 When a character is deleted.
 
-<Tabs items={['lua', 'TS']}>
+<Tabs items={['Lua', 'JS']}>
   <Tabs.Tab>
     ```lua copy
     AddEventHandler('ox:deletedCharacter', function(playerId, userId, charId)
@@ -236,7 +236,7 @@ When a character is deleted.
 
 When vehicles are saved to the database.
 
-<Tabs items={['lua', 'TS']}>
+<Tabs items={['Lua', 'JS']}>
   <Tabs.Tab>
     ```lua copy
     AddEventHandler('ox:savedVehicles', function(vehiclesSaved)
@@ -259,7 +259,7 @@ When vehicles are saved to the database.
 
 When an [`OxVehicle`](/ox_core/Classes/Server/OxVehicle) has spawned.
 
-<Tabs items={['lua', 'TS']}>
+<Tabs items={['Lua', 'JS']}>
   <Tabs.Tab>
     ```lua copy
     AddEventHandler('ox:spawnedVehicle', function(entityId, id)
@@ -283,7 +283,7 @@ When an [`OxVehicle`](/ox_core/Classes/Server/OxVehicle) has spawned.
 
 Before an [`OxVehicle`](/ox_core/Classes/Server/OxVehicle) gets despawned.
 
-<Tabs items={['lua', 'TS']}>
+<Tabs items={['Lua', 'JS']}>
   <Tabs.Tab>
     ```lua copy
     AddEventHandler('ox:despawnVehicle', function(entityId, id)
@@ -307,7 +307,7 @@ Before an [`OxVehicle`](/ox_core/Classes/Server/OxVehicle) gets despawned.
 
 When an account's balance is updated.
 
-<Tabs items={['lua', 'TS']}>
+<Tabs items={['Lua', 'JS']}>
   <Tabs.Tab>
     ```lua copy
     AddEventHandler('ox:updatedBalance', function(data)
@@ -336,7 +336,7 @@ When an account's balance is updated.
 
 When an account's money is transferred.
 
-<Tabs items={['lua', 'TS']}>
+<Tabs items={['Lua', 'JS']}>
   <Tabs.Tab>
     ```lua copy
     AddEventHandler('ox:transferredMoney', function(data)
@@ -365,7 +365,7 @@ When an account's money is transferred.
 
 When money is deposited into an account.
 
-<Tabs items={['lua', 'TS']}>
+<Tabs items={['Lua', 'JS']}>
   <Tabs.Tab>
     ```lua copy
     AddEventHandler('ox:depositedMoney', function(data)
@@ -394,7 +394,7 @@ When money is deposited into an account.
 
 When money is withdrawn from an account.
 
-<Tabs items={['lua', 'TS']}>
+<Tabs items={['Lua', 'JS']}>
   <Tabs.Tab>
     ```lua copy
     AddEventHandler('ox:withdrewMoney', function(data)
@@ -423,7 +423,7 @@ When money is withdrawn from an account.
 
 When an invoice is paid.
 
-<Tabs items={['lua', 'TS']}>
+<Tabs items={['Lua', 'JS']}>
   <Tabs.Tab>
     ```lua copy
     AddEventHandler('ox:invoicePaid', function(data)

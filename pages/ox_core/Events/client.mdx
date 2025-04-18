@@ -10,7 +10,7 @@ These events are triggered by ox_core when an action occurs. You should not trig
 
 When a character is loaded
 
-<Tabs items={['lua', 'TS']}>
+<Tabs items={['Lua', 'JS']}>
   <Tabs.Tab>
     ```lua copy
     AddEventHandler('ox:playerLoaded', function(playerId, isNew)
@@ -34,7 +34,7 @@ When a character is loaded
 
 On each status tick, returning changed statuses
 
-<Tabs items={['lua', 'TS']}>
+<Tabs items={['Lua', 'JS']}>
   <Tabs.Tab>
     ```lua copy
     AddEventHandler('ox:statusTick', function(statuses)
@@ -58,7 +58,7 @@ On each status tick, returning changed statuses
 
 When the character has died
 
-<Tabs items={['lua', 'TS']}>
+<Tabs items={['Lua', 'JS']}>
   <Tabs.Tab>
     ```lua copy
     AddEventHandler('ox:playerDeath', function() end)
@@ -75,7 +75,7 @@ When the character has died
 
 When the character is revived
 
-<Tabs items={['lua', 'TS']}>
+<Tabs items={['Lua', 'JS']}>
   <Tabs.Tab>
     ```lua copy
     AddEventHandler('ox:playerRevived', function() end)
@@ -96,7 +96,7 @@ When the character is revived
 
 When the character is added or removed from a group
 
-<Tabs items={['lua', 'TS']}>
+<Tabs items={['Lua', 'JS']}>
   <Tabs.Tab>
     ```lua copy
     RegisterNetEvent('ox:setGroup', function(groupName, grade)
@@ -120,7 +120,7 @@ When the character is added or removed from a group
 
 When the character got a new license
 
-<Tabs items={['lua', 'TS']}>
+<Tabs items={['Lua', 'JS']}>
   <Tabs.Tab>
     ```lua copy
     RegisterNetEvent('ox:licenseAdded', function(licenseName)
@@ -143,7 +143,7 @@ When the character got a new license
 
 When a character's license is removed.
 
-<Tabs items={['lua', 'TS']}>
+<Tabs items={['Lua', 'JS']}>
   <Tabs.Tab>
     ```lua copy
     RegisterNetEvent('ox:licenseRemoved', function(licenseName)
@@ -166,50 +166,18 @@ When a character's license is removed.
 
 When the player has spawned.
 
-<Tabs items={['lua', 'TS']}>
+<Tabs items={['Lua', 'JS']}>
   <Tabs.Tab>
     ```lua copy
-    RegisterNetEvent('ox:startCharacterSelect', function(userId, Characters)
-        print(userId, Characters)
+    RegisterNetEvent('ox:startCharacterSelect', function(userId, characters)
+        print(userId, characters)
     end)
     ```
-  </Tabs.Tab>
-  <Tabs.Tab>
-  ```ts copy
-  onNet('ox:startCharacterSelect', (userId: number, Characters: Character[]) => {
-    console.log(userId, Characters);
-  });
-  ```
-  </Tabs.Tab>
-</Tabs>
+    * userId: `number`
+    * characters: `Character[]`
 
-* userId: `number`
-* Characters: `Character[]`
-  * Character `object`
-    * charId: `number`
-    * stateId: `number`
-    * firstname: `string`
-    * lastname: `string`
-    * gender: `string`
-    * x?: `number`
-    * y?: `number`
-    * z?: `number`
-    * lastPlayed?: `string`
-      * Date format `%d/%m/%Y (dd/mm/yyyy)`
-
-## ox:setActiveCharacter
-
-When the player has chosen their character.
-
-<Tabs items={['lua', 'TS']}>
-  <Tabs.Tab>
-    ```lua copy
-    RegisterNetEvent('ox:setActiveCharacter', function(character, groups)
-        print(character, groups)
-    end)
-    ```
-    * character: `Character`
-      * Character `object`
+    Character
+    * `table`
         * charId: `number`
         * stateId: `number`
         * firstname: `string`
@@ -220,19 +188,48 @@ When the player has chosen their character.
         * z?: `number`
         * lastPlayed?: `string`
           * Date format `%d/%m/%Y (dd/mm/yyyy)`
-        * health?: `number`
-        * armour?: `number`
-        * isNew?: `boolean`
-    * groups: `table<string, number>`
-  </Tabs.Tab>
+    </Tabs.Tab>
   <Tabs.Tab>
-  ```ts copy
-  onNet('ox:setActiveCharacter', (character: Character, groups: Record<string, number>) => {
-    console.log(character, groups);
-  });
-  ```
-  * character: `Character`
-    * Character `object`
+    ```ts copy
+    onNet('ox:startCharacterSelect', (userId: number, characters: Character[]) => {
+      console.log(userId, characters);
+    });
+    ```
+    
+    * userId: `number`
+    * characters: `Character[]`
+
+    Character
+    * `object`
+        * charId: `number`
+        * stateId: `number`
+        * firstname: `string`
+        * lastname: `string`
+        * gender: `string`
+        * x?: `number`
+        * y?: `number`
+        * z?: `number`
+        * lastPlayed?: `string`
+          * Date format `%d/%m/%Y (dd/mm/yyyy)`
+  </Tabs.Tab>
+</Tabs>
+
+## ox:setActiveCharacter
+
+When the player has chosen their character.
+
+<Tabs items={['Lua', 'JS']}>
+  <Tabs.Tab>
+    ```lua copy
+    RegisterNetEvent('ox:setActiveCharacter', function(character, groups)
+        print(character, groups)
+    end)
+    ```
+    * character: `Character`
+    * groups: `table<string, number>`
+
+    Character
+    * `table`
       * charId: `number`
       * stateId: `number`
       * firstname: `string`
@@ -246,6 +243,30 @@ When the player has chosen their character.
       * health?: `number`
       * armour?: `number`
       * isNew?: `boolean`
-  * groups: `Record<string, number>`
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```ts copy
+    onNet('ox:setActiveCharacter', (character: Character, groups: Record<string, number>) => {
+      console.log(character, groups);
+    });
+    ```
+    * character: `Character`
+    * groups: `Record<string, number>`
+
+    Character
+    * `object`
+      * charId: `number`
+      * stateId: `number`
+      * firstname: `string`
+      * lastname: `string`
+      * gender: `string`
+      * x?: `number`
+      * y?: `number`
+      * z?: `number`
+      * lastPlayed?: `string`
+        * Date format `%d/%m/%Y (dd/mm/yyyy)`
+      * health?: `number`
+      * armour?: `number`
+      * isNew?: `boolean`
   </Tabs.Tab>
 </Tabs>
