@@ -101,3 +101,65 @@ Before a `OxVehicle` gets despawned.
 ```lua
 function(entityId: number, id: number)
 ```
+
+## ox:updatedBalance
+
+When an account's balance is updated.
+
+```lua
+function(data: object)
+```
+* data `object`
+  * accountId: `number`
+  * amount: `number`
+  * action: `'add' | 'remove'`
+
+
+## ox:transferredMoney
+
+When an account's money is transferred.
+
+```lua
+function(data: object)
+```
+* data `object`
+  * fromAccountId: `number`
+  * toAccountId: `number`
+  * amount: `number`
+
+## ox:depositedMoney
+
+When money is deposited into an account.
+
+```lua
+function(data: object)
+```
+* data `object`
+  * playerId: `number`
+  * accountId: `number`
+  * amount: `number`
+
+## ox:withdrewMoney
+
+When money is withdrawn from an account.
+
+```lua
+function(data: object)
+```
+* data `object`
+  * playerId: `number`
+  * accountId: `number`
+  * amount: `number`
+
+## ox:invoicePaid
+
+When an invoice is paid.
+
+```lua
+function(data: object)
+```
+* data `object`
+  * amount: `number`
+  * payerId: `number`
+  * fromAccount: `number`
+  * toAccount: `number`
