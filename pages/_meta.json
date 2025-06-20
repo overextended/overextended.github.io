@@ -1,6 +1,6 @@
 {
-  "index": "Introduction",
-  "guides": "Guides",
+  "index": "はじめに",
+  "guides": "ガイド",
   "oxmysql": "OxMySQL",
   "ox_lib": "Ox Lib",
   "fivemanage": {
@@ -9,12 +9,12 @@
     "href": "https://fivemanage.com/?ref=overextended"
   },
   "creator_codes": {
-    "title": "Creator codes",
+    "title": "クリエイターコード",
     "type": "page",
     "href": "/#creator-codes"
   },
   "support": {
-    "title": "Support us",
+    "title": "サポート",
     "type": "page",
     "href": "/#support-our-team"
   }

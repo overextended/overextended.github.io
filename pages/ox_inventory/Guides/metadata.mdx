@@ -1,21 +1,20 @@
 ---
-title: Metadata
+title: メタデータ
 ---
 
-# Metadata
+# メタデータ
 
-Item metadata is a very powerful tool that can be used to create multiple different items out of a single item.
+アイテムメタデータは、単一のアイテムから複数の異なるアイテムを作成するために使用できる非常に強力なツールです。
 
-In this guide we'll use pokemon cards as an example, but you can find an already integrated example in the inventory
-with the `garbage` item.
+このガイドではポケモンカードを例として使用しますが、`garbage`アイテムを使用してインベントリに既に統合されている例を見つけることができます。
 
-## Creating the base item
+## ベースアイテムの作成
 
-First of all we need to create a base item that we'll use to apply metadata to.
+まず、メタデータを適用するために使用するベースアイテムを作成する必要があります。
 
 ```lua filename="/data/items.lua"
 ['pokemon_card'] = {
-    label = 'Pokemon card',
+    label = 'ポケモンカード',
     weight = 10,
     consume = 0,
     server = {
@@ -24,10 +23,10 @@ First of all we need to create a base item that we'll use to apply metadata to.
 }
 ```
 
-In this case we define the label and the weight as well since we are going to have all the cards weigh the same, but if you
-do not want them all to weigh the same you can leave it out and apply weight through metadata.
+この場合、すべてのカードの重量を同じにするため、ラベルと重量も定義しますが、
+すべてを同じ重量にしたくない場合は、省略してメタデータを通じて重量を適用できます。
 
-We'll also make the item usable by calling the `pokemon_card` export in the `pokemon` resource.
+また、`pokemon`リソースの`pokemon_card`エクスポートを呼び出すことで、アイテムを使用可能にします。
 
 ```lua filename="pokemon/server.lua"
 exports('pokemon_card', function(event, item, inventory, slot, data)
@@ -38,39 +37,38 @@ exports('pokemon_card', function(event, item, inventory, slot, data)
 end)
 ```
 
-## Special metadata properties
+## 特別なメタデータプロパティ
 
-You can define any metadata property with any value you want it to have, but there are a couple metadata properties that
-have special use cases.
+任意のメタデータプロパティを任意の値で定義できますが、特別なユースケースを持つメタデータプロパティがいくつかあります。
 
-These properties are:
+これらのプロパティは次のとおりです。
 
 - label: `string`
-  - Display name of the item
+  - アイテムの表示名
 - weight: `number`
-  - Amount the item will weigh
+  - アイテムの重量
 - description: `string`
-  - Description of the item that will be displayed in the tooltip
+  - ツールチップに表示されるアイテムの説明
 - image: `string`
-  - Image inside the image path that the item will use
+  - アイテムが使用する画像パス内の画像
 - imageurl: `string`
-  - Url to the image that the item will use
+  - アイテムが使用する画像へのURL
 - type: `any`
-  - Item type that is displayed in top right of the tooltip
+  - ツールチップの右上に表示されるアイテムタイプ
 
-We'll use these properties to create our pokemon cards out of the `pokemon_card` item that we created earlier.
+これらのプロパティを使用して、以前に作成した`pokemon_card`アイテムからポケモンカードを作成します。
 
-## Creating metadata items
+## メタデータアイテムの作成
 
-We can easily create metadata items by defining a hook using [createItem](../Functions/Server/Hooks#createitem) and adding it to a shop as well.
+[createItem](../Functions/Server/Hooks#createitem)を使用してフックを定義し、ショップに追加することで、メタデータアイテムを簡単に作成できます。
 
 ```lua filename="/data/shops.lua"
 inventory = {
     {name = 'pokemon_card', price = 300, metadata = {
-        label = 'Charizard',
-        description = 'It is said that Charizard’s fire burns hotter if it has experienced harsh battles.',
+        label = 'リザードン',
+        description = 'リザードンの炎は、過酷な戦いを経験した場合、より熱く燃えると言われています。',
         image = 'panties',
-        type = 'Fire',
+        type = '炎',
         hp = 78,
         attack = 84,
         defense = 78
@@ -81,10 +79,10 @@ inventory = {
 ```lua filename="pokemon/server.lua"
 local pokemonMetadata = {
     charizard = {
-        label = 'Charizard',
-        description = 'It is said that Charizard’s fire burns hotter if it has experienced harsh battles.',
+        label = 'リザードン',
+        description = 'リザードンの炎は、過酷な戦いを経験した場合、より熱く燃えると言われています。',
         image = 'panties',
-        type = 'Fire',
+        type = '炎',
         hp = 78,
         attack = 84,
         defense = 78
@@ -102,17 +100,16 @@ end, {
 })
 ```
 
-As seen above when our item is usable, the metadata properties are all there and accessible through the slot.
+上記のように、アイテムが使用可能になると、メタデータプロパティはすべてそこにあり、スロットからアクセスできます。
 
-## Displaying custom metadata properties
+## カスタムメタデータプロパティの表示
 
-We can display our custom metadata we set on our charizard card by either using string concatenation and adding them to
-the description or by using the [displayMetadata](../Functions/Client#displaymetadata) _client_ function.
+文字列連結を使用して説明に追加するか、[displayMetadata](../Functions/Client#displaymetadata)_クライアント_関数を使用して、リザードンカードに設定したカスタムメタデータを表示できます。
 
 ```lua
 exports.ox_inventory:displayMetadata({
     hp = 'HP',
-    attack = 'ATK',
-    defense = 'DEF'
+    attack = '攻撃',
+    defense = '防御'
 })
 ```

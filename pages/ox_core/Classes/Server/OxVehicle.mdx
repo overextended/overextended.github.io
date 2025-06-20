@@ -16,7 +16,7 @@ title: OxVehicle
 
 ## OxVehicle.delete
 
-Despawns the vehicle and removes it from the database.
+車両をデスポーンし、データベースから削除します。
 
 ```lua
 vehicle.delete()
@@ -25,55 +25,55 @@ vehicle.delete()
 
 ## OxVehicle.despawn
 
-Despawns the vehicle, optionally saving it to the database.
+車両をデスポーンし、オプションでデータベースに保存します。
 
 ```lua
 vehicle.despawn(save)
 ```
 
-**Parameters**
+**パラメータ**
 
 - save?: `boolean`
 
 
 ## OxVehicle.get
 
-Get the value of specific key from the vehicle's metadata.
+車両のメタデータから特定のキーの値を取得します。
 
 ```lua
 vehicle.get(key)
 ```
 
-**Parameters**
+**パラメータ**
 
 - key: `string`
 
-**Returns**
+**戻り値**
 
 - `unknown`
 
 
 ## OxVehicle.getCoords
 
-Returns the vehicle's current coordinates.
+車両の現在の座標を返します。
 
 ```lua
 vehicle.getCoords()
 ```
 
-**Returns**
+**戻り値**
 
 - `vector3`
 
 ## OxVehicle.getProperties
 
-Returns the vehicle's properties object.
+車両のプロパティオブジェクトを返します。
 
 ```lua
 vehicle.getProperties()
 ```
 
-**Returns**
+**戻り値**
 
 - `VehicleProperties`
 
@@ -81,39 +81,39 @@ vehicle.getProperties()
 
 ## OxVehicle.getState
 
-Returns the vehicle's statebag interface.
+車両のステートバッグインターフェースを返します。
 
 ```lua
 vehicle.getState()
 ```
 
-**Returns**
+**戻り値**
 
 - `StateBagInterface`
 
 
 ## OxVehicle.getStored
 
-Returns the vehicle's "stored" state.
+車両の「保管」状態を返します。
 
 ```lua
 vehicle.getStored()
 ```
 
-**Returns**
+**戻り値**
 
 - `string?`
 
 
 ## OxVehicle.respawn
 
-Spawns a new entity for the vehicle, removing an existing entity if it exists and reapplying stored vehicle properties.
+車両の新しいエンティティをスポーンし、既存のエンティティが存在する場合は削除し、保存されている車両プロパティを再適用します。
 
 ```lua
 vehicle.respawn(coords, rotation)
 ```
 
-**Parameters**
+**パラメータ**
 
 - coords?: `vector3`
 - rotation?: `vector3`
@@ -121,26 +121,26 @@ vehicle.respawn(coords, rotation)
 
 ## OxVehicle.save
 
-Saves the vehicle to the database.
+車両をデータベースに保存します。
 
 ```lua
 vehicle.save()
 ```
 
-**Returns**
+**戻り値**
 
 - `number`
 
 
 ## OxVehicle.set
 
-Stores a value in the vehicle's metadata, which will be saved to the database (_this behaviour is likely to be removed_).
+車両のメタデータに値を保存します。これはデータベースに保存されます（この動作は削除される可能性があります）。
 
 ```lua
 vehicle.set(key, value)
 ```
 
-**Parameters**
+**パラメータ**
 
 - key: `string`
 - value: `any`
@@ -148,35 +148,35 @@ vehicle.set(key, value)
 
 ## OxVehicle.setGroup
 
-Sets the vehicle as a group vehicle "owned" by the given group name, or removes the group if omitted.
+指定されたグループ名によって「所有」されるグループ車両として車両を設定するか、省略された場合はグループを削除します。
 
 ```lua
 vehicle.setGroup(groupName)
 ```
 
-**Parameters**
+**パラメータ**
 
 - groupName?: `string`
 
 
 ## OxVehicle.setOwner
 
-Sets the owner of a vehicle as the given charId, or removes the owner if omitted.
+指定されたcharIdとして車両の所有者を設定するか、省略された場合は所有者を削除します。
 
 ```lua
 vehicle.setOwner(charId)
 ```
 
-**Parameters**
+**パラメータ**
 
 - charId?: `number`
 
 
 ## OxVehicle.setPlate
 
-Sets the registered plate of a vehicle to the given value. The plate will be padded or stripped to 8 characters.
+車両の登録プレートを指定された値に設定します。プレートは8文字にパディングまたはトリミングされます。
 
-This plate is not necessarily the displayed plate on vehicle properties.
+このプレートは、必ずしも車両プロパティに表示されるプレートではありません。
 
 ```lua
 vehicle.setPlate(plate: string)
@@ -185,13 +185,13 @@ vehicle.setPlate(plate: string)
 
 ## OxVehicle.setProperties
 
-Saves the properties (mods, extras, etc.) stored on the vehicle, optionally applying them to the entity.
+車両に保存されているプロパティ（改造、エクストラなど）を保存し、オプションでエンティティに適用します。
 
 ```lua
 vehicle.setProperties(properties, apply)
 ```
 
-**Parameters**
+**パラメータ**
 
 - properties: `VehicleProperties`
 - apply?: `boolean`
@@ -199,13 +199,13 @@ vehicle.setProperties(properties, apply)
 
 ## OxVehicle.setStored
 
-Sets the vehicle as "stored" at the given value (e.g. impound, garage, null), and optionally despawns and saves the vehicle.
+車両を指定された値（例：押収、ガレージ、null）で「保管」として設定し、オプションで車両をデスポーンして保存します。
 
 ```lua
 vehicle.setStored(value, despawn)
 ```
 
-**Parameters**
+**パラメータ**
 
 - value?: `string`
 - despawn?: `boolean`

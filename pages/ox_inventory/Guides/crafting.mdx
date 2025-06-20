@@ -1,12 +1,12 @@
 ---
-title: Crafting
+title: クラフト
 ---
 
-# Crafting
+# クラフト
 
-Crafting locations, items and their ingredients are defined in [data/crafting.lua](https://github.com/overextended/ox_inventory/blob/main/data/crafting.lua).
+クラフト場所、アイテム、およびそれらの材料は[data/crafting.lua](https://github.com/overextended/ox_inventory/blob/main/data/crafting.lua)で定義されています。
 
-## Crafting definition
+## クラフト定義
 
 ```lua
 {
@@ -50,25 +50,25 @@ Crafting locations, items and their ingredients are defined in [data/crafting.lu
 - items: `table`
   - name: `string`
   - ingredients: `table`
-    - Item ingredients can be seen in the item tooltip.
-    - Key-value pairs of item name and consume count
-      - key - Item name.
-      - value - If 1 or above it's the consume count, if below 1 and above 0 it's the durability consume amount, if
-        set to 0 then the item is required but not consumed.
+    - アイテムの材料はアイテムのツールチップに表示されます。
+    - アイテム名と消費数のキーと値のペア
+      - key - アイテム名。
+      - value - 1以上の場合は消費数、1未満で0より大きい場合は耐久性消費量、
+        0に設定されている場合はアイテムは必要ですが消費されません。
   - duration: `number`
-    - Crafting duration in milliseconds.
-  - count: `number` or `table` (min, max)
-    - Item amount received upon crafting.
-    - If set it to table it requires two number first one is minimum number and second one is maximum, it will generate a random number between those two numbers to add the crafted item to player.
+    - クラフト時間（ミリ秒）。
+  - count: `number` または `table` (最小、最大)
+    - クラフト時に受け取るアイテムの量。
+    - テーブルに設定する場合、最初の数値は最小数、2番目の数値は最大数である必要があり、クラフトされたアイテムをプレイヤーに追加するためにこれらの2つの数値の間の乱数を生成します。
   - metadata: `table`
-    - Metadata applied to the item being crafted.
+    - クラフトされるアイテムに適用されるメタデータ。
 - points: `vector3[]`
-  - Interaction locations that will open the crafting inventory.
+  - クラフトインベントリを開く操作場所。
 - groups: `table`
-  - Key-value pairs of job name and minimum grade to access the crafting location.
+  - クラフト場所にアクセスするためのジョブ名と最小グレードのキーと値のペア。
   - `{["police"] = 0, ["ambulance"] = 2}`
 - zones: `table`
-  - ox_lib targeting zones used for ox_target.
+  - ox_targetに使用されるox_libターゲティングゾーン。
   - label: `string`
   - icon: `string`
   - coords: `vector3`
@@ -77,8 +77,8 @@ Crafting locations, items and their ingredients are defined in [data/crafting.lu
   - rotation: `number`
 - blip: `table`
   - id: `number`
-    - Blip sprite number.
+    - ブリップスプライト番号。
   - colour: `number`
   - scale: `number`
 - name: `string`
-  - Optional name that can be used as id when using the openInventory export.
+  - openInventoryエクスポートを使用するときにIDとして使用できるオプションの名前。

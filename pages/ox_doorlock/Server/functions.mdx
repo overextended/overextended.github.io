@@ -1,6 +1,6 @@
-# Functions
+# 関数
 
-Gets data for a door with the given id, matching the id for the database entry.
+指定されたIDのドアのデータを取得します。データベースエントリのIDと一致します。
 
 ## getDoor
 
@@ -8,11 +8,11 @@ Gets data for a door with the given id, matching the id for the database entry.
 exports.ox_doorlock:getDoor(doorId)
 ```
 
-Gets data for a door with the given `id`, matching the id for the database entry.
+指定された `id` のドアのデータを取得します。データベースエントリのIDと一致します。
 
 - id: `number`
 
-Return:
+戻り値:
 
 - door: `table`
 
@@ -22,11 +22,11 @@ Return:
 exports.ox_doorlock:getDoorFromName(name)
 ```
 
-Gets data for a door with the given `name`, matching the name for the database entry.
+指定された `name` のドアのデータを取得します。データベースエントリの名前と一致します。
 
 - name: `string`
 
-Return:
+戻り値:
 
 - door: `table`
 
@@ -36,7 +36,7 @@ Return:
 exports.ox_doorlock:editDoor(doorId, data)
 ```
 
-Edit configuration for the given doorId.
+指定されたdoorIdの構成を編集します。
 
 - doorId: `number`
 - data: `table`
@@ -47,7 +47,7 @@ Edit configuration for the given doorId.
 exports.ox_doorlock:setDoorState(doorId, state)
 ```
 
-Sets a door with the given doorId as locked if state is `true` or `1`.
+stateが `true` または `1` の場合、指定されたdoorIdのドアをロック済みとして設定します。
 
 - doorId: `number`
-- state: `0` or `1` or `boolean`
+- state: `0` または `1` または `boolean`

@@ -1,18 +1,18 @@
 import { Callout } from 'nextra/components';
 
-# Client
+# クライアント
 
-This is not a comprehensive list of events and is missing events intended for internal use only.
+これはイベントの包括的なリストではなく、内部使用のみを目的としたイベントが欠落しています。
 
-## Event Triggers
+## イベントトリガー
 
 <Callout type="info">
-  These events **are safe** to trigger and handle in other scripts.
+  これらのイベントは、他のスクリプトでトリガーおよび処理しても**安全です**。
 </Callout>
 
 ### ox_inventory:disarm
 
-Can be triggered to force the player to disarm.
+プレイヤーに強制的に武装解除させるためにトリガーできます。
 
 ```lua
 TriggerClientEvent('ox_inventory:disarm', playerId, noAnim)
@@ -20,18 +20,18 @@ TriggerClientEvent('ox_inventory:disarm', playerId, noAnim)
 
 - playerId: `number`
 - noAnim: `boolean`
-  - If `true`, disarm animation will be skipped
+  - `true`の場合、武装解除アニメーションはスキップされます
 
-## Event Handlers
+## イベントハンドラー
 
 <Callout type="warning">
-  These events **should not** be triggered by any other scripts.
+  これらのイベントは、他のスクリプトによってトリガーされるべきでは**ありません**。
 </Callout>
 
 ### ox_inventory:updateInventory
 
-Triggered after inventory slots have been updated, included on load.  
-Changes is a table containing all updated slot data indexed by slotId. Empty slots are `false`.
+インベントリスロットが更新された後、ロード時に含まれてトリガーされます。
+変更は、slotIdによってインデックス付けされたすべての更新されたスロットデータを含むテーブルです。空のスロットは `false` です。
 
 ```lua
 AddEventHandler('ox_inventory:updateInventory', function(changes) end)
@@ -41,7 +41,7 @@ AddEventHandler('ox_inventory:updateInventory', function(changes) end)
 
 ### ox_inventory:currentWeapon
 
-Triggered when a weapon is equipped or its metadata is altered.
+武器が装備されたとき、またはそのメタデータが変更されたときにトリガーされます。
 
 ```lua
 AddEventHandler('ox_inventory:currentWeapon', function(weapon) end)
@@ -51,8 +51,8 @@ AddEventHandler('ox_inventory:currentWeapon', function(weapon) end)
 
 ### ox_inventory:itemCount
 
-Triggered when the amount of an item in the player's inventory is changed.  
-_Note: Not available for ESX, use esx:addInventoryItem or esx:removeInventoryItem._
+プレイヤーのインベントリ内のアイテムの量が変更されたときにトリガーされます。
+_注意：ESXでは利用できません。esx:addInventoryItemまたはesx:removeInventoryItemを使用してください。_
 
 ```lua
 AddEventHandler('ox_inventory:itemCount', function(itemName, totalCount) end)

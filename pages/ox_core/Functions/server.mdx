@@ -1,29 +1,29 @@
 ## Ox.CreateAccount
 
-Creates a new account for a character with the given charId or stateId.
+指定されたcharIdまたはstateIdを持つキャラクターの新しいアカウントを作成します。
 
 ```lua
 Ox.CreateAccount(ownerId, label)
 ```
 
-**Parameters**
+**パラメータ**
 
 - ownerId: `number` | `string`
 - label: `string`
 
-**Returns**
+**戻り値**
 
 - [`OxAccount`](/ox_core/Classes/Server/OxAccount)
 
 ## Ox.CreateGroup
 
-Creates a new group from the given data, handling all database interactions internally.
+指定されたデータから新しいグループを作成し、すべてのデータベース操作を内部的に処理します。
 
 ```lua
 Ox.CreateGroup(data)
 ```
 
-**Parameters**
+**パラメータ**
 
 - data: `object`
   - name: `string`
@@ -37,13 +37,13 @@ Ox.CreateGroup(data)
 
 ## Ox.CreateVehicle
 
-Creates a new vehicle, which will be saved to the database if it has an assigned owner or group.
+新しい車両を作成します。割り当てられた所有者またはグループがある場合、データベースに保存されます。
 
 ```lua
 Ox.CreateVehicle(data, coords, heading)
 ```
 
-**Parameters**
+**パラメータ**
 
 - data: `string` | `object`
   - model: `string`
@@ -54,23 +54,23 @@ Ox.CreateVehicle(data, coords, heading)
 - coords?: `vector3`
 - heading?: `number`
 
-**Returns**
+**戻り値**
 
 - [`OxVehicle`](/ox_core/Classes/Server/OxVehicle)
 
 ## Ox.DeleteAccountInvoice
 
-Deletes the account invoice with the given invoiceId.
+指定されたinvoiceIdのアカウント請求書を削除します。
 
 ```lua
 Ox.DeleteAccountInvoice(invoiceId)
 ```
 
-**Parameters**
+**パラメータ**
 
 - invoiceId: `number`
 
-**Returns**
+**戻り値**
 
 - `object`
   - success: `boolean`
@@ -78,268 +78,268 @@ Ox.DeleteAccountInvoice(invoiceId)
 
 ## Ox.DeleteGroup
 
-Deletes all data associated with the given group name, such as group grades, vehicles, etc.
+グループグレード、車両など、指定されたグループ名に関連するすべてのデータを削除します。
 
 ```lua
 Ox.DeleteGroup(groupName)
 ```
 
-**Parameters**
+**パラメータ**
 
 - groupName: `string`
 
 
 ## Ox.GenerateVehiclePlate
 
-Generate a unique vehicle plate that doesn't exist in database.
+データベースに存在しない一意の車両プレートを生成します。
 
 ```lua
 Ox.GenerateVehiclePlate()
 ```
 
-**Returns**
+**戻り値**
 
 - `string`
 
 ## Ox.GenerateVehicleVin
 
-Generate a unique vehicle identification number that doesn't exist in database.
+データベースに存在しない一意の車両識別番号を生成します。
 
 ```lua
 Ox.GenerateVehicleVin(modelName)
 ```
 
-**Parameters**
+**パラメータ**
 
 - modelName: `string`
-  - Vehicle information (i.e. model and make) are used as part of the VIN.
+  - 車両情報（モデルやメーカーなど）がVINの一部として使用されます。
 
-**Returns**
+**戻り値**
 
 - `string`
 
 ## Ox.GetAccount
 
-Get the `OxAccount` with the given accountId.
+指定されたaccountIdの `OxAccount` を取得します。
 
 ```lua
 Ox.GetAccount(accountId)
 ```
 
-**Parameters**
+**パラメータ**
 
 - accountId: `number`
 
-**Returns**
+**戻り値**
 
 - [`OxAccount`](/ox_core/Classes/Server/OxAccount)
 
 ## Ox.GetCharacterAccount
 
-Get the default `OxAccount` for a character by their charId or stateId.
+charIdまたはstateIdでキャラクターのデフォルトの `OxAccount` を取得します。
 
 ```lua
 Ox.GetCharacterAccount(id)
 ```
 
-**Parameters**
+**パラメータ**
 
 - id: `number` | `string`
 
-**Returns**
+**戻り値**
 
 - [`OxAccount`](/ox_core/Classes/Server/OxAccount)
 
 ## Ox.GetCharIdFromStateId
 
-Get a character's charId from their stateId.  
-_Note: This queries the database and shouldn't be used excessively_
+stateIdからキャラクターのcharIdを取得します。
+_注意：これはデータベースにクエリを実行するため、過度に使用しないでください_
 
 ```lua
 Ox.GetCharIdFromStateId(stateId)
 ```
 
-**Parameters**
+**パラメータ**
 
 - stateId: `string`
 
-**Returns**
+**戻り値**
 
 - `number`
 
 ## Ox.GetGroupAccount
 
-Get the `OxAccount` for a group.
+グループの `OxAccount` を取得します。
 
 ```lua
 Ox.GetGroupAccount(groupName)
 ```
 
-**Parameters**
+**パラメータ**
 
 - groupName: `string`
 
-**Returns**
+**戻り値**
 
 - [`OxAccount`](/ox_core/Classes/Server/OxAccount)
 
 ## Ox.GetGroupsByType
 
-Returns an array of group names which have the given group type.
+指定されたグループタイプを持つグループ名の配列を返します。
 
 ```lua
 Ox.GetGroupsByType(groupType)
 ```
 
-**Parameters**
+**パラメータ**
 
 - groupType: `string`
 
-**Returns**
+**戻り値**
 
 - `string[]`
 
 ## Ox.GetGroup
 
-Get an `OxGroup` from its name.
+名前から `OxGroup` を取得します。
 
 ```lua
 Ox.GetGroup(name)
 ```
 
-**Parameters**
+**パラメータ**
 
 - name: `string`
 
-**Returns**
+**戻り値**
 
 - `OxGroup`
 
 ## Ox.GetPlayer
 
-Get an `OxPlayer` from its entity id.
+エンティティIDから `OxPlayer` を取得します。
 
 ```lua
 Ox.GetPlayer(entityId)
 ```
 
-**Parameters**
+**パラメータ**
 
 - userId: `number`
 
-**Returns**
+**戻り値**
 
 - [`OxPlayer`](/ox_core/Classes/Server/OxPlayer)
 
 ## Ox.GetPlayerFromFilter
 
-Get the first `OxPlayer` matching a filter.
+フィルターに一致する最初の `OxPlayer` を取得します。
 
 ```lua
 Ox.GetPlayerFromFilter(filter)
 ```
 
-**Parameters**
+**パラメータ**
 
 - filter?: `{ [string]: any }`
-  - Compare player fields and metadata against the given key-value pairs.
-  - Groups can be given as a string or array of strings to match.
+  - プレイヤーフィールドとメタデータを指定されたキーと値のペアと比較します。
+  - グループは、一致する文字列または文字列の配列として指定できます。
 
-**Returns**
+**戻り値**
 
 - [`OxPlayer`](/ox_core/Classes/Server/OxPlayer)
 
 ## Ox.GetPlayerFromUserId
 
-Get an `OxPlayer` from its user id.
+ユーザーIDから `OxPlayer` を取得します。
 
 ```lua
 Ox.GetPlayerFromUserId(userId)
 ```
 
-**Parameters**
+**パラメータ**
 
 - userId: `number`
 
-**Returns**
+**戻り値**
 
 - [`OxPlayer`](/ox_core/Classes/Server/OxPlayer)
 
 ## Ox.GetPlayers
 
-Get an array of containing `OxPlayer` for all players matching a filter, if given.
+指定された場合、フィルターに一致するすべてのプレイヤーの `OxPlayer` を含む配列を取得します。
 
 ```lua
 Ox.GetPlayers(filter)
 ```
 
-**Parameters**
+**パラメータ**
 
 - filter?: `{ [string]: any }`
-  - Compare player fields and metadata against the given key-value pairs.
-  - Groups can be given as a string or array of strings to match.
+  - プレイヤーフィールドとメタデータを指定されたキーと値のペアと比較します。
+  - グループは、一致する文字列または文字列の配列として指定できます。
 
-**Returns**
+**戻り値**
 
 - [`OxPlayer[]`](/ox_core/Classes/Server/OxPlayer)
 
 ## Ox.GetVehicle
 
-Get an `OxVehicle` from its entity id.
+エンティティIDから `OxVehicle` を取得します。
 
 ```lua
 Ox.GetVehicle(entityId)
 ```
 
-**Parameters**
+**パラメータ**
 
 - entityId: `number`
 
-**Returns**
+**戻り値**
 
 - [`OxVehicle`](/ox_core/Classes/Server/OxVehicle)
 
 ## Ox.GetVehicleFromNetId
 
-Get an `OxVehicle` from its network id.
+ネットワークIDから `OxVehicle` を取得します。
 
 ```lua
 Ox.GetVehicleFromNetId(netId)
 ```
 
-**Parameters**
+**パラメータ**
 
 - netId: `number`
 
-**Returns**
+**戻り値**
 
 - [`OxVehicle`](/ox_core/Classes/Server/OxVehicle)
 
 ## Ox.GetVehicleFromVin
 
-Get an `OxVehicle` from its VIN.
+VINから `OxVehicle` を取得します。
 
 ```lua
 Ox.GetVehicleFromVin(vin)
 ```
 
-**Parameters**
+**パラメータ**
 
 - vin: `string`
 
-**Returns**
+**戻り値**
 
 - [`OxVehicle`](/ox_core/Classes/Server/OxVehicle)
 
 ## Ox.RemoveGroupPermission
 
-Removes a permission from a specified group and minimum grade.
+指定されたグループと最小グレードから権限を削除します。
 
 ```lua
 Ox.RemoveGroupPermission(groupName, grade, permission)
 ```
 
-**Parameters**
+**パラメータ**
 
 - groupName: `string`
 - grade: `number`
@@ -347,7 +347,7 @@ Ox.RemoveGroupPermission(groupName, grade, permission)
 
 ## Ox.SaveAllPlayers
 
-Save all players to the database.
+すべてのプレイヤーをデータベースに保存します。
 
 ```lua
 Ox.SaveAllPlayers()
@@ -355,7 +355,7 @@ Ox.SaveAllPlayers()
 
 ## Ox.SaveAllVehicles
 
-Save all vehicles to the database.
+すべての車両をデータベースに保存します。
 
 ```lua
 Ox.SaveAllVehicles()
@@ -363,73 +363,73 @@ Ox.SaveAllVehicles()
 
 ## Ox.SetGroupPermission
 
-Assigns a permission to a specified group and minimum grade, which will be inherited by higher grades.
+指定されたグループと最小グレードに権限を割り当てます。これは上位のグレードに継承されます。
 
 ```lua
 Ox.SetGroupPermission(groupName, grade, permission, value)
 ```
 
-**Parameters**
+**パラメータ**
 
 - groupName: `string`
 - grade: `number`
 - permission: `string`
 - value: `allow` | `deny`
 
-**Example**
+**例**
 
 ```lua
--- Adding a permission to a group (server side)
+-- グループに権限を追加する（サーバー側）
 Ox.SetGroupPermission('police', 1, 'handcuff', 'allow')
 
--- Checking if a player has the 'handcuff' permission
+-- プレイヤーが「handcuff」権限を持っているかどうかを確認する
 if player.hasPermission('group.police.handcuff') then
-    -- Do something
+    -- 何かをする
 end
 ```
 
 ## Ox.SpawnVehicle
 
-Spawns an `OxVehicle` with the given dbId, if it hasn't already been spawned.
+指定されたdbIdの `OxVehicle` をスポーンします。まだスポーンされていない場合に限ります。
 
 ```lua
 Ox.SpawnVehicle(dbId, coords, heading)
 ```
 
-**Parameters**
+**パラメータ**
 
 - dbId: `number`
 - coords: `vector3`
 - heading?: `number`
 
-**Returns**
+**戻り値**
 
 - [`OxVehicle`](/ox_core/Classes/Server/OxVehicle)
 
 ## Ox.GetLicense
 
-Get license data from its name.
+名前からライセンスデータを取得します。
 
 ```lua
 Ox.GetLicense(name)
 ```
 
-**Parameters**
+**パラメータ**
 
 - name: `string`
 
-**Returns**
+**戻り値**
 
 - `OxLicense`
 
 ## Ox.GetLicenses
 
-Get all licenses' data.
+すべてのライセンスデータを取得します。
 
 ```lua
 Ox.GetLicenses()
 ```
 
-**Returns**
+**戻り値**
 
 - `OxLicense[]`

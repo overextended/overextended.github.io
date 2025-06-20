@@ -1,18 +1,18 @@
-# Functions
+# 関数
 
 ## setPaymentMethod
 
-Override the built-in payment method.
+組み込みの支払い方法をオーバーライドします。
 
 ```lua
 exports.ox_fuel:setPaymentMethod(method)
 ```
 
-### Parameters
+### パラメータ
 
 - method: `function(): boolean?`
 
-### Example
+### 例
 
 ```lua
 exports.ox_fuel:setPaymentMethod(function(playerId, amount)

@@ -21,37 +21,37 @@ import { Tabs, Tab } from 'nextra-theme-docs';
 
 ## OxAccount.get
 
-Get the value of specific key(s) from the account's metadata.
+アカウントのメタデータから特定のキーの値を取得します。
 
 ```lua
 account.get(key)
 ```
 
-**Parameters**
+**パラメータ**
 
 - key: `string` | `string[]`
 
-**Returns**
+**戻り値**
 
 - `OxAccountMetadata[key]` | `OxAccountMetadata[key][]`
-  - Returns an array if passing multiple keys.
+  - 複数のキーを渡すと配列を返します。
 
 
 ## OxAccount.addBalance
 
-Add funds to the account.
+アカウントに資金を追加します。
 
 ```lua
 account.addBalance(data)
 ```
 
-**Parameters**
+**パラメータ**
 
 - data: `object`
   - amount: `number`
   - message?: `string`
 
-**Returns**
+**戻り値**
 
 - `object`
   - success: `boolean`
@@ -69,21 +69,21 @@ account.addBalance(data)
 
 ## OxAccount.removeBalance
 
-Remove funds from the account.
+アカウントから資金を引き出します。
 
 ```lua
 account.removeBalance(data)
 ```
 
-**Parameters**
+**パラメータ**
 
 - `object`
   - amount: `number`
   - message?: `string`
   - overdraw?: `boolean`
-    - Removes balance even if not enough is present (Negative balance)
+    - 十分な残高がない場合でも残高を削除します（マイナス残高）
 
-**Returns**
+**戻り値**
 
 - `object`
   - success: `boolean`
@@ -100,27 +100,27 @@ account.removeBalance(data)
 
 ## OxAccount.transferBalance
 
-Transfer funds to another account.
+別のアカウントに資金を送金します。
 
 ```lua
 account.transferBalance(data)
 ```
 
-**Parameters**
+**パラメータ**
 
 - `object`
   - toId: `number`
-    - The accountId to transfer funds to.
+    - 送金先のアカウントID。
   - amount: `number`
   - message?: `string`
-    - Message for the receiver
+    - 受信者へのメッセージ
   - overdraw?: `boolean`
   - note?: `string`
-    - Note for the initiator
+    - 送金者へのメモ
   - actorId? `number`
-    - The charId of the player initiating the transfer.
+    - 送金を開始したプレイヤーのcharId。
 
-**Returns**
+**戻り値**
 
 - `object`
   - success: `boolean`
@@ -144,20 +144,20 @@ account.transferBalance(data)
 
 ## OxAccount.depositMoney
 
-Deposit money into the account.
+アカウントにお金を入金します。
 
 ```lua
 account.depositMoney(playerId, amount, message, note)
 ```
 
-**Parameters**
+**パラメータ**
 
 - playerId: `number`
 - amount: `number`
 - message?: `string`
 - note?: `string`
 
-**Returns**
+**戻り値**
 
 - `object`
   - success: `boolean`
@@ -167,20 +167,20 @@ account.depositMoney(playerId, amount, message, note)
 
 ## OxAccount.withdrawMoney
 
-Withdraw money from the account.
+アカウントからお金を引き出します。
 
 ```lua
 account.withdrawMoney(playerId, amount, message, note)
 ```
 
-**Parameters**
+**パラメータ**
 
 - playerId: `number`
 - amount: `number`
 - message?: `string`
 - note?: `string`
 
-**Returns**
+**戻り値**
 
 - `object`
   - success: `boolean`
@@ -189,13 +189,13 @@ account.withdrawMoney(playerId, amount, message, note)
 
 ## OxAccount.deleteAccount
 
-Mark the account as deleted. It can no longer be accessed, but remains in the database.
+アカウントを削除済みとしてマークします。アクセスできなくなりますが、データベースには残ります。
 
 ```lua
 account.deleteAccount()
 ```
 
-**Returns**
+**戻り値**
 
 - `object`
   - success: `boolean`
@@ -204,35 +204,35 @@ account.deleteAccount()
 
 ## OxAccount.getCharacterRole
 
-Get the account access role of a character by charId or stateId.
+charIdまたはstateIdでキャラクターのアカウントアクセスロールを取得します。
 
 ```lua
 account.getCharacterRole(id)
 ```
 
-**Parameters**
+**パラメータ**
 
 - id: `number` | `string`
 
-**Returns**
+**戻り値**
 
 - `string`
 
 
 ## OxAccount.setCharacterRole
 
-Set the account access role of a character by charId or stateId.
+charIdまたはstateIdでキャラクターのアカウントアクセスロールを設定します。
 
 ```lua
 account.setCharacterRole(id, role)
 ```
 
-**Parameters**
+**パラメータ**
 
 - id: `number` | `string`
 - role?: `string`
 
-**Returns**
+**戻り値**
 
 - `object`
   - success: `boolean`
@@ -241,31 +241,31 @@ account.setCharacterRole(id, role)
 
 ## OxAccount.playerHasPermission
 
-Checks if a player's active character has permission to perform an action on the account.
+プレイヤーのアクティブなキャラクターがアカウントでアクションを実行する権限を持っているかどうかを確認します。
 
 ```lua
 account.playerHasPermission(playerId, permission)
 ```
 
-**Parameters**
+**パラメータ**
 
 - playerId: `number`
 - permission: `string`
 
-**Returns**
+**戻り値**
 
 - `boolean`
 
 
 ## OxAccount.setShared
 
-Set the account as shared, allowing permissions to be assigned to other characters.
+アカウントを共有として設定し、他のキャラクターに権限を割り当てられるようにします。
 
 ```lua
 account.setShared()
 ```
 
-**Returns**
+**戻り値**
 
 - `object`
   - success: `boolean`
@@ -274,24 +274,24 @@ account.setShared()
 
 ## OxAccount.createInvoice
 
-Create an unpaid invoice on the account.
+アカウントに未払いの請求書を作成します。
 
 ```lua
 account.createInvoice(invoice)
 ```
 
-**Parameters**
+**パラメータ**
 
 - invoice: `object`
   - actorId?: number;
-    - The charId of the player creating the invoice.
+    - 請求書を作成するプレイヤーのcharId。
   - toAccount: number;
-    - The accountId of the account receiving the invoice.
+    - 請求書を受け取るアカウントのアカウントID。
   - amount: number;
   - message: string;
   - dueDate: string;
 
-**Returns**
+**戻り値**
 
 - `object`
   - success: `boolean`

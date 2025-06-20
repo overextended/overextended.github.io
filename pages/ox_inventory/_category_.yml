@@ -3,4 +3,4 @@ collapsible: true
 collapsed: true
 link:
   type: generated-index
-  description: An slot-based inventory with item metadata for "item uniqueness".
+  description: 「アイテムの独自性」のためのアイテムメタデータを持つスロットベースのインベントリ。

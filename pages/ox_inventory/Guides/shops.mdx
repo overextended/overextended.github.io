@@ -1,17 +1,17 @@
 ---
-title: Creating Shops
+title: ショップの作成
 ---
 
-# Creating Shops
+# ショップの作成
 
-Builtin shops are defined in [data/shops.lua](https://github.com/overextended/ox_inventory/blob/main/data/shops.lua), and more can be added here to benefit from the built-in markers or zones support.
+組み込みショップは[data/shops.lua](https://github.com/overextended/ox_inventory/blob/main/data/shops.lua)で定義されており、組み込みのマーカーまたはゾーンサポートの恩恵を受けるためにここに追加できます。
 
-## Shop definition
+## ショップ定義
 
 ```lua
 {
     General = {
-        name = 'Shop',
+        name = 'ショップ',
         blip = {
           id = 59,
           colour = 69,
@@ -26,7 +26,7 @@ Builtin shops are defined in [data/shops.lua](https://github.com/overextended/ox
             vec3(25.7, -1347.3, 29.49),
         },
         targets = {
-            -- Shop using a BoxZone
+            -- BoxZoneを使用したショップ
             {
                 loc = vec3(25.06, -1347.32, 29.5),
                 length = 0.7,
@@ -36,7 +36,7 @@ Builtin shops are defined in [data/shops.lua](https://github.com/overextended/ox
                 maxZ = 29.9,
                 distance = 1.5
             },
-            -- Shop using a ped
+            -- 歩行者を使用したショップ
             {
                 ped = `mp_m_shopkeep_01`,
                 scenario = 'WORLD_HUMAN_AA_COFFEE',
@@ -49,48 +49,48 @@ Builtin shops are defined in [data/shops.lua](https://github.com/overextended/ox
 ```
 
 - name: `string`
-  - The label to display when the shop is open.
+  - ショップが開いているときに表示されるラベル。
 - blip?: `table`
-  - Creates a blip with the given settings. Leave it undefined for no blip to be created.
+  - 指定された設定でブリップを作成します。ブリップを作成しない場合は未定義のままにします。
   - id: `number`
   - colour: `number`
   - scale: `number`
 - groups?: `table`
-  - Key-value pairs of job name and minimum grade to access the shop.
+  - ショップにアクセスするためのジョブ名と最小グレードのキーと値のペア。
     - `{["police"] = 0, ["ambulance"] = 2}`
 - inventory: `table`
   - name: `string`
   - price: `number`
   - currency?: `string`
-    - Item to be used as currency.
+    - 通貨として使用されるアイテム。
   - count?: `number`
-    - Amount of the item in the stock.
+    - 在庫にあるアイテムの量。
   - license?: `string`
-    - License required to purchase the item.
+    - アイテムの購入に必要なライセンス。
   - metadata?: `table`
   - grade?: `number` | `number[]`
-    - Minimal grade required to purchase the item.
+    - アイテムの購入に必要な最小グレード。
 - locations?: `vector3[]`
-  - An array of coordinates to create unique instances of the shop archetype at, using markers.
+  - マーカーを使用して、ショップアーキタイプのユニークなインスタンスを作成する座標の配列。
 - targets?: `table[]`
-  - An array of target settings to create unique instances of the shop archetype at, using peds or BoxZones (PolyZone data structure).
+  - 歩行者またはBoxZone（PolyZoneデータ構造）を使用して、ショップアーキタイプのユニークなインスタンスを作成するターゲット設定の配列。
 - model?: `number[]`
-  - An array of models that can be targetted to open a shop. Used for vending machines.
+  - ショップを開くためにターゲットにできるモデルの配列。自動販売機に使用されます。
 
-Targets and model are only available when using a targeting resource like ox_target.
+ターゲットとモデルは、ox_targetなどのターゲティングリソースを使用する場合にのみ使用できます。
 
-## Register during runtime
+## ランタイム中の登録
 
-Shops can be added using `exports.ox_inventory:RegisterShop` on the server, however they cannot utilise any client-only features.
+ショップはサーバーで `exports.ox_inventory:RegisterShop` を使用して追加できますが、クライアント専用機能は利用できません。
 
-- Blips, markers, and zones will not be created.
-- Must use "locations" and not "targets" to define each shop using the archetype.
+- ブリップ、マーカー、ゾーンは作成されません。
+- アーキタイプを使用して各ショップを定義するには、「targets」ではなく「locations」を使用する必要があります。
 
-### Example
+### 例
 
 ```lua
 exports.ox_inventory:RegisterShop('TestShop', {
-    name = 'Test shop',
+    name = 'テストショップ',
     inventory = {
         { name = 'burger', price = 10 },
         { name = 'water', price = 10 },

@@ -1,32 +1,32 @@
 ## Ox.GetGroupPermissions
 
-Returns the `OxGroupPermissions` object for the group
+グループの `OxGroupPermissions` オブジェクトを返します
 
 ```lua
 Ox.GetGroupPermissions(groupName)
 ```
 
-**Parameters**
+**パラメータ**
 
 - groupName: `string`
 
-**Returns**
+**戻り値**
 
 - `OxGroupPermissions`
 
 ## Ox.GetTopVehicleStats
 
-Returns an object containing the top vehicle stats, either overall or for a specific category (land, air, sea).
+全体または特定のカテゴリ（陸、空、海）のトップ車両統計を含むオブジェクトを返します。
 
 ```lua
 Ox.GetTopVehicleStats(category?)
 ```
 
-**Parameters**
+**パラメータ**
 
 - category?: `string`
 
-**Returns**
+**戻り値**
 
 - `VehicleStats` | `{ [string]: VehicleStats }`
 
@@ -41,17 +41,17 @@ Ox.GetTopVehicleStats(category?)
 
 ## Ox.GetVehicleData
 
-Returns VehicleData for all vehicles, or optionally a specific model or array of models.
+すべての車両のVehicleData、またはオプションで特定のモデルまたはモデルの配列のVehicleDataを返します。
 
 ```lua
 Ox.GetVehicleData(filter?)
 ```
 
-**Parameters**
+**パラメータ**
 
 - filter?: `string` | `string[]`
 
-**Returns**
+**戻り値**
 
 - `{ [string]: VehicleData }` | `VehicleData`
 
@@ -68,16 +68,16 @@ Ox.GetVehicleData(filter?)
 
 ## Ox.GetVehicleNetworkType
 
-Returns the netobj type of a vehicle model, which may differ from the vehicle type (e.g. blimp is networked as heli).
+車両モデルのnetobjタイプを返します。これは車両タイプとは異なる場合があります（例：blimpはheliとしてネットワーク化されます）。
 
 ```lua
 Ox.GetVehicleNetworkType(modelName)
 ```
 
-**Parameters**
+**パラメータ**
 
 - modelName: `string`
 
-**Returns**
+**戻り値**
 
 - `string`

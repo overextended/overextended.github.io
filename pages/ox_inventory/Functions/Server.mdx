@@ -1,11 +1,11 @@
 import { Tabs, Tab } from 'nextra-theme-docs';
 import { Callout } from 'nextra/components';
 
-# Server
+# サーバー
 
 ## setPlayerInventory
 
-Creates and sets the player's inventory.
+プレイヤーのインベントリを作成して設定します。
 
 ```lua
 exports.ox_inventory:setPlayerInventory(player, data)
@@ -19,12 +19,12 @@ exports.ox_inventory:setPlayerInventory(player, data)
   - sex?: `string`
   - dateofbirth?: `string`
 - data?: `table`
-  - If not provided will load player's inventory data from the db.
+  - 提供されていない場合、データベースからプレイヤーのインベントリデータをロードします。
 
 ## forceOpenInventory
 
-Opens an inventory using the passed data.
-Forces a player to open an inventory, without usual security checks (groups, coords).
+渡されたデータを使用してインベントリを開きます。
+通常のセキュリティチェック（グループ、座標）なしで、プレイヤーにインベントリを開くことを強制します。
 
 ```lua
 exports.ox_inventory:forceOpenInventory(playerId, invType, data)
@@ -39,17 +39,17 @@ exports.ox_inventory:forceOpenInventory(playerId, invType, data)
   - `'glovebox'`
   - `'trunk'`
   - `'dumpster'`
-- data: `number` or `string` or `table`
+- data: `number` または `string` または `table`
 
 <Tabs items={["Player", "Stash"]}>
   <Tab>
-    Open the target player's inventory.
+    ターゲットプレイヤーのインベントリを開きます。
 
     ```lua
     exports.ox_inventory:forceOpenInventory(1, 'player', 3)
     ```
 
-    Admin command to open a player's inventory.
+    プレイヤーのインベントリを開くための管理者コマンド。
 
     ```lua
     RegisterCommand('openplayerinv', function(source, args)
@@ -59,13 +59,13 @@ exports.ox_inventory:forceOpenInventory(playerId, invType, data)
   </Tab>
   <Tab>
 
-    Open a custom stash (created on the server with RegisterStash).
+    カスタムスタッシュを開きます（サーバーでRegisterStashを使用して作成）。
 
     ```lua
     exports.ox_inventory:forceOpenInventory(1, 'stash', 'society_police')
     ```
 
-    Open a stash with a specific owner.
+    特定の所有者のスタッシュを開きます。
 
     ```lua
     exports.ox_inventory:forceOpenInventory(1, 'stash', { id = 'police_locker', owner = 'license:xxxxxxxx' })
@@ -75,7 +75,7 @@ exports.ox_inventory:forceOpenInventory(playerId, invType, data)
 
 ## UpdateVehicle
 
-Update the internal reference to vehicle stashes, without triggering a save or updating the database.
+保存をトリガーしたりデータベースを更新したりせずに、車両スタッシュへの内部参照を更新します。
 
 ```lua
 exports.ox_inventory:UpdateVehicle(oldPlate, newPlate)
@@ -86,9 +86,9 @@ exports.ox_inventory:UpdateVehicle(oldPlate, newPlate)
 
 ## Items
 
-Returns a table of all registered items. The format is as defined in [data/items.lua](https://github.com/overextended/ox_inventory/blob/main/data/items.lua).
+登録されているすべてのアイテムのテーブルを返します。形式は[data/items.lua](https://github.com/overextended/ox_inventory/blob/main/data/items.lua)で定義されているとおりです。
 
-Optionally takes the name of an item, returning only data for that item (getting all data is not recommended).
+オプションでアイテムの名前を取り、そのアイテムのデータのみを返します（すべてのデータを取得することはお勧めしません）。
 
 ```lua
 exports.ox_inventory:Items(itemName)
@@ -96,7 +96,7 @@ exports.ox_inventory:Items(itemName)
 
 - itemName?: `string`
 
-The following snippet can be used in crafting resources such as okokCrafting or core_crafting, rather than querying the database.
+次のスニペットは、データベースにクエリを実行するのではなく、okokCraftingやcore_craftingなどのクラフトリソースで使用できます。
 
 ```lua
 local itemNames
@@ -114,38 +114,38 @@ end)
 
 ## AddItem
 
-Adds an item into the specified inventory.
+指定されたインベントリにアイテムを追加します。
 
-Should be used alongside [CanCarryItem](#cancarryitem) otherwise, the maximum weight may be exceeded.
+[CanCarryItem](#cancarryitem)と一緒に使用する必要があります。そうしないと、最大重量を超える可能性があります。
 
 ```lua
 exports.ox_inventory:AddItem(inv, item, count, metadata, slot, cb)
 ```
 
-- inv: `table` or `string` or `number`
-  - The inventory's unique id, or a table with the id and owner.
+- inv: `table` または `string` または `number`
+  - インベントリの一意のID、またはIDと所有者を含むテーブル。
     - playerId: `1`
     - inventoryId: `gloveVGH283`
     - `{ id = 'personallocker', owner = 'license:xxxxxx'}`
 - item: `string`
-  - The name of the item to add to the target.
+  - ターゲットに追加するアイテムの名前。
 - count: `number`
-  - The number of items to add.
-- metadata?: `table` or `string`
-  - A table of unique data to attach to the item object. A string will create a table with the "type" field.
+  - 追加するアイテムの数。
+- metadata?: `table` または `string`
+  - アイテムオブジェクトに添付する一意のデータのテーブル。文字列は「type」フィールドを持つテーブルを作成します。
 - slot?: `number`
-  - A specific slot to add the item to. If the slot is invalid, the first available slot will be used instead.
+  - アイテムを追加する特定のスロット。スロットが無効な場合、最初に使用可能なスロットが代わりに使用されます。
 - cb?: function(success: `boolean`, response?: `string`)
 
-If used for glovebox, trunk or stash you must first check the inventory is loaded with [GetInventory](./GetInventory.md)
+グローブボックス、トランク、またはスタッシュに使用する場合、最初に[GetInventory](./GetInventory.md)でインベントリがロードされていることを確認する必要があります。
 
-Returns `success, response` if cb is undefined, otherwise they are used in the callback only.
+cbが未定義の場合は `success, response` を返します。それ以外の場合は、コールバックでのみ使用されます。
 
-**Possible value of the "response" argument, on failure:**
+**失敗時の「response」引数の可能な値：**
 
-- "invalid_item": the item doesn't exist
-- "invalid_inventory": the inventory doesn't exist
-- "inventory_full": no free slots
+- "invalid_item"：アイテムが存在しません
+- "invalid_inventory"：インベントリが存在しません
+- "inventory_full"：空きスロットがありません
 
 <br />
 <u>**Example**</u>
@@ -154,7 +154,7 @@ Returns `success, response` if cb is undefined, otherwise they are used in the c
 local success, response = exports.ox_inventory:AddItem('gloveVGH283', 'bread', 4)
 
 if not success then
-    -- if no slots are available, the value will be "inventory_full"
+    -- 利用可能なスロットがない場合、値は「inventory_full」になります
     return print(response)
 end
 
@@ -175,62 +175,61 @@ print(json.encode(response, {indent=true}))
 
 ## RemoveItem
 
-Removes the specified item from the specified inventory.
+指定されたインベントリから指定されたアイテムを削除します。
 
 ```lua
 exports.ox_inventory:RemoveItem(inv, item, count, metadata, slot, ignoreTotal)
 ```
 
-- inv: `table` or `string` or `number`
-  - The inventory's unique id, or a table with the id and owner.
+- inv: `table` または `string` または `number`
+  - インベントリの一意のID、またはIDと所有者を含むテーブル。
     - playerId: `1`
     - inventoryId: `gloveVGH283`
     - `{ id = 'personallocker', owner = 'license:xxxxxx'}`
 - item: `string`
-  - The name of the item to remove from the target.
+  - ターゲットから削除するアイテムの名前。
 - count: `number`
-  - The number of items to remove.
-- metadata?: `table` or `string`
-  - Only remove items with matching metadata properties.
+  - 削除するアイテムの数。
+- metadata?: `table` または `string`
+  - 一致するメタデータプロパティを持つアイテムのみを削除します。
 - slot?: `number`
-  - A specific slot to remove the item from. If the slot is invalid, the first available slot will be used instead.
+  - アイテムを削除する特定のスロット。スロットが無効な場合、最初に使用可能なスロットが代わりに使用されます。
 - ignoreTotal?: `boolean`
-  - Removes as many items as possible up to count.
+  - 指定された数まで、できるだけ多くのアイテムを削除します。
 
-Returns success: `boolean`, response: `string?`.
+成功：`boolean`、応答：`string?` を返します。
 
-**Possible values of "response" on failure:**
+**失敗時の「response」の可能な値：**
 
-- "invalid_item": the item doesn't exist
-- "invalid_inventory": the inventory doesn't exist
-- "not_enough_items": inventory did not contain enough of the given item
+- "invalid_item"：アイテムが存在しません
+- "invalid_inventory"：インベントリが存在しません
+- "not_enough_items"：インベントリに指定されたアイテムが十分にありませんでした
 
 <br />
 <u>**Example**</u>
 
 ```lua
--- Removes 2 water from the glovebox for the given plate.
+-- 指定されたプレートのグローブボックスから水を2つ削除します。
 local success = exports.ox_inventory:RemoveItem('gloveVGH283', 'water', 2)
 ```
 
 ## GetItem
 
-Returns _generic_ item data from the specified inventory, with the total count.
+指定されたインベントリから_一般的な_アイテムデータを合計数とともに返します。
 
 ```lua
 exports.ox_inventory:GetItem(inv, item, metadata, returnsCount)
 ```
 
-- inv: `table` or `string` or `number`
-- item: `table` or `string`
-  - Can be items array.
+- inv: `table` または `string` または `number`
+- item: `table` または `string`
+  - アイテム配列にすることができます。
 - metadata?: `any`
-  - Only returns the count of items that strictly match the given metadata.
+  - 指定されたメタデータに厳密に一致するアイテムの数のみを返します。
 - returnsCount?: `boolean`
 
-If `returnsCount` is set to true, the returned value will be the `count` based on
-how many times the item was found.
-Otherwise returns the data related to the item _and_ its total count found in the inventory.
+`returnsCount` がtrueに設定されている場合、返される値はアイテムが見つかった回数に基づく `count` になります。
+それ以外の場合は、アイテムに関連するデータ _と_ インベントリで見つかった合計数を返します。
 
 <br />
 <u>**Example**</u>
@@ -254,7 +253,7 @@ print(json.encode(item, {indent=true}))
 
 ## ConvertItems
 
-Takes traditional item data and updates it to support ox_inventory.
+従来のアイテムデータを取り込み、ox_inventoryをサポートするように更新します。
 
 ```lua
 exports.ox_inventory:ConvertItems(playerId, items)
@@ -274,94 +273,94 @@ New: [{"slot":1,"name":"cola","count":1},
 
 ## CanCarryItem
 
-Returns true or false depending if the inventory can carry the specified item.
+インベントリが指定されたアイテムを運ぶことができるかどうかに応じてtrueまたはfalseを返します。
 
-The function checks for inventory weight and available slots.
+この関数は、インベントリの重量と利用可能なスロットを確認します。
 
 ```lua
 exports.ox_inventory:CanCarryItem(inv, item, count, metadata)
 ```
 
-- inv: `table` or `string` or `number`
-- item `table` or `string`
-  - Can be array of items.
+- inv: `table` または `string` または `number`
+- item `table` または `string`
+  - アイテムの配列にすることができます。
 - count: `number`
-- metadata?: `table` or `string`
-  - If metadata is passed as string then `metadata.type` will be checked.
+- metadata?: `table` または `string`
+  - metadataが文字列として渡された場合、`metadata.type` がチェックされます。
 
 <br />
 <u>**Example**</u>
 
 ```lua
--- Checks if the player calling the event can carry 3 water items
+-- イベントを呼び出しているプレイヤーが水を3つ運ぶことができるかどうかを確認します
 if exports.ox_inventory:CanCarryItem(source, 'water', 3) then
-    -- Do stuff if can carry
+    -- 運ぶことができる場合の処理
 else
-    -- Do stuff if can't carry
+    -- 運ぶことができない場合の処理
 end
 ```
 
 ## CanCarryAmount
 
-Returns the amount a player can hold based on available weight.
+利用可能な重量に基づいてプレイヤーが保持できる量を返します。
 
 ```lua
 exports.ox_inventory:CanCarryAmount(inv, item)
 ```
 
-- inv: `table` or `string` or `number`
-- item: `table` or `string`
-  - Can be array to check multiple items.
+- inv: `table` または `string` または `number`
+- item: `table` または `string`
+  - 複数のアイテムを確認するために配列にすることができます。
 
 <br />
 <u>**Example**</u>
 
 ```lua
--- Checks how much you can carry
+-- どれだけ運べるかを確認します
 amountToAdd = exports.ox_inventory:CanCarryAmount(inv, 'stone')
--- Adds the amount
+-- 量を追加します
 exports.ox_inventory:AddItem(inv, 'stone', amountToAdd)
 ```
 
 ## CanCarryWeight
 
-Returns if inventory can carry specified weight and free inventory weight.
+インベントリが指定された重量を運ぶことができるかどうか、および空きインベントリ重量を返します。
 
 ```lua
 exports.ox_inventory:CanCarryWeight(inv, weight)
 ```
 
-- inv: `table` or `string` or `number`
+- inv: `table` または `string` または `number`
 - weight: `number`
 
 <br />
 <u>**Example**</u>
 
 ```lua
--- Checks if player can carry 1000 grams.
+-- プレイヤーが1000グラム運べるかどうかを確認します。
 local fillAmount = 1000
 local canCarryWeight, freeWeight = ox_inventory:CanCarryWeight(playerId, fillAmount)
 
 if freeWeight == 0 then
-  -- Player can't carry weight.
+  -- プレイヤーは重量を運ぶことができません。
   return
 elseif not canCarryWeight then
-  -- Modify fillAmount, because inventory can't carry specified weight
+  -- インベントリが指定された重量を運ぶことができないため、fillAmountを変更します
   fillAmount = freeWeight
 end
 
--- Do something
+-- 何かをする
 ```
 
 ## SetMaxWeight
 
-Sets the maximum weight available for an inventory.
+インベントリで使用可能な最大重量を設定します。
 
 ```lua
 exports.ox_inventory:SetMaxWeight(inv, maxWeight)
 ```
 
-- inv: `table` or `string` or `number`
+- inv: `table` または `string` または `number`
 - maxWeight: `number`
 
 <br />
@@ -370,19 +369,19 @@ exports.ox_inventory:SetMaxWeight(inv, maxWeight)
 ```lua
 local ox_inventory = exports.ox_inventory
 
--- Set the max weight for player 1's inventory to 20kg.
+-- プレイヤー1のインベントリの最大重量を20kgに設定します。
 ox_inventory:SetMaxWeight(1, 20000)
 ```
 
 ## CanSwapItem
 
-Returns true if the item swap is possible based on inventory weight.
+インベントリの重量に基づいてアイテムの交換が可能かどうかに応じてtrueを返します。
 
 ```lua
 exports.ox_inventory:CanSwapItem(inv, firstItem, firstItemCount, testItem, testItemCount)
 ```
 
-- inv: `table` or `string` or `number`
+- inv: `table` または `string` または `number`
 - firstItem: `string`
 - firstItemCount: `number`
 - testItem: `string`
@@ -390,43 +389,43 @@ exports.ox_inventory:CanSwapItem(inv, firstItem, firstItemCount, testItem, testI
 
 ## GetItemCount
 
-Get the total item count for all items in an inventory with the given name and metadata.
+指定された名前とメタデータを持つインベントリ内のすべてのアイテムの合計アイテム数を取得します。
 
 ```lua
 exports.ox_inventory:GetItemCount(inv, itemName, metadata, strict)
 ```
 
-- inv: `table` or `string` or `number`
+- inv: `table` または `string` または `number`
 - itemName: `string`
 - metadata?: `table`
 - strict?: `boolean`
-  - Strictly match metadata properties, otherwise use partial matching.
+  - メタデータプロパティを厳密に一致させるか、部分一致を使用します。
 
 Return:
 - itemCount: `number`
 
 ## GetItemSlots
 
-Returns the number of slots the specified item is in, the item's total count and the remaining empty slots.
+指定されたアイテムが含まれているスロットの数、アイテムの合計数、および残りの空のスロット数を返します。
 
 ```lua
 exports.ox_inventory:GetItemSlots(inv, item, metadata)
 ```
 
-- inv: `table` or `string` or `number`
-- item: `table` or `string`
+- inv: `table` または `string` または `number`
+- item: `table` または `string`
 - metadata?: `table`
 
 ## GetSlot
 
-Returns the specified slot data as a table.
+指定されたスロットデータをテーブルとして返します。
 
 ```lua
 
 exports.ox_inventory:GetSlot(inv, slot)
 ```
 
-- inv: `table` or `string` or `number`
+- inv: `table` または `string` または `number`
 - slot: `number`
 
 <br />
@@ -452,13 +451,13 @@ print(json.encode(slot, {indent=true}))
 
 ## GetSlotForItem
 
-Get the slot id of an existing item matching the given data, or an empty slot.
+指定されたデータに一致する既存のアイテムのスロットID、または空のスロットを取得します。
 
 ```lua
 exports.ox_inventory:GetSlotForItem(inv, itemName, metadata)
 ```
 
-- inv: `table` or `string` or `number`
+- inv: `table` または `string` または `number`
 - itemName: `string`
 - metadata: `table?`
 
@@ -467,94 +466,94 @@ Return:
 
 ## GetSlotIdWithItem
 
-Get a slot id in an inventory matching the given item name and metadata.
+指定されたアイテム名とメタデータに一致するインベントリ内のスロットIDを取得します。
 
 ```lua
 exports.ox_inventory:GetSlotIdWithItem(inv, itemName, metadata, strict)
 ```
 
-- inv: `table` or `string` or `number`
+- inv: `table` または `string` または `number`
 - itemName: `string`
 - metadata?: `table`
 - strict?: `boolean`
-  - Strictly match metadata properties, otherwise use partial matching.
+  - メタデータプロパティを厳密に一致させるか、部分一致を使用します。
 
 Return:
 - slotId: `number?`
 
 ## GetSlotIdsWithItem
 
-Get all slot ids in an inventory matching the given name and metadata.
+指定された名前とメタデータに一致するインベントリ内のすべてのスロットIDを取得します。
 
 ```lua
 exports.ox_inventory:GetSlotIdsWithItem(inv, itemName, metadata, strict)
 ```
 
-- inv: `table` or `string` or `number`
+- inv: `table` または `string` または `number`
 - itemName: `string`
 - metadata?: `table`
 - strict?: `boolean`
-  - Strictly match metadata properties, otherwise use partial matching.
+  - メタデータプロパティを厳密に一致させるか、部分一致を使用します。
 
 Return:
 - slotIds: `number[]?`
 
 ## GetSlotWithItem
 
-Get data for a slot in an inventory matching the given name and metadata.
+指定された名前とメタデータに一致するインベントリ内のスロットのデータを取得します。
 
 ```lua
 exports.ox_inventory:GetSlotWithItem(inv, itemName, metadata, strict)
 ```
 
-- inv: `table` or `string` or `number`
+- inv: `table` または `string` または `number`
 - itemName: `string`
 - metadata?: `table`
 - strict?: `boolean`
-  - Strictly match metadata properties, otherwise use partial matching.
+  - メタデータプロパティを厳密に一致させるか、部分一致を使用します。
 
 Return:
 - slotData: `table?`
 
 ## GetSlotsWithItem
 
-Get data all slots in an inventory matching the given name and metadata.
+指定された名前とメタデータに一致するインベントリ内のすべてのスロットのデータを取得します。
 
 ```lua
 exports.ox_inventory:GetSlotsWithItem(inv, itemName, metadata, strict)
 ```
 
-- inv: `table` or `string` or `number`
+- inv: `table` または `string` または `number`
 - itemName: `string`
 - metadata?: `table`
 - strict?: `boolean`
-  - Strictly match metadata properties, otherwise use partial matching.
+  - メタデータプロパティを厳密に一致させるか、部分一致を使用します。
 
 Return:
 - slotsData: `table[]?`
 
 ## GetEmptySlot
 
-Get the first available empty slot in an inventory.
+インベントリ内の最初に使用可能な空のスロットを取得します。
 
 ```lua
 exports.ox_inventory:GetEmptySlot(inv)
 ```
 
-- inv: `table` or `string` or `number`
+- inv: `table` または `string` または `number`
 
 Return:
 - slotId: `number?`
 
 ## GetContainerFromSlot
 
-Returns the inventory associated with the container linked in the slot of the given inventory.
+指定されたインベントリのスロットにリンクされているコンテナに関連付けられているインベントリを返します。
 
 ```lua
 exports.ox_inventory:GetContainerFromSlot(inv, slotId)
 ```
 
-- inv: `table` or `string` or `number`
+- inv: `table` または `string` または `number`
 - slotId: `number`
 
 Return:
@@ -562,13 +561,13 @@ Return:
 
 ## SetSlotCount
 
-Sets the number of slots available for an inventory.
+インベントリで使用可能なスロット数を設定します。
 
 ```lua
 exports.ox_inventory:SetSlotCount(inv, slots)
 ```
 
-- inv: `table` or `string` or `number`
+- inv: `table` または `string` または `number`
 - slots: `number`
 
 <br />
@@ -577,20 +576,20 @@ exports.ox_inventory:SetSlotCount(inv, slots)
 ```lua
 local ox_inventory = exports.ox_inventory
 
--- Set the slot count for player 1's inventory to 10.
+-- プレイヤー1のインベントリのスロット数を10に設定します。
 ox_inventory:SetSlotCount(1, 10)
 ```
 
 ## GetInventory
 
-Returns the inventory associated with the ID (and owner if defined). Otherwise returns null.
+ID（および定義されている場合は所有者）に関連付けられているインベントリを返します。それ以外の場合はnullを返します。
 
 ```lua
 exports.ox_inventory:GetInventory(inv, owner)
 ```
 
-- inv: `number` or `table`
-- owner?: `string` or `boolean`
+- inv: `number` または `table`
+- owner?: `string` または `boolean`
 
 <br />
 <u>**Example**</u>
@@ -614,14 +613,14 @@ print(json.encode(inventory, {indent = true}))
 
 ## GetInventoryItems
 
-Returns all slots with items in a inventory.
+インベントリ内のアイテムを持つすべてのスロットを返します。
 
 ```lua
 exports.ox_inventory:GetInventoryItems(inv, owner)
 ```
 
-- inv: `number` or `table`
-- owner?: `string` or `boolean`
+- inv: `number` または `table`
+- owner?: `string` または `boolean`
 
 <br />
 <u>**Example**</u>
@@ -632,7 +631,7 @@ local playerItems = exports.ox_inventory:GetInventoryItems(source)
 
 ## InspectInventory
 
-Inspect the player their inventory. You will not be able to modify the inventory.
+プレイヤーのインベントリを検査します。インベントリを変更することはできません。
 
 ```lua
 exports.ox_inventory:InspectInventory(target, source)
@@ -642,10 +641,9 @@ exports.ox_inventory:InspectInventory(target, source)
 
 ## ConfiscateInventory
 
-Clears a player's inventory and saves it to a stash.
+プレイヤーのインベントリをクリアし、スタッシュに保存します。
 
-Use [ReturnInventory](#returninventory) to return the confiscated inventory back to
-the player.
+没収されたインベントリをプレイヤーに返すには、[ReturnInventory](#returninventory) を使用します。
 
 ```lua
 exports.ox_inventory:ConfiscateInventory(source)
@@ -655,9 +653,9 @@ exports.ox_inventory:ConfiscateInventory(source)
 
 ## ReturnInventory
 
-Returns the confiscated inventory back to the player.
+没収されたインベントリをプレイヤーに返します。
 
-Use it alongside [ConfiscateInventory](#confiscateinventory).
+[ConfiscateInventory](#confiscateinventory) と一緒に使用します。
 
 ```lua
 exports.ox_inventory:ReturnInventory(source)
@@ -667,66 +665,66 @@ exports.ox_inventory:ReturnInventory(source)
 
 ## ClearInventory
 
-Clears the specified inventory. The `keep` argument is either a string or an array of strings containing the name(s) of the item(s) to keep in the inventory after clearing.
+指定されたインベントリをクリアします。`keep` 引数は、クリア後にインベントリに保持するアイテムの名前を含む文字列または文字列の配列です。
 
 ```lua
 exports.ox_inventory:ClearInventory(inv, keep)
 ```
 
-- inv: `table` or `string` or `number`
-- keep?: `string` or `string[]`
+- inv: `table` または `string` または `number`
+- keep?: `string` または `string[]`
 
 ## Search
 
-Searches an inventory for a specified item.
+指定されたアイテムのインベントリを検索します。
 
 ```lua
 exports.ox_inventory:Search(inv, search, item, metadata)
 ```
 
-- inv: `table` or `string` or `number`
+- inv: `table` または `string` または `number`
 - search: `string`
-- item: `table` or `string`
-- metadata?: `table` or `string`
+- item: `table` または `string`
+- metadata?: `table` または `string`
 
-`search` can be either `'slots'` or `'count'`, where slots will return a table of data
-and count will return the found amount of the specified item.
+`search` は `'slots'` または `'count'` のいずれかであり、slotsはデータのテーブルを返し、
+countは指定されたアイテムの見つかった量を返します。
 
 ## RegisterStash
 
-Creates a new custom stash.
+新しいカスタムスタッシュを作成します。
 
 ```lua
 exports.ox_inventory:RegisterStash(id, label, slots, maxWeight, owner, groups, coords)
 ```
 
-- id: `string` or `number`
-  - Stash identifier when loading from the database.
+- id: `string` または `number`
+  - データベースからロードするときのスタッシュ識別子。
 - label: `string`
-  - Display name when inventory is open.
+  - インベントリが開いているときの表示名。
 - slots: `number`
 - maxWeight: `number`
-- owner: `string` or `boolean` or `nil`
-  - `string`: Can only access the stash linked to the owner.
-  - `true`: Each player has a unique stash but can request other player's stashes.
-  - `nil`: Always shared.
+- owner: `string` または `boolean` または `nil`
+  - `string`：所有者にリンクされているスタッシュにのみアクセスできます。
+  - `true`：各プレイヤーは一意のスタッシュを持っていますが、他のプレイヤーのスタッシュを要求できます。
+  - `nil`：常に共有されます。
 - groups: `table`
-  - Table of player groups (jobs) able to access the stash.
-  - Table of group names where the numeric value is the minimum grade required.
+  - スタッシュにアクセスできるプレイヤーグループ（ジョブ）のテーブル。
+  - 数値が最小必要グレードであるグループ名のテーブル。
   - `{['police'] = 0, ['ambulance'] = 2}`
-- coords?: `vector3` or `vector3[]`
+- coords?: `vector3` または `vector3[]`
 
 <Callout>
-  This function needs to be triggered before a player can open the stash.
+  プレイヤーがスタッシュを開く前に、この関数をトリガーする必要があります。
 </Callout>
 
 <br />
 <u>**Example**</u><br />
-For a use case example on this function check out the written [Guide](../Guides/stashes) for it.
+この関数のユースケース例については、作成された[ガイド](../Guides/stashes)を確認してください。
 
 ## CreateTemporaryStash
 
-Creates a temporary stash which will be removed after some time.
+しばらくすると削除される一時的なスタッシュを作成します。
 
 ```lua
 exports.ox_inventory:CreateTemporaryStash(properties)
@@ -736,17 +734,17 @@ exports.ox_inventory:CreateTemporaryStash(properties)
   - label: `string`
   - slots: `number`
   - maxWeight: `number`
-  - owner?: `string` `number` or `boolean`
-    - `string`: Can only access the stash linked to the owner.
-    - `true`: Each player has a unique stash but can request other player's stashes.
-    - The inventory is always shared if `false` or `nil`.
+  - owner?: `string` `number` または `boolean`
+    - `string`：所有者にリンクされているスタッシュにのみアクセスできます。
+    - `true`：各プレイヤーは一意のスタッシュを持っていますが、他のプレイヤーのスタッシュを要求できます。
+    - インベントリは、`false` または `nil` の場合は常に共有されます。
   - groups?: `table<string, number>`
-    - Table of group names (e.g. jobs) where the numeric value is the minimum grade required.
+    - 数値が最小必要グレードであるグループ名（ジョブなど）のテーブル。
     - `{['police'] = 0, ['ambulance'] = 2}`
   - coords?: `vector3`
-    - Stash can only be accessed while nearby.
+    - スタッシュは近くにいる場合にのみアクセスできます。
   - items?: `{ [number]: string, [number]: number, [number]?: table }[]`
-    - An array of tables, containing a sequence of itemName, count, metadata.
+    - itemName、count、metadataのシーケンスを含むテーブルの配列。
 
 Return:
 - inventoryId: `string`
@@ -771,7 +769,7 @@ TriggerClientEvent('ox_inventory:openInventory', 1, 'stash', mystash)
 
 ## CustomDrop
 
-Drops can be created from other resources, containing a variety of items and utilising a custom label (instead of 'Drop 32648').
+ドロップは他のリソースから作成でき、さまざまなアイテムを含み、カスタムラベルを利用できます（「ドロップ32648」の代わりに）。
 
 ```lua
 exports.ox_inventory:CustomDrop(prefix, items, coords, slots, maxWeight, instance, model)
@@ -785,17 +783,17 @@ exports.ox_inventory:CustomDrop(prefix, items, coords, slots, maxWeight, instanc
 - coords: `vector3`
 - slots?: `number`
 - maxWeight?: `number`
-- instance?: `string` or `number`
+- instance?: `string` または `number`
 - model?: `number`
 
 ```lua
--- Create a generic drop with a marker
+-- マーカー付きの一般的なドロップを作成します
 exports.ox_inventory:CustomDrop('Carcass', {
     {'meat', 5, { grade = 2, type = 'deer' }},
     {'hide', 5, { grade = 2, type = 'deer' }}
 }, coords)
 
--- Create a drop with an entity
+-- エンティティ付きのドロップを作成します
 exports.ox_inventory:CustomDrop('SMG', {
     { 'WEAPON_MINISMG', 1 },
     { 'ammo-9', 69 },
@@ -804,7 +802,7 @@ exports.ox_inventory:CustomDrop('SMG', {
 
 ## CreateDropFromPlayer
 
-Creates a new drop with the contents of a player's inventory.
+プレイヤーのインベントリの内容で新しいドロップを作成します。
 
 ```lua
 exports.ox_inventory:CreateDropFromPlayer(playerId)
@@ -812,7 +810,7 @@ exports.ox_inventory:CreateDropFromPlayer(playerId)
 
 - playerId: `number`
 
-Return:
+戻り値:
 - dropId: `string`
 
 <br />
@@ -824,26 +822,26 @@ local dropId = exports.ox_inventory:CreateDropFromPlayer(1)
 
 ## GetCurrentWeapon
 
-Returns the player's currently equipped weapon as a table.
+プレイヤーが現在装備している武器をテーブルとして返します。
 
 ```lua
--- inv: string or number
+-- inv: string または number
 exports.ox_inventory:GetCurrentWeapon(inv)
 ```
 
-- inv: `table` or `string` or `number`
+- inv: `table` または `string` または `number`
 
 ## SetDurability
 
-Sets durability onto the specified slot.
+指定されたスロットに耐久性を設定します。
 
-Can be used for repairing weapons.
+武器の修理に使用できます。
 
 ```lua
 exports.ox_inventory:SetDurability(inv, slot, durability)
 ```
 
-- inv: `table` or `string` or `number`
+- inv: `table` または `string` または `number`
 - slot: `number`
 - durability: `number`
 
@@ -853,10 +851,10 @@ exports.ox_inventory:SetDurability(inv, slot, durability)
 ```lua
 local ox_inventory = exports.ox_inventory
 
--- Set the durability of the item in slot 3 of source player's inventory to 100
+-- ソースプレイヤーのインベントリのスロット3のアイテムの耐久性を100に設定します
 ox_inventory:SetDurability(source, 3, 100)
 
--- Set the durability of the source player's current weapon to 100
+-- ソースプレイヤーの現在の武器の耐久性を100に設定します
 local weapon = ox_inventory:GetCurrentWeapon(source)
 
 if weapon then
@@ -866,13 +864,13 @@ end
 
 ## SetMetadata
 
-Sets metadata on the specified slot.
+指定されたスロットにメタデータを設定します。
 
 ```lua
 ox_inventory:SetMetadata(inv, slot, metadata)
 ```
 
-- inv: `table` or `string` or `number`
+- inv: `table` または `string` または `number`
 - slot: `number`
 - metadata: `table`
 
@@ -892,5 +890,5 @@ end
 
 water.metadata.type = 'clean'
 ox_inventory:SetMetadata(source, water.slot, water.metadata)
-print(('modified %sx water in slot %s with new metadata'):format(water.count, water.slot))
+print(('スロット %s の %sx 個の水を新しいメタデータで変更しました'):format(water.slot, water.count))
 ```

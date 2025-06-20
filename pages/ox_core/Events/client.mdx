@@ -1,14 +1,14 @@
 import { Callout, Tabs } from 'nextra/components';
 
-# Client Events
+# クライアントイベント
 
 <Callout type="warning">
-These events are triggered by ox_core when an action occurs. You should not trigger them from other scripts.
+これらのイベントは、アクションが発生したときにox_coreによってトリガーされます。他のスクリプトからトリガーしないでください。
 </Callout>
 
 ## ox:playerLoaded
 
-When a character is loaded
+キャラクターがロードされたとき
 
 <Tabs items={['Lua', 'JS']}>
   <Tabs.Tab>
@@ -32,7 +32,7 @@ When a character is loaded
 
 ## ox:statusTick
 
-On each status tick, returning changed statuses
+各ステータスチックで、変更されたステータスを返します
 
 <Tabs items={['Lua', 'JS']}>
   <Tabs.Tab>
@@ -56,7 +56,7 @@ On each status tick, returning changed statuses
 
 ## ox:playerDeath
 
-When the character has died
+キャラクターが死亡したとき
 
 <Tabs items={['Lua', 'JS']}>
   <Tabs.Tab>
@@ -73,7 +73,7 @@ When the character has died
 
 ## ox:playerRevived
 
-When the character is revived
+キャラクターが蘇生したとき
 
 <Tabs items={['Lua', 'JS']}>
   <Tabs.Tab>
@@ -90,11 +90,11 @@ When the character is revived
 
 ---
 
-# Net Events
+# Netイベント
 
 ## ox:setGroup
 
-When the character is added or removed from a group
+キャラクターがグループに追加または削除されたとき
 
 <Tabs items={['Lua', 'JS']}>
   <Tabs.Tab>
@@ -118,7 +118,7 @@ When the character is added or removed from a group
 
 ## ox:licenseAdded
 
-When the character got a new license
+キャラクターが新しいライセンスを取得したとき
 
 <Tabs items={['Lua', 'JS']}>
   <Tabs.Tab>
@@ -141,7 +141,7 @@ When the character got a new license
 
 ## ox:licenseRemoved
 
-When a character's license is removed.
+キャラクターのライセンスが削除されたとき。
 
 <Tabs items={['Lua', 'JS']}>
   <Tabs.Tab>
@@ -164,7 +164,7 @@ When a character's license is removed.
 
 ## ox:startCharacterSelect
 
-When the player has spawned.
+プレイヤーがスポーンしたとき。
 
 <Tabs items={['Lua', 'JS']}>
   <Tabs.Tab>
@@ -187,7 +187,7 @@ When the player has spawned.
         * y?: `number`
         * z?: `number`
         * lastPlayed?: `string`
-          * Date format `%d/%m/%Y (dd/mm/yyyy)`
+          * 日付形式 `%d/%m/%Y (dd/mm/yyyy)`
     </Tabs.Tab>
   <Tabs.Tab>
     ```ts copy
@@ -210,13 +210,13 @@ When the player has spawned.
         * y?: `number`
         * z?: `number`
         * lastPlayed?: `string`
-          * Date format `%d/%m/%Y (dd/mm/yyyy)`
+          * 日付形式 `%d/%m/%Y (dd/mm/yyyy)`
   </Tabs.Tab>
 </Tabs>
 
 ## ox:setActiveCharacter
 
-When the player has chosen their character.
+プレイヤーがキャラクターを選択したとき。
 
 <Tabs items={['Lua', 'JS']}>
   <Tabs.Tab>
@@ -264,7 +264,7 @@ When the player has chosen their character.
       * y?: `number`
       * z?: `number`
       * lastPlayed?: `string`
-        * Date format `%d/%m/%Y (dd/mm/yyyy)`
+          * 日付形式 `%d/%m/%Y (dd/mm/yyyy)`
       * health?: `number`
       * armour?: `number`
       * isNew?: `boolean`

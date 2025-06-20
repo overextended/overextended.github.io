@@ -11,162 +11,162 @@ title: OxPlayer
 
 ## OxPlayer.addStatus
 
-Increases value of a status.
+ステータスの値を増やします。
 
 ```lua
 player.addStatus(statusName, value)
 ```
 
-**Parameters**
+**パラメータ**
 - statusName: `string`
 - value: `number`
 
-**Returns**
+**戻り値**
 - success: `boolean`
 
 ## OxPlayer.get
 
-Returns a value from the players metadata.
+プレイヤーのメタデータから値を返します。
 
 ```lua
 player.get(key)
 ```
 
-**Parameters**
+**パラメータ**
 - key: `string`
 
-**Returns**
+**戻り値**
 - `unknown`
 
 ## OxPlayer.getCoords
 
-Returns the player's current coordinates.
+プレイヤーの現在の座標を返します。
 
 ```lua
 player.getCoords()
 ```
 
-**Parameters**
+**パラメータ**
 - `vector3`
 
 ## OxPlayer.getGroup
 
-Returns the player's grade of a given group name, or the first matched name and grade in a filter.
+指定されたグループ名のプレイヤーのグレード、またはフィルター内の最初に一致した名前とグレードを返します。
 
 ```lua
 player.getGroup(filter)
 ```
 
-**Parameters**
+**パラメータ**
 - filter: `string`|`string[]`|`{ [string]: number }`
 
-**Returns**
+**戻り値**
 - `unknown`
 
 ## OxPlayer.getGroupByType
 
-Returns the player's name and grade of a group with a matching type.
+一致するタイプのグループのプレイヤーの名前とグレードを返します。
 
 ```lua
 player.getGroupByType(type)
 ```
 
-**Parameters**
+**パラメータ**
 - type: `string`
 
-**Returns**
+**戻り値**
 - `string`
 - `number`
 
 ## OxPlayer.getGroups
 
-Returns an object of all groups the player is currently in, using the group name as a key.
+プレイヤーが現在属しているすべてのグループのオブジェクトを、グループ名をキーとして返します。
 
 ```lua
 player.getGroups()
 ```
 
-**Returns**
+**戻り値**
 - `{ [string]: number }`
 
 ## OxPlayer.getStatus
 
-Returns the value of the status.
+ステータスの値を返します。
 
 ```lua
 player.getStatus(statusName)
 ```
 
-**Parameters**
+**パラメータ**
 - statusName: `string`
 
-**Returns**
+**戻り値**
 - `number`
 
 ## OxPlayer.getStatuses
 
-Returns an object containing all statuses, using the status name as the key.
+すべてのステータスを含むオブジェクトを、ステータス名をキーとして返します。
 
 ```lua
 player.getStatuses()
 ```
 
-**Returns**
+**戻り値**
 - `{ [string]: number }`
 
 ## OxPlayer.hasPermission
 
-Checks if a user has a permission, given by one of their groups.
+ユーザーがいずれかのグループから付与された権限を持っているかどうかを確認します。
 
 ```lua
 player.hasPermission(permission)
 ```
 
-**Parameters**
+**パラメータ**
 - permission: `string`
 
-**Returns**
+**戻り値**
 - `boolean`
 
-**Example**
+**例**
 
 ```lua
--- Adding a permission to a group (server side)
+-- グループに権限を追加する（サーバー側）
 Ox.SetGroupPermission('police', 1, 'handcuff', 'allow')
 
--- Checking if a player has the 'handcuff' permission
+-- プレイヤーが「handcuff」権限を持っているかどうかを確認する
 if player.hasPermission('group.police.handcuff') then
-    -- Do something
+    -- 何かをする
 end
 ```
 
 ## OxPlayer.removeStatus
 
-Reduces the value of a status.
+ステータスの値を減らします。
 
 ```lua
 player.removeStatus(statusName, value)
 ```
 
-**Parameters**
+**パラメータ**
 - statusName: `string`
 - value: `number`
 
-**Returns**
+**戻り値**
 - `boolean`
 
 ## OxPlayer.on
 
-Listens for changes to the players metadata, specified by a key.
+キーで指定されたプレイヤーのメタデータの変更をリッスンします。
 
 ```lua
 player.on(key, cb(data))
 ```
 
-**Parameters**
+**パラメータ**
 - key: `string`
 - cb: `function`
 
-**Returns**
+**戻り値**
 - data: `unknown`
-  - new value of `key`
+  - `key`の新しい値

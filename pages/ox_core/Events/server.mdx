@@ -1,20 +1,20 @@
 import { Callout, Tabs } from 'nextra/components';
 
-# Server Events
+# サーバーイベント
 
 <Callout type="warning">
-These events are triggered by ox_core when an action occurs. You should not trigger them from other scripts.
+これらのイベントは、アクションが発生したときにox_coreによってトリガーされます。他のスクリプトからトリガーしないでください。
 </Callout>
 
 ## ox:savedPlayers
 
-When players are saved to the database.  
+プレイヤーがデータベースに保存されたとき。
 <Callout type="info">
-By default this event is triggered:
-* Every 10 minutes.
-* When the server is shutdown.
-* When [`Ox.SaveAllPlayers`](/ox_core/Functions/server#oxsaveallplayers) is called.
-* When the command `saveplayers` is used.
+デフォルトでは、このイベントは次の場合にトリガーされます。
+* 10分ごと。
+* サーバーがシャットダウンしたとき。
+* [`Ox.SaveAllPlayers`](/ox_core/Functions/server#oxsaveallplayers) が呼び出されたとき。
+* コマンド `saveplayers` が使用されたとき。
 </Callout>
 <Tabs items={['Lua', 'JS']}>
   <Tabs.Tab>
@@ -36,7 +36,7 @@ By default this event is triggered:
 
 ## ox:setActiveGroup
 
-When the active group of a character has changed.
+キャラクターのアクティブなグループが変更されたとき。
 
 <Tabs items={['Lua', 'JS']}>
   <Tabs.Tab>
@@ -60,7 +60,7 @@ When the active group of a character has changed.
 
 ## ox:setGroup
 
-When a character is added or removed from a group.
+キャラクターがグループに追加または削除されたとき。
 
 <Tabs items={['Lua', 'JS']}>
   <Tabs.Tab>
@@ -86,7 +86,7 @@ When a character is added or removed from a group.
 
 ## ox:licenseAdded
 
-When a character receives a new license.
+キャラクターが新しいライセンスを受け取ったとき。
 
 <Tabs items={['Lua', 'JS']}>
   <Tabs.Tab>
@@ -110,7 +110,7 @@ When a character receives a new license.
 
 ## ox:licenseRemoved
 
-When a character's license is removed.
+キャラクターのライセンスが削除されたとき。
 
 <Tabs items={['Lua', 'JS']}>
   <Tabs.Tab>
@@ -134,7 +134,7 @@ When a character's license is removed.
 
 ## ox:playerLogout
 
-When a player logs out from their current character, crashes, or otherwise disconnects from the server.
+プレイヤーが現在のキャラクターからログアウトしたとき、クラッシュしたとき、またはその他の理由でサーバーから切断されたとき。
 
 <Tabs items={['Lua', 'JS']}>
   <Tabs.Tab>
@@ -159,7 +159,7 @@ When a player logs out from their current character, crashes, or otherwise disco
 
 ## ox:createdCharacter
 
-When a player has created a new character.
+プレイヤーが新しいキャラクターを作成したとき。
 
 <Tabs items={['Lua', 'JS']}>
   <Tabs.Tab>
@@ -184,7 +184,7 @@ When a player has created a new character.
 
 ## ox:playerLoaded
 
-When a player selects and loads a character.
+プレイヤーがキャラクターを選択してロードしたとき。
 
 <Tabs items={['Lua', 'JS']}>
   <Tabs.Tab>
@@ -209,7 +209,7 @@ When a player selects and loads a character.
 
 ## ox:deletedCharacter
 
-When a character is deleted.
+キャラクターが削除されたとき。
 
 <Tabs items={['Lua', 'JS']}>
   <Tabs.Tab>
@@ -234,7 +234,7 @@ When a character is deleted.
 
 ## ox:savedVehicles
 
-When vehicles are saved to the database.
+車両がデータベースに保存されたとき。
 
 <Tabs items={['Lua', 'JS']}>
   <Tabs.Tab>
@@ -257,7 +257,7 @@ When vehicles are saved to the database.
 
 ## ox:spawnedVehicle
 
-When an [`OxVehicle`](/ox_core/Classes/Server/OxVehicle) has spawned.
+[`OxVehicle`](/ox_core/Classes/Server/OxVehicle) がスポーンしたとき。
 
 <Tabs items={['Lua', 'JS']}>
   <Tabs.Tab>
@@ -281,7 +281,7 @@ When an [`OxVehicle`](/ox_core/Classes/Server/OxVehicle) has spawned.
 
 ## ox:despawnVehicle
 
-Before an [`OxVehicle`](/ox_core/Classes/Server/OxVehicle) gets despawned.
+[`OxVehicle`](/ox_core/Classes/Server/OxVehicle) がデスポーンされる前。
 
 <Tabs items={['Lua', 'JS']}>
   <Tabs.Tab>
@@ -305,7 +305,7 @@ Before an [`OxVehicle`](/ox_core/Classes/Server/OxVehicle) gets despawned.
 
 ## ox:updatedBalance
 
-When an account's balance is updated.
+アカウントの残高が更新されたとき。
 
 <Tabs items={['Lua', 'JS']}>
   <Tabs.Tab>
@@ -334,7 +334,7 @@ When an account's balance is updated.
 
 ## ox:transferredMoney
 
-When an account's money is transferred.
+アカウントのお金が送金されたとき。
 
 <Tabs items={['Lua', 'JS']}>
   <Tabs.Tab>
@@ -363,7 +363,7 @@ When an account's money is transferred.
 
 ## ox:depositedMoney
 
-When money is deposited into an account.
+お金がアカウントに入金されたとき。
 
 <Tabs items={['Lua', 'JS']}>
   <Tabs.Tab>
@@ -392,7 +392,7 @@ When money is deposited into an account.
 
 ## ox:withdrewMoney
 
-When money is withdrawn from an account.
+お金がアカウントから引き出されたとき。
 
 <Tabs items={['Lua', 'JS']}>
   <Tabs.Tab>
@@ -421,7 +421,7 @@ When money is withdrawn from an account.
 
 ## ox:invoicePaid
 
-When an invoice is paid.
+請求書が支払われたとき。
 
 <Tabs items={['Lua', 'JS']}>
   <Tabs.Tab>

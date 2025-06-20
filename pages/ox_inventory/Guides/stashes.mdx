@@ -1,43 +1,43 @@
 ---
-title: Custom Stashes
+title: カスタムスタッシュ
 ---
 
 import { GhButton } from '@components/button';
 
-# Custom Stashes
+# カスタムスタッシュ
 
-We can set up custom stashes from outside the resource utilising the exported RegisterStash function.
+エクスポートされたRegisterStash関数を利用して、リソースの外部からカスタムスタッシュを設定できます。
 
-Firstly, we need to define the stashes properties.
+まず、スタッシュのプロパティを定義する必要があります。
 
-## Stash properties
+## スタッシュプロパティ
 
 - id: `string`
-  - Unique name to identify the stash in the database.
+  - データベースでスタッシュを識別するための一意の名前。
 - label: `string`
-  - Display name when viewing the stash.
+  - スタッシュを表示するときの表示名。
 - slots: `number`
-  - Number of slots the stash will have.
+  - スタッシュが持つスロットの数。
 - weight: `number`
-  - Maximum weight of the stash inventory.
-- owner?: `string` or `boolean`
-  - `true`: Each player has their own unique stash, but can request to open the stash of another player
-  - `false`: Only a single stash exists and is shared between all players
-  - `string`: The stash explicitly belongs to the given owner, usually a player identifier
+  - スタッシュインベントリの最大重量。
+- owner?: `string` または `boolean`
+  - `true`: 各プレイヤーは独自のスタッシュを持っていますが、他のプレイヤーのスタッシュを開くように要求できます
+  - `false`: 単一のスタッシュのみが存在し、すべてのプレイヤー間で共有されます
+  - `string`: スタッシュは明示的に指定された所有者に属し、通常はプレイヤー識別子です
 - groups?: `table`
-  - Key-value pairs of job name and minimum grade to be able to access the stash. (`{["police"] = 0, ["ambulance"] = 2}`)
+  - スタッシュにアクセスできるジョブ名と最小グレードのキーと値のペア。（`{["police"] = 0, ["ambulance"] = 2}`）
   - name: `string`
   - grade: `number`
-- coords?: `vector3` or `table`
-  - You can set the stash coordinates to prevent the stash from being opened if the player isn't close enough.
-  - Vector or table containing the coordinates of the stash.
+- coords?: `vector3` または `table`
+  - プレイヤーが十分に近くにいない場合にスタッシュが開かれるのを防ぐために、スタッシュの座標を設定できます。
+  - スタッシュの座標を含むベクトルまたはテーブル。
 
-## Example
+## 例
 
-Below the value is hardset, but it could be loaded from the database (especially if there are unknown fields, i.e. owner)
+以下では値がハードコードされていますが、データベースからロードすることもできます（特に、所有者などの不明なフィールドがある場合）
 
 ```lua
--- Server
+-- サーバー
 local stash = {
     id = '42wallabyway',
     label = '42 Wallaby Way',
@@ -52,14 +52,14 @@ AddEventHandler('onServerResourceStart', function(resourceName)
     end
 end)
 
--- Client
+-- クライアント
 exports.ox_inventory:openInventory('stash', {id='42wallabyway', owner=property.owner})
 ```
 
-The following sample is based on esx_property's db data.
+次のサンプルは、esx_propertyのDBデータに基づいています。
 
 ```lua
--- Server
+-- サーバー
 local properties
 
 MySQL.query('SELECT * FROM `properties`', {}, function(result)
@@ -74,7 +74,7 @@ local stash = properties[id]
     end
 end)
 
--- Client
+-- クライアント
 local ox_inventory = exports.ox_inventory
 
 if ox_inventory:openInventory('stash', property.id) == false then
@@ -83,8 +83,8 @@ if ox_inventory:openInventory('stash', property.id) == false then
 end
 ```
 
-## Example Resource
+## リソースの例
 
-We put together an example resource showcasing how to properly utilise the stash API:
+スタッシュAPIを適切に利用する方法を示すサンプルリソースをまとめました。
 
-<GhButton link="https://www.github.com/overextended/ox_inventory_examples" label="Ox Inventory Examples" />
+<GhButton link="https://www.github.com/overextended/ox_inventory_examples" label="Oxインベントリの例" />

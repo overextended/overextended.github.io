@@ -4,57 +4,56 @@ title: Creating Items
 
 import { Tabs, Tab } from 'nextra-theme-docs';
 
-# Creating Items
+# アイテムの作成
 
-## Defining item data
+## アイテムデータの定義
 
-Before being able to see or use an item in game it **must** first be defined.
+ゲーム内でアイテムを表示または使用する前に、まず定義する**必要があります**。
 
-All of the items are defined in the [/data/items.lua](https://github.com/overextended/ox_inventory/blob/main/data/items.lua) file with key, value pairs.
-Key is the name (not the label) of an item and the value is a table containing the
-options for the item.
+すべてのアイテムは、キーと値のペアを持つ[/data/items.lua](https://github.com/overextended/ox_inventory/blob/main/data/items.lua)ファイルで定義されます。
+キーはアイテムの名前（ラベルではない）であり、値はアイテムのオプションを含むテーブルです。
 
-- Item options: `table`
+- アイテムオプション：`table`
   - label: `string`
   - weight?: `number`
   - stack?: `boolean`
-    - If set to false will not allow the item to be stacked.
+    - falseに設定すると、アイテムのスタックが許可されません。
   - degrade?: `number`
-    - Amount of time in minutes the item will degrade after.
+    - アイテムが劣化するまでの時間（分）。
   - decay?: `boolean`
-    - If true the item will be deleted when durability reaches 0 (not instant for degraded items).
+    - trueの場合、耐久性が0になるとアイテムは削除されます（劣化したアイテムの場合は即時ではありません）。
   - close?: `boolean`
-    - If set to false does not close the inventory on item use.
+    - falseに設定すると、アイテム使用時にインベントリを閉じません。
   - description?: `string`
-    - Item description that will be shown in the tooltip
+    - ツールチップに表示されるアイテムの説明
   - consume?: `number`
-    - Item count needed and removed use.
-    - Default: 1
-    - If set to a decimal will consume durability instead (0.2 = 20%).
+    - 必要なアイテム数と削除された使用量。
+    - デフォルト：1
+    - 小数に設定すると、代わりに耐久性を消費します（0.2 = 20％）。
   - allowArmed?: `boolean`
-    - If set to true will allow use of item while armed with a weapon.
+    - trueに設定すると、武器を装備している間でもアイテムの使用が許可されます。
   - server?: `table`
     - export?: `string`
   - client?: `table`
     - export?: `string`
-      - Export to be triggered after item use.
+      - アイテム使用後にトリガーされるエクスポート。
     - event?: `string`
-      - Event to be triggered after item use.
+      - アイテム使用後にトリガーされるイベント。
     - status?: `table`
-      - Adjust esx_status values after use.
+      - 使用後にesx_status値を調整します。
     - anim?: `table`
-      - Animation that will be played during the progress bar.
+      - プログレスバー中に再生されるアニメーション。
       - dict: `string`
       - clip: `string`
     - prop?: `table`
-      - Attached prop that will be displayed during the progress bar.
-      - model: `string` or `hash`
+      - プログレスバー中に表示される添付プロップ。
+      - model: `string` または `hash`
       - pos: `table` (x, y, z)
       - rot: `table` (x, y, z)
       - bone?: `number`
       - rotOrder?: `number`
     - disable?: `table`
-      - Actions to be disabled during the progress bar.
+      - プログレスバー中に無効にするアクション。
       - move?: `boolean`
       - car?: `boolean`
       - combat?: `boolean`
@@ -62,17 +61,17 @@ options for the item.
       - sprint?: `boolean`
     - usetime?: `number`
     - cancel?: `boolean`
-      - If set to true the player canc cancel item use.
+      - trueに設定すると、プレイヤーはアイテムの使用をキャンセルできます。
     - add?: `function`(total: `number`)
-      - Function that triggers when receiving an item
-      - Returns total item count as `total`
+      - アイテムを受け取ったときにトリガーされる関数
+      - 合計アイテム数を `total` として返します
     - remove?: `function`(total: `number`)
-      - Function that triggers when removing an item
-      - Returns total item count as `total`
+      - アイテムを削除したときにトリガーされる関数
+      - 合計アイテム数を `total` として返します
   - buttons?: `table`
     - label: `string`
     - action: `function`(slot: `number`)
-      - Callback function when button is clicked in context menu, returns item slot.
+      - コンテキストメニューでボタンがクリックされたときのコールバック関数。アイテムスロットを返します。
 
 ### Examples
 
@@ -98,7 +97,7 @@ options for the item.
     ```
   </Tab>
   <Tab>
-    A modified burger item which includes a description.
+    説明を含む変更されたハンバーガーアイテム。
 
     ```lua
     ['burger'] = {
@@ -121,7 +120,7 @@ options for the item.
     ```
   </Tab>
   <Tab>
-    A modified burger item, which gives you notifications on add and remove arguments.
+    変更されたハンバーガーアイテム。引数の追加と削除に関する通知が表示されます。
 
     ```lua
     ['burger'] = {
@@ -132,13 +131,13 @@ options for the item.
         client = {
             add = function(total)
                 if total > 0 then
-                    lib.notify({description = 'Nice burger you got there!'})
+                    lib.notify({description = '素敵なハンバーガーですね！'})
                 end
             end,
 
             remove = function(total)
                 if total < 1 then
-                    lib.notify({description = 'You lost all of your burgers!'})
+                    lib.notify({description = 'ハンバーガーをすべて失いました！'})
                 end
             end
         }
@@ -147,19 +146,19 @@ options for the item.
   </Tab>
 </Tabs>
 
-## Making the item usable
+## アイテムを使用可能にする
 
-- If you are using ESX, you can continue using `ESX.RegisterUsableItem`.
-- If you are using QBox, you can continue using `exports.qbx_core:CreateUseableItem`.
+- ESXを使用している場合は、引き続き `ESX.RegisterUsableItem` を使用できます。
+- QBoxを使用している場合は、引き続き `exports.qbx_core:CreateUseableItem` を使用できます。
 
-Using the built-in system is more secure and provides much more functionality.
+組み込みシステムを使用する方が安全で、はるかに多くの機能を提供します。
 
-### Client callbacks
+### クライアントコールバック
 
-Item callbacks can be added by defining an export (recommended), or by adding it to [items/client.lua](https://github.com/overextended/ox_inventory/blob/main/modules/items/client.lua#L33).
+アイテムコールバックは、エクスポートを定義するか（推奨）、[items/client.lua](https://github.com/overextended/ox_inventory/blob/main/modules/items/client.lua#L33)に追加することで追加できます。
 
-When defining [item data](https://github.com/overextended/ox_inventory/blob/main/data/items.lua#L11), adding client.export will trigger an event on item use.
-The correct formatting is `export = resourceName.exportName`.
+[アイテムデータ](https://github.com/overextended/ox_inventory/blob/main/data/items.lua#L11)を定義するときに、client.exportを追加すると、アイテム使用時にイベントがトリガーされます。
+正しい形式は `export = resourceName.exportName` です。
 
 ```lua
 exports('bandage', function(data, slot)
@@ -167,80 +166,80 @@ exports('bandage', function(data, slot)
     local maxHealth = GetEntityMaxHealth(playerPed)
     local health = GetEntityHealth(playerPed)
 
-    -- Does the ped need to heal? We can cancel the item from being used.
+    -- 歩行者は回復する必要がありますか？アイテムの使用をキャンセルできます。
     if health < maxHealth then
-        -- Triggers internal-code to correctly use items.
-        -- This adds security, removes the item on use, adds progressbar support, and is necessary for server callbacks.
+        -- アイテムを正しく使用するための内部コードをトリガーします。
+        -- これにより、セキュリティが向上し、使用時にアイテムが削除され、プログレスバーのサポートが追加され、サーバーコールバックに必要になります。
         exports.ox_inventory:useItem(data, function(data)
-            -- The server has verified the item can be used.
+            -- サーバーはアイテムが使用できることを確認しました。
             if data then
                 SetEntityHealth(playerPed, math.min(maxHealth, math.floor(health + maxHealth / 16)))
-                lib.notify({description = 'You feel better already'})
+                lib.notify({description = 'もう気分が良くなりました'})
             end
         end)
     else
-        -- Don't use the item
-        lib.notify({type = 'error', description = 'You don\'t need a bandage right now'})
+        -- アイテムを使用しないでください
+        lib.notify({type = 'error', description = '今は包帯は必要ありません'})
     end
 end)
 ```
 
-### Server callbacks
+### サーバーコールバック
 
-A callback function can be defined on the server to handle several events (usingItem, usedItem, buyItem).
-This can either be an export (recommended), or added to the bottom of [items/server.lua](https://github.com/overextended/ox_inventory/blob/main/modules/items/server.lua).
-When defining [item data](https://github.com/overextended/ox_inventory/blob/main/data/items.lua#L14), adding server.export will trigger an event for the actions above.
-The correct formatting is `export = resourceName.exportName`.
+サーバーでコールバック関数を定義して、いくつかのイベント（usingItem、usedItem、buyItem）を処理できます。
+これは、エクスポート（推奨）にするか、[items/server.lua](https://github.com/overextended/ox_inventory/blob/main/modules/items/server.lua)の末尾に追加できます。
+[アイテムデータ](https://github.com/overextended/ox_inventory/blob/main/data/items.lua#L14)を定義するときに、server.exportを追加すると、上記のアクションのイベントがトリガーされます。
+正しい形式は `export = resourceName.exportName` です。
 
 ```lua
 exports('bandage', function(event, item, inventory, slot, data)
-    -- Player is attempting to use the item.
+    -- プレイヤーはアイテムを使用しようとしています。
     if event == 'usingItem' then
         local playerPed = GetPlayerPed(inventory.id)
         local maxHealth = GetEntityMaxHealth(playerPed)
         local health = GetEntityHealth(playerPed)
 
-        -- Check if the player needs to be healed.
+        -- プレイヤーが回復する必要があるかどうかを確認します。
         if health >= maxHealth then
-            TriggerClientEvent('ox_lib:notify', inventory.id, {type = 'error', description = 'You don\'t need a bandage right now'})
+            TriggerClientEvent('ox_lib:notify', inventory.id, {type = 'error', description = '今は包帯は必要ありません'})
 
-            -- Returning 'false' will prevent the item from being used
+            -- 'false'を返すと、アイテムの使用が妨げられます
             return false
         end
 
         return
     end
 
-    -- Player has finished using the item.
+    -- プレイヤーはアイテムの使用を終了しました。
     if event == 'usedItem' then
-        return TriggerClientEvent('ox_lib:notify', inventory.id, {description = 'You feel better already'})
+        return TriggerClientEvent('ox_lib:notify', inventory.id, {description = 'もう気分が良くなりました'})
     end
 
-    -- Player is attempting to purchase the item.
+    -- プレイヤーはアイテムを購入しようとしています。
     if event == 'buying' then
-        return TriggerClientEvent('ox_lib:notify', inventory.id, {type = 'success', description = 'You bought a bandage'})
+        return TriggerClientEvent('ox_lib:notify', inventory.id, {type = 'success', description = '包帯を購入しました'})
     end
 end)
 ```
 
-## Creating container items
+## コンテナアイテムの作成
 
-Like with other items the item must first be registered.
+他のアイテムと同様に、まずアイテムを登録する必要があります。
 
-When registered you can define the item as a container in `/modules/items/containers.lua`
-The key for the container is the `name` you gave it when registering the item.
-You can also define the number of slots, the maximum weight, blacklist and whitelist items.
+登録したら、`/modules/items/containers.lua` でアイテムをコンテナとして定義できます。
+コンテナのキーは、アイテムを登録したときに付けた `name` です。
+スロット数、最大重量、ブラックリストアイテム、ホワイトリストアイテムも定義できます。
 
 - itemName:
   - slots: number
-  - The number represents the amount of slots
+  - 数値はスロット数を表します
   - maxWeight: number
-  - The number represents the maximum weight within the container
+  - 数値はコンテナ内の最大重量を表します
   - blacklist:
-    - Supports single and multiple items
+    - 単一および複数のアイテムをサポート
     - `{ 'testburger', 'testburger2' }`
   - whitelist:
-    - Supports single and multiple items
+    - 単一および複数のアイテムをサポート
     - `{ 'testburger', 'testburger2' }`
 
 ### Example

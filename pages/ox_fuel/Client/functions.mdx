@@ -1,18 +1,18 @@
-# Functions
+# 関数
 
 ## setMoneyCheck
 
-Override the built-in money check.
+組み込みの所持金チェックをオーバーライドします。
 
 ```lua
 exports.ox_fuel:setMoneyCheck(method)
 ```
 
-### Parameters
+### パラメータ
 
 - method: `function(): number`
 
-### Example
+### 例
 
 ```lua
 exports.ox_fuel:setMoneyCheck(function()

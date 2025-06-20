@@ -6,23 +6,23 @@ import { Tabs, Tab } from 'nextra-theme-docs';
 
 # ESX
 
-- You will need a [compatible version of ESX Legacy](https://github.com/esx-framework/esx_core) (1.6.0 or higher).
-- You can convert player inventories with `convertinventory esx`.
-- All items in the database will be migrated to the internal item data.
-  - Always restart the resource when items are migrated!
+- [ESX Legacyの互換バージョン](https://github.com/esx-framework/esx_core)（1.6.0以降）が必要です。
+- `convertinventory esx` を使用してプレイヤーインベントリを変換できます。
+- データベース内のすべてのアイテムは内部アイテムデータに移行されます。
+  - アイテムが移行されたら、必ずリソースを再起動してください！
 
-## Compatibility
+## 互換性
 
-Ox Inventory is a complete replacement for existing item, inventory, and weapon systems; it is inherently incompatible with ESX and any resources that rely on default behaviour.
+Ox Inventoryは、既存のアイテム、インベントリ、および武器システムを完全に置き換えるものです。ESXおよびデフォルトの動作に依存するリソースとは本質的に互換性がありません。
 
-- Loadouts do not exist and weapons are treated as items.
-- Standard shops and stashes (i.e. esx_shops, esx_weaponshop, and esx_policejob).
-- Resources that alter the default esx inventory or provide a ui (i.e. esx_trunkinventory, esx_inventoryhud).
+- ロードアウトは存在せず、武器はアイテムとして扱われます。
+- 標準のショップとスタッシュ（例：esx_shops、esx_weaponshop、esx_policejob）。
+- デフォルトのESXインベントリを変更したり、UIを提供したりするリソース（例：esx_trunkinventory、esx_inventoryhud）。
 
-## Installation
+## インストール
 
-- Use a compatible version of [ESX Legacy](https://github.com/esx-framework/esx-legacy) (1.6.0+).
-- Modify your `server.cfg`, starting ox_inventory immediately after es_extended.
+- [ESX Legacyの互換バージョン](https://github.com/esx-framework/esx-legacy)（1.6.0以降）を使用します。
+- `server.cfg`を変更し、es_extendedの直後にox_inventoryを開始します。
 
 ```yaml
 start oxmysql
@@ -32,19 +32,19 @@ start qtarget
 start ox_inventory
 ```
 
-## Convert ESX inventory data
+## ESXインベントリデータの変換
 
-- Start the server and type `convertinventory esx` into the server console.
-- Optionally, type `convertinventory esxproperty` into the server console.
-- Restart the server once conversion is complete.
+- サーバーを起動し、サーバーコンソールに `convertinventory esx` と入力します。
+- オプションで、サーバーコンソールに `convertinventory esxproperty` と入力します。
+- 変換が完了したら、サーバーを再起動します。
 
-## Optional Optimisation
+## オプションの最適化
 
-All item related functions from xPlayer, such as `xPlayer.getInventoryItem`, have been modified for compatibility purposes; however they are considered deprecated.
+`xPlayer.getInventoryItem`など、xPlayerのすべてのアイテム関連関数は互換性のために変更されていますが、非推奨と見なされます。
 
-The reasoning is fairly simple - there's now additional function references and overhead to consider. Fortunately, the new Inventory functions can be used directly and offer a great deal of improvements over the old ones.
+理由は非常に単純です。考慮すべき追加の関数参照とオーバーヘッドが発生するようになりました。幸いなことに、新しいインベントリ関数は直接使用でき、古い関数よりも大幅に改善されています。
 
-You should read through the functions section for further information, but the following should give you a decent idea.
+詳細については関数セクションを読む必要がありますが、以下で十分なアイデアが得られるはずです。
 
 <Tabs items={["ESX", "Ox Inventory"]}>
   <Tab>
@@ -57,13 +57,13 @@ You should read through the functions section for further information, but the f
     ```
   </Tab>
   <Tab>
-    Add the following code somewhere in your resource to cache the exports metatable.
+    エクスポートメタテーブルをキャッシュするには、リソースのどこかに次のコードを追加します。
 
     ```lua
     local ox_inventory = exports.ox_inventory
     ```
 
-    You will be able to reference any functions exposed through the export.
+    エクスポートを介して公開されている関数を参照できるようになります。
 
     ```lua
     local items = ox_inventory:Search(source, 'count', {'acetone', 'antifreeze', 'sudo'})

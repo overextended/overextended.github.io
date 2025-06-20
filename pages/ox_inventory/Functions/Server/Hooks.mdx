@@ -1,6 +1,6 @@
-# Hooks
+# フック
 
-Event hooks allow 3rd party resources to define new behaviour without modifying the inventory code directly.
+イベントフックを使用すると、サードパーティのリソースはインベントリコードを直接変更せずに新しい動作を定義できます。
 
 ## registerHook
 
@@ -12,37 +12,37 @@ exports.ox_inventory:registerHook(eventName, function(payload) end, options)
 - payload: `table`
 - options?: `table`
   - print?: `boolean`
-    - Print to the console when triggering the event.
+    - イベントをトリガーするときにコンソールに出力します。
   - itemFilter?: `{ [string]: true }`
-    - The event will only trigger for items defined as keys in a set.
+    - イベントは、セット内でキーとして定義されたアイテムに対してのみトリガーされます。
   - inventoryFilter?: `string[]`
-    - The event will only trigger for inventories that match one of the [patterns](<http://www.easyuo.com/openeuo/wiki/index.php/Lua_Patterns_and_Captures_(Regular_Expressions)>) in the array.
+    - イベントは、配列内の[パターン](<http://www.easyuo.com/openeuo/wiki/index.php/Lua_Patterns_and_Captures_(Regular_Expressions)>)のいずれかに一致するインベントリに対してのみトリガーされます。
   - typeFilter?: `{ [string]: true }`
-    - The event will only trigger for inventories with one of the provided types (e.g. 'player', 'stash')
+    - イベントは、提供されたタイプのいずれかを持つインベントリ（例：「player」、「stash」）に対してのみトリガーされます。
 
-Return:
+戻り値:
 
 - hookId: `number`
 
 ### swapItems
 
-Triggered when moving any item from one slot to another, or when "giving" an item.  
-By returning `false`, you can cancel the action and revert the inventory state.
+あるスロットから別のスロットにアイテムを移動するとき、またはアイテムを「与える」ときにトリガーされます。
+`false` を返すことで、アクションをキャンセルし、インベントリの状態を元に戻すことができます。
 
 - Payload: `table`
   - source: `number`
-  - action: `'move'` or `'stack'` or `'swap'` or `'give'`
-  - fromInventory: `table` or `string` or `number`
-  - toInventory: `table` or `string` or `number`
+  - action: `'move'` または `'stack'` または `'swap'` または `'give'`
+  - fromInventory: `table` または `string` または `number`
+  - toInventory: `table` または `string` または `number`
   - fromType: `string`
   - toType: `string`
   - fromSlot: `table`
-  - toSlot?: `table` or `number`
+  - toSlot?: `table` または `number`
   - count: `number`
 
-**Example**
+**例**
 
-Blacklists "water" from being moved into or from gloveboxes and trunks.
+「water」がグローブボックスやトランクに移動されたり、そこから移動されたりするのをブラックリストに登録します。
 
 ```lua
 local hookId = exports.ox_inventory:registerHook('swapItems', function(payload)
@@ -64,15 +64,15 @@ end, {
 
 - Payload: `table`
   - source: `number`
-  - inventoryId: `number` or `string`
+  - inventoryId: `number` または `string`
   - inventoryType: `string`
 
-Triggered when a player tries to open a secondary inventory.  
-By returning `false`, you can cancel the action and keep the player's inventory closed.
+プレイヤーがセカンダリインベントリを開こうとするとトリガーされます。
+`false` を返すことで、アクションをキャンセルし、プレイヤーのインベントリを閉じたままにすることができます。
 
-**Example**
+**例**
 
-Disables gloveboxes and trunks.
+グローブボックスとトランクを無効にします。
 
 ```lua
 local hookId = exports.ox_inventory:registerHook('openInventory', function(payload)
@@ -90,17 +90,17 @@ end, {
 ### createItem
 
 - Payload: `table`
-  - inventoryId?: `number` or `string`
+  - inventoryId?: `number` または `string`
   - metadata: `table`
   - item: `table`
   - count: `number`
 
-Triggered when an item is created, either by buying it, using AddItem, or when converting inventory data.  
-By returning a table you can modify or replace the metadata given to an item.
+アイテムが作成されたとき（購入、AddItemの使用、またはインベントリデータの変換時）にトリガーされます。
+テーブルを返すことで、アイテムに与えられたメタデータを変更または置換できます。
 
-**Example**
+**例**
 
-Sets the label for "water" to "Mineral Water".
+「water」のラベルを「ミネラルウォーター」に設定します。
 
 ```lua
 local hookId = exports.ox_inventory:registerHook('createItem', function(payload)
@@ -131,11 +131,11 @@ end, {
   - totalPrice: `number`
   - currency?: `string`
 
-Triggered when an item is about to be purchased and can return `false` to prevent the transaction.
+アイテムが購入されようとしているときにトリガーされ、トランザクションを防ぐために `false` を返すことができます。
 
-**Example**
+**例**
 
-Prevents players from purchasing items at General stores.
+プレイヤーが雑貨店でアイテムを購入できないようにします。
 
 ```lua
 local hookId = exports.ox_inventory:registerHook('buyItem', function(payload)
@@ -166,9 +166,9 @@ end, {
   - toInventory: `number`
   - toSlot: `number`
 
-**Example**
+**例**
 
-Prevent lockpicks from being crafted by players.
+プレイヤーがロックピックを作成できないようにします。
 
 ```lua
 local hookId = exports.ox_inventory:registerHook('craftItem', function(payload)
@@ -185,8 +185,8 @@ end, {
 
 ## removeHooks
 
-Removes a hook created by the invoking resource with the the specified id.  
-If no id is specified then all hooks registered by the resource are removed.
+指定されたIDを持つ呼び出し元リソースによって作成されたフックを削除します。
+IDが指定されていない場合、リソースによって登録されているすべてのフックが削除されます。
 
 ```lua
 exports.ox_inventory:removeHooks(id)

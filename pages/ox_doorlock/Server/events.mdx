@@ -1,18 +1,18 @@
-# Events
+# イベント
 
-## Handlers
+## ハンドラー
 
-These events **should not** be triggered by any other scripts.
+これらのイベントは、他のスクリプトによってトリガーされるべきでは**ありません**。
 
 ### ox_doorlock:stateChanged
 
-Triggered when a doors state is updated.
+ドアの状態が更新されたときにトリガーされます。
 
 ```lua
 AddEventHandler('ox_doorlock:stateChanged', function(source, doorId, state, usedItem) end)
 ```
 
-- source: `number` or `nil`
+- source: `number` または `nil`
 - doorId: `number`
 - state: `boolean`
-- usedItem: `string` or `false` or `nil`
+- usedItem: `string` または `false` または `nil`

@@ -1,31 +1,31 @@
 ---
-title: Common Issues
+title: 一般的な問題
 ---
 
-# Common Issues
+# 一般的な問題
 
-## UI has not been built
+## UIがビルドされていません
 
-Because the UI for inventory is written in React it can't run natively under FiveM so it must first be bundled into html/css/js.
+インベントリのUIはReactで記述されているため、FiveMでネイティブに実行できません。そのため、最初にhtml/css/jsにバンドルする必要があります。
 
-We provide an easy way for you to do this by downloading a pre-bundled release, which you can get from [here](https://github.com/overextended/ox_inventory/releases/latest).  
-Make sure you download the `ox_inventory.zip` file as that one contains the bundled files and others are raw source code.
+事前にバンドルされたリリースをダウンロードすることで、これを簡単に行う方法を提供しています。[こちら](https://github.com/overextended/ox_inventory/releases/latest)から入手できます。
+バンドルされたファイルが含まれているのは `ox_inventory.zip` ファイルであり、その他は生のソースコードであるため、必ず `ox_inventory.zip` ファイルをダウンロードしてください。
 
-If in case you wanted to edit the inventory UI you would have to build these files yourself.  
-To do so please read our [_Installation_](../ox_inventory#installation) guide.
+インベントリUIを編集したい場合は、これらのファイルを自分でビルドする必要があります。
+そのためには、[_インストール_](../ox_inventory#installation)ガイドをお読みください。
 
-## No such export * in resource ox_inventory
+## ox_inventoryリソースにそのようなエクスポートはありません
 
-There are several likely causes for this "issue".
-- An error occurred while starting ox_inventory or one of its dependencies (e.g. ox_lib).
-- The resource trying to use the export (e.g. esx_addoninventory) is being started _before_ ox_inventory.
-- You're literally trying to call an export that does not exist, which is a you issue.
+この「問題」には、いくつかの考えられる原因があります。
+- ox_inventoryまたはその依存関係の1つ（例：ox_lib）の起動中にエラーが発生しました。
+- エクスポートを使用しようとしているリソース（例：esx_addoninventory）がox_inventoryの_前に_開始されています。
+- 文字通り存在しないエクスポートを呼び出そうとしていますが、これはあなたの問題です。
 
-## Stashes / trunks are not saved at server restart
+## スタッシュ/トランクはサーバーの再起動時に保存されません
 
-Stopping a server or "restarting" it does not trigger any events or allow for saving.
+サーバーを停止したり「再起動」したりしても、イベントはトリガーされず、保存もできません。
 
-- Inventories are saved at a 5 minute interval.
-- txAdmin scheduled restarts and shutdowns will trigger a save.
-- The `saveinv` command can be used manually or triggered in the console.
-- All inventories are saved when the number of online players hits 0.
+- インベントリは5分間隔で保存されます。
+- txAdminのスケジュールされた再起動とシャットダウンは保存をトリガーします。
+- `saveinv`コマンドは手動で使用するか、コンソールでトリガーできます。
+- オンラインプレイヤー数が0になると、すべてのインベントリが保存されます。
