@@ -1,23 +1,23 @@
-# Shared
+# 共有
 
 ## lib.getClosestVehicle
 
-Get the vehicle handle and coords of the closest vehicle to a set of coordinates.
+座標のセットに最も近い車両の車両ハンドルと座標を取得します。
 
 ```lua
 lib.getClosestVehicle(coords, maxDistance, includePlayerVehicle)
 ```
 
 - coords: `vector3`
-  - The coords to check from.
+  - チェックする座標。
 - maxDistance?: `number`
-  - The max distance to check.
-  - Default: `2.0`
+  - チェックする最大距離。
+  - デフォルト: `2.0`
 - includePlayerVehicle?: `boolean`
-  - Whether or not to include the player's current vehicle. Ignored on the server.
-  - Default: `false`
+  - プレイヤーの現在の車両を含めるかどうか。サーバーでは無視されます。
+  - デフォルト: `false`
 
-Return:
+戻り値:
 
 - vehicle?: `number`
 - vehicleCoords?: `vector3`

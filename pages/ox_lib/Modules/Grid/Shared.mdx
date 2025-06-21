@@ -1,10 +1,10 @@
-# Shared
+# 共有
 
-A system that divides the map into smaller 2D cells. Entries in a cell can be added, removed, and listed.
+マップをより小さな2Dセルに分割するシステム。セル内のエントリは、追加、削除、およびリスト表示できます。
 
-## GridEntry Class
+## GridEntryクラス
 
-A table representing a grid entry with the following properties.
+次のプロパティを持つグリッドエントリを表すテーブル。
 
 - coords: `vector`
 - length?: `number`
@@ -13,7 +13,7 @@ A table representing a grid entry with the following properties.
 
 ## lib.grid.getCellPosition
 
-Returns the position of the cell at the given point.
+指定されたポイントにあるセルの位置を返します。
 
 ```lua
 lib.grid.getCellPosition(point)
@@ -21,13 +21,13 @@ lib.grid.getCellPosition(point)
 
 - point: `vector`
 
-**Returns:**
+**戻り値:**
 - x: `number`
 - y: `number`
 
 ## lib.grid.getCell
 
-Returns all entries in the cell that belongs to the point.
+ポイントが属するセル内のすべてのエントリを返します。
 
 ```lua
 lib.grid.getCell(point)
@@ -35,12 +35,12 @@ lib.grid.getCell(point)
 
 - point: `vector`
 
-**Returns:**
+**戻り値:**
 - entries: `GridEntry[]`
 
 ## lib.grid.getNearbyEntries
 
-Returns all entries near the point with an optional filter
+オプションのフィルターを使用して、ポイントの近くにあるすべてのエントリを返します
 
 ```lua
 lib.grid.getNearbyEntries(point, filter)
@@ -49,13 +49,13 @@ lib.grid.getNearbyEntries(point, filter)
 - point: `vector`
 - filter: `function(entry: GridEntry): boolean`
 
-**Returns:**
+**戻り値:**
 
 - entries: `Array<GridEntry>`
 
 ## lib.grid.addEntry
 
-Adds an entry to the grid
+グリッドにエントリを追加します
 
 
 ```lua
@@ -66,7 +66,7 @@ lib.grid.addEntry(entry)
 
 ## lib.grid.removeEntry
 
-Removes and entry that was previously added to the grid
+以前にグリッドに追加されたエントリを削除します
 
 ```lua
 lib.grid.removeEntry(entry)
@@ -74,6 +74,6 @@ lib.grid.removeEntry(entry)
 
 - entry: `GridEntry`
 
-**Returns:**
+**戻り値:**
 
 - success: `boolean`

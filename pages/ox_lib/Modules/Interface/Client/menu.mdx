@@ -1,17 +1,17 @@
 ---
-title: Menu
+title: メニュー
 ---
 
 import { Tabs, Tab } from 'nextra-theme-docs';
 import { Callout } from 'nextra/components';
 
-# Menu
+# メニュー
 
-Keyboard navigation menu with specific event functions.
+特定のイベント関数を持つキーボードナビゲーションメニュー。
 
 ## lib.registerMenu
 
-Registers and caches a menu under the specified id.
+指定されたIDでメニューを登録およびキャッシュします。
 
 <Tabs items={["Lua", "JS"]}>
   <Tab>
@@ -36,46 +36,46 @@ Registers and caches a menu under the specified id.
     - progress?: `number`
     - colorScheme?: `string`
     - icon?: `string`
-      - FontAwesome icon that will be displayed on the left side, works the same as notification and textui icons.
-      - Also supports image urls, png and webp files but are not recommend to use over font awesome icons.
+      - 左側に表示されるFontAwesomeアイコン。通知およびtextuiアイコンと同じように機能します。
+      - 画像URL、pngおよびwebpファイルもサポートしていますが、FontAwesomeアイコンよりも使用することはお勧めしません。
     - iconColor?: `string`
     - iconAnimation?: `'spin'` `'spinPulse'` `'spinReverse'` `'pulse'` `'beat'` `'fade'` `'beatFade'` `'bounce'` `'shake'`
-    - values?: `string[]` or `{ label: string, description: string }[]`
-      - If provided creates a side scrollable list.
-      - When using object and setting description, the set description will be displayed in the menu tooltip.
+    - values?: `string[]` または `{ label: string, description: string }[]`
+      - 提供されている場合、横スクロール可能なリストを作成します。
+      - オブジェクトを使用し、説明を設定すると、設定された説明がメニューのツールチップに表示されます。
     - checked?: `boolean`
-      - Setting either true or false will make the button a checkbox, if `values` is also provided the button will be a
-        scrollable list.
+      - trueまたはfalseのいずれかに設定すると、ボタンがチェックボックスになります。`values`も提供されている場合は、ボタンは
+        スクロール可能なリストになります。
     - description?: `string`
-      - Displays tooltip below menu on hovered item with provided description.
+      - 提供された説明とともに、ホバーされたアイテムのメニューの下にツールチップを表示します。
     - defaultIndex?: `number`
-      - Sets the current index for the list to specified number.
+      - リストの現在のインデックスを指定された数値に設定します。
     - args?: `{[string]: any}`
-      - Allows you to pass any arguments through the button.
-      - If the button has `values` then `isScroll` is automatically passed.
-      - If the button has `checked` to either true or false then `isCheck` is automatically passed.
+      - ボタンを介して任意の引数を渡すことができます。
+      - ボタンに `values` がある場合、`isScroll` が自動的に渡されます。
+      - ボタンに `checked` がtrueまたはfalseのいずれかに設定されている場合、`isCheck` が自動的に渡されます。
     - close?: `boolean`
-      - If set to false, it won't close the menu upon interacting with this option.
-  - position?: `'top-left'` or `'top-right'` or `'bottom-left'` or `'bottom-right'`
-    - Default: `'top-left'`
+      - falseに設定すると、このオプションと対話してもメニューは閉じません。
+  - position?: `'top-left'` または `'top-right'` または `'bottom-left'` または `'bottom-right'`
+    - デフォルト: `'top-left'`
   - disableInput?: `boolean`
-    - Default: `false`
+    - デフォルト: `false`
   - canClose: `boolean`
-    - If set to false the user won't be able to exit the menu without pressing one of the buttons.
+    - falseに設定すると、ユーザーはいずれかのボタンを押さずにメニューを終了できなくなります。
   - onClose: `function`(keyPressed?: `'Escape' | 'Backspace'`)
-    - Function that runs when the menu is exited via ESC/Backspace.
+    - ESC/Backspaceを介してメニューが終了したときに実行される関数。
   - onSelected: `function`(selected: `number`, secondary: `number` | `boolean`, args: `{[string]: any}`)
-    - Function being ran when the selected button in the menu changes.
+    - メニューで選択されたボタンが変更されたときに実行される関数。
   - onSideScroll: `function`(selected: `number`, scrollIndex: `number`, args: `{[string]: any}`)
-    - Function ran whenever a scroll list item is changed.
+    - スクロールリストアイテムが変更されるたびに実行される関数。
   - onCheck: `function`(selected: `number`, checked: `boolean`, args: `{[string]: any}`)
-    - Function ran whenever a checkbox is toggled.
+    - チェックボックスが切り替えられるたびに実行される関数。
 - cb: `function`(selected: `number`, scrollIndex: `number`, args: `{[string]: any}`)
-  - Callback function when the menu item is pressed.
+  - メニュー項目が押されたときのコールバック関数。
 
 ## lib.showMenu
 
-Displays the menu with the provided id.
+提供されたIDでメニューを表示します。
 
 <Tabs items={["Lua", "JS"]}>
   <Tab>
@@ -112,11 +112,11 @@ Displays the menu with the provided id.
 </Tabs>
 
 - onExit?: `boolean`
-  - If true runs the menu's `onClose` function.
+  - trueの場合、メニューの `onClose` 関数を実行します。
 
 ## lib.getOpenMenu
 
-Returns the id of the currently open menu.
+現在開いているメニューのIDを返します。
 
 <Tabs items={["Lua", "JS"]}>
   <Tab>
@@ -153,10 +153,10 @@ Returns the id of the currently open menu.
 - id: `string`
 - options: `table` (`object` or `array`)
 - index?: `number`
-  - If specified only sets the options table on the specified options index.
+  - 指定されている場合、指定されたオプションインデックスのオプションテーブルのみを設定します。
 
-<u>**Example:**</u><br />
-Replaces the 3rd index option of the specified menu
+<u>**例:**</u><br />
+指定されたメニューの3番目のインデックスオプションを置き換えます
 
 <Tabs items={["Lua", "JS"]}>
   <Tab>
@@ -173,12 +173,12 @@ Replaces the 3rd index option of the specified menu
   </Tab>
 </Tabs>
 
-## Usage Example
+## 使用例
 
-First we register the menu with our specified options then we call the show function in the command.
+まず、指定されたオプションでメニューを登録し、次にコマンドでshow関数を呼び出します。
 
 <Callout>
-  Avoid constantly re-registering a menu that does not depend on any outside values (A.K.A a static menu).
+  外部の値に依存しないメニュー（別名静的メニュー）を常に再登録しないでください。
 </Callout>
 
 <Tabs items={["Lua", "JS"]}>
@@ -186,42 +186,42 @@ First we register the menu with our specified options then we call the show func
     ```lua
     lib.registerMenu({
         id = 'some_menu_id',
-        title = 'Menu title',
+        title = 'メニュータイトル',
         position = 'top-right',
         onSideScroll = function(selected, scrollIndex, args)
-            print("Scroll: ", selected, scrollIndex, args)
+            print("スクロール: ", selected, scrollIndex, args)
         end,
         onSelected = function(selected, secondary, args)
             if not secondary then
-                print("Normal button")
+                print("通常のボタン")
             else
                 if args.isCheck then
-                    print("Check button")
+                    print("チェックボタン")
                 end
 
                 if args.isScroll then
-                    print("Scroll button")
+                    print("スクロールボタン")
                 end
             end
             print(selected, secondary, json.encode(args, {indent=true}))
         end,
         onCheck = function(selected, checked, args)
-            print("Check: ", selected, checked, args)
+            print("チェック: ", selected, checked, args)
         end,
         onClose = function(keyPressed)
-            print('Menu closed')
+            print('メニューが閉じられました')
             if keyPressed then
-                print(('Pressed %s to close the menu'):format(keyPressed))
+                print(('%s を押してメニューを閉じました'):format(keyPressed))
             end
         end,
         options = {
-            {label = 'Simple button', description = 'It has a description!'},
-            {label = 'Checkbox button', checked = true},
-            {label = 'Scroll button with icon', icon = 'arrows-up-down-left-right', values={'hello', 'there'}},
-            {label = 'Button with args', args = {someArg = 'nice_button'}},
-            {label = 'List button', values = {'You', 'can', 'side', 'scroll', 'this'}, description = 'It also has a description!'},
-            {label = 'List button with default index', values = {'You', 'can', 'side', 'scroll', 'this'}, defaultIndex = 5},
-            {label = 'List button with args', values = {'You', 'can', 'side', 'scroll', 'this'}, args = {someValue = 3, otherValue = 'value'}},
+            {label = 'シンプルなボタン', description = '説明があります！'},
+            {label = 'チェックボックスボタン', checked = true},
+            {label = 'アイコン付きスクロールボタン', icon = 'arrows-up-down-left-right', values={'こんにちは', 'そこ'}},
+            {label = '引数付きボタン', args = {someArg = 'nice_button'}},
+            {label = 'リストボタン', values = {'あなたは', 'できます', '横に', 'スクロール', 'これ'}, description = '説明もあります！'},
+            {label = 'デフォルトインデックス付きリストボタン', values = {'あなたは', 'できます', '横に', 'スクロール', 'これ'}, defaultIndex = 5},
+            {label = '引数付きリストボタン', values = {'あなたは', 'できます', '横に', 'スクロール', 'これ'}, args = {someValue = 3, otherValue = 'value'}},
         }
     }, function(selected, scrollIndex, args)
         print(selected, scrollIndex, args)
@@ -239,48 +239,48 @@ First we register the menu with our specified options then we call the show func
     lib.registerMenu(
       {
         id: 'some_menu_id',
-        title: 'Menu title',
+        title: 'メニュータイトル',
         position: 'top-right',
         onSideScroll: (selected, scrollIndex, args) => {
-          console.log('Scroll: ', selected, scrollIndex, args);
+          console.log('スクロール: ', selected, scrollIndex, args);
         },
         onSelected: (selected, secondary, args) => {
           if (!secondary) {
-            console.log('Normal button');
+            console.log('通常のボタン');
           } else {
             if (args.isCheck) {
-              console.log('Check button');
+              console.log('チェックボタン');
             }
 
             if (args.isScroll) {
-              console.log('Scroll button');
+              console.log('スクロールボタン');
             }
           }
           console.log(selected, secondary, JSON.stringify(args, null, 2));
         },
         onCheck: (selected, checked, args) => {
-          console.log('Check: ', selected, checked, args);
+          console.log('チェック: ', selected, checked, args);
         },
         onClose: (keyPressed) => {
-          console.log('Menu closed');
+          console.log('メニューが閉じられました');
           if (keyPressed) {
-            console.log(`Pressed ${keyPressed} to close the menu`);
+            console.log(`${keyPressed} を押してメニューを閉じました`);
           }
         },
         options: [
-          { label: 'Simple button', description: 'It has a description!' },
-          { label: 'Checkbox button', checked: true },
-          { label: 'Scroll button with icon', icon: 'arrows-up-down-left-right', values: ['hello', 'there'] },
-          { label: 'Button with args', args: { someArg: 'nice_button' } },
+          { label: 'シンプルなボタン', description: '説明があります！' },
+          { label: 'チェックボックスボタン', checked: true },
+          { label: 'アイコン付きスクロールボタン', icon: 'arrows-up-down-left-right', values: ['こんにちは', 'そこ'] },
+          { label: '引数付きボタン', args: { someArg: 'nice_button' } },
           {
-            label: 'List button',
-            values: ['You', 'can', 'side', 'scroll', 'this'],
-            description: 'It also has a description!',
+            label: 'リストボタン',
+            values: ['あなたは', 'できます', '横に', 'スクロール', 'これ'],
+            description: '説明もあります！',
           },
-          { label: 'List button with default index', values: ['You', 'can', 'side', 'scroll', 'this'], defaultIndex: 5 },
+          { label: 'デフォルトインデックス付きリストボタン', values: ['あなたは', 'できます', '横に', 'スクロール', 'これ'], defaultIndex: 5 },
           {
-            label: 'List button with args',
-            values: ['You', 'can', 'side', 'scroll', 'this'],
+            label: '引数付きリストボタン',
+            values: ['あなたは', 'できます', '横に', 'スクロール', 'これ'],
             args: { someValue: 3, otherValue: 'value' },
           },
         ],

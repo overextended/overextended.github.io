@@ -1,23 +1,23 @@
-# Shared
+# 共有
 
 ## lib.getClosestPlayer
 
-Get the player id, ped handle, and coords of the closest player to a set of coordinates.
+座標のセットに最も近いプレイヤーのプレイヤーID、歩行者ハンドル、および座標を取得します。
 
 ```lua
 lib.getClosestPlayer(coords, maxDistance, includePlayer)
 ```
 
 - coords: `vector3`
-  - The coords to check from.
+  - チェックする座標。
 - maxDistance?: `number`
-  - The max distance to check.
-  - Default: `2.0`
+  - チェックする最大距離。
+  - デフォルト: `2.0`
 - includePlayer?: `boolean`
-  - Whether or not to include the current player. Ignored on the server.
-  - Default: `false`
+  - 現在のプレイヤーを含めるかどうか。サーバーでは無視されます。
+  - デフォルト: `false`
 
-Return:
+戻り値:
 
 - playerId?: `number`
 - playerPed?: `number`

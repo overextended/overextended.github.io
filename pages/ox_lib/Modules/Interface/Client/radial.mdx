@@ -1,19 +1,19 @@
 ---
-title: Radial Menu
+title: ラジアルメニュー
 ---
 
 import { Tabs, Tab } from 'nextra-theme-docs';
 import { Callout } from 'nextra/components';
 
-# Radial Menu
+# ラジアルメニュー
 
-- Radial menu has a global menu that's by default accessed with `z` and only displays when there is at least one item.
-- You can add and remove items from the global menu using `lib.addRadialItem` and `lib.removeRadialItem`.
-- Use `lib.registerRadial` for creating sub menus and use the `menu` property on the items to open those sub menus.
+- ラジアルメニューにはグローバルメニューがあり、デフォルトでは `z` でアクセスでき、少なくとも1つのアイテムがある場合にのみ表示されます。
+- `lib.addRadialItem` および `lib.removeRadialItem` を使用して、グローバルメニューからアイテムを追加および削除できます。
+- サブメニューを作成するには `lib.registerRadial` を使用し、アイテムの `menu` プロパティを使用してそれらのサブメニューを開きます。
 
 ## lib.addRadialItem
 
-Item or array of items added to the global radial menu.
+グローバルラジアルメニューに追加されたアイテムまたはアイテムの配列。
 
 <Tabs items={["Lua", "JS"]}>
   <Tab>
@@ -30,25 +30,25 @@ Item or array of items added to the global radial menu.
   </Tab>
 </Tabs>
 
-- items: `table` (`object` or `array`)
+- items: `table` (`object` または `array`)
   - id: `string`
-    - Id that is used for removing options.
+    - オプションを削除するために使用されるID。
   - icon: `string`
-    - Either a font awesome or a custom URI.1
+    - Font AwesomeまたはカスタムURIのいずれか。1
   - iconWidth?: `number`
   - iconHeight?: `number`
-    - In the case of a custom URI, adjust the size of the icon.
+    - カスタムURIの場合、アイコンのサイズを調整します。
   - label: `string`
-    - Label uses `  \n` to insert a newline
+    - ラベルは `  \n` を使用して改行を挿入します
   - menu?: `string`
-    - Id of a menu to open.
+    - 開くメニューのID。
   - onSelect: `function(currentMenu: string | nil, itemIndex: number)` | `string`
-    - Function that's ran when a user clicks the item.
+    - ユーザーがアイテムをクリックしたときに実行される関数。
   - keepOpen?: `boolean`
 
 ## lib.removeRadialItem
 
-Id of an item to be removed from the global menu.
+グローバルメニューから削除するアイテムのID。
 
 <Tabs items={["Lua", "JS"]}>
   <Tab>
@@ -69,7 +69,7 @@ Id of an item to be removed from the global menu.
 
 ## lib.clearRadialItems
 
-Removes all items from the radial menu.
+ラジアルメニューからすべてのアイテムを削除します。
 
 <Tabs items={["Lua", "JS"]}>
   <Tab>
@@ -88,7 +88,7 @@ Removes all items from the radial menu.
 
 ## lib.registerRadial
 
-Registers a radial sub menu with predefined options.
+事前定義されたオプションを持つラジアルサブメニューを登録します。
 
 <Tabs items={["Lua", "JS"]}>
   <Tab>
@@ -107,19 +107,19 @@ Registers a radial sub menu with predefined options.
 
 - radial: `table` (`object`)
   - id: `string`
-    - Unique menu id used to open with `menu` prop on an item.
+    - アイテムの `menu` プロパティで開くために使用される一意のメニューID。
   - items: `array`
     - icon: `string`
     - label: `string`
-      - Label uses `  \n` to insert a newline
+      - ラベルは `  \n` を使用して改行を挿入します
     - menu?: `string`
-      - Id of a menu to open.
+      - 開くメニューのID。
     - onSelect?: `function(currentMenu: string | nil, itemIndex: number)` | `string`
-      - Function that's ran when a user clicks the item.
+      - ユーザーがアイテムをクリックしたときに実行される関数。
 
 ## lib.hideRadial
 
-Hides the radial menu if one is open.
+開いているラジアルメニューがある場合は非表示にします。
 
 <Tabs items={["Lua", "JS"]}>
   <Tab>
@@ -138,7 +138,7 @@ Hides the radial menu if one is open.
 
 ## lib.disableRadial
 
-Disallow players from opening the radial menu.
+プレイヤーがラジアルメニューを開くことを禁止します。
 
 <Tabs items={["Lua", "JS"]}>
   <Tab>
@@ -156,11 +156,11 @@ Disallow players from opening the radial menu.
 </Tabs>
 
 - state: `boolean`
-  - Whether or not radial menu should be disabled
+  - ラジアルメニューを無効にするかどうか
 
 ## lib.getCurrentRadialId
 
-Returns the id of the currently open radial menu.
+現在開いているラジアルメニューのIDを返します。
 
 <Tabs items={["Lua", "JS"]}>
   <Tab>
@@ -177,14 +177,14 @@ Returns the id of the currently open radial menu.
   </Tab>
 </Tabs>
 
-## Usage Example
+## 使用例
 
 <Callout>
-  When adding radial menu items whether they are global or for a sub menu, make sure to stick to short as possible labels
-  as long labels will look out of place and should not be used with the radial menu because of its density.
+  グローバルメニューかサブメニューかにかかわらず、ラジアルメニュー項目を追加する場合は、できるだけ短いラベルを使用するようにしてください。
+  長いラベルは見栄えが悪く、密度が高いためラジアルメニューでは使用しないでください。
 </Callout>
 
-Here's a use case example with some global options and an option utilising the lib's points system.
+libのポイントシステムを利用したグローバルオプションとオプションを含むユースケースの例を次に示します。
 
 <Tabs items={["Lua", "JS"]}>
   <Tab>
@@ -193,7 +193,7 @@ Here's a use case example with some global options and an option utilising the l
         print(menu, item)
 
         if menu == 'police_menu' and item == 1 then
-            print('Handcuffs')
+            print('手錠')
         end
     end)
 
@@ -201,27 +201,27 @@ Here's a use case example with some global options and an option utilising the l
       id = 'police_menu',
       items = {
         {
-          label = 'Handcuff',
+          label = '手錠',
           icon = 'handcuffs',
           onSelect = 'myMenuHandler'
         },
         {
-          label = 'Frisk',
+          label = '身体検査',
           icon = 'hand'
         },
         {
-          label = 'Fingerprint',
+          label = '指紋',
           icon = 'fingerprint'
         },
         {
-          label = 'Jail',
+          label = '拘留',
           icon = 'bus'
         },
         {
-          label = 'Search',
+          label = '捜索',
           icon = 'magnifying-glass',
           onSelect = function()
-            print('Search')
+            print('捜索')
           end
         }
       }
@@ -230,16 +230,16 @@ Here's a use case example with some global options and an option utilising the l
     lib.addRadialItem({
       {
         id = 'police',
-        label = 'Police',
+        label = '警察',
         icon = 'shield-halved',
         menu = 'police_menu'
       },
       {
         id = 'business_stuff',
-        label = 'Business',
+        label = 'ビジネス',
         icon = 'briefcase',
         onSelect = function()
-          print("Business")
+          print("ビジネス")
         end
       }
     })
@@ -251,9 +251,9 @@ Here's a use case example with some global options and an option utilising the l
       lib.addRadialItem({
         id = 'garage_access',
         icon = 'warehouse',
-        label = 'Garage',
+        label = 'ガレージ',
         onSelect = function()
-          print('Garage')
+          print('ガレージ')
         end
       })
     end
@@ -265,7 +265,7 @@ Here's a use case example with some global options and an option utilising the l
   </Tab>
   <Tab>
     <Callout>
-      Points system in the lib isn't available for the npm package.
+      libのポイントシステムはnpmパッケージでは利用できません。
     </Callout>
 
     ```ts
@@ -275,7 +275,7 @@ Here's a use case example with some global options and an option utilising the l
         console.log(menu, item)
 
         if (menu === 'police_menu' and item === 1) {
-            console.log('Handcuffs')
+            console.log('手錠')
         }
     })
 
@@ -283,27 +283,27 @@ Here's a use case example with some global options and an option utilising the l
       id: 'police_menu',
       items: [
         {
-          label: 'Handcuff',
+          label: '手錠',
           icon: 'handcuffs',
           onSelect: 'myMenuHandler'
         },
         {
-          label: 'Frisk',
+          label: '身体検査',
           icon: 'hand'
         },
         {
-          label: 'Fingerprint',
+          label: '指紋',
           icon: 'fingerprint'
         },
         {
-          label: 'Jail',
+          label: '拘留',
           icon: 'bus'
         },
         {
-          label: 'Search',
+          label: '捜索',
           icon: 'magnifying-glass',
           onSelect: () => {
-            console.log('Search')
+            console.log('捜索')
           }
         }
       ]
@@ -312,16 +312,16 @@ Here's a use case example with some global options and an option utilising the l
     lib.addRadialItem([
       {
         id: 'police',
-        label: 'Police',
+        label = '警察',
         icon: 'shield-halved',
         menu: 'police_menu'
       },
       {
         id: 'business_stuff',
-        label: 'Business',
+        label = 'ビジネス',
         icon: 'briefcase',
         onSelect: () => {
-          console.log('Business')
+          console.log('ビジネス')
         }
       }
     ])

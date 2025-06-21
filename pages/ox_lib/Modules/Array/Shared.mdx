@@ -1,12 +1,12 @@
-# Shared
+# 共有
 
 ## lib.array
 
-A table used as a prototype for the Array class. Functions can be used as class methods or standard functions.
+Arrayクラスのプロトタイプとして使用されるテーブル。関数はクラスメソッドまたは標準関数として使用できます。
 
 ### lib.array:new
 
-Constructs instance of Array containing the given elements.
+指定された要素を含むArrayのインスタンスを構築します。
 
 - ...: `any`
 
@@ -14,28 +14,28 @@ Constructs instance of Array containing the given elements.
 lib.array:new(...)
 ```
 
-**Returns:**
+**戻り値:**
 
 - arr: `Array`
 
 ### lib.array.from
 
-Creates a new array from an iterable value.
+反復可能な値から新しい配列を作成します。
 
 - iter: `function` | `table` | `string`
-  - Iterator functions such as string.gmatch can be used to construct arrays.
+  - string.gmatchなどのイテレータ関数を使用して配列を構築できます。
 
 ```lua
 lib.array.from(iter)
 ```
 
-**Returns:**
+**戻り値:**
 
 - arr: `Array`
 
 ### lib.array.at
 
-Returns the element at the given index, with negative numbers counting backwards from the end of the array.
+指定されたインデックスの要素を返します。負の数は配列の末尾から逆方向にカウントされます。
 
 - index: `integer`
 
@@ -43,13 +43,13 @@ Returns the element at the given index, with negative numbers counting backwards
 lib.array.at(index)
 ```
 
-**Returns:**
+**戻り値:**
 
 - element: `unknown`
 
 ### lib.array.merge
 
-Combines the elements of two or more arrays into a new array.
+2つ以上の配列の要素を新しい配列に結合します。
 
 - ...: `Array`
 
@@ -57,13 +57,13 @@ Combines the elements of two or more arrays into a new array.
 lib.array.merge(...)
 ```
 
-**Returns:**
+**戻り値:**
 
 - Array
 
 ### lib.array.every
 
-Tests if all elements in an array succeed in passing the provided test function.
+配列内のすべての要素が、指定されたテスト関数に合格するかどうかをテストします。
 
 - arr: `Array`
 - testFn: `function(element: unknown): boolean`
@@ -72,13 +72,13 @@ Tests if all elements in an array succeed in passing the provided test function.
 lib.array.every(arr, testFn)
 ```
 
-**Returns:**
+**戻り値:**
 
 - success: `boolean`
 
 ### lib.array.fill
 
-Sets all elements within a range to the given value and returns the modified array.
+範囲内のすべての要素を指定された値に設定し、変更された配列を返します。
 
 - arr: `Array`
 - value: `any`
@@ -89,13 +89,13 @@ Sets all elements within a range to the given value and returns the modified arr
 lib.array.fill(arr, value, start, endIndex)
 ```
 
-**Returns:**
+**戻り値:**
 
 - arr: `Array`
 
 ### lib.array.filter
 
-Creates a new array containing the elements from an array that pass the provided test function.
+指定されたテスト関数に合格する配列の要素を含む新しい配列を作成します。
 
 - arr: `Array`
 - testFn: `function(element: unknown): boolean`
@@ -104,64 +104,64 @@ Creates a new array containing the elements from an array that pass the provided
 lib.array.filter(arr, testFn)
 ```
 
-**Returns:**
+**戻り値:**
 
 - newArr: `Array`
 
 ### lib.array.find
 
-Returns the first element of an array the passes the provided test function.
+指定されたテスト関数に合格する配列の最初の要素を返します。
 
 - arr: `Array`
 - testFn: `function(element: unknown): boolean`
 - reverse?: `boolean`
-  - Iterate over the array in reverse order.
+  - 配列を逆順に反復処理します。
 
 ```lua
 lib.array.find(arr, testFn, reverse)
 ```
 
-**Returns:**
+**戻り値:**
 
 - element: `unknown`
 
 ### lib.array.findIndex
 
-Returns the index of the first element of an array the passes the provided test function.
+指定されたテスト関数に合格する配列の最初の要素のインデックスを返します。
 
 - arr: `Array`
 - testFn: `function(element: unknown): boolean`
 - reverse?: `boolean`
-  - Iterate over the array in reverse order.
+  - 配列を逆順に反復処理します。
 
 ```lua
 lib.array.findIndex(arr, testFn, reverse)
 ```
 
-**Returns:**
+**戻り値:**
 
 - index: `integer`
 
 ### lib.array.indexOf
 
-Returns the index of the first element of an array the matches the provided value.
+指定された値に一致する配列の最初の要素のインデックスを返します。
 
 - arr: `Array`
 - value: `any`
 - reverse?: `boolean`
-  - Iterate over the array in reverse order.
+  - 配列を逆順に反復処理します。
 
 ```lua
 lib.array.indexOf(arr, value, reverse)
 ```
 
-**Returns:**
+**戻り値:**
 
 - index: `integer`
 
 ### lib.array.forEach
 
-Executes the provided function for each element in an array.
+配列内の各要素に対して指定された関数を実行します。
 
 - arr: `Array`
 - cb: `function(element: unknown)`
@@ -170,13 +170,13 @@ Executes the provided function for each element in an array.
 lib.array.forEach(arr, cb, reverse)
 ```
 
-**Returns:**
+**戻り値:**
 
 - index: `integer`
 
 ### lib.array.join
 
-Concatenates all elements of an array into a string, separated by commas or the specified seperator.
+配列のすべての要素を文字列に連結し、コンマまたは指定された区切り文字で区切ります。
 
 - arr: `Array`
 - seperator?: `string`
@@ -185,13 +185,13 @@ Concatenates all elements of an array into a string, separated by commas or the 
 lib.array.join(arr, seperator)
 ```
 
-**Returns:**
+**戻り値:**
 
 - str: `string`
 
 ### lib.array.map
 
-Create a new array containing the results from calling the provided function on each element in an array.
+配列内の各要素に対して指定された関数を呼び出した結果を含む新しい配列を作成します。
 
 - fn: `function(element: unknown, index: integer, arr: Array): unknown`
 
@@ -199,13 +199,13 @@ Create a new array containing the results from calling the provided function on 
 lib.array.map(arr, fn)
 ```
 
-**Returns:**
+**戻り値:**
 
 - newArr: `Array`
 
 ### lib.array.pop
 
-Removes the last element from an array and returns the value.
+配列から最後の要素を削除し、その値を返します。
 
 - arr: `Array`
 
@@ -213,13 +213,13 @@ Removes the last element from an array and returns the value.
 lib.array.pop(arr)
 ```
 
-**Returns:**
+**戻り値:**
 
 - element: `unknown`
 
 ### lib.array.push
 
-Adds the given elements to the end of an array and returns the new array length.
+指定された要素を配列の末尾に追加し、新しい配列の長さを返します。
 
 - arr: `Array`
 - ...: `any`
@@ -228,13 +228,13 @@ Adds the given elements to the end of an array and returns the new array length.
 lib.array.push(arr, ...)
 ```
 
-**Returns:**
+**戻り値:**
 
 - length: `integer`
 
 ### lib.array.shift
 
-Removes the first element from an array and returns the value.
+配列から最初の要素を削除し、その値を返します。
 
 - arr: `Array`
 
@@ -242,13 +242,13 @@ Removes the first element from an array and returns the value.
 lib.array.shift(arr)
 ```
 
-**Returns:**
+**戻り値:**
 
 - element: `unknown`
 
 ### lib.array.slice
 
-Creates a shallow copy of a portion of an array as a new array.
+配列の一部を浅いコピーとして新しい配列に作成します。
 
 - arr: `Array`
 - start?: `integer`
@@ -258,13 +258,13 @@ Creates a shallow copy of a portion of an array as a new array.
 lib.array.slice(arr, start, finish)
 ```
 
-**Returns:**
+**戻り値:**
 
 - newArr: `Array`
 
 ### lib.array.toReversed
 
-Creates a new array with the order of its elements reversed from the given array.
+指定された配列から要素の順序を逆にした新しい配列を作成します。
 
 - arr: `Array`
 
@@ -272,13 +272,13 @@ Creates a new array with the order of its elements reversed from the given array
 lib.array.toReversed(arr)
 ```
 
-**Returns:**
+**戻り値:**
 
 - newArr: `Array`
 
 ### lib.array.unshift
 
-Inserts new elements at the start of an array and returns the new array length.
+新しい要素を配列の先頭に挿入し、新しい配列の長さを返します。
 
 - arr: `Array`
 - ...: `any`
@@ -287,14 +287,14 @@ Inserts new elements at the start of an array and returns the new array length.
 lib.array.unshift(arr, ...)
 ```
 
-**Returns:**
+**戻り値:**
 
 - length: `integer`
 
 ### lib.array.reduce
 
-The "reducer" function is applied to every element in an array, with the previous result serving as the accumulator.  
-If an initial value is provided it's used as the accumulator for the first index; otherwise iteration starts at the second index, with the first index as the accumulator.
+「reducer」関数は配列内のすべての要素に適用され、前の結果がアキュムレータとして機能します。
+初期値が指定されている場合、最初のインデックスのアキュムレータとして使用されます。それ以外の場合、反復は2番目のインデックスから開始され、最初のインデックスがアキュムレータになります。
 
 - arr: `Array`
 - reducer: `function(accumulator: unknown, element: unknown, index?: integer)`
@@ -304,13 +304,13 @@ If an initial value is provided it's used as the accumulator for the first index
 lib.array.reduce(arr, reducer)
 ```
 
-**Returns:**
+**戻り値:**
 
 - accumulator: `unknown`
 
 ### lib.array.reverse
 
-Reverses the order of elements inside an array.
+配列内の要素の順序を逆にします。
 
 - arr: `Array`
 
@@ -318,13 +318,13 @@ Reverses the order of elements inside an array.
 lib.array.reverse(arr)
 ```
 
-**Returns:**
+**戻り値:**
 
 - arr: `Array`
 
 ### lib.isArray
 
-Determines if the given table is an instance of Array or an array-like table.
+指定されたテーブルがArrayのインスタンスであるか、配列のようなテーブルであるかを判断します。
 
 - tbl: `table`
 
@@ -332,6 +332,6 @@ Determines if the given table is an instance of Array or an array-like table.
 lib.array.isArray(tbl)
 ```
 
-**Returns:**
+**戻り値:**
 
 - isArray: `boolean`

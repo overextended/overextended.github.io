@@ -1,33 +1,33 @@
 import { Tabs, Tab } from 'nextra-theme-docs';
 
-# Client
+# クライアント
 
-Values and cache functionality available to the client, in addition to the [shared](../Shared) values.
+[共有](../Shared)値に加えて、クライアントで利用可能な値とキャッシュ機能。
 
-## Default values
+## デフォルト値
 
 - ped: `number`
-  - player entity id
+  - プレイヤーエンティティID
 - playerId: `number`
-  - player id
+  - プレイヤーID
 - serverId: `number`
-  - player server id
-- weapon: `number` or `false`
-  - current weapon hash
-- vehicle: `number` or `false`
-  - vehicle entity id
-- seat: `number` or `false`
-  - vehicle seat index
+  - プレイヤーサーバーID
+- weapon: `number` または `false`
+  - 現在の武器ハッシュ
+- vehicle: `number` または `false`
+  - 車両エンティティID
+- seat: `number` または `false`
+  - 車両シートインデックス
 - coords: `vector3`
-  - current player coords
-  - only populated if using `zones` or `points`
-  - cannot be listened for with `lib.onCache`
-- mount: `number` or `false` (RedM only)
-  - mount entity id
+  - 現在のプレイヤー座標
+  - `zones` または `points` を使用している場合にのみ入力されます
+  - `lib.onCache` でリッスンできません
+- mount: `number` または `false` (RedMのみ)
+  - マウントエンティティID
 
 ## lib.onCache
 
-Register an event handler that is triggered when the cached value is updated.
+キャッシュされた値が更新されたときにトリガーされるイベントハンドラーを登録します。
 
 <Tabs items={["Lua", "JS"]}>
   <Tab>
@@ -40,13 +40,13 @@ Register an event handler that is triggered when the cached value is updated.
       - `vehicle`
       - `seat`
       - `weapon`
-      - `mount` (RedM only)
+      - `mount` (RedMのみ)
     - value: `any`
 
     ```lua
     lib.onCache('vehicle', function(value, oldValue)
-        print('old vehicle:', cache.vehicle)
-        print('new vehicle:', value)
+        print('古い車両:', cache.vehicle)
+        print('新しい車両:', value)
     end)
     ```
   </Tab>
@@ -62,15 +62,15 @@ Register an event handler that is triggered when the cached value is updated.
       - `vehicle`
       - `seat`
       - `weapon`
-      - `mount` (RedM only)
+      - `mount` (RedMのみ)
     - value: `any`
 
     ```ts
     import { cache, onCache } from '@overextended/ox_lib/client';
 
     lib.onCache('vehicle', (value) => {
-      console.log('old vehicle:', cache.vehicle);
-      console.log('new vehicle:', value);
+      console.log('古い車両:', cache.vehicle);
+      console.log('新しい車両:', value);
     });
     ```
   </Tab>

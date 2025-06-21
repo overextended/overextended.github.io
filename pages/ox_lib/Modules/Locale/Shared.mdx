@@ -1,17 +1,17 @@
 import { Tabs, Tab } from 'nextra-theme-docs';
 
-Allows servers to set a preferred language and attempt to load locale files in any resources using the module.
-Locale files should use the [ISO Language Code](http://www.lingoes.net/en/translator/langcode.htm) and be saved as `./locales/langcode.json`
+サーバーが優先言語を設定し、モジュールを使用する任意のリソースでロケールファイルの読み込みを試行できるようにします。
+ロケールファイルは[ISO言語コード](http://www.lingoes.net/en/translator/langcode.htm)を使用し、`./locales/langcode.json` として保存する必要があります。
 
-## Setup
+## セットアップ
 
-To change the preferred language from English, add the convar to your server.cfg and change `en` to the desired language code.
+優先言語を英語から変更するには、convarをserver.cfgに追加し、`en`を目的の言語コードに変更します。
 
 ```yaml
 setr ox:locale en
 ```
 
-Create a locales directory and a file for your language.
+localesディレクトリとあなたの言語用のファイルを作成します。
 
 ```json filename="locales/en.json"
 {
@@ -37,9 +37,9 @@ files {
 }
 ```
 
-## Usage
+## 使用法
 
-Initialise the locale module in your resource (once).
+リソースでロケールモジュールを初期化します（1回）。
 
 <Tabs items={["Lua", "JS"]}>
   <Tab>
@@ -56,8 +56,8 @@ Initialise the locale module in your resource (once).
   </Tab>
 </Tabs>
 
-Format your strings with the new locale global.
-Additional arguments can be sent to format the locale output.
+新しいロケールグローバルで文字列をフォーマットします。
+ロケール出力をフォーマットするために追加の引数を送信できます。
 
 <Tabs items={['Lua', 'JS']}>
   <Tab>
@@ -111,9 +111,9 @@ Additional arguments can be sent to format the locale output.
 </Tabs>
 
 
-## Phrases
+## フレーズ
 
-You can create a locale string that references other locales to construct a phrase, rather than calling locale multiple times.
+ロケールを複数回呼び出すのではなく、他のロケールを参照するロケール文字列を作成してフレーズを構築できます。
 
 ```json
 {
@@ -142,7 +142,7 @@ You can create a locale string that references other locales to construct a phra
 
 ## lib.getLocale
 
-Gets a locale string from another resource and adds it to the dict.
+別のリソースからロケール文字列を取得し、辞書に追加します。
 
 ```lua
 lib.getLocale(resource, key)

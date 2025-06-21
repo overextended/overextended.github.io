@@ -1,6 +1,6 @@
-# Client
+# クライアント
 
-## Trigger Server Callback
+## サーバーコールバックのトリガー
 
 ### triggerServerCallback
 
@@ -9,11 +9,11 @@ triggerServerCallback(eventName, delay, ...args)
 ```
 
 - eventName: `string`
-- delay: `number` or `null`
-  - Amount of time until this callback can be triggered again
+- delay: `number` または `null`
+  - このコールバックを再度トリガーできるまでの時間
 - ..args: `any`
 
-## Register Client Callback
+## クライアントコールバックの登録
 
 ### onServerCallback
 
@@ -24,9 +24,9 @@ onServerCallback(eventName, cb)
 - eventName: `string`
 - cb: `function`(...args: `any`)
 
-## Usage Example
+## 使用例
 
-For this example to fully make sense take a look at the example on the [server](./Server#usage-example) page for the callbacks.
+この例を完全に理解するには、コールバックの[サーバー](./Server#usage-example)ページの例を参照してください。
 
 ```ts
 import { onServerCallback, triggerServerCallback } from '@overextended/ox_lib/client'
@@ -36,7 +36,7 @@ import { onServerCallback, triggerServerCallback } from '@overextended/ox_lib/cl
 onServerCallback('test:client', (...args: [number, number, string]) => {
   console.log(args);
   return {
-    clientValue: 'Value from the client',
+    clientValue: 'クライアントからの値',
   };
 });
 ```
@@ -46,6 +46,6 @@ setTimeout(async () => {
   const args = [1, null, 3, null, null, 6];
   const response = await triggerServerCallback<{ serverValue: number }>('test:server', 1, args);
   if (!response) return;
-  console.log('Response from server', response);
+  console.log('サーバーからの応答', response);
 }, 100);
 ```

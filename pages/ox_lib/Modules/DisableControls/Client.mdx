@@ -1,10 +1,10 @@
-# Client
+# クライアント
 
-A centralized way to track and disable [game controls](https://docs.fivem.net/docs/game-references/controls/#controls).
+[ゲームコントロール](https://docs.fivem.net/docs/game-references/controls/#controls)を一元的に追跡および無効化する方法。
 
 ## lib.disableControls
 
-Call on frame to disable all stored controls.
+フレームで呼び出して、保存されているすべてのコントロールを無効にします。
 
 ```lua
 lib.disableControls()
@@ -12,35 +12,35 @@ lib.disableControls()
 
 ## lib.disableControls:Add
 
-Adds the specified control(s) to the stored list.  
-If the control is already being tracked, the stored counter will be incremented.
+指定されたコントロールを保存リストに追加します。
+コントロールがすでに追跡されている場合、保存カウンターが増分されます。
 
 ```lua
 lib.disableControls:Add(...)
 ```
 
-- vararg: `number` or `number[]`
-  - Control(s) to add a stored count of
+- vararg: `number` または `number[]`
+  - 保存カウントを追加するコントロール
 
 ## lib.disableControls:Remove
 
-Removes the specified control(s) from the stored list.  
-If the stored counter for a given control is greater than one, the stored counter will be decremented.
+指定されたコントロールを保存リストから削除します。
+特定のコントロールの保存カウンターが1より大きい場合、保存カウンターがデクリメントされます。
 
 ```lua
 lib.disableControls:Remove(...)
 ```
 
-- vararg: `number` or `number[]`
-  - Control(s) to remove a stored count of
+- vararg: `number` または `number[]`
+  - 保存カウントを削除するコントロール
 
 ## lib.disableControls:Clear
 
-Clears the stored counter(s) for the specified control(s).
+指定されたコントロールの保存カウンターをクリアします。
 
 ```lua
 lib.disableControls:Clear(...)
 ```
 
-- vararg: `number` or `number[]`
-  - Control(s) to clear out from being tracked
+- vararg: `number` または `number[]`
+  - 追跡からクリアするコントロール

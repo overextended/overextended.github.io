@@ -1,6 +1,6 @@
-# Server
+# サーバー
 
-## Trigger Client Callback
+## クライアントコールバックのトリガー
 
 ### triggerClientCallback
 
@@ -12,7 +12,7 @@ triggerClientCallback(eventName, playerId, ...args)
 - playerId: `number`
 - ...args: `any`
 
-## Register Server Callback
+## サーバーコールバックの登録
 
 ### onClientCallback
 
@@ -23,9 +23,9 @@ onClientCallback(eventName, cb)
 * eventName: `string`
 * cb: `function`(playerId: `number`, ...args: `any`)
 
-## Usage Example
+## 使用例
 
-For this example to fully make sense take a look at the example on the [client](./Client#usage-example) page for the callbacks.
+この例を完全に理解するには、コールバックの[クライアント](./Client#usage-example)ページの例を参照してください。
 
 ```ts
 import { onClientCallback, triggerClientCallback } from '@overextended/ox_lib/server';
@@ -45,6 +45,6 @@ setTimeout(async () => {
   const response = await triggerClientCallback<{ clientValue: string }>('test:client', 1, [1, null, 3, null, null, 6])
   if (!response) return;
   console.log(response.clientValue);
-  console.log('Response from client', response);
+  console.log('クライアントからの応答', response);
 }, 100);
 ```

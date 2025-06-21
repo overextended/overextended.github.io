@@ -1,13 +1,13 @@
 ---
-title: Input Dialog
+title: 入力ダイアログ
 ---
 
 import { Tabs, Tab } from 'nextra-theme-docs';
 import { Callout } from 'nextra/components';
 
-# Input Dialog
+# 入力ダイアログ
 
-The input dialog window allows you to take data from the user by setting input fields.
+入力ダイアログウィンドウでは、入力フィールドを設定することでユーザーからデータを取得できます。
 
 ## lib.inputDialog
 
@@ -27,14 +27,14 @@ The input dialog window allows you to take data from the user by setting input f
 </Tabs>
 
 - heading: `string`
-- rows: `string[]` or `table` (`array`)
-  - type: `'input'` or `'number'` or `'checkbox'` or `'select'` or `'slider'` or `'color'` or `'multi-select'` or `'date'` or `'date-range'` or `'time'` or `'textarea'`
+- rows: `string[]` または `table` (`array`)
+  - type: `'input'` または `'number'` または `'checkbox'` または `'select'` または `'slider'` または `'color'` または `'multi-select'` または `'date'` または `'date-range'` または `'time'` または `'textarea'`
 - options?: `table`(`object`)
   - allowCancel: `boolean`
-    - If false the user will not be able to cancel and close the input dialog until submitted.
-    - If not defined, the user is able to cancel and close the input dialog.
+    - falseの場合、ユーザーは送信されるまで入力ダイアログをキャンセルして閉じることができません。
+    - 定義されていない場合、ユーザーは入力ダイアログをキャンセルして閉じることができます。
 
-### Field Type Properties
+### フィールドタイプのプロパティ
 
 - input
 
@@ -70,7 +70,7 @@ The input dialog window allows you to take data from the user by setting input f
   - disabled?: `boolean`
   - required?: `boolean`
 
-- select and multi-select
+- select および multi-select
 
   - label: `string`
   - options: `table`(`array`)
@@ -81,12 +81,12 @@ The input dialog window allows you to take data from the user by setting input f
   - icon?: `string`
   - required? `boolean`
   - disabled?: `boolean`
-  - default?: `string` | `table` (only for `multi-select`)
-    - value of the default option.
+  - default?: `string` | `table` (`multi-select` のみ)
+    - デフォルトオプションの値。
   - clearable?: `boolean`
   - searchable?: `boolean`
-  - maxSelectedValues?: `number` (only for `multi-select`)
-    - Maxmimum number of options that can be selected.
+  - maxSelectedValues?: `number` (`multi-select` のみ)
+    - 選択できるオプションの最大数。
 
 - slider
 
@@ -118,12 +118,12 @@ The input dialog window allows you to take data from the user by setting input f
   - icon?: `string`
   - required? `boolean`
   - disabled?: `boolean`
-  - default?: `string` or `true`
-    - True defaults to current date
+  - default?: `string` または `true`
+    - Trueは現在の日付をデフォルトとします
   - format?: `string`
-    - Date format to display in the field
+    - フィールドに表示する日付形式
   - returnString?: `boolean`
-    - Returns the date as a string, default format is `DD/MM/YYYY`, but if `format` is defined it will use that.
+    - 日付を文字列として返します。デフォルト形式は `DD/MM/YYYY` ですが、`format` が定義されている場合はそれを使用します。
   - clearable?: `boolean`
   - min?: `string`
     - "01/01/2000"
@@ -139,9 +139,9 @@ The input dialog window allows you to take data from the user by setting input f
   - disabled?: `boolean`
   - default?: `[string, string]`
   - format?: `string`
-    - Date format to display in the field
+    - フィールドに表示する日付形式
   - returnString?: `boolean`
-    - Returns the date as a string, default format is `DD/MM/YYYY`, but if `format` is defined it will use that.
+    - 日付を文字列として返します。デフォルト形式は `DD/MM/YYYY` ですが、`format` が定義されている場合はそれを使用します。
   - clearable?: `boolean`
 
 - time
@@ -152,7 +152,7 @@ The input dialog window allows you to take data from the user by setting input f
   - required? `boolean`
   - disabled?: `boolean`
   - default?: `string`
-  - format?: `'12'` or `'24'`
+  - format?: `'12'` または `'24'`
   - clearable?: `boolean`
 
 - textarea
@@ -164,23 +164,23 @@ The input dialog window allows you to take data from the user by setting input f
   - disabled?: `boolean`
   - default?: `number`
   - min?: `number`
-    - Minimum amount of rows the text area will take.
+    - テキストエリアが取る最小行数。
   - max?: `number`
-    - Maxmimum amount of rows the text area will take, when exceeded goes into overflow.
+    - テキストエリアが取る最大行数。超えるとオーバーフローします。
   - autosize?: `boolean`
-    - If true text area will grow with content until max rows are reached.
+    - trueの場合、最大行数に達するまでコンテンツとともにテキストエリアが拡大します。
 
-The callback data is promise based meaning that the thread will not continue executing until the user either sends the data or exits the popup.
+コールバックデータはプロミスベースであり、ユーザーがデータを送信するかポップアップを終了するまでスレッドの実行は継続されません。
 
-The data returned will be a table (array), indexes represent the rows sent to the dialog, so if we want data from the first field that would be index `1` (`0`), if we want data from the third field, that would be index `3` (`2`), etc...
+返されるデータはテーブル（配列）であり、インデックスはダイアログに送信された行を表します。したがって、最初のフィールドからデータを取得したい場合はインデックス `1`（`0`）、3番目のフィールドからデータを取得したい場合はインデックス `3`（`2`）などになります...
 
 <Callout>
-  Field types such as `date`, `date-range` and `time` return a unix timestamp on the set value.
+  `date`、`date-range`、`time` などのフィールドタイプは、設定値のUNIXタイムスタンプを返します。
 </Callout>
 
 ## lib.closeInputDialog
 
-Force closes the active input dialog and sets its return data as `nil`.
+アクティブな入力ダイアログを強制的に閉じ、その戻り値を `nil` に設定します。
 
 <Tabs items={["Lua", "JS"]}>
   <Tab>
@@ -204,7 +204,7 @@ Force closes the active input dialog and sets its return data as `nil`.
 <Tabs items={["Lua", "JS"]}>
   <Tab>
     ```lua
-    local input = lib.inputDialog('Basic dialog', {'First row', 'Second row'})
+    local input = lib.inputDialog('基本ダイアログ', {'最初の行', '2番目の行'})
 
     if not input then return end
     print(json.encode(input), input[1], input[2])
@@ -212,11 +212,11 @@ Force closes the active input dialog and sets its return data as `nil`.
   </Tab>
   <Tab>
     <Callout>
-      This function is **asynchronous** requiring you to do a `.then` callback on the promise or make your function `async`.
+      この関数は**非同期**であり、プロミスに対して `.then` コールバックを行うか、関数を `async` にする必要があります。
     </Callout>
 
     ```ts
-    const input = await lib.inputDialog('Basic dialog', ['First row', 'Second row']);
+    const input = await lib.inputDialog('基本ダイアログ', ['最初の行', '2番目の行']);
 
     if (!input) return;
     console.log(input, input[0], input[1]);
@@ -224,48 +224,48 @@ Force closes the active input dialog and sets its return data as `nil`.
   </Tab>
 </Tabs>
 
-![Example image](https://i.imgur.com/KnZ0sEW.png)
+![サンプル画像](https://i.imgur.com/KnZ0sEW.png)
 
-### Advanced
+### 詳細設定
 
 <Tabs items={["Lua", "JS"]}>
   <Tab>
     ```lua
-    local input = lib.inputDialog('Dialog title', {
-      {type = 'input', label = 'Text input', description = 'Some input description', required = true, min = 4, max = 16},
-      {type = 'number', label = 'Number input', description = 'Some number description', icon = 'hashtag'},
-      {type = 'checkbox', label = 'Simple checkbox'},
-      {type = 'color', label = 'Colour input', default = '#eb4034'},
-      {type = 'date', label = 'Date input', icon = {'far', 'calendar'}, default = true, format = "DD/MM/YYYY"}
+    local input = lib.inputDialog('ダイアログのタイトル', {
+      {type = 'input', label = 'テキスト入力', description = 'いくつかの入力説明', required = true, min = 4, max = 16},
+      {type = 'number', label = '数値入力', description = 'いくつかの数値説明', icon = 'hashtag'},
+      {type = 'checkbox', label = 'シンプルなチェックボックス'},
+      {type = 'color', label = 'カラー入力', default = '#eb4034'},
+      {type = 'date', label = '日付入力', icon = {'far', 'calendar'}, default = true, format = "DD/MM/YYYY"}
     })
 
     print(json.encode(input))
 
-    -- Getting rgb values from colour picker
+    -- カラーピッカーからRGB値を取得
     local rgb = lib.math.torgba(input[4])
 
-    -- Transforming date timestamp to a readable format with Lua's os library (server-only)
+    -- Luaのosライブラリ（サーバーのみ）を使用して日付タイムスタンプを読み取り可能な形式に変換
     local timestamp = math.floor(input[5] / 1000)
     local date = os.date('%Y-%m-%d %H:%M:%S', timestamp)
     ```
   </Tab>
   <Tab>
     <Callout>
-      This function is **asynchronous** requiring you to do a `.then` callback on the promise or make your function `async`.
+      この関数は**非同期**であり、プロミスに対して `.then` コールバックを行うか、関数を `async` にする必要があります。
     </Callout>
 
     ```ts
-    const input = await lib.inputDialog('Police locker', [
-      { type: 'input', label: 'Text input', description: 'Some input description', required: true, min: 3, max: 16 },
-      { type: 'number', label: 'Number input', description: 'Some number description', icon: 'hashtag' },
-      { type: 'checkbox', label: 'Simple checkbox' },
-      { type: 'color', label: 'Colour input', default: '#eb4034' },
-      { type: 'date', label: 'Date input', icon: ['far', 'calendar'], default: true, format: 'DD/MM/YYYY' },
+    const input = await lib.inputDialog('警察ロッカー', [
+      { type: 'input', label: 'テキスト入力', description: 'いくつかの入力説明', required = true, min = 3, max = 16 },
+      { type: 'number', label: '数値入力', description: 'いくつかの数値説明', icon = 'hashtag' },
+      { type: 'checkbox', label: 'シンプルなチェックボックス' },
+      { type: 'color', label: 'カラー入力', default = '#eb4034' },
+      { type: 'date', label: '日付入力', icon: ['far', 'calendar'], default = true, format: 'DD/MM/YYYY' },
     ]);
 
     console.log(JSON.stringify(input, null, 2));
 
-    // Getting r, g and b values from colour picker
+    -- カラーピッカーからr、g、bの値を取得
     const regExp = /rgb\((\d+),\s*(\d+),\s*(\d+)\)/;
     const colourInput = input[3];
 
@@ -278,4 +278,4 @@ Force closes the active input dialog and sets its return data as `nil`.
   </Tab>
 </Tabs>
 
-![Example image](https://i.imgur.com/v44YEkC.png)
+![サンプル画像](https://i.imgur.com/v44YEkC.png)

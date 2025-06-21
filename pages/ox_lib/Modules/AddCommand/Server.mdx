@@ -1,44 +1,44 @@
-# Server
+# サーバー
 
-Registers commands and simplifies argument validation, permissions, and chat suggestions.
+コマンドを登録し、引数の検証、権限、チャットの提案を簡素化します。
 
 ```lua
 lib.addCommand(commandName, properties, cb)
 ```
 
-- commandName: `string` or `string[]`
-- properties: `table` or `false`
+- commandName: `string` または `string[]`
+- properties: `table` または `false`
   - help?: `string`
-  - restricted?: `boolean` or `string` or `string[]`
+  - restricted?: `boolean` または `string` または `string[]`
   - params?: `table[]`
     - name: `string`
     - help?: `string`
-    - type?: `'number'` or `'playerId'` or `'string'` or `'longString'`
+    - type?: `'number'` または `'playerId'` または `'string'` または `'longString'`
     - optional?: `boolean`
 
 ```lua
 lib.addCommand('giveitem', {
-    help = 'Gives an item to a player',
+    help = 'プレイヤーにアイテムを与えます',
     params = {
         {
             name = 'target',
             type = 'playerId',
-            help = 'Target player\'s server id',
+            help = 'ターゲットプレイヤーのサーバーID',
         },
         {
             name = 'item',
             type = 'string',
-            help = 'Name of the item to give',
+            help = '与えるアイテムの名前',
         },
         {
             name = 'count',
             type = 'number',
-            help = 'Amount of the item to give, or blank to give 1',
+            help = '与えるアイテムの量、または1を与える場合は空白',
             optional = true,
         },
         {
             name = 'metatype',
-            help = 'Sets the item\'s "metadata.type"',
+            help = 'アイテムの "metadata.type" を設定します',
             optional = true,
         },
     },

@@ -1,6 +1,6 @@
 import { Steps, Tabs, Tab } from 'nextra-theme-docs';
 
-# Server
+# サーバー
 
 ## lib.logger
 
@@ -8,14 +8,14 @@ import { Steps, Tabs, Tab } from 'nextra-theme-docs';
 lib.logger(source, event, message, ...)
 ```
 
-- source: `number` or `string`
-  - Preferably an active player id, otherwise an identifier, or wherever else it originated from.
+- source: `number` または `string`
+  - できればアクティブなプレイヤーID、それ以外の場合は識別子、またはそれがどこから来たか。
 - event: `string`
-  - A name for the log event (i.e. the trigerring event or a description)
+  - ログイベントの名前（つまり、トリガーイベントまたは説明）
 - message: `string`
-  - The content for the log.
+  - ログの内容。
 - vararg: `string`
-  - Additional arguments are converted to tags for additional filtering and searching.
+  - 追加の引数は、追加のフィルタリングと検索のためにタグに変換されます。
 
 <br />
 <u>**Example**</u>
@@ -28,17 +28,17 @@ lib.logger(-1, 'CreateVehicle', json.encode(vehicle))
 ## Datadog
 
 <Steps>
-  ### Create your [Datadog](https://www.datadoghq.com/) account
-  You will receive a free 14 day trial, otherwise refer to their [pricing](https://www.datadoghq.com/pricing/) guide.  
-  Free accounts are limited, however logs will still be retained for 14 days.
+  ### [Datadog](https://www.datadoghq.com/)アカウントを作成します
+  14日間の無料トライアルが提供されます。それ以外の場合は、[価格](https://www.datadoghq.com/pricing/)ガイドを参照してください。
+  無料アカウントには制限がありますが、ログは14日間保持されます。
 
-  ### Create an [API key](https://app.datadoghq.com/organization-settings/api-keys)
+  ### [APIキー](https://app.datadoghq.com/organization-settings/api-keys)を作成します
 
-  This is a UUID used to submit logs to your Datadog organisation.
+  これは、Datadog組織にログを送信するために使用されるUUIDです。
 
-  ### Config
+  ### 設定
 
-  Set your API key and [Datadog site](https://docs.datadoghq.com/getting_started/site/) using the following convars.
+  次のconvarを使用して、APIキーと[Datadogサイト](https://docs.datadoghq.com/getting_started/site/)を設定します。
 
   ```bash
   set datadog:key "yourapikey"
@@ -48,36 +48,36 @@ lib.logger(-1, 'CreateVehicle', json.encode(vehicle))
 
 ## Grafana Loki
 
-Loki is a horizontally scalable, highly available, multi-tenant log aggregation system inspired by Prometheus.  
-It is designed to be very cost effective and easy to operate.
+Lokiは、Prometheusに触発された、水平方向にスケーラブルで可用性が高く、マルチテナントのログ集約システムです。
+非常に費用対効果が高く、操作が簡単になるように設計されています。
 
-<Tabs items={["Cloud", "Self-hosted"]}>
+<Tabs items={["クラウド", "セルフホスト"]}>
   <Tab>
-    - Has free tier with some restrictions
-    - Easy to manage
-    - Easier to setup
-    - Mostly managed by Grafana
+    - いくつかの制限付きの無料ティアがあります
+    - 管理が簡単
+    - セットアップが簡単
+    - 主にGrafanaによって管理されています
 
     <Steps>
-      ### Create your [Grafana](https://grafana.com/) account
-      ### Head to [My Account](https://grafana.com/auth/sign-in/?plcmt=top-nav&cta=myaccount)
-      ### Setup Loki
-      Find the Loki section in your account panel, and click "Details".
-      Generate a password and save the API key, as well as your `user` and `url`.
+      ### [Grafana](https://grafana.com/)アカウントを作成します
+      ### [マイアカウント](https://grafana.com/auth/sign-in/?plcmt=top-nav&cta=myaccount)に移動します
+      ### Lokiのセットアップ
+      アカウントパネルでLokiセクションを見つけ、「詳細」をクリックします。
+      パスワードを生成し、APIキー、および`user`と`url`を保存します。
     </Steps>
   </Tab>
   <Tab>
-    To setup a grafana instance you'll need docker, and knowledge on containers or kubernetes.  
-    Please find a guide to setup a grafana stack (min requirement grafana and grafana loki) and follow that.
+    Grafanaインスタンスをセットアップするには、dockerと、コンテナまたはkubernetesに関する知識が必要です。
+    Grafanaスタック（最小要件はGrafanaとGrafana Loki）をセットアップするためのガイドを見つけて、それに従ってください。
     
-    Once done, setup authentication and use the username and password securing your endpoint.
+    完了したら、認証を設定し、エンドポイントを保護するユーザー名とパスワードを使用します。
 
-    - By default self-hosted loki instances do not provide any authentication layers and will require an external authentication layer such as NGINX basic auth or Cloudflare Access.
+    - デフォルトでは、セルフホストLokiインスタンスは認証レイヤーを提供せず、NGINX基本認証やCloudflare Accessなどの外部認証レイヤーが必要になります。
   </Tab>
 </Tabs>
 
-  ### Config
-  Use the following convars to set your logging service, endpoint, and authentication details.
+  ### 設定
+  次のconvarを使用して、ロギングサービス、エンドポイント、および認証の詳細を設定します。
 
   ```bash
   set ox:logger "loki"
@@ -88,16 +88,16 @@ It is designed to be very cost effective and easy to operate.
 
 
 ## Fivemanage
-[Fivemanage](https://fivemanage.com/?ref=overextended) is an easy-to-use, all-in-one SaaS for game servers that provides logging.
+[Fivemanage](https://fivemanage.com/?ref=overextended) は、ロギングを提供するゲームサーバー向けの使いやすいオールインワンSaaSです。
 
 <Steps>
-    ### Create an account
-    Sign up at [Fivemanage](https://fivemanage.com/?ref=overextended).
-    ### Make sure you have the `Hobby` or `Pro` plan. 
-    You'll get a 14-days free trial if you do not already have an subscription, you can find more information [here](https://fivemanage.com/profile/billing?ref=overextended) and on the [pricing](https://fivemanage.com/pricing?ref=overextended) page.
-    ### Create a new token
-    You'll need to create a new token with the type `Logs`.
-    ### Config
+    ### アカウントを作成
+    [Fivemanage](https://fivemanage.com/?ref=overextended) でサインアップします。
+    ### `Hobby` または `Pro` プランがあることを確認してください。
+    サブスクリプションをまだお持ちでない場合は、14日間の無料トライアルをご利用いただけます。詳細については、[こちら](https://fivemanage.com/profile/billing?ref=overextended) および [価格](https://fivemanage.com/pricing?ref=overextended) ページをご覧ください。
+    ### 新しいトークンを作成
+    タイプ `Logs` の新しいトークンを作成する必要があります。
+    ### 設定
   ```bash
   set ox:logger "fivemanage"
   set fivemanage:key "YOUR_API_KEY"

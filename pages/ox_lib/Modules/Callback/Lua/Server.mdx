@@ -1,10 +1,10 @@
-# Server
+# サーバー
 
-## Trigger Client Callback
+## クライアントコールバックのトリガー
 
 ### lib.callback
 
-The response is handled in a separate coroutine.
+応答は別のコルーチンで処理されます。
 
 ```lua
 lib.callback(name, playerId, cb, ...)
@@ -25,7 +25,7 @@ end, args.radius)
 
 ### lib.callback.await
 
-The current coroutine is yielded until a response is received.
+応答が受信されるまで、現在のコルーチンは中断されます。
 
 ```lua
 lib.callback.await(name, playerId, ...)
@@ -43,11 +43,11 @@ for i = 1, #vehicles do
 end
 ```
 
-## Register Server Callback
+## サーバーコールバックの登録
 
 ### lib.callback.register
 
-Register an event handler for responding to client requests.
+クライアントリクエストに応答するためのイベントハンドラーを登録します。
 
 ```lua
 lib.callback.register(name, cb)

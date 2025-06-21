@@ -1,38 +1,38 @@
-# Client
+# クライアント
 
-Registers keybinds and simplifies interactions of the keybinds.
+キーバインドを登録し、キーバインドの相互作用を簡素化します。
 
-## CKeybind Class
+## CKeybindクラス
 
-A table representing a keybind with the following properties.
+次のプロパティを持つキーバインドを表すテーブル。
 
 - name: `string`
 - description: `string`
 - currentKey: `string`
-  - Key that the current user has this keybind set to
+  - 現在のユーザーがこのキーバインドを設定しているキー
 - disabled: `boolean`
-  - Whether or not the keybind is currently disabled
+  - キーバインドが現在無効になっているかどうか
 - isPressed: `boolean`
-  - "A state indicating whether the keybind is pressed or not
+  - キーバインドが押されているかどうかを示す状態
 - hash: `number`
-  - Internal hash of the keybind that is used to reference it within the game itself
+  - ゲーム自体の中で参照するために使用されるキーバインドの内部ハッシュ
 - defaultKey?: `string`
-  - Default key to set the keybind to for new players
-  - NOTE: Changing this will not change the key for existing players
+  - 新規プレイヤー用にキーバインドを設定するデフォルトキー
+  - 注：これを変更しても、既存のプレイヤーのキーは変更されません
 - defaultMapper?: `string`
-  - See [Input Mapper Ids](https://docs.fivem.net/docs/game-references/input-mapper-parameter-ids/) for more information
+  - 詳細については、[入力マッパーID](https://docs.fivem.net/docs/game-references/input-mapper-parameter-ids/)を参照してください
 - secondaryKey?: `string`
-  - An optional secondary keybind.
+  - オプションのセカンダリキーバインド。
 - secondaryMapper?: `string`
-  - An optional mapper for the secondary key, otherwise using the default mapper.
+  - セカンダリキーのオプションのマッパー。それ以外の場合はデフォルトのマッパーを使用します。
 - disable: `function(self: CKeybind, disable: boolean)`
-  - Built-in function to enable / disable a keybind
+  - キーバインドを有効/無効にする組み込み関数
 - isControlPressed: `function(self: CKeybind)`
-  - Built-in function to get the current pressed state for the keybind
+  - キーバインドの現在の押下状態を取得する組み込み関数
 - onPressed?: `function(self: CKeybind)`
-  - User-defined function triggered on keybind press
+  - キーバインド押下時にトリガーされるユーザー定義関数
 - onReleased?: `function(self: CKeybind)`
-  - User-defined function triggered on keybind release
+  - キーバインド解放時にトリガーされるユーザー定義関数
 
 ## lib.addKeybind
 
@@ -44,22 +44,22 @@ lib.addKeybind(data)
   - name: `string`
   - description: `string`
   - defaultKey?: `string`
-    - Default: `None`
+    - デフォルト：`None`
   - defaultMapper?: `string`
-    - Default: `keyboard`
+    - デフォルト：`keyboard`
   - secondaryKey?: `string`
   - secondaryMapper?: `string`
   - disabled?: `boolean`
-    - Whether or not the keybind should be disabled by default
+    - キーバインドをデフォルトで無効にするかどうか
   - onPressed?: `function(self: CKeybind)`
-    - Function triggered on keybind press
+    - キーバインド押下時にトリガーされる関数
   - onReleased?: `function(self: CKeybind)`
-    - Function triggered on keybind release
+    - キーバインド解放時にトリガーされる関数
 
 ```lua
 local keybind = lib.addKeybind({
     name = 'respects',
-    description = 'press F to pay respects',
+    description = 'Fキーを押して敬意を払います',
     defaultKey = 'F',
     onPressed = function(self)
         print(('pressed %s (%s)'):format(self.currentKey, self.name))
@@ -70,20 +70,20 @@ local keybind = lib.addKeybind({
 })
 ```
 
-### Enable / Disable Keybinds
+### キーバインドの有効化/無効化
 
-Keybinds can be enabled / disabled by using the disable method.
+キーバインドは、disableメソッドを使用して有効化/無効化できます。
 
 ```lua
-keybind:disable(true) -- disables the keybind
-keybind:disable(false) -- enables the keybind
+keybind:disable(true) -- キーバインドを無効にします
+keybind:disable(false) -- キーバインドを有効にします
 ```
 
-### Keybind pressed states
+### キーバインドの押下状態
 
-All keybinds registered with `lib.addKeybind()` gets a boolean state, that shows if its pressed or not. 
+`lib.addKeybind()` で登録されたすべてのキーバインドは、押されているかどうかを示すブール状態を取得します。
 
-You can get the state with the following method
+次のメソッドで状態を取得できます。
 
 ```lua
 local state = keybind:isControlPressed()

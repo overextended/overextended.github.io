@@ -1,13 +1,13 @@
 import { Tabs, Tab } from 'nextra-theme-docs';
 
-# Server
+# サーバー
 
-Wrapper around the built-in ACL system. Handles lib.addCommand and ox_groups permissions.  
-Refer to [Basic Aces & Principals overview/guide](https://forum.cfx.re/t/basic-aces-principals-overview-guide/90917) for more information.
+組み込みACLシステムのラッパー。lib.addCommandおよびox_groups権限を処理します。
+詳細については、[Basic Aces & Principalsの概要/ガイド](https://forum.cfx.re/t/basic-aces-principals-overview-guide/90917)を参照してください。
 
 ## lib.addAce
 
-Assigns the ace permission to a principal. Third parameter defaults to 'allow', while passing `false` sets the permission to 'deny'.
+プリンシパルにace権限を割り当てます。3番目のパラメータはデフォルトで「allow」になり、`false`を渡すと権限が「deny」に設定されます。
 
 <Tabs items={["Lua", "JS"]}>
     <Tab>
@@ -34,7 +34,7 @@ Assigns the ace permission to a principal. Third parameter defaults to 'allow', 
 
 ## lib.removeAce
 
-Removes the ace permission from a principal. Third parameter defaults to 'allow', while passing `false` sets the permission to 'deny'.
+プリンシパルからace権限を削除します。3番目のパラメータはデフォルトで「allow」になり、`false`を渡すと権限が「deny」に設定されます。
 
 <Tabs items={["Lua", "JS"]}>
     <Tab>
@@ -61,7 +61,7 @@ Removes the ace permission from a principal. Third parameter defaults to 'allow'
 
 ## lib.addPrincipal
 
-Assigns a principal to a parent principal. Children inherit permissions from the parent.
+プリンシパルを親プリンシパルに割り当てます。子は親から権限を継承します。
 
 <Tabs items={["Lua", "JS"]}>
     <Tab>
@@ -87,7 +87,7 @@ Assigns a principal to a parent principal. Children inherit permissions from the
 
 ## lib.removePrincipal
 
-Removes a principal from a parent principal.
+親プリンシパルからプリンシパルを削除します。
 
 <Tabs items={["Lua", "JS"]}>
     <Tab>

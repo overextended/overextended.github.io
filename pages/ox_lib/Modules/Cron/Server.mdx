@@ -1,49 +1,49 @@
-# Server
+# サーバー
 
-A Lua implementation of cron, allowing tasks to be scheduled to run periodically at fixed times, dates, and intervals.
+cronのLua実装。タスクを固定された時刻、日付、間隔で定期的に実行するようにスケジュールできます。
 
-## Cron expression
+## Cron式
 
-A string containing five values separated by white spaces, representing a set of times to execute a task.
+タスクを実行する時刻のセットを表す、空白で区切られた5つの値を含む文字列。
 
-| Field        | Valid values        |
+| フィールド        | 有効な値        |
 | ------------ | ------------------- |
-| Minutes      | `0-59`              |
-| Hours        | `0-23`              |
-| Day of month | `1-31`              |
-| Month        | `1-12` or `jan-dec` |
-| Day of week  | `1-7` or `sun-sat`  |
+| 分      | `0-59`              |
+| 時        | `0-23`              |
+| 日にち | `1-31`              |
+| 月        | `1-12` または `jan-dec` |
+| 曜日  | `1-7` または `sun-sat`  |
 
-**Note:** Day of the week is set to match `os.date` and starts at 1, unlike the cron-standard which starts at 0.
+**注意：** 曜日は `os.date` と一致するように設定されており、0から始まるcron標準とは異なり、1から始まります。
 
-### `*` Wildcards
-Represents all values, e.g. `* * * * *` will run every minute, or `* * * * 1` will run every minute on Sunday.
+### `*` ワイルドカード
+すべての値を表します。例：`* * * * *` は毎分実行され、`* * * * 1` は日曜日の毎分実行されます。
 
-### `,` Lists
-Commas can be used to create a list of values, e.g. `* * * * sun,mon,tue` will run every minute on Sunday, Monday, and Tuesday.
+### `,` リスト
+カンマを使用して値のリストを作成できます。例：`* * * * sun,mon,tue` は日曜日、月曜日、火曜日の毎分実行されます。
 
-### `-` Ranges
-Dashes define a range of values, e.g. `10-30 * * * *` will start running the task at the 10th minute, and every minute until the 30th minute.
+### `-` 範囲
+ダッシュは値の範囲を定義します。例：`10-30 * * * *` は10分にタスクの実行を開始し、30分まで毎分実行されます。
 
-### `/` Steps
-Slashes can be used for step values, e.g. `* */4 * * *` will run every 4 hours and is shorthand for `* 0,4,8,12,16,20 * * *`.
+### `/` ステップ
+スラッシュはステップ値に使用できます。例：`* */4 * * *` は4時間ごとに実行され、`* 0,4,8,12,16,20 * * *` の省略形です。
 
-## Functions
+## 関数
 
 ### lib.cron.new
 
-Creates a new [cronjob](https://en.wikipedia.org/wiki/Cron), scheduling a task to run at fixed times or intervals.  
+新しい[cronジョブ](https://en.wikipedia.org/wiki/Cron)を作成し、タスクを固定された時刻または間隔で実行するようにスケジュールします。
 
 ```lua
 lib.cron.new(expression, job, options)
 ```
 
 - expression: `string`
-  - A cron expression such as `* * * * *` representing minute, hour, day, month, and day of the week
+  - 分、時、日、月、曜日を表す `* * * * *` などのcron式
 - job: `fun(task: OxTask, date: osdate)`
 - options?: `table`
   - debug?: `boolean`
 
-Return:
+戻り値:
 
 - task: `OxTask`

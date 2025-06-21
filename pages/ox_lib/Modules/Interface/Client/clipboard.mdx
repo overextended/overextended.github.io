@@ -1,22 +1,22 @@
 ---
-title: Clipboard
+title: クリップボード
 ---
 
 import { Tabs, Tab } from 'nextra-theme-docs';
 import { Callout } from 'nextra/components';
 
-# Clipboard
+# クリップボード
 
 ## lib.setClipboard
 
-Sets the player's clipboard to the specified string value.
+プレイヤーのクリップボードを指定された文字列値に設定します。
 
 <Callout>
-    Will not work if focus is already taken by some NUI component.
+    一部のNUIコンポーネントによってフォーカスがすでに取得されている場合は機能しません。
 </Callout>
 
 <Callout>
-    To create a new line use `\t\n` not just `\n` in your string.
+    新しい行を作成するには、文字列に `\n` だけでなく `\t\n` を使用します。
 </Callout>
 
 <Tabs items={["Lua", "JS"]}>

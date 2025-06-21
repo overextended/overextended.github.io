@@ -1,20 +1,20 @@
 ---
-title: Alert Dialog
+title: アラートダイアログ
 ---
 
 import { Tabs, Tab } from 'nextra-theme-docs';
 import { Callout } from 'nextra/components';
 
-# Alert Dialog
+# アラートダイアログ
 
-Simple alert dialog that can display a message to the player.  
-Returns whether the player pressed the confirm button or canceled the dialog.
+プレイヤーにメッセージを表示できるシンプルなアラートダイアログ。
+プレイヤーが確認ボタンを押したか、ダイアログをキャンセルしたかを返します。
 
 ## lib.alertDialog
 
 <Tabs items={["Lua", "JS"]}>
   <Tab>
-    <Tabs items={["Client", "Server"]}>
+    <Tabs items={["クライアント", "サーバー"]}>
       <Tab>
         ```lua
         lib.alertDialog(data)
@@ -29,7 +29,7 @@ Returns whether the player pressed the confirm button or canceled the dialog.
   </Tab>
   <Tab>
     <Callout>
-      This function is **asynchronous** requiring you to do a `.then` callback on the promise or make your function `async`.
+      この関数は**非同期**であり、プロミスに対して `.then` コールバックを行うか、関数を `async` にする必要があります。
     </Callout>
 
     ```ts
@@ -42,26 +42,25 @@ Returns whether the player pressed the confirm button or canceled the dialog.
 
 - data: `table` (`object`)
   - header: `string`
-    - Dialog title.
+    - ダイアログのタイトル。
   - content: `string`
-    - Dialog body content, supports markdown.
+    - ダイアログの本文コンテンツ。マークダウンをサポートします。
   - centered?: `boolean`
-    - Centers the dialog vertically and horizontally.
+    - ダイアログを垂直方向および水平方向に中央揃えします。
   - cancel?: `boolean`
-    - Displays a cancel button (ESC is still available if this is not defined).
-  - size?: `'xs'` or `'sm'` or `'md'` or `'lg'` or `'xl'`
+    - キャンセルボタンを表示します（これが定義されていない場合でもESCは使用可能です）。
+  - size?: `'xs'` または `'sm'` または `'md'` または `'lg'` または `'xl'`
   - overflow?: `boolean`
   - labels?: `table`
-    - Allows you to define the displayed labels for cancel and/or confirm buttons.
+    - キャンセルボタンおよび/または確認ボタンの表示ラベルを定義できます。
     - cancel?: `string`
     - confirm?: `string`
 
-Returns `'confirm'` if the player pressed the confirm button, otherwise if the player pressed the cancel button
-or has exited the dialog with ESC the return will be `'cancel'`.
+プレイヤーが確認ボタンを押した場合は `'confirm'` を返します。それ以外の場合、プレイヤーがキャンセルボタンを押したか、ESCでダイアログを終了した場合は `'cancel'` を返します。
 
 ## lib.closeAlertDialog
 
-Force closes the active alert dialog and sets its return data as `nil`
+アクティブなアラートダイアログを強制的に閉じ、その戻り値を `nil` に設定します
 
 <Tabs items={["Lua", "JS"]}>
   <Tab>
@@ -78,14 +77,14 @@ Force closes the active alert dialog and sets its return data as `nil`
   </Tab>
 </Tabs>
 
-## Example
+## 例
 
 <Tabs items={["Lua", "JS"]}>
   <Tab>
     ```lua
     local alert = lib.alertDialog({
-        header = 'Hello there',
-        content = 'General Kenobi  \n Markdown support!',
+        header = 'こんにちは',
+        content = 'ケノービ将軍  \n マークダウン対応！',
         centered = true,
         cancel = true
     })
@@ -98,8 +97,8 @@ Force closes the active alert dialog and sets its return data as `nil`
     import lib from '@overextended/ox_lib/client';
 
     const alert = await lib.alertDialog({
-      header: 'Hello there',
-      content: 'General Kenobi  \n Markdown support!',
+      header: 'こんにちは',
+      content: 'ケノービ将軍  \n マークダウン対応！',
       centered: true,
       cancel: true,
     });

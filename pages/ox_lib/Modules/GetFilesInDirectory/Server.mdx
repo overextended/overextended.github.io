@@ -1,17 +1,17 @@
-# Server
+# サーバー
 
 ## lib.getFilesInDirectory
-Gets a list of all files in a specified resource directory, along with the file count
+指定されたリソースディレクトリ内のすべてのファイルのリストを、ファイル数とともに取得します
 
 ```lua
 lib.getFilesInDirectory(path, pattern)
 ```
 
 - path: `string`
-    - The relative or absolute path to the directory where files should be listed.
+    - ファイルをリストするディレクトリへの相対パスまたは絶対パス。
 - pattern: `string`
-    - Pattern to check for when searching for files.
+    - ファイルを検索するときにチェックするパターン。
 
-Returns:
+戻り値:
 - files: `string[]`
 - fileCount: `number`

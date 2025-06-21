@@ -1,46 +1,46 @@
-# Shared
+# 共有
 
-## Classes
+## クラス
 
-A class is a template for creating objects with set attributes and behaviours.
+クラスは、設定された属性と動作を持つオブジェクトを作成するためのテンプレートです。
 
-- Though Lua does not typically support object-oriented programming, it is possible to simulate it with [metatables](https://www.lua.org/manual/5.4/manual.html#2.4).
-- Our implementation of classes are loosely based on [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes).
+- Luaは通常オブジェクト指向プログラミングをサポートしていませんが、[メタテーブル](https://www.lua.org/manual/5.4/manual.html#2.4)を使用してシミュレートすることが可能です。
+- 私たちのクラスの実装は、[JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes)に大まかに基づいています。
 
-### Inheritance
+### 継承
 
-Classes can inherit attributes and behaviors from other classes, similar to how instances inherit from their parent class.
+クラスは、インスタンスが親クラスから継承するのと同様に、他のクラスから属性と動作を継承できます。
 
-When specifying a "super" class in a class declaration, you create a derived or "sub" class. This subclass inherits both fields and methods from its parent. This inheritance extends across multiple levels of derived classes, enabling class attributes to be shared throughout the class hierarchy.
+クラス宣言で「スーパー」クラスを指定すると、派生クラスまたは「サブ」クラスが作成されます。このサブクラスは、親からフィールドとメソッドの両方を継承します。この継承は、派生クラスの複数のレベルにまたがり、クラス属性をクラス階層全体で共有できるようにします。
 
-### Encapsulation
+### カプセル化
 
-Encapsulation is the practice of bundling data (attributes) and methods (behaviors) within a class.
+カプセル化とは、データ（属性）とメソッド（動作）をクラス内にバンドルすることです。
 
-This practice helps to organize related functionalities and prevents outside interference with the internal workings of the class. By encapsulating these elements, we promote modularity, maintain data integrity, and control how data is accessed and manipulated within a program.
+この方法は、関連する機能を整理し、クラスの内部動作への外部からの干渉を防ぐのに役立ちます。これらの要素をカプセル化することにより、モジュール性を促進し、データの整合性を維持し、プログラム内でデータがどのようにアクセスおよび操作されるかを制御します。
 
 ## OxClass
 
-OxClass is a blueprint used for all classes created with `lib.class`. It provides some some basic attributes and behaviours shared by all classes.
+OxClassは、`lib.class`で作成されたすべてのクラスに使用されるブループリントです。すべてのクラスで共有されるいくつかの基本的な属性と動作を提供します。
 
-### Attributes
+### 属性
 
 - __name: `string`
-  - A protected field representing the name of the class.
+  - クラスの名前を表す保護されたフィールド。
 - constructor?: `function`
-  - A protected method used to instantiate a new object inheriting from a class.
-  - Called by `class:new(...)` if `class:constructor()` exists.
+  - クラスから継承する新しいオブジェクトをインスタンス化するために使用される保護されたメソッド。
+  - `class:constructor()` が存在する場合、`class:new(...)` によって呼び出されます。
 - private?: `table`
-  - A protected field which holds all private data in a class.
-  - Private data cannot be accessed outside of class methods, enforcing security and data integrity.
-  - Is always defined in the `constructor`, but must be explicitly defined if no private propertiees are set.
+  - クラス内のすべてのプライベートデータを保持する保護されたフィールド。
+  - プライベートデータはクラスメソッドの外部からはアクセスできず、セキュリティとデータの整合性を強制します。
+  - `constructor` で常に定義されますが、プライベートプロパティが設定されていない場合は明示的に定義する必要があります。
 - super?: `class`
-  - A protected method referencing the constructor of a superclass.
-  - Must be called inside a class constructor when instantiating a class.
+  - スーパークラスのコンストラクタを参照する保護されたメソッド。
+  - クラスをインスタンス化するときにクラスコンストラクタ内で呼び出す必要があります。
 
 ## lib.class
 
-This function allows you to define a new class, optionally inheriting from a parent or "super" class.
+この関数を使用すると、オプションで親または「スーパー」クラスから継承する新しいクラスを定義できます。
 
 ```lua
 local MyClass = lib.class(name, super)
@@ -50,11 +50,11 @@ local MyClass = lib.class(name, super)
 
 - name: `string`
 - super?: `table`
-  - Sets the new class as a subset of the super class.
+  - 新しいクラスをスーパークラスのサブセットとして設定します。
 
 ### Returns
 - `table`
-  - The newly created class.
+  - 新しく作成されたクラス。
 
 ### Example
 
@@ -64,24 +64,24 @@ local MyClass = lib.class(name, super)
 local Person = lib.class('Person')
 
 function Person:constructor(name)
-    print('calling Person constructor for', name)
+    print('Personコンストラクタを呼び出しています：', name)
     self.name = name
 end
 
--- Professor Class (extends Person)
+-- Professorクラス（Personを拡張）
 
 ---@class Professor : Person
 ---@field teaches string
 local Professor = lib.class('Professor', Person)
 
 function Professor:constructor(name, teaches)
-    print('calling Professor constructor for', name)
+    print('Professorコンストラクタを呼び出しています：', name)
     self:super(name)
     self.teaches = teaches
 end
 
 function Professor:introduceSelf()
-    print(("My name is %s, and I will be your %s professor."):format(self.name, self.teaches))
+    print(("私の名前は%sで、%sの教授になります。"):format(self.name, self.teaches))
 end
 
 function Professor:grade(paper)
@@ -90,14 +90,14 @@ function Professor:grade(paper)
 end
 
 CreateThread(function()
-    local walter = Professor:new('Walter', 'Chemistry')
+    local walter = Professor:new('Walter', '化学')
 
     walter:introduceSelf()
-    walter:grade('my paper')
+    walter:grade('私の論文')
 end)
 
 
--- Student Class (extends Person)
+-- Studentクラス（Personを拡張）
 
 ---@class Student : Person
 ---@field private private { year: number }
@@ -106,13 +106,13 @@ local Student = lib.class('Student', Person)
 ---@param name string
 ---@param year number
 function Student:constructor(name, year)
-    print('calling Student constructor for', name)
+    print('Studentコンストラクタを呼び出しています：', name)
     self:super(name)
     self.private.year = year
 end
 
 function Student:introduceSelf()
-    print(("Hi! I'm %s, and I'm in year %s."):format(self.name, self.private.year))
+    print(("こんにちは！私は%sで、%s年生です。"):format(self.name, self.private.year))
 end
 
 ---@param year number
@@ -123,9 +123,9 @@ end
 CreateThread(function()
     local jesse = Student:new('Jesse', 2)
 
-    jesse:introduceSelf() -- Hi! I'm Jesse, and I'm in year 2.
+    jesse:introduceSelf() -- こんにちは！私はJesseで、2年生です。
     jesse:setYear(3)
-    jesse:introduceSelf() -- Hi! I'm Jesse, and I'm in year 3.
+    jesse:introduceSelf() -- こんにちは！私はJesseで、3年生です。
     print(jesse.private.year) -- nil
     print(getmetatable(jesse.private)) -- private
     jesse.private.year = 4 -- error

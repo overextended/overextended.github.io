@@ -1,6 +1,6 @@
-# Client
+# クライアント
 
-Simple and centralised dui creation, supporting sending message, change url and deletion
+メッセージの送信、URLの変更、削除をサポートする、シンプルで一元化されたDUI作成
 
 
 ```js
@@ -13,7 +13,7 @@ Dui(data)
   - height: `number`
   - debug?: `boolean`
 
-Returns:
+戻り値:
 
 - dui: `Dui`
   - url: `string`
@@ -27,7 +27,7 @@ Returns:
   - sendMessage: `function`(data: `object`)
   - remove: `function`
 
-### Usage Example
+### 使用例
 ```js
 import { Dui, cache } from '@overextended/ox_lib/client'
 
@@ -38,15 +38,15 @@ const dui = new Dui({
 	debug: true
 })
 
-// Change url
+// URLの変更
 dui.setUrl("https://google.com")
 
-// Send a message
+// メッセージの送信
 dui.sendMessage({
 	action: "display",
 	value: true
 })
 
-// Destroy
+// 破棄
 dui.remove()
 ```
