@@ -191,6 +191,13 @@ set inventory:dumpsterloot [
     ["burger", 1, 1]
 ]
 
+# Used to enforce custom item images set in item metadata
+# Only enforced when inventory:webhook is set to a valid discord webhook url
+set inventory:validhosts {
+    "r2.fivemanage.com": true,
+    "i.fmfile.com": true
+}
+
 # Set the markers for the various drops, stashes, shops
 # These all follow the same strucutre, if the json strings are invalid it will fallback to a generic marker
 setr inventory:dropmarker {
