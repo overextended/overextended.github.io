@@ -215,6 +215,41 @@ end, {
 
 ```
 
+### usingItem
+
+Triggered when an item is about to be used.
+By returning `false`, you can fully prevent it from being used.
+
+- Payload: `table`
+  - source: `number`
+  - inventoryId: `number`
+  - item: `table`
+    - name: `string`
+    - label: `string`
+    - weight: `number`
+    - count: `number`
+    - stack: `boolean`
+    - close: `boolean`
+    - slot: `number`
+    - metadata: `table`
+  - consume: `number`
+
+**Example**
+
+Prevent the player from using the "water" item.
+
+```lua
+local hookId = exports.ox_inventory:registerHook('usingItem', function(payload)
+    print(json.encode(payload, { indent = true, sort_keys = true }))
+    return false
+end, {
+    print = true,
+    itemFilter = {
+        water = true
+    }
+})
+```
+
 ## removeHooks
 
 Removes a hook created by the invoking resource with the the specified id.  
