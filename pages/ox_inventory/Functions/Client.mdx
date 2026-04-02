@@ -453,6 +453,17 @@ exports.ox_inventory:suppressItemNotifications(value)
 
 - value: `boolean`
 
+## setGetPlayerNameMethod
+
+Allows you to define a custom function to display the player name when giving with the playerlist.
+
+```lua
+exports.ox_inventory:setGetPlayerNameMethod(function (serverId --[[ @as number ]])
+  local playerName = GetPlayerName(serverID)
+  return ('[%d] %s'):format(serverID, playerName)
+end)
+```
+
 ## Statebags
 
 ### invBusy
