@@ -52,7 +52,7 @@ Register an event handler that is triggered when the cached value is updated.
   </Tab>
   <Tab>
     ```ts
-    import { onCache } from '@overextended/ox_lib/client';
+    import { onCache } from '@communityox/ox_lib/client';
 
     onCache(key, (value) => {});
     ```
@@ -66,7 +66,7 @@ Register an event handler that is triggered when the cached value is updated.
     - value: `any`
 
     ```ts
-    import { cache, onCache } from '@overextended/ox_lib/client';
+    import { cache, onCache } from '@communityox/ox_lib/client';
 
     lib.onCache('vehicle', (value) => {
       console.log('old vehicle:', cache.vehicle);

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import MemberLink from './MemberLink';
 
 interface GithubMember {
@@ -22,6 +22,7 @@ const sponsor = {
   juddisjudd: 'ohitsjudd',
   jag3dagster: `jag3dagster`,
   'tom-osborne': `stanocs5`,
+  Skryptific: 'lukeeuro',
 };
 
 const priorityOrder = ['thelindat', 'LukeWasTakenn'];

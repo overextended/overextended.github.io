@@ -19,7 +19,7 @@ Assigns the ace permission to a principal. Third parameter defaults to 'allow', 
     </Tab>
     <Tab>
         ```ts
-        import lib from '@overextended/ox_lib/server'
+        import lib from '@communityox/ox_lib/server'
 
         lib.addAce(principal, ace, allow)
 
@@ -46,7 +46,7 @@ Removes the ace permission from a principal. Third parameter defaults to 'allow'
     </Tab>
     <Tab>
         ```ts
-        import lib from '@overextended/ox_lib/server'
+        import lib from '@communityox/ox_lib/server'
 
         lib.removeAce(principal, ace, allow)
 
@@ -73,7 +73,7 @@ Assigns a principal to a parent principal. Children inherit permissions from the
     </Tab>
     <Tab>
         ```ts
-        import lib from '@overextended/ox_lib/server'
+        import lib from '@communityox/ox_lib/server'
 
         lib.addPrincipal(child, parent)
 
@@ -99,7 +99,7 @@ Removes a principal from a parent principal.
     </Tab>
     <Tab>
         ```ts
-        import lib from '@overextended/ox_lib/server'
+        import lib from '@communityox/ox_lib/server'
 
         lib.removePrincipal(child, parent)
 

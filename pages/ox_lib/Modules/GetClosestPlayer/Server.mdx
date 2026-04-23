@@ -1,11 +1,11 @@
-# Shared
+# Server
 
 ## lib.getClosestPlayer
 
 Get the player id, ped handle, and coords of the closest player to a set of coordinates.
 
 ```lua
-lib.getClosestPlayer(coords, maxDistance, includePlayer)
+lib.getClosestPlayer(coords, maxDistance, ignorePlayerId)
 ```
 
 - coords: `vector3`
@@ -13,8 +13,8 @@ lib.getClosestPlayer(coords, maxDistance, includePlayer)
 - maxDistance?: `number`
   - The max distance to check.
   - Default: `2.0`
-- includePlayer?: `boolean`
-  - Whether or not to include the current player. Ignored on the server.
+- ignorePlayerId?: `number`|`false`
+  - A player ID to ignore when checking. Set to `false` to include all players.
   - Default: `false`
 
 Return:

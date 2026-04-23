@@ -5,13 +5,13 @@ import { NpmButton } from '@components/button';
 
 # Ox Core
 
-<ResourceLinks repo="https://github.com/overextended/ox_core" />
+<ResourceLinks repo="https://github.com/communityox/ox_core" />
 
 A modern FiveM framework, designed to properly support features like OneSync, statebags, and server-side entities.
 
 ## txAdmin recipe
 
-If you're looking to quickly install and setup ox_core, try using [our recipe](https://github.com/overextended/txAdminRecipe).
+If you're looking to quickly install and setup ox_core, try using [our recipe](https://github.com/communityox/txAdminRecipe).
 
 ## Installation
 
@@ -26,14 +26,14 @@ We **strongly** recommend referring to [Guides](../guides) to setup necessary de
 - [oxmysql](../oxmysql)
 - [ox_lib](../ox_lib/)
 
-### Download the latest [release](https://github.com/overextended/ox_core/releases/latest) or build the source code.
+### Download the latest [release](https://github.com/communityox/ox_core/releases/latest) or build the source code.
 
 - Setup [Git](../guides/git), [Node.js](../guides/nodejs), and [pnpm](../guides/pnpm).
 - Download and setup [MariaDB 11.4+](https://mariadb.com/downloads/community/community-server/).
 - Run the following commands in your CLI (e.g. Terminal, Command Prompt).
 
 ```bash
-git clone https://github.com/overextended/ox_core.git
+git clone https://github.com/communityox/ox_core.git
 cd ox_core
 pnpm i
 pnpm build
@@ -78,12 +78,12 @@ You can import ox_core definitions by loading `@ox_core/lib/init.lua` into your 
 
 To use ox_core with your JavaScript resources you'll need to use our npm package, providing full support for TypeScript and Intellisense.
 
-<NpmButton link="https://www.npmjs.com/package/@overextended/ox_core" />
+<NpmButton link="https://www.npmjs.com/package/@communityox/ox_core" />
 
-To get started, try our [fivem-typescript-boilerplate](https://github.com/overextended/fivem-typescript-boilerplate) and install the ox_core package.
+To get started, try our [fivem-typescript-boilerplate](https://github.com/communityox/fivem-typescript-boilerplate) and install the ox_core package.
 
 ```bash
-pnpm i @overextended/ox_core
+pnpm i @communityox/ox_core
 ```
 
 ## Config
@@ -118,4 +118,4 @@ These convars should use the `setr` command to be read by clients.
 - `ox:defaultVehicleStore`
   - Default: `'impound'`
   - On resource start any vehicles that were previously spawned will be stored here. An empty string will not update the database.
-  
+

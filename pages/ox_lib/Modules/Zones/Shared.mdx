@@ -86,6 +86,49 @@ if zone:contains(vec3(1, 1, 1)) then
 end
 ```
 
+### setDebug
+
+Enables or disables debug mode for a zone, optionally with custom colors.
+
+```lua
+local zone = lib.zones.box({...})
+
+-- Enable debug with default colors
+zone:setDebug(true)
+
+-- Enable debug with custom colors
+zone:setDebug(true, vec4(255, 0, 0, 100))
+
+-- Disable debug
+zone:setDebug(false)
+```
+
+## Utility Functions
+
+### lib.zones.getAllZones
+
+Returns all registered zones.
+
+```lua
+local zones = lib.zones.getAllZones()
+```
+
+### lib.zones.getCurrentZones
+
+Returns all zones the player is currently inside.
+
+```lua
+local currentZones = lib.zones.getCurrentZones()
+```
+
+### lib.zones.getNearbyZones
+
+Returns all zones near the player.
+
+```lua
+local nearbyZones = lib.zones.getNearbyZones()
+```
+
 ## Usage Examples
 
 ```lua

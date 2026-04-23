@@ -22,6 +22,17 @@ TriggerClientEvent('ox_inventory:disarm', playerId, noAnim)
 - noAnim: `boolean`
   - If `true`, disarm animation will be skipped
 
+### ox_inventory:suppressItemNotifications
+
+Can be triggered to enable or disable NUI item notifications
+
+```lua
+TriggerClientEvent('ox_inventory:suppressItemNotifications', playerId, value)
+```
+
+- playerId: `number`
+- value: `boolean`
+
 ## Event Handlers
 
 <Callout type="warning">

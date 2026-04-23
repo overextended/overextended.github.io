@@ -19,7 +19,7 @@ Used for registering a context menu.
   </Tab>
   <Tab>
     ```ts
-    import lib from '@overextended/ox_lib/client';
+    import lib from '@communityox/ox_lib/client';
 
     lib.registerContext(context);
     ```
@@ -31,6 +31,8 @@ Used for registering a context menu.
   - Unique menu identifier, will be used to open the menu.
 - title: `string`
   - Title display in the menu; has markdown support.
+- position?: `'top-left'` or `'top-right'` or `'bottom-left'` or `'bottom-right'`
+  - Default: `'top-right'`
 - menu?: `string`
   - Menu identifier - if defined there will be a back arrow next to the menu title that will take you to the menu you defined.
 - canClose: `boolean`
@@ -102,7 +104,7 @@ Opens a registered context menu by its id.
   </Tab>
   <Tab>
     ```ts
-    import lib from '@overextended/ox_lib/client';
+    import lib from '@communityox/ox_lib/client';
 
     lib.showContext(id);
     ```
@@ -124,7 +126,7 @@ Hides any currently visible context menu.
   </Tab>
   <Tab>
     ```ts
-    import lib from '@overextended/ox_lib/client';
+    import lib from '@communityox/ox_lib/client';
 
     lib.hideContext(onExit);
     ```
@@ -149,7 +151,7 @@ If no context menu is open returns `nil`.
   </Tab>
   <Tab>
     ```ts
-    import lib from '@overextended/ox_lib/client';
+    import lib from '@communityox/ox_lib/client';
 
     lib.getOpenContextMenu();
     ```
@@ -171,6 +173,7 @@ First we register the menu with our specified options then we call the show func
     lib.registerContext({
       id = 'some_menu',
       title = 'Some context menu',
+      position = 'top-right',
       options = {
         {
           title = 'Empty button',
@@ -215,11 +218,12 @@ First we register the menu with our specified options then we call the show func
   </Tab>
   <Tab>
     ```ts
-    import lib from '@overextended/ox_lib/client';
+    import lib from '@communityox/ox_lib/client';
 
     lib.registerContext({
       id: 'some_menu',
       title: 'Some context menu',
+      position: 'top-right',
       options: [
         {
           title: 'Empty button',

@@ -23,7 +23,7 @@ Item or array of items added to the global radial menu.
   </Tab>
   <Tab>
     ```ts
-    import lib from '@overextended/ox_lib/client';
+    import lib from '@communityox/ox_lib/client';
 
     lib.addRadialItem(items);
     ```
@@ -58,7 +58,7 @@ Id of an item to be removed from the global menu.
   </Tab>
   <Tab>
     ```ts
-    import lib from '@overextended/ox_lib/client';
+    import lib from '@communityox/ox_lib/client';
 
     lib.removeRadialItem(item);
     ```
@@ -79,7 +79,7 @@ Removes all items from the radial menu.
   </Tab>
   <Tab>
     ```ts
-    import lib from '@overextended/ox_lib/client';
+    import lib from '@communityox/ox_lib/client';
 
     lib.clearRadialItems();
     ```
@@ -98,7 +98,7 @@ Registers a radial sub menu with predefined options.
   </Tab>
   <Tab>
     ```ts
-    import lib from '@overextended/ox_lib/client';
+    import lib from '@communityox/ox_lib/client';
 
     lib.registerRadial(radial);
     ```
@@ -129,7 +129,7 @@ Hides the radial menu if one is open.
   </Tab>
   <Tab>
     ```ts
-    import lib from '@overextended/ox_lib/client';
+    import lib from '@communityox/ox_lib/client';
 
     lib.hideRadial();
     ```
@@ -148,7 +148,7 @@ Disallow players from opening the radial menu.
   </Tab>
   <Tab>
     ```ts
-    import lib from '@overextended/ox_lib/client';
+    import lib from '@communityox/ox_lib/client';
 
     lib.disableRadial(state);
     ```
@@ -170,7 +170,7 @@ Returns the id of the currently open radial menu.
   </Tab>
   <Tab>
     ```ts
-    import lib from '@overextended/ox_lib/client';
+    import lib from '@communityox/ox_lib/client';
 
     let id = lib.getCurrentRadialId();
     ```
@@ -269,7 +269,7 @@ Here's a use case example with some global options and an option utilising the l
     </Callout>
 
     ```ts
-    import lib from '@overextended/ox_lib/client'
+    import lib from '@communityox/ox_lib/client'
 
     exports('myMenuHandler', (menu, item) => {
         console.log(menu, item)

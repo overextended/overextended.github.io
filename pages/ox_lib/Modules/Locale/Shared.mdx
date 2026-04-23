@@ -49,7 +49,7 @@ Initialise the locale module in your resource (once).
   </Tab>
   <Tab>
   ```ts
-  import {initLocale} from '@overextended/ox_lib/shared'
+  import {initLocale} from '@communityox/ox_lib/shared'
 
   initLocale()
   ```
@@ -69,7 +69,7 @@ Additional arguments can be sent to format the locale output.
   <Tab>
 
     ```ts
-    import { locale } from '@overextended/ox_lib/shared'
+    import { locale } from '@communityox/ox_lib/shared'
 
     locale(str, ...)
     ```
@@ -97,7 +97,7 @@ Additional arguments can be sent to format the locale output.
   <Tab>
 
     ```ts
-    import { initLocale, locale } from '@overextended/ox_lib/shared
+    import { initLocale, locale } from '@communityox/ox_lib/shared
 
     // Load the locale module
     initLocale()
@@ -133,7 +133,7 @@ You can create a locale string that references other locales to construct a phra
   <Tab>
 
     ```ts
-    import { locale } from '@overextended/ox_lib/shared'
+    import { locale } from '@communityox/ox_lib/shared'
 
     console.log(locale('hello_my_name_is', 'doka', 'linden'))
     ```

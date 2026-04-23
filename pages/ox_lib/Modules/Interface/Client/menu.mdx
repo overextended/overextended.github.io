@@ -21,7 +21,7 @@ Registers and caches a menu under the specified id.
   </Tab>
   <Tab>
     ```ts
-    import lib from '@overextended/ox_lib/client';
+    import lib from '@communityox/ox_lib/client';
 
     lib.registerMenu(data, cb);
     ```
@@ -85,7 +85,7 @@ Displays the menu with the provided id.
   </Tab>
   <Tab>
     ```ts
-    import lib from '@overextended/ox_lib/client';
+    import lib from '@communityox/ox_lib/client';
 
     lib.showMenu(id);
     ```
@@ -104,7 +104,7 @@ Displays the menu with the provided id.
   </Tab>
   <Tab>
     ```ts
-    import lib from '@overextended/ox_lib/client';
+    import lib from '@communityox/ox_lib/client';
 
     lib.hideMenu(onExit);
     ```
@@ -126,7 +126,7 @@ Returns the id of the currently open menu.
   </Tab>
   <Tab>
     ```ts
-    import lib from '@overextended/ox_lib/client';
+    import lib from '@communityox/ox_lib/client';
 
     lib.getOpenMenu();
     ```
@@ -143,7 +143,7 @@ Returns the id of the currently open menu.
   </Tab>
   <Tab>
     ```ts
-    import lib from '@overextended/ox_lib/client';
+    import lib from '@communityox/ox_lib/client';
 
     lib.setMenuOptions(id, options, index);
     ```
@@ -166,7 +166,7 @@ Replaces the 3rd index option of the specified menu
   </Tab>
   <Tab>
     ```ts
-    import lib from '@overextended/ox_lib/client';
+    import lib from '@communityox/ox_lib/client';
 
     lib.setMenuOptions('some_menu_id', { label: 'New option', icon: 'plus' }, 3);
     ```
@@ -234,7 +234,7 @@ First we register the menu with our specified options then we call the show func
   </Tab>
   <Tab>
     ```ts
-    import lib from '@overextended/ox_lib/client';
+    import lib from '@communityox/ox_lib/client';
 
     lib.registerMenu(
       {

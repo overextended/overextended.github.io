@@ -2,7 +2,7 @@
 
 All exports with the `options` argument expect a table with the targeting properties [here](../TargetOptions).
 
-For some examples you can refer to [defaults.lua](https://github.com/overextended/ox_target/blob/main/client/defaults.lua) or [debug.lua](https://github.com/overextended/ox_target/blob/main/client/debug.lua).
+For some examples you can refer to [defaults.lua](https://github.com/communityox/ox_target/blob/main/client/defaults.lua) or [debug.lua](https://github.com/communityox/ox_target/blob/main/client/debug.lua).
 
 ## disableTargeting
 
@@ -15,6 +15,37 @@ exports.ox_target:disableTargeting(state)
 - state: `boolean`
   - Setting `state` to `true` will turn off the targeting eye if it is active and prevent it from reopening until `state` is set to `false` again.
 
+## isActive
+
+Checks if the targeting system is currently active.
+
+```lua
+exports.ox_target:isActive()
+```
+
+Return:
+- `boolean` - Returns `true` if the targeting system is active, otherwise `false`.
+
+
+## getTargetOptions
+
+Retrieves targeting options for a specific entity.
+
+```lua
+exports.ox_target:getTargetOptions(entity, entityType, model)
+```
+
+- entity?: `number` - The entity handle
+- entityType?: `number` - The type of entity (1 for peds, 2 for vehicles, 3 for objects)
+- model?: `number` - The model hash of the entity
+
+Return:
+- `table` - Returns a table containing the target options for the entity:
+  - global: Options for the entity type (peds, vehicles, or objects)
+  - model: Options for the specific model
+  - entity: Options for the networked entity
+  - localEntity: Options for the local entity
+  
 ## addGlobalOption
 
 Creates new targetable options which are displayed at all times.
@@ -246,6 +277,22 @@ exports.ox_target:addPolyZone(parameters)
 
 Return:
 - id: `number`
+
+## zoneExists
+
+Checks if a zone with the given ID exists.
+
+```lua
+exports.ox_target:zoneExists(id)
+```
+
+- id: `number` or `string`
+  - The `number` id that is returned by [addSphereZone](#addspherezone), [addBoxZone](#addboxzone), or [addPolyZone](#addpolyzone)  
+  **OR**
+  - The `string` name given to the zone.
+
+Return:
+- `boolean` - Returns `true` if the zone exists, otherwise `false`.
 
 ## removeZone
 

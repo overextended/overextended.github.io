@@ -18,7 +18,7 @@ Runs a skill check with the defined difficulty.
   </Tab>
   <Tab>
     ```ts
-    import lib from '@overextended/ox_lib/client';
+    import lib from '@communityox/ox_lib/client';
 
     lib.skillCheck(difficulty, inputs);
     ```
@@ -52,7 +52,7 @@ Returns true if a skill check is currently active.
   </Tab>
   <Tab>
     ```ts
-    import lib from '@overextended/ox_lib/client'
+    import lib from '@communityox/ox_lib/client'
 
     lib.skillCheckActive()
     ```
@@ -72,7 +72,7 @@ Cancels the currently ongoing skill check.
   </Tab>
   <Tab>
     ```ts
-    import lib from '@overextended/ox_lib/client'
+    import lib from '@communityox/ox_lib/client'
 
     lib.cancelSkillCheck()
     ```
@@ -90,7 +90,7 @@ Cancels the currently ongoing skill check.
   </Tab>
   <Tab>
     ```ts
-    import lib from '@overextended/ox_lib/client';
+    import lib from '@communityox/ox_lib/client';
 
     const success = await lib.skillCheck(
       ['easy', 'easy', { areaSize: 60, speedMultiplier: 2 }, 'hard'],

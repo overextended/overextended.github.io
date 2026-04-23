@@ -19,7 +19,7 @@ The input dialog window allows you to take data from the user by setting input f
   </Tab>
   <Tab>
     ```ts
-    import lib from '@overextended/ox_lib/client';
+    import lib from '@communityox/ox_lib/client';
 
     lib.inputDialog(heading, rows, options);
     ```
@@ -33,6 +33,7 @@ The input dialog window allows you to take data from the user by setting input f
   - allowCancel: `boolean`
     - If false the user will not be able to cancel and close the input dialog until submitted.
     - If not defined, the user is able to cancel and close the input dialog.
+  - size?:  `"xs"` | `"sm"` | `"md"` | `"lg"` | `"xl"`;
 
 ### Field Type Properties
 
@@ -169,6 +170,8 @@ The input dialog window allows you to take data from the user by setting input f
     - Maxmimum amount of rows the text area will take, when exceeded goes into overflow.
   - autosize?: `boolean`
     - If true text area will grow with content until max rows are reached.
+  - minLength?: `number`
+  - maxLength?: `number`
 
 The callback data is promise based meaning that the thread will not continue executing until the user either sends the data or exits the popup.
 
@@ -190,7 +193,7 @@ Force closes the active input dialog and sets its return data as `nil`.
   </Tab>
   <Tab>
     ```ts
-    import lib from '@overextended/ox_lib/client';
+    import lib from '@communityox/ox_lib/client';
 
     lib.closeInputDialog();
     ```

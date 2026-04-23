@@ -8,7 +8,7 @@ import { Steps } from 'nextra-theme-docs';
 import { Callout } from 'nextra/components';
 import ResourceLinks from '@components/resource-links';
 
-<ResourceLinks repo="https://github.com/overextended/oxmysql" />
+<ResourceLinks repo="https://github.com/communityox/oxmysql" />
 
 A replacement of mysql-async and ghmattimysql with expanded API and improved compatibility for MySQL 8.
 
@@ -32,7 +32,7 @@ Do not setup XAMPP just to run your database, and install [MariaDB](https://mari
 
 ### Download and install [MariaDB](https://mariadb.com/downloads/community/)
 
-### Download the [latest release](https://github.com/overextended/oxmysql/releases/latest) of oxmysql
+### Download the [latest release](https://github.com/communityox/oxmysql/releases/latest) of oxmysql
 
 ### Configure your server
 
@@ -106,23 +106,23 @@ server_script '@oxmysql/lib/MySQL.lua'
 
 ### JavaScript
 
-You can use raw exports, or install [our npm package](https://www.npmjs.com/package/@overextended/oxmysql) for intellisense and similar usage as Lua.
+You can use raw exports, or install [our npm package](https://www.npmjs.com/package/@communityox/oxmysql) for intellisense and similar usage as Lua.
 
 ```bash
 # With pnpm
-pnpm add @overextended/oxmysql
+pnpm add @communityox/oxmysql
 
 # With Yarn
-yarn add @overextended/oxmysql
+yarn add @communityox/oxmysql
 
 # With npm
-npm install @overextended/oxmysql
+npm install @communityox/oxmysql
 ```
 
 Import the oxmysql object into your resource.
 
 ```js
-import { oxmysql as MySQL } from '@overextended/oxmysql';
+import { oxmysql as MySQL } from '@communityox/oxmysql';
 ```
 
 ## Upserting

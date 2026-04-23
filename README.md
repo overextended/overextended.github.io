@@ -1,4 +1,4 @@
-# Overextended Resources Documentation
+# Community Ox Resources Documentation
 
 ## Local Development
 

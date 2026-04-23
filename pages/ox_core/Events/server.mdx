@@ -41,14 +41,14 @@ When the active group of a character has changed.
 <Tabs items={['Lua', 'JS']}>
   <Tabs.Tab>
     ```lua copy
-    AddEventHandler('ox:setActiveGroup', function(playerId, groupName)
-        print(playerId, groupName)
+    AddEventHandler('ox:setActiveGroup', function(playerId, groupName, previousGroupName)
+        print(playerId, groupName, previousGroupName)
     end)
     ```
   </Tabs.Tab>
   <Tabs.Tab>
   ```ts copy
-  on('ox:setActiveGroup', (playerId: number, groupName: string) => {
+  on('ox:setActiveGroup', (playerId: number, groupName: string, previousGroupName: string | undefined) => {
     console.log(playersSaved);
   });
   ```
@@ -57,6 +57,7 @@ When the active group of a character has changed.
 
 * playerId: `number`
 * groupName: `string`
+* previousGroupName: `string | undefined`
 
 ## ox:setGroup
 

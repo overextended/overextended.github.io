@@ -87,6 +87,38 @@ end, {
 })
 ```
 
+### openShop
+
+- Payload: `table`
+  - source: `number`
+  - shopId: `string`
+  - shopType: `string`
+  - label: `string`
+  - slots: `integer`
+  - items: `table`
+  - groups?: `table<string, number>`
+  - coords?: `vector3`
+  - distance?: `number` or `false`
+
+Triggered when a player tries to open a shop inventory.  
+By returning `false`, you can cancel the action and keep the shop inventory closed.
+
+**Example**
+
+Disable General stores.
+
+```lua
+local hookId = exports.ox_inventory:registerHook('openShop', function(payload)
+    print(json.encode(payload, { indent = true }))
+    return false
+end, {
+    print = true,
+    inventoryFilter = {
+        '^General'
+    }
+})
+```
+
 ### createItem
 
 - Payload: `table`
@@ -181,6 +213,41 @@ end, {
 	},
 })
 
+```
+
+### usingItem
+
+Triggered when an item is about to be used.
+By returning `false`, you can fully prevent it from being used.
+
+- Payload: `table`
+  - source: `number`
+  - inventoryId: `number`
+  - item: `table`
+    - name: `string`
+    - label: `string`
+    - weight: `number`
+    - count: `number`
+    - stack: `boolean`
+    - close: `boolean`
+    - slot: `number`
+    - metadata: `table`
+  - consume: `number`
+
+**Example**
+
+Prevent the player from using the "water" item.
+
+```lua
+local hookId = exports.ox_inventory:registerHook('usingItem', function(payload)
+    print(json.encode(payload, { indent = true, sort_keys = true }))
+    return false
+end, {
+    print = true,
+    itemFilter = {
+        water = true
+    }
+})
 ```
 
 ## removeHooks

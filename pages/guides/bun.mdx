@@ -1,0 +1,26 @@
+---
+title: bun
+---
+
+# bun
+
+bun is an all included toolkit for javascript and typescript development, combining nodejs and package manager into one tool.
+
+- Install [bun](https://bun.com/docs/installation).
+- Use it similarly to npm or pnpm:
+  - `bun install` - to install packages,
+  - `bun run <script_name>` - to run your scripts within the `package.json`,
+  - `bun build <entrypoint> [...flags]` - manual build command, more information in their [documenation](https://bun.com/docs/bundler)
+
+```json
+"scripts": {
+  "start": "vite",
+  "watch": "vite build --watch",
+  "build": "tsc && vite build",
+  "preview": "vite preview",
+  "format": "prettier --write \"./src/**/*.{ts,tsx,css}\""
+},
+```
+
+Using the example above `bun run build` will run the build script for the given package.<br/>
+However just running `bun build` will not work as it will trigger the internal build system.

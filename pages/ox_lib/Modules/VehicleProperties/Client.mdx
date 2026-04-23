@@ -1,7 +1,7 @@
 # Client
 
 Mostly follows the format used by ESX and QBCore, with extra data such as damaged/missing props.  
-https://github.com/overextended/ox_lib/blob/master/resource/vehicleProperties/client.lua#L3
+https://github.com/communityox/ox_lib/blob/master/resource/vehicleProperties/client.lua#L3
 
 import { Tabs, Tab } from 'nextra-theme-docs';
 
@@ -23,7 +23,7 @@ lib.getVehicleProperties(vehicle)
   </Tab>
   <Tab>
     ```ts
-    import lib from '@overextended/ox_lib/client'
+    import lib from '@communityox/ox_lib/client'
 
     lib.getVehicleProperties(GetVehiclePedIsUsing(PlayerPedId()))
     ```
@@ -51,7 +51,7 @@ lib.setVehicleProperties(vehicle, props)
   </Tab>
   <Tab>
     ```ts
-    import { setVehicleProperties } from '@overextended/ox_lib/client'
+    import { setVehicleProperties } from '@communityox/ox_lib/client'
 
     onNet('ox_lib:setVehicleProperties', (netid, data) => {
       setVehicleProperties(NetToVeh(netid), data)

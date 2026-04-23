@@ -86,7 +86,7 @@ exports.ox_inventory:UpdateVehicle(oldPlate, newPlate)
 
 ## Items
 
-Returns a table of all registered items. The format is as defined in [data/items.lua](https://github.com/overextended/ox_inventory/blob/main/data/items.lua).
+Returns a table of all registered items. The format is as defined in [data/items.lua](https://github.com/communityox/ox_inventory/blob/main/data/items.lua).
 
 Optionally takes the name of an item, returning only data for that item (getting all data is not recommended).
 
@@ -178,7 +178,7 @@ print(json.encode(response, {indent=true}))
 Removes the specified item from the specified inventory.
 
 ```lua
-exports.ox_inventory:RemoveItem(inv, item, count, metadata, slot, ignoreTotal)
+exports.ox_inventory:RemoveItem(inv, item, count, metadata, slot, ignoreTotal, strict)
 ```
 
 - inv: `table` or `string` or `number`
@@ -196,6 +196,8 @@ exports.ox_inventory:RemoveItem(inv, item, count, metadata, slot, ignoreTotal)
   - A specific slot to remove the item from. If the slot is invalid, the first available slot will be used instead.
 - ignoreTotal?: `boolean`
   - Removes as many items as possible up to count.
+- strict?: `boolean`
+  - If true (default), requires an exact match on item + metadata; if false, allows looser/partial matches.
 
 Returns success: `boolean`, response: `string?`.
 
@@ -676,6 +678,16 @@ exports.ox_inventory:ClearInventory(inv, keep)
 - inv: `table` or `string` or `number`
 - keep?: `string` or `string[]`
 
+## RemoveInventory
+
+Removes an inventory from runtime and save it if it's not a temporary stash, dumpster or drop.
+
+```lua
+exports.ox_inventory:RemoveInventory(inv)
+```
+
+- inv: `table` or `string` or `number`
+
 ## Search
 
 Searches an inventory for a specified item.
@@ -893,4 +905,37 @@ end
 water.metadata.type = 'clean'
 ox_inventory:SetMetadata(source, water.slot, water.metadata)
 print(('modified %sx water in slot %s with new metadata'):format(water.count, water.slot))
+```
+
+## setContainerProperties
+
+Defines the item as a container and sets its properties.
+
+```lua
+exports.ox_inventory:setContainerProperties(itemName, properties)
+```
+
+- itemName: `string`
+- properties: `table`
+  - slots: `number`
+    - Number of slots available in the container.
+  - maxWeight: `number`
+    - Maximum weight the container can hold.
+  - whitelist?: `table<string, true> | string[]`
+    - A table of item names that are allowed in the container.
+    - If not provided, all items are allowed except those blacklisted.
+  - blacklist?: `table<string, true> | string[]`
+    - A table of item names that are not allowed in the container.
+    - If not provided, no items are blacklisted unless whitelist is provided.
+
+<br />
+<u>**Example**</u>
+
+```lua
+-- Sets pizzabox as a container with 1 slot, maximum weight of 1000 grams and whitelists only the pizza item.
+exports.ox_inventory:setContainerProperties('pizzabox', {
+    slots = 1,
+    maxWeight = 1000,
+    whitelist = { 'pizza' },
+})
 ```
