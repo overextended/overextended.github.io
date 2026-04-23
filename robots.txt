@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https://overextended.dev/
+Host: https://fivem.overextended.dev/
 
 # Sitemaps
-Sitemap: https://overextended.dev/sitemap.xml
+Sitemap: https://fivem.overextended.dev/sitemap.xml
