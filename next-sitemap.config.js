@@ -1,6 +1,6 @@
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-  siteUrl: 'https://fivem.overextended.dev/',
+  siteUrl: 'https://overextended.dev/',
   generateRobotsTxt: true,
   generateIndexSitemap: false,
   outDir: './out',
