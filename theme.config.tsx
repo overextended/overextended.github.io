@@ -6,13 +6,13 @@ import Search from '@components/Search';
 function useHead() {
   const { asPath } = useRouter();
   const { frontMatter, title } = useConfig();
-  const url = `https://coxdocs.dev${asPath}`;
+  const url = `https://overextended.dev${asPath}`;
   const description = frontMatter.description || "Documentation for Community Ox's resources for FiveM/RedM";
 
   return (
     <>
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <link rel="icon" type="image/x-icon" href="/static/cox.ico" />
+      <link rel="icon" type="image/x-icon" href="/static/ox.ico" />
       <meta httpEquiv="Content-Language" content="en" />
       <meta name="description" content={description} />
       <meta name="og:title" content={title} />
@@ -51,12 +51,12 @@ const config: DocsThemeConfig = {
     </div>
   ),
   project: {
-    link: 'https://github.com/communityox/docs',
+    link: 'https://github.com/overextended/docs',
   },
   chat: {
-    link: 'https://discord.coxdocs.dev',
+    link: 'https://discord.overextended.dev',
   },
-  docsRepositoryBase: 'https://github.com/communityox/docs/blob/main',
+  docsRepositoryBase: 'https://github.com/overextended/docs/blob/main',
   footer: {
     text: 'Community Ox',
   },

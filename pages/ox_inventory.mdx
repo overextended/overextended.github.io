@@ -4,7 +4,7 @@ import { Callout } from 'nextra/components';
 
 # Ox Inventory
 
-<ResourceLinks repo="https://github.com/communityox/ox_inventory" />
+<ResourceLinks repo="https://github.com/overextended/ox_inventory" />
 
 A slot-based inventory with item metadata for "item uniqueness".
 
@@ -28,10 +28,10 @@ We **strongly** recommend referring to [Guides](../guides) for setting up Git, N
 - [oxmysql](../oxmysql)
 - [ox_lib](../ox_lib/)
 
-### Download a [release](https://github.com/communityox/ox_inventory/releases) or build the source code.
+### Download a [release](https://github.com/overextended/ox_inventory/releases) or build the source code.
 
 ```bash
-git clone https://github.com/communityox/ox_inventory.git
+git clone https://github.com/overextended/ox_inventory.git
 cd ox_inventory/web
 pnpm i
 pnpm build
@@ -234,9 +234,9 @@ set inventory:accounts ["money"]
 
 - Any frameworks with their own built-in inventory, item, or weapon systems are expected to have compatibility issues.
 - Money as an item may conflict with banking/account systems.
-  - You can sync these values with [server.syncInventory](https://github.com/communityox/ox_inventory/blob/aff8ef9e9ee3f93f177ce03b3f37895ff5781800/modules/bridge/nd/server.lua#L64-L77).
+  - You can sync these values with [server.syncInventory](https://github.com/overextended/ox_inventory/blob/aff8ef9e9ee3f93f177ce03b3f37895ff5781800/modules/bridge/nd/server.lua#L64-L77).
 
-Refer to issue [#1297](https://github.com/communityox/ox_inventory/issues/1297) for known compatibility issues.
+Refer to issue [#1297](https://github.com/overextended/ox_inventory/issues/1297) for known compatibility issues.
 
 ## Using an unsupported framework
 
@@ -254,13 +254,13 @@ You'll want to set the target framework first - this could be the name, an acron
 setr inventory:framework "custom"
 ```
 
-Copy the `ox` directory from the [bridge](https://github.com/communityox/ox_inventory/tree/main/modules/bridge) directory and give it the name you used above.
+Copy the `ox` directory from the [bridge](https://github.com/overextended/ox_inventory/tree/main/modules/bridge) directory and give it the name you used above.
 
 The bare minimum functions and event handlers are added here, but you'll need to change them to match your framework; we can't provide any help here. You can refer to the other framework bridges if you need inspiration.
 
 ### Setup database references
 
-Take a look at the [mysql](https://github.com/communityox/ox_inventory/blob/main/modules/mysql/server.lua) module. You'll need to reference your player/vehicle tables and id columns.
+Take a look at the [mysql](https://github.com/overextended/ox_inventory/blob/main/modules/mysql/server.lua) module. You'll need to reference your player/vehicle tables and id columns.
 
 ```lua
 elseif shared.framework == 'custom' then
