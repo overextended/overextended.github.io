@@ -1,24 +1,19 @@
 import { Steps } from 'nextra-theme-docs';
 
+Follow these steps to get full support for intellisense and type annotations for our resources as well as natives and globals for FiveM, RedM, and FXServer.
+
 <Steps>
-    ### Setup git, vscode, and vscode extensions
+    ### Install [git](./git.mdx)
 
-    ### Download our Lua type definitions
+    ### Install an editor that supports LSP
+    
+    We recommend using [VSCode](https://code.visualstudio.com/) or [Zed](https://zed.dev/).  
+    
+    ### Install [Lua Language Server](https://luals.github.io/#install)
+    
+    Skip this step if you're using Zed, or any editor that ships with LLS.
 
-    ```bash
-    git clone https://github.com/overextended/ox_types.git`
-    ```
+    ### Setup [fivem-lls-addon](https://github.com/overextended/fivem-lls-addon)
 
-    ### Update your settings
-
-    You can modify the user, workspace, or folder settings for vscode.  
-    Create an entry in `Lua.workspace.library` pointing to the cloned directory, or specific subdirectories.
-
-    ```json
-    "Lua.workspace.library": [
-        "F:/GitHub/ox_types/types",
-        "F:/GitHub/ox_lib"
-    ],
-    ```
-
+    ### Setup [ox_types](https://github.com/overextended/ox_types)
 </Steps>

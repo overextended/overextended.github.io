@@ -7,7 +7,7 @@ function useHead() {
   const { asPath } = useRouter();
   const { frontMatter, title } = useConfig();
   const url = `https://overextended.dev${asPath}`;
-  const description = frontMatter.description || "Documentation for Community Ox's resources for FiveM/RedM";
+  const description = frontMatter.description || "Documentation for Overextended's resources for FiveM/RedM";
 
   return (
     <>
@@ -25,7 +25,7 @@ function useHead() {
 function useNextSeoProps() {
   const { asPath } = useRouter();
   const arr = asPath.replace(/[-_]/g, ' ').split('/');
-  const category = (arr[1][0] !== '#' && arr[1]) || 'Community Ox';
+  const category = (arr[1][0] !== '#' && arr[1]) || 'Overextended';
   const rawTitle = arr[arr.length - 1];
   const title = /[a-z]/.test(rawTitle) && /[A-Z]/.test(rawTitle) ? rawTitle : '%s';
 
@@ -47,7 +47,7 @@ const config: DocsThemeConfig = {
         fontWeight: 550,
       }}
     >
-      Community Ox
+      Overextended
     </div>
   ),
   project: {
@@ -58,7 +58,7 @@ const config: DocsThemeConfig = {
   },
   docsRepositoryBase: 'https://github.com/overextended/docs/blob/main',
   footer: {
-    text: 'Community Ox',
+    text: 'Overextended',
   },
   search: {
     component: <Search />,

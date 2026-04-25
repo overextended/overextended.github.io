@@ -28,15 +28,15 @@ We **strongly** recommend referring to [Guides](../guides) to setup necessary de
 
 ### Download the latest [release](https://github.com/overextended/ox_core/releases/latest) or build the source code.
 
-- Setup [Git](../guides/git), [Node.js](../guides/nodejs), and [pnpm](../guides/pnpm).
+- Setup [Git](../guides/git), [Node.js](../guides/nodejs), and [bun](../guides/bun).
 - Download and setup [MariaDB 11.4+](https://mariadb.com/downloads/community/community-server/).
 - Run the following commands in your CLI (e.g. Terminal, Command Prompt).
 
 ```bash
 git clone https://github.com/overextended/ox_core.git
 cd ox_core
-pnpm i
-pnpm build
+bun i
+bun run build
 ```
 
 ### Install optional dependencies.
@@ -83,7 +83,7 @@ To use ox_core with your JavaScript resources you'll need to use our npm package
 To get started, try our [fivem-typescript-boilerplate](https://github.com/overextended/fivem-typescript-boilerplate) and install the ox_core package.
 
 ```bash
-pnpm i @overextended/ox_core
+bun i @overextended/ox_core
 ```
 
 ## Config
@@ -96,7 +96,7 @@ These convars should use the `setr` command to be read by clients.
 
 - `ox:debug`
   - Default: `false`
-  - Enables debug messages and commands. Also allows players to have the same identifiers. Enabled by default when using `pnpm watch`.
+  - Enables debug messages and commands. Also allows players to have the same identifiers. Enabled by default when using `bun watch`.
 - `ox:characterSlots`
   - Default: `1`
   - Sets the number of character slots available for character selection resources (e.g. ox_charselect).
