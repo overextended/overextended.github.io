@@ -42,7 +42,7 @@ const config: DocsThemeConfig = {
       style={{
         paddingLeft: '50px',
         lineHeight: '38px',
-        background: "url('https://avatars.githubusercontent.com/u/209772401?s=38') no-repeat left",
+        background: "url('/static/ox.ico') no-repeat left",
         backgroundSize: '38px',
         fontWeight: 550,
       }}
