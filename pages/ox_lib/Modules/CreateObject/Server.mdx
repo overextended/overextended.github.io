@@ -1,0 +1,60 @@
+import { Tabs, Tab } from 'nextra-theme-docs';
+
+# Server
+
+Spawn an object server-side. The helper waits for the entity to materialize and applies
+an orphan mode so the entity is not cleaned up automatically.
+
+## lib.createObject
+
+<Tabs items={["Lua", "JS"]}>
+  <Tab>
+    ```lua
+    lib.createObject(model, coords, doorFlag, heading, rotation, orphanMode)
+    ```
+  </Tab>
+  <Tab>
+    ```ts
+    import lib from '@overextended/ox_lib/server'
+
+    lib.createObject(model, coords, doorFlag, heading, rotation, orphanMode)
+    ```
+  </Tab>
+</Tabs>
+
+- model: `string | number`
+  - Model name or precomputed hash.
+- coords: `vector3`
+  - World coordinate to spawn the object at.
+- doorFlag?: `boolean`
+  - Set `true` to spawn door models in network mode.
+  - Default: `false`
+- heading?: `number`
+  - Heading of the object, in degrees.
+- rotation?: `vector3`
+  - Rotation of the object. If omitted the object spawns with no rotation.
+- orphanMode?: `EntityOrphanMode`
+  - Server-side cleanup behavior applied via `SetEntityOrphanMode`.
+  - Default: `2` (KeepEntity)
+
+**Returns:**
+- entity: `number`
+  - Entity handle, or `0` if the object could not be created.
+
+### EntityOrphanMode
+
+```
+0 DeleteWhenNotRelevant — default game behavior; deletes when no player is relevant.
+1 DeleteOnOwnerDisconnect — deletes when the original owner disconnects.
+2 KeepEntity — never deleted by server relevancy checks.
+```
+
+```lua
+local playerPed = GetPlayerPed(source)
+local object = lib.createObject(
+    'prop_chair_01a',
+    GetEntityCoords(playerPed),
+    false,
+    GetEntityHeading(playerPed)
+)
+```

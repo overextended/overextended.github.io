@@ -1,0 +1,112 @@
+import { Tabs, Tab } from 'nextra-theme-docs';
+
+# Client
+
+Spawn an object client-side. Loads the model, calls `CreateObject`, then releases the model.
+
+## lib.createObject
+
+<Tabs items={["FiveM", "RedM"]}>
+  <Tab>
+    <Tabs items={["Lua", "JS"]}>
+      <Tab>
+        ```lua
+        lib.createObject(model, coords, isNetwork, netMissionEntity, doorFlag, heading, rotation)
+        ```
+      </Tab>
+      <Tab>
+        ```ts
+        import lib from '@overextended/ox_lib/client'
+
+        lib.createObject(model, coords, isNetwork, netMissionEntity, doorFlag, heading, rotation)
+        ```
+      </Tab>
+    </Tabs>
+
+    - model: `string | number`
+      - Model name or precomputed hash.
+    - coords: `vector3`
+      - World coordinate to spawn the object at.
+    - isNetwork?: `boolean`
+      - Create as a network object. If `false`, the object exists only locally.
+      - Default: `false`
+    - netMissionEntity?: `boolean`
+      - Pin the object to the script host in the R\* network model.
+      - Default: `false`
+    - doorFlag?: `boolean`
+      - Set `true` to spawn door models in network mode.
+      - Default: `false`
+    - heading?: `number`
+      - Heading of the object, in degrees.
+    - rotation?: `vector3`
+      - Rotation of the object. If omitted the object spawns with no rotation.
+
+    **Returns:**
+    - entity: `number`
+      - Entity handle, or `0` if the object could not be created.
+
+    ```lua
+    local object = lib.createObject(
+        'prop_chair_01a',
+        GetEntityCoords(cache.ped),
+        true, true, false,
+        GetEntityHeading(cache.ped)
+    )
+    ```
+  </Tab>
+
+  <Tab>
+    <Tabs items={["Lua", "JS"]}>
+      <Tab>
+        ```lua
+        lib.createObject(model, coords, isNetwork, bScriptHostObj, dynamic, p7, p8, heading, rotation)
+        ```
+      </Tab>
+      <Tab>
+        ```ts
+        import lib from '@overextended/ox_lib/client'
+
+        lib.createObject(model, coords, isNetwork, bScriptHostObj, dynamic, p7, p8, heading, rotation)
+        ```
+      </Tab>
+    </Tabs>
+
+    - model: `string | number`
+      - Model name or precomputed hash.
+    - coords: `vector3`
+      - World coordinate to spawn the object at.
+    - isNetwork?: `boolean`
+      - Create as a network object. If `false`, the object exists only locally.
+      - Default: `false`
+    - bScriptHostObj?: `boolean`
+      - Pin the object to the script host in the R\* network model.
+      - Default: `false`
+    - dynamic?: `boolean`
+      - Whether the object should be dynamic (physics-driven, can move).
+      - Default: `false`
+    - p7?: `boolean`
+      - Undocumented RedM parameter forwarded to the native.
+      - Default: `false`
+    - p8?: `boolean`
+      - Undocumented RedM parameter forwarded to the native.
+      - Default: `false`
+    - heading?: `number`
+      - Heading of the object, in degrees.
+    - rotation?: `vector3`
+      - Rotation of the object. If omitted the object spawns with no rotation.
+
+    **Returns:**
+    - entity: `number`
+      - Entity handle, or `0` if the object could not be created.
+
+    ```lua
+    local object = lib.createObject(
+        'p_amb_tent01x',
+        GetEntityCoords(cache.ped),
+        true, true, false,
+        nil, nil,
+        GetEntityHeading(cache.ped)
+    )
+    ```
+  </Tab>
+</Tabs>

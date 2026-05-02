@@ -1,0 +1,46 @@
+import { Tabs, Tab } from 'nextra-theme-docs';
+import { Callout } from 'nextra/components';
+
+# Client
+
+Internal helper used by `lib.createObject`, `lib.createPed`, and `lib.createVehicle` to
+load a model, run the provided spawner native, and release the model afterwards.
+
+## lib.spawnEntity
+
+<Callout type="info">
+    The model is automatically released with `SetModelAsNoLongerNeeded` after the entity is created.
+</Callout>
+
+<Tabs items={["Lua", "JS"]}>
+  <Tab>
+    ```lua
+    lib.spawnEntity(model, spawn, timeout)
+    ```
+  </Tab>
+  <Tab>
+    ```ts
+    import lib from '@overextended/ox_lib/client'
+
+    lib.spawnEntity(model, spawn, timeout)
+    ```
+  </Tab>
+</Tabs>
+
+- model: `string | number`
+  - Model name or precomputed hash.
+- spawn: `fun(modelHash: number): number`
+  - Native spawner, called once the model has loaded. Must return the created entity handle.
+- timeout?: `number`
+  - Milliseconds to wait for the model to load.
+  - Default: `10000`
+
+**Returns:**
+- entity: `number`
+  - Entity handle, or `0` if the entity could not be created.
+
+```lua
+local object = lib.spawnEntity('prop_chair_01a', function(modelHash)
+    return CreateObject(modelHash, coords.x, coords.y, coords.z, true, true, false)
+end)
+```

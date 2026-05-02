@@ -1,0 +1,104 @@
+import { Tabs, Tab } from 'nextra-theme-docs';
+
+# Client
+
+Spawn a ped client-side. Loads the model, calls `CreatePed`, then releases the model.
+
+## lib.createPed
+
+<Tabs items={["FiveM", "RedM"]}>
+  <Tab>
+    <Tabs items={["Lua", "JS"]}>
+      <Tab>
+        ```lua
+        lib.createPed(pedType, model, coords, heading, isNetwork, bScriptHostPed)
+        ```
+      </Tab>
+      <Tab>
+        ```ts
+        import lib from '@overextended/ox_lib/client'
+
+        lib.createPed(pedType, model, coords, heading, isNetwork, bScriptHostPed)
+        ```
+      </Tab>
+    </Tabs>
+
+    - pedType: `number`
+      - AI behavior type. `4` = CIVMALE, `5` = CIVFEMALE, etc.
+    - model: `string | number`
+      - Model name or precomputed hash.
+    - coords: `vector3`
+      - World coordinate to spawn the ped at.
+    - heading?: `number`
+      - Heading of the ped, in degrees.
+    - isNetwork?: `boolean`
+      - Create as a network ped. If `false`, the ped exists only locally.
+      - Default: `false`
+    - bScriptHostPed?: `boolean`
+      - Pin the ped to the script host in the R\* network model.
+      - Default: `false`
+
+    **Returns:**
+    - entity: `number`
+      - Entity handle, or `0` if the ped could not be created.
+
+    ```lua
+    local ped = lib.createPed(
+        4,
+        'a_m_y_business_01',
+        GetEntityCoords(cache.ped),
+        GetEntityHeading(cache.ped),
+        true, true
+    )
+    ```
+  </Tab>
+
+  <Tab>
+    <Tabs items={["Lua", "JS"]}>
+      <Tab>
+        ```lua
+        lib.createPed(model, coords, heading, isNetwork, bScriptHostPed, p7, p8)
+        ```
+      </Tab>
+      <Tab>
+        ```ts
+        import lib from '@overextended/ox_lib/client'
+
+        lib.createPed(model, coords, heading, isNetwork, bScriptHostPed, p7, p8)
+        ```
+      </Tab>
+    </Tabs>
+
+    - model: `string | number`
+      - Model name or precomputed hash.
+    - coords: `vector3`
+      - World coordinate to spawn the ped at.
+    - heading?: `number`
+      - Heading of the ped, in degrees.
+    - isNetwork?: `boolean`
+      - Create as a network ped. If `false`, the ped exists only locally.
+      - Default: `false`
+    - bScriptHostPed?: `boolean`
+      - Pin the ped to the script host in the R\* network model.
+      - Default: `false`
+    - p7?: `boolean`
+      - Undocumented RedM parameter forwarded to the native.
+      - Default: `false`
+    - p8?: `boolean`
+      - Undocumented RedM parameter forwarded to the native.
+      - Default: `false`
+
+    **Returns:**
+    - entity: `number`
+      - Entity handle, or `0` if the ped could not be created.
+
+    ```lua
+    local ped = lib.createPed(
+        'mp_male',
+        GetEntityCoords(cache.ped),
+        GetEntityHeading(cache.ped),
+        true, true
+    )
+    ```
+  </Tab>
+</Tabs>

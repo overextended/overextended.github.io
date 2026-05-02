@@ -1,0 +1,123 @@
+import { Tabs, Tab } from 'nextra-theme-docs';
+
+# Client
+
+Spawn a vehicle client-side. Loads the model, calls `CreateVehicle`, optionally warps
+the local player into a seat, and applies vehicle properties.
+
+## lib.createVehicle
+
+<Tabs items={["FiveM", "RedM"]}>
+  <Tab>
+    <Tabs items={["Lua", "JS"]}>
+      <Tab>
+        ```lua
+        lib.createVehicle(model, coords, heading, isNetwork, netMissionEntity, seat, properties)
+        ```
+      </Tab>
+      <Tab>
+        ```ts
+        import lib from '@overextended/ox_lib/client'
+
+        lib.createVehicle(model, coords, heading, isNetwork, netMissionEntity, seat, properties)
+        ```
+      </Tab>
+    </Tabs>
+
+    - model: `string | number`
+      - Model name or precomputed hash.
+    - coords: `vector3`
+      - World coordinate to spawn the vehicle at.
+    - heading?: `number`
+      - Heading the vehicle should face, in degrees.
+    - isNetwork?: `boolean`
+      - Create as a network vehicle. If `false`, the vehicle exists only locally.
+      - Default: `false`
+    - netMissionEntity?: `boolean`
+      - Pin the vehicle to the script host in the R\* network model.
+      - Default: `false`
+    - seat?: `SeatPosition`
+      - Warps the local player into the specified seat after spawning.
+    - properties?: `table`
+      - Properties applied via [`lib.setVehicleProperties`](/ox_lib/Modules/VehicleProperties/Client#libsetvehicleproperties)
+        after spawning.
+
+    **Returns:**
+    - entity: `number`
+      - Entity handle, or `0` if the vehicle could not be created.
+
+    ### SeatPosition
+
+    ```
+    -2 SF_ANY
+    -1 SF_FrontDriverSide
+     0 SF_FrontPassengerSide
+     1 SF_BackDriverSide
+     2 SF_BackPassengerSide
+     3 SF_AltFrontDriverSide
+     4 SF_AltFrontPassengerSide
+     5 SF_AltBackDriverSide
+     6 SF_AltBackPassengerSide
+    ```
+
+    ```lua
+    local vehicle = lib.createVehicle(
+        'adder',
+        GetEntityCoords(cache.ped),
+        GetEntityHeading(cache.ped),
+        true, true,
+        -1
+    )
+    ```
+  </Tab>
+
+  <Tab>
+    <Tabs items={["Lua", "JS"]}>
+      <Tab>
+        ```lua
+        lib.createVehicle(model, coords, heading, isNetwork, bScriptHostVeh, bDontAutoCreateDraftAnimals, p8)
+        ```
+      </Tab>
+      <Tab>
+        ```ts
+        import lib from '@overextended/ox_lib/client'
+
+        lib.createVehicle(model, coords, heading, isNetwork, bScriptHostVeh, bDontAutoCreateDraftAnimals, p8)
+        ```
+      </Tab>
+    </Tabs>
+
+    - model: `string | number`
+      - Model name or precomputed hash.
+    - coords: `vector3`
+      - World coordinate to spawn the vehicle at.
+    - heading?: `number`
+      - Heading the vehicle should face, in degrees.
+    - isNetwork?: `boolean`
+      - Create as a network vehicle. If `false`, the vehicle exists only locally.
+      - Default: `false`
+    - bScriptHostVeh?: `boolean`
+      - Pin the vehicle to the script host in the R\* network model.
+      - Default: `false`
+    - bDontAutoCreateDraftAnimals?: `boolean`
+      - Skip automatic creation of draft animals (e.g. the horses harnessed to a wagon).
+      - Default: `false`
+    - p8?: `boolean`
+      - Undocumented RedM parameter forwarded to the native.
+      - Default: `false`
+
+    **Returns:**
+    - entity: `number`
+      - Entity handle, or `0` if the vehicle could not be created.
+
+    ```lua
+    local wagon = lib.createVehicle(
+        'wagon04x',
+        GetEntityCoords(cache.ped),
+        GetEntityHeading(cache.ped),
+        true, true,
+        true
+    )
+    ```
+  </Tab>
+</Tabs>
