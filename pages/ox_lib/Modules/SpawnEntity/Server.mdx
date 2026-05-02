@@ -1,0 +1,60 @@
+import { Tabs, Tab } from 'nextra-theme-docs';
+import { Callout } from 'nextra/components';
+
+# Server
+
+Internal helper used by `lib.createObject`, `lib.createPed`, and `lib.createVehicle` to
+spawn a server-side entity, wait for it to materialize, and apply an orphan mode.
+
+## lib.spawnEntity
+
+<Callout type="info">
+    Spawning may lag in high-population sessions. The helper waits up to `timeout` ms
+    for `DoesEntityExist` to return true before returning `0`.
+</Callout>
+
+<Tabs items={["Lua", "JS"]}>
+  <Tab>
+    ```lua
+    lib.spawnEntity(assetType, model, spawn, orphanMode, timeout)
+    ```
+  </Tab>
+  <Tab>
+    ```ts
+    import lib from '@overextended/ox_lib/server'
+
+    lib.spawnEntity(assetType, model, spawn, orphanMode, timeout)
+    ```
+  </Tab>
+</Tabs>
+
+- assetType: `string`
+  - Label used in error messages, e.g. `'object'`, `'ped'`, `'vehicle'`.
+- model: `string | number`
+  - Model name or precomputed hash.
+- spawn: `fun(modelHash: number): number`
+  - Native spawner, called with the resolved hash. Must return the created entity handle.
+- orphanMode?: `EntityOrphanMode`
+  - Server-side cleanup behavior applied via `SetEntityOrphanMode`.
+  - Default: `2` (KeepEntity)
+- timeout?: `number`
+  - Milliseconds to wait for the entity to exist.
+  - Default: `5000`
+
+**Returns:**
+- entity: `number`
+  - Entity handle, or `0` if the entity could not be created or did not materialize in time.
+
+### EntityOrphanMode
+
+```
+0 DeleteWhenNotRelevant — default game behavior; deletes when no player is relevant.
+1 DeleteOnOwnerDisconnect — deletes when the original owner disconnects.
+2 KeepEntity — never deleted by server relevancy checks.
+```
+
+```lua
+local object = lib.spawnEntity('object', 'prop_chair_01a', function(modelHash)
+    return CreateObject(modelHash, coords.x, coords.y, coords.z, true, true, false)
+end)
+```

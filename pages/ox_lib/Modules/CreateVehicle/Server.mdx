@@ -1,0 +1,127 @@
+import { Tabs, Tab } from 'nextra-theme-docs';
+import { Callout } from 'nextra/components';
+
+# Server
+
+Spawn a vehicle server-side. The helper waits for the entity to materialize and applies
+an orphan mode so the vehicle is not cleaned up automatically.
+
+## lib.createVehicle
+
+<Tabs items={["FiveM", "RedM"]}>
+  <Tab>
+    Calls `CreateVehicleServerSetter` with the supplied `vehicleType`. Optionally
+    applies vehicle properties and warps a player into a seat after spawning.
+
+    <Callout type="info">
+        The `vehicleType` argument is forwarded to `CreateVehicleServerSetter` and must
+        match the actual category of the model — passing the wrong type may prevent the
+        vehicle from spawning correctly.
+    </Callout>
+
+    <Tabs items={["Lua", "JS"]}>
+      <Tab>
+        ```lua
+        lib.createVehicle(model, coords, heading, vehicleType, properties, seat, orphanMode)
+        ```
+      </Tab>
+      <Tab>
+        ```ts
+        import lib from '@overextended/ox_lib/server'
+
+        lib.createVehicle(model, coords, heading, vehicleType, properties, seat, orphanMode)
+        ```
+      </Tab>
+    </Tabs>
+
+    - model: `string | number`
+      - Model name or precomputed hash.
+    - coords: `vector3`
+      - World coordinate to spawn the vehicle at.
+    - heading?: `number`
+      - Heading the vehicle should face, in degrees.
+    - vehicleType?: `VehicleType`
+      - Category passed to `CreateVehicleServerSetter`.
+      - Default: `'automobile'`
+    - properties?: `table`
+      - Properties applied via [`lib.setVehicleProperties`](/ox_lib/Modules/VehicleProperties/Client#libsetvehicleproperties)
+        after spawning.
+    - seat?: `{ source: number, seat: SeatPosition }`
+      - Warps the player identified by `source` into the specified seat after spawning.
+    - orphanMode?: `EntityOrphanMode`
+      - Server-side cleanup behavior applied via `SetEntityOrphanMode`.
+      - Default: `2` (KeepEntity)
+
+    **Returns:**
+    - entity: `number`
+      - Entity handle, or `0` if the vehicle could not be created.
+
+    ### VehicleType
+
+    ```
+    'automobile'
+    'bike'
+    'boat'
+    'heli'
+    'plane'
+    'submarine'
+    'trailer'
+    'train'
+    ```
+
+    ```lua
+    local playerPed = GetPlayerPed(source)
+    local vehicle = lib.createVehicle(
+        'adder',
+        GetEntityCoords(playerPed),
+        GetEntityHeading(playerPed),
+        'automobile'
+    )
+    ```
+  </Tab>
+
+  <Tab>
+    Calls the CFX `CREATE_VEHICLE` server native
+    (`modelHash, x, y, z, heading, isNetwork, netMissionEntity`). The wrapper
+    always pins the entity to the script host. `vehicleType`, `properties`, and
+    `seat` from the FiveM wrapper are not available on RedM.
+
+    <Tabs items={["Lua", "JS"]}>
+      <Tab>
+        ```lua
+        lib.createVehicle(model, coords, heading, orphanMode)
+        ```
+      </Tab>
+      <Tab>
+        ```ts
+        import lib from '@overextended/ox_lib/server'
+
+        lib.createVehicle(model, coords, heading, orphanMode)
+        ```
+      </Tab>
+    </Tabs>
+
+    - model: `string | number`
+      - Model name or precomputed hash.
+    - coords: `vector3`
+      - World coordinate to spawn the vehicle at.
+    - heading?: `number`
+      - Heading the vehicle should face, in degrees.
+    - orphanMode?: `EntityOrphanMode`
+      - Server-side cleanup behavior applied via `SetEntityOrphanMode`.
+      - Default: `2` (KeepEntity)
+
+    **Returns:**
+    - entity: `number`
+      - Entity handle, or `0` if the vehicle could not be created.
+
+    ```lua
+    local playerPed = GetPlayerPed(source)
+    local wagon = lib.createVehicle(
+        'wagon04x',
+        GetEntityCoords(playerPed),
+        GetEntityHeading(playerPed)
+    )
+    ```
+  </Tab>
+</Tabs>
