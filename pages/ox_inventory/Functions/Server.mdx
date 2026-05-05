@@ -719,17 +719,23 @@ exports.ox_inventory:RegisterStash(id, label, slots, maxWeight, owner, groups, c
 - slots: `number`
 - maxWeight: `number`
 - owner: `string` or `boolean` or `nil`
-  - `string`: Can only access the stash linked to the owner.
-  - `true`: Each player has a unique stash but can request other player's stashes.
+  - `string`: Links the stash to an identifier, used for easier deletion.
+  - `true`: Each player has a unique stash but can request other player's stashes (i.e. personal lockers).
   - `nil`: Always shared.
 - groups: `table`
   - Table of player groups (jobs) able to access the stash.
   - Table of group names where the numeric value is the minimum grade required.
   - `{['police'] = 0, ['ambulance'] = 2}`
 - coords?: `vector3` or `vector3[]`
+- instance?: `number` | `string`
+  - Restrict access to the stash based on the player's instance.
 
 <Callout>
   This function needs to be triggered before a player can open the stash.
+</Callout>
+
+<Callout type="error">
+  The owner parameter is not for access control of the stash, use the [`openInventory`](./Server/Hooks.mdx#openinventory) hook for access control. 
 </Callout>
 
 <br />
