@@ -719,7 +719,7 @@ exports.ox_inventory:RegisterStash(id, label, slots, maxWeight, owner, groups, c
 - slots: `number`
 - maxWeight: `number`
 - owner: `string` or `boolean` or `nil`
-  - `string`: Links the stash to an identifier, used for easier deletion.
+  - `string`: Links the stash to an specific identifier in the database, used for lookups and deletion.
   - `true`: Each player has a unique stash but can request other player's stashes (i.e. personal lockers).
   - `nil`: Always shared.
 - groups: `table`
