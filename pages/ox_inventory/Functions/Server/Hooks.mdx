@@ -101,7 +101,7 @@ end, {
 })
 ```
 
-</summary>
+</details>
 
 ### openShop
 
@@ -310,7 +310,7 @@ local hookId = exports.ox_inventory:registerHook('swapItems', nil, {
 })
 
 ---Print everytime an item is moved to or from a vehicle inventory.
----Success will be false if using a hook callback for validation, or if the action was rejected internally by ox_inventory.
+---Success will be false if the hook rejected the action or it failed elsewhere.
 AddEventHandler(hookId, function(success, payload)
     print(hookId, success)
     lib.print.info(payload)
