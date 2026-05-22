@@ -9,7 +9,7 @@ interface Props {
   label?: string;
 }
 
-const Button: React.FC = ({ side = 'left', children, icon, link }: Props) => {
+const Button = ({ side = 'left', children, icon, link }: Props) => {
   return (
     <div className="h-fit w-fit">
       <a href={link}>

@@ -1,15 +1,7 @@
 import React from "react";
 import { IconCheck, IconCopy } from '@tabler/icons-react';
 
-interface Props {
-    storeName: string;
-    storeLink: string;
-    storeImage: string;
-    code: string;
-    percentOff: number;
-}
-
-const CreatorCode: React.FC<Props> = ([storeName, storeLink, code, percentOff, storeImage]) => {
+const CreatorCode = ([storeName, storeLink, code, percentOff, storeImage]) => {
     const [copied, setCopied] = React.useState(false)
 
     function copyCode() {
