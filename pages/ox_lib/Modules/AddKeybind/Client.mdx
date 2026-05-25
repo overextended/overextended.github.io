@@ -25,6 +25,9 @@ A table representing a keybind with the following properties.
   - An optional secondary keybind.
 - secondaryMapper?: `string`
   - An optional mapper for the secondary key, otherwise using the default mapper.
+- allowInPauseMenu?: `boolean`
+  - Allows the keybind to trigger while the pause menu/frontend is active.
+  - Default: `false`
 - disable: `function(self: CKeybind, disable: boolean)`
   - Built-in function to enable / disable a keybind
 - isControlPressed: `function(self: CKeybind)`
@@ -52,6 +55,9 @@ lib.addKeybind(data)
     - Default: `keyboard`
   - secondaryKey?: `string`
   - secondaryMapper?: `string`
+  - allowInPauseMenu?: `boolean`
+    - Default: `false`
+    - If true, keybind callbacks can run while `IsPauseMenuActive()` is true
   - disabled?: `boolean`
     - Whether or not the keybind should be disabled by default
   - onPressed?: `function(self: CKeybind)`
@@ -64,6 +70,7 @@ local keybind = lib.addKeybind({
     name = 'respects',
     description = 'press F to pay respects',
     defaultKey = 'F',
+    allowInPauseMenu = true,
     onPressed = function(self)
         print(('pressed %s (%s)'):format(self.currentKey, self.name))
     end,
