@@ -1,21 +1,11 @@
 {
   "index": "Introduction",
-  "guides": "Guides",
+  "resources": "Resources",
   "oxmysql": "OxMySQL",
   "ox_lib": "Ox Lib",
-  "fivemanage": {
-    "title": "Fivemanage",
+  "sponsor": {
+    "title": "Support the Project",
     "type": "page",
-    "href": "https://fivemanage.com/?ref=overextended"
-  },
-  "creator_codes": {
-    "title": "Creator codes",
-    "type": "page",
-    "href": "/#creator-codes"
-  },
-  "support": {
-    "title": "Support us",
-    "type": "page",
-    "href": "/#support-our-team"
+    "href": "/#support-the-project"
   }
 }

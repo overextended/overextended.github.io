@@ -8,33 +8,15 @@ interface Maintainer {
 
 const maintainers: Maintainer[] = [
   {
-    login: 'FjamZoo',
-    avatar_url: 'https://avatars.githubusercontent.com/u/34508112?v=4',
-    sponsor: 'fjamzoo',
+    login: 'Linden',
+    avatar_url: 'https://avatars.githubusercontent.com/u/65407488?v=4',
+    sponsor: 'thelindat',
   },
-  {
-    login: 'antond15',
-    avatar_url: 'https://avatars.githubusercontent.com/u/71350868?v=4',
-    sponsor: 'antond',
-  },
-  {
-    login: 'ESK0',
-    avatar_url: 'https://avatars.githubusercontent.com/u/8851795?v=4',
-  },
-];
-
-const priorityOrder = ['FjamZoo', 'antond15', 'ESK0'];
-
-const sortedMaintainers = [
-  ...priorityOrder
-    .map((login) => maintainers.find((m) => m.login === login))
-    .filter((m): m is Maintainer => !!m),
-  ...maintainers.filter((m) => !priorityOrder.includes(m.login)),
 ];
 
 const DisplayMaintainers = () => (
   <div className="mt-4 grid grid-cols-2 place-items-center gap-y-6 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
-    {sortedMaintainers.map(maintainer => (
+    {maintainers.map(maintainer => (
       <MemberLink
         key={maintainer.login}
         image={maintainer.avatar_url}
