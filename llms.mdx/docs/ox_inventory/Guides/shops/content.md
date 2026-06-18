@@ -1,0 +1,106 @@
+# Creating Shops (/docs/ox_inventory/Guides/shops)
+
+
+
+# Creating Shops [#creating-shops]
+
+Builtin shops are defined in [data/shops.lua](https://github.com/overextended/ox_inventory/blob/main/data/shops.lua), and more can be added here to benefit from the built-in markers or zones support.
+
+## Shop definition [#shop-definition]
+
+```lua
+{
+    General = {
+        name = 'Shop',
+        blip = {
+          id = 59,
+          colour = 69,
+          scale = 0.8
+        },
+        inventory = {
+            { name = 'burger', price = 10 },
+            { name = 'water', price = 10 },
+            { name = 'cola', price = 10 },
+        },
+        locations = {
+            vec3(25.7, -1347.3, 29.49),
+        },
+        targets = {
+            -- Shop using a BoxZone
+            {
+                loc = vec3(25.06, -1347.32, 29.5),
+                length = 0.7,
+                width = 0.5,
+                heading = 0.0,
+                minZ = 29.5,
+                maxZ = 29.9,
+                distance = 1.5
+            },
+            -- Shop using a ped
+            {
+                ped = `mp_m_shopkeep_01`,
+                scenario = 'WORLD_HUMAN_AA_COFFEE',
+                loc = vec3(24.407, -1347.283, 28.497),
+                heading = 270.311,
+            },
+        }
+    }
+}
+```
+
+* name: `string`
+  * The label to display when the shop is open.
+* blip?: `table`
+  * Creates a blip with the given settings. Leave it undefined for no blip to be created.
+  * id: `number`
+  * colour: `number`
+  * scale: `number`
+* groups?: `table`
+  * Key-value pairs of job name and minimum grade to access the shop.
+    * `{["police"] = 0, ["ambulance"] = 2}`
+* inventory: `table`
+  * name: `string`
+  * price: `number`
+  * currency?: `string`
+    * Item to be used as currency.
+  * count?: `number`
+    * Amount of the item in the stock.
+  * license?: `string`
+    * License required to purchase the item.
+  * metadata?: `table`
+  * grade?: `number` | `number[]`
+    * Minimal grade required to purchase the item.
+* locations?: `vector3[]`
+  * An array of coordinates to create unique instances of the shop archetype at, using markers.
+* targets?: `table[]`
+  * An array of target settings to create unique instances of the shop archetype at, using peds or BoxZones (PolyZone data structure).
+* model?: `number[]`
+  * An array of models that can be targetted to open a shop. Used for vending machines.
+
+Targets and model are only available when using a targeting resource like ox\_target.
+
+## Register during runtime [#register-during-runtime]
+
+Shops can be added using `exports.ox_inventory:RegisterShop` on the server, however they cannot utilise any client-only features.
+
+* Blips, markers, and zones will not be created.
+* Must use "locations" and not "targets" to define each shop using the archetype.
+
+### Example [#example]
+
+```lua
+exports.ox_inventory:RegisterShop('TestShop', {
+    name = 'Test shop',
+    inventory = {
+        { name = 'burger', price = 10 },
+        { name = 'water', price = 10 },
+        { name = 'cola', price = 10 },
+    },
+    locations = {
+        vec3(223.832962, -792.619751, 30.695190),
+    },
+    groups = {
+        police = 0
+    },
+})
+```

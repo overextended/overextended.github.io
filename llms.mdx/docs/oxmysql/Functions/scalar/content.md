@@ -1,0 +1,67 @@
+# scalar (/docs/oxmysql/Functions/scalar)
+
+
+
+# Scalar [#scalar]
+
+Returns the first column for a single row.
+
+## Promise [#promise]
+
+<Tabs items="['Lua', 'JS']">
+  <Tab>
+    ```lua
+    local firstName = MySQL.scalar.await('SELECT `firstname` FROM `users` WHERE `identifier` = ? LIMIT 1', {
+        identifier
+    })
+
+    print(firstName)
+    ```
+  </Tab>
+
+  <Tab>
+    ```js
+    const firstName = await MySQL.scalar('SELECT `firstname` FROM `users` WHERE `identifier` = ? LIMIT 1', [
+      identifier
+    ])
+
+    console.log(firstName)
+    ```
+  </Tab>
+</Tabs>
+
+**Aliases**
+
+* `MySQL.Sync.fetchScalar`
+* `exports.ghmattimysql.scalar`
+* `exports.oxmysql.scalar_async`
+
+## Callback [#callback]
+
+<Tabs items="['Lua', 'JS']">
+  <Tab>
+    ```lua
+    MySQL.scalar('SELECT `firstname` FROM `users` WHERE `identifier` = ? LIMIT 1', {
+        identifier
+    }, function(firstName)
+        print(firstName)
+    end)
+    ```
+  </Tab>
+
+  <Tab>
+    ```js
+    MySQL.scalar('SELECT `firstname` FROM `users` WHERE `identifier` = ? LIMIT 1', [
+      identifier
+    ], (firstName) => {
+      console.log(firstName)
+    })
+    ```
+  </Tab>
+</Tabs>
+
+**Aliases**
+
+* `MySQL.Async.fetchScalar`
+* `exports.ghmattimysql.scalar`
+* `exports.oxmysql.scalar`

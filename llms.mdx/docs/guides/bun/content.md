@@ -1,0 +1,9 @@
+# Bun (/docs/guides/bun)
+
+
+
+Bun is an all-in one JavaScript and TypeScript toolkit, providing its own runtime, package management, and build tools.
+
+We specifically utilise Bun for its package manager, though its runtime can be useful for running scripts outside of FXServer.
+
+Already have node? Try running `npm install -g bun`. Otherwise, see [here](https://bun.com/docs/installation).

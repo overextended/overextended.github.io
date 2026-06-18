@@ -1,0 +1,191 @@
+# OxPlayer (/docs/ox_core/Classes/Client/OxPlayer)
+
+
+
+## OxPlayer [#oxplayer]
+
+* state: `StateBagInterface`
+* userId: `number`
+* charId?: `number`
+* stateId?: `string`
+
+## OxPlayer.addStatus [#oxplayeraddstatus]
+
+Increases value of a status.
+
+```lua
+player.addStatus(statusName, value)
+```
+
+**Parameters**
+
+* statusName: `string`
+* value: `number`
+
+**Returns**
+
+* success: `boolean`
+
+## OxPlayer.get [#oxplayerget]
+
+Returns a value from the players metadata.
+
+```lua
+player.get(key)
+```
+
+**Parameters**
+
+* key: `string`
+
+**Returns**
+
+* `unknown`
+
+## OxPlayer.getCoords [#oxplayergetcoords]
+
+Returns the player's current coordinates.
+
+```lua
+player.getCoords()
+```
+
+**Parameters**
+
+* `vector3`
+
+## OxPlayer.getGroup [#oxplayergetgroup]
+
+Returns the player's grade of a given group name, or the first matched name and grade in a filter.
+
+```lua
+player.getGroup(filter)
+```
+
+**Parameters**
+
+* filter: `string`|`string[]`|`{ [string]: number }`
+
+**Returns**
+
+* `unknown`
+
+## OxPlayer.getGroupByType [#oxplayergetgroupbytype]
+
+Returns the player's name and grade of a group with a matching type.
+
+```lua
+player.getGroupByType(type)
+```
+
+**Parameters**
+
+* type: `string`
+
+**Returns**
+
+* `string`
+* `number`
+
+## OxPlayer.getGroups [#oxplayergetgroups]
+
+Returns an object of all groups the player is currently in, using the group name as a key.
+
+```lua
+player.getGroups()
+```
+
+**Returns**
+
+* `{ [string]: number }`
+
+## OxPlayer.getStatus [#oxplayergetstatus]
+
+Returns the value of the status.
+
+```lua
+player.getStatus(statusName)
+```
+
+**Parameters**
+
+* statusName: `string`
+
+**Returns**
+
+* `number`
+
+## OxPlayer.getStatuses [#oxplayergetstatuses]
+
+Returns an object containing all statuses, using the status name as the key.
+
+```lua
+player.getStatuses()
+```
+
+**Returns**
+
+* `{ [string]: number }`
+
+## OxPlayer.hasPermission [#oxplayerhaspermission]
+
+Checks if a user has a permission, given by one of their groups.
+
+```lua
+player.hasPermission(permission)
+```
+
+**Parameters**
+
+* permission: `string`
+
+**Returns**
+
+* `boolean`
+
+**Example**
+
+```lua
+-- Adding a permission to a group (server side)
+Ox.SetGroupPermission('police', 1, 'handcuff', 'allow')
+
+-- Checking if a player has the 'handcuff' permission
+if player.hasPermission('group.police.handcuff') then
+    -- Do something
+end
+```
+
+## OxPlayer.removeStatus [#oxplayerremovestatus]
+
+Reduces the value of a status.
+
+```lua
+player.removeStatus(statusName, value)
+```
+
+**Parameters**
+
+* statusName: `string`
+* value: `number`
+
+**Returns**
+
+* `boolean`
+
+## OxPlayer.on [#oxplayeron]
+
+Listens for changes to the players metadata, specified by a key.
+
+```lua
+player.on(key, cb(data))
+```
+
+**Parameters**
+
+* key: `string`
+* cb: `function`
+
+**Returns**
+
+* data: `unknown`
+  * new value of `key`
