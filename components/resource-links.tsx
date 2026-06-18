@@ -1,5 +1,5 @@
-import React from 'react';
-import { GhButton, DocButton, ReleaseButton } from './button';
+import React from "react";
+import { GhButton, DocButton, ReleaseButton } from "./button";
 
 interface Props {
   children?: React.ReactNode;

@@ -1,0 +1,165 @@
+---
+title: Ox Lib
+---
+
+import ResourceLinks from "@/components/resource-links";
+
+A standalone library for providing easily reusable code as importable modules and exports.
+
+<ResourceLinks repo="https://github.com/overextended/ox_lib" />
+
+## Installation
+
+<Callout type="info">
+
+We **strongly** recommend referring to [Guides](../guides) for setting up Git, Node.js, and bun.
+
+</Callout>
+
+### Download a release or build the source code. [step]
+
+- Download the [latest release](https://github.com/overextended/ox_lib/releases/latest).
+
+```bash
+git clone https://github.com/overextended/ox_lib.git
+cd ox_lib/web
+bun i
+bun run build
+```
+
+### Config [step]
+
+Resource configuration is handled using [convars](https://docs.fivem.net/docs/scripting-reference/convars/).
+
+```bash
+# https://v6.mantine.dev/theming/colors/#default-colors
+setr ox:primaryColor blue
+setr ox:primaryShade 8
+setr ox:userLocales 1 # Allow users to select their locales using /ox_lib
+setr ox:progressPropLimit 2 # Defines the maximum number of spawned props for progressbar
+```
+
+You'll also need to grant ace permissions to the resource.
+
+```bash
+add_ace resource.ox_lib command.add_ace allow
+add_ace resource.ox_lib command.remove_ace allow
+add_ace resource.ox_lib command.add_principal allow
+add_ace resource.ox_lib command.remove_principal allow
+```
+
+## Usage
+
+<Tabs items={["Lua", "JS"]}>
+<Tab>
+
+To enable the library inside of your resource just add `@ox_lib/init.lua` as a shared_script in your `fxmanifest.lua` file.
+
+```lua
+shared_scripts {
+    '@ox_lib/init.lua',
+}
+```
+
+Or if the library is the only shared script you use you can do:
+
+```lua
+shared_script '@ox_lib/init.lua'
+```
+
+You can specify modules to import from inside your `fxmanifest.lua`, or load them dynamically.
+
+```lua
+ox_libs {
+    'locale',
+    'math',
+    'table',
+}
+```
+
+When ox_lib has been imported into your script, it will make several new globals available:
+
+- `lib` for dynamically importing ox_lib modules into your script.
+- `require` for importing modules from your own script.
+- `cache` see [here](./ox_lib/Modules/Cache/Shared).
+
+</Tab>
+<Tab>
+
+<Callout>
+Npm package for the lib does **not** support all the functions that are available for Lua.
+
+All supported functions are located inside the `resource` folder in the lib.
+
+</Callout>
+
+You can get the npm package [here](https://npmjs.com/package/@overextended/ox_lib).
+
+**Usage:**  
+You can either import the whole library object which contains all the functions for that scope (client/server/shared) or you can deconstruct it and import the functions you find needed at the time.
+
+```ts
+import lib from "@overextended/ox_lib/server";
+```
+
+```ts
+import { versionCheck } from "@overextended/ox_lib/server";
+```
+
+</Tab>
+</Tabs>
+
+You can now use the library functions inside of your resource, check the rest of the documentation to see how to utilise them.
+
+## Using icons for interface functions
+
+The icon library used is Font Awesome 6.0, if for the icon you define only a string the default icon type will be `solid`.  
+If you want to use a different icon type, i.e apple as a brand, you need to define icon as a table (`array`) with the first value being the icon type (`fas`, `far`, `fab`) as a string, and the second being the icon name.
+
+<Tabs items={["Lua", "JS"]}>
+<Tab>
+
+```lua
+icon = {'fab', 'apple'}
+```
+
+</Tab>
+<Tab>
+
+```ts
+icon: ["fab", "apple"];
+```
+
+</Tab>
+</Tabs>
+
+## Building the UI
+
+If you wish to edit any of the UI elements you will need to download the _source_ code, edit what you need and then compile it.
+
+<Callout type="warning">
+
+**DO NOT** de-bundle and un-minify the release CSS and JS files to edit them.
+
+</Callout>
+
+<Callout type="info">
+
+We **strongly** recommend referring to [Guides](../guides) for setting up Git, Node.js, and bun.
+
+</Callout>
+
+**Building the UI:**
+
+- cd into the web directory.
+- run `bun i` to install the dependencies.
+- run `bun run build` to build the source files.
+
+<Callout type="info">
+When working in the browser you can run `bun start`, which supports hot reloads meaning that
+you will see your changes after saving your file.
+
+If you want to work in game you can run `bun start:game` which writes changes to disk, so
+the only thing you have to do is restart the resource for it take affect.
+
+</Callout>

@@ -1,22 +1,28 @@
-import React from 'react';
-import { IconBrandGithub, IconTag, IconFileText, IconDownload, IconBrandNpm } from '@tabler/icons-react';
+import React from "react";
+import {
+  IconBrandGithub,
+  IconTag,
+  IconFileText,
+  IconDownload,
+  IconBrandNpm,
+} from "@tabler/icons-react";
 
 interface Props {
   icon?: React.ReactNode;
   children?: React.ReactNode;
-  side?: 'left' | 'right';
+  side?: "left" | "right";
   link?: string;
   label?: string;
 }
 
-const Button = ({ side = 'left', children, icon, link }: Props) => {
+const Button = ({ side = "left", children, icon, link }: Props) => {
   return (
     <div className="h-fit w-fit">
       <a href={link}>
-        <div className="flex w-26 items-center justify-center gap-1.5 rounded-sm border border-black p-1.5 text-black hover:bg-black hover:text-white dark:border-white dark:text-white dark:hover:bg-white dark:hover:text-black mt-2">
-          {side === 'left' && <div>{icon}</div>}
+        <div className="inline-flex items-center justify-center rounded-md p-2 font-medium transition-colors duration-100 disabled:pointer-events-none disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-fd-ring border bg-fd-secondary text-fd-secondary-foreground hover:bg-fd-accent hover:text-fd-accent-foreground px-2 py-1.5 text-xs gap-2 [&_svg]:size-3.5 [&_svg]:text-fd-muted-foreground">
+          {side === "left" && <div>{icon}</div>}
           {children}
-          {side === 'right' && <div>{icon}</div>}
+          {side === "right" && <div>{icon}</div>}
         </div>
       </a>
     </div>
