@@ -13,19 +13,19 @@ import { Callout } from 'nextra/components';
 
 ## lib.addRadialItem
 
-Item or array of items added to the global radial menu.
+Item or array of items added to the global radial menu, or to a sub menu if `parentMenuId` is specified.
 
 <Tabs items={["Lua", "JS"]}>
   <Tab>
     ```lua
-    lib.addRadialItem(items)
+    lib.addRadialItem(items, parentMenuId)
     ```
   </Tab>
   <Tab>
     ```ts
     import lib from '@overextended/ox_lib/client';
 
-    lib.addRadialItem(items);
+    lib.addRadialItem(items, parentMenuId);
     ```
   </Tab>
 </Tabs>
@@ -45,27 +45,31 @@ Item or array of items added to the global radial menu.
   - onSelect: `function(currentMenu: string | nil, itemIndex: number)` | `string`
     - Function that's ran when a user clicks the item.
   - keepOpen?: `boolean`
+- parentMenuId?: `string`
+  - If specified, adds the item(s) to the sub menu with this id instead of the global menu.
 
 ## lib.removeRadialItem
 
-Id of an item to be removed from the global menu.
+Id of an item to be removed from the global menu, or from a sub menu if `parentMenuId` is specified.
 
 <Tabs items={["Lua", "JS"]}>
   <Tab>
     ```lua
-    lib.removeRadialItem(item)
+    lib.removeRadialItem(id, parentMenuId)
     ```
   </Tab>
   <Tab>
     ```ts
     import lib from '@overextended/ox_lib/client';
 
-    lib.removeRadialItem(item);
+    lib.removeRadialItem(id, parentMenuId);
     ```
   </Tab>
 </Tabs>
 
 - id: `string`
+- parentMenuId?: `string`
+  - If specified, removes the item from the sub menu with this id instead of the global menu.
 
 ## lib.clearRadialItems
 
