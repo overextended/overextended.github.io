@@ -1,0 +1,59 @@
+# Server (/docs/ox_lib/Callback/JavaScript/Server)
+
+
+
+## Trigger Client Callback [#trigger-client-callback]
+
+### triggerClientCallback [#triggerclientcallback]
+
+```ts
+triggerClientCallback(eventName, playerId, ...args);
+```
+
+* eventName: `string`
+* playerId: `number`
+* ...args: `any`
+
+## Register Server Callback [#register-server-callback]
+
+### onClientCallback [#onclientcallback]
+
+```ts
+onClientCallback(eventName, cb);
+```
+
+* eventName: `string`
+* cb: `function`(playerId: `number`, ...args: `any`)
+
+## Usage Example [#usage-example]
+
+For this example to fully make sense take a look at the example on the [client](./Client#usage-example) page for the callbacks.
+
+```ts
+import { onClientCallback, triggerClientCallback } from "@overextended/ox_lib/server";
+```
+
+```ts
+onClientCallback("test:server", (playerId, ...args: [number, null, number, null, null, number]) => {
+  console.log("onClientCallback", playerId, ...args);
+  return {
+    serverValue: 3000,
+  };
+});
+```
+
+```ts
+setTimeout(async () => {
+  const response = await triggerClientCallback<{ clientValue: string }>("test:client", 1, [
+    1,
+    null,
+    3,
+    null,
+    null,
+    6,
+  ]);
+  if (!response) return;
+  console.log(response.clientValue);
+  console.log("Response from client", response);
+}, 100);
+```

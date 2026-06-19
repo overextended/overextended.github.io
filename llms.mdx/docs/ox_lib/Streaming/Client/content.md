@@ -1,0 +1,261 @@
+# Client (/docs/ox_lib/Streaming/Client)
+
+
+
+Check if assets exist, such as models, and loads them into memory.\
+Throws errors for invalid assets and returns true if the asset is loaded.
+
+## lib.requestAnimDict [#librequestanimdict]
+
+<Callout>
+  Remember to call 
+
+  `RemoveAnimDict(dict)`
+
+   at the end of your code!
+</Callout>
+
+<Tabs items="[&#x22;Lua&#x22;, &#x22;JS&#x22;]">
+  <Tab>
+    ```lua
+    lib.requestAnimDict(dict, timeout)
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    import lib from '@overextended/ox_lib/client'
+
+    lib.requestAnimDict(dict, timeout)
+    ```
+  </Tab>
+</Tabs>
+
+* dict: `string`
+* timeout?: `number`
+  * Number of ticks to wait for the asset to load.
+  * Default: `10000`
+
+## lib.requestAnimSet [#librequestanimset]
+
+<Callout>
+  Remember to call 
+
+  `RemoveAnimSet(set)`
+
+   at the end of you code!
+</Callout>
+
+<Tabs items="[&#x22;Lua&#x22;, &#x22;JS&#x22;]">
+  <Tab>
+    ```lua
+    lib.requestAnimSet(set, timeout)
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    import lib from '@overextended/ox_lib/client'
+
+    lib.requestAnimSet(set, timeout)
+    ```
+  </Tab>
+</Tabs>
+
+* set: `string`
+* timeout?: `number`
+  * Number of ticks to wait for the asset to load.
+  * Default: `10000`
+
+## lib.requestAudioBank [#librequestaudiobank]
+
+<Callout>
+  Remember to call 
+
+  `ReleaseScriptAudioBank(set)`
+
+   at the end of you code!
+</Callout>
+
+```lua
+lib.requestAudioBank(audioBank, timeout)
+```
+
+* audioBank: `string`
+* timeout?: `number`
+  * Number of ticks to wait for the asset to load.
+  * Default: `30000`
+
+## lib.requestModel [#librequestmodel]
+
+<Callout>
+  Remember to call 
+
+  `SetModelAsNoLongerNeeded(model)`
+
+   at the end of you code!
+</Callout>
+
+<Tabs items="[&#x22;Lua&#x22;, &#x22;JS&#x22;]">
+  <Tab>
+    ```lua
+    lib.requestModel(model, timeout)
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    import lib from '@overextended/ox_lib/client'
+
+    lib.requestModel(model, timeout)
+    ```
+  </Tab>
+</Tabs>
+
+* model: `string`
+* timeout?: `number`
+  * Number of ticks to wait for the asset to load.
+  * Default: `10000`
+
+## lib.requestStreamedTextureDict [#librequeststreamedtexturedict]
+
+<Callout>
+  Remember to call `SetStreamedTextureDictAsNoLongerNeeded(dict)` at the end of you code!
+</Callout>
+
+<Tabs items="[&#x22;Lua&#x22;, &#x22;JS&#x22;]">
+  <Tab>
+    ```lua
+    lib.requestStreamedTextureDict(dict, timeout)
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    import lib from '@overextended/ox_lib/client'
+
+    lib.requestStreamedTextureDict(dict, timeout)
+    ```
+  </Tab>
+</Tabs>
+
+* dict: `string`
+* timeout?: `number`
+  * Number of ticks to wait for the asset to load.
+  * Default: `10000`
+
+## lib.requestNamedPtfxAsset [#librequestnamedptfxasset]
+
+<Callout>
+  Remember to call 
+
+  `RemoveNamedPtfxAsset(dict)`
+
+   at the end of you code!
+</Callout>
+
+<Tabs items="[&#x22;Lua&#x22;, &#x22;JS&#x22;]">
+  <Tab>
+    ```lua
+    lib.requestNamedPtfxAsset(ptFxName, timeout)
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    import lib from '@overextended/ox_lib/client'
+
+    lib.requestNamedPtfxAsset(ptFxName, timeout)
+    ```
+  </Tab>
+</Tabs>
+
+* ptFxName: `string`
+* timeout?: `number`
+  * Number of ticks to wait for the asset to load.
+  * Default: `10000`
+
+## lib.requestScaleformMovie [#librequestscaleformmovie]
+
+<Callout>
+  Remember to call `SetScaleformMovieAsNoLongerNeeded(scaleformName)` at the end of you code!
+</Callout>
+
+<Tabs items="[&#x22;Lua&#x22;, &#x22;JS&#x22;]">
+  <Tab>
+    ```lua
+    lib.requestScaleformMovie(scaleformName, timeout)
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    import lib from '@overextended/ox_lib/client'
+
+    lib.requestScaleformMovie(scaleformName, timeout)
+    ```
+  </Tab>
+</Tabs>
+
+* scaleformName: `string`
+* timeout?: `number`
+  * Number of ticks to wait for the asset to load.
+  * Default: `1000`
+
+## lib.requestWeaponAsset [#librequestweaponasset]
+
+<Callout>
+  Remember to call 
+
+  `RemoveWeaponAsset(weaponType)`
+
+   at the end of you code!
+</Callout>
+
+<Tabs items="[&#x22;Lua&#x22;, &#x22;JS&#x22;]">
+  <Tab>
+    ```lua
+    lib.requestWeaponAsset(weaponType, timeout, weaponResourceFlags, extraWeaponComponentFlags)
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    import lib from '@overextended/ox_lib/client'
+
+    lib.requestWeaponAsset(weaponType, timeout, weaponResourceFlags, extraWeaponComponentFlags)
+    ```
+  </Tab>
+</Tabs>
+
+* weaponType: `string | number`
+* timeout?: `number`
+  * Number of ticks to wait for the asset to load.
+  * Default: `10000`
+* weaponResourceFlags?: `WeaponResourceFlags`
+  * Default: `31`
+* extraWeaponComponentFlags?: `ExtraWeaponComponentFlags`
+  * Default: `0`
+
+### WeaponResourceFlags [#weaponresourceflags]
+
+```
+1 WRF_REQUEST_BASE_ANIMS
+2 WRF_REQUEST_COVER_ANIMS
+4 WRF_REQUEST_MELEE_ANIMS
+8 WRF_REQUEST_MOTION_ANIMS
+16 WRF_REQUEST_STEALTH_ANIMS
+32 WRF_REQUEST_ALL_MOVEMENT_VARIATION_ANIMS
+31 WRF_REQUEST_ALL_ANIMS
+```
+
+### ExtraWeaponComponentFlags [#extraweaponcomponentflags]
+
+```
+0 WEAPON_COMPONENT_NONE
+1 WEAPON_COMPONENT_FLASH
+2 WEAPON_COMPONENT_SCOPE
+4 WEAPON_COMPONENT_SUPP
+8 WEAPON_COMPONENT_SCLIP2
+16 WEAPON_COMPONENT_GRIP
+```

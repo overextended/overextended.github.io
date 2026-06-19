@@ -1,0 +1,48 @@
+# Client (/docs/ox_lib/DisableControls/Client)
+
+
+
+A centralized way to track and disable [game controls](https://docs.fivem.net/docs/game-references/controls/#controls).
+
+## lib.disableControls [#libdisablecontrols]
+
+Call on frame to disable all stored controls.
+
+```lua
+lib.disableControls()
+```
+
+## lib.disableControls:Add [#libdisablecontrolsadd]
+
+Adds the specified control(s) to the stored list.\
+If the control is already being tracked, the stored counter will be incremented.
+
+```lua
+lib.disableControls:Add(...)
+```
+
+* vararg: `number` or `number[]`
+  * Control(s) to add a stored count of
+
+## lib.disableControls:Remove [#libdisablecontrolsremove]
+
+Removes the specified control(s) from the stored list.\
+If the stored counter for a given control is greater than one, the stored counter will be decremented.
+
+```lua
+lib.disableControls:Remove(...)
+```
+
+* vararg: `number` or `number[]`
+  * Control(s) to remove a stored count of
+
+## lib.disableControls:Clear [#libdisablecontrolsclear]
+
+Clears the stored counter(s) for the specified control(s).
+
+```lua
+lib.disableControls:Clear(...)
+```
+
+* vararg: `number` or `number[]`
+  * Control(s) to clear out from being tracked

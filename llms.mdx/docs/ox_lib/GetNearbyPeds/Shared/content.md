@@ -1,0 +1,21 @@
+# Shared (/docs/ox_lib/GetNearbyPeds/Shared)
+
+
+
+## lib.getNearbyPeds [#libgetnearbypeds]
+
+Get the ped handle and coords of all peds within range of a set of coordinates.
+
+```lua
+lib.getNearbyPeds(coords, maxDistance)
+```
+
+* coords: `vector3`
+  * The coords to check from.
+* maxDistance?: `number`
+  * The max distance to check.
+  * Default: `2.0`
+
+Return:
+
+* peds: `{ ped: number, coords: vector3 }[]`

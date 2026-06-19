@@ -1,0 +1,24 @@
+# Shared (/docs/ox_lib/GetNearbyVehicles/Lua/Shared)
+
+
+
+## lib.getNearbyVehicles [#libgetnearbyvehicles]
+
+Get the vehicle handle and coords of all vehicles within range of a set of coordinates.
+
+```lua
+lib.getNearbyVehicles(coords, maxDistance, includePlayerVehicle)
+```
+
+* coords: `vector3`
+  * The coords to check from.
+* maxDistance?: `number`
+  * The max distance to check.
+  * Default: `2.0`
+* includePlayerVehicle?: `boolean`
+  * Whether or not to include the player's current vehicle. Ignored on the server.
+  * Default: `false`
+
+Return:
+
+* vehicles: `{ vehicle: number, coords: vector3 }[]`
