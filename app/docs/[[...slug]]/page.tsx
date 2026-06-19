@@ -22,15 +22,15 @@ export default async function Page(props: PageProps<"/docs/[[...slug]]">) {
 
   const MDX = page.data.body;
   const markdownUrl = getPageMarkdownUrl(page).url;
-  const lastEdited =
-    process.env.NODE_ENV === "development"
-      ? new Date()
-      : await getGithubLastEdit({
-          owner: "overextended",
-          repo: "docs",
-          path: `content/docs/${page.path}`,
-          token: `Bearer ${process.env.PAT_TOKEN}`
-        });
+  // const lastEdited =
+  //   process.env.NODE_ENV === "development"
+  //     ? new Date()
+  //     : await getGithubLastEdit({
+  //         owner: "overextended",
+  //         repo: "docs",
+  //         path: `content/docs/${page.path}`,
+  //         token: `Bearer ${process.env.PAT_TOKEN}`
+  //       });
 
   const footer = (
     <div className="fixed flex flex-col right-4 bottom-4 gap-2 items-end">
@@ -56,7 +56,7 @@ export default async function Page(props: PageProps<"/docs/[[...slug]]">) {
     >
       <DocsTitle className="flex items-end justify-between">
         {page.data.title}
-        <PageLastUpdate className="text-xs font-medium pb-2" date={lastEdited ?? new Date()} />
+        {/* <PageLastUpdate className="text-xs font-medium pb-2" date={lastEdited ?? new Date()} /> */}
       </DocsTitle>
       <DocsDescription className="mb-0">{page.data.description}</DocsDescription>
 
