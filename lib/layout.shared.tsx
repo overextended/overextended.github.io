@@ -20,7 +20,7 @@ export function baseOptions(): BaseLayoutProps {
         text: "Documentation",
         url: "/docs",
         icon: <BookIcon />,
-        on: "all",
+        on: "nav",
       },
       {
         type: "main",
@@ -39,9 +39,16 @@ export function baseOptions(): BaseLayoutProps {
       {
         type: "icon",
         label: "Support me",
-        icon: <img src="/static/kofi-small.png" width={22} />,
+        icon: <img src="/static/kofi-small.png" width={22} className="opacity-75 hover:opacity-100"/>,
         text: "Support me",
         url: "https://ko-fi.com/thelindat",
+      },
+      {
+        type: "icon",
+        label: "Discord",
+        icon: <img src="/static/discord.png" width={22} className="opacity-75 hover:opacity-100"/>,
+        text: "Discord",
+        url: "https://discord.overextended.dev",
       },
     ],
   };
