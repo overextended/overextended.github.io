@@ -29,6 +29,7 @@ export default async function Page(props: PageProps<"/docs/[[...slug]]">) {
           owner: "overextended",
           repo: "docs",
           path: `content/docs/${page.path}`,
+          token: `Bearer ${process.env.PAT_TOKEN}`
         });
 
   const footer = (
