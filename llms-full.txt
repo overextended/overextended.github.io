@@ -8,10 +8,6 @@
   Development resumed in 2026 with a renewed focus on collaboration with the community. This shift is intended to provide ongoing support and deliver critical security updates in a timely manner.
 
   If you feel like our documentation is lacking, please let us know or suggest improvements by using the links in the sidebar.
-
-  <a href="https://ko-fi.com/thelindat">
-    <img src="/static/kofi.png" className="w-40 m-auto" />
-  </a>
 </div>
 
 
@@ -1131,6 +1127,151 @@ These aren't necessary to run ox\_target, but they will add additional features.
 * [qbx\_core](https://github.com/Qbox-project/qbx_core)
 
 
+# Fivemanage (/docs/resources/fivemanage)
+
+
+
+<div
+  style="{
+  display: &#x22;grid&#x22;,
+  placeItems: &#x22;center&#x22;,
+}"
+>
+  <a
+    href="https://refer.fivemanage.com/overextended"
+    style="{
+    background: &#x22;no-repeat url('/static/fivemanage.png')&#x22;,
+    backgroundSize: &#x22;contain&#x22;,
+    fontSize: &#x22;3rem&#x22;,
+    fontWeight: &#x22;500&#x22;,
+    verticalAlign: &#x22;middle&#x22;,
+    paddingLeft: &#x22;2em&#x22;,
+  }"
+  >
+    {" "}
+
+    Fivemanage
+  </a>
+</div>
+
+Fivemanage is an all-in-one SaaS platform for communities looking to improve their workflow, offering a range of features to faciliate easier management
+and administration of your FiveM server. They offer fast and reliable content delivery - with full support for image, video, and audio files - and seamless
+logging to track player and server activity while ensuring dependable performance and security.
+
+Fivemanage integrates seamlessly into your FiveM server with native support via ox\_lib and oxmysql, or through their official FiveM SDK.
+
+They offer a generous free plan with enough storage to get you started, and a variety of paid plans designed for both small and large servers needing access to more storage and advanced feeatures.
+
+Get started with [Fivemanage](https://refer.fivemanage.com/overextended) today.
+
+
+# Resources (/docs/resources)
+
+
+
+
+
+<Cards>
+  {getPageTreePeers(source.getPageTree(), "/docs/resources").map((peer) => (
+      <Card key={peer.url} title={peer.name} href={peer.url}>
+        {peer.description}
+      </Card>
+    ))}
+</Cards>
+
+
+# Prism Host (/docs/resources/prism-host)
+
+
+
+<div
+  style="{
+  display: &#x22;grid&#x22;,
+  placeItems: &#x22;center&#x22;,
+}"
+>
+  <a
+    href="https://prism-host.com/overextended"
+    style="{
+    background: &#x22;no-repeat url('/static/prism.png') center&#x22;,
+    backgroundSize: &#x22;contain&#x22;,
+    fontWeight: &#x22;500&#x22;,
+    height: &#x22;4em&#x22;,
+    width: &#x22;100%&#x22;,
+  }"
+  />
+</div>
+
+Prism Host delivers performance-focused hosting without the inflated price tag. From game servers and VPS to dedicated hardware and web hosting, we build around fast hardware, practical pricing, and responsive support.
+
+Get started with [Prism Host](https://prism-host.com/overextended) today using the code `OVEREXTENDED` at checkout.
+
+
+# Tebex Creators (/docs/resources/tebex-creators)
+
+
+
+
+
+Creator codes allow Tebex stores to share revenue with other creators, giving a discount to the customer at the same time.
+We make these deals to advertise trusted creators who meet our criteria.
+
+* The creator is reputable and provides quality customer service.
+* The creator understands and respects [open source](https://opensource.org/) licenses.
+* Resources follow best practices and are highly configurable or source-available.
+
+{CreatorCodes([
+  ["Andyyy", "https://andyyy.tebex.io/", "ox20", 20 , "/static/creators/andy.png"],
+  ["Berkie's Workshop", "https://berkie.tebex.io/", "ox10", 10 , "/static/creators/berkie.png"],
+  ["Dolu Mods", "https://dolu.tebex.io/", "overextended", 25 , "/static/creators/dolu.png"],
+  ["Electus Scripts", "https://store.electus-scripts.com/", "ox10", 10 , "/static/creators/electus.png"],
+  ["Loaf Scripts", "https://store.loaf-scripts.com/", "ox10", 10 , "/static/creators/loaf.png"],
+  ["OT Studios", "https://store.otstudios.net/ox", "ox10", 10 , "/static/creators/otstudios.png"],
+  ["Randolio Scripts", "https://randolio.tebex.io/", "OVEREXTENDED", 20 , "/static/creators/randolio.png"],
+  ["rcore", "https://store.rcore.cz/", "ox10", 10 , "/static/creators/rcore.png"],
+  ["Artwork Inventory", "https://artwork-inventory.tebex.io/", "ox10", 10 , "/static/creators/artworkInventory.gif"],
+  ["Renewed Scripts", "https://renewed.tebex.io/ox", "ox15", 15 , "/static/creators/renewed.png"],
+  ["Three Amigos Modding", "https://threeamigos.shop/", "overextended", 10, "/static/creators/tam.png"],
+  ["RAHE Development", "https://rahe.tebex.io/", "ox10", 10, "/static/creators/rahe.png"],
+  ["Qwaly Scripts", "https://qwaly.dev/", "ox10", 10, "/static/creators/qwaly.png"],
+  ["Ehbw Scripts", "https://ehbw.tebex.io/", "ox10", 10, "/static/creators/ehbw.png"],
+  ["Lation Scripts", "https://lationscripts.com/", "ox10", 10, "/static/creators/lation.png"],
+  ["Fuksus", "https://resources.fuksus.com/", "OX15", 15, "/static/creators/fuksus.png"],
+  ["TeamsGG", "https://teamsgg.dev/", "ox10", 10, "/static/creators/teamsgg.png"],
+  ["MadCap Scripts", "https://madcap-scripts.tebex.io/", "ox10", 10, "/static/creators/madcap.png"],
+  ["Stevo Scripts", "https://store.stevoscripts.com/", "overextended", 10, "/static/creators/steve.png"],
+  ["Inferno Collection", "https://store.inferno-collection.com/", "ox7", 7, "/static/creators/inferno.png"]
+  ])}
+
+You can apply a creator code at checkout under "Support A Creator".
+
+
+# Templates (/docs/resources/templates)
+
+
+
+We currently publish two templates for FiveM developers.
+
+## fxserver [#fxserver]
+
+This template is intended for developers looking to quickly install fxserver and create a monorepo for simple resource management.
+
+If you prefer to run fxserver in a container, look elsewhere.
+
+**[Browse repository](https://github.com/overextended/fxserver)**
+
+## fivem-ts [#fivem-ts]
+
+If you're looking to start creating resources with TypeScript but don't know what tools to use, settings to configure, or just hate having to setup new projects then we've got you covered.
+
+* Setup for working with our libraries (@overextended/core and @overextended/ox\_lib).
+* Uses [tsdown](https://tsdown.dev/) for fast build times and compatibility with a large [plugin](https://tsdown.dev/advanced/plugins) ecosystem.
+* Optionally scaffold a new webapp with [vite](https://vite.dev/guide/).
+* Fully configured for FiveM and FXServer.
+
+**[Browse repository](https://github.com/overextended/fivem-ts)**
+
+
 # Benchmark (/docs/oxmysql/benchmark)
 
 
@@ -1475,151 +1616,6 @@ Columns can be sorted by ascending and descending order, and hovering over a que
 </Callout>
 
 ![oxmysql\_ui\_queries](https://i.imgur.com/gZpJoIg.png)
-
-
-# Fivemanage (/docs/resources/fivemanage)
-
-
-
-<div
-  style="{
-  display: &#x22;grid&#x22;,
-  placeItems: &#x22;center&#x22;,
-}"
->
-  <a
-    href="https://refer.fivemanage.com/overextended"
-    style="{
-    background: &#x22;no-repeat url('/static/fivemanage.png')&#x22;,
-    backgroundSize: &#x22;contain&#x22;,
-    fontSize: &#x22;3rem&#x22;,
-    fontWeight: &#x22;500&#x22;,
-    verticalAlign: &#x22;middle&#x22;,
-    paddingLeft: &#x22;2em&#x22;,
-  }"
-  >
-    {" "}
-
-    Fivemanage
-  </a>
-</div>
-
-Fivemanage is an all-in-one SaaS platform for communities looking to improve their workflow, offering a range of features to faciliate easier management
-and administration of your FiveM server. They offer fast and reliable content delivery - with full support for image, video, and audio files - and seamless
-logging to track player and server activity while ensuring dependable performance and security.
-
-Fivemanage integrates seamlessly into your FiveM server with native support via ox\_lib and oxmysql, or through their official FiveM SDK.
-
-They offer a generous free plan with enough storage to get you started, and a variety of paid plans designed for both small and large servers needing access to more storage and advanced feeatures.
-
-Get started with [Fivemanage](https://refer.fivemanage.com/overextended) today.
-
-
-# Resources (/docs/resources)
-
-
-
-
-
-<Cards>
-  {getPageTreePeers(source.getPageTree(), "/docs/resources").map((peer) => (
-      <Card key={peer.url} title={peer.name} href={peer.url}>
-        {peer.description}
-      </Card>
-    ))}
-</Cards>
-
-
-# Prism Host (/docs/resources/prism-host)
-
-
-
-<div
-  style="{
-  display: &#x22;grid&#x22;,
-  placeItems: &#x22;center&#x22;,
-}"
->
-  <a
-    href="https://prism-host.com/overextended"
-    style="{
-    background: &#x22;no-repeat url('/static/prism.png') center&#x22;,
-    backgroundSize: &#x22;contain&#x22;,
-    fontWeight: &#x22;500&#x22;,
-    height: &#x22;4em&#x22;,
-    width: &#x22;100%&#x22;,
-  }"
-  />
-</div>
-
-Prism Host delivers performance-focused hosting without the inflated price tag. From game servers and VPS to dedicated hardware and web hosting, we build around fast hardware, practical pricing, and responsive support.
-
-Get started with [Prism Host](https://prism-host.com/overextended) today using the code `OVEREXTENDED` at checkout.
-
-
-# Tebex Creators (/docs/resources/tebex-creators)
-
-
-
-
-
-Creator codes allow Tebex stores to share revenue with other creators, giving a discount to the customer at the same time.
-We make these deals to advertise trusted creators who meet our criteria.
-
-* The creator is reputable and provides quality customer service.
-* The creator understands and respects [open source](https://opensource.org/) licenses.
-* Resources follow best practices and are highly configurable or source-available.
-
-{CreatorCodes([
-  ["Andyyy", "https://andyyy.tebex.io/", "ox20", 20 , "/static/creators/andy.png"],
-  ["Berkie's Workshop", "https://berkie.tebex.io/", "ox10", 10 , "/static/creators/berkie.png"],
-  ["Dolu Mods", "https://dolu.tebex.io/", "overextended", 25 , "/static/creators/dolu.png"],
-  ["Electus Scripts", "https://store.electus-scripts.com/", "ox10", 10 , "/static/creators/electus.png"],
-  ["Loaf Scripts", "https://store.loaf-scripts.com/", "ox10", 10 , "/static/creators/loaf.png"],
-  ["OT Studios", "https://store.otstudios.net/ox", "ox10", 10 , "/static/creators/otstudios.png"],
-  ["Randolio Scripts", "https://randolio.tebex.io/", "OVEREXTENDED", 20 , "/static/creators/randolio.png"],
-  ["rcore", "https://store.rcore.cz/", "ox10", 10 , "/static/creators/rcore.png"],
-  ["Artwork Inventory", "https://artwork-inventory.tebex.io/", "ox10", 10 , "/static/creators/artworkInventory.gif"],
-  ["Renewed Scripts", "https://renewed.tebex.io/ox", "ox15", 15 , "/static/creators/renewed.png"],
-  ["Three Amigos Modding", "https://threeamigos.shop/", "overextended", 10, "/static/creators/tam.png"],
-  ["RAHE Development", "https://rahe.tebex.io/", "ox10", 10, "/static/creators/rahe.png"],
-  ["Qwaly Scripts", "https://qwaly.dev/", "ox10", 10, "/static/creators/qwaly.png"],
-  ["Ehbw Scripts", "https://ehbw.tebex.io/", "ox10", 10, "/static/creators/ehbw.png"],
-  ["Lation Scripts", "https://lationscripts.com/", "ox10", 10, "/static/creators/lation.png"],
-  ["Fuksus", "https://resources.fuksus.com/", "OX15", 15, "/static/creators/fuksus.png"],
-  ["TeamsGG", "https://teamsgg.dev/", "ox10", 10, "/static/creators/teamsgg.png"],
-  ["MadCap Scripts", "https://madcap-scripts.tebex.io/", "ox10", 10, "/static/creators/madcap.png"],
-  ["Stevo Scripts", "https://store.stevoscripts.com/", "overextended", 10, "/static/creators/steve.png"],
-  ["Inferno Collection", "https://store.inferno-collection.com/", "ox7", 7, "/static/creators/inferno.png"]
-  ])}
-
-You can apply a creator code at checkout under "Support A Creator".
-
-
-# Templates (/docs/resources/templates)
-
-
-
-We currently publish two templates for FiveM developers.
-
-## fxserver [#fxserver]
-
-This template is intended for developers looking to quickly install fxserver and create a monorepo for simple resource management.
-
-If you prefer to run fxserver in a container, look elsewhere.
-
-**[Browse repository](https://github.com/overextended/fxserver)**
-
-## fivem-ts [#fivem-ts]
-
-If you're looking to start creating resources with TypeScript but don't know what tools to use, settings to configure, or just hate having to setup new projects then we've got you covered.
-
-* Setup for working with our libraries (@overextended/core and @overextended/ox\_lib).
-* Uses [tsdown](https://tsdown.dev/) for fast build times and compatibility with a large [plugin](https://tsdown.dev/advanced/plugins) ecosystem.
-* Optionally scaffold a new webapp with [vite](https://vite.dev/guide/).
-* Fully configured for FiveM and FXServer.
-
-**[Browse repository](https://github.com/overextended/fivem-ts)**
 
 
 # Client Events (/docs/ox_core/Events/client)
@@ -5764,34 +5760,6 @@ We put together an example resource showcasing how to properly utilise the stash
 <GhButton link="https://www.github.com/overextended/ox_inventory_examples" label="Ox Inventory Examples" />
 
 
-# Interface (/docs/ox_lib/Modules/Interface)
-
-
-
-# Interface [#interface]
-
-If you wish to change the primary colour for the UI to better match your server's theme you can do so easily through the available convars.
-
-They don't require you to build the UI, just restart the resource.
-
-Convars:
-
-```yaml
-setr ox:primaryColor blue
-setr ox:primaryShade 8
-```
-
-Changing the primary colour will change the colour in elements such as the progress bar/circle, skill check, radial menu center button and hover,
-dialog confirm buttons, input field focus, and more.
-
-You can find the full list of preset colours and shades here:
-
-[https://v6.mantine.dev/theming/colors/#default-colors](https://v6.mantine.dev/theming/colors/#default-colors)
-
-If you wish to create your own pallete I suggest following the guide on that page.\
-Keep in mind doing so *will* require you to download the source code and build the UI.
-
-
 # Client (/docs/ox_target/Functions/Client)
 
 
@@ -6107,6 +6075,34 @@ exports.ox_target:removeZone(id)
   * The `number` id that is returned by [addSphereZone](#addspherezone), [addBoxZone](#addboxzone), or [addPolyZone](#addpolyzone)\
     **OR**
   * The `string` name given to the zone.
+
+
+# Interface (/docs/ox_lib/Modules/Interface)
+
+
+
+# Interface [#interface]
+
+If you wish to change the primary colour for the UI to better match your server's theme you can do so easily through the available convars.
+
+They don't require you to build the UI, just restart the resource.
+
+Convars:
+
+```yaml
+setr ox:primaryColor blue
+setr ox:primaryShade 8
+```
+
+Changing the primary colour will change the colour in elements such as the progress bar/circle, skill check, radial menu center button and hover,
+dialog confirm buttons, input field focus, and more.
+
+You can find the full list of preset colours and shades here:
+
+[https://v6.mantine.dev/theming/colors/#default-colors](https://v6.mantine.dev/theming/colors/#default-colors)
+
+If you wish to create your own pallete I suggest following the guide on that page.\
+Keep in mind doing so *will* require you to download the source code and build the UI.
 
 
 # insert (/docs/oxmysql/Functions/insert)
@@ -9444,29 +9440,6 @@ Return:
 * objects: `{ object: number, coords: vector3 }[]`
 
 
-# Shared (/docs/ox_lib/Modules/GetNearbyPeds/Shared)
-
-
-
-## lib.getNearbyPeds [#libgetnearbypeds]
-
-Get the ped handle and coords of all peds within range of a set of coordinates.
-
-```lua
-lib.getNearbyPeds(coords, maxDistance)
-```
-
-* coords: `vector3`
-  * The coords to check from.
-* maxDistance?: `number`
-  * The max distance to check.
-  * Default: `2.0`
-
-Return:
-
-* peds: `{ ped: number, coords: vector3 }[]`
-
-
 # Shared (/docs/ox_lib/Modules/GetNearbyPlayers/Shared)
 
 
@@ -9491,6 +9464,29 @@ lib.getNearbyPlayers(coords, maxDistance, includePlayer)
 Return:
 
 * players: `{ id: number, ped: number, coords: vector3 }[]`
+
+
+# Shared (/docs/ox_lib/Modules/GetNearbyPeds/Shared)
+
+
+
+## lib.getNearbyPeds [#libgetnearbypeds]
+
+Get the ped handle and coords of all peds within range of a set of coordinates.
+
+```lua
+lib.getNearbyPeds(coords, maxDistance)
+```
+
+* coords: `vector3`
+  * The coords to check from.
+* maxDistance?: `number`
+  * The max distance to check.
+  * Default: `2.0`
+
+Return:
+
+* peds: `{ ped: number, coords: vector3 }[]`
 
 
 # Shared (/docs/ox_lib/Modules/Grid/Shared)
@@ -10262,78 +10258,6 @@ set ox:printlevel:<resourceName> "<level>"
 ```
 
 
-# Client (/docs/ox_lib/Modules/Raycast/Client)
-
-
-
-## lib.raycast.fromCoords [#libraycastfromcoords]
-
-Starts a shapetest originating from starting coordinates and ending at destination coordinates.
-
-```lua
-lib.raycast.fromCoords(coords, destination, flags, ignore)
-```
-
-* coords: `vector3`
-  * Starting coords for raycast
-* destination: `vector3`
-  * Destination coords for raycast
-* flags?: `number`
-  * See: [https://docs.fivem.net/natives/?\_0x377906D8A31E5586](https://docs.fivem.net/natives/?_0x377906D8A31E5586)
-  * Default: `511`
-* ignore?: `number`
-  * A bit mask with bits 1, 2, 4, or 7 relating to collider types. 4 and 7 are usually used.
-  * Default: `4`
-
-Return:
-
-* hit: `boolean`
-  * Whether or not an entity was hit
-* entityHit: `number`
-  * Entity handle of hit entity
-* endCoords: `vector3`
-  * Closest coords to where the raycast hit
-* surfaceNormal: `vector3`
-  * Normal to the surface that was hit
-* materialHash: `number`
-
-## lib.raycast.fromCamera [#libraycastfromcamera]
-
-Starts a shapetest originating from the camera, extending to \~10m by default.
-
-```lua
-lib.raycast.fromCamera(flags, ignore, distance)
-```
-
-* flags?: `number`
-  * See: [https://docs.fivem.net/natives/?\_0x377906D8A31E5586](https://docs.fivem.net/natives/?_0x377906D8A31E5586)
-  * Default: `511`
-* ignore?: `number`
-  * A bit mask with bits 1, 2, 4, or 7 relating to collider types. 4 and 7 are usually used.
-  * Default: `4`
-* distance?: `number`
-  * Default: `10`
-
-Return:
-
-* hit: `boolean`
-  * Whether or not an entity was hit
-* entityHit: `number`
-  * Entity handle of hit entity
-* endCoords: `vector3`
-  * Closest coords to where the raycast hit
-* surfaceNormal: `vector3`
-  * Normal to the surface that was hit
-* materialHash: `number`
-
-## lib.raycast.cam [#libraycastcam]
-
-<Callout type="warning">
-  lib.raycast.cam is depreciated alias for lib.raycast.fromCamera and may be removed at any time.
-  Use lib.raycast.fromCamera instead!
-</Callout>
-
-
 # Shared (/docs/ox_lib/Modules/Require/Shared)
 
 
@@ -10449,6 +10373,78 @@ print('Loaded events')
   "disconnect": "onPlayerDropped"
 }
 ```
+
+
+# Client (/docs/ox_lib/Modules/Raycast/Client)
+
+
+
+## lib.raycast.fromCoords [#libraycastfromcoords]
+
+Starts a shapetest originating from starting coordinates and ending at destination coordinates.
+
+```lua
+lib.raycast.fromCoords(coords, destination, flags, ignore)
+```
+
+* coords: `vector3`
+  * Starting coords for raycast
+* destination: `vector3`
+  * Destination coords for raycast
+* flags?: `number`
+  * See: [https://docs.fivem.net/natives/?\_0x377906D8A31E5586](https://docs.fivem.net/natives/?_0x377906D8A31E5586)
+  * Default: `511`
+* ignore?: `number`
+  * A bit mask with bits 1, 2, 4, or 7 relating to collider types. 4 and 7 are usually used.
+  * Default: `4`
+
+Return:
+
+* hit: `boolean`
+  * Whether or not an entity was hit
+* entityHit: `number`
+  * Entity handle of hit entity
+* endCoords: `vector3`
+  * Closest coords to where the raycast hit
+* surfaceNormal: `vector3`
+  * Normal to the surface that was hit
+* materialHash: `number`
+
+## lib.raycast.fromCamera [#libraycastfromcamera]
+
+Starts a shapetest originating from the camera, extending to \~10m by default.
+
+```lua
+lib.raycast.fromCamera(flags, ignore, distance)
+```
+
+* flags?: `number`
+  * See: [https://docs.fivem.net/natives/?\_0x377906D8A31E5586](https://docs.fivem.net/natives/?_0x377906D8A31E5586)
+  * Default: `511`
+* ignore?: `number`
+  * A bit mask with bits 1, 2, 4, or 7 relating to collider types. 4 and 7 are usually used.
+  * Default: `4`
+* distance?: `number`
+  * Default: `10`
+
+Return:
+
+* hit: `boolean`
+  * Whether or not an entity was hit
+* entityHit: `number`
+  * Entity handle of hit entity
+* endCoords: `vector3`
+  * Closest coords to where the raycast hit
+* surfaceNormal: `vector3`
+  * Normal to the surface that was hit
+* materialHash: `number`
+
+## lib.raycast.cam [#libraycastcam]
+
+<Callout type="warning">
+  lib.raycast.cam is depreciated alias for lib.raycast.fromCamera and may be removed at any time.
+  Use lib.raycast.fromCamera instead!
+</Callout>
 
 
 # Client (/docs/ox_lib/Modules/Scaleform/Client)
@@ -11332,6 +11328,166 @@ Return:
 * isFrozen: `boolean`
 
 
+# Client (/docs/ox_lib/Modules/VehicleProperties/Client)
+
+
+
+Mostly follows the format used by ESX and QBCore, with extra data such as damaged/missing props.\
+[https://github.com/overextended/ox\_lib/blob/master/resource/vehicleProperties/client.lua#L3](https://github.com/overextended/ox_lib/blob/master/resource/vehicleProperties/client.lua#L3)
+
+## lib.getVehicleProperties [#libgetvehicleproperties]
+
+```ts
+lib.getVehicleProperties(vehicle);
+```
+
+* vehicle: `number`
+  * vehicle handle of the vehicle to get the properties for
+
+<Tabs items="[&#x22;Lua&#x22;, &#x22;JS&#x22;]">
+  <Tab>
+    ```lua
+    lib.getVehicleProperties(GetVehiclePedIsUsing(PlayerPedId()))
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    import lib from '@overextended/ox_lib/client'
+
+    lib.getVehicleProperties(GetVehiclePedIsUsing(PlayerPedId()))
+    ```
+  </Tab>
+</Tabs>
+
+## lib.setVehicleProperties [#libsetvehicleproperties]
+
+Sets properties on a vehicle (i.e. mods, plate text, etc.) and returns true if the client owns the entity.
+
+```lua
+lib.setVehicleProperties(vehicle, props)
+```
+
+* vehicle: `entity`
+* props: `table`
+
+<Tabs items="[&#x22;Lua&#x22;, &#x22;JS&#x22;]">
+  <Tab>
+    ```lua
+    RegisterNetEvent('ox_lib:setVehicleProperties', function(netid, data)
+        lib.setVehicleProperties(NetToVeh(netid), data)
+    end)
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    import { setVehicleProperties } from '@overextended/ox_lib/client'
+
+    onNet('ox_lib:setVehicleProperties', (netid, data) => {
+      setVehicleProperties(NetToVeh(netid), data)
+    })
+    ```
+  </Tab>
+</Tabs>
+
+**Returns:**
+
+* isEntityOwner: `boolean`
+
+### Recommended Usage [#recommended-usage]
+
+The server should tell the owner of the entity to set properties, using the following trigger.
+
+```lua
+TriggerClientEvent('ox_lib:setVehicleProperties', entityOwner, vehNetId, data)
+```
+
+## Vehicle Properties [#vehicle-properties]
+
+* model?: `number`
+* plate?: `string`
+* plateIndex?: `number`
+* bodyHealth?: `number`
+* engineHealth?: `number`
+* tankHealth?: `number`
+* fuelLevel?: `number`
+* oilLevel?: `number`
+* dirtLevel?: `number`
+* color1?: `number` or `number[]`
+* color2?: `number` or `number[]`
+* pearlescentColor?: `number`
+* interiorColor?: `number`
+* dashboardColor?: `number`
+* wheelColor?: `number`
+* wheelWidth?: `number`
+* wheelSize?: `number`
+* wheels?: `number`
+* windowTint?: `number`
+* xenonColor?: `number`
+* neonEnabled?: `boolean[]`
+* neonColor?: `number` or `number[]`
+* extras?: `table<number | string, 0 | 1>`
+* tyreSmokeColor?: `number` or `number[]`
+* modSpoilers?: `number`
+* modFrontBumper?: `number`
+* modRearBumper?: `number`
+* modSideSkirt?: `number`
+* modExhaust?: `number`
+* modFrame?: `number`
+* modGrille?: `number`
+* modHood?: `number`
+* modFender?: `number`
+* modRightFender?: `number`
+* modRoof?: `number`
+* modEngine?: `number`
+* modBrakes?: `number`
+* modTransmission?: `number`
+* modHorns?: `number`
+* modSuspension?: `number`
+* modArmor?: `number`
+* modNitrous?: `number`
+* modTurbo?: `number`
+* modSubwoofer?: `boolean`
+* modSmokeEnabled?: `boolean`
+* modHydraulics?: `boolean`
+* modXenon?: `boolean`
+* modFrontWheels?: `number`
+* modBackWheels?: `number`
+* modCustomTiresF?: `boolean`
+* modCustomTiresR?: `boolean`
+* modPlateHolder?: `number`
+* modVanityPlate?: `number`
+* modTrimA?: `number`
+* modOrnaments?: `number`
+* modDashboard?: `number`
+* modDial?: `number`
+* modDoorSpeaker?: `number`
+* modSeats?: `number`
+* modSteeringWheel?: `number`
+* modShifterLeavers?: `number`
+* modAPlate?: `number`
+* modSpeakers?: `number`
+* modTrunk?: `number`
+* modHydrolic?: `number`
+* modEngineBlock?: `number`
+* modAirFilter?: `number`
+* modStruts?: `number`
+* modArchCover?: `number`
+* modAerials?: `number`
+* modTrimB?: `number`
+* modTank?: `number`
+* modWindows?: `number`
+* modDoorR?: `number`
+* modLivery?: `number`
+* modRoofLivery?: `number`
+* modLightbar?: `number`
+* windows?: `number[]`
+* doors?: `number[]`
+* tyres?: `table<number | string, 1 | 2>`
+* bulletProofTyres?: `boolean`
+
+
 # Shared (/docs/ox_lib/Modules/Timer/Shared)
 
 
@@ -11507,166 +11663,6 @@ timer = lib.timer(5000, function()
 end, true)
 
 ```
-
-
-# Client (/docs/ox_lib/Modules/VehicleProperties/Client)
-
-
-
-Mostly follows the format used by ESX and QBCore, with extra data such as damaged/missing props.\
-[https://github.com/overextended/ox\_lib/blob/master/resource/vehicleProperties/client.lua#L3](https://github.com/overextended/ox_lib/blob/master/resource/vehicleProperties/client.lua#L3)
-
-## lib.getVehicleProperties [#libgetvehicleproperties]
-
-```ts
-lib.getVehicleProperties(vehicle);
-```
-
-* vehicle: `number`
-  * vehicle handle of the vehicle to get the properties for
-
-<Tabs items="[&#x22;Lua&#x22;, &#x22;JS&#x22;]">
-  <Tab>
-    ```lua
-    lib.getVehicleProperties(GetVehiclePedIsUsing(PlayerPedId()))
-    ```
-  </Tab>
-
-  <Tab>
-    ```ts
-    import lib from '@overextended/ox_lib/client'
-
-    lib.getVehicleProperties(GetVehiclePedIsUsing(PlayerPedId()))
-    ```
-  </Tab>
-</Tabs>
-
-## lib.setVehicleProperties [#libsetvehicleproperties]
-
-Sets properties on a vehicle (i.e. mods, plate text, etc.) and returns true if the client owns the entity.
-
-```lua
-lib.setVehicleProperties(vehicle, props)
-```
-
-* vehicle: `entity`
-* props: `table`
-
-<Tabs items="[&#x22;Lua&#x22;, &#x22;JS&#x22;]">
-  <Tab>
-    ```lua
-    RegisterNetEvent('ox_lib:setVehicleProperties', function(netid, data)
-        lib.setVehicleProperties(NetToVeh(netid), data)
-    end)
-    ```
-  </Tab>
-
-  <Tab>
-    ```ts
-    import { setVehicleProperties } from '@overextended/ox_lib/client'
-
-    onNet('ox_lib:setVehicleProperties', (netid, data) => {
-      setVehicleProperties(NetToVeh(netid), data)
-    })
-    ```
-  </Tab>
-</Tabs>
-
-**Returns:**
-
-* isEntityOwner: `boolean`
-
-### Recommended Usage [#recommended-usage]
-
-The server should tell the owner of the entity to set properties, using the following trigger.
-
-```lua
-TriggerClientEvent('ox_lib:setVehicleProperties', entityOwner, vehNetId, data)
-```
-
-## Vehicle Properties [#vehicle-properties]
-
-* model?: `number`
-* plate?: `string`
-* plateIndex?: `number`
-* bodyHealth?: `number`
-* engineHealth?: `number`
-* tankHealth?: `number`
-* fuelLevel?: `number`
-* oilLevel?: `number`
-* dirtLevel?: `number`
-* color1?: `number` or `number[]`
-* color2?: `number` or `number[]`
-* pearlescentColor?: `number`
-* interiorColor?: `number`
-* dashboardColor?: `number`
-* wheelColor?: `number`
-* wheelWidth?: `number`
-* wheelSize?: `number`
-* wheels?: `number`
-* windowTint?: `number`
-* xenonColor?: `number`
-* neonEnabled?: `boolean[]`
-* neonColor?: `number` or `number[]`
-* extras?: `table<number | string, 0 | 1>`
-* tyreSmokeColor?: `number` or `number[]`
-* modSpoilers?: `number`
-* modFrontBumper?: `number`
-* modRearBumper?: `number`
-* modSideSkirt?: `number`
-* modExhaust?: `number`
-* modFrame?: `number`
-* modGrille?: `number`
-* modHood?: `number`
-* modFender?: `number`
-* modRightFender?: `number`
-* modRoof?: `number`
-* modEngine?: `number`
-* modBrakes?: `number`
-* modTransmission?: `number`
-* modHorns?: `number`
-* modSuspension?: `number`
-* modArmor?: `number`
-* modNitrous?: `number`
-* modTurbo?: `number`
-* modSubwoofer?: `boolean`
-* modSmokeEnabled?: `boolean`
-* modHydraulics?: `boolean`
-* modXenon?: `boolean`
-* modFrontWheels?: `number`
-* modBackWheels?: `number`
-* modCustomTiresF?: `boolean`
-* modCustomTiresR?: `boolean`
-* modPlateHolder?: `number`
-* modVanityPlate?: `number`
-* modTrimA?: `number`
-* modOrnaments?: `number`
-* modDashboard?: `number`
-* modDial?: `number`
-* modDoorSpeaker?: `number`
-* modSeats?: `number`
-* modSteeringWheel?: `number`
-* modShifterLeavers?: `number`
-* modAPlate?: `number`
-* modSpeakers?: `number`
-* modTrunk?: `number`
-* modHydrolic?: `number`
-* modEngineBlock?: `number`
-* modAirFilter?: `number`
-* modStruts?: `number`
-* modArchCover?: `number`
-* modAerials?: `number`
-* modTrimB?: `number`
-* modTank?: `number`
-* modWindows?: `number`
-* modDoorR?: `number`
-* modLivery?: `number`
-* modRoofLivery?: `number`
-* modLightbar?: `number`
-* windows?: `number[]`
-* doors?: `number[]`
-* tyres?: `table<number | string, 1 | 2>`
-* bulletProofTyres?: `boolean`
 
 
 # Server (/docs/ox_lib/Modules/Version/Server)
