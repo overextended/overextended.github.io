@@ -10,3 +10,39 @@ html > body[data-scroll-locked] {
   margin-right: 0px !important;
   --removed-body-scroll-bar-size: 0px !important;
 }
+
+body {
+  background-image:
+    radial-gradient(
+      circle at 25% 0,
+      rgba(59, 130, 246, 0.15),
+      transparent 35%
+    ),
+    linear-gradient(#16161608 1px, transparent 1px),
+    linear-gradient(90deg, #16161608 1px, transparent 1px);
+
+  background-size:
+    100% 100%,
+    40px 40px,
+    40px 40px;
+
+    
+}
+
+.dark body {
+  background-image:
+    radial-gradient(
+      circle at 25% 0,
+      rgba(59, 130, 246, 0.01),
+      transparent 35%
+    ),
+    linear-gradient(#61616106 1px, transparent 1px),
+    linear-gradient(90deg, #61616106 1px, transparent 1px);
+
+  background-size:
+    100% 100%,
+    40px 40px,
+    40px 40px;
+
+    
+}

@@ -9,7 +9,7 @@ interface Props {
 
 const ResourceLinks = ({ repo, docs }: Props) => {
   return (
-    <div className="flex flex-wrap gap-1">
+    <div className="flex flex-row gap-2 items-center">
       <GhButton link={repo} />
       <ReleaseButton link={`${repo}/releases`} />
       {docs && <DocButton link={docs} />}
