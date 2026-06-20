@@ -14,69 +14,19 @@ Zones are also available in JS, utilising our [utility library](https://github.c
   Server-side zones do not support player trigger events. The `onEnter`, `onExit`, and `inside` handlers are unavailable.
 </Callout>
 
-## Zone creation script
+<Callout>
+  Lua and JavaScript zones are not API compatible. The TypeScript definitions and TSDoc comments in the npm package serve as the authoritative reference for the JavaScript API.
+</Callout>
 
-You can use our builtin zone-creator with `/zone` - with `poly`, `box` or `sphere` as an argument.  
-Available controls will be displayed on the right side.
+## Polygon/Prism Zone
 
-Zones will be saved to `ox_lib/created_zones.lua` with your chosen format.
+Creates a polygon from the given vertices, which is then placed in the world and extruded to the given height to form a 3D shape.
 
-<Tabs items={["function", "array", "ox_target"]}>
-  <Tab>
-    ```lua
-    local poly = lib.zones.poly({
-        name = poly,
-        points = {
-            vec(447.9, -998.8, 25.8),
-            vec(450.3, -998.2, 25.8),
-            vec(449.9, -995.5, 25.8),
-            vec(447.2, -995.6, 25.8),
-            vec(446.3, -997.9, 25.8),
-        },
-        thickness = 2,
-    })
-    ```
-  </Tab>
-  <Tab>
-    ```lua
-    {
-        name = poly,
-        points = {
-            vec(447.9, -998.8, 25.8),
-            vec(450.3, -998.2, 25.8),
-            vec(449.9, -995.5, 25.8),
-            vec(447.2, -995.6, 25.8),
-            vec(446.3, -997.9, 25.8),
-        },
-        thickness = 2,
-    },
-    ```
-  </Tab>
-  <Tab>
-    ```lua
-    exports.ox_target:addPolyZone({
-        name = poly,
-        points = {
-            vec(447.9, -998.8, 25.8),
-            vec(450.3, -998.2, 25.8),
-            vec(449.9, -995.5, 25.8),
-            vec(447.2, -995.6, 25.8),
-            vec(446.3, -997.9, 25.8),
-        },
-        thickness = 2,
-    })
-    ```
-  </Tab>
-</Tabs>
-
-## Lua
-
-#### lib.zones.poly
-
+<Tabs groupId="language" items={['Lua', 'TypeScript']}>
+<Tab>
 ```lua
 lib.zones.poly(data)
 ```
-
 - data: `table`
   - points: `vector3[]`
     - An array of 3d points defining the polygon's shape.
@@ -86,13 +36,24 @@ lib.zones.poly(data)
   - onExit?: `function(self: table)`
   - inside?: `function(self: table)`
   - debug?: `boolean`
+</Tab>
+<Tab>
+```ts
+import { Zone } from "@overextended/ox_lib";
+import { Vector2 } from "@overextended/core/vector";
 
-### lib.zones.box
+Zone.Prism(vertices: Vector2[], height: number, z: number)
+```
+</Tab>
+</Tabs>
 
+## Box Zone
+
+<Tabs groupId="language" items={['Lua', 'TypeScript']}>
+<Tab>
 ```lua
 lib.zones.box(data)
 ```
-
 - data: `table`
   - coords: `vector3`
   - size?: `vector3`
@@ -103,13 +64,24 @@ lib.zones.box(data)
   - onExit?: `function(self: table)`
   - inside?: `function(self: table)`
   - debug?: `boolean`
+</Tab>
+<Tab>
+```ts
+import { Zone } from "@overextended/ox_lib";
+import { Vector3 } from "@overextended/core/vector";
 
-### lib.zones.sphere
+Zone.Cuboid(origin: Vector3, width: number, depth: number, height: number, heading?: number)
+```
+</Tab>
+</Tabs>
 
+## Sphere Zone
+
+<Tabs groupId="language" items={['Lua', 'TypeScript']}>
+<Tab>
 ```lua
 lib.zones.sphere(data)
 ```
-
 - data: `table`
   - coords: `vector3`
   - radius?: `number`
@@ -118,24 +90,105 @@ lib.zones.sphere(data)
   - onExit?: `function(self: table)`
   - inside?: `function(self: table)`
   - debug?: `boolean`
+</Tab>
+<Tab>
+```ts
+import { Zone } from "@overextended/ox_lib";
+import { Vector3 } from "@overextended/core/vector";
 
-### Methods
+Zone.Sphere(coords: Vector3, radius: number)
+```
+</Tab>
+</Tabs>
 
-#### remove
+## Methods
 
-Zones can be deleted by using the remove method. The data will not be cleared from the script, and can be used to recreate a zone later.
+### onEnter
+
+A function called when the player enters the zone. It can be attached to the zone after instantiation, or in the `data` table if using Lua.
+
+<Tabs groupId="language" items={['Lua', 'TypeScript']}>
+<Tab>
+```lua
+local function onEnter(self)
+    print('entered zone', self.id)
+end
+
+zone.onEnter = onEnter
+```
+</Tab>
+<Tab>
+```ts
+function onEnter(this: Zone) {
+  console.log(`entered zone ${this.id}`)
+}
+
+zone.onEnter = onEnter;
+```
+</Tab>
+</Tabs>
+
+### onExit
+
+A function called when the player exits the zone. It can be attached to the zone after instantiation, or in the `data` table if using Lua.
+
+<Tabs groupId="language" items={['Lua', 'TypeScript']}>
+<Tab>
+```lua
+local function onExit(self)
+    print('exited zone', self.id)
+end
+
+zone.onExit = onExit
+```
+</Tab>
+<Tab>
+```ts
+function onExit(this: Zone) {
+  console.log(`exited zone ${this.id}`)
+}
+
+zone.onExit = onExit;
+```
+</Tab>
+</Tabs>
+
+### inside
+
+A function called when the player exits the zone. It can be attached to the zone after instantiation, or in the `data` table if using Lua.
+
+<Tabs groupId="language" items={['Lua', 'TypeScript']}>
+<Tab>
+```lua
+local function inside(self)
+    print('you are inside zone', self.id)
+end
+
+zone.inside = inside
+```
+</Tab>
+<Tab>
+```ts
+function inside(this: Zone) {
+  console.log(`you are inside zone ${this.id}`)
+}
+
+zone.inside = inside;
+```
+</Tab>
+</Tabs>
+
+### remove
+
+Zones can be deleted by using the remove method.
 
 ```lua
 local zone = lib.zones.box({...})
 
 zone:remove()
-
-SetTimeout(500, function()
-    lib.zones.poly(zone)
-end)
 ```
 
-#### contains
+### contains
 
 Tests if a point exists inside the zone, returning a `boolean`.
 
@@ -147,7 +200,7 @@ if zone:contains(vec3(1, 1, 1)) then
 end
 ```
 
-#### setDebug
+### setDebug
 
 Enables or disables debug mode for a zone, optionally with custom colors.
 
@@ -164,9 +217,9 @@ zone:setDebug(true, vec4(255, 0, 0, 100))
 zone:setDebug(false)
 ```
 
-### Utility Functions
+## Utility Functions
 
-#### lib.zones.getAllZones
+### lib.zones.getAllZones
 
 Returns all registered zones.
 
@@ -174,7 +227,7 @@ Returns all registered zones.
 local zones = lib.zones.getAllZones()
 ```
 
-#### lib.zones.getCurrentZones
+### lib.zones.getCurrentZones
 
 Returns all zones the player is currently inside.
 
@@ -182,7 +235,7 @@ Returns all zones the player is currently inside.
 local currentZones = lib.zones.getCurrentZones()
 ```
 
-#### lib.zones.getNearbyZones
+### lib.zones.getNearbyZones
 
 Returns all zones near the player.
 
@@ -190,8 +243,10 @@ Returns all zones near the player.
 local nearbyZones = lib.zones.getNearbyZones()
 ```
 
-### Usage Examples
+## Examples
 
+<Tabs groupId="language" items={['Lua', 'TypeScript']}>
+<Tab>
 ```lua
 function onEnter(self)
     print('entered zone', self.id)
@@ -246,11 +301,8 @@ local box = lib.zones.box({
     onExit = onExit
 })
 ```
-
-## JavaScript
-
-todo
-
+</Tab>
+<Tab>
 ```ts
 import { Zone } from "@overextended/ox_lib";
 import { Vector2, Vector3 } from "@overextended/core/vector";
@@ -295,3 +347,60 @@ Zone.map.forEach((zone) => {
   zone.shouldDraw = shouldDraw;
 })
 ```
+</Tab>
+</Tabs>
+
+## Zone creation script
+
+You can use our builtin zone-creator with `/zone` - with `poly`, `box` or `sphere` as an argument.  
+Available controls will be displayed on the right side.
+
+Zones will be saved to `ox_lib/created_zones.lua` with your chosen format.
+
+<Tabs items={["function", "array", "ox_target"]}>
+  <Tab>
+    ```lua
+    local poly = lib.zones.poly({
+        name = poly,
+        points = {
+            vec(447.9, -998.8, 25.8),
+            vec(450.3, -998.2, 25.8),
+            vec(449.9, -995.5, 25.8),
+            vec(447.2, -995.6, 25.8),
+            vec(446.3, -997.9, 25.8),
+        },
+        thickness = 2,
+    })
+    ```
+  </Tab>
+  <Tab>
+    ```lua
+    {
+        name = poly,
+        points = {
+            vec(447.9, -998.8, 25.8),
+            vec(450.3, -998.2, 25.8),
+            vec(449.9, -995.5, 25.8),
+            vec(447.2, -995.6, 25.8),
+            vec(446.3, -997.9, 25.8),
+        },
+        thickness = 2,
+    },
+    ```
+  </Tab>
+  <Tab>
+    ```lua
+    exports.ox_target:addPolyZone({
+        name = poly,
+        points = {
+            vec(447.9, -998.8, 25.8),
+            vec(450.3, -998.2, 25.8),
+            vec(449.9, -995.5, 25.8),
+            vec(447.2, -995.6, 25.8),
+            vec(446.3, -997.9, 25.8),
+        },
+        thickness = 2,
+    })
+    ```
+  </Tab>
+</Tabs>
