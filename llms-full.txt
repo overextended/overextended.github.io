@@ -828,142 +828,6 @@ Stopping a server or "restarting" it does not trigger any events or allow for sa
 * All inventories are saved when the number of online players hits 0.
 
 
-# TargetOptions (/docs/ox_target/TargetOptions)
-
-
-
-All target actions are formated as an array containing objects with the following properties.
-
-## TargetOption [#targetoption]
-
-* label: `string`
-* name?: `string`
-  * An identifier used when removing an option.
-* icon?: `string`
-  * Name of a [Font Awesome](https://fontawesome.com/icons) icon.
-* iconColor?: `string`
-* distance?: `number`
-  * The max distance to display the option.
-* bones?: `string` or `string[]`
-  * A bone name or array of bone names (see [GetEntityBoneIndexByName](https://docs.fivem.net/natives/?_0xFB71170B7E76ACBA)).
-* offset?: `vector3`
-  * Offset the targetable area of an entity, relative to the model dimensions.
-* offsetAbsolute?: `vector3`
-  * Offset the targetable area of an entity, relative to the entity's world coords.
-* offsetSize?: `number`
-  * The radius of the targetable area for an entity offset.
-* groups?: `string` or `string[]` or `table<string, number>`
-  * A group, array of groups, or pairs of groups-grades required to show the option.
-  * Groups are framework dependent, and may refer to jobs, gangs, etc.
-* items?: `string` or `string[]` or `table<string, number>`
-  * An item, array of items, or pairs of items-count required to show the option.
-  * Items are framework dependent.
-* anyItem?: `boolean`
-  * Only require a single item from the items table to exist.
-* canInteract?: `function(entity, distance, coords, name, bone)`
-  * Options will always display if this is undefined.
-* menuName?: `string`
-  * The option is only displayed when a menu has been set with openMenu.
-* openMenu?: `string`
-  * Sets the current menu name, displaying only options for the menuName.
-* onSelect?: `function(data)`
-* export?: `string`
-* event?: `string`
-* serverEvent?: `string`
-* command?: `string`
-
-## Callback [#callback]
-
-This is the data returned to a registered callback or event for selected option.
-
-A selected option will trigger a single action, in order of priority:
-
-1. onSelect
-2. export
-3. event
-4. server event
-5. command
-
-* data: `table`
-  * entity: `number`
-    * The id of the entity hit by the shape test. If triggering a server event, this is the network id instead.
-  * coords: `vector3`
-    * The resulting coordinates where the shape test hit a collision.
-  * distance: `number`
-    * The player's distance from the coords.
-  * zone?: `number`
-    * The id of the selected zone, if applicable.
-
-
-# Ox Target (/docs/ox_target)
-
-
-
-
-
-<ResourceLinks repo="https://github.com/overextended/ox_target" />
-
-A performant and flexible standalone targeting resource or "third-eye", with additional functionality for ox\_inventory, ox\_core, qbx\_core, and es\_extended.
-
-## Installation [#installation]
-
-<Callout type="info">
-  We **strongly** recommend referring to [Guides](../guides) for setting up Git, Node.js, and bun.
-</Callout>
-
-<div className="fd-steps">
-  <div className="fd-step">
-    ### Install all resource dependencies [#install-all-resource-dependencies-step]
-
-    * [ox\_lib](../ox_lib/)
-  </div>
-
-  <div className="fd-step">
-    ### Download a release or clone the source code. [#download-a-release-or-clone-the-source-code-step]
-
-    * Download the [latest release](https://github.com/overextended/ox_target/releases/latest).
-
-    ```bash
-    git clone https://github.com/overextended/ox_target.git
-    ```
-  </div>
-
-  <div className="fd-step">
-    ### Config [#config-step]
-
-    Resource configuration is handled using [convars](https://docs.fivem.net/docs/scripting-reference/convars/).
-
-    ```bash
-    # Toggle targeting when pressing the hotkey, instead of holding it down.
-    setr ox_target:toggleHotkey 0
-
-    # Change the key to enable targeting (https://docs.fivem.net/docs/game-references/input-mapper-parameter-ids/keyboard)
-    setr ox_target:defaultHotkey LMENU
-
-    # Draw a sprite (circle) at the centroid of a zone.
-    setr ox_target:drawSprite 1
-
-    # Enable built-in targeting options, e.g. toggling vehicle doors.
-    setr ox_target:defaults 1
-
-    # Enable debugging / testing options, entity outlines, and a raycast indicator.
-    setr ox_target:debug 0
-
-    # Enable / Disable leftclick to select options
-    setr ox_target:leftClick 1
-    ```
-  </div>
-</div>
-
-## Supported Frameworks [#supported-frameworks]
-
-These aren't necessary to run ox\_target, but they will add additional features.
-
-* [ox\_core](https://github.com/overextended/ox_core)
-* [esx](https://github.com/esx-framework/esx-legacy)
-* [qbx\_core](https://github.com/Qbox-project/qbx_core)
-
-
 # GameEntity (/docs/ox_lib/GameEntity)
 
 
@@ -3338,6 +3202,142 @@ If you wish to edit any of the UI elements you will need to download the *source
 </Callout>
 
 
+# TargetOptions (/docs/ox_target/TargetOptions)
+
+
+
+All target actions are formated as an array containing objects with the following properties.
+
+## TargetOption [#targetoption]
+
+* label: `string`
+* name?: `string`
+  * An identifier used when removing an option.
+* icon?: `string`
+  * Name of a [Font Awesome](https://fontawesome.com/icons) icon.
+* iconColor?: `string`
+* distance?: `number`
+  * The max distance to display the option.
+* bones?: `string` or `string[]`
+  * A bone name or array of bone names (see [GetEntityBoneIndexByName](https://docs.fivem.net/natives/?_0xFB71170B7E76ACBA)).
+* offset?: `vector3`
+  * Offset the targetable area of an entity, relative to the model dimensions.
+* offsetAbsolute?: `vector3`
+  * Offset the targetable area of an entity, relative to the entity's world coords.
+* offsetSize?: `number`
+  * The radius of the targetable area for an entity offset.
+* groups?: `string` or `string[]` or `table<string, number>`
+  * A group, array of groups, or pairs of groups-grades required to show the option.
+  * Groups are framework dependent, and may refer to jobs, gangs, etc.
+* items?: `string` or `string[]` or `table<string, number>`
+  * An item, array of items, or pairs of items-count required to show the option.
+  * Items are framework dependent.
+* anyItem?: `boolean`
+  * Only require a single item from the items table to exist.
+* canInteract?: `function(entity, distance, coords, name, bone)`
+  * Options will always display if this is undefined.
+* menuName?: `string`
+  * The option is only displayed when a menu has been set with openMenu.
+* openMenu?: `string`
+  * Sets the current menu name, displaying only options for the menuName.
+* onSelect?: `function(data)`
+* export?: `string`
+* event?: `string`
+* serverEvent?: `string`
+* command?: `string`
+
+## Callback [#callback]
+
+This is the data returned to a registered callback or event for selected option.
+
+A selected option will trigger a single action, in order of priority:
+
+1. onSelect
+2. export
+3. event
+4. server event
+5. command
+
+* data: `table`
+  * entity: `number`
+    * The id of the entity hit by the shape test. If triggering a server event, this is the network id instead.
+  * coords: `vector3`
+    * The resulting coordinates where the shape test hit a collision.
+  * distance: `number`
+    * The player's distance from the coords.
+  * zone?: `number`
+    * The id of the selected zone, if applicable.
+
+
+# Ox Target (/docs/ox_target)
+
+
+
+
+
+<ResourceLinks repo="https://github.com/overextended/ox_target" />
+
+A performant and flexible standalone targeting resource or "third-eye", with additional functionality for ox\_inventory, ox\_core, qbx\_core, and es\_extended.
+
+## Installation [#installation]
+
+<Callout type="info">
+  We **strongly** recommend referring to [Guides](../guides) for setting up Git, Node.js, and bun.
+</Callout>
+
+<div className="fd-steps">
+  <div className="fd-step">
+    ### Install all resource dependencies [#install-all-resource-dependencies-step]
+
+    * [ox\_lib](../ox_lib/)
+  </div>
+
+  <div className="fd-step">
+    ### Download a release or clone the source code. [#download-a-release-or-clone-the-source-code-step]
+
+    * Download the [latest release](https://github.com/overextended/ox_target/releases/latest).
+
+    ```bash
+    git clone https://github.com/overextended/ox_target.git
+    ```
+  </div>
+
+  <div className="fd-step">
+    ### Config [#config-step]
+
+    Resource configuration is handled using [convars](https://docs.fivem.net/docs/scripting-reference/convars/).
+
+    ```bash
+    # Toggle targeting when pressing the hotkey, instead of holding it down.
+    setr ox_target:toggleHotkey 0
+
+    # Change the key to enable targeting (https://docs.fivem.net/docs/game-references/input-mapper-parameter-ids/keyboard)
+    setr ox_target:defaultHotkey LMENU
+
+    # Draw a sprite (circle) at the centroid of a zone.
+    setr ox_target:drawSprite 1
+
+    # Enable built-in targeting options, e.g. toggling vehicle doors.
+    setr ox_target:defaults 1
+
+    # Enable debugging / testing options, entity outlines, and a raycast indicator.
+    setr ox_target:debug 0
+
+    # Enable / Disable leftclick to select options
+    setr ox_target:leftClick 1
+    ```
+  </div>
+</div>
+
+## Supported Frameworks [#supported-frameworks]
+
+These aren't necessary to run ox\_target, but they will add additional features.
+
+* [ox\_core](https://github.com/overextended/ox_core)
+* [esx](https://github.com/esx-framework/esx-legacy)
+* [qbx\_core](https://github.com/Qbox-project/qbx_core)
+
+
 # Benchmark (/docs/oxmysql/benchmark)
 
 
@@ -5401,101 +5401,6 @@ end)
 ```
 
 
-# ESX (/docs/ox_inventory/Frameworks/esx)
-
-
-
-* You will need a [compatible version of ESX Legacy](https://github.com/esx-framework/esx_core) (1.6.0 or higher).
-* You can convert player inventories with `convertinventory esx`.
-* All items in the database will be migrated to the internal item data.
-  * Always restart the resource when items are migrated!
-
-## Compatibility [#compatibility]
-
-Ox Inventory is a complete replacement for existing item, inventory, and weapon systems; it is inherently incompatible with ESX and any resources that rely on default behaviour.
-
-* Loadouts do not exist and weapons are treated as items.
-* Standard shops and stashes (i.e. esx\_shops, esx\_weaponshop, and esx\_policejob).
-* Resources that alter the default esx inventory or provide a ui (i.e. esx\_trunkinventory, esx\_inventoryhud).
-
-## Installation [#installation]
-
-* Use a compatible version of [ESX Legacy](https://github.com/esx-framework/esx-legacy) (1.6.0+).
-* Modify your `server.cfg`, starting ox\_inventory immediately after es\_extended.
-
-```yaml
-start oxmysql
-start ox_lib
-start es_extended
-start qtarget
-start ox_inventory
-```
-
-## Convert ESX inventory data [#convert-esx-inventory-data]
-
-* Start the server and type `convertinventory esx` into the server console.
-* Optionally, type `convertinventory esxproperty` into the server console.
-* Restart the server once conversion is complete.
-
-## Optional Optimisation [#optional-optimisation]
-
-All item related functions from xPlayer, such as `xPlayer.getInventoryItem`, have been modified for compatibility purposes; however they are considered deprecated.
-
-The reasoning is fairly simple - there's now additional function references and overhead to consider. Fortunately, the new Inventory functions can be used directly and offer a great deal of improvements over the old ones.
-
-You should read through the functions section for further information, but the following should give you a decent idea.
-
-<Tabs items="[&#x22;ESX&#x22;, &#x22;Ox Inventory&#x22;]">
-  <Tab>
-    ```lua
-    if xPlayer.getInventoryItem('acetone').count > 2 and xPlayer.getInventoryItem('antifreeze').count > 4 and xPlayer.getInventoryItem('sudo').count > 9 then
-        xPlayer.removeInventoryItem("acetone", 3)
-        xPlayer.removeInventoryItem("antifreeze", 5)
-        xPlayer.removeInventoryItem("sudo", 10)
-    end
-    ```
-  </Tab>
-
-  <Tab>
-    Add the following code somewhere in your resource to cache the exports metatable.
-
-    ```lua
-    local ox_inventory = exports.ox_inventory
-    ```
-
-    You will be able to reference any functions exposed through the export.
-
-    ```lua
-    local items = ox_inventory:Search(source, 'count', {'acetone', 'antifreeze', 'sudo'})
-    if items and items.acetone > 2 and items.antifreeze > 4 and items.sudo > 9 then
-        ox_inventory:RemoveItem(source, 'acetone', 3)
-        ox_inventory:RemoveItem(source, 'antifreeze', 5)
-        ox_inventory:RemoveItem(source, 'sudo', 10)
-    end
-    ```
-  </Tab>
-</Tabs>
-
-
-# Qbox (/docs/ox_inventory/Frameworks/qbx)
-
-
-
-Qbox is a fork of QBCore being developed by a team of former contributors and developers on QBCore. The team is focused on improving performance and security, as well as converting resources to support our resources (mainly ox\_lib and ox\_inventory).
-
-We *strongly* advise using Qbox as an alternative to QBCore.
-
-* [Qbox Project GitHub](https://github.com/Qbox-project/)
-* [Qbox Project Discord](https://discord.gg/AtbwBuJHN5)
-
-## Installation [#installation]
-
-* Setup [qbox](https://github.com/Qbox-project/qbx_core).
-* Edit your `server.cfg`.
-  * Add `setr inventory:framework "qbx"` before starting your resources.
-  * Start ox\_inventory immediately after qbx\_core.
-
-
 # Client (/docs/ox_inventory/Events/Client)
 
 
@@ -6200,6 +6105,101 @@ LocalPlayer.state.canUseWeapons = false
 ```
 
 
+# ESX (/docs/ox_inventory/Frameworks/esx)
+
+
+
+* You will need a [compatible version of ESX Legacy](https://github.com/esx-framework/esx_core) (1.6.0 or higher).
+* You can convert player inventories with `convertinventory esx`.
+* All items in the database will be migrated to the internal item data.
+  * Always restart the resource when items are migrated!
+
+## Compatibility [#compatibility]
+
+Ox Inventory is a complete replacement for existing item, inventory, and weapon systems; it is inherently incompatible with ESX and any resources that rely on default behaviour.
+
+* Loadouts do not exist and weapons are treated as items.
+* Standard shops and stashes (i.e. esx\_shops, esx\_weaponshop, and esx\_policejob).
+* Resources that alter the default esx inventory or provide a ui (i.e. esx\_trunkinventory, esx\_inventoryhud).
+
+## Installation [#installation]
+
+* Use a compatible version of [ESX Legacy](https://github.com/esx-framework/esx-legacy) (1.6.0+).
+* Modify your `server.cfg`, starting ox\_inventory immediately after es\_extended.
+
+```yaml
+start oxmysql
+start ox_lib
+start es_extended
+start qtarget
+start ox_inventory
+```
+
+## Convert ESX inventory data [#convert-esx-inventory-data]
+
+* Start the server and type `convertinventory esx` into the server console.
+* Optionally, type `convertinventory esxproperty` into the server console.
+* Restart the server once conversion is complete.
+
+## Optional Optimisation [#optional-optimisation]
+
+All item related functions from xPlayer, such as `xPlayer.getInventoryItem`, have been modified for compatibility purposes; however they are considered deprecated.
+
+The reasoning is fairly simple - there's now additional function references and overhead to consider. Fortunately, the new Inventory functions can be used directly and offer a great deal of improvements over the old ones.
+
+You should read through the functions section for further information, but the following should give you a decent idea.
+
+<Tabs items="[&#x22;ESX&#x22;, &#x22;Ox Inventory&#x22;]">
+  <Tab>
+    ```lua
+    if xPlayer.getInventoryItem('acetone').count > 2 and xPlayer.getInventoryItem('antifreeze').count > 4 and xPlayer.getInventoryItem('sudo').count > 9 then
+        xPlayer.removeInventoryItem("acetone", 3)
+        xPlayer.removeInventoryItem("antifreeze", 5)
+        xPlayer.removeInventoryItem("sudo", 10)
+    end
+    ```
+  </Tab>
+
+  <Tab>
+    Add the following code somewhere in your resource to cache the exports metatable.
+
+    ```lua
+    local ox_inventory = exports.ox_inventory
+    ```
+
+    You will be able to reference any functions exposed through the export.
+
+    ```lua
+    local items = ox_inventory:Search(source, 'count', {'acetone', 'antifreeze', 'sudo'})
+    if items and items.acetone > 2 and items.antifreeze > 4 and items.sudo > 9 then
+        ox_inventory:RemoveItem(source, 'acetone', 3)
+        ox_inventory:RemoveItem(source, 'antifreeze', 5)
+        ox_inventory:RemoveItem(source, 'sudo', 10)
+    end
+    ```
+  </Tab>
+</Tabs>
+
+
+# Qbox (/docs/ox_inventory/Frameworks/qbx)
+
+
+
+Qbox is a fork of QBCore being developed by a team of former contributors and developers on QBCore. The team is focused on improving performance and security, as well as converting resources to support our resources (mainly ox\_lib and ox\_inventory).
+
+We *strongly* advise using Qbox as an alternative to QBCore.
+
+* [Qbox Project GitHub](https://github.com/Qbox-project/)
+* [Qbox Project Discord](https://discord.gg/AtbwBuJHN5)
+
+## Installation [#installation]
+
+* Setup [qbox](https://github.com/Qbox-project/qbx_core).
+* Edit your `server.cfg`.
+  * Add `setr inventory:framework "qbx"` before starting your resources.
+  * Start ox\_inventory immediately after qbx\_core.
+
+
 # Crafting (/docs/ox_inventory/Guides/crafting)
 
 
@@ -6845,323 +6845,6 @@ We put together an example resource showcasing how to properly utilise the stash
 <GhButton link="https://www.github.com/overextended/ox_inventory_examples" label="Ox Inventory Examples" />
 
 
-# Client (/docs/ox_target/Functions/Client)
-
-
-
-All exports with the `options` argument expect a table with the targeting properties [here](../TargetOptions).
-
-For some examples you can refer to [defaults.lua](https://github.com/overextended/ox_target/blob/main/client/defaults.lua) or [debug.lua](https://github.com/overextended/ox_target/blob/main/client/debug.lua).
-
-## disableTargeting [#disabletargeting]
-
-Toggle the availability of the targeting menu.
-
-```lua
-exports.ox_target:disableTargeting(state)
-```
-
-* state: `boolean`
-  * Setting `state` to `true` will turn off the targeting eye if it is active and prevent it from reopening until `state` is set to `false` again.
-
-## isActive [#isactive]
-
-Checks if the targeting system is currently active.
-
-```lua
-exports.ox_target:isActive()
-```
-
-Return:
-
-* `boolean` - Returns `true` if the targeting system is active, otherwise `false`.
-
-## getTargetOptions [#gettargetoptions]
-
-Retrieves targeting options for a specific entity.
-
-```lua
-exports.ox_target:getTargetOptions(entity, entityType, model)
-```
-
-* entity?: `number` - The entity handle
-* entityType?: `number` - The type of entity (1 for peds, 2 for vehicles, 3 for objects)
-* model?: `number` - The model hash of the entity
-
-Return:
-
-* `table` - Returns a table containing the target options for the entity:
-  * global: Options for the entity type (peds, vehicles, or objects)
-  * model: Options for the specific model
-  * entity: Options for the networked entity
-  * localEntity: Options for the local entity
-
-## addGlobalOption [#addglobaloption]
-
-Creates new targetable options which are displayed at all times.
-
-```lua
-exports.ox_target:addGlobalOption(options)
-```
-
-* options: `TargetOptions`
-
-## removeGlobalOption [#removeglobaloption]
-
-Removes all options from the global options list with the option names.
-
-```lua
-exports.ox_target:removeGlobalOption(optionNames)
-```
-
-* optionNames: `string` or `string[]`
-
-## addGlobalObject [#addglobalobject]
-
-Creates new targetable options for all Object entity types.
-
-```lua
-exports.ox_target:addGlobalObject(options)
-```
-
-* options: `TargetOptions`
-
-## removeGlobalObject [#removeglobalobject]
-
-Removes all options from the global Object list with the option names.
-
-```lua
-exports.ox_target:removeGlobalObject(optionNames)
-```
-
-* optionNames: `string` or `string[]`
-
-## addGlobalPed [#addglobalped]
-
-Creates new targetable options for all Ped entity types (excluding players).
-
-```lua
-exports.ox_target:addGlobalPed(options)
-```
-
-* options: `TargetOptions`
-
-## removeGlobalPed [#removeglobalped]
-
-Removes all options from the global Ped list with the option names.
-
-```lua
-exports.ox_target:removeGlobalPed(optionNames)
-```
-
-* optionNames: `string` or `string[]`
-
-## addGlobalPlayer [#addglobalplayer]
-
-Creates new targetable options for all Player entities.
-
-```lua
-exports.ox_target:addGlobalPlayer(options)
-```
-
-* options: `TargetOptions`
-
-## removeGlobalPlayer [#removeglobalplayer]
-
-Removes all options from the global Player list with the option names.
-
-```lua
-exports.ox_target:removeGlobalPlayer(optionNames)
-```
-
-* optionNames: `string` or `string[]`
-
-## addGlobalVehicle [#addglobalvehicle]
-
-Creates new targetable options for all Vehicle entity types.
-
-```lua
-exports.ox_target:addGlobalVehicle(options)
-```
-
-* options: `TargetOptions`
-
-## removeGlobalVehicle [#removeglobalvehicle]
-
-Removes all options from the global Vehicle list with the option names.
-
-```lua
-exports.ox_target:removeGlobalVehicle(optionNames)
-```
-
-* optionNames: `string` or `string[]`
-
-## addModel [#addmodel]
-
-Creates new targetable options for a specific model or list of models.
-
-```lua
-exports.ox_target:addModel(models, options)
-```
-
-* models: `number` or `string` or `Array<number | string>`
-* options: `TargetOptions`
-
-## removeModel [#removemodel]
-
-Removes all options from the models list with the option names.
-
-```lua
-exports.ox_target:removeModel(models, optionNames)
-```
-
-* models: `number` or `string` or `Array<number | string>`
-* optionNames: `string` or `string[]`
-
-## addEntity [#addentity]
-
-Creates new targetable options for a specific network id or list of network ids (see [NetworkGetNetworkIdFromEntity](https://docs.fivem.net/natives/?_0x9E35DAB6)).
-
-```lua
-exports.ox_target:addEntity(netIds, options)
-```
-
-* netIds: `number` or `number[]`
-* options: `TargetOptions`
-
-## removeEntity [#removeentity]
-
-Removes all options from the networked entities list with the option names.
-
-```lua
-exports.ox_target:removeEntity(netIds, optionNames)
-```
-
-* netIds: `number` or `number[]`
-* optionNames: `string` or `string[]`
-
-## addLocalEntity [#addlocalentity]
-
-Creates new targetable options for a specific entity handle or list of entity handles.
-
-```lua
-exports.ox_target:addLocalEntity(entities, options)
-```
-
-* entities: `number` or `number[]`
-* options: `TargetOptions`
-
-## removeLocalEntity [#removelocalentity]
-
-Removes all options from the entities list with the option names.
-
-```lua
-exports.ox_target:removeLocalEntity(entities, optionNames)
-```
-
-* entities: `number` or `number[]`
-* optionNames: `string` or `string[]`
-
-## addSphereZone [#addspherezone]
-
-Creates a new targetable [sphere zone](../../ox_lib/Modules/Zones/Shared#libzonessphere).
-
-```lua
-exports.ox_target:addSphereZone(parameters)
-```
-
-* parameters: `table`
-  * coords: `vector3`
-  * name?: `string`
-    * An optional name to refer to the zone instead of using the `id`.
-  * radius?: `number`
-  * debug?: `boolean`
-  * drawSprite?: `boolean`
-    * Draw a sprite at the centroid of the zone. Defaults to `true`.
-  * options: `TargetOptions`
-
-Return:
-
-* id: `number`
-
-## addBoxZone [#addboxzone]
-
-Creates a new targetable [box zone](../../ox_lib/Modules/Zones/Shared#libzonesbox).
-
-```lua
-exports.ox_target:addBoxZone(parameters)
-```
-
-* parameters: `table`
-  * coords: `vector3`
-  * name?: `string`
-    * An optional name to refer to the zone instead of using the `id`.
-  * size?: `vector3`
-  * rotation?: `number`
-  * debug?: `boolean`
-  * drawSprite?: `boolean`
-    * Draw a sprite at the centroid of the zone. Defaults to `true`.
-  * options: `TargetOptions`
-
-Return:
-
-* id: `number`
-
-## addPolyZone [#addpolyzone]
-
-Creates a new targetable [poly zone](../../ox_lib/Modules/Zones/Shared#libzonespoly).
-
-```lua
-exports.ox_target:addPolyZone(parameters)
-```
-
-* parameters: `table`
-  * points: `vector3[]`
-    * An array of 3d points defining the polygon's shape.
-  * name?: `string`
-    * An optional name to refer to the zone instead of using the `id`.
-  * thickness?: `number`
-    * The height of the polygon, defaulting to `4`.
-  * debug?: `boolean`
-  * drawSprite?: `boolean`
-    * Draw a sprite at the centroid of the zone. Defaults to `true`.
-  * options: `TargetOptions`
-
-Return:
-
-* id: `number`
-
-## zoneExists [#zoneexists]
-
-Checks if a zone with the given ID exists.
-
-```lua
-exports.ox_target:zoneExists(id)
-```
-
-* id: `number` or `string`
-  * The `number` id that is returned by [addSphereZone](#addspherezone), [addBoxZone](#addboxzone), or [addPolyZone](#addpolyzone)\
-    **OR**
-  * The `string` name given to the zone.
-
-Return:
-
-* `boolean` - Returns `true` if the zone exists, otherwise `false`.
-
-## removeZone [#removezone]
-
-Removes a targetable zone with the given id (returned by addBoxZone/addSphereZone).
-
-```lua
-exports.ox_target:removeZone(id)
-```
-
-* id: `number` or `string`
-  * The `number` id that is returned by [addSphereZone](#addspherezone), [addBoxZone](#addboxzone), or [addPolyZone](#addpolyzone)\
-    **OR**
-  * The `string` name given to the zone.
-
-
 # Server (/docs/ox_lib/ACL/Server)
 
 
@@ -7334,6 +7017,110 @@ lib.addCommand('giveitem', {
         Inventory.AddItem(args.target, item.name, args.count or 1, args.metatype)
     end
 end)
+```
+
+
+# Client (/docs/ox_lib/AddKeybind/Client)
+
+
+
+Registers keybinds and simplifies interactions of the keybinds.
+
+## CKeybind Class [#ckeybind-class]
+
+A table representing a keybind with the following properties.
+
+* name: `string`
+* description: `string`
+* currentKey: `string`
+  * Key that the current user has this keybind set to
+* disabled: `boolean`
+  * Whether or not the keybind is currently disabled
+* isPressed: `boolean`
+  * "A state indicating whether the keybind is pressed or not
+* hash: `number`
+  * Internal hash of the keybind that is used to reference it within the game itself
+* defaultKey?: `string`
+  * Default key to set the keybind to for new players
+  * NOTE: Changing this will not change the key for existing players
+* defaultMapper?: `string`
+  * See [Input Mapper Ids](https://docs.fivem.net/docs/game-references/input-mapper-parameter-ids/) for more information
+* secondaryKey?: `string`
+  * An optional secondary keybind.
+* secondaryMapper?: `string`
+  * An optional mapper for the secondary key, otherwise using the default mapper.
+* allowInPauseMenu?: `boolean`
+  * Allows the keybind to trigger while the pause menu/frontend is active.
+  * Default: `false`
+* disable: `function(self: CKeybind, disable: boolean)`
+  * Built-in function to enable / disable a keybind
+* isControlPressed: `function(self: CKeybind)`
+  * Built-in function to get the current pressed state for the keybind
+* onPressed?: `function(self: CKeybind)`
+  * User-defined function triggered on keybind press
+* onReleased?: `function(self: CKeybind)`
+  * User-defined function triggered on keybind release
+
+## lib.addKeybind [#libaddkeybind]
+
+```lua
+lib.addKeybind(data)
+```
+
+* data: `table`
+  * name: `string`
+    * Name of the command created for RegisterKeyMap
+    * Must not contain whitespace
+  * description: `string`
+    * The name shown in 'Settings' -> 'Key Bindings' -> 'FiveM'
+  * defaultKey?: `string`
+    * Default: `None`
+  * defaultMapper?: `string`
+    * Default: `keyboard`
+  * secondaryKey?: `string`
+  * secondaryMapper?: `string`
+  * allowInPauseMenu?: `boolean`
+    * Default: `false`
+    * If true, keybind callbacks can run while `IsPauseMenuActive()` is true
+  * disabled?: `boolean`
+    * Whether or not the keybind should be disabled by default
+  * onPressed?: `function(self: CKeybind)`
+    * Function triggered on keybind press
+  * onReleased?: `function(self: CKeybind)`
+    * Function triggered on keybind release
+
+```lua
+local keybind = lib.addKeybind({
+    name = 'respects',
+    description = 'press F to pay respects',
+    defaultKey = 'F',
+    allowInPauseMenu = true,
+    onPressed = function(self)
+        print(('pressed %s (%s)'):format(self.currentKey, self.name))
+    end,
+    onReleased = function(self)
+        print(('released %s (%s)'):format(self.currentKey, self.name))
+    end
+})
+```
+
+### Enable / Disable Keybinds [#enable--disable-keybinds]
+
+Keybinds can be enabled / disabled by using the disable method.
+
+```lua
+keybind:disable(true) -- disables the keybind
+keybind:disable(false) -- enables the keybind
+```
+
+### Keybind pressed states [#keybind-pressed-states]
+
+All keybinds registered with `lib.addKeybind()` gets a boolean state, that shows if its pressed or not.
+
+You can get the state with the following method
+
+```lua
+local state = keybind:isControlPressed()
 ```
 
 
@@ -7808,110 +7595,6 @@ end
 ```
 
 
-# Client (/docs/ox_lib/AddKeybind/Client)
-
-
-
-Registers keybinds and simplifies interactions of the keybinds.
-
-## CKeybind Class [#ckeybind-class]
-
-A table representing a keybind with the following properties.
-
-* name: `string`
-* description: `string`
-* currentKey: `string`
-  * Key that the current user has this keybind set to
-* disabled: `boolean`
-  * Whether or not the keybind is currently disabled
-* isPressed: `boolean`
-  * "A state indicating whether the keybind is pressed or not
-* hash: `number`
-  * Internal hash of the keybind that is used to reference it within the game itself
-* defaultKey?: `string`
-  * Default key to set the keybind to for new players
-  * NOTE: Changing this will not change the key for existing players
-* defaultMapper?: `string`
-  * See [Input Mapper Ids](https://docs.fivem.net/docs/game-references/input-mapper-parameter-ids/) for more information
-* secondaryKey?: `string`
-  * An optional secondary keybind.
-* secondaryMapper?: `string`
-  * An optional mapper for the secondary key, otherwise using the default mapper.
-* allowInPauseMenu?: `boolean`
-  * Allows the keybind to trigger while the pause menu/frontend is active.
-  * Default: `false`
-* disable: `function(self: CKeybind, disable: boolean)`
-  * Built-in function to enable / disable a keybind
-* isControlPressed: `function(self: CKeybind)`
-  * Built-in function to get the current pressed state for the keybind
-* onPressed?: `function(self: CKeybind)`
-  * User-defined function triggered on keybind press
-* onReleased?: `function(self: CKeybind)`
-  * User-defined function triggered on keybind release
-
-## lib.addKeybind [#libaddkeybind]
-
-```lua
-lib.addKeybind(data)
-```
-
-* data: `table`
-  * name: `string`
-    * Name of the command created for RegisterKeyMap
-    * Must not contain whitespace
-  * description: `string`
-    * The name shown in 'Settings' -> 'Key Bindings' -> 'FiveM'
-  * defaultKey?: `string`
-    * Default: `None`
-  * defaultMapper?: `string`
-    * Default: `keyboard`
-  * secondaryKey?: `string`
-  * secondaryMapper?: `string`
-  * allowInPauseMenu?: `boolean`
-    * Default: `false`
-    * If true, keybind callbacks can run while `IsPauseMenuActive()` is true
-  * disabled?: `boolean`
-    * Whether or not the keybind should be disabled by default
-  * onPressed?: `function(self: CKeybind)`
-    * Function triggered on keybind press
-  * onReleased?: `function(self: CKeybind)`
-    * Function triggered on keybind release
-
-```lua
-local keybind = lib.addKeybind({
-    name = 'respects',
-    description = 'press F to pay respects',
-    defaultKey = 'F',
-    allowInPauseMenu = true,
-    onPressed = function(self)
-        print(('pressed %s (%s)'):format(self.currentKey, self.name))
-    end,
-    onReleased = function(self)
-        print(('released %s (%s)'):format(self.currentKey, self.name))
-    end
-})
-```
-
-### Enable / Disable Keybinds [#enable--disable-keybinds]
-
-Keybinds can be enabled / disabled by using the disable method.
-
-```lua
-keybind:disable(true) -- disables the keybind
-keybind:disable(false) -- enables the keybind
-```
-
-### Keybind pressed states [#keybind-pressed-states]
-
-All keybinds registered with `lib.addKeybind()` gets a boolean state, that shows if its pressed or not.
-
-You can get the state with the following method
-
-```lua
-local state = keybind:isControlPressed()
-```
-
-
 # Shared (/docs/ox_lib/Class/Shared)
 
 
@@ -8157,30 +7840,6 @@ lib.disableControls:Clear(...)
   * Control(s) to clear out from being tracked
 
 
-# Shared (/docs/ox_lib/GetClosestPed/Shared)
-
-
-
-## lib.getClosestPed [#libgetclosestped]
-
-Get the ped handle and coords of the closest ped to a set of coordinates.
-
-```lua
-lib.getClosestPed(coords, maxDistance)
-```
-
-* coords: `vector3`
-  * The coords to check from.
-* maxDistance?: `number`
-  * The max distance to check.
-  * Default: `2.0`
-
-Return:
-
-* ped?: `number`
-* coords?: `vector3`
-
-
 # Shared (/docs/ox_lib/GetClosestObject/Shared)
 
 
@@ -8202,6 +7861,30 @@ lib.getClosestObject(coords, maxDistance)
 Return:
 
 * object?: `number`
+* coords?: `vector3`
+
+
+# Shared (/docs/ox_lib/GetClosestPed/Shared)
+
+
+
+## lib.getClosestPed [#libgetclosestped]
+
+Get the ped handle and coords of the closest ped to a set of coordinates.
+
+```lua
+lib.getClosestPed(coords, maxDistance)
+```
+
+* coords: `vector3`
+  * The coords to check from.
+* maxDistance?: `number`
+  * The max distance to check.
+  * Default: `2.0`
+
+Return:
+
+* ped?: `number`
 * coords?: `vector3`
 
 
@@ -8288,29 +7971,6 @@ Return:
 * vehicleCoords?: `vector3`
 
 
-# Shared (/docs/ox_lib/GetNearbyObjects/Shared)
-
-
-
-## lib.getNearbyObjects [#libgetnearbyobjects]
-
-Get the object handle and coords of all objects within range of a set of coordinates.
-
-```lua
-lib.getNearbyObjects(coords, maxDistance)
-```
-
-* coords: `vector3`
-  * The coords to check from.
-* maxDistance?: `number`
-  * The max distance to check.
-  * Default: `2.0`
-
-Return:
-
-* objects: `{ object: number, coords: vector3 }[]`
-
-
 # Server (/docs/ox_lib/GetFilesInDirectory/Server)
 
 
@@ -8334,16 +7994,16 @@ Returns:
 * fileCount: `number`
 
 
-# Shared (/docs/ox_lib/GetNearbyPeds/Shared)
+# Shared (/docs/ox_lib/GetNearbyObjects/Shared)
 
 
 
-## lib.getNearbyPeds [#libgetnearbypeds]
+## lib.getNearbyObjects [#libgetnearbyobjects]
 
-Get the ped handle and coords of all peds within range of a set of coordinates.
+Get the object handle and coords of all objects within range of a set of coordinates.
 
 ```lua
-lib.getNearbyPeds(coords, maxDistance)
+lib.getNearbyObjects(coords, maxDistance)
 ```
 
 * coords: `vector3`
@@ -8354,7 +8014,7 @@ lib.getNearbyPeds(coords, maxDistance)
 
 Return:
 
-* peds: `{ ped: number, coords: vector3 }[]`
+* objects: `{ object: number, coords: vector3 }[]`
 
 
 # Shared (/docs/ox_lib/GetNearbyPlayers/Shared)
@@ -8381,6 +8041,29 @@ lib.getNearbyPlayers(coords, maxDistance, includePlayer)
 Return:
 
 * players: `{ id: number, ped: number, coords: vector3 }[]`
+
+
+# Shared (/docs/ox_lib/GetNearbyPeds/Shared)
+
+
+
+## lib.getNearbyPeds [#libgetnearbypeds]
+
+Get the ped handle and coords of all peds within range of a set of coordinates.
+
+```lua
+lib.getNearbyPeds(coords, maxDistance)
+```
+
+* coords: `vector3`
+  * The coords to check from.
+* maxDistance?: `number`
+  * The max distance to check.
+  * Default: `2.0`
+
+Return:
+
+* peds: `{ ped: number, coords: vector3 }[]`
 
 
 # Shared (/docs/ox_lib/Grid/Shared)
@@ -9341,97 +9024,6 @@ print('Loaded events')
 ```
 
 
-# Client (/docs/ox_lib/Scaleform/Client)
-
-
-
-## lib.scaleform:new [#libscaleformnew]
-
-Constructs a new instance of the scaleform class.
-
-```lua
-lib.scaleform:new(data)
-```
-
-* data: `table | string`
-  * name: `string`
-  * fullScreen?: `boolean`
-  * x?: `number`
-  * y?: `number`
-  * width?: `number`
-  * height?: `number`
-  * renderTarget?: `table`
-    * name: `string`
-    * model: `string | number`
-
-Returns:
-
-* scaleform: `Scaleform`
-
-  * scaleform: `number`
-  * draw: `boolean`
-  * target: `number`
-  * targetName: `string`
-  * sfHandle?: `number`
-  * fullScreen: `boolean`
-
-  Methods:
-
-  * callMethod: `function`(name: `string`, args: `(number | string | boolean)[]`, returnValue?: `string`)
-  * setFullScreen: `function`(isFullscreen: `boolean`)
-  * setProperties: `function`(x: `number`, y: `number`, width: `number`, height: `number`)
-  * setRenderTarget: `function`(name: `string`, model: `string | number`)
-  * isDrawing: `function`
-  * draw: `function`
-  * startDrawing: `function`
-  * stopDrawing: `function`
-  * dispose: `function`
-
-### Usage Example [#usage-example]
-
-```lua
-local scaleform = lib.scaleform:new({
-  name = 'scaleform',
-  fullScreen = boolean,
-  x = 1.0,
-  y = 1.0,
-  width = 2.0,
-  height = 2.0,
-  renderTarget = {
-    name = 'target',
-    model = `model_name`
-  }
-})
-
--- Call a Scaleform Method
-scaleform:callMethod('method', { 1, 2, 3 })
-
--- Set Fullscreen Scaleform
-scaleform:setFullScreen(false)
-
--- Set Scaleform Properties (x, y, width, height)
-scaleform:setProperties(1.0, 1.0, 2.0, 2.0)
-
--- Set Scaleform Render Target
-scaleform:setRenderTarget('target', `model_name`)
-
--- Get Drawing State
-local state = scaleform:isDrawing()
-
--- Draw
-scaleform:draw()
-
--- Start Drawing
-scaleform:startDrawing()
-
--- Stop Drawing
-scaleform:stopDrawing()
-
--- Dispose of Scaleform
-scaleform:dispose()
-```
-
-
 # Shared (/docs/ox_lib/Selector/Shared)
 
 
@@ -9825,6 +9417,97 @@ RegisterCommand('openloot', function()
         print(('Received: %s'):format(json.encode(loot[i])))
     end
 end)
+```
+
+
+# Client (/docs/ox_lib/Scaleform/Client)
+
+
+
+## lib.scaleform:new [#libscaleformnew]
+
+Constructs a new instance of the scaleform class.
+
+```lua
+lib.scaleform:new(data)
+```
+
+* data: `table | string`
+  * name: `string`
+  * fullScreen?: `boolean`
+  * x?: `number`
+  * y?: `number`
+  * width?: `number`
+  * height?: `number`
+  * renderTarget?: `table`
+    * name: `string`
+    * model: `string | number`
+
+Returns:
+
+* scaleform: `Scaleform`
+
+  * scaleform: `number`
+  * draw: `boolean`
+  * target: `number`
+  * targetName: `string`
+  * sfHandle?: `number`
+  * fullScreen: `boolean`
+
+  Methods:
+
+  * callMethod: `function`(name: `string`, args: `(number | string | boolean)[]`, returnValue?: `string`)
+  * setFullScreen: `function`(isFullscreen: `boolean`)
+  * setProperties: `function`(x: `number`, y: `number`, width: `number`, height: `number`)
+  * setRenderTarget: `function`(name: `string`, model: `string | number`)
+  * isDrawing: `function`
+  * draw: `function`
+  * startDrawing: `function`
+  * stopDrawing: `function`
+  * dispose: `function`
+
+### Usage Example [#usage-example]
+
+```lua
+local scaleform = lib.scaleform:new({
+  name = 'scaleform',
+  fullScreen = boolean,
+  x = 1.0,
+  y = 1.0,
+  width = 2.0,
+  height = 2.0,
+  renderTarget = {
+    name = 'target',
+    model = `model_name`
+  }
+})
+
+-- Call a Scaleform Method
+scaleform:callMethod('method', { 1, 2, 3 })
+
+-- Set Fullscreen Scaleform
+scaleform:setFullScreen(false)
+
+-- Set Scaleform Properties (x, y, width, height)
+scaleform:setProperties(1.0, 1.0, 2.0, 2.0)
+
+-- Set Scaleform Render Target
+scaleform:setRenderTarget('target', `model_name`)
+
+-- Get Drawing State
+local state = scaleform:isDrawing()
+
+-- Draw
+scaleform:draw()
+
+-- Start Drawing
+scaleform:startDrawing()
+
+-- Stop Drawing
+scaleform:stopDrawing()
+
+-- Dispose of Scaleform
+scaleform:dispose()
 ```
 
 
@@ -11069,6 +10752,323 @@ Zones will be saved to `ox_lib/created_zones.lua` with your chosen format.
     ```
   </Tab>
 </Tabs>
+
+
+# Client (/docs/ox_target/Functions/Client)
+
+
+
+All exports with the `options` argument expect a table with the targeting properties [here](../TargetOptions).
+
+For some examples you can refer to [defaults.lua](https://github.com/overextended/ox_target/blob/main/client/defaults.lua) or [debug.lua](https://github.com/overextended/ox_target/blob/main/client/debug.lua).
+
+## disableTargeting [#disabletargeting]
+
+Toggle the availability of the targeting menu.
+
+```lua
+exports.ox_target:disableTargeting(state)
+```
+
+* state: `boolean`
+  * Setting `state` to `true` will turn off the targeting eye if it is active and prevent it from reopening until `state` is set to `false` again.
+
+## isActive [#isactive]
+
+Checks if the targeting system is currently active.
+
+```lua
+exports.ox_target:isActive()
+```
+
+Return:
+
+* `boolean` - Returns `true` if the targeting system is active, otherwise `false`.
+
+## getTargetOptions [#gettargetoptions]
+
+Retrieves targeting options for a specific entity.
+
+```lua
+exports.ox_target:getTargetOptions(entity, entityType, model)
+```
+
+* entity?: `number` - The entity handle
+* entityType?: `number` - The type of entity (1 for peds, 2 for vehicles, 3 for objects)
+* model?: `number` - The model hash of the entity
+
+Return:
+
+* `table` - Returns a table containing the target options for the entity:
+  * global: Options for the entity type (peds, vehicles, or objects)
+  * model: Options for the specific model
+  * entity: Options for the networked entity
+  * localEntity: Options for the local entity
+
+## addGlobalOption [#addglobaloption]
+
+Creates new targetable options which are displayed at all times.
+
+```lua
+exports.ox_target:addGlobalOption(options)
+```
+
+* options: `TargetOptions`
+
+## removeGlobalOption [#removeglobaloption]
+
+Removes all options from the global options list with the option names.
+
+```lua
+exports.ox_target:removeGlobalOption(optionNames)
+```
+
+* optionNames: `string` or `string[]`
+
+## addGlobalObject [#addglobalobject]
+
+Creates new targetable options for all Object entity types.
+
+```lua
+exports.ox_target:addGlobalObject(options)
+```
+
+* options: `TargetOptions`
+
+## removeGlobalObject [#removeglobalobject]
+
+Removes all options from the global Object list with the option names.
+
+```lua
+exports.ox_target:removeGlobalObject(optionNames)
+```
+
+* optionNames: `string` or `string[]`
+
+## addGlobalPed [#addglobalped]
+
+Creates new targetable options for all Ped entity types (excluding players).
+
+```lua
+exports.ox_target:addGlobalPed(options)
+```
+
+* options: `TargetOptions`
+
+## removeGlobalPed [#removeglobalped]
+
+Removes all options from the global Ped list with the option names.
+
+```lua
+exports.ox_target:removeGlobalPed(optionNames)
+```
+
+* optionNames: `string` or `string[]`
+
+## addGlobalPlayer [#addglobalplayer]
+
+Creates new targetable options for all Player entities.
+
+```lua
+exports.ox_target:addGlobalPlayer(options)
+```
+
+* options: `TargetOptions`
+
+## removeGlobalPlayer [#removeglobalplayer]
+
+Removes all options from the global Player list with the option names.
+
+```lua
+exports.ox_target:removeGlobalPlayer(optionNames)
+```
+
+* optionNames: `string` or `string[]`
+
+## addGlobalVehicle [#addglobalvehicle]
+
+Creates new targetable options for all Vehicle entity types.
+
+```lua
+exports.ox_target:addGlobalVehicle(options)
+```
+
+* options: `TargetOptions`
+
+## removeGlobalVehicle [#removeglobalvehicle]
+
+Removes all options from the global Vehicle list with the option names.
+
+```lua
+exports.ox_target:removeGlobalVehicle(optionNames)
+```
+
+* optionNames: `string` or `string[]`
+
+## addModel [#addmodel]
+
+Creates new targetable options for a specific model or list of models.
+
+```lua
+exports.ox_target:addModel(models, options)
+```
+
+* models: `number` or `string` or `Array<number | string>`
+* options: `TargetOptions`
+
+## removeModel [#removemodel]
+
+Removes all options from the models list with the option names.
+
+```lua
+exports.ox_target:removeModel(models, optionNames)
+```
+
+* models: `number` or `string` or `Array<number | string>`
+* optionNames: `string` or `string[]`
+
+## addEntity [#addentity]
+
+Creates new targetable options for a specific network id or list of network ids (see [NetworkGetNetworkIdFromEntity](https://docs.fivem.net/natives/?_0x9E35DAB6)).
+
+```lua
+exports.ox_target:addEntity(netIds, options)
+```
+
+* netIds: `number` or `number[]`
+* options: `TargetOptions`
+
+## removeEntity [#removeentity]
+
+Removes all options from the networked entities list with the option names.
+
+```lua
+exports.ox_target:removeEntity(netIds, optionNames)
+```
+
+* netIds: `number` or `number[]`
+* optionNames: `string` or `string[]`
+
+## addLocalEntity [#addlocalentity]
+
+Creates new targetable options for a specific entity handle or list of entity handles.
+
+```lua
+exports.ox_target:addLocalEntity(entities, options)
+```
+
+* entities: `number` or `number[]`
+* options: `TargetOptions`
+
+## removeLocalEntity [#removelocalentity]
+
+Removes all options from the entities list with the option names.
+
+```lua
+exports.ox_target:removeLocalEntity(entities, optionNames)
+```
+
+* entities: `number` or `number[]`
+* optionNames: `string` or `string[]`
+
+## addSphereZone [#addspherezone]
+
+Creates a new targetable [sphere zone](../../ox_lib/Modules/Zones/Shared#libzonessphere).
+
+```lua
+exports.ox_target:addSphereZone(parameters)
+```
+
+* parameters: `table`
+  * coords: `vector3`
+  * name?: `string`
+    * An optional name to refer to the zone instead of using the `id`.
+  * radius?: `number`
+  * debug?: `boolean`
+  * drawSprite?: `boolean`
+    * Draw a sprite at the centroid of the zone. Defaults to `true`.
+  * options: `TargetOptions`
+
+Return:
+
+* id: `number`
+
+## addBoxZone [#addboxzone]
+
+Creates a new targetable [box zone](../../ox_lib/Modules/Zones/Shared#libzonesbox).
+
+```lua
+exports.ox_target:addBoxZone(parameters)
+```
+
+* parameters: `table`
+  * coords: `vector3`
+  * name?: `string`
+    * An optional name to refer to the zone instead of using the `id`.
+  * size?: `vector3`
+  * rotation?: `number`
+  * debug?: `boolean`
+  * drawSprite?: `boolean`
+    * Draw a sprite at the centroid of the zone. Defaults to `true`.
+  * options: `TargetOptions`
+
+Return:
+
+* id: `number`
+
+## addPolyZone [#addpolyzone]
+
+Creates a new targetable [poly zone](../../ox_lib/Modules/Zones/Shared#libzonespoly).
+
+```lua
+exports.ox_target:addPolyZone(parameters)
+```
+
+* parameters: `table`
+  * points: `vector3[]`
+    * An array of 3d points defining the polygon's shape.
+  * name?: `string`
+    * An optional name to refer to the zone instead of using the `id`.
+  * thickness?: `number`
+    * The height of the polygon, defaulting to `4`.
+  * debug?: `boolean`
+  * drawSprite?: `boolean`
+    * Draw a sprite at the centroid of the zone. Defaults to `true`.
+  * options: `TargetOptions`
+
+Return:
+
+* id: `number`
+
+## zoneExists [#zoneexists]
+
+Checks if a zone with the given ID exists.
+
+```lua
+exports.ox_target:zoneExists(id)
+```
+
+* id: `number` or `string`
+  * The `number` id that is returned by [addSphereZone](#addspherezone), [addBoxZone](#addboxzone), or [addPolyZone](#addpolyzone)\
+    **OR**
+  * The `string` name given to the zone.
+
+Return:
+
+* `boolean` - Returns `true` if the zone exists, otherwise `false`.
+
+## removeZone [#removezone]
+
+Removes a targetable zone with the given id (returned by addBoxZone/addSphereZone).
+
+```lua
+exports.ox_target:removeZone(id)
+```
+
+* id: `number` or `string`
+  * The `number` id that is returned by [addSphereZone](#addspherezone), [addBoxZone](#addboxzone), or [addPolyZone](#addpolyzone)\
+    **OR**
+  * The `string` name given to the zone.
 
 
 # insert (/docs/oxmysql/Functions/insert)
