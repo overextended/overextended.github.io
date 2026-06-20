@@ -56,6 +56,10 @@
 - Ox Lib
   - [Ox Lib](/docs/ox_lib)
   - [Interface](/docs/ox_lib/Interface)
+  - [Ped](/docs/ox_lib/Ped)
+  - [Player](/docs/ox_lib/Player)
+  - [Prop](/docs/ox_lib/Prop)
+  - [Vehicle](/docs/ox_lib/Vehicle)
   - ACL
     - [Server](/docs/ox_lib/ACL/Server)
   - AddCommand

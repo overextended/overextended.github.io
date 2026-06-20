@@ -2,16 +2,14 @@
 
 
 
-
-
 A table containing cached function results, which may be constants or infrequently changed.
 
 ## Default values [#default-values]
 
 * resource: `string`
-  * the value returned by <Native>GetCurrentResourceName</Native>.
+  * the value returned by [GetCurrentResourceName](https://docs.fivem.net/natives/?_0xE5E9EBBB).
 * game: `'fxserver' | 'fivem' | 'redm'`
-  * the value returned by <Native>GetGameName</Native>.
+  * the value returned by [GetGameName](https://docs.fivem.net/natives/?_0xE8EAA18B).
 
 ## Adding new cached values [#adding-new-cached-values]
 

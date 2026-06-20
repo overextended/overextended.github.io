@@ -95,6 +95,145 @@ It is used by FXServer to run JavaScript resources, and is typically required to
 * Enter `node --version` to confirm successful installation.
 
 
+# Ox Doorlock (/docs/ox_doorlock)
+
+
+
+
+
+<ResourceLinks repo="https://github.com/overextended/ox_doorlock" />
+
+A door management resource that can be used standalone or alongside ox\_core, qbx\_core, and es\_extended.
+
+## Installation [#installation]
+
+<Callout type="info">
+  We **strongly** recommend referring to [Guides](../guides) for setting up Git, Node.js, and bun.
+</Callout>
+
+<div className="fd-steps">
+  <div className="fd-step">
+    ### Install all resource dependencies. [#install-all-resource-dependencies-step]
+
+    * [oxmysql](../oxmysql)
+    * [ox\_lib](../ox_lib/)
+  </div>
+
+  <div className="fd-step">
+    ### Download a release or build the source code. [#download-a-release-or-build-the-source-code-step]
+
+    * Download the [latest release](https://github.com/overextended/ox_doorlock/releases/latest).
+
+    ```bash
+    git clone https://github.com/overextended/ox_doorlock.git
+    cd ox_doorlock/web
+    bun i
+    bun run build
+    ```
+  </div>
+
+  <div className="fd-step">
+    ### Install optional dependencies. [#install-optional-dependencies-step]
+
+    These resources aren't required but provide additional functionality.
+
+    * [ox\_target](../ox_target/)
+  </div>
+</div>
+
+## Opening the UI [#opening-the-ui]
+
+If you have installed and started the resource, you can use `/doorlock` to open the UI.
+
+* If the cursor is displayed but not the UI then you have not built it.
+* You may not be authorised to use the command.
+
+  * Enter `test_ace player.1 command.doorlock` in the server console (replace 1 with your server id).
+
+## Convert doors [#convert-doors]
+
+Door configuration files written for nui\_doorlock can be automatically added to your MySQL database.
+
+* Any files with the `.lua` extension placed in the `ox_doorlock/convert` directory will be read on resource start.
+* If the directory doesn't exist, you can create it.
+* Conversion cannot be guaranteed, especially if the config was not written for nui\_doorlock.
+
+## Adding new native audio [#adding-new-native-audio]
+
+A guide can be found [here](https://forum.cfx.re/t/how-to-make-a-simplesound-using-native-audio/5156001) for adding new native audio.
+
+
+# Door Settings (/docs/ox_doorlock/settings)
+
+
+
+# Door Settings [#door-settings]
+
+## General [#general]
+
+* Door name
+  * Used to easily identify the door.
+* Passcode
+  * Door can be unlocked by anybody by using the code or phrase.
+* Autolock interval
+  * Door will be locked after x seconds.
+* Interact distance
+  * Door can only be used when within x metres.
+* Door rate
+  * Door movement speed for sliding/garage/automatic doors, or swinging doors when locked.
+* Locked
+  * Sets the door as locked by default.
+* Double
+  * Door is a set of two doors, controlled together.
+* Automatic
+  * Sliding/garage/automatic door.
+* Lockpick
+  * Door can be lockpicked when interacting with a targeting resource.
+* Hide UI
+  * No indicators (i.e. icon, text) will display on the door.
+* Hold Open
+  * Holds the door open while unlocked.
+
+## Characters [#characters]
+
+* Character Id
+  * Character identifier used by a framework (i.e. player.charid, xPlayer.identifier, Player.CitizenId).
+
+## Groups [#groups]
+
+* Group
+  * Framework dependent, referring to jobs, gangs, etc.
+* Grade
+  * The minimum grade to allow access for the group (0 to allow all).
+
+## Items [#items]
+
+* Item
+  * Name of the item.
+* Metadata type
+  * Requires metadata support (i.e. ox\_inventory) to check slot.metadata.type.
+* Remove on use
+  * Removes the item after interacting with the door.
+
+## Lockpick [#lockpick]
+
+* Difficulty
+  * Sets the skillcheck difficulty (see [docs](../ox_lib/Modules/Interface/Client/skillcheck)).
+* Area size
+  * Custom difficulty area size in degrees.
+* Speed multiplier
+  * Custom difficulty idicator speed multipier.
+
+## Sound [#sound]
+
+* Lock sound
+  * Sound to play on door lock.
+* Unlock sound
+  * Sound to play on door unlock.
+
+*Note*: Sounds are stored in the `./web/public/sounds` directory.
+
+
 # Global States (/docs/ox_core/States)
 
 
@@ -313,145 +452,6 @@ These convars should use the `setr` command to be read by clients.
 * `ox:defaultVehicleStore`
   * Default: `'impound'`
   * On resource start any vehicles that were previously spawned will be stored here. An empty string will not update the database.
-
-
-# Ox Doorlock (/docs/ox_doorlock)
-
-
-
-
-
-<ResourceLinks repo="https://github.com/overextended/ox_doorlock" />
-
-A door management resource that can be used standalone or alongside ox\_core, qbx\_core, and es\_extended.
-
-## Installation [#installation]
-
-<Callout type="info">
-  We **strongly** recommend referring to [Guides](../guides) for setting up Git, Node.js, and bun.
-</Callout>
-
-<div className="fd-steps">
-  <div className="fd-step">
-    ### Install all resource dependencies. [#install-all-resource-dependencies-step]
-
-    * [oxmysql](../oxmysql)
-    * [ox\_lib](../ox_lib/)
-  </div>
-
-  <div className="fd-step">
-    ### Download a release or build the source code. [#download-a-release-or-build-the-source-code-step]
-
-    * Download the [latest release](https://github.com/overextended/ox_doorlock/releases/latest).
-
-    ```bash
-    git clone https://github.com/overextended/ox_doorlock.git
-    cd ox_doorlock/web
-    bun i
-    bun run build
-    ```
-  </div>
-
-  <div className="fd-step">
-    ### Install optional dependencies. [#install-optional-dependencies-step]
-
-    These resources aren't required but provide additional functionality.
-
-    * [ox\_target](../ox_target/)
-  </div>
-</div>
-
-## Opening the UI [#opening-the-ui]
-
-If you have installed and started the resource, you can use `/doorlock` to open the UI.
-
-* If the cursor is displayed but not the UI then you have not built it.
-* You may not be authorised to use the command.
-
-  * Enter `test_ace player.1 command.doorlock` in the server console (replace 1 with your server id).
-
-## Convert doors [#convert-doors]
-
-Door configuration files written for nui\_doorlock can be automatically added to your MySQL database.
-
-* Any files with the `.lua` extension placed in the `ox_doorlock/convert` directory will be read on resource start.
-* If the directory doesn't exist, you can create it.
-* Conversion cannot be guaranteed, especially if the config was not written for nui\_doorlock.
-
-## Adding new native audio [#adding-new-native-audio]
-
-A guide can be found [here](https://forum.cfx.re/t/how-to-make-a-simplesound-using-native-audio/5156001) for adding new native audio.
-
-
-# Door Settings (/docs/ox_doorlock/settings)
-
-
-
-# Door Settings [#door-settings]
-
-## General [#general]
-
-* Door name
-  * Used to easily identify the door.
-* Passcode
-  * Door can be unlocked by anybody by using the code or phrase.
-* Autolock interval
-  * Door will be locked after x seconds.
-* Interact distance
-  * Door can only be used when within x metres.
-* Door rate
-  * Door movement speed for sliding/garage/automatic doors, or swinging doors when locked.
-* Locked
-  * Sets the door as locked by default.
-* Double
-  * Door is a set of two doors, controlled together.
-* Automatic
-  * Sliding/garage/automatic door.
-* Lockpick
-  * Door can be lockpicked when interacting with a targeting resource.
-* Hide UI
-  * No indicators (i.e. icon, text) will display on the door.
-* Hold Open
-  * Holds the door open while unlocked.
-
-## Characters [#characters]
-
-* Character Id
-  * Character identifier used by a framework (i.e. player.charid, xPlayer.identifier, Player.CitizenId).
-
-## Groups [#groups]
-
-* Group
-  * Framework dependent, referring to jobs, gangs, etc.
-* Grade
-  * The minimum grade to allow access for the group (0 to allow all).
-
-## Items [#items]
-
-* Item
-  * Name of the item.
-* Metadata type
-  * Requires metadata support (i.e. ox\_inventory) to check slot.metadata.type.
-* Remove on use
-  * Removes the item after interacting with the door.
-
-## Lockpick [#lockpick]
-
-* Difficulty
-  * Sets the skillcheck difficulty (see [docs](../ox_lib/Modules/Interface/Client/skillcheck)).
-* Area size
-  * Custom difficulty area size in degrees.
-* Speed multiplier
-  * Custom difficulty idicator speed multipier.
-
-## Sound [#sound]
-
-* Lock sound
-  * Sound to play on door lock.
-* Unlock sound
-  * Sound to play on door unlock.
-
-*Note*: Sounds are stored in the `./web/public/sounds` directory.
 
 
 # Shared (/docs/ox_fuel/Shared)
@@ -832,6 +832,341 @@ Stopping a server or "restarting" it does not trigger any events or allow for sa
 * All inventories are saved when the number of online players hits 0.
 
 
+# GameEntity (/docs/ox_lib/GameEntity)
+
+
+
+{/* 
+  Internal class used by the GameEntity classes (Ped, Player, Prop, Vehicle).
+  */}
+
+{/* ## Properties
+
+  <TypeTable
+  type={{
+    handle: {
+      description: "The entity's script handle.",
+      type: 'number',
+      required: true
+    },
+    netId: {
+      description: "The entity's network id.",
+      type: 'number',
+      required: true
+    },
+    type: {
+      description: "The entity's type (i.e. Ped, Player, Prop, Vehicle).",
+      type: 'string',
+      required: true
+    },
+    statebag: {
+      description: "The entity's internal statebag name.",
+      type: 'string',
+      required: true
+    },
+  }}
+  /> */}
+
+### set [#set]
+
+Writes a value to the entity's statebag.
+
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    entity:set(key, value)
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    entity.set(key, value)
+    ```
+  </Tab>
+</Tabs>
+
+* key: `string`
+* value: `any`
+
+**Returns:** `boolean` - If the state changed.
+
+### setr [#setr]
+
+Writes a replicated value to the entity's statebag. Client-set values are validated by the server.
+
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    entity:setr(key, value)
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    entity.setr(key, value)
+    ```
+  </Tab>
+</Tabs>
+
+* key: `string`
+* value: `any`
+
+**Returns:** `boolean` - If the state changed.
+
+### sets [#sets]
+
+Writes a synced value to the entity's statebag. Client-set values are validated by the server.\
+Synced values are only replicated between the player and server, and cannot be set on non-player entities.
+
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    entity:sets(key, value)
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    entity.sets(key, value)
+    ```
+  </Tab>
+</Tabs>
+
+* key: `string`
+* value: `any`
+
+**Returns:** `boolean` - If the state changed.
+
+### get [#get]
+
+Returns a value from the entity's statebag.
+
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    entity:get(key)
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    entity.get(key)
+    ```
+  </Tab>
+</Tabs>
+
+* key: `string`
+
+**Returns:** `unknown`
+
+### has [#has]
+
+Returns whether a key exists in the entity's statebag.
+
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    entity:has(key)
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    entity.has(key)
+    ```
+  </Tab>
+</Tabs>
+
+* key: `string`
+
+**Returns:** `boolean`
+
+### keys [#keys]
+
+Returns an array of all keys set on the entity's statebag.
+
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    entity:keys()
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    entity.keys()
+    ```
+  </Tab>
+</Tabs>
+
+**Returns:** `string[]`
+
+### setHandle [#sethandle]
+
+Updates the handle, netId, and statebag properties on an entity. Useful if re-using an entity instance, respawning an entity, changing the model, etc.
+
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    entity:setHandle(handle)
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    entity.setHandle(handle)
+    ```
+  </Tab>
+</Tabs>
+
+* handle: `number`
+
+### getCoords [#getcoords]
+
+Gets the entity's current coordinates.
+
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    entity:getCoords()
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    entity.getCoords()
+    ```
+  </Tab>
+</Tabs>
+
+**Returns:** `Vector3`
+
+### setCoords [#setcoords]
+
+Sets the entity's coordinates to the specified position.
+
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    entity:setCoords(x, y, z, deadFlag, ragdollFlag, clearArea)
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    entity.setCoords()
+    ```
+  </Tab>
+</Tabs>
+
+* x: `number`
+* y: `number`
+* z: `number`
+* deadFlag?: `boolean` (Defaults to false)
+* ragdollFlag?: `boolean` (Defaults to false)
+* clearArea?: `boolean` (Defaults to false)
+
+### getModel [#getmodel]
+
+Gets the entity's current model hash.
+
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    entity:getModel()
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    entity.getModel()
+    ```
+  </Tab>
+</Tabs>
+
+**Returns:** `number`
+
+### getHeading [#getheading]
+
+Gets the entity's current heading (or yaw) in degrees.
+
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    entity:getHeading()
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    entity.getHeading()
+    ```
+  </Tab>
+</Tabs>
+
+**Returns:** `number`
+
+### setHeading [#setheading]
+
+Sets the entity's heading (or yaw) to the given value in degrees.
+
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    entity:setHeading(heading)
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    entity.setHeading(heading)
+    ```
+  </Tab>
+</Tabs>
+
+* heading: `number`
+
+### getRoutingBucket [#getroutingbucket]
+
+Gets the entity's current routing bucket.
+
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    entity:getRoutingBucket()
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    entity.getRoutingBucket()
+    ```
+  </Tab>
+</Tabs>
+
+**Returns:** `number`
+
+### setRoutingBucket [#setroutingbucket]
+
+Sets the entity's routing bucket to the given id. &#x2A;*Server only.**
+
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    entity:setRoutingBucket(bucketId)
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    entity.setRoutingBucket(bucketId)
+    ```
+  </Tab>
+</Tabs>
+
+* bucketId: `number`
+
+
 # Interface (/docs/ox_lib/Interface)
 
 
@@ -858,6 +1193,1656 @@ You can find the full list of preset colours and shades here:
 
 If you wish to create your own pallete I suggest following the guide on that page.\
 Keep in mind doing so *will* require you to download the source code and build the UI.
+
+
+# Ped (/docs/ox_lib/Ped)
+
+
+
+A class for ped entities implementing a custom statebag interface and common entity operations.
+
+## Constructor [#constructor]
+
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    lib.ped:new(handle)
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    import { Ped } from "@overextended/ox_lib";
+
+    new Ped(handle)
+    ```
+  </Tab>
+</Tabs>
+
+* handle: `number` The entity's [script handle](https://docs.fivem.net/docs/scripting-manual/networking/ids/#entity-handle).
+
+**Returns:** `Ped`
+
+## Methods [#methods]
+
+<section id="methods">
+  {/* 
+    Internal class used by the GameEntity classes (Ped, Player, Prop, Vehicle).
+    */}
+
+  {/* ## Properties
+
+    <TypeTable
+    type={{
+      handle: {
+        description: "The entity's script handle.",
+        type: 'number',
+        required: true
+      },
+      netId: {
+        description: "The entity's network id.",
+        type: 'number',
+        required: true
+      },
+      type: {
+        description: "The entity's type (i.e. Ped, Player, Prop, Vehicle).",
+        type: 'string',
+        required: true
+      },
+      statebag: {
+        description: "The entity's internal statebag name.",
+        type: 'string',
+        required: true
+      },
+    }}
+    /> */}
+
+  ### set [#set]
+
+  Writes a value to the entity's statebag.
+
+    <Tabs groupId="language" items="['Lua', 'TypeScript']">
+      <Tab>
+        ```lua
+        entity:set(key, value)
+        ```
+      </Tab>
+
+      <Tab>
+        ```ts
+        entity.set(key, value)
+        ```
+      </Tab>
+    </Tabs>
+
+  * key: `string`
+  * value: `any`
+
+  **Returns:** `boolean` - If the state changed.
+
+  ### setr [#setr]
+
+  Writes a replicated value to the entity's statebag. Client-set values are validated by the server.
+
+    <Tabs groupId="language" items="['Lua', 'TypeScript']">
+      <Tab>
+        ```lua
+        entity:setr(key, value)
+        ```
+      </Tab>
+
+      <Tab>
+        ```ts
+        entity.setr(key, value)
+        ```
+      </Tab>
+    </Tabs>
+
+  * key: `string`
+  * value: `any`
+
+  **Returns:** `boolean` - If the state changed.
+
+  ### sets [#sets]
+
+  Writes a synced value to the entity's statebag. Client-set values are validated by the server.\
+  Synced values are only replicated between the player and server, and cannot be set on non-player entities.
+
+    <Tabs groupId="language" items="['Lua', 'TypeScript']">
+      <Tab>
+        ```lua
+        entity:sets(key, value)
+        ```
+      </Tab>
+
+      <Tab>
+        ```ts
+        entity.sets(key, value)
+        ```
+      </Tab>
+    </Tabs>
+
+  * key: `string`
+  * value: `any`
+
+  **Returns:** `boolean` - If the state changed.
+
+  ### get [#get]
+
+  Returns a value from the entity's statebag.
+
+    <Tabs groupId="language" items="['Lua', 'TypeScript']">
+      <Tab>
+        ```lua
+        entity:get(key)
+        ```
+      </Tab>
+
+      <Tab>
+        ```ts
+        entity.get(key)
+        ```
+      </Tab>
+    </Tabs>
+
+  * key: `string`
+
+  **Returns:** `unknown`
+
+  ### has [#has]
+
+  Returns whether a key exists in the entity's statebag.
+
+    <Tabs groupId="language" items="['Lua', 'TypeScript']">
+      <Tab>
+        ```lua
+        entity:has(key)
+        ```
+      </Tab>
+
+      <Tab>
+        ```ts
+        entity.has(key)
+        ```
+      </Tab>
+    </Tabs>
+
+  * key: `string`
+
+  **Returns:** `boolean`
+
+  ### keys [#keys]
+
+  Returns an array of all keys set on the entity's statebag.
+
+    <Tabs groupId="language" items="['Lua', 'TypeScript']">
+      <Tab>
+        ```lua
+        entity:keys()
+        ```
+      </Tab>
+
+      <Tab>
+        ```ts
+        entity.keys()
+        ```
+      </Tab>
+    </Tabs>
+
+  **Returns:** `string[]`
+
+  ### setHandle [#sethandle]
+
+  Updates the handle, netId, and statebag properties on an entity. Useful if re-using an entity instance, respawning an entity, changing the model, etc.
+
+    <Tabs groupId="language" items="['Lua', 'TypeScript']">
+      <Tab>
+        ```lua
+        entity:setHandle(handle)
+        ```
+      </Tab>
+
+      <Tab>
+        ```ts
+        entity.setHandle(handle)
+        ```
+      </Tab>
+    </Tabs>
+
+  * handle: `number`
+
+  ### getCoords [#getcoords]
+
+  Gets the entity's current coordinates.
+
+    <Tabs groupId="language" items="['Lua', 'TypeScript']">
+      <Tab>
+        ```lua
+        entity:getCoords()
+        ```
+      </Tab>
+
+      <Tab>
+        ```ts
+        entity.getCoords()
+        ```
+      </Tab>
+    </Tabs>
+
+  **Returns:** `Vector3`
+
+  ### setCoords [#setcoords]
+
+  Sets the entity's coordinates to the specified position.
+
+    <Tabs groupId="language" items="['Lua', 'TypeScript']">
+      <Tab>
+        ```lua
+        entity:setCoords(x, y, z, deadFlag, ragdollFlag, clearArea)
+        ```
+      </Tab>
+
+      <Tab>
+        ```ts
+        entity.setCoords()
+        ```
+      </Tab>
+    </Tabs>
+
+  * x: `number`
+  * y: `number`
+  * z: `number`
+  * deadFlag?: `boolean` (Defaults to false)
+  * ragdollFlag?: `boolean` (Defaults to false)
+  * clearArea?: `boolean` (Defaults to false)
+
+  ### getModel [#getmodel]
+
+  Gets the entity's current model hash.
+
+    <Tabs groupId="language" items="['Lua', 'TypeScript']">
+      <Tab>
+        ```lua
+        entity:getModel()
+        ```
+      </Tab>
+
+      <Tab>
+        ```ts
+        entity.getModel()
+        ```
+      </Tab>
+    </Tabs>
+
+  **Returns:** `number`
+
+  ### getHeading [#getheading]
+
+  Gets the entity's current heading (or yaw) in degrees.
+
+    <Tabs groupId="language" items="['Lua', 'TypeScript']">
+      <Tab>
+        ```lua
+        entity:getHeading()
+        ```
+      </Tab>
+
+      <Tab>
+        ```ts
+        entity.getHeading()
+        ```
+      </Tab>
+    </Tabs>
+
+  **Returns:** `number`
+
+  ### setHeading [#setheading]
+
+  Sets the entity's heading (or yaw) to the given value in degrees.
+
+    <Tabs groupId="language" items="['Lua', 'TypeScript']">
+      <Tab>
+        ```lua
+        entity:setHeading(heading)
+        ```
+      </Tab>
+
+      <Tab>
+        ```ts
+        entity.setHeading(heading)
+        ```
+      </Tab>
+    </Tabs>
+
+  * heading: `number`
+
+  ### getRoutingBucket [#getroutingbucket]
+
+  Gets the entity's current routing bucket.
+
+    <Tabs groupId="language" items="['Lua', 'TypeScript']">
+      <Tab>
+        ```lua
+        entity:getRoutingBucket()
+        ```
+      </Tab>
+
+      <Tab>
+        ```ts
+        entity.getRoutingBucket()
+        ```
+      </Tab>
+    </Tabs>
+
+  **Returns:** `number`
+
+  ### setRoutingBucket [#setroutingbucket]
+
+  Sets the entity's routing bucket to the given id. &#x2A;*Server only.**
+
+    <Tabs groupId="language" items="['Lua', 'TypeScript']">
+      <Tab>
+        ```lua
+        entity:setRoutingBucket(bucketId)
+        ```
+      </Tab>
+
+      <Tab>
+        ```ts
+        entity.setRoutingBucket(bucketId)
+        ```
+      </Tab>
+    </Tabs>
+
+  * bucketId: `number`
+
+  ### getArmour [#getarmour]
+
+  Gets the entity's current armour.
+
+  <Tabs groupId="language" items="['Lua', 'TypeScript']">
+    <Tab>
+      ```lua
+      entity:getArmour()
+      ```
+    </Tab>
+
+    <Tab>
+      ```ts
+      entity.getArmour()
+      ```
+    </Tab>
+  </Tabs>
+
+  **Returns:** `number`
+
+  ### setArmour [#setarmour]
+
+  Sets the entity's armour.
+
+  <Tabs groupId="language" items="['Lua', 'TypeScript']">
+    <Tab>
+      ```lua
+      entity:setArmour(amount)
+      ```
+    </Tab>
+
+    <Tab>
+      ```ts
+      entity.setArmour(amount)
+      ```
+    </Tab>
+  </Tabs>
+
+  * amount: `number`
+</section>
+
+
+# Player (/docs/ox_lib/Player)
+
+
+
+A class that extends the [Ped](Ped) class with additional functionality for players.
+
+## Constructor [#constructor]
+
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    lib.player:new(netId)
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    import { Player } from "@overextended/ox_lib";
+
+    new Player(netId)
+    ```
+  </Tab>
+</Tabs>
+
+* netId: `number` The player's [server id](https://docs.fivem.net/docs/scripting-manual/networking/ids/#server-id).
+
+**Returns:** `Player`
+
+## Methods [#methods]
+
+<section id="methods">
+  {/* 
+    Internal class used by the GameEntity classes (Ped, Player, Prop, Vehicle).
+    */}
+
+  {/* ## Properties
+
+    <TypeTable
+    type={{
+      handle: {
+        description: "The entity's script handle.",
+        type: 'number',
+        required: true
+      },
+      netId: {
+        description: "The entity's network id.",
+        type: 'number',
+        required: true
+      },
+      type: {
+        description: "The entity's type (i.e. Ped, Player, Prop, Vehicle).",
+        type: 'string',
+        required: true
+      },
+      statebag: {
+        description: "The entity's internal statebag name.",
+        type: 'string',
+        required: true
+      },
+    }}
+    /> */}
+
+  ### set [#set]
+
+  Writes a value to the entity's statebag.
+
+    <Tabs groupId="language" items="['Lua', 'TypeScript']">
+      <Tab>
+        ```lua
+        entity:set(key, value)
+        ```
+      </Tab>
+
+      <Tab>
+        ```ts
+        entity.set(key, value)
+        ```
+      </Tab>
+    </Tabs>
+
+  * key: `string`
+  * value: `any`
+
+  **Returns:** `boolean` - If the state changed.
+
+  ### setr [#setr]
+
+  Writes a replicated value to the entity's statebag. Client-set values are validated by the server.
+
+    <Tabs groupId="language" items="['Lua', 'TypeScript']">
+      <Tab>
+        ```lua
+        entity:setr(key, value)
+        ```
+      </Tab>
+
+      <Tab>
+        ```ts
+        entity.setr(key, value)
+        ```
+      </Tab>
+    </Tabs>
+
+  * key: `string`
+  * value: `any`
+
+  **Returns:** `boolean` - If the state changed.
+
+  ### sets [#sets]
+
+  Writes a synced value to the entity's statebag. Client-set values are validated by the server.\
+  Synced values are only replicated between the player and server, and cannot be set on non-player entities.
+
+    <Tabs groupId="language" items="['Lua', 'TypeScript']">
+      <Tab>
+        ```lua
+        entity:sets(key, value)
+        ```
+      </Tab>
+
+      <Tab>
+        ```ts
+        entity.sets(key, value)
+        ```
+      </Tab>
+    </Tabs>
+
+  * key: `string`
+  * value: `any`
+
+  **Returns:** `boolean` - If the state changed.
+
+  ### get [#get]
+
+  Returns a value from the entity's statebag.
+
+    <Tabs groupId="language" items="['Lua', 'TypeScript']">
+      <Tab>
+        ```lua
+        entity:get(key)
+        ```
+      </Tab>
+
+      <Tab>
+        ```ts
+        entity.get(key)
+        ```
+      </Tab>
+    </Tabs>
+
+  * key: `string`
+
+  **Returns:** `unknown`
+
+  ### has [#has]
+
+  Returns whether a key exists in the entity's statebag.
+
+    <Tabs groupId="language" items="['Lua', 'TypeScript']">
+      <Tab>
+        ```lua
+        entity:has(key)
+        ```
+      </Tab>
+
+      <Tab>
+        ```ts
+        entity.has(key)
+        ```
+      </Tab>
+    </Tabs>
+
+  * key: `string`
+
+  **Returns:** `boolean`
+
+  ### keys [#keys]
+
+  Returns an array of all keys set on the entity's statebag.
+
+    <Tabs groupId="language" items="['Lua', 'TypeScript']">
+      <Tab>
+        ```lua
+        entity:keys()
+        ```
+      </Tab>
+
+      <Tab>
+        ```ts
+        entity.keys()
+        ```
+      </Tab>
+    </Tabs>
+
+  **Returns:** `string[]`
+
+  ### setHandle [#sethandle]
+
+  Updates the handle, netId, and statebag properties on an entity. Useful if re-using an entity instance, respawning an entity, changing the model, etc.
+
+    <Tabs groupId="language" items="['Lua', 'TypeScript']">
+      <Tab>
+        ```lua
+        entity:setHandle(handle)
+        ```
+      </Tab>
+
+      <Tab>
+        ```ts
+        entity.setHandle(handle)
+        ```
+      </Tab>
+    </Tabs>
+
+  * handle: `number`
+
+  ### getCoords [#getcoords]
+
+  Gets the entity's current coordinates.
+
+    <Tabs groupId="language" items="['Lua', 'TypeScript']">
+      <Tab>
+        ```lua
+        entity:getCoords()
+        ```
+      </Tab>
+
+      <Tab>
+        ```ts
+        entity.getCoords()
+        ```
+      </Tab>
+    </Tabs>
+
+  **Returns:** `Vector3`
+
+  ### setCoords [#setcoords]
+
+  Sets the entity's coordinates to the specified position.
+
+    <Tabs groupId="language" items="['Lua', 'TypeScript']">
+      <Tab>
+        ```lua
+        entity:setCoords(x, y, z, deadFlag, ragdollFlag, clearArea)
+        ```
+      </Tab>
+
+      <Tab>
+        ```ts
+        entity.setCoords()
+        ```
+      </Tab>
+    </Tabs>
+
+  * x: `number`
+  * y: `number`
+  * z: `number`
+  * deadFlag?: `boolean` (Defaults to false)
+  * ragdollFlag?: `boolean` (Defaults to false)
+  * clearArea?: `boolean` (Defaults to false)
+
+  ### getModel [#getmodel]
+
+  Gets the entity's current model hash.
+
+    <Tabs groupId="language" items="['Lua', 'TypeScript']">
+      <Tab>
+        ```lua
+        entity:getModel()
+        ```
+      </Tab>
+
+      <Tab>
+        ```ts
+        entity.getModel()
+        ```
+      </Tab>
+    </Tabs>
+
+  **Returns:** `number`
+
+  ### getHeading [#getheading]
+
+  Gets the entity's current heading (or yaw) in degrees.
+
+    <Tabs groupId="language" items="['Lua', 'TypeScript']">
+      <Tab>
+        ```lua
+        entity:getHeading()
+        ```
+      </Tab>
+
+      <Tab>
+        ```ts
+        entity.getHeading()
+        ```
+      </Tab>
+    </Tabs>
+
+  **Returns:** `number`
+
+  ### setHeading [#setheading]
+
+  Sets the entity's heading (or yaw) to the given value in degrees.
+
+    <Tabs groupId="language" items="['Lua', 'TypeScript']">
+      <Tab>
+        ```lua
+        entity:setHeading(heading)
+        ```
+      </Tab>
+
+      <Tab>
+        ```ts
+        entity.setHeading(heading)
+        ```
+      </Tab>
+    </Tabs>
+
+  * heading: `number`
+
+  ### getRoutingBucket [#getroutingbucket]
+
+  Gets the entity's current routing bucket.
+
+    <Tabs groupId="language" items="['Lua', 'TypeScript']">
+      <Tab>
+        ```lua
+        entity:getRoutingBucket()
+        ```
+      </Tab>
+
+      <Tab>
+        ```ts
+        entity.getRoutingBucket()
+        ```
+      </Tab>
+    </Tabs>
+
+  **Returns:** `number`
+
+  ### setRoutingBucket [#setroutingbucket]
+
+  Sets the entity's routing bucket to the given id. &#x2A;*Server only.**
+
+    <Tabs groupId="language" items="['Lua', 'TypeScript']">
+      <Tab>
+        ```lua
+        entity:setRoutingBucket(bucketId)
+        ```
+      </Tab>
+
+      <Tab>
+        ```ts
+        entity.setRoutingBucket(bucketId)
+        ```
+      </Tab>
+    </Tabs>
+
+  * bucketId: `number`
+
+  ### getArmour [#getarmour]
+
+  Gets the entity's current armour.
+
+  <Tabs groupId="language" items="['Lua', 'TypeScript']">
+    <Tab>
+      ```lua
+      entity:getArmour()
+      ```
+    </Tab>
+
+    <Tab>
+      ```ts
+      entity.getArmour()
+      ```
+    </Tab>
+  </Tabs>
+
+  **Returns:** `number`
+
+  ### setArmour [#setarmour]
+
+  Sets the entity's armour.
+
+  <Tabs groupId="language" items="['Lua', 'TypeScript']">
+    <Tab>
+      ```lua
+      entity:setArmour(amount)
+      ```
+    </Tab>
+
+    <Tab>
+      ```ts
+      entity.setArmour(amount)
+      ```
+    </Tab>
+  </Tabs>
+
+  * amount: `number`
+</section>
+
+### setModel [#setmodel]
+
+Creates a new ped and assigns it to the player. On the client, this invalidates the entity handle (see [setHandle](#sethandle)).
+
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    entity:setModel(model)
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    entity.setModel(model)
+    ```
+  </Tab>
+</Tabs>
+
+* model: `string` | `number`
+
+
+# Prop (/docs/ox_lib/Prop)
+
+
+
+A class for object entities implementing a custom statebag interface and common entity operations.
+
+## Constructor [#constructor]
+
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    lib.prop:new(handle)
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    import { Prop } from "@overextended/ox_lib";
+
+    new Prop(handle)
+    ```
+  </Tab>
+</Tabs>
+
+* handle: `number` The entity's [script handle](https://docs.fivem.net/docs/scripting-manual/networking/ids/#entity-handle).
+
+**Returns:** `Prop`
+
+## Methods [#methods]
+
+{/* 
+  Internal class used by the GameEntity classes (Ped, Player, Prop, Vehicle).
+  */}
+
+{/* ## Properties
+
+  <TypeTable
+  type={{
+    handle: {
+      description: "The entity's script handle.",
+      type: 'number',
+      required: true
+    },
+    netId: {
+      description: "The entity's network id.",
+      type: 'number',
+      required: true
+    },
+    type: {
+      description: "The entity's type (i.e. Ped, Player, Prop, Vehicle).",
+      type: 'string',
+      required: true
+    },
+    statebag: {
+      description: "The entity's internal statebag name.",
+      type: 'string',
+      required: true
+    },
+  }}
+  /> */}
+
+### set [#set]
+
+Writes a value to the entity's statebag.
+
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    entity:set(key, value)
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    entity.set(key, value)
+    ```
+  </Tab>
+</Tabs>
+
+* key: `string`
+* value: `any`
+
+**Returns:** `boolean` - If the state changed.
+
+### setr [#setr]
+
+Writes a replicated value to the entity's statebag. Client-set values are validated by the server.
+
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    entity:setr(key, value)
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    entity.setr(key, value)
+    ```
+  </Tab>
+</Tabs>
+
+* key: `string`
+* value: `any`
+
+**Returns:** `boolean` - If the state changed.
+
+### sets [#sets]
+
+Writes a synced value to the entity's statebag. Client-set values are validated by the server.\
+Synced values are only replicated between the player and server, and cannot be set on non-player entities.
+
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    entity:sets(key, value)
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    entity.sets(key, value)
+    ```
+  </Tab>
+</Tabs>
+
+* key: `string`
+* value: `any`
+
+**Returns:** `boolean` - If the state changed.
+
+### get [#get]
+
+Returns a value from the entity's statebag.
+
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    entity:get(key)
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    entity.get(key)
+    ```
+  </Tab>
+</Tabs>
+
+* key: `string`
+
+**Returns:** `unknown`
+
+### has [#has]
+
+Returns whether a key exists in the entity's statebag.
+
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    entity:has(key)
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    entity.has(key)
+    ```
+  </Tab>
+</Tabs>
+
+* key: `string`
+
+**Returns:** `boolean`
+
+### keys [#keys]
+
+Returns an array of all keys set on the entity's statebag.
+
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    entity:keys()
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    entity.keys()
+    ```
+  </Tab>
+</Tabs>
+
+**Returns:** `string[]`
+
+### setHandle [#sethandle]
+
+Updates the handle, netId, and statebag properties on an entity. Useful if re-using an entity instance, respawning an entity, changing the model, etc.
+
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    entity:setHandle(handle)
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    entity.setHandle(handle)
+    ```
+  </Tab>
+</Tabs>
+
+* handle: `number`
+
+### getCoords [#getcoords]
+
+Gets the entity's current coordinates.
+
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    entity:getCoords()
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    entity.getCoords()
+    ```
+  </Tab>
+</Tabs>
+
+**Returns:** `Vector3`
+
+### setCoords [#setcoords]
+
+Sets the entity's coordinates to the specified position.
+
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    entity:setCoords(x, y, z, deadFlag, ragdollFlag, clearArea)
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    entity.setCoords()
+    ```
+  </Tab>
+</Tabs>
+
+* x: `number`
+* y: `number`
+* z: `number`
+* deadFlag?: `boolean` (Defaults to false)
+* ragdollFlag?: `boolean` (Defaults to false)
+* clearArea?: `boolean` (Defaults to false)
+
+### getModel [#getmodel]
+
+Gets the entity's current model hash.
+
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    entity:getModel()
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    entity.getModel()
+    ```
+  </Tab>
+</Tabs>
+
+**Returns:** `number`
+
+### getHeading [#getheading]
+
+Gets the entity's current heading (or yaw) in degrees.
+
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    entity:getHeading()
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    entity.getHeading()
+    ```
+  </Tab>
+</Tabs>
+
+**Returns:** `number`
+
+### setHeading [#setheading]
+
+Sets the entity's heading (or yaw) to the given value in degrees.
+
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    entity:setHeading(heading)
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    entity.setHeading(heading)
+    ```
+  </Tab>
+</Tabs>
+
+* heading: `number`
+
+### getRoutingBucket [#getroutingbucket]
+
+Gets the entity's current routing bucket.
+
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    entity:getRoutingBucket()
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    entity.getRoutingBucket()
+    ```
+  </Tab>
+</Tabs>
+
+**Returns:** `number`
+
+### setRoutingBucket [#setroutingbucket]
+
+Sets the entity's routing bucket to the given id. &#x2A;*Server only.**
+
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    entity:setRoutingBucket(bucketId)
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    entity.setRoutingBucket(bucketId)
+    ```
+  </Tab>
+</Tabs>
+
+* bucketId: `number`
+
+### setOnGround [#setonground]
+
+Attempts to set the entity onto the ground.\
+On the server, this uses the `ox_entity_setonground` state and a [statebag change handler](https://github.com/overextended/ox_lib/blob/44796d362997f9d1b67a01b56ed5bcba1e73c2f4/resource/client.lua#L39-L74).
+
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    entity:setOnGround()
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    entity.setOnGround()
+    ```
+  </Tab>
+</Tabs>
+
+**Returns:** `boolean`
+
+
+# Vehicle (/docs/ox_lib/Vehicle)
+
+
+
+A class for vehicle entities implementing a custom statebag interface and common entity operations.
+
+## Constructor [#constructor]
+
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    lib.vehicle:new(handle)
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    import { Vehicle } from "@overextended/ox_lib";
+
+    new Vehicle(handle)
+    ```
+  </Tab>
+</Tabs>
+
+* handle: `number` The entity's [script handle](https://docs.fivem.net/docs/scripting-manual/networking/ids/#entity-handle).
+
+**Returns:** `Vehicle`
+
+## Methods [#methods]
+
+{/* 
+  Internal class used by the GameEntity classes (Ped, Player, Prop, Vehicle).
+  */}
+
+{/* ## Properties
+
+  <TypeTable
+  type={{
+    handle: {
+      description: "The entity's script handle.",
+      type: 'number',
+      required: true
+    },
+    netId: {
+      description: "The entity's network id.",
+      type: 'number',
+      required: true
+    },
+    type: {
+      description: "The entity's type (i.e. Ped, Player, Prop, Vehicle).",
+      type: 'string',
+      required: true
+    },
+    statebag: {
+      description: "The entity's internal statebag name.",
+      type: 'string',
+      required: true
+    },
+  }}
+  /> */}
+
+### set [#set]
+
+Writes a value to the entity's statebag.
+
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    entity:set(key, value)
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    entity.set(key, value)
+    ```
+  </Tab>
+</Tabs>
+
+* key: `string`
+* value: `any`
+
+**Returns:** `boolean` - If the state changed.
+
+### setr [#setr]
+
+Writes a replicated value to the entity's statebag. Client-set values are validated by the server.
+
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    entity:setr(key, value)
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    entity.setr(key, value)
+    ```
+  </Tab>
+</Tabs>
+
+* key: `string`
+* value: `any`
+
+**Returns:** `boolean` - If the state changed.
+
+### sets [#sets]
+
+Writes a synced value to the entity's statebag. Client-set values are validated by the server.\
+Synced values are only replicated between the player and server, and cannot be set on non-player entities.
+
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    entity:sets(key, value)
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    entity.sets(key, value)
+    ```
+  </Tab>
+</Tabs>
+
+* key: `string`
+* value: `any`
+
+**Returns:** `boolean` - If the state changed.
+
+### get [#get]
+
+Returns a value from the entity's statebag.
+
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    entity:get(key)
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    entity.get(key)
+    ```
+  </Tab>
+</Tabs>
+
+* key: `string`
+
+**Returns:** `unknown`
+
+### has [#has]
+
+Returns whether a key exists in the entity's statebag.
+
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    entity:has(key)
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    entity.has(key)
+    ```
+  </Tab>
+</Tabs>
+
+* key: `string`
+
+**Returns:** `boolean`
+
+### keys [#keys]
+
+Returns an array of all keys set on the entity's statebag.
+
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    entity:keys()
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    entity.keys()
+    ```
+  </Tab>
+</Tabs>
+
+**Returns:** `string[]`
+
+### setHandle [#sethandle]
+
+Updates the handle, netId, and statebag properties on an entity. Useful if re-using an entity instance, respawning an entity, changing the model, etc.
+
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    entity:setHandle(handle)
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    entity.setHandle(handle)
+    ```
+  </Tab>
+</Tabs>
+
+* handle: `number`
+
+### getCoords [#getcoords]
+
+Gets the entity's current coordinates.
+
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    entity:getCoords()
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    entity.getCoords()
+    ```
+  </Tab>
+</Tabs>
+
+**Returns:** `Vector3`
+
+### setCoords [#setcoords]
+
+Sets the entity's coordinates to the specified position.
+
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    entity:setCoords(x, y, z, deadFlag, ragdollFlag, clearArea)
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    entity.setCoords()
+    ```
+  </Tab>
+</Tabs>
+
+* x: `number`
+* y: `number`
+* z: `number`
+* deadFlag?: `boolean` (Defaults to false)
+* ragdollFlag?: `boolean` (Defaults to false)
+* clearArea?: `boolean` (Defaults to false)
+
+### getModel [#getmodel]
+
+Gets the entity's current model hash.
+
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    entity:getModel()
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    entity.getModel()
+    ```
+  </Tab>
+</Tabs>
+
+**Returns:** `number`
+
+### getHeading [#getheading]
+
+Gets the entity's current heading (or yaw) in degrees.
+
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    entity:getHeading()
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    entity.getHeading()
+    ```
+  </Tab>
+</Tabs>
+
+**Returns:** `number`
+
+### setHeading [#setheading]
+
+Sets the entity's heading (or yaw) to the given value in degrees.
+
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    entity:setHeading(heading)
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    entity.setHeading(heading)
+    ```
+  </Tab>
+</Tabs>
+
+* heading: `number`
+
+### getRoutingBucket [#getroutingbucket]
+
+Gets the entity's current routing bucket.
+
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    entity:getRoutingBucket()
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    entity.getRoutingBucket()
+    ```
+  </Tab>
+</Tabs>
+
+**Returns:** `number`
+
+### setRoutingBucket [#setroutingbucket]
+
+Sets the entity's routing bucket to the given id. &#x2A;*Server only.**
+
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    entity:setRoutingBucket(bucketId)
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    entity.setRoutingBucket(bucketId)
+    ```
+  </Tab>
+</Tabs>
+
+* bucketId: `number`
+
+### setOnGround [#setonground]
+
+Attempts to set the entity onto the ground.\
+On the server, this uses the `ox_entity_setonground` state and a [statebag change handler](https://github.com/overextended/ox_lib/blob/44796d362997f9d1b67a01b56ed5bcba1e73c2f4/resource/client.lua#L39-L74).
+
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    entity:setOnGround()
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    entity.setOnGround()
+    ```
+  </Tab>
+</Tabs>
+
+**Returns:** `boolean`
+
+### getType [#gettype]
+
+Gets the entity's vehicle type. See [GetVehicleType](https://docs.fivem.net/natives/?_0xA273060E).
+
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    entity:getType()
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    entity.getType()
+    ```
+  </Tab>
+</Tabs>
+
+**Returns:** `string`
+
+### getPlate [#getplate]
+
+Gets the entity's number plate text.
+
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    entity:getPlate()
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    entity.getPlate()
+    ```
+  </Tab>
+</Tabs>
+
+**Returns:** `string`
+
+### setPlate [#setplate]
+
+Sets the entity's number plate text.
+
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    entity:setPlate(plate)
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    entity.setPlate(plate)
+    ```
+  </Tab>
+</Tabs>
+
+* plate: `string`
 
 
 # Ox Lib (/docs/ox_lib)
@@ -1153,151 +3138,6 @@ These aren't necessary to run ox\_target, but they will add additional features.
 * [ox\_core](https://github.com/overextended/ox_core)
 * [esx](https://github.com/esx-framework/esx-legacy)
 * [qbx\_core](https://github.com/Qbox-project/qbx_core)
-
-
-# Fivemanage (/docs/resources/fivemanage)
-
-
-
-<div
-  style="{
-  display: &#x22;grid&#x22;,
-  placeItems: &#x22;center&#x22;,
-}"
->
-  <a
-    href="https://refer.fivemanage.com/overextended"
-    style="{
-    background: &#x22;no-repeat url('/static/fivemanage.png')&#x22;,
-    backgroundSize: &#x22;contain&#x22;,
-    fontSize: &#x22;3rem&#x22;,
-    fontWeight: &#x22;500&#x22;,
-    verticalAlign: &#x22;middle&#x22;,
-    paddingLeft: &#x22;2em&#x22;,
-  }"
-  >
-    {" "}
-
-    Fivemanage
-  </a>
-</div>
-
-Fivemanage is an all-in-one SaaS platform for communities looking to improve their workflow, offering a range of features to faciliate easier management
-and administration of your FiveM server. They offer fast and reliable content delivery - with full support for image, video, and audio files - and seamless
-logging to track player and server activity while ensuring dependable performance and security.
-
-Fivemanage integrates seamlessly into your FiveM server with native support via ox\_lib and oxmysql, or through their official FiveM SDK.
-
-They offer a generous free plan with enough storage to get you started, and a variety of paid plans designed for both small and large servers needing access to more storage and advanced feeatures.
-
-Get started with [Fivemanage](https://refer.fivemanage.com/overextended) today.
-
-
-# Resources (/docs/resources)
-
-
-
-
-
-<Cards>
-  {getPageTreePeers(source.getPageTree(), "/docs/resources").map((peer) => (
-      <Card key={peer.url} title={peer.name} href={peer.url}>
-        {peer.description}
-      </Card>
-    ))}
-</Cards>
-
-
-# Prism Host (/docs/resources/prism-host)
-
-
-
-<div
-  style="{
-  display: &#x22;grid&#x22;,
-  placeItems: &#x22;center&#x22;,
-}"
->
-  <a
-    href="https://prism-host.com/overextended"
-    style="{
-    background: &#x22;no-repeat url('/static/prism.png') center&#x22;,
-    backgroundSize: &#x22;contain&#x22;,
-    fontWeight: &#x22;500&#x22;,
-    height: &#x22;4em&#x22;,
-    width: &#x22;100%&#x22;,
-  }"
-  />
-</div>
-
-Prism Host delivers performance-focused hosting without the inflated price tag. From game servers and VPS to dedicated hardware and web hosting, we build around fast hardware, practical pricing, and responsive support.
-
-Get started with [Prism Host](https://prism-host.com/overextended) today using the code `OVEREXTENDED` at checkout.
-
-
-# Tebex Creators (/docs/resources/tebex-creators)
-
-
-
-
-
-Creator codes allow Tebex stores to share revenue with other creators, giving a discount to the customer at the same time.
-We make these deals to advertise trusted creators who meet our criteria.
-
-* The creator is reputable and provides quality customer service.
-* The creator understands and respects [open source](https://opensource.org/) licenses.
-* Resources follow best practices and are highly configurable or source-available.
-
-{CreatorCodes([
-  ["Andyyy", "https://andyyy.tebex.io/", "ox20", 20 , "/static/creators/andy.png"],
-  ["Berkie's Workshop", "https://berkie.tebex.io/", "ox10", 10 , "/static/creators/berkie.png"],
-  ["Dolu Mods", "https://dolu.tebex.io/", "overextended", 25 , "/static/creators/dolu.png"],
-  ["Electus Scripts", "https://store.electus-scripts.com/", "ox10", 10 , "/static/creators/electus.png"],
-  ["Loaf Scripts", "https://store.loaf-scripts.com/", "ox10", 10 , "/static/creators/loaf.png"],
-  ["OT Studios", "https://store.otstudios.net/ox", "ox10", 10 , "/static/creators/otstudios.png"],
-  ["Randolio Scripts", "https://randolio.tebex.io/", "OVEREXTENDED", 20 , "/static/creators/randolio.png"],
-  ["rcore", "https://store.rcore.cz/", "ox10", 10 , "/static/creators/rcore.png"],
-  ["Artwork Inventory", "https://artwork-inventory.tebex.io/", "ox10", 10 , "/static/creators/artworkInventory.gif"],
-  ["Renewed Scripts", "https://renewed.tebex.io/ox", "ox15", 15 , "/static/creators/renewed.png"],
-  ["Three Amigos Modding", "https://threeamigos.shop/", "overextended", 10, "/static/creators/tam.png"],
-  ["RAHE Development", "https://rahe.tebex.io/", "ox10", 10, "/static/creators/rahe.png"],
-  ["Qwaly Scripts", "https://qwaly.dev/", "ox10", 10, "/static/creators/qwaly.png"],
-  ["Ehbw Scripts", "https://ehbw.tebex.io/", "ox10", 10, "/static/creators/ehbw.png"],
-  ["Lation Scripts", "https://lationscripts.com/", "ox10", 10, "/static/creators/lation.png"],
-  ["Fuksus", "https://resources.fuksus.com/", "OX15", 15, "/static/creators/fuksus.png"],
-  ["TeamsGG", "https://teamsgg.dev/", "ox10", 10, "/static/creators/teamsgg.png"],
-  ["MadCap Scripts", "https://madcap-scripts.tebex.io/", "ox10", 10, "/static/creators/madcap.png"],
-  ["Stevo Scripts", "https://store.stevoscripts.com/", "overextended", 10, "/static/creators/steve.png"],
-  ["Inferno Collection", "https://store.inferno-collection.com/", "ox7", 7, "/static/creators/inferno.png"]
-  ])}
-
-You can apply a creator code at checkout under "Support A Creator".
-
-
-# Templates (/docs/resources/templates)
-
-
-
-We currently publish two templates for FiveM developers.
-
-## fxserver [#fxserver]
-
-This template is intended for developers looking to quickly install fxserver and create a monorepo for simple resource management.
-
-If you prefer to run fxserver in a container, look elsewhere.
-
-**[Browse repository](https://github.com/overextended/fxserver)**
-
-## fivem-ts [#fivem-ts]
-
-If you're looking to start creating resources with TypeScript but don't know what tools to use, settings to configure, or just hate having to setup new projects then we've got you covered.
-
-* Setup for working with our libraries (@overextended/core and @overextended/ox\_lib).
-* Uses [tsdown](https://tsdown.dev/) for fast build times and compatibility with a large [plugin](https://tsdown.dev/advanced/plugins) ecosystem.
-* Optionally scaffold a new webapp with [vite](https://vite.dev/guide/).
-* Fully configured for FiveM and FXServer.
-
-**[Browse repository](https://github.com/overextended/fivem-ts)**
 
 
 # Benchmark (/docs/oxmysql/benchmark)
@@ -1644,6 +3484,263 @@ Columns can be sorted by ascending and descending order, and hovering over a que
 </Callout>
 
 ![oxmysql\_ui\_queries](https://i.imgur.com/gZpJoIg.png)
+
+
+# Fivemanage (/docs/resources/fivemanage)
+
+
+
+<div
+  style="{
+  display: &#x22;grid&#x22;,
+  placeItems: &#x22;center&#x22;,
+}"
+>
+  <a
+    href="https://refer.fivemanage.com/overextended"
+    style="{
+    background: &#x22;no-repeat url('/static/fivemanage.png')&#x22;,
+    backgroundSize: &#x22;contain&#x22;,
+    fontSize: &#x22;3rem&#x22;,
+    fontWeight: &#x22;500&#x22;,
+    verticalAlign: &#x22;middle&#x22;,
+    paddingLeft: &#x22;2em&#x22;,
+  }"
+  >
+    {" "}
+
+    Fivemanage
+  </a>
+</div>
+
+Fivemanage is an all-in-one SaaS platform for communities looking to improve their workflow, offering a range of features to faciliate easier management
+and administration of your FiveM server. They offer fast and reliable content delivery - with full support for image, video, and audio files - and seamless
+logging to track player and server activity while ensuring dependable performance and security.
+
+Fivemanage integrates seamlessly into your FiveM server with native support via ox\_lib and oxmysql, or through their official FiveM SDK.
+
+They offer a generous free plan with enough storage to get you started, and a variety of paid plans designed for both small and large servers needing access to more storage and advanced feeatures.
+
+Get started with [Fivemanage](https://refer.fivemanage.com/overextended) today.
+
+
+# Resources (/docs/resources)
+
+
+
+
+
+<Cards>
+  {getPageTreePeers(source.getPageTree(), "/docs/resources").map((peer) => (
+      <Card key={peer.url} title={peer.name} href={peer.url}>
+        {peer.description}
+      </Card>
+    ))}
+</Cards>
+
+
+# Prism Host (/docs/resources/prism-host)
+
+
+
+<div
+  style="{
+  display: &#x22;grid&#x22;,
+  placeItems: &#x22;center&#x22;,
+}"
+>
+  <a
+    href="https://prism-host.com/overextended"
+    style="{
+    background: &#x22;no-repeat url('/static/prism.png') center&#x22;,
+    backgroundSize: &#x22;contain&#x22;,
+    fontWeight: &#x22;500&#x22;,
+    height: &#x22;4em&#x22;,
+    width: &#x22;100%&#x22;,
+  }"
+  />
+</div>
+
+Prism Host delivers performance-focused hosting without the inflated price tag. From game servers and VPS to dedicated hardware and web hosting, we build around fast hardware, practical pricing, and responsive support.
+
+Get started with [Prism Host](https://prism-host.com/overextended) today using the code `OVEREXTENDED` at checkout.
+
+
+# Tebex Creators (/docs/resources/tebex-creators)
+
+
+
+
+
+Creator codes allow Tebex stores to share revenue with other creators, giving a discount to the customer at the same time.
+We make these deals to advertise trusted creators who meet our criteria.
+
+* The creator is reputable and provides quality customer service.
+* The creator understands and respects [open source](https://opensource.org/) licenses.
+* Resources follow best practices and are highly configurable or source-available.
+
+{CreatorCodes([
+  ["Andyyy", "https://andyyy.tebex.io/", "ox20", 20 , "/static/creators/andy.png"],
+  ["Berkie's Workshop", "https://berkie.tebex.io/", "ox10", 10 , "/static/creators/berkie.png"],
+  ["Dolu Mods", "https://dolu.tebex.io/", "overextended", 25 , "/static/creators/dolu.png"],
+  ["Electus Scripts", "https://store.electus-scripts.com/", "ox10", 10 , "/static/creators/electus.png"],
+  ["Loaf Scripts", "https://store.loaf-scripts.com/", "ox10", 10 , "/static/creators/loaf.png"],
+  ["OT Studios", "https://store.otstudios.net/ox", "ox10", 10 , "/static/creators/otstudios.png"],
+  ["Randolio Scripts", "https://randolio.tebex.io/", "OVEREXTENDED", 20 , "/static/creators/randolio.png"],
+  ["rcore", "https://store.rcore.cz/", "ox10", 10 , "/static/creators/rcore.png"],
+  ["Artwork Inventory", "https://artwork-inventory.tebex.io/", "ox10", 10 , "/static/creators/artworkInventory.gif"],
+  ["Renewed Scripts", "https://renewed.tebex.io/ox", "ox15", 15 , "/static/creators/renewed.png"],
+  ["Three Amigos Modding", "https://threeamigos.shop/", "overextended", 10, "/static/creators/tam.png"],
+  ["RAHE Development", "https://rahe.tebex.io/", "ox10", 10, "/static/creators/rahe.png"],
+  ["Qwaly Scripts", "https://qwaly.dev/", "ox10", 10, "/static/creators/qwaly.png"],
+  ["Ehbw Scripts", "https://ehbw.tebex.io/", "ox10", 10, "/static/creators/ehbw.png"],
+  ["Lation Scripts", "https://lationscripts.com/", "ox10", 10, "/static/creators/lation.png"],
+  ["Fuksus", "https://resources.fuksus.com/", "OX15", 15, "/static/creators/fuksus.png"],
+  ["TeamsGG", "https://teamsgg.dev/", "ox10", 10, "/static/creators/teamsgg.png"],
+  ["MadCap Scripts", "https://madcap-scripts.tebex.io/", "ox10", 10, "/static/creators/madcap.png"],
+  ["Stevo Scripts", "https://store.stevoscripts.com/", "overextended", 10, "/static/creators/steve.png"],
+  ["Inferno Collection", "https://store.inferno-collection.com/", "ox7", 7, "/static/creators/inferno.png"]
+  ])}
+
+You can apply a creator code at checkout under "Support A Creator".
+
+
+# Templates (/docs/resources/templates)
+
+
+
+We currently publish two templates for FiveM developers.
+
+## fxserver [#fxserver]
+
+This template is intended for developers looking to quickly install fxserver and create a monorepo for simple resource management.
+
+If you prefer to run fxserver in a container, look elsewhere.
+
+**[Browse repository](https://github.com/overextended/fxserver)**
+
+## fivem-ts [#fivem-ts]
+
+If you're looking to start creating resources with TypeScript but don't know what tools to use, settings to configure, or just hate having to setup new projects then we've got you covered.
+
+* Setup for working with our libraries (@overextended/core and @overextended/ox\_lib).
+* Uses [tsdown](https://tsdown.dev/) for fast build times and compatibility with a large [plugin](https://tsdown.dev/advanced/plugins) ecosystem.
+* Optionally scaffold a new webapp with [vite](https://vite.dev/guide/).
+* Fully configured for FiveM and FXServer.
+
+**[Browse repository](https://github.com/overextended/fivem-ts)**
+
+
+# Functions (/docs/ox_doorlock/Client/functions)
+
+
+
+## pickClosestDoor [#pickclosestdoor]
+
+Attempt to pick the lock of the closest door. Dependant on server-side checks and may fail.
+
+```lua
+exports.ox_doorlock:pickClosestDoor()
+```
+
+## useClosestDoor [#useclosestdoor]
+
+Interact with the closest door. Dependant on server-side checks and may fail.
+
+```lua
+exports.ox_doorlock:useClosestDoor()
+```
+
+## getClosestDoor [#getclosestdoor]
+
+Returns the closest door.
+
+```lua
+exports.ox_doorlock:getClosestDoor()
+```
+
+Return:
+
+* door: `number`
+
+
+# Events (/docs/ox_doorlock/Server/events)
+
+
+
+## Handlers [#handlers]
+
+These events **should not** be triggered by any other scripts.
+
+### ox\_doorlock:stateChanged [#ox_doorlockstatechanged]
+
+Triggered when a doors state is updated.
+
+```lua
+AddEventHandler('ox_doorlock:stateChanged', function(source, doorId, state, usedItem) end)
+```
+
+* source: `number` or `nil`
+* doorId: `number`
+* state: `boolean`
+* usedItem: `string` or `false` or `nil`
+
+
+# Functions (/docs/ox_doorlock/Server/functions)
+
+
+
+Gets data for a door with the given id, matching the id for the database entry.
+
+## getDoor [#getdoor]
+
+```lua
+exports.ox_doorlock:getDoor(doorId)
+```
+
+Gets data for a door with the given `id`, matching the id for the database entry.
+
+* id: `number`
+
+Return:
+
+* door: `table`
+
+## getDoorFromName [#getdoorfromname]
+
+```lua
+exports.ox_doorlock:getDoorFromName(name)
+```
+
+Gets data for a door with the given `name`, matching the name for the database entry.
+
+* name: `string`
+
+Return:
+
+* door: `table`
+
+## editDoor [#editdoor]
+
+```lua
+exports.ox_doorlock:editDoor(doorId, data)
+```
+
+Edit configuration for the given doorId.
+
+* doorId: `number`
+* data: `table`
+
+## setDoorState [#setdoorstate]
+
+```lua
+exports.ox_doorlock:setDoorState(doorId, state)
+```
+
+Sets a door with the given doorId as locked if state is `true` or `1`.
+
+* doorId: `number`
+* state: `0` or `1` or `boolean`
 
 
 # Client Events (/docs/ox_core/Events/client)
@@ -3094,118 +5191,6 @@ Ox.UnbanUser(userId)
 * `boolean`
 
 
-# Functions (/docs/ox_doorlock/Client/functions)
-
-
-
-## pickClosestDoor [#pickclosestdoor]
-
-Attempt to pick the lock of the closest door. Dependant on server-side checks and may fail.
-
-```lua
-exports.ox_doorlock:pickClosestDoor()
-```
-
-## useClosestDoor [#useclosestdoor]
-
-Interact with the closest door. Dependant on server-side checks and may fail.
-
-```lua
-exports.ox_doorlock:useClosestDoor()
-```
-
-## getClosestDoor [#getclosestdoor]
-
-Returns the closest door.
-
-```lua
-exports.ox_doorlock:getClosestDoor()
-```
-
-Return:
-
-* door: `number`
-
-
-# Events (/docs/ox_doorlock/Server/events)
-
-
-
-## Handlers [#handlers]
-
-These events **should not** be triggered by any other scripts.
-
-### ox\_doorlock:stateChanged [#ox_doorlockstatechanged]
-
-Triggered when a doors state is updated.
-
-```lua
-AddEventHandler('ox_doorlock:stateChanged', function(source, doorId, state, usedItem) end)
-```
-
-* source: `number` or `nil`
-* doorId: `number`
-* state: `boolean`
-* usedItem: `string` or `false` or `nil`
-
-
-# Functions (/docs/ox_doorlock/Server/functions)
-
-
-
-Gets data for a door with the given id, matching the id for the database entry.
-
-## getDoor [#getdoor]
-
-```lua
-exports.ox_doorlock:getDoor(doorId)
-```
-
-Gets data for a door with the given `id`, matching the id for the database entry.
-
-* id: `number`
-
-Return:
-
-* door: `table`
-
-## getDoorFromName [#getdoorfromname]
-
-```lua
-exports.ox_doorlock:getDoorFromName(name)
-```
-
-Gets data for a door with the given `name`, matching the name for the database entry.
-
-* name: `string`
-
-Return:
-
-* door: `table`
-
-## editDoor [#editdoor]
-
-```lua
-exports.ox_doorlock:editDoor(doorId, data)
-```
-
-Edit configuration for the given doorId.
-
-* doorId: `number`
-* data: `table`
-
-## setDoorState [#setdoorstate]
-
-```lua
-exports.ox_doorlock:setDoorState(doorId, state)
-```
-
-Sets a door with the given doorId as locked if state is `true` or `1`.
-
-* doorId: `number`
-* state: `0` or `1` or `boolean`
-
-
 # Functions (/docs/ox_fuel/Client/functions)
 
 
@@ -3522,699 +5507,6 @@ We *strongly* advise using Qbox as an alternative to QBCore.
 * Edit your `server.cfg`.
   * Add `setr inventory:framework "qbx"` before starting your resources.
   * Start ox\_inventory immediately after qbx\_core.
-
-
-# Crafting (/docs/ox_inventory/Guides/crafting)
-
-
-
-# Crafting [#crafting]
-
-Crafting locations, items and their ingredients are defined in [data/crafting.lua](https://github.com/overextended/ox_inventory/blob/main/data/crafting.lua).
-
-## Crafting definition [#crafting-definition]
-
-```lua
-{
-    items = {
-        {
-            name = 'lockpick',
-            ingredients = {
-              garbage = 3,
-              WEAPON_HAMMER = 0.1
-            },
-            duration = 5000,
-            count = 3,
-            metadata = { durability = 20 }
-        },
-        {
-            name = 'garbage',
-            ingredients = {
-              cola = 1
-            },
-            metadata = { description = 'An empty soda can.', weight = 20, image = 'trash_can' }
-        },
-    },
-    points = {
-      vec3(-1147.083008, -2002.662109, 13.180260),
-    },
-    zones = {
-        {
-          label = 'Open Crafting Bench',
-          icon = 'fa-solid fa-wrench',
-          coords = vec3(-1146.2, -2002.05, 13.2),
-          size = vec3(3.8, 1.05, 0.15),
-          distance = 1.5,
-          rotation = 315.0,
-        },
-    },
-    blip = { id = 566, colour = 31, scale = 0.8 },
-    name = 'crafting-bench',
-},
-```
-
-* items: `table`
-  * name: `string`
-  * ingredients: `table`
-    * Item ingredients can be seen in the item tooltip.
-    * Key-value pairs of item name and consume count
-      * key - Item name.
-      * value - If 1 or above it's the consume count, if below 1 and above 0 it's the durability consume amount, if
-        set to 0 then the item is required but not consumed.
-  * duration: `number`
-    * Crafting duration in milliseconds.
-  * count: `number` or `table` (min, max)
-    * Item amount received upon crafting.
-    * If set it to table it requires two number first one is minimum number and second one is maximum, it will generate a random number between those two numbers to add the crafted item to player.
-  * metadata: `table`
-    * Metadata applied to the item being crafted.
-* points: `vector3[]`
-  * Interaction locations that will open the crafting inventory.
-* groups: `table`
-  * Key-value pairs of job name and minimum grade to access the crafting location.
-  * `{["police"] = 0, ["ambulance"] = 2}`
-* zones: `table`
-  * ox\_lib targeting zones used for ox\_target.
-  * label: `string`
-  * icon: `string`
-  * coords: `vector3`
-  * size: `vector3`
-  * distance: `number`
-  * rotation: `number`
-* blip: `table`
-  * id: `number`
-    * Blip sprite number.
-  * colour: `number`
-  * scale: `number`
-* name: `string`
-  * Optional name that can be used as id when using the openInventory export.
-
-
-# Creating Items (/docs/ox_inventory/Guides/creatingItems)
-
-
-
-# Creating Items [#creating-items]
-
-## Defining item data [#defining-item-data]
-
-Before being able to see or use an item in game it **must** first be defined.
-
-All of the items are defined in the [/data/items.lua](https://github.com/overextended/ox_inventory/blob/main/data/items.lua) file with key, value pairs.
-Key is the name (not the label) of an item and the value is a table containing the
-options for the item.
-
-* Item options: `table`
-  * label: `string`
-  * weight?: `number`
-  * stack?: `boolean`
-    * If set to false will not allow the item to be stacked.
-  * degrade?: `number`
-    * Amount of time in minutes the item will degrade after.
-  * decay?: `boolean`
-    * If true the item will be deleted when durability reaches 0 (not instant for degraded items).
-  * close?: `boolean`
-    * If set to false does not close the inventory on item use.
-  * description?: `string`
-    * Item description that will be shown in the tooltip
-  * consume?: `number`
-    * Item count needed and removed use.
-    * Default: 1
-    * If set to a decimal will consume durability instead (0.2 = 20%).
-  * allowArmed?: `boolean`
-    * If set to true will allow use of item while armed with a weapon.
-  * server?: `table`
-    * export?: `string`
-  * client?: `table`
-    * export?: `string`
-      * Export to be triggered after item use.
-    * event?: `string`
-      * Event to be triggered after item use.
-    * status?: `table`
-      * Adjust esx\_status values after use.
-    * anim?: `table`
-      * Animation that will be played during the progress bar.
-      * dict: `string`
-      * clip: `string`
-    * prop?: `table`
-      * Attached prop that will be displayed during the progress bar.
-      * model: `string` or `hash`
-      * pos: `table` (x, y, z)
-      * rot: `table` (x, y, z)
-      * bone?: `number`
-      * rotOrder?: `number`
-    * disable?: `table`
-      * Actions to be disabled during the progress bar.
-      * move?: `boolean`
-      * car?: `boolean`
-      * combat?: `boolean`
-      * mouse?: `boolean`
-      * sprint?: `boolean`
-    * usetime?: `number`
-    * cancel?: `boolean`
-      * If set to true the player canc cancel item use.
-    * add?: `function`(total: `number`)
-      * Function that triggers when receiving an item
-      * Returns total item count as `total`
-    * remove?: `function`(total: `number`)
-      * Function that triggers when removing an item
-      * Returns total item count as `total`
-  * buttons?: `table`
-    * label: `string`
-    * action: `function`(slot: `number`)
-      * Callback function when button is clicked in context menu, returns item slot.
-
-### Examples [#examples]
-
-<Tabs items="[&#x22;Burger&#x22;, &#x22;Burger with description&#x22;, &#x22;Burger with notification&#x22;]">
-  <Tab>
-    ```lua
-    ['burger'] = {
-        label = 'Burger',
-        weight = 220,
-        stack = true,
-        close = true,
-        client = {
-            status = { hunger = 200000 },
-            anim = { dict = 'mp_player_inteat@burger', clip = 'mp_player_int_eat_burger_fp' },
-            prop = {
-                model = 'prop_cs_burger_01',
-                pos = { x = 0.02, y = 0.02, y = -0.02},
-                rot = { x = 0.0, y = 0.0, y = 0.0}
-            },
-            usetime = 2500,
-        }
-    }
-    ```
-  </Tab>
-
-  <Tab>
-    A modified burger item which includes a description.
-
-    ```lua
-    ['burger'] = {
-        label = 'Burger',
-        description = 'Just what is the secret formula?'
-        weight = 220,
-        stack = true,
-        close = true,
-        client = {
-            status = { hunger = 200000 },
-            anim = { dict = 'mp_player_inteat@burger', clip = 'mp_player_int_eat_burger_fp' },
-            prop = {
-                model = 'prop_cs_burger_01',
-                pos = { x = 0.02, y = 0.02, y = -0.02},
-                rot = { x = 0.0, y = 0.0, y = 0.0}
-            },
-            usetime = 2500,
-        }
-    }
-    ```
-  </Tab>
-
-  <Tab>
-    A modified burger item, which gives you notifications on add and remove arguments.
-
-    ```lua
-    ['burger'] = {
-        label = 'Burger',
-        weight = 220,
-        stack = true,
-        consume = 0,
-        client = {
-            add = function(total)
-                if total > 0 then
-                    lib.notify({description = 'Nice burger you got there!'})
-                end
-            end,
-
-            remove = function(total)
-                if total < 1 then
-                    lib.notify({description = 'You lost all of your burgers!'})
-                end
-            end
-        }
-    }
-    ```
-  </Tab>
-</Tabs>
-
-## Making the item usable [#making-the-item-usable]
-
-* If you are using ESX, you can continue using `ESX.RegisterUsableItem`.
-* If you are using QBox, you can continue using `exports.qbx_core:CreateUseableItem`.
-
-Using the built-in system is more secure and provides much more functionality.
-
-### Client callbacks [#client-callbacks]
-
-Item callbacks can be added by defining an export (recommended), or by adding it to [items/client.lua](https://github.com/overextended/ox_inventory/blob/main/modules/items/client.lua#L33).
-
-When defining [item data](https://github.com/overextended/ox_inventory/blob/main/data/items.lua#L11), adding client.export will trigger an event on item use.
-The correct formatting is `export = resourceName.exportName`.
-
-```lua
-exports('bandage', function(data, slot)
-    local playerPed = PlayerPedId()
-    local maxHealth = GetEntityMaxHealth(playerPed)
-    local health = GetEntityHealth(playerPed)
-
-    -- Does the ped need to heal? We can cancel the item from being used.
-    if health < maxHealth then
-        -- Triggers internal-code to correctly use items.
-        -- This adds security, removes the item on use, adds progressbar support, and is necessary for server callbacks.
-        exports.ox_inventory:useItem(data, function(data)
-            -- The server has verified the item can be used.
-            if data then
-                SetEntityHealth(playerPed, math.min(maxHealth, math.floor(health + maxHealth / 16)))
-                lib.notify({description = 'You feel better already'})
-            end
-        end)
-    else
-        -- Don't use the item
-        lib.notify({type = 'error', description = 'You don\'t need a bandage right now'})
-    end
-end)
-```
-
-### Server callbacks [#server-callbacks]
-
-A callback function can be defined on the server to handle several events (usingItem, usedItem, buyItem).
-This can either be an export (recommended), or added to the bottom of [items/server.lua](https://github.com/overextended/ox_inventory/blob/main/modules/items/server.lua).
-When defining [item data](https://github.com/overextended/ox_inventory/blob/main/data/items.lua#L14), adding server.export will trigger an event for the actions above.
-The correct formatting is `export = resourceName.exportName`.
-
-```lua
-exports('bandage', function(event, item, inventory, slot, data)
-    -- Player is attempting to use the item.
-    if event == 'usingItem' then
-        local playerPed = GetPlayerPed(inventory.id)
-        local maxHealth = GetEntityMaxHealth(playerPed)
-        local health = GetEntityHealth(playerPed)
-
-        -- Check if the player needs to be healed.
-        if health >= maxHealth then
-            TriggerClientEvent('ox_lib:notify', inventory.id, {type = 'error', description = 'You don\'t need a bandage right now'})
-
-            -- Returning 'false' will prevent the item from being used
-            return false
-        end
-
-        return
-    end
-
-    -- Player has finished using the item.
-    if event == 'usedItem' then
-        return TriggerClientEvent('ox_lib:notify', inventory.id, {description = 'You feel better already'})
-    end
-
-    -- Player is attempting to purchase the item.
-    if event == 'buying' then
-        return TriggerClientEvent('ox_lib:notify', inventory.id, {type = 'success', description = 'You bought a bandage'})
-    end
-end)
-```
-
-## Creating container items [#creating-container-items]
-
-Like with other items the item must first be registered.
-
-When registered you can define the item as a container in `/modules/items/containers.lua` or using the [`setContainerProperties`](../Functions/Server#setcontainerproperties) server export.
-The key for the container is the `name` you gave it when registering the item.\
-You can also define the number of slots, the maximum weight, blacklist and whitelist items.
-
-<br />
-
-* itemName: `string`
-* properties: `table`
-  * slots: `number`
-    * Number of slots available in the container.
-  * maxWeight: `number`
-    * Maximum weight the container can hold.
-  * whitelist?: `table<string, true> | string[]`
-    * A table of item names that are allowed in the container.
-    * If not provided, all items are allowed except those blacklisted.
-  * blacklist?: `table<string, true> | string[]`
-    * A table of item names that are not allowed in the container.
-    * If not provided, no items are blacklisted unless whitelist is provided.
-
-### Example [#example]
-
-```lua filename="Register Example"
-['pizzabox'] = {
-    label = 'Pizza Box',
-    weight = 50,
-    stack = false,
-    close = false,
-    consume = 0,
-},
-```
-
-```lua filename="Properties Example"
-setContainerProperties('pizzabox', {
-    slots = 1,
-    maxWeight = 1000,
-    whitelist = { 'pizza' },
-})
-```
-
-
-# Metadata (/docs/ox_inventory/Guides/metadata)
-
-
-
-# Metadata [#metadata]
-
-Item metadata is a very powerful tool that can be used to create multiple different items out of a single item.
-
-In this guide we'll use pokemon cards as an example, but you can find an already integrated example in the inventory
-with the `garbage` item.
-
-## Creating the base item [#creating-the-base-item]
-
-First of all we need to create a base item that we'll use to apply metadata to.
-
-```lua filename="/data/items.lua"
-['pokemon_card'] = {
-    label = 'Pokemon card',
-    weight = 10,
-    consume = 0,
-    server = {
-        export = 'pokemon.pokemon_card'
-    }
-}
-```
-
-In this case we define the label and the weight as well since we are going to have all the cards weigh the same, but if you
-do not want them all to weigh the same you can leave it out and apply weight through metadata.
-
-We'll also make the item usable by calling the `pokemon_card` export in the `pokemon` resource.
-
-```lua filename="pokemon/server.lua"
-exports('pokemon_card', function(event, item, inventory, slot, data)
-    if event == 'usingItem' then
-        local itemSlot = exports.ox_inventory:GetSlot(inventory.id, slot)
-        print(json.encode(itemSlot.metadata, {indent=true}))
-    end
-end)
-```
-
-## Special metadata properties [#special-metadata-properties]
-
-You can define any metadata property with any value you want it to have, but there are a couple metadata properties that
-have special use cases.
-
-These properties are:
-
-* label: `string`
-  * Display name of the item
-* weight: `number`
-  * Amount the item will weigh
-* description: `string`
-  * Description of the item that will be displayed in the tooltip
-* image: `string`
-  * Image inside the image path that the item will use
-* imageurl: `string`
-  * Url to the image that the item will use
-* type: `any`
-  * Item type that is displayed in top right of the tooltip
-
-We'll use these properties to create our pokemon cards out of the `pokemon_card` item that we created earlier.
-
-## Creating metadata items [#creating-metadata-items]
-
-We can easily create metadata items by defining a hook using [createItem](../Functions/Server/Hooks#createitem) and adding it to a shop as well.
-
-```lua filename="/data/shops.lua"
-inventory = {
-    {name = 'pokemon_card', price = 300, metadata = {
-        label = 'Charizard',
-        description = 'It is said that Charizard’s fire burns hotter if it has experienced harsh battles.',
-        image = 'panties',
-        type = 'Fire',
-        hp = 78,
-        attack = 84,
-        defense = 78
-    }}
-}
-```
-
-```lua filename="pokemon/server.lua"
-local pokemonMetadata = {
-    charizard = {
-        label = 'Charizard',
-        description = 'It is said that Charizard’s fire burns hotter if it has experienced harsh battles.',
-        image = 'panties',
-        type = 'Fire',
-        hp = 78,
-        attack = 84,
-        defense = 78
-    }
-}
-
-local hookId = exports.ox_inventory:registerHook('createItem', function(payload)
-    local pokemon = pokemonMetadata[payload.metadata.type]
-    if not pokemon then return end
-    return pokemon
-end, {
-    itemFilter = {
-        pokemon_card = true
-    }
-})
-```
-
-As seen above when our item is usable, the metadata properties are all there and accessible through the slot.
-
-## Displaying custom metadata properties [#displaying-custom-metadata-properties]
-
-We can display our custom metadata we set on our charizard card by either using string concatenation and adding them to
-the description or by using the [displayMetadata](../Functions/Client#displaymetadata) *client* function.
-
-```lua
-exports.ox_inventory:displayMetadata({
-    hp = 'HP',
-    attack = 'ATK',
-    defense = 'DEF'
-})
-```
-
-## Weapon components metadata [#weapon-components-metadata]
-
-You can also create items with already attached weapon components by using the `components` metadata property.
-Weapon components are defined in [data/weapons.lua](https://github.com/overextended/ox_inventory/blob/4d178a50a225661eeadcefc5b531c52e10522191/data/weapons.lua#L721)
-You can also set ammo count with the `ammo` metadata property.
-
-```lua
-local metadataExample = {
-    ammo = 30,
-    components = {
-        'at_flashlight',
-        'at_suppressor_heavy'
-    }
-}
-
-exports.ox_inventory:AddItem(inv, item, count, metadataExample, slot, cb)
-```
-
-
-# Creating Shops (/docs/ox_inventory/Guides/shops)
-
-
-
-# Creating Shops [#creating-shops]
-
-Builtin shops are defined in [data/shops.lua](https://github.com/overextended/ox_inventory/blob/main/data/shops.lua), and more can be added here to benefit from the built-in markers or zones support.
-
-## Shop definition [#shop-definition]
-
-```lua
-{
-    General = {
-        name = 'Shop',
-        blip = {
-          id = 59,
-          colour = 69,
-          scale = 0.8
-        },
-        inventory = {
-            { name = 'burger', price = 10 },
-            { name = 'water', price = 10 },
-            { name = 'cola', price = 10 },
-        },
-        locations = {
-            vec3(25.7, -1347.3, 29.49),
-        },
-        targets = {
-            -- Shop using a BoxZone
-            {
-                loc = vec3(25.06, -1347.32, 29.5),
-                length = 0.7,
-                width = 0.5,
-                heading = 0.0,
-                minZ = 29.5,
-                maxZ = 29.9,
-                distance = 1.5
-            },
-            -- Shop using a ped
-            {
-                ped = `mp_m_shopkeep_01`,
-                scenario = 'WORLD_HUMAN_AA_COFFEE',
-                loc = vec3(24.407, -1347.283, 28.497),
-                heading = 270.311,
-            },
-        }
-    }
-}
-```
-
-* name: `string`
-  * The label to display when the shop is open.
-* blip?: `table`
-  * Creates a blip with the given settings. Leave it undefined for no blip to be created.
-  * id: `number`
-  * colour: `number`
-  * scale: `number`
-* groups?: `table`
-  * Key-value pairs of job name and minimum grade to access the shop.
-    * `{["police"] = 0, ["ambulance"] = 2}`
-* inventory: `table`
-  * name: `string`
-  * price: `number`
-  * currency?: `string`
-    * Item to be used as currency.
-  * count?: `number`
-    * Amount of the item in the stock.
-  * license?: `string`
-    * License required to purchase the item.
-  * metadata?: `table`
-  * grade?: `number` | `number[]`
-    * Minimal grade required to purchase the item.
-* locations?: `vector3[]`
-  * An array of coordinates to create unique instances of the shop archetype at, using markers.
-* targets?: `table[]`
-  * An array of target settings to create unique instances of the shop archetype at, using peds or BoxZones (PolyZone data structure).
-* model?: `number[]`
-  * An array of models that can be targetted to open a shop. Used for vending machines.
-
-Targets and model are only available when using a targeting resource like ox\_target.
-
-## Register during runtime [#register-during-runtime]
-
-Shops can be added using `exports.ox_inventory:RegisterShop` on the server, however they cannot utilise any client-only features.
-
-* Blips, markers, and zones will not be created.
-* Must use "locations" and not "targets" to define each shop using the archetype.
-
-### Example [#example]
-
-```lua
-exports.ox_inventory:RegisterShop('TestShop', {
-    name = 'Test shop',
-    inventory = {
-        { name = 'burger', price = 10 },
-        { name = 'water', price = 10 },
-        { name = 'cola', price = 10 },
-    },
-    locations = {
-        vec3(223.832962, -792.619751, 30.695190),
-    },
-    groups = {
-        police = 0
-    },
-})
-```
-
-
-# Custom Stashes (/docs/ox_inventory/Guides/stashes)
-
-
-
-
-
-# Custom Stashes [#custom-stashes]
-
-We can set up custom stashes from outside the resource utilising the exported RegisterStash function.
-
-Firstly, we need to define the stashes properties.
-
-## Stash properties [#stash-properties]
-
-* id: `string`
-  * Unique name to identify the stash in the database.
-* label: `string`
-  * Display name when viewing the stash.
-* slots: `number`
-  * Number of slots the stash will have.
-* weight: `number`
-  * Maximum weight of the stash inventory.
-* owner?: `string` or `boolean`
-  * `true`: Each player has their own unique stash, but can request to open the stash of another player
-  * `false`: Only a single stash exists and is shared between all players
-  * `string`: The stash explicitly belongs to the given owner, usually a player identifier
-* groups?: `table`
-  * Key-value pairs of job name and minimum grade to be able to access the stash. (`{["police"] = 0, ["ambulance"] = 2}`)
-  * name: `string`
-  * grade: `number`
-* coords?: `vector3` or `table`
-  * You can set the stash coordinates to prevent the stash from being opened if the player isn't close enough.
-  * Vector or table containing the coordinates of the stash.
-
-## Example [#example]
-
-Below the value is hardset, but it could be loaded from the database (especially if there are unknown fields, i.e. owner)
-
-```lua
--- Server
-local stash = {
-    id = '42wallabyway',
-    label = '42 Wallaby Way',
-    slots = 50,
-    weight = 100000,
-    owner = 'char1:license'
-}
-
-AddEventHandler('onServerResourceStart', function(resourceName)
-    if resourceName == 'ox_inventory' or resourceName == GetCurrentResourceName() then
-        exports.ox_inventory:RegisterStash(stash.id, stash.label, stash.slots, stash.weight, stash.owner)
-    end
-end)
-
--- Client
-exports.ox_inventory:openInventory('stash', {id='42wallabyway', owner=property.owner})
-```
-
-The following sample is based on esx\_property's db data.
-
-```lua
--- Server
-local properties
-
-MySQL.query('SELECT * FROM `properties`', {}, function(result)
-    properties = result
-end)
-
-RegisterNetEvent('ox:loadStashes', function(id)
-local stash = properties[id]
-    if stash then
-        -- id: 1, name: WhispymoundDrive, label: 2677 Whispymound Drive, coords: {"x":118.748,"y":566.573,"z":175.697}
-        ox_inventory:RegisterStash(stash.name, stash.label, 50, 100000, true, false, json.encode(stash.room_menu))
-    end
-end)
-
--- Client
-local ox_inventory = exports.ox_inventory
-
-if ox_inventory:openInventory('stash', property.id) == false then
-    TriggerServerEvent('ox:loadStashes')
-    ox_inventory:openInventory('stash', property.id)
-end
-```
-
-## Example Resource [#example-resource]
-
-We put together an example resource showcasing how to properly utilise the stash API:
-
-<GhButton link="https://www.github.com/overextended/ox_inventory_examples" label="Ox Inventory Examples" />
 
 
 # Client (/docs/ox_inventory/Functions/Client)
@@ -5788,6 +7080,699 @@ exports.ox_inventory:setContainerProperties('pizzabox', {
 ```
 
 
+# Crafting (/docs/ox_inventory/Guides/crafting)
+
+
+
+# Crafting [#crafting]
+
+Crafting locations, items and their ingredients are defined in [data/crafting.lua](https://github.com/overextended/ox_inventory/blob/main/data/crafting.lua).
+
+## Crafting definition [#crafting-definition]
+
+```lua
+{
+    items = {
+        {
+            name = 'lockpick',
+            ingredients = {
+              garbage = 3,
+              WEAPON_HAMMER = 0.1
+            },
+            duration = 5000,
+            count = 3,
+            metadata = { durability = 20 }
+        },
+        {
+            name = 'garbage',
+            ingredients = {
+              cola = 1
+            },
+            metadata = { description = 'An empty soda can.', weight = 20, image = 'trash_can' }
+        },
+    },
+    points = {
+      vec3(-1147.083008, -2002.662109, 13.180260),
+    },
+    zones = {
+        {
+          label = 'Open Crafting Bench',
+          icon = 'fa-solid fa-wrench',
+          coords = vec3(-1146.2, -2002.05, 13.2),
+          size = vec3(3.8, 1.05, 0.15),
+          distance = 1.5,
+          rotation = 315.0,
+        },
+    },
+    blip = { id = 566, colour = 31, scale = 0.8 },
+    name = 'crafting-bench',
+},
+```
+
+* items: `table`
+  * name: `string`
+  * ingredients: `table`
+    * Item ingredients can be seen in the item tooltip.
+    * Key-value pairs of item name and consume count
+      * key - Item name.
+      * value - If 1 or above it's the consume count, if below 1 and above 0 it's the durability consume amount, if
+        set to 0 then the item is required but not consumed.
+  * duration: `number`
+    * Crafting duration in milliseconds.
+  * count: `number` or `table` (min, max)
+    * Item amount received upon crafting.
+    * If set it to table it requires two number first one is minimum number and second one is maximum, it will generate a random number between those two numbers to add the crafted item to player.
+  * metadata: `table`
+    * Metadata applied to the item being crafted.
+* points: `vector3[]`
+  * Interaction locations that will open the crafting inventory.
+* groups: `table`
+  * Key-value pairs of job name and minimum grade to access the crafting location.
+  * `{["police"] = 0, ["ambulance"] = 2}`
+* zones: `table`
+  * ox\_lib targeting zones used for ox\_target.
+  * label: `string`
+  * icon: `string`
+  * coords: `vector3`
+  * size: `vector3`
+  * distance: `number`
+  * rotation: `number`
+* blip: `table`
+  * id: `number`
+    * Blip sprite number.
+  * colour: `number`
+  * scale: `number`
+* name: `string`
+  * Optional name that can be used as id when using the openInventory export.
+
+
+# Creating Items (/docs/ox_inventory/Guides/creatingItems)
+
+
+
+# Creating Items [#creating-items]
+
+## Defining item data [#defining-item-data]
+
+Before being able to see or use an item in game it **must** first be defined.
+
+All of the items are defined in the [/data/items.lua](https://github.com/overextended/ox_inventory/blob/main/data/items.lua) file with key, value pairs.
+Key is the name (not the label) of an item and the value is a table containing the
+options for the item.
+
+* Item options: `table`
+  * label: `string`
+  * weight?: `number`
+  * stack?: `boolean`
+    * If set to false will not allow the item to be stacked.
+  * degrade?: `number`
+    * Amount of time in minutes the item will degrade after.
+  * decay?: `boolean`
+    * If true the item will be deleted when durability reaches 0 (not instant for degraded items).
+  * close?: `boolean`
+    * If set to false does not close the inventory on item use.
+  * description?: `string`
+    * Item description that will be shown in the tooltip
+  * consume?: `number`
+    * Item count needed and removed use.
+    * Default: 1
+    * If set to a decimal will consume durability instead (0.2 = 20%).
+  * allowArmed?: `boolean`
+    * If set to true will allow use of item while armed with a weapon.
+  * server?: `table`
+    * export?: `string`
+  * client?: `table`
+    * export?: `string`
+      * Export to be triggered after item use.
+    * event?: `string`
+      * Event to be triggered after item use.
+    * status?: `table`
+      * Adjust esx\_status values after use.
+    * anim?: `table`
+      * Animation that will be played during the progress bar.
+      * dict: `string`
+      * clip: `string`
+    * prop?: `table`
+      * Attached prop that will be displayed during the progress bar.
+      * model: `string` or `hash`
+      * pos: `table` (x, y, z)
+      * rot: `table` (x, y, z)
+      * bone?: `number`
+      * rotOrder?: `number`
+    * disable?: `table`
+      * Actions to be disabled during the progress bar.
+      * move?: `boolean`
+      * car?: `boolean`
+      * combat?: `boolean`
+      * mouse?: `boolean`
+      * sprint?: `boolean`
+    * usetime?: `number`
+    * cancel?: `boolean`
+      * If set to true the player canc cancel item use.
+    * add?: `function`(total: `number`)
+      * Function that triggers when receiving an item
+      * Returns total item count as `total`
+    * remove?: `function`(total: `number`)
+      * Function that triggers when removing an item
+      * Returns total item count as `total`
+  * buttons?: `table`
+    * label: `string`
+    * action: `function`(slot: `number`)
+      * Callback function when button is clicked in context menu, returns item slot.
+
+### Examples [#examples]
+
+<Tabs items="[&#x22;Burger&#x22;, &#x22;Burger with description&#x22;, &#x22;Burger with notification&#x22;]">
+  <Tab>
+    ```lua
+    ['burger'] = {
+        label = 'Burger',
+        weight = 220,
+        stack = true,
+        close = true,
+        client = {
+            status = { hunger = 200000 },
+            anim = { dict = 'mp_player_inteat@burger', clip = 'mp_player_int_eat_burger_fp' },
+            prop = {
+                model = 'prop_cs_burger_01',
+                pos = { x = 0.02, y = 0.02, y = -0.02},
+                rot = { x = 0.0, y = 0.0, y = 0.0}
+            },
+            usetime = 2500,
+        }
+    }
+    ```
+  </Tab>
+
+  <Tab>
+    A modified burger item which includes a description.
+
+    ```lua
+    ['burger'] = {
+        label = 'Burger',
+        description = 'Just what is the secret formula?'
+        weight = 220,
+        stack = true,
+        close = true,
+        client = {
+            status = { hunger = 200000 },
+            anim = { dict = 'mp_player_inteat@burger', clip = 'mp_player_int_eat_burger_fp' },
+            prop = {
+                model = 'prop_cs_burger_01',
+                pos = { x = 0.02, y = 0.02, y = -0.02},
+                rot = { x = 0.0, y = 0.0, y = 0.0}
+            },
+            usetime = 2500,
+        }
+    }
+    ```
+  </Tab>
+
+  <Tab>
+    A modified burger item, which gives you notifications on add and remove arguments.
+
+    ```lua
+    ['burger'] = {
+        label = 'Burger',
+        weight = 220,
+        stack = true,
+        consume = 0,
+        client = {
+            add = function(total)
+                if total > 0 then
+                    lib.notify({description = 'Nice burger you got there!'})
+                end
+            end,
+
+            remove = function(total)
+                if total < 1 then
+                    lib.notify({description = 'You lost all of your burgers!'})
+                end
+            end
+        }
+    }
+    ```
+  </Tab>
+</Tabs>
+
+## Making the item usable [#making-the-item-usable]
+
+* If you are using ESX, you can continue using `ESX.RegisterUsableItem`.
+* If you are using QBox, you can continue using `exports.qbx_core:CreateUseableItem`.
+
+Using the built-in system is more secure and provides much more functionality.
+
+### Client callbacks [#client-callbacks]
+
+Item callbacks can be added by defining an export (recommended), or by adding it to [items/client.lua](https://github.com/overextended/ox_inventory/blob/main/modules/items/client.lua#L33).
+
+When defining [item data](https://github.com/overextended/ox_inventory/blob/main/data/items.lua#L11), adding client.export will trigger an event on item use.
+The correct formatting is `export = resourceName.exportName`.
+
+```lua
+exports('bandage', function(data, slot)
+    local playerPed = PlayerPedId()
+    local maxHealth = GetEntityMaxHealth(playerPed)
+    local health = GetEntityHealth(playerPed)
+
+    -- Does the ped need to heal? We can cancel the item from being used.
+    if health < maxHealth then
+        -- Triggers internal-code to correctly use items.
+        -- This adds security, removes the item on use, adds progressbar support, and is necessary for server callbacks.
+        exports.ox_inventory:useItem(data, function(data)
+            -- The server has verified the item can be used.
+            if data then
+                SetEntityHealth(playerPed, math.min(maxHealth, math.floor(health + maxHealth / 16)))
+                lib.notify({description = 'You feel better already'})
+            end
+        end)
+    else
+        -- Don't use the item
+        lib.notify({type = 'error', description = 'You don\'t need a bandage right now'})
+    end
+end)
+```
+
+### Server callbacks [#server-callbacks]
+
+A callback function can be defined on the server to handle several events (usingItem, usedItem, buyItem).
+This can either be an export (recommended), or added to the bottom of [items/server.lua](https://github.com/overextended/ox_inventory/blob/main/modules/items/server.lua).
+When defining [item data](https://github.com/overextended/ox_inventory/blob/main/data/items.lua#L14), adding server.export will trigger an event for the actions above.
+The correct formatting is `export = resourceName.exportName`.
+
+```lua
+exports('bandage', function(event, item, inventory, slot, data)
+    -- Player is attempting to use the item.
+    if event == 'usingItem' then
+        local playerPed = GetPlayerPed(inventory.id)
+        local maxHealth = GetEntityMaxHealth(playerPed)
+        local health = GetEntityHealth(playerPed)
+
+        -- Check if the player needs to be healed.
+        if health >= maxHealth then
+            TriggerClientEvent('ox_lib:notify', inventory.id, {type = 'error', description = 'You don\'t need a bandage right now'})
+
+            -- Returning 'false' will prevent the item from being used
+            return false
+        end
+
+        return
+    end
+
+    -- Player has finished using the item.
+    if event == 'usedItem' then
+        return TriggerClientEvent('ox_lib:notify', inventory.id, {description = 'You feel better already'})
+    end
+
+    -- Player is attempting to purchase the item.
+    if event == 'buying' then
+        return TriggerClientEvent('ox_lib:notify', inventory.id, {type = 'success', description = 'You bought a bandage'})
+    end
+end)
+```
+
+## Creating container items [#creating-container-items]
+
+Like with other items the item must first be registered.
+
+When registered you can define the item as a container in `/modules/items/containers.lua` or using the [`setContainerProperties`](../Functions/Server#setcontainerproperties) server export.
+The key for the container is the `name` you gave it when registering the item.\
+You can also define the number of slots, the maximum weight, blacklist and whitelist items.
+
+<br />
+
+* itemName: `string`
+* properties: `table`
+  * slots: `number`
+    * Number of slots available in the container.
+  * maxWeight: `number`
+    * Maximum weight the container can hold.
+  * whitelist?: `table<string, true> | string[]`
+    * A table of item names that are allowed in the container.
+    * If not provided, all items are allowed except those blacklisted.
+  * blacklist?: `table<string, true> | string[]`
+    * A table of item names that are not allowed in the container.
+    * If not provided, no items are blacklisted unless whitelist is provided.
+
+### Example [#example]
+
+```lua filename="Register Example"
+['pizzabox'] = {
+    label = 'Pizza Box',
+    weight = 50,
+    stack = false,
+    close = false,
+    consume = 0,
+},
+```
+
+```lua filename="Properties Example"
+setContainerProperties('pizzabox', {
+    slots = 1,
+    maxWeight = 1000,
+    whitelist = { 'pizza' },
+})
+```
+
+
+# Metadata (/docs/ox_inventory/Guides/metadata)
+
+
+
+# Metadata [#metadata]
+
+Item metadata is a very powerful tool that can be used to create multiple different items out of a single item.
+
+In this guide we'll use pokemon cards as an example, but you can find an already integrated example in the inventory
+with the `garbage` item.
+
+## Creating the base item [#creating-the-base-item]
+
+First of all we need to create a base item that we'll use to apply metadata to.
+
+```lua filename="/data/items.lua"
+['pokemon_card'] = {
+    label = 'Pokemon card',
+    weight = 10,
+    consume = 0,
+    server = {
+        export = 'pokemon.pokemon_card'
+    }
+}
+```
+
+In this case we define the label and the weight as well since we are going to have all the cards weigh the same, but if you
+do not want them all to weigh the same you can leave it out and apply weight through metadata.
+
+We'll also make the item usable by calling the `pokemon_card` export in the `pokemon` resource.
+
+```lua filename="pokemon/server.lua"
+exports('pokemon_card', function(event, item, inventory, slot, data)
+    if event == 'usingItem' then
+        local itemSlot = exports.ox_inventory:GetSlot(inventory.id, slot)
+        print(json.encode(itemSlot.metadata, {indent=true}))
+    end
+end)
+```
+
+## Special metadata properties [#special-metadata-properties]
+
+You can define any metadata property with any value you want it to have, but there are a couple metadata properties that
+have special use cases.
+
+These properties are:
+
+* label: `string`
+  * Display name of the item
+* weight: `number`
+  * Amount the item will weigh
+* description: `string`
+  * Description of the item that will be displayed in the tooltip
+* image: `string`
+  * Image inside the image path that the item will use
+* imageurl: `string`
+  * Url to the image that the item will use
+* type: `any`
+  * Item type that is displayed in top right of the tooltip
+
+We'll use these properties to create our pokemon cards out of the `pokemon_card` item that we created earlier.
+
+## Creating metadata items [#creating-metadata-items]
+
+We can easily create metadata items by defining a hook using [createItem](../Functions/Server/Hooks#createitem) and adding it to a shop as well.
+
+```lua filename="/data/shops.lua"
+inventory = {
+    {name = 'pokemon_card', price = 300, metadata = {
+        label = 'Charizard',
+        description = 'It is said that Charizard’s fire burns hotter if it has experienced harsh battles.',
+        image = 'panties',
+        type = 'Fire',
+        hp = 78,
+        attack = 84,
+        defense = 78
+    }}
+}
+```
+
+```lua filename="pokemon/server.lua"
+local pokemonMetadata = {
+    charizard = {
+        label = 'Charizard',
+        description = 'It is said that Charizard’s fire burns hotter if it has experienced harsh battles.',
+        image = 'panties',
+        type = 'Fire',
+        hp = 78,
+        attack = 84,
+        defense = 78
+    }
+}
+
+local hookId = exports.ox_inventory:registerHook('createItem', function(payload)
+    local pokemon = pokemonMetadata[payload.metadata.type]
+    if not pokemon then return end
+    return pokemon
+end, {
+    itemFilter = {
+        pokemon_card = true
+    }
+})
+```
+
+As seen above when our item is usable, the metadata properties are all there and accessible through the slot.
+
+## Displaying custom metadata properties [#displaying-custom-metadata-properties]
+
+We can display our custom metadata we set on our charizard card by either using string concatenation and adding them to
+the description or by using the [displayMetadata](../Functions/Client#displaymetadata) *client* function.
+
+```lua
+exports.ox_inventory:displayMetadata({
+    hp = 'HP',
+    attack = 'ATK',
+    defense = 'DEF'
+})
+```
+
+## Weapon components metadata [#weapon-components-metadata]
+
+You can also create items with already attached weapon components by using the `components` metadata property.
+Weapon components are defined in [data/weapons.lua](https://github.com/overextended/ox_inventory/blob/4d178a50a225661eeadcefc5b531c52e10522191/data/weapons.lua#L721)
+You can also set ammo count with the `ammo` metadata property.
+
+```lua
+local metadataExample = {
+    ammo = 30,
+    components = {
+        'at_flashlight',
+        'at_suppressor_heavy'
+    }
+}
+
+exports.ox_inventory:AddItem(inv, item, count, metadataExample, slot, cb)
+```
+
+
+# Creating Shops (/docs/ox_inventory/Guides/shops)
+
+
+
+# Creating Shops [#creating-shops]
+
+Builtin shops are defined in [data/shops.lua](https://github.com/overextended/ox_inventory/blob/main/data/shops.lua), and more can be added here to benefit from the built-in markers or zones support.
+
+## Shop definition [#shop-definition]
+
+```lua
+{
+    General = {
+        name = 'Shop',
+        blip = {
+          id = 59,
+          colour = 69,
+          scale = 0.8
+        },
+        inventory = {
+            { name = 'burger', price = 10 },
+            { name = 'water', price = 10 },
+            { name = 'cola', price = 10 },
+        },
+        locations = {
+            vec3(25.7, -1347.3, 29.49),
+        },
+        targets = {
+            -- Shop using a BoxZone
+            {
+                loc = vec3(25.06, -1347.32, 29.5),
+                length = 0.7,
+                width = 0.5,
+                heading = 0.0,
+                minZ = 29.5,
+                maxZ = 29.9,
+                distance = 1.5
+            },
+            -- Shop using a ped
+            {
+                ped = `mp_m_shopkeep_01`,
+                scenario = 'WORLD_HUMAN_AA_COFFEE',
+                loc = vec3(24.407, -1347.283, 28.497),
+                heading = 270.311,
+            },
+        }
+    }
+}
+```
+
+* name: `string`
+  * The label to display when the shop is open.
+* blip?: `table`
+  * Creates a blip with the given settings. Leave it undefined for no blip to be created.
+  * id: `number`
+  * colour: `number`
+  * scale: `number`
+* groups?: `table`
+  * Key-value pairs of job name and minimum grade to access the shop.
+    * `{["police"] = 0, ["ambulance"] = 2}`
+* inventory: `table`
+  * name: `string`
+  * price: `number`
+  * currency?: `string`
+    * Item to be used as currency.
+  * count?: `number`
+    * Amount of the item in the stock.
+  * license?: `string`
+    * License required to purchase the item.
+  * metadata?: `table`
+  * grade?: `number` | `number[]`
+    * Minimal grade required to purchase the item.
+* locations?: `vector3[]`
+  * An array of coordinates to create unique instances of the shop archetype at, using markers.
+* targets?: `table[]`
+  * An array of target settings to create unique instances of the shop archetype at, using peds or BoxZones (PolyZone data structure).
+* model?: `number[]`
+  * An array of models that can be targetted to open a shop. Used for vending machines.
+
+Targets and model are only available when using a targeting resource like ox\_target.
+
+## Register during runtime [#register-during-runtime]
+
+Shops can be added using `exports.ox_inventory:RegisterShop` on the server, however they cannot utilise any client-only features.
+
+* Blips, markers, and zones will not be created.
+* Must use "locations" and not "targets" to define each shop using the archetype.
+
+### Example [#example]
+
+```lua
+exports.ox_inventory:RegisterShop('TestShop', {
+    name = 'Test shop',
+    inventory = {
+        { name = 'burger', price = 10 },
+        { name = 'water', price = 10 },
+        { name = 'cola', price = 10 },
+    },
+    locations = {
+        vec3(223.832962, -792.619751, 30.695190),
+    },
+    groups = {
+        police = 0
+    },
+})
+```
+
+
+# Custom Stashes (/docs/ox_inventory/Guides/stashes)
+
+
+
+
+
+# Custom Stashes [#custom-stashes]
+
+We can set up custom stashes from outside the resource utilising the exported RegisterStash function.
+
+Firstly, we need to define the stashes properties.
+
+## Stash properties [#stash-properties]
+
+* id: `string`
+  * Unique name to identify the stash in the database.
+* label: `string`
+  * Display name when viewing the stash.
+* slots: `number`
+  * Number of slots the stash will have.
+* weight: `number`
+  * Maximum weight of the stash inventory.
+* owner?: `string` or `boolean`
+  * `true`: Each player has their own unique stash, but can request to open the stash of another player
+  * `false`: Only a single stash exists and is shared between all players
+  * `string`: The stash explicitly belongs to the given owner, usually a player identifier
+* groups?: `table`
+  * Key-value pairs of job name and minimum grade to be able to access the stash. (`{["police"] = 0, ["ambulance"] = 2}`)
+  * name: `string`
+  * grade: `number`
+* coords?: `vector3` or `table`
+  * You can set the stash coordinates to prevent the stash from being opened if the player isn't close enough.
+  * Vector or table containing the coordinates of the stash.
+
+## Example [#example]
+
+Below the value is hardset, but it could be loaded from the database (especially if there are unknown fields, i.e. owner)
+
+```lua
+-- Server
+local stash = {
+    id = '42wallabyway',
+    label = '42 Wallaby Way',
+    slots = 50,
+    weight = 100000,
+    owner = 'char1:license'
+}
+
+AddEventHandler('onServerResourceStart', function(resourceName)
+    if resourceName == 'ox_inventory' or resourceName == GetCurrentResourceName() then
+        exports.ox_inventory:RegisterStash(stash.id, stash.label, stash.slots, stash.weight, stash.owner)
+    end
+end)
+
+-- Client
+exports.ox_inventory:openInventory('stash', {id='42wallabyway', owner=property.owner})
+```
+
+The following sample is based on esx\_property's db data.
+
+```lua
+-- Server
+local properties
+
+MySQL.query('SELECT * FROM `properties`', {}, function(result)
+    properties = result
+end)
+
+RegisterNetEvent('ox:loadStashes', function(id)
+local stash = properties[id]
+    if stash then
+        -- id: 1, name: WhispymoundDrive, label: 2677 Whispymound Drive, coords: {"x":118.748,"y":566.573,"z":175.697}
+        ox_inventory:RegisterStash(stash.name, stash.label, 50, 100000, true, false, json.encode(stash.room_menu))
+    end
+end)
+
+-- Client
+local ox_inventory = exports.ox_inventory
+
+if ox_inventory:openInventory('stash', property.id) == false then
+    TriggerServerEvent('ox:loadStashes')
+    ox_inventory:openInventory('stash', property.id)
+end
+```
+
+## Example Resource [#example-resource]
+
+We put together an example resource showcasing how to properly utilise the stash API:
+
+<GhButton link="https://www.github.com/overextended/ox_inventory_examples" label="Ox Inventory Examples" />
+
+
 # Server (/docs/ox_lib/ACL/Server)
 
 
@@ -6064,138 +8049,6 @@ You can get the state with the following method
 
 ```lua
 local state = keybind:isControlPressed()
-```
-
-
-# Client (/docs/ox_lib/Cache/Client)
-
-
-
-Values and cache functionality available to the client, in addition to the [shared](../Shared) values.
-
-## Default values [#default-values]
-
-* ped: `number`
-  * player entity id
-* playerId: `number`
-  * player id
-* serverId: `number`
-  * player server id
-* weapon: `number` or `false`
-  * current weapon hash
-* vehicle: `number` or `false`
-  * vehicle entity id
-* seat: `number` or `false`
-  * vehicle seat index
-* coords: `vector3`
-  * current player coords
-  * only populated if using `zones` or `points`
-  * cannot be listened for with `lib.onCache`
-* mount: `number` or `false` (RedM only)
-  * mount entity id
-
-## lib.onCache [#liboncache]
-
-Register an event handler that is triggered when the cached value is updated.
-
-<Tabs items="[&#x22;Lua&#x22;, &#x22;JS&#x22;]">
-  <Tab>
-    ```lua
-    lib.onCache(key, function(value, oldValue) end)
-    ```
-
-    * key: `string`
-      * `ped`
-      * `vehicle`
-      * `seat`
-      * `weapon`
-      * `mount` (RedM only)
-    * value: `any`
-
-    ```lua
-    lib.onCache('vehicle', function(value, oldValue)
-        print('old vehicle:', cache.vehicle)
-        print('new vehicle:', value)
-    end)
-    ```
-  </Tab>
-
-  <Tab>
-    ```ts
-    import { onCache } from '@overextended/ox_lib/client';
-
-    onCache(key, (value) => {});
-    ```
-
-    * key: `string`
-      * `ped`
-      * `vehicle`
-      * `seat`
-      * `weapon`
-      * `mount` (RedM only)
-    * value: `any`
-
-    ```ts
-    import { cache, onCache } from '@overextended/ox_lib/client';
-
-    lib.onCache('vehicle', (value) => {
-      console.log('old vehicle:', cache.vehicle);
-      console.log('new vehicle:', value);
-    });
-    ```
-  </Tab>
-</Tabs>
-
-
-# Shared (/docs/ox_lib/Cache/Shared)
-
-
-
-
-
-A table containing cached function results, which may be constants or infrequently changed.
-
-## Default values [#default-values]
-
-* resource: `string`
-  * the value returned by <Native>GetCurrentResourceName</Native>.
-* game: `'fxserver' | 'fivem' | 'redm'`
-  * the value returned by <Native>GetGameName</Native>.
-
-## Adding new cached values [#adding-new-cached-values]
-
-Values can be cached permanently, or added with a timeout.
-
-```lua
-cache(key, func, timeout)
-```
-
-* key: `string`
-  * a unique name to store and access the cached state.
-* func: `function`
-  * a function to call when the cache is invalidated/empty.
-* timeout?: `number`
-  * a timer in milliseconds to clear the cached state.
-
-```lua
-local i = 0
-
-while true do
-    Wait(1000)
-    i += 1
-
-    print(cache('test', function() return i end, 5000))
-end
-
--- output:
-> 1
-> 1
-> 1
-> 1
-> 1
-> 6
-> 6
-> 6
 ```
 
 
@@ -6538,6 +8391,136 @@ lib.array.isArray(tbl)
 **Returns:**
 
 * isArray: `boolean`
+
+
+# Client (/docs/ox_lib/Cache/Client)
+
+
+
+Values and cache functionality available to the client, in addition to the [shared](../Shared) values.
+
+## Default values [#default-values]
+
+* ped: `number`
+  * player entity id
+* playerId: `number`
+  * player id
+* serverId: `number`
+  * player server id
+* weapon: `number` or `false`
+  * current weapon hash
+* vehicle: `number` or `false`
+  * vehicle entity id
+* seat: `number` or `false`
+  * vehicle seat index
+* coords: `vector3`
+  * current player coords
+  * only populated if using `zones` or `points`
+  * cannot be listened for with `lib.onCache`
+* mount: `number` or `false` (RedM only)
+  * mount entity id
+
+## lib.onCache [#liboncache]
+
+Register an event handler that is triggered when the cached value is updated.
+
+<Tabs items="[&#x22;Lua&#x22;, &#x22;JS&#x22;]">
+  <Tab>
+    ```lua
+    lib.onCache(key, function(value, oldValue) end)
+    ```
+
+    * key: `string`
+      * `ped`
+      * `vehicle`
+      * `seat`
+      * `weapon`
+      * `mount` (RedM only)
+    * value: `any`
+
+    ```lua
+    lib.onCache('vehicle', function(value, oldValue)
+        print('old vehicle:', cache.vehicle)
+        print('new vehicle:', value)
+    end)
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    import { onCache } from '@overextended/ox_lib/client';
+
+    onCache(key, (value) => {});
+    ```
+
+    * key: `string`
+      * `ped`
+      * `vehicle`
+      * `seat`
+      * `weapon`
+      * `mount` (RedM only)
+    * value: `any`
+
+    ```ts
+    import { cache, onCache } from '@overextended/ox_lib/client';
+
+    lib.onCache('vehicle', (value) => {
+      console.log('old vehicle:', cache.vehicle);
+      console.log('new vehicle:', value);
+    });
+    ```
+  </Tab>
+</Tabs>
+
+
+# Shared (/docs/ox_lib/Cache/Shared)
+
+
+
+A table containing cached function results, which may be constants or infrequently changed.
+
+## Default values [#default-values]
+
+* resource: `string`
+  * the value returned by [GetCurrentResourceName](https://docs.fivem.net/natives/?_0xE5E9EBBB).
+* game: `'fxserver' | 'fivem' | 'redm'`
+  * the value returned by [GetGameName](https://docs.fivem.net/natives/?_0xE8EAA18B).
+
+## Adding new cached values [#adding-new-cached-values]
+
+Values can be cached permanently, or added with a timeout.
+
+```lua
+cache(key, func, timeout)
+```
+
+* key: `string`
+  * a unique name to store and access the cached state.
+* func: `function`
+  * a function to call when the cache is invalidated/empty.
+* timeout?: `number`
+  * a timer in milliseconds to clear the cached state.
+
+```lua
+local i = 0
+
+while true do
+    Wait(1000)
+    i += 1
+
+    print(cache('test', function() return i end, 5000))
+end
+
+-- output:
+> 1
+> 1
+> 1
+> 1
+> 1
+> 6
+> 6
+> 6
+```
 
 
 # Shared (/docs/ox_lib/Class/Shared)
@@ -7852,97 +9835,6 @@ Return:
 </Callout>
 
 
-# Client (/docs/ox_lib/Scaleform/Client)
-
-
-
-## lib.scaleform:new [#libscaleformnew]
-
-Constructs a new instance of the scaleform class.
-
-```lua
-lib.scaleform:new(data)
-```
-
-* data: `table | string`
-  * name: `string`
-  * fullScreen?: `boolean`
-  * x?: `number`
-  * y?: `number`
-  * width?: `number`
-  * height?: `number`
-  * renderTarget?: `table`
-    * name: `string`
-    * model: `string | number`
-
-Returns:
-
-* scaleform: `Scaleform`
-
-  * scaleform: `number`
-  * draw: `boolean`
-  * target: `number`
-  * targetName: `string`
-  * sfHandle?: `number`
-  * fullScreen: `boolean`
-
-  Methods:
-
-  * callMethod: `function`(name: `string`, args: `(number | string | boolean)[]`, returnValue?: `string`)
-  * setFullScreen: `function`(isFullscreen: `boolean`)
-  * setProperties: `function`(x: `number`, y: `number`, width: `number`, height: `number`)
-  * setRenderTarget: `function`(name: `string`, model: `string | number`)
-  * isDrawing: `function`
-  * draw: `function`
-  * startDrawing: `function`
-  * stopDrawing: `function`
-  * dispose: `function`
-
-### Usage Example [#usage-example]
-
-```lua
-local scaleform = lib.scaleform:new({
-  name = 'scaleform',
-  fullScreen = boolean,
-  x = 1.0,
-  y = 1.0,
-  width = 2.0,
-  height = 2.0,
-  renderTarget = {
-    name = 'target',
-    model = `model_name`
-  }
-})
-
--- Call a Scaleform Method
-scaleform:callMethod('method', { 1, 2, 3 })
-
--- Set Fullscreen Scaleform
-scaleform:setFullScreen(false)
-
--- Set Scaleform Properties (x, y, width, height)
-scaleform:setProperties(1.0, 1.0, 2.0, 2.0)
-
--- Set Scaleform Render Target
-scaleform:setRenderTarget('target', `model_name`)
-
--- Get Drawing State
-local state = scaleform:isDrawing()
-
--- Draw
-scaleform:draw()
-
--- Start Drawing
-scaleform:startDrawing()
-
--- Stop Drawing
-scaleform:stopDrawing()
-
--- Dispose of Scaleform
-scaleform:dispose()
-```
-
-
 # Shared (/docs/ox_lib/Require/Shared)
 
 
@@ -8057,6 +9949,97 @@ print('Loaded events')
 {
   "disconnect": "onPlayerDropped"
 }
+```
+
+
+# Client (/docs/ox_lib/Scaleform/Client)
+
+
+
+## lib.scaleform:new [#libscaleformnew]
+
+Constructs a new instance of the scaleform class.
+
+```lua
+lib.scaleform:new(data)
+```
+
+* data: `table | string`
+  * name: `string`
+  * fullScreen?: `boolean`
+  * x?: `number`
+  * y?: `number`
+  * width?: `number`
+  * height?: `number`
+  * renderTarget?: `table`
+    * name: `string`
+    * model: `string | number`
+
+Returns:
+
+* scaleform: `Scaleform`
+
+  * scaleform: `number`
+  * draw: `boolean`
+  * target: `number`
+  * targetName: `string`
+  * sfHandle?: `number`
+  * fullScreen: `boolean`
+
+  Methods:
+
+  * callMethod: `function`(name: `string`, args: `(number | string | boolean)[]`, returnValue?: `string`)
+  * setFullScreen: `function`(isFullscreen: `boolean`)
+  * setProperties: `function`(x: `number`, y: `number`, width: `number`, height: `number`)
+  * setRenderTarget: `function`(name: `string`, model: `string | number`)
+  * isDrawing: `function`
+  * draw: `function`
+  * startDrawing: `function`
+  * stopDrawing: `function`
+  * dispose: `function`
+
+### Usage Example [#usage-example]
+
+```lua
+local scaleform = lib.scaleform:new({
+  name = 'scaleform',
+  fullScreen = boolean,
+  x = 1.0,
+  y = 1.0,
+  width = 2.0,
+  height = 2.0,
+  renderTarget = {
+    name = 'target',
+    model = `model_name`
+  }
+})
+
+-- Call a Scaleform Method
+scaleform:callMethod('method', { 1, 2, 3 })
+
+-- Set Fullscreen Scaleform
+scaleform:setFullScreen(false)
+
+-- Set Scaleform Properties (x, y, width, height)
+scaleform:setProperties(1.0, 1.0, 2.0, 2.0)
+
+-- Set Scaleform Render Target
+scaleform:setRenderTarget('target', `model_name`)
+
+-- Get Drawing State
+local state = scaleform:isDrawing()
+
+-- Draw
+scaleform:draw()
+
+-- Start Drawing
+scaleform:startDrawing()
+
+-- Stop Drawing
+scaleform:stopDrawing()
+
+-- Dispose of Scaleform
+scaleform:dispose()
 ```
 
 
@@ -9283,8 +11266,6 @@ end)
 
 
 
-
-
 A highly performant spatial check system for the game world. Zones define a 3D area (sphere, box, or polygon) and evaluate whether a position is inside or outside that region - similar to a [colshape](https://wiki.multitheftauto.com/wiki/Element/Collision_shape).
 
 Internally, Zones utilise a [spatial grid](docs/ox_lib/Grid/Shared) to efficiently narrow down relevant zones before performing precise position tests.
@@ -9296,6 +11277,352 @@ Zones are also available in JS, utilising our [utility library](https://github.c
 <Callout>
   Server-side zones do not support player trigger events. The `onEnter`, `onExit`, and `inside` handlers are unavailable.
 </Callout>
+
+<Callout>
+  Lua and JavaScript zones are not API compatible. The TypeScript definitions and TSDoc comments in the npm package serve as the authoritative reference for the JavaScript API.
+</Callout>
+
+## Polygon/Prism Zone [#polygonprism-zone]
+
+Creates a polygon from the given vertices, which is then placed in the world and extruded to the given height to form a 3D shape.
+
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    lib.zones.poly(data)
+    ```
+
+    * data: `table`
+      * points: `vector3[]`
+        * An array of 3d points defining the polygon's shape.
+      * thickness?: `number`
+        * The height of the polygon, defaulting to `4`.
+      * onEnter?: `function(self: table)`
+      * onExit?: `function(self: table)`
+      * inside?: `function(self: table)`
+      * debug?: `boolean`
+  </Tab>
+
+  <Tab>
+    ```ts
+    import { Zone } from "@overextended/ox_lib";
+    import { Vector2 } from "@overextended/core/vector";
+
+    Zone.Prism(vertices: Vector2[], height: number, z: number)
+    ```
+  </Tab>
+</Tabs>
+
+## Box Zone [#box-zone]
+
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    lib.zones.box(data)
+    ```
+
+    * data: `table`
+      * coords: `vector3`
+      * size?: `vector3`
+        * Default: `vec3(2, 2, 2)`
+      * rotation?: `number`
+        * Angle in degrees, defaulting to `0`.
+      * onEnter?: `function(self: table)`
+      * onExit?: `function(self: table)`
+      * inside?: `function(self: table)`
+      * debug?: `boolean`
+  </Tab>
+
+  <Tab>
+    ```ts
+    import { Zone } from "@overextended/ox_lib";
+    import { Vector3 } from "@overextended/core/vector";
+
+    Zone.Cuboid(origin: Vector3, width: number, depth: number, height: number, heading?: number)
+    ```
+  </Tab>
+</Tabs>
+
+## Sphere Zone [#sphere-zone]
+
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    lib.zones.sphere(data)
+    ```
+
+    * data: `table`
+      * coords: `vector3`
+      * radius?: `number`
+        * Default: `2`
+      * onEnter?: `function(self: table)`
+      * onExit?: `function(self: table)`
+      * inside?: `function(self: table)`
+      * debug?: `boolean`
+  </Tab>
+
+  <Tab>
+    ```ts
+    import { Zone } from "@overextended/ox_lib";
+    import { Vector3 } from "@overextended/core/vector";
+
+    Zone.Sphere(coords: Vector3, radius: number)
+    ```
+  </Tab>
+</Tabs>
+
+## Methods [#methods]
+
+### onEnter [#onenter]
+
+A function called when the player enters the zone. It can be attached to the zone after instantiation, or in the `data` table if using Lua.
+
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    local function onEnter(self)
+        print('entered zone', self.id)
+    end
+
+    zone.onEnter = onEnter
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    function onEnter(this: Zone) {
+      console.log(`entered zone ${this.id}`)
+    }
+
+    zone.onEnter = onEnter;
+    ```
+  </Tab>
+</Tabs>
+
+### onExit [#onexit]
+
+A function called when the player exits the zone. It can be attached to the zone after instantiation, or in the `data` table if using Lua.
+
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    local function onExit(self)
+        print('exited zone', self.id)
+    end
+
+    zone.onExit = onExit
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    function onExit(this: Zone) {
+      console.log(`exited zone ${this.id}`)
+    }
+
+    zone.onExit = onExit;
+    ```
+  </Tab>
+</Tabs>
+
+### inside [#inside]
+
+A function called when the player exits the zone. It can be attached to the zone after instantiation, or in the `data` table if using Lua.
+
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    local function inside(self)
+        print('you are inside zone', self.id)
+    end
+
+    zone.inside = inside
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    function inside(this: Zone) {
+      console.log(`you are inside zone ${this.id}`)
+    }
+
+    zone.inside = inside;
+    ```
+  </Tab>
+</Tabs>
+
+### remove [#remove]
+
+Zones can be deleted by using the remove method.
+
+```lua
+local zone = lib.zones.box({...})
+
+zone:remove()
+```
+
+### contains [#contains]
+
+Tests if a point exists inside the zone, returning a `boolean`.
+
+```lua
+local zone = lib.zones.box({...})
+
+if zone:contains(vec3(1, 1, 1)) then
+    print('point is inside zone!')
+end
+```
+
+### setDebug [#setdebug]
+
+Enables or disables debug mode for a zone, optionally with custom colors.
+
+```lua
+local zone = lib.zones.box({...})
+
+-- Enable debug with default colors
+zone:setDebug(true)
+
+-- Enable debug with custom colors
+zone:setDebug(true, vec4(255, 0, 0, 100))
+
+-- Disable debug
+zone:setDebug(false)
+```
+
+## Utility Functions [#utility-functions]
+
+### lib.zones.getAllZones [#libzonesgetallzones]
+
+Returns all registered zones.
+
+```lua
+local zones = lib.zones.getAllZones()
+```
+
+### lib.zones.getCurrentZones [#libzonesgetcurrentzones]
+
+Returns all zones the player is currently inside.
+
+```lua
+local currentZones = lib.zones.getCurrentZones()
+```
+
+### lib.zones.getNearbyZones [#libzonesgetnearbyzones]
+
+Returns all zones near the player.
+
+```lua
+local nearbyZones = lib.zones.getNearbyZones()
+```
+
+## Examples [#examples]
+
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    function onEnter(self)
+        print('entered zone', self.id)
+    end
+
+    function onExit(self)
+        print('exited zone', self.id)
+    end
+
+    function inside(self)
+        print('you are inside zone ' .. self.id)
+    end
+
+    local poly = lib.zones.poly({
+        points = {
+            vec(413.8, -1026.1, 29),
+            vec(411.6, -1023.1, 29),
+            vec(412.2, -1018.0, 29),
+            vec(417.2, -1016.3, 29),
+            vec(422.3, -1020.0, 29),
+            vec(426.8, -1015.9, 29),
+            vec(431.8, -1013.0, 29),
+            vec(437.3, -1018.4, 29),
+            vec(432.4, -1027.2, 29),
+            vec(424.7, -1023.5, 29),
+            vec(420.0, -1030.2, 29),
+            vec(409.8, -1028.4, 29),
+        },
+        thickness = 2,
+        debug = true,
+        inside = inside,
+        onEnter = onEnter,
+        onExit = onExit
+    })
+
+    local sphere = lib.zones.sphere({
+        coords = vec3(442.5363, -1017.666, 28.65637),
+        radius = 1,
+        debug = true,
+        inside = inside,
+        onEnter = onEnter,
+        onExit = onExit
+    })
+
+    local box = lib.zones.box({
+        coords = vec3(442.5363, -1017.666, 28.65637),
+        size = vec3(1, 1, 1),
+        rotation = 45,
+        debug = true,
+        inside = inside,
+        onEnter = onEnter,
+        onExit = onExit
+    })
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    import { Zone } from "@overextended/ox_lib";
+    import { Vector2, Vector3 } from "@overextended/core/vector";
+
+    function onEnter(this: Zone) {
+      console.log(`entered ${this.id}`)
+    }
+
+    function onExit(this: Zone) {
+      console.log(`exited ${this.id}`)
+    }
+
+    function inside(this: Zone) {
+      console.log(`inside ${this.id}`)
+    }
+
+    const shouldDraw = true;
+
+    Zone.Prism([
+      new Vector2(413.8, -1026.1),
+      new Vector2(411.6, -1023.1),
+      new Vector2(412.2, -1018.0),
+      new Vector2(417.2, -1016.3),
+      new Vector2(422.3, -1020.0),
+      new Vector2(426.8, -1015.9),
+      new Vector2(431.8, -1013.0),
+      new Vector2(437.3, -1018.4),
+      new Vector2(432.4, -1027.2),
+      new Vector2(424.7, -1023.5),
+      new Vector2(420.0, -1030.2),
+      new Vector2(409.8, -1028.4)
+    ], 2, 29)
+
+    Zone.Sphere(new Vector3(442.5363, -1017.666, 28.65637), 1)
+
+    Zone.Cuboid(new Vector3(442.5363, -1017.666, 28.65637), 1, 1, 1)
+
+    Zone.map.forEach((zone) => {
+      zone.inside = inside;
+      zone.onEnter = onEnter;
+      zone.onExit = onExit;
+      zone.shouldDraw = shouldDraw;
+    })
+    ```
+  </Tab>
+</Tabs>
 
 ## Zone creation script [#zone-creation-script]
 
@@ -9353,233 +11680,6 @@ Zones will be saved to `ox_lib/created_zones.lua` with your chosen format.
     ```
   </Tab>
 </Tabs>
-
-## Lua [#lua]
-
-#### lib.zones.poly [#libzonespoly]
-
-```lua
-lib.zones.poly(data)
-```
-
-* data: `table`
-  * points: `vector3[]`
-    * An array of 3d points defining the polygon's shape.
-  * thickness?: `number`
-    * The height of the polygon, defaulting to `4`.
-  * onEnter?: `function(self: table)`
-  * onExit?: `function(self: table)`
-  * inside?: `function(self: table)`
-  * debug?: `boolean`
-
-### lib.zones.box [#libzonesbox]
-
-```lua
-lib.zones.box(data)
-```
-
-* data: `table`
-  * coords: `vector3`
-  * size?: `vector3`
-    * Default: `vec3(2, 2, 2)`
-  * rotation?: `number`
-    * Angle in degrees, defaulting to `0`.
-  * onEnter?: `function(self: table)`
-  * onExit?: `function(self: table)`
-  * inside?: `function(self: table)`
-  * debug?: `boolean`
-
-### lib.zones.sphere [#libzonessphere]
-
-```lua
-lib.zones.sphere(data)
-```
-
-* data: `table`
-  * coords: `vector3`
-  * radius?: `number`
-    * Default: `2`
-  * onEnter?: `function(self: table)`
-  * onExit?: `function(self: table)`
-  * inside?: `function(self: table)`
-  * debug?: `boolean`
-
-### Methods [#methods]
-
-#### remove [#remove]
-
-Zones can be deleted by using the remove method. The data will not be cleared from the script, and can be used to recreate a zone later.
-
-```lua
-local zone = lib.zones.box({...})
-
-zone:remove()
-
-SetTimeout(500, function()
-    lib.zones.poly(zone)
-end)
-```
-
-#### contains [#contains]
-
-Tests if a point exists inside the zone, returning a `boolean`.
-
-```lua
-local zone = lib.zones.box({...})
-
-if zone:contains(vec3(1, 1, 1)) then
-    print('point is inside zone!')
-end
-```
-
-#### setDebug [#setdebug]
-
-Enables or disables debug mode for a zone, optionally with custom colors.
-
-```lua
-local zone = lib.zones.box({...})
-
--- Enable debug with default colors
-zone:setDebug(true)
-
--- Enable debug with custom colors
-zone:setDebug(true, vec4(255, 0, 0, 100))
-
--- Disable debug
-zone:setDebug(false)
-```
-
-### Utility Functions [#utility-functions]
-
-#### lib.zones.getAllZones [#libzonesgetallzones]
-
-Returns all registered zones.
-
-```lua
-local zones = lib.zones.getAllZones()
-```
-
-#### lib.zones.getCurrentZones [#libzonesgetcurrentzones]
-
-Returns all zones the player is currently inside.
-
-```lua
-local currentZones = lib.zones.getCurrentZones()
-```
-
-#### lib.zones.getNearbyZones [#libzonesgetnearbyzones]
-
-Returns all zones near the player.
-
-```lua
-local nearbyZones = lib.zones.getNearbyZones()
-```
-
-### Usage Examples [#usage-examples]
-
-```lua
-function onEnter(self)
-    print('entered zone', self.id)
-end
-
-function onExit(self)
-    print('exited zone', self.id)
-end
-
-function inside(self)
-    print('you are inside zone ' .. self.id)
-end
-
-local poly = lib.zones.poly({
-    points = {
-        vec(413.8, -1026.1, 29),
-        vec(411.6, -1023.1, 29),
-        vec(412.2, -1018.0, 29),
-        vec(417.2, -1016.3, 29),
-        vec(422.3, -1020.0, 29),
-        vec(426.8, -1015.9, 29),
-        vec(431.8, -1013.0, 29),
-        vec(437.3, -1018.4, 29),
-        vec(432.4, -1027.2, 29),
-        vec(424.7, -1023.5, 29),
-        vec(420.0, -1030.2, 29),
-        vec(409.8, -1028.4, 29),
-    },
-    thickness = 2,
-    debug = true,
-    inside = inside,
-    onEnter = onEnter,
-    onExit = onExit
-})
-
-local sphere = lib.zones.sphere({
-    coords = vec3(442.5363, -1017.666, 28.65637),
-    radius = 1,
-    debug = true,
-    inside = inside,
-    onEnter = onEnter,
-    onExit = onExit
-})
-
-local box = lib.zones.box({
-    coords = vec3(442.5363, -1017.666, 28.65637),
-    size = vec3(1, 1, 1),
-    rotation = 45,
-    debug = true,
-    inside = inside,
-    onEnter = onEnter,
-    onExit = onExit
-})
-```
-
-## JavaScript [#javascript]
-
-todo
-
-```ts
-import { Zone } from "@overextended/ox_lib";
-import { Vector2, Vector3 } from "@overextended/core/vector";
-
-function onEnter(this: Zone) {
-  console.log(`entered ${this.id}`)
-}
-
-function onExit(this: Zone) {
-  console.log(`exited ${this.id}`)
-}
-
-function inside(this: Zone) {
-  console.log(`inside ${this.id}`)
-}
-
-const shouldDraw = true;
-
-Zone.Prism([
-  new Vector2(413.8, -1026.1),
-  new Vector2(411.6, -1023.1),
-  new Vector2(412.2, -1018.0),
-  new Vector2(417.2, -1016.3),
-  new Vector2(422.3, -1020.0),
-  new Vector2(426.8, -1015.9),
-  new Vector2(431.8, -1013.0),
-  new Vector2(437.3, -1018.4),
-  new Vector2(432.4, -1027.2),
-  new Vector2(424.7, -1023.5),
-  new Vector2(420.0, -1030.2),
-  new Vector2(409.8, -1028.4)
-], 2, 29)
-
-Zone.Sphere(new Vector3(442.5363, -1017.666, 28.65637), 1)
-
-Zone.Cuboid(new Vector3(442.5363, -1017.666, 28.65637), 1, 1, 1)
-
-Zone.map.forEach((zone) => {
-  zone.inside = inside;
-  zone.onEnter = onEnter;
-  zone.onExit = onExit;
-  zone.shouldDraw = shouldDraw;
-})
-```
 
 
 # Client (/docs/ox_target/Functions/Client)
@@ -10533,6 +12633,66 @@ Returns the number of rows affected by the query.
 * `MySQL.Async.execute`
 * `exports.ghmattimysql.execute`
 * `exports.oxmysql.update`
+
+
+# Hooks (/docs/ox_doorlock/Server/functions/Hooks)
+
+
+
+Event hooks allow 3rd party resources to define new behaviour without modifying the doorlock system code directly.
+
+## registerHook [#registerhook]
+
+```lua
+exports.ox_doorlock:registerHook(eventName, function(payload) end, options)
+```
+
+* eventName: `string`
+* payload: `table`
+* options?: `table`
+  * print?: `boolean`
+    * Print to the console when triggering the event.
+  * nameFilter?: `string`
+    * The event will only trigger for specific doors
+
+Return:
+
+* hookId: `number`
+
+### doorAuthorization [#doorauthorization]
+
+Triggered when opening/closing door.\
+By returning `false`, you can override door authorization allowing to use your own logic.
+
+* Payload: `table`
+  * source: `number`
+  * door: `DoorData`
+  * lockpick: boolean
+  * authorised: boolean
+
+**Example**
+
+Allow hotel room's owner open/close door
+
+```lua
+local hookId = exports.ox_doorlock:registerHook('doorAuthorization', function(payload)
+    local hotel, apartment = payload.door.name:match("HotelDoor_(%w+)_([%d]+)")
+    return IsAuthorized(payload.source, hotel, apartment)
+end, {
+    nameFilter = "HotelDoor_%w+_[%d]+"
+})
+```
+
+## removeHooks [#removehooks]
+
+Removes a hook created by the invoking resource with the the specified id.\
+If no id is specified then all hooks registered by the resource are removed.
+
+```lua
+exports.ox_doorlock:removeHooks(id)
+```
+
+* id?: `number`
 
 
 # OxPlayer (/docs/ox_core/Classes/Client/OxPlayer)
@@ -11673,66 +13833,6 @@ vehicle.setStored(value, despawn)
 
 * value?: `string`
 * despawn?: `boolean`
-
-
-# Hooks (/docs/ox_doorlock/Server/functions/Hooks)
-
-
-
-Event hooks allow 3rd party resources to define new behaviour without modifying the doorlock system code directly.
-
-## registerHook [#registerhook]
-
-```lua
-exports.ox_doorlock:registerHook(eventName, function(payload) end, options)
-```
-
-* eventName: `string`
-* payload: `table`
-* options?: `table`
-  * print?: `boolean`
-    * Print to the console when triggering the event.
-  * nameFilter?: `string`
-    * The event will only trigger for specific doors
-
-Return:
-
-* hookId: `number`
-
-### doorAuthorization [#doorauthorization]
-
-Triggered when opening/closing door.\
-By returning `false`, you can override door authorization allowing to use your own logic.
-
-* Payload: `table`
-  * source: `number`
-  * door: `DoorData`
-  * lockpick: boolean
-  * authorised: boolean
-
-**Example**
-
-Allow hotel room's owner open/close door
-
-```lua
-local hookId = exports.ox_doorlock:registerHook('doorAuthorization', function(payload)
-    local hotel, apartment = payload.door.name:match("HotelDoor_(%w+)_([%d]+)")
-    return IsAuthorized(payload.source, hotel, apartment)
-end, {
-    nameFilter = "HotelDoor_%w+_[%d]+"
-})
-```
-
-## removeHooks [#removehooks]
-
-Removes a hook created by the invoking resource with the the specified id.\
-If no id is specified then all hooks registered by the resource are removed.
-
-```lua
-exports.ox_doorlock:removeHooks(id)
-```
-
-* id?: `number`
 
 
 # Hooks (/docs/ox_inventory/Functions/Server/Hooks)
