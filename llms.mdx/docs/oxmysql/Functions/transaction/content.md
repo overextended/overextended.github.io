@@ -1,8 +1,6 @@
-# transaction (/docs/oxmysql/Functions/transaction)
+# Transaction (/docs/oxmysql/Functions/transaction)
 
 
-
-# Transaction [#transaction]
 
 A transaction executes multiple queries and commits them only if all succeed.\
 If one fails, none of the queries are committed.

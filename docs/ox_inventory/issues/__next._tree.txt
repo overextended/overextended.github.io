@@ -1,7 +1,7 @@
-:HL["/_next/static/chunks/2lwa6q3wm8_0j.css","style"]
+:HL["/_next/static/chunks/1gx_9qmmcijv7.css","style"]
 :HL["/_next/static/media/83afe278b6a6bb3c-s.p.2bn3s6zvc0dyp.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/favicon.ico","image"]
 :HL["/static/kofi-small.png","image"]
 :HL["/static/discord.png","image"]
 :HL["/static/kofi.png","image"]
-0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"docs","param":null,"prefetchHints":0,"slots":{"children":{"name":"slug","param":{"type":"oc","key":"ox_inventory/issues","siblings":null},"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}}}},"staleTime":300,"buildId":"2Si7W3giepEMwns8t357i"}
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"docs","param":null,"prefetchHints":0,"slots":{"children":{"name":"slug","param":{"type":"oc","key":"ox_inventory/issues","siblings":null},"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}}}},"staleTime":300,"buildId":"bQgzPlBIztcdcB4EGJsaA"}

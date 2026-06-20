@@ -23,8 +23,8 @@
     - [Functions](/docs/ox_doorlock/Client/functions)
   - Server
     - [Events](/docs/ox_doorlock/Server/events)
-    - [Functions](/docs/ox_doorlock/Server/functions)
     - Functions
+      - [Functions](/docs/ox_doorlock/Server/functions)
       - [Hooks](/docs/ox_doorlock/Server/functions/Hooks)
 - Ox Fuel
   - [Ox Fuel](/docs/ox_fuel)
@@ -44,8 +44,8 @@
     - [Qbox](/docs/ox_inventory/Frameworks/qbx)
   - Functions
     - [Client](/docs/ox_inventory/Functions/Client)
-    - [Server](/docs/ox_inventory/Functions/Server)
     - Server
+      - [Server](/docs/ox_inventory/Functions/Server)
       - [Hooks](/docs/ox_inventory/Functions/Server/Hooks)
   - Guides
     - [Crafting](/docs/ox_inventory/Guides/crafting)
@@ -55,7 +55,7 @@
     - [Custom Stashes](/docs/ox_inventory/Guides/stashes)
 - Ox Lib
   - [Ox Lib](/docs/ox_lib)
-  - [Interface](/docs/ox_lib/Interface)
+  - [Hooks](/docs/ox_lib/Hooks)
   - [Ped](/docs/ox_lib/Ped)
   - [Player](/docs/ox_lib/Player)
   - [Prop](/docs/ox_lib/Prop)
@@ -114,7 +114,8 @@
   - Grid
     - [Shared](/docs/ox_lib/Grid/Shared)
   - Interface
-    - Client
+    - Interface
+      - [Interface](/docs/ox_lib/Interface/Client)
       - [Alert Dialog](/docs/ox_lib/Interface/Client/alert)
       - [Clipboard](/docs/ox_lib/Interface/Client/clipboard)
       - [Context Menu](/docs/ox_lib/Interface/Client/context)
@@ -179,10 +180,10 @@
   - [Using the Debug UI](/docs/oxmysql/ui)
   - Functions
     - [insert](/docs/oxmysql/Functions/insert)
-    - [prepare](/docs/oxmysql/Functions/prepare)
-    - [query](/docs/oxmysql/Functions/query)
-    - [rawExecute](/docs/oxmysql/Functions/rawExecute)
-    - [scalar](/docs/oxmysql/Functions/scalar)
-    - [single](/docs/oxmysql/Functions/single)
-    - [transaction](/docs/oxmysql/Functions/transaction)
-    - [update](/docs/oxmysql/Functions/update)
+    - [Prepare](/docs/oxmysql/Functions/prepare)
+    - [Query](/docs/oxmysql/Functions/query)
+    - [RawExecute](/docs/oxmysql/Functions/rawExecute)
+    - [Scalar](/docs/oxmysql/Functions/scalar)
+    - [Single](/docs/oxmysql/Functions/single)
+    - [Transaction](/docs/oxmysql/Functions/transaction)
+    - [Update](/docs/oxmysql/Functions/update)

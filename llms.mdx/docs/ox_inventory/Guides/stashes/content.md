@@ -4,8 +4,6 @@
 
 
 
-# Custom Stashes [#custom-stashes]
-
 We can set up custom stashes from outside the resource utilising the exported RegisterStash function.
 
 Firstly, we need to define the stashes properties.

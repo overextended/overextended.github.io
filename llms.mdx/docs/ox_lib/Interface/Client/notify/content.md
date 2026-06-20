@@ -2,8 +2,6 @@
 
 
 
-# Notifications [#notifications]
-
 ## lib.notify [#libnotify]
 
 Custom notifications with a lot of styling options.

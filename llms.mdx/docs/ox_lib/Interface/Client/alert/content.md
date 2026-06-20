@@ -2,8 +2,6 @@
 
 
 
-# Alert Dialog [#alert-dialog]
-
 Simple alert dialog that can display a message to the player.\
 Returns whether the player pressed the confirm button or canceled the dialog.
 

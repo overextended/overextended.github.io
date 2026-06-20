@@ -2,8 +2,6 @@
 
 
 
-# TextUI [#textui]
-
 ## lib.showTextUI [#libshowtextui]
 
 Show the TextUI window.

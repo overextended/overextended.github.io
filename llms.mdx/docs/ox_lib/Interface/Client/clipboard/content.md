@@ -2,8 +2,6 @@
 
 
 
-# Clipboard [#clipboard]
-
 ## lib.setClipboard [#libsetclipboard]
 
 Sets the player's clipboard to the specified string value.

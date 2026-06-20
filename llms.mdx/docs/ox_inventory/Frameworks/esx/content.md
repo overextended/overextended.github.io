@@ -2,8 +2,6 @@
 
 
 
-# ESX [#esx]
-
 * You will need a [compatible version of ESX Legacy](https://github.com/esx-framework/esx_core) (1.6.0 or higher).
 * You can convert player inventories with `convertinventory esx`.
 * All items in the database will be migrated to the internal item data.

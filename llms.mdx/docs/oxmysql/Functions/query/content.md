@@ -1,8 +1,6 @@
-# query (/docs/oxmysql/Functions/query)
+# Query (/docs/oxmysql/Functions/query)
 
 
-
-# Query [#query]
 
 When selecting data, returns all matching rows and columns; otherwise, returns data like insertId, affectedRows, etc.
 

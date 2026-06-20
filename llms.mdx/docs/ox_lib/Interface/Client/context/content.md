@@ -2,8 +2,6 @@
 
 
 
-# Context Menu [#context-menu]
-
 ## lib.registerContext [#libregistercontext]
 
 Used for registering a context menu.

@@ -2,8 +2,6 @@
 
 
 
-# Creating Shops [#creating-shops]
-
 Builtin shops are defined in [data/shops.lua](https://github.com/overextended/ox_inventory/blob/main/data/shops.lua), and more can be added here to benefit from the built-in markers or zones support.
 
 ## Shop definition [#shop-definition]

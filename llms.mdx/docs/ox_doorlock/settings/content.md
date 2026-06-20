@@ -2,8 +2,6 @@
 
 
 
-# Door Settings [#door-settings]
-
 ## General [#general]
 
 * Door name

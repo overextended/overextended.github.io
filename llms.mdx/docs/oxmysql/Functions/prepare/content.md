@@ -1,8 +1,6 @@
-# prepare (/docs/oxmysql/Functions/prepare)
+# Prepare (/docs/oxmysql/Functions/prepare)
 
 
-
-# Prepare [#prepare]
 
 Prepare can be used to execute frequently called queries faster and accepts multiple sets of parameters to be used with a single query.
 

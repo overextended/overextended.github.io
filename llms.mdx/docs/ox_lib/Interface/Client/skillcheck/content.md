@@ -2,8 +2,6 @@
 
 
 
-# Skill Check [#skill-check]
-
 ## lib.skillCheck [#libskillcheck]
 
 Runs a skill check with the defined difficulty.

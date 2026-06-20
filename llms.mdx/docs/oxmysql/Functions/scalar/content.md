@@ -1,8 +1,6 @@
-# scalar (/docs/oxmysql/Functions/scalar)
+# Scalar (/docs/oxmysql/Functions/scalar)
 
 
-
-# Scalar [#scalar]
 
 Returns the first column for a single row.
 

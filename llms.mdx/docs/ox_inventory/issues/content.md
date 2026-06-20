@@ -2,8 +2,6 @@
 
 
 
-# Common Issues [#common-issues]
-
 ## UI has not been built [#ui-has-not-been-built]
 
 Because the UI for inventory is written in React it can't run natively under FiveM so it must first be bundled into html/css/js.

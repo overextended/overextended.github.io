@@ -1,8 +1,6 @@
-# Interface (/docs/ox_lib/Interface)
+# Interface (/docs/ox_lib/Interface/Client)
 
 
-
-# Interface [#interface]
 
 If you wish to change the primary colour for the UI to better match your server's theme you can do so easily through the available convars.
 

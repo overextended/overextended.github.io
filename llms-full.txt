@@ -95,145 +95,6 @@ It is used by FXServer to run JavaScript resources, and is typically required to
 * Enter `node --version` to confirm successful installation.
 
 
-# Ox Doorlock (/docs/ox_doorlock)
-
-
-
-
-
-<ResourceLinks repo="https://github.com/overextended/ox_doorlock" />
-
-A door management resource that can be used standalone or alongside ox\_core, qbx\_core, and es\_extended.
-
-## Installation [#installation]
-
-<Callout type="info">
-  We **strongly** recommend referring to [Guides](../guides) for setting up Git, Node.js, and bun.
-</Callout>
-
-<div className="fd-steps">
-  <div className="fd-step">
-    ### Install all resource dependencies. [#install-all-resource-dependencies-step]
-
-    * [oxmysql](../oxmysql)
-    * [ox\_lib](../ox_lib/)
-  </div>
-
-  <div className="fd-step">
-    ### Download a release or build the source code. [#download-a-release-or-build-the-source-code-step]
-
-    * Download the [latest release](https://github.com/overextended/ox_doorlock/releases/latest).
-
-    ```bash
-    git clone https://github.com/overextended/ox_doorlock.git
-    cd ox_doorlock/web
-    bun i
-    bun run build
-    ```
-  </div>
-
-  <div className="fd-step">
-    ### Install optional dependencies. [#install-optional-dependencies-step]
-
-    These resources aren't required but provide additional functionality.
-
-    * [ox\_target](../ox_target/)
-  </div>
-</div>
-
-## Opening the UI [#opening-the-ui]
-
-If you have installed and started the resource, you can use `/doorlock` to open the UI.
-
-* If the cursor is displayed but not the UI then you have not built it.
-* You may not be authorised to use the command.
-
-  * Enter `test_ace player.1 command.doorlock` in the server console (replace 1 with your server id).
-
-## Convert doors [#convert-doors]
-
-Door configuration files written for nui\_doorlock can be automatically added to your MySQL database.
-
-* Any files with the `.lua` extension placed in the `ox_doorlock/convert` directory will be read on resource start.
-* If the directory doesn't exist, you can create it.
-* Conversion cannot be guaranteed, especially if the config was not written for nui\_doorlock.
-
-## Adding new native audio [#adding-new-native-audio]
-
-A guide can be found [here](https://forum.cfx.re/t/how-to-make-a-simplesound-using-native-audio/5156001) for adding new native audio.
-
-
-# Door Settings (/docs/ox_doorlock/settings)
-
-
-
-# Door Settings [#door-settings]
-
-## General [#general]
-
-* Door name
-  * Used to easily identify the door.
-* Passcode
-  * Door can be unlocked by anybody by using the code or phrase.
-* Autolock interval
-  * Door will be locked after x seconds.
-* Interact distance
-  * Door can only be used when within x metres.
-* Door rate
-  * Door movement speed for sliding/garage/automatic doors, or swinging doors when locked.
-* Locked
-  * Sets the door as locked by default.
-* Double
-  * Door is a set of two doors, controlled together.
-* Automatic
-  * Sliding/garage/automatic door.
-* Lockpick
-  * Door can be lockpicked when interacting with a targeting resource.
-* Hide UI
-  * No indicators (i.e. icon, text) will display on the door.
-* Hold Open
-  * Holds the door open while unlocked.
-
-## Characters [#characters]
-
-* Character Id
-  * Character identifier used by a framework (i.e. player.charid, xPlayer.identifier, Player.CitizenId).
-
-## Groups [#groups]
-
-* Group
-  * Framework dependent, referring to jobs, gangs, etc.
-* Grade
-  * The minimum grade to allow access for the group (0 to allow all).
-
-## Items [#items]
-
-* Item
-  * Name of the item.
-* Metadata type
-  * Requires metadata support (i.e. ox\_inventory) to check slot.metadata.type.
-* Remove on use
-  * Removes the item after interacting with the door.
-
-## Lockpick [#lockpick]
-
-* Difficulty
-  * Sets the skillcheck difficulty (see [docs](../ox_lib/Modules/Interface/Client/skillcheck)).
-* Area size
-  * Custom difficulty area size in degrees.
-* Speed multiplier
-  * Custom difficulty idicator speed multipier.
-
-## Sound [#sound]
-
-* Lock sound
-  * Sound to play on door lock.
-* Unlock sound
-  * Sound to play on door unlock.
-
-*Note*: Sounds are stored in the `./web/public/sounds` directory.
-
-
 # Global States (/docs/ox_core/States)
 
 
@@ -452,6 +313,143 @@ These convars should use the `setr` command to be read by clients.
 * `ox:defaultVehicleStore`
   * Default: `'impound'`
   * On resource start any vehicles that were previously spawned will be stored here. An empty string will not update the database.
+
+
+# Ox Doorlock (/docs/ox_doorlock)
+
+
+
+
+
+<ResourceLinks repo="https://github.com/overextended/ox_doorlock" />
+
+A door management resource that can be used standalone or alongside ox\_core, qbx\_core, and es\_extended.
+
+## Installation [#installation]
+
+<Callout type="info">
+  We **strongly** recommend referring to [Guides](../guides) for setting up Git, Node.js, and bun.
+</Callout>
+
+<div className="fd-steps">
+  <div className="fd-step">
+    ### Install all resource dependencies. [#install-all-resource-dependencies-step]
+
+    * [oxmysql](../oxmysql)
+    * [ox\_lib](../ox_lib/)
+  </div>
+
+  <div className="fd-step">
+    ### Download a release or build the source code. [#download-a-release-or-build-the-source-code-step]
+
+    * Download the [latest release](https://github.com/overextended/ox_doorlock/releases/latest).
+
+    ```bash
+    git clone https://github.com/overextended/ox_doorlock.git
+    cd ox_doorlock/web
+    bun i
+    bun run build
+    ```
+  </div>
+
+  <div className="fd-step">
+    ### Install optional dependencies. [#install-optional-dependencies-step]
+
+    These resources aren't required but provide additional functionality.
+
+    * [ox\_target](../ox_target/)
+  </div>
+</div>
+
+## Opening the UI [#opening-the-ui]
+
+If you have installed and started the resource, you can use `/doorlock` to open the UI.
+
+* If the cursor is displayed but not the UI then you have not built it.
+* You may not be authorised to use the command.
+
+  * Enter `test_ace player.1 command.doorlock` in the server console (replace 1 with your server id).
+
+## Convert doors [#convert-doors]
+
+Door configuration files written for nui\_doorlock can be automatically added to your MySQL database.
+
+* Any files with the `.lua` extension placed in the `ox_doorlock/convert` directory will be read on resource start.
+* If the directory doesn't exist, you can create it.
+* Conversion cannot be guaranteed, especially if the config was not written for nui\_doorlock.
+
+## Adding new native audio [#adding-new-native-audio]
+
+A guide can be found [here](https://forum.cfx.re/t/how-to-make-a-simplesound-using-native-audio/5156001) for adding new native audio.
+
+
+# Door Settings (/docs/ox_doorlock/settings)
+
+
+
+## General [#general]
+
+* Door name
+  * Used to easily identify the door.
+* Passcode
+  * Door can be unlocked by anybody by using the code or phrase.
+* Autolock interval
+  * Door will be locked after x seconds.
+* Interact distance
+  * Door can only be used when within x metres.
+* Door rate
+  * Door movement speed for sliding/garage/automatic doors, or swinging doors when locked.
+* Locked
+  * Sets the door as locked by default.
+* Double
+  * Door is a set of two doors, controlled together.
+* Automatic
+  * Sliding/garage/automatic door.
+* Lockpick
+  * Door can be lockpicked when interacting with a targeting resource.
+* Hide UI
+  * No indicators (i.e. icon, text) will display on the door.
+* Hold Open
+  * Holds the door open while unlocked.
+
+## Characters [#characters]
+
+* Character Id
+  * Character identifier used by a framework (i.e. player.charid, xPlayer.identifier, Player.CitizenId).
+
+## Groups [#groups]
+
+* Group
+  * Framework dependent, referring to jobs, gangs, etc.
+* Grade
+  * The minimum grade to allow access for the group (0 to allow all).
+
+## Items [#items]
+
+* Item
+  * Name of the item.
+* Metadata type
+  * Requires metadata support (i.e. ox\_inventory) to check slot.metadata.type.
+* Remove on use
+  * Removes the item after interacting with the door.
+
+## Lockpick [#lockpick]
+
+* Difficulty
+  * Sets the skillcheck difficulty (see [docs](../ox_lib/Modules/Interface/Client/skillcheck)).
+* Area size
+  * Custom difficulty area size in degrees.
+* Speed multiplier
+  * Custom difficulty idicator speed multipier.
+
+## Sound [#sound]
+
+* Lock sound
+  * Sound to play on door lock.
+* Unlock sound
+  * Sound to play on door unlock.
+
+*Note*: Sounds are stored in the `./web/public/sounds` directory.
 
 
 # Shared (/docs/ox_fuel/Shared)
@@ -801,8 +799,6 @@ This setup is highly opinionated and rigid, so it's up to your own ability as a 
 # Common Issues (/docs/ox_inventory/issues)
 
 
-
-# Common Issues [#common-issues]
 
 ## UI has not been built [#ui-has-not-been-built]
 
@@ -1167,32 +1163,236 @@ Sets the entity's routing bucket to the given id. &#x2A;*Server only.**
 * bucketId: `number`
 
 
-# Interface (/docs/ox_lib/Interface)
+# Hooks (/docs/ox_lib/Hooks)
 
 
 
-# Interface [#interface]
+See our [internally registered hooks](https://github.com/overextended/ox_lib/blob/main/resource/state/server.lua) for examples.
 
-If you wish to change the primary colour for the UI to better match your server's theme you can do so easily through the available convars.
+# HookPipeline [#hookpipeline]
 
-They don't require you to build the UI, just restart the resource.
+Creates a hook pipeline for a specific event, which manages a collection of registered hooks and controls execution flow through filtering, rejection, and dispatching.
 
-Convars:
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    lib.hook:new(event, filter)
+    ```
+  </Tab>
 
-```yaml
-setr ox:primaryColor blue
-setr ox:primaryShade 8
-```
+  <Tab>
+    ```ts
+    import { HookPipeline } from "@overextended/ox_lib/hooks";
 
-Changing the primary colour will change the colour in elements such as the progress bar/circle, skill check, radial menu center button and hover,
-dialog confirm buttons, input field focus, and more.
+    new HookPipeline(event, filter)
+    ```
+  </Tab>
+</Tabs>
 
-You can find the full list of preset colours and shades here:
+* event: `string`
+* filter?: `function(hook, payload): boolean`
+  * Used to filter out registered hooks based on if they pass a predicate function.
 
-[https://v6.mantine.dev/theming/colors/#default-colors](https://v6.mantine.dev/theming/colors/#default-colors)
+**Returns:** `HookPipeline`
 
-If you wish to create your own pallete I suggest following the guide on that page.\
-Keep in mind doing so *will* require you to download the source code and build the UI.
+## Methods [#methods]
+
+### registerHook [#registerhook]
+
+Registers a new event handler into the hook pipeline.
+
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    pipeline:registerHook(handler, options)
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    pipeline.registerHook(handler, options)
+    ```
+  </Tab>
+</Tabs>
+
+* handler: `function(payload: unknown): boolean`
+* options?: `table`
+  * Optional metadata to attach to the hook.
+
+### remove [#remove]
+
+Removes hooks from the pipeline.
+
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    pipeline:remove(hookId)
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    pipeline.remove(hookId)
+    ```
+  </Tab>
+</Tabs>
+
+* hookId?: `string`
+  * If defined, only the specified hook is removed - otherwise all hooks for the invoking resource are removed.
+
+### dispatch [#dispatch]
+
+Executes each registered hook in order of registration, checking the payload against a provided filter using the hook options and executing the hook callback.
+
+A hook may block execution by returning `false` from a registered handler.
+
+If any hook rejects the execution, dispatch is cancelled and `result.ok` is set to `false`.
+
+The returned object acts as a finalisation handle and emits results to registered handlers once closed.
+
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    local hook <close> = pipeline:dispatch(payload)
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    using hook = pipeline.dispatch(payload)
+    ```
+  </Tab>
+</Tabs>
+
+* payload: `unknown`
+
+# EventHook [#eventhook]
+
+Allows resources to call [`pipeline.registerHook`](#registerHook) using exports.
+
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    lib.registerHook(eventName, handler, options)
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    import { registerHook } from "@overextended/ox_lib/hooks";
+
+    registerHook(eventName, handler, options)
+    ```
+  </Tab>
+</Tabs>
+
+* eventName: `string`
+* handler?: `function(payload: unknown): boolean`
+* options?: Optional metadata to attach to the hook.
+
+## Methods [#methods-1]
+
+### on [#on]
+
+Attaches a post-execution event handler for this hook.
+
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    hook:on(handler)
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    hook.on(handler)
+    ```
+  </Tab>
+</Tabs>
+
+* handler: `function(ok: boolean, payload: unknown)`
+
+### off [#off]
+
+Detatches the currently registered post-hook event handler, if one exists.
+
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    hook:off()
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    hook.off()
+    ```
+  </Tab>
+</Tabs>
+
+### remove [#remove-1]
+
+Fully removes this hook from both the local event system and the external hook pipeline provided from the originating resource.
+
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    hook:remove()
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    hook.remove()
+    ```
+  </Tab>
+</Tabs>
+
+# Registered Hooks [#registered-hooks]
+
+These hook pipelines are registered and managed by ox\_lib for other resources to interact with.
+
+See [EventHook](Hooks#eventhook) for more information.
+
+## ox\_lib:setPlayerState [#ox_libsetplayerstate]
+
+When using `sv_stateBagStrictMode` players cannot arbitrarily modify their own states, and changes will be rejected by default.
+
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    lib.registerHook('ox_lib:setPlayerState', predicate, { key: state })
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    import { registerHook } from "@overextended/ox_lib/hooks";
+
+    registerHook('ox_lib:setPlayerState', predicate, { key: state })
+    ```
+  </Tab>
+</Tabs>
+
+## ox\_lib:setEntityState [#ox_libsetentitystate]
+
+When using `sv_stateBagStrictMode` players cannot arbitrarily modify entity states, and changes will be rejected by default.
+
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    lib.registerHook('ox_lib:setEntityState', predicate, { key: state })
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    import { registerHook } from "@overextended/ox_lib/hooks";
+
+    registerHook('ox_lib:setEntityState', predicate, { key: state })
+    ```
+  </Tab>
+</Tabs>
 
 
 # Ped (/docs/ox_lib/Ped)
@@ -1225,7 +1425,47 @@ A class for ped entities implementing a custom statebag interface and common ent
 
 ## Methods [#methods]
 
-<section id="methods">
+<section id="pedmethods">
+  ### getArmour [#getarmour]
+
+  Gets the entity's current armour.
+
+  <Tabs groupId="language" items="['Lua', 'TypeScript']">
+    <Tab>
+      ```lua
+      entity:getArmour()
+      ```
+    </Tab>
+
+    <Tab>
+      ```ts
+      entity.getArmour()
+      ```
+    </Tab>
+  </Tabs>
+
+  **Returns:** `number`
+
+  ### setArmour [#setarmour]
+
+  Sets the entity's armour.
+
+  <Tabs groupId="language" items="['Lua', 'TypeScript']">
+    <Tab>
+      ```lua
+      entity:setArmour(amount)
+      ```
+    </Tab>
+
+    <Tab>
+      ```ts
+      entity.setArmour(amount)
+      ```
+    </Tab>
+  </Tabs>
+
+  * amount: `number`
+
   {/* 
     Internal class used by the GameEntity classes (Ped, Player, Prop, Vehicle).
     */}
@@ -1555,46 +1795,6 @@ A class for ped entities implementing a custom statebag interface and common ent
     </Tabs>
 
   * bucketId: `number`
-
-  ### getArmour [#getarmour]
-
-  Gets the entity's current armour.
-
-  <Tabs groupId="language" items="['Lua', 'TypeScript']">
-    <Tab>
-      ```lua
-      entity:getArmour()
-      ```
-    </Tab>
-
-    <Tab>
-      ```ts
-      entity.getArmour()
-      ```
-    </Tab>
-  </Tabs>
-
-  **Returns:** `number`
-
-  ### setArmour [#setarmour]
-
-  Sets the entity's armour.
-
-  <Tabs groupId="language" items="['Lua', 'TypeScript']">
-    <Tab>
-      ```lua
-      entity:setArmour(amount)
-      ```
-    </Tab>
-
-    <Tab>
-      ```ts
-      entity.setArmour(amount)
-      ```
-    </Tab>
-  </Tabs>
-
-  * amount: `number`
 </section>
 
 
@@ -1628,378 +1828,6 @@ A class that extends the [Ped](Ped) class with additional functionality for play
 
 ## Methods [#methods]
 
-<section id="methods">
-  {/* 
-    Internal class used by the GameEntity classes (Ped, Player, Prop, Vehicle).
-    */}
-
-  {/* ## Properties
-
-    <TypeTable
-    type={{
-      handle: {
-        description: "The entity's script handle.",
-        type: 'number',
-        required: true
-      },
-      netId: {
-        description: "The entity's network id.",
-        type: 'number',
-        required: true
-      },
-      type: {
-        description: "The entity's type (i.e. Ped, Player, Prop, Vehicle).",
-        type: 'string',
-        required: true
-      },
-      statebag: {
-        description: "The entity's internal statebag name.",
-        type: 'string',
-        required: true
-      },
-    }}
-    /> */}
-
-  ### set [#set]
-
-  Writes a value to the entity's statebag.
-
-    <Tabs groupId="language" items="['Lua', 'TypeScript']">
-      <Tab>
-        ```lua
-        entity:set(key, value)
-        ```
-      </Tab>
-
-      <Tab>
-        ```ts
-        entity.set(key, value)
-        ```
-      </Tab>
-    </Tabs>
-
-  * key: `string`
-  * value: `any`
-
-  **Returns:** `boolean` - If the state changed.
-
-  ### setr [#setr]
-
-  Writes a replicated value to the entity's statebag. Client-set values are validated by the server.
-
-    <Tabs groupId="language" items="['Lua', 'TypeScript']">
-      <Tab>
-        ```lua
-        entity:setr(key, value)
-        ```
-      </Tab>
-
-      <Tab>
-        ```ts
-        entity.setr(key, value)
-        ```
-      </Tab>
-    </Tabs>
-
-  * key: `string`
-  * value: `any`
-
-  **Returns:** `boolean` - If the state changed.
-
-  ### sets [#sets]
-
-  Writes a synced value to the entity's statebag. Client-set values are validated by the server.\
-  Synced values are only replicated between the player and server, and cannot be set on non-player entities.
-
-    <Tabs groupId="language" items="['Lua', 'TypeScript']">
-      <Tab>
-        ```lua
-        entity:sets(key, value)
-        ```
-      </Tab>
-
-      <Tab>
-        ```ts
-        entity.sets(key, value)
-        ```
-      </Tab>
-    </Tabs>
-
-  * key: `string`
-  * value: `any`
-
-  **Returns:** `boolean` - If the state changed.
-
-  ### get [#get]
-
-  Returns a value from the entity's statebag.
-
-    <Tabs groupId="language" items="['Lua', 'TypeScript']">
-      <Tab>
-        ```lua
-        entity:get(key)
-        ```
-      </Tab>
-
-      <Tab>
-        ```ts
-        entity.get(key)
-        ```
-      </Tab>
-    </Tabs>
-
-  * key: `string`
-
-  **Returns:** `unknown`
-
-  ### has [#has]
-
-  Returns whether a key exists in the entity's statebag.
-
-    <Tabs groupId="language" items="['Lua', 'TypeScript']">
-      <Tab>
-        ```lua
-        entity:has(key)
-        ```
-      </Tab>
-
-      <Tab>
-        ```ts
-        entity.has(key)
-        ```
-      </Tab>
-    </Tabs>
-
-  * key: `string`
-
-  **Returns:** `boolean`
-
-  ### keys [#keys]
-
-  Returns an array of all keys set on the entity's statebag.
-
-    <Tabs groupId="language" items="['Lua', 'TypeScript']">
-      <Tab>
-        ```lua
-        entity:keys()
-        ```
-      </Tab>
-
-      <Tab>
-        ```ts
-        entity.keys()
-        ```
-      </Tab>
-    </Tabs>
-
-  **Returns:** `string[]`
-
-  ### setHandle [#sethandle]
-
-  Updates the handle, netId, and statebag properties on an entity. Useful if re-using an entity instance, respawning an entity, changing the model, etc.
-
-    <Tabs groupId="language" items="['Lua', 'TypeScript']">
-      <Tab>
-        ```lua
-        entity:setHandle(handle)
-        ```
-      </Tab>
-
-      <Tab>
-        ```ts
-        entity.setHandle(handle)
-        ```
-      </Tab>
-    </Tabs>
-
-  * handle: `number`
-
-  ### getCoords [#getcoords]
-
-  Gets the entity's current coordinates.
-
-    <Tabs groupId="language" items="['Lua', 'TypeScript']">
-      <Tab>
-        ```lua
-        entity:getCoords()
-        ```
-      </Tab>
-
-      <Tab>
-        ```ts
-        entity.getCoords()
-        ```
-      </Tab>
-    </Tabs>
-
-  **Returns:** `Vector3`
-
-  ### setCoords [#setcoords]
-
-  Sets the entity's coordinates to the specified position.
-
-    <Tabs groupId="language" items="['Lua', 'TypeScript']">
-      <Tab>
-        ```lua
-        entity:setCoords(x, y, z, deadFlag, ragdollFlag, clearArea)
-        ```
-      </Tab>
-
-      <Tab>
-        ```ts
-        entity.setCoords()
-        ```
-      </Tab>
-    </Tabs>
-
-  * x: `number`
-  * y: `number`
-  * z: `number`
-  * deadFlag?: `boolean` (Defaults to false)
-  * ragdollFlag?: `boolean` (Defaults to false)
-  * clearArea?: `boolean` (Defaults to false)
-
-  ### getModel [#getmodel]
-
-  Gets the entity's current model hash.
-
-    <Tabs groupId="language" items="['Lua', 'TypeScript']">
-      <Tab>
-        ```lua
-        entity:getModel()
-        ```
-      </Tab>
-
-      <Tab>
-        ```ts
-        entity.getModel()
-        ```
-      </Tab>
-    </Tabs>
-
-  **Returns:** `number`
-
-  ### getHeading [#getheading]
-
-  Gets the entity's current heading (or yaw) in degrees.
-
-    <Tabs groupId="language" items="['Lua', 'TypeScript']">
-      <Tab>
-        ```lua
-        entity:getHeading()
-        ```
-      </Tab>
-
-      <Tab>
-        ```ts
-        entity.getHeading()
-        ```
-      </Tab>
-    </Tabs>
-
-  **Returns:** `number`
-
-  ### setHeading [#setheading]
-
-  Sets the entity's heading (or yaw) to the given value in degrees.
-
-    <Tabs groupId="language" items="['Lua', 'TypeScript']">
-      <Tab>
-        ```lua
-        entity:setHeading(heading)
-        ```
-      </Tab>
-
-      <Tab>
-        ```ts
-        entity.setHeading(heading)
-        ```
-      </Tab>
-    </Tabs>
-
-  * heading: `number`
-
-  ### getRoutingBucket [#getroutingbucket]
-
-  Gets the entity's current routing bucket.
-
-    <Tabs groupId="language" items="['Lua', 'TypeScript']">
-      <Tab>
-        ```lua
-        entity:getRoutingBucket()
-        ```
-      </Tab>
-
-      <Tab>
-        ```ts
-        entity.getRoutingBucket()
-        ```
-      </Tab>
-    </Tabs>
-
-  **Returns:** `number`
-
-  ### setRoutingBucket [#setroutingbucket]
-
-  Sets the entity's routing bucket to the given id. &#x2A;*Server only.**
-
-    <Tabs groupId="language" items="['Lua', 'TypeScript']">
-      <Tab>
-        ```lua
-        entity:setRoutingBucket(bucketId)
-        ```
-      </Tab>
-
-      <Tab>
-        ```ts
-        entity.setRoutingBucket(bucketId)
-        ```
-      </Tab>
-    </Tabs>
-
-  * bucketId: `number`
-
-  ### getArmour [#getarmour]
-
-  Gets the entity's current armour.
-
-  <Tabs groupId="language" items="['Lua', 'TypeScript']">
-    <Tab>
-      ```lua
-      entity:getArmour()
-      ```
-    </Tab>
-
-    <Tab>
-      ```ts
-      entity.getArmour()
-      ```
-    </Tab>
-  </Tabs>
-
-  **Returns:** `number`
-
-  ### setArmour [#setarmour]
-
-  Sets the entity's armour.
-
-  <Tabs groupId="language" items="['Lua', 'TypeScript']">
-    <Tab>
-      ```lua
-      entity:setArmour(amount)
-      ```
-    </Tab>
-
-    <Tab>
-      ```ts
-      entity.setArmour(amount)
-      ```
-    </Tab>
-  </Tabs>
-
-  * amount: `number`
-</section>
-
 ### setModel [#setmodel]
 
 Creates a new ped and assigns it to the player. On the client, this invalidates the entity handle (see [setHandle](#sethandle)).
@@ -2019,6 +1847,376 @@ Creates a new ped and assigns it to the player. On the client, this invalidates 
 </Tabs>
 
 * model: `string` | `number`
+
+### getArmour [#getarmour]
+
+Gets the entity's current armour.
+
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    entity:getArmour()
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    entity.getArmour()
+    ```
+  </Tab>
+</Tabs>
+
+**Returns:** `number`
+
+### setArmour [#setarmour]
+
+Sets the entity's armour.
+
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    entity:setArmour(amount)
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    entity.setArmour(amount)
+    ```
+  </Tab>
+</Tabs>
+
+* amount: `number`
+
+{/* 
+  Internal class used by the GameEntity classes (Ped, Player, Prop, Vehicle).
+  */}
+
+{/* ## Properties
+
+  <TypeTable
+  type={{
+    handle: {
+      description: "The entity's script handle.",
+      type: 'number',
+      required: true
+    },
+    netId: {
+      description: "The entity's network id.",
+      type: 'number',
+      required: true
+    },
+    type: {
+      description: "The entity's type (i.e. Ped, Player, Prop, Vehicle).",
+      type: 'string',
+      required: true
+    },
+    statebag: {
+      description: "The entity's internal statebag name.",
+      type: 'string',
+      required: true
+    },
+  }}
+  /> */}
+
+### set [#set]
+
+Writes a value to the entity's statebag.
+
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    entity:set(key, value)
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    entity.set(key, value)
+    ```
+  </Tab>
+</Tabs>
+
+* key: `string`
+* value: `any`
+
+**Returns:** `boolean` - If the state changed.
+
+### setr [#setr]
+
+Writes a replicated value to the entity's statebag. Client-set values are validated by the server.
+
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    entity:setr(key, value)
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    entity.setr(key, value)
+    ```
+  </Tab>
+</Tabs>
+
+* key: `string`
+* value: `any`
+
+**Returns:** `boolean` - If the state changed.
+
+### sets [#sets]
+
+Writes a synced value to the entity's statebag. Client-set values are validated by the server.\
+Synced values are only replicated between the player and server, and cannot be set on non-player entities.
+
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    entity:sets(key, value)
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    entity.sets(key, value)
+    ```
+  </Tab>
+</Tabs>
+
+* key: `string`
+* value: `any`
+
+**Returns:** `boolean` - If the state changed.
+
+### get [#get]
+
+Returns a value from the entity's statebag.
+
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    entity:get(key)
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    entity.get(key)
+    ```
+  </Tab>
+</Tabs>
+
+* key: `string`
+
+**Returns:** `unknown`
+
+### has [#has]
+
+Returns whether a key exists in the entity's statebag.
+
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    entity:has(key)
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    entity.has(key)
+    ```
+  </Tab>
+</Tabs>
+
+* key: `string`
+
+**Returns:** `boolean`
+
+### keys [#keys]
+
+Returns an array of all keys set on the entity's statebag.
+
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    entity:keys()
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    entity.keys()
+    ```
+  </Tab>
+</Tabs>
+
+**Returns:** `string[]`
+
+### setHandle [#sethandle]
+
+Updates the handle, netId, and statebag properties on an entity. Useful if re-using an entity instance, respawning an entity, changing the model, etc.
+
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    entity:setHandle(handle)
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    entity.setHandle(handle)
+    ```
+  </Tab>
+</Tabs>
+
+* handle: `number`
+
+### getCoords [#getcoords]
+
+Gets the entity's current coordinates.
+
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    entity:getCoords()
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    entity.getCoords()
+    ```
+  </Tab>
+</Tabs>
+
+**Returns:** `Vector3`
+
+### setCoords [#setcoords]
+
+Sets the entity's coordinates to the specified position.
+
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    entity:setCoords(x, y, z, deadFlag, ragdollFlag, clearArea)
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    entity.setCoords()
+    ```
+  </Tab>
+</Tabs>
+
+* x: `number`
+* y: `number`
+* z: `number`
+* deadFlag?: `boolean` (Defaults to false)
+* ragdollFlag?: `boolean` (Defaults to false)
+* clearArea?: `boolean` (Defaults to false)
+
+### getModel [#getmodel]
+
+Gets the entity's current model hash.
+
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    entity:getModel()
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    entity.getModel()
+    ```
+  </Tab>
+</Tabs>
+
+**Returns:** `number`
+
+### getHeading [#getheading]
+
+Gets the entity's current heading (or yaw) in degrees.
+
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    entity:getHeading()
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    entity.getHeading()
+    ```
+  </Tab>
+</Tabs>
+
+**Returns:** `number`
+
+### setHeading [#setheading]
+
+Sets the entity's heading (or yaw) to the given value in degrees.
+
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    entity:setHeading(heading)
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    entity.setHeading(heading)
+    ```
+  </Tab>
+</Tabs>
+
+* heading: `number`
+
+### getRoutingBucket [#getroutingbucket]
+
+Gets the entity's current routing bucket.
+
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    entity:getRoutingBucket()
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    entity.getRoutingBucket()
+    ```
+  </Tab>
+</Tabs>
+
+**Returns:** `number`
+
+### setRoutingBucket [#setroutingbucket]
+
+Sets the entity's routing bucket to the given id. &#x2A;*Server only.**
+
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    entity:setRoutingBucket(bucketId)
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    entity.setRoutingBucket(bucketId)
+    ```
+  </Tab>
+</Tabs>
+
+* bucketId: `number`
 
 
 # Prop (/docs/ox_lib/Prop)
@@ -2051,6 +2249,27 @@ A class for object entities implementing a custom statebag interface and common 
 
 ## Methods [#methods]
 
+### setOnGround [#setonground]
+
+Attempts to set the entity onto the ground.\
+On the server, this uses the `ox_entity_setonground` state and a [statebag change handler](https://github.com/overextended/ox_lib/blob/44796d362997f9d1b67a01b56ed5bcba1e73c2f4/resource/client.lua#L39-L74).
+
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    entity:setOnGround()
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    entity.setOnGround()
+    ```
+  </Tab>
+</Tabs>
+
+**Returns:** `boolean`
+
 {/* 
   Internal class used by the GameEntity classes (Ped, Player, Prop, Vehicle).
   */}
@@ -2380,27 +2599,6 @@ Sets the entity's routing bucket to the given id. &#x2A;*Server only.**
 </Tabs>
 
 * bucketId: `number`
-
-### setOnGround [#setonground]
-
-Attempts to set the entity onto the ground.\
-On the server, this uses the `ox_entity_setonground` state and a [statebag change handler](https://github.com/overextended/ox_lib/blob/44796d362997f9d1b67a01b56ed5bcba1e73c2f4/resource/client.lua#L39-L74).
-
-<Tabs groupId="language" items="['Lua', 'TypeScript']">
-  <Tab>
-    ```lua
-    entity:setOnGround()
-    ```
-  </Tab>
-
-  <Tab>
-    ```ts
-    entity.setOnGround()
-    ```
-  </Tab>
-</Tabs>
-
-**Returns:** `boolean`
 
 
 # Vehicle (/docs/ox_lib/Vehicle)
@@ -2432,336 +2630,6 @@ A class for vehicle entities implementing a custom statebag interface and common
 **Returns:** `Vehicle`
 
 ## Methods [#methods]
-
-{/* 
-  Internal class used by the GameEntity classes (Ped, Player, Prop, Vehicle).
-  */}
-
-{/* ## Properties
-
-  <TypeTable
-  type={{
-    handle: {
-      description: "The entity's script handle.",
-      type: 'number',
-      required: true
-    },
-    netId: {
-      description: "The entity's network id.",
-      type: 'number',
-      required: true
-    },
-    type: {
-      description: "The entity's type (i.e. Ped, Player, Prop, Vehicle).",
-      type: 'string',
-      required: true
-    },
-    statebag: {
-      description: "The entity's internal statebag name.",
-      type: 'string',
-      required: true
-    },
-  }}
-  /> */}
-
-### set [#set]
-
-Writes a value to the entity's statebag.
-
-<Tabs groupId="language" items="['Lua', 'TypeScript']">
-  <Tab>
-    ```lua
-    entity:set(key, value)
-    ```
-  </Tab>
-
-  <Tab>
-    ```ts
-    entity.set(key, value)
-    ```
-  </Tab>
-</Tabs>
-
-* key: `string`
-* value: `any`
-
-**Returns:** `boolean` - If the state changed.
-
-### setr [#setr]
-
-Writes a replicated value to the entity's statebag. Client-set values are validated by the server.
-
-<Tabs groupId="language" items="['Lua', 'TypeScript']">
-  <Tab>
-    ```lua
-    entity:setr(key, value)
-    ```
-  </Tab>
-
-  <Tab>
-    ```ts
-    entity.setr(key, value)
-    ```
-  </Tab>
-</Tabs>
-
-* key: `string`
-* value: `any`
-
-**Returns:** `boolean` - If the state changed.
-
-### sets [#sets]
-
-Writes a synced value to the entity's statebag. Client-set values are validated by the server.\
-Synced values are only replicated between the player and server, and cannot be set on non-player entities.
-
-<Tabs groupId="language" items="['Lua', 'TypeScript']">
-  <Tab>
-    ```lua
-    entity:sets(key, value)
-    ```
-  </Tab>
-
-  <Tab>
-    ```ts
-    entity.sets(key, value)
-    ```
-  </Tab>
-</Tabs>
-
-* key: `string`
-* value: `any`
-
-**Returns:** `boolean` - If the state changed.
-
-### get [#get]
-
-Returns a value from the entity's statebag.
-
-<Tabs groupId="language" items="['Lua', 'TypeScript']">
-  <Tab>
-    ```lua
-    entity:get(key)
-    ```
-  </Tab>
-
-  <Tab>
-    ```ts
-    entity.get(key)
-    ```
-  </Tab>
-</Tabs>
-
-* key: `string`
-
-**Returns:** `unknown`
-
-### has [#has]
-
-Returns whether a key exists in the entity's statebag.
-
-<Tabs groupId="language" items="['Lua', 'TypeScript']">
-  <Tab>
-    ```lua
-    entity:has(key)
-    ```
-  </Tab>
-
-  <Tab>
-    ```ts
-    entity.has(key)
-    ```
-  </Tab>
-</Tabs>
-
-* key: `string`
-
-**Returns:** `boolean`
-
-### keys [#keys]
-
-Returns an array of all keys set on the entity's statebag.
-
-<Tabs groupId="language" items="['Lua', 'TypeScript']">
-  <Tab>
-    ```lua
-    entity:keys()
-    ```
-  </Tab>
-
-  <Tab>
-    ```ts
-    entity.keys()
-    ```
-  </Tab>
-</Tabs>
-
-**Returns:** `string[]`
-
-### setHandle [#sethandle]
-
-Updates the handle, netId, and statebag properties on an entity. Useful if re-using an entity instance, respawning an entity, changing the model, etc.
-
-<Tabs groupId="language" items="['Lua', 'TypeScript']">
-  <Tab>
-    ```lua
-    entity:setHandle(handle)
-    ```
-  </Tab>
-
-  <Tab>
-    ```ts
-    entity.setHandle(handle)
-    ```
-  </Tab>
-</Tabs>
-
-* handle: `number`
-
-### getCoords [#getcoords]
-
-Gets the entity's current coordinates.
-
-<Tabs groupId="language" items="['Lua', 'TypeScript']">
-  <Tab>
-    ```lua
-    entity:getCoords()
-    ```
-  </Tab>
-
-  <Tab>
-    ```ts
-    entity.getCoords()
-    ```
-  </Tab>
-</Tabs>
-
-**Returns:** `Vector3`
-
-### setCoords [#setcoords]
-
-Sets the entity's coordinates to the specified position.
-
-<Tabs groupId="language" items="['Lua', 'TypeScript']">
-  <Tab>
-    ```lua
-    entity:setCoords(x, y, z, deadFlag, ragdollFlag, clearArea)
-    ```
-  </Tab>
-
-  <Tab>
-    ```ts
-    entity.setCoords()
-    ```
-  </Tab>
-</Tabs>
-
-* x: `number`
-* y: `number`
-* z: `number`
-* deadFlag?: `boolean` (Defaults to false)
-* ragdollFlag?: `boolean` (Defaults to false)
-* clearArea?: `boolean` (Defaults to false)
-
-### getModel [#getmodel]
-
-Gets the entity's current model hash.
-
-<Tabs groupId="language" items="['Lua', 'TypeScript']">
-  <Tab>
-    ```lua
-    entity:getModel()
-    ```
-  </Tab>
-
-  <Tab>
-    ```ts
-    entity.getModel()
-    ```
-  </Tab>
-</Tabs>
-
-**Returns:** `number`
-
-### getHeading [#getheading]
-
-Gets the entity's current heading (or yaw) in degrees.
-
-<Tabs groupId="language" items="['Lua', 'TypeScript']">
-  <Tab>
-    ```lua
-    entity:getHeading()
-    ```
-  </Tab>
-
-  <Tab>
-    ```ts
-    entity.getHeading()
-    ```
-  </Tab>
-</Tabs>
-
-**Returns:** `number`
-
-### setHeading [#setheading]
-
-Sets the entity's heading (or yaw) to the given value in degrees.
-
-<Tabs groupId="language" items="['Lua', 'TypeScript']">
-  <Tab>
-    ```lua
-    entity:setHeading(heading)
-    ```
-  </Tab>
-
-  <Tab>
-    ```ts
-    entity.setHeading(heading)
-    ```
-  </Tab>
-</Tabs>
-
-* heading: `number`
-
-### getRoutingBucket [#getroutingbucket]
-
-Gets the entity's current routing bucket.
-
-<Tabs groupId="language" items="['Lua', 'TypeScript']">
-  <Tab>
-    ```lua
-    entity:getRoutingBucket()
-    ```
-  </Tab>
-
-  <Tab>
-    ```ts
-    entity.getRoutingBucket()
-    ```
-  </Tab>
-</Tabs>
-
-**Returns:** `number`
-
-### setRoutingBucket [#setroutingbucket]
-
-Sets the entity's routing bucket to the given id. &#x2A;*Server only.**
-
-<Tabs groupId="language" items="['Lua', 'TypeScript']">
-  <Tab>
-    ```lua
-    entity:setRoutingBucket(bucketId)
-    ```
-  </Tab>
-
-  <Tab>
-    ```ts
-    entity.setRoutingBucket(bucketId)
-    ```
-  </Tab>
-</Tabs>
-
-* bucketId: `number`
 
 ### setOnGround [#setonground]
 
@@ -2843,6 +2711,336 @@ Sets the entity's number plate text.
 </Tabs>
 
 * plate: `string`
+
+{/* 
+  Internal class used by the GameEntity classes (Ped, Player, Prop, Vehicle).
+  */}
+
+{/* ## Properties
+
+  <TypeTable
+  type={{
+    handle: {
+      description: "The entity's script handle.",
+      type: 'number',
+      required: true
+    },
+    netId: {
+      description: "The entity's network id.",
+      type: 'number',
+      required: true
+    },
+    type: {
+      description: "The entity's type (i.e. Ped, Player, Prop, Vehicle).",
+      type: 'string',
+      required: true
+    },
+    statebag: {
+      description: "The entity's internal statebag name.",
+      type: 'string',
+      required: true
+    },
+  }}
+  /> */}
+
+### set [#set]
+
+Writes a value to the entity's statebag.
+
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    entity:set(key, value)
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    entity.set(key, value)
+    ```
+  </Tab>
+</Tabs>
+
+* key: `string`
+* value: `any`
+
+**Returns:** `boolean` - If the state changed.
+
+### setr [#setr]
+
+Writes a replicated value to the entity's statebag. Client-set values are validated by the server.
+
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    entity:setr(key, value)
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    entity.setr(key, value)
+    ```
+  </Tab>
+</Tabs>
+
+* key: `string`
+* value: `any`
+
+**Returns:** `boolean` - If the state changed.
+
+### sets [#sets]
+
+Writes a synced value to the entity's statebag. Client-set values are validated by the server.\
+Synced values are only replicated between the player and server, and cannot be set on non-player entities.
+
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    entity:sets(key, value)
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    entity.sets(key, value)
+    ```
+  </Tab>
+</Tabs>
+
+* key: `string`
+* value: `any`
+
+**Returns:** `boolean` - If the state changed.
+
+### get [#get]
+
+Returns a value from the entity's statebag.
+
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    entity:get(key)
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    entity.get(key)
+    ```
+  </Tab>
+</Tabs>
+
+* key: `string`
+
+**Returns:** `unknown`
+
+### has [#has]
+
+Returns whether a key exists in the entity's statebag.
+
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    entity:has(key)
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    entity.has(key)
+    ```
+  </Tab>
+</Tabs>
+
+* key: `string`
+
+**Returns:** `boolean`
+
+### keys [#keys]
+
+Returns an array of all keys set on the entity's statebag.
+
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    entity:keys()
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    entity.keys()
+    ```
+  </Tab>
+</Tabs>
+
+**Returns:** `string[]`
+
+### setHandle [#sethandle]
+
+Updates the handle, netId, and statebag properties on an entity. Useful if re-using an entity instance, respawning an entity, changing the model, etc.
+
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    entity:setHandle(handle)
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    entity.setHandle(handle)
+    ```
+  </Tab>
+</Tabs>
+
+* handle: `number`
+
+### getCoords [#getcoords]
+
+Gets the entity's current coordinates.
+
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    entity:getCoords()
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    entity.getCoords()
+    ```
+  </Tab>
+</Tabs>
+
+**Returns:** `Vector3`
+
+### setCoords [#setcoords]
+
+Sets the entity's coordinates to the specified position.
+
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    entity:setCoords(x, y, z, deadFlag, ragdollFlag, clearArea)
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    entity.setCoords()
+    ```
+  </Tab>
+</Tabs>
+
+* x: `number`
+* y: `number`
+* z: `number`
+* deadFlag?: `boolean` (Defaults to false)
+* ragdollFlag?: `boolean` (Defaults to false)
+* clearArea?: `boolean` (Defaults to false)
+
+### getModel [#getmodel]
+
+Gets the entity's current model hash.
+
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    entity:getModel()
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    entity.getModel()
+    ```
+  </Tab>
+</Tabs>
+
+**Returns:** `number`
+
+### getHeading [#getheading]
+
+Gets the entity's current heading (or yaw) in degrees.
+
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    entity:getHeading()
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    entity.getHeading()
+    ```
+  </Tab>
+</Tabs>
+
+**Returns:** `number`
+
+### setHeading [#setheading]
+
+Sets the entity's heading (or yaw) to the given value in degrees.
+
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    entity:setHeading(heading)
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    entity.setHeading(heading)
+    ```
+  </Tab>
+</Tabs>
+
+* heading: `number`
+
+### getRoutingBucket [#getroutingbucket]
+
+Gets the entity's current routing bucket.
+
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    entity:getRoutingBucket()
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    entity.getRoutingBucket()
+    ```
+  </Tab>
+</Tabs>
+
+**Returns:** `number`
+
+### setRoutingBucket [#setroutingbucket]
+
+Sets the entity's routing bucket to the given id. &#x2A;*Server only.**
+
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    entity:setRoutingBucket(bucketId)
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    entity.setRoutingBucket(bucketId)
+    ```
+  </Tab>
+</Tabs>
+
+* bucketId: `number`
 
 
 # Ox Lib (/docs/ox_lib)
@@ -3629,118 +3827,6 @@ If you're looking to start creating resources with TypeScript but don't know wha
 * Fully configured for FiveM and FXServer.
 
 **[Browse repository](https://github.com/overextended/fivem-ts)**
-
-
-# Functions (/docs/ox_doorlock/Client/functions)
-
-
-
-## pickClosestDoor [#pickclosestdoor]
-
-Attempt to pick the lock of the closest door. Dependant on server-side checks and may fail.
-
-```lua
-exports.ox_doorlock:pickClosestDoor()
-```
-
-## useClosestDoor [#useclosestdoor]
-
-Interact with the closest door. Dependant on server-side checks and may fail.
-
-```lua
-exports.ox_doorlock:useClosestDoor()
-```
-
-## getClosestDoor [#getclosestdoor]
-
-Returns the closest door.
-
-```lua
-exports.ox_doorlock:getClosestDoor()
-```
-
-Return:
-
-* door: `number`
-
-
-# Events (/docs/ox_doorlock/Server/events)
-
-
-
-## Handlers [#handlers]
-
-These events **should not** be triggered by any other scripts.
-
-### ox\_doorlock:stateChanged [#ox_doorlockstatechanged]
-
-Triggered when a doors state is updated.
-
-```lua
-AddEventHandler('ox_doorlock:stateChanged', function(source, doorId, state, usedItem) end)
-```
-
-* source: `number` or `nil`
-* doorId: `number`
-* state: `boolean`
-* usedItem: `string` or `false` or `nil`
-
-
-# Functions (/docs/ox_doorlock/Server/functions)
-
-
-
-Gets data for a door with the given id, matching the id for the database entry.
-
-## getDoor [#getdoor]
-
-```lua
-exports.ox_doorlock:getDoor(doorId)
-```
-
-Gets data for a door with the given `id`, matching the id for the database entry.
-
-* id: `number`
-
-Return:
-
-* door: `table`
-
-## getDoorFromName [#getdoorfromname]
-
-```lua
-exports.ox_doorlock:getDoorFromName(name)
-```
-
-Gets data for a door with the given `name`, matching the name for the database entry.
-
-* name: `string`
-
-Return:
-
-* door: `table`
-
-## editDoor [#editdoor]
-
-```lua
-exports.ox_doorlock:editDoor(doorId, data)
-```
-
-Edit configuration for the given doorId.
-
-* doorId: `number`
-* data: `table`
-
-## setDoorState [#setdoorstate]
-
-```lua
-exports.ox_doorlock:setDoorState(doorId, state)
-```
-
-Sets a door with the given doorId as locked if state is `true` or `1`.
-
-* doorId: `number`
-* state: `0` or `1` or `boolean`
 
 
 # Client Events (/docs/ox_core/Events/client)
@@ -5191,6 +5277,61 @@ Ox.UnbanUser(userId)
 * `boolean`
 
 
+# Functions (/docs/ox_doorlock/Client/functions)
+
+
+
+## pickClosestDoor [#pickclosestdoor]
+
+Attempt to pick the lock of the closest door. Dependant on server-side checks and may fail.
+
+```lua
+exports.ox_doorlock:pickClosestDoor()
+```
+
+## useClosestDoor [#useclosestdoor]
+
+Interact with the closest door. Dependant on server-side checks and may fail.
+
+```lua
+exports.ox_doorlock:useClosestDoor()
+```
+
+## getClosestDoor [#getclosestdoor]
+
+Returns the closest door.
+
+```lua
+exports.ox_doorlock:getClosestDoor()
+```
+
+Return:
+
+* door: `number`
+
+
+# Events (/docs/ox_doorlock/Server/events)
+
+
+
+## Handlers [#handlers]
+
+These events **should not** be triggered by any other scripts.
+
+### ox\_doorlock:stateChanged [#ox_doorlockstatechanged]
+
+Triggered when a doors state is updated.
+
+```lua
+AddEventHandler('ox_doorlock:stateChanged', function(source, doorId, state, usedItem) end)
+```
+
+* source: `number` or `nil`
+* doorId: `number`
+* state: `boolean`
+* usedItem: `string` or `false` or `nil`
+
+
 # Functions (/docs/ox_fuel/Client/functions)
 
 
@@ -5414,8 +5555,6 @@ AddEventHandler('ox_inventory:usedItem', function(playerId, name, slotId, metada
 
 
 
-# ESX [#esx]
-
 * You will need a [compatible version of ESX Legacy](https://github.com/esx-framework/esx_core) (1.6.0 or higher).
 * You can convert player inventories with `convertinventory esx`.
 * All items in the database will be migrated to the internal item data.
@@ -5491,8 +5630,6 @@ You should read through the functions section for further information, but the f
 # Qbox (/docs/ox_inventory/Frameworks/qbx)
 
 
-
-# Qbox Project [#qbox-project]
 
 Qbox is a fork of QBCore being developed by a team of former contributors and developers on QBCore. The team is focused on improving performance and security, as well as converting resources to support our resources (mainly ox\_lib and ox\_inventory).
 
@@ -6063,1028 +6200,9 @@ LocalPlayer.state.canUseWeapons = false
 ```
 
 
-# Server (/docs/ox_inventory/Functions/Server)
-
-
-
-## setPlayerInventory [#setplayerinventory]
-
-Creates and sets the player's inventory.
-
-```lua
-exports.ox_inventory:setPlayerInventory(player, data)
-```
-
-* player: `table`
-  * source: `number`
-  * identifier: `string`
-  * name: `string`
-  * groups?: `table`
-  * sex?: `string`
-  * dateofbirth?: `string`
-* data?: `table`
-  * If not provided will load player's inventory data from the db.
-
-## forceOpenInventory [#forceopeninventory]
-
-Opens an inventory using the passed data.
-Forces a player to open an inventory, without usual security checks (groups, coords).
-
-```lua
-exports.ox_inventory:forceOpenInventory(playerId, invType, data)
-```
-
-* playerId: `number`
-* invType: `string`
-  * `'player'`
-  * `'stash'`
-  * `'container'`
-  * `'drop'`
-  * `'glovebox'`
-  * `'trunk'`
-  * `'dumpster'`
-* data: `number` or `string` or `table`
-
-<Tabs items="[&#x22;Player&#x22;, &#x22;Stash&#x22;]">
-  <Tab>
-    Open the target player's inventory.
-
-    ```lua
-    exports.ox_inventory:forceOpenInventory(1, 'player', 3)
-    ```
-
-    Admin command to open a player's inventory.
-
-    ```lua
-    RegisterCommand('openplayerinv', function(source, args)
-        exports.ox_inventory:forceOpenInventory(source, 'player', tonumber(args[1]))
-    end, true)
-    ```
-  </Tab>
-
-  <Tab>
-    Open a custom stash (created on the server with RegisterStash).
-
-    ```lua
-    exports.ox_inventory:forceOpenInventory(1, 'stash', 'society_police')
-    ```
-
-    Open a stash with a specific owner.
-
-    ```lua
-    exports.ox_inventory:forceOpenInventory(1, 'stash', { id = 'police_locker', owner = 'license:xxxxxxxx' })
-    ```
-  </Tab>
-</Tabs>
-
-## UpdateVehicle [#updatevehicle]
-
-Update the internal reference to vehicle stashes, without triggering a save or updating the database.
-
-```lua
-exports.ox_inventory:UpdateVehicle(oldPlate, newPlate)
-```
-
-* oldPlate: `string`
-* newPlate: `string`
-
-## Items [#items]
-
-Returns a table of all registered items. The format is as defined in [data/items.lua](https://github.com/overextended/ox_inventory/blob/main/data/items.lua).
-
-Optionally takes the name of an item, returning only data for that item (getting all data is not recommended).
-
-```lua
-exports.ox_inventory:Items(itemName)
-```
-
-* itemName?: `string`
-
-The following snippet can be used in crafting resources such as okokCrafting or core\_crafting, rather than querying the database.
-
-```lua
-local itemNames
-
-ESX.RegisterServerCallback('crafting:itemNames', function(source, cb)
-    if not itemNames then
-        itemNames = {}
-        for item, data in pairs(exports.ox_inventory:Items()) do
-            itemNames[item] = data.label
-        end
-    end
-    cb(itemNames)
-end)
-```
-
-## AddItem [#additem]
-
-Adds an item into the specified inventory.
-
-Should be used alongside [CanCarryItem](#cancarryitem) otherwise, the maximum weight may be exceeded.
-
-```lua
-exports.ox_inventory:AddItem(inv, item, count, metadata, slot, cb)
-```
-
-* inv: `table` or `string` or `number`
-  * The inventory's unique id, or a table with the id and owner.
-    * playerId: `1`
-    * inventoryId: `gloveVGH283`
-    * `{ id = 'personallocker', owner = 'license:xxxxxx'}`
-* item: `string`
-  * The name of the item to add to the target.
-* count: `number`
-  * The number of items to add.
-* metadata?: `table` or `string`
-  * A table of unique data to attach to the item object. A string will create a table with the "type" field.
-* slot?: `number`
-  * A specific slot to add the item to. If the slot is invalid, the first available slot will be used instead.
-* cb?: function(success: `boolean`, response?: `string`)
-
-If used for glovebox, trunk or stash you must first check the inventory is loaded with [GetInventory](./GetInventory.md)
-
-Returns `success, response` if cb is undefined, otherwise they are used in the callback only.
-
-**Possible value of the "response" argument, on failure:**
-
-* "invalid\_item": the item doesn't exist
-* "invalid\_inventory": the inventory doesn't exist
-* "inventory\_full": no free slots
-
-<br />
-
-<u>
-  **Example**
-</u>
-
-```lua
-local success, response = exports.ox_inventory:AddItem('gloveVGH283', 'bread', 4)
-
-if not success then
-    -- if no slots are available, the value will be "inventory_full"
-    return print(response)
-end
-
-print(json.encode(response, {indent=true}))
---[[
-    {
-        "metadata": [],
-        "label": "Bread",
-        "slot": 1,
-        "stack": true,
-        "close": true,
-        "name": "bread",
-        "count": 1,
-        "weight": 150
-    }
-]]
-```
-
-## RemoveItem [#removeitem]
-
-Removes the specified item from the specified inventory.
-
-```lua
-exports.ox_inventory:RemoveItem(inv, item, count, metadata, slot, ignoreTotal, strict)
-```
-
-* inv: `table` or `string` or `number`
-  * The inventory's unique id, or a table with the id and owner.
-    * playerId: `1`
-    * inventoryId: `gloveVGH283`
-    * `{ id = 'personallocker', owner = 'license:xxxxxx'}`
-* item: `string`
-  * The name of the item to remove from the target.
-* count: `number`
-  * The number of items to remove.
-* metadata?: `table` or `string`
-  * Only remove items with matching metadata properties.
-* slot?: `number`
-  * A specific slot to remove the item from. If the slot is invalid, the first available slot will be used instead.
-* ignoreTotal?: `boolean`
-  * Removes as many items as possible up to count.
-* strict?: `boolean`
-  * If true (default), requires an exact match on item + metadata; if false, allows looser/partial matches.
-
-Returns success: `boolean`, response: `string?`.
-
-**Possible values of "response" on failure:**
-
-* "invalid\_item": the item doesn't exist
-* "invalid\_inventory": the inventory doesn't exist
-* "not\_enough\_items": inventory did not contain enough of the given item
-
-<br />
-
-<u>
-  **Example**
-</u>
-
-```lua
--- Removes 2 water from the glovebox for the given plate.
-local success = exports.ox_inventory:RemoveItem('gloveVGH283', 'water', 2)
-```
-
-## GetItem [#getitem]
-
-Returns *generic* item data from the specified inventory, with the total count.
-
-```lua
-exports.ox_inventory:GetItem(inv, item, metadata, returnsCount)
-```
-
-* inv: `table` or `string` or `number`
-* item: `table` or `string`
-  * Can be items array.
-* metadata?: `any`
-  * Only returns the count of items that strictly match the given metadata.
-* returnsCount?: `boolean`
-
-If `returnsCount` is set to true, the returned value will be the `count` based on
-how many times the item was found.
-Otherwise returns the data related to the item *and* its total count found in the inventory.
-
-<br />
-
-<u>
-  **Example**
-</u>
-
-```lua
-local item = ox_inventory:GetItem(source, 'water', nil, false)
-
-print(json.encode(item, {indent=true}))
---[[
-    {
-        "consume": 1,
-        "count": 15,
-        "stack": true,
-        "name": "water",
-        "weight": 500,
-        "label": "Water",
-        "close": true
-    }
-]]
-```
-
-## ConvertItems [#convertitems]
-
-Takes traditional item data and updates it to support ox\_inventory.
-
-```lua
-exports.ox_inventory:ConvertItems(playerId, items)
-```
-
-* playerId: `number`
-* items: `table`
-
-<br />
-
-<u>
-  **Data Conversion Example**
-</u>
-
-```lua
-Old: [{"cola":1, "bread":3}]
-New: [{"slot":1,"name":"cola","count":1},
-{"slot":2,"name":"bread","count":3}]
-```
-
-## CanCarryItem [#cancarryitem]
-
-Returns true or false depending if the inventory can carry the specified item.
-
-The function checks for inventory weight and available slots.
-
-```lua
-exports.ox_inventory:CanCarryItem(inv, item, count, metadata)
-```
-
-* inv: `table` or `string` or `number`
-* item `table` or `string`
-  * Can be array of items.
-* count: `number`
-* metadata?: `table` or `string`
-  * If metadata is passed as string then `metadata.type` will be checked.
-
-<br />
-
-<u>
-  **Example**
-</u>
-
-```lua
--- Checks if the player calling the event can carry 3 water items
-if exports.ox_inventory:CanCarryItem(source, 'water', 3) then
-    -- Do stuff if can carry
-else
-    -- Do stuff if can't carry
-end
-```
-
-## CanCarryAmount [#cancarryamount]
-
-Returns the amount a player can hold based on available weight.
-
-```lua
-exports.ox_inventory:CanCarryAmount(inv, item)
-```
-
-* inv: `table` or `string` or `number`
-* item: `table` or `string`
-  * Can be array to check multiple items.
-
-<br />
-
-<u>
-  **Example**
-</u>
-
-```lua
--- Checks how much you can carry
-amountToAdd = exports.ox_inventory:CanCarryAmount(inv, 'stone')
--- Adds the amount
-exports.ox_inventory:AddItem(inv, 'stone', amountToAdd)
-```
-
-## CanCarryWeight [#cancarryweight]
-
-Returns if inventory can carry specified weight and free inventory weight.
-
-```lua
-exports.ox_inventory:CanCarryWeight(inv, weight)
-```
-
-* inv: `table` or `string` or `number`
-* weight: `number`
-
-<br />
-
-<u>
-  **Example**
-</u>
-
-```lua
--- Checks if player can carry 1000 grams.
-local fillAmount = 1000
-local canCarryWeight, freeWeight = ox_inventory:CanCarryWeight(playerId, fillAmount)
-
-if freeWeight == 0 then
-  -- Player can't carry weight.
-  return
-elseif not canCarryWeight then
-  -- Modify fillAmount, because inventory can't carry specified weight
-  fillAmount = freeWeight
-end
-
--- Do something
-```
-
-## SetMaxWeight [#setmaxweight]
-
-Sets the maximum weight available for an inventory.
-
-```lua
-exports.ox_inventory:SetMaxWeight(inv, maxWeight)
-```
-
-* inv: `table` or `string` or `number`
-* maxWeight: `number`
-
-<br />
-
-<u>
-  **Example**
-</u>
-
-```lua
-local ox_inventory = exports.ox_inventory
-
--- Set the max weight for player 1's inventory to 20kg.
-ox_inventory:SetMaxWeight(1, 20000)
-```
-
-## CanSwapItem [#canswapitem]
-
-Returns true if the item swap is possible based on inventory weight.
-
-```lua
-exports.ox_inventory:CanSwapItem(inv, firstItem, firstItemCount, testItem, testItemCount)
-```
-
-* inv: `table` or `string` or `number`
-* firstItem: `string`
-* firstItemCount: `number`
-* testItem: `string`
-* testItemCount: `number`
-
-## GetItemCount [#getitemcount]
-
-Get the total item count for all items in an inventory with the given name and metadata.
-
-```lua
-exports.ox_inventory:GetItemCount(inv, itemName, metadata, strict)
-```
-
-* inv: `table` or `string` or `number`
-* itemName: `string`
-* metadata?: `table`
-* strict?: `boolean`
-  * Strictly match metadata properties, otherwise use partial matching.
-
-Return:
-
-* itemCount: `number`
-
-## GetItemSlots [#getitemslots]
-
-Returns the number of slots the specified item is in, the item's total count and the remaining empty slots.
-
-```lua
-exports.ox_inventory:GetItemSlots(inv, item, metadata)
-```
-
-* inv: `table` or `string` or `number`
-* item: `table` or `string`
-* metadata?: `table`
-
-## GetSlot [#getslot]
-
-Returns the specified slot data as a table.
-
-```lua
-
-exports.ox_inventory:GetSlot(inv, slot)
-```
-
-* inv: `table` or `string` or `number`
-* slot: `number`
-
-<br />
-
-<u>
-  **Example**
-</u>
-
-```lua
-local slot = exports.ox_inventory:GetSlot(source, 1)
-
-print(json.encode(slot, {indent=true}))
---[[
-    {
-        "weight": 2000,
-        "name": "water",
-        "metadata": [],
-        "slot": 1,
-        "label": "Water",
-        "close": true,
-        "stack": true,
-        "count: 4
-    }
-]]
-```
-
-## GetSlotForItem [#getslotforitem]
-
-Get the slot id of an existing item matching the given data, or an empty slot.
-
-```lua
-exports.ox_inventory:GetSlotForItem(inv, itemName, metadata)
-```
-
-* inv: `table` or `string` or `number`
-* itemName: `string`
-* metadata: `table?`
-
-Return:
-
-* slotId: `number?`
-
-## GetSlotIdWithItem [#getslotidwithitem]
-
-Get a slot id in an inventory matching the given item name and metadata.
-
-```lua
-exports.ox_inventory:GetSlotIdWithItem(inv, itemName, metadata, strict)
-```
-
-* inv: `table` or `string` or `number`
-* itemName: `string`
-* metadata?: `table`
-* strict?: `boolean`
-  * Strictly match metadata properties, otherwise use partial matching.
-
-Return:
-
-* slotId: `number?`
-
-## GetSlotIdsWithItem [#getslotidswithitem]
-
-Get all slot ids in an inventory matching the given name and metadata.
-
-```lua
-exports.ox_inventory:GetSlotIdsWithItem(inv, itemName, metadata, strict)
-```
-
-* inv: `table` or `string` or `number`
-* itemName: `string`
-* metadata?: `table`
-* strict?: `boolean`
-  * Strictly match metadata properties, otherwise use partial matching.
-
-Return:
-
-* slotIds: `number[]?`
-
-## GetSlotWithItem [#getslotwithitem]
-
-Get data for a slot in an inventory matching the given name and metadata.
-
-```lua
-exports.ox_inventory:GetSlotWithItem(inv, itemName, metadata, strict)
-```
-
-* inv: `table` or `string` or `number`
-* itemName: `string`
-* metadata?: `table`
-* strict?: `boolean`
-  * Strictly match metadata properties, otherwise use partial matching.
-
-Return:
-
-* slotData: `table?`
-
-## GetSlotsWithItem [#getslotswithitem]
-
-Get data all slots in an inventory matching the given name and metadata.
-
-```lua
-exports.ox_inventory:GetSlotsWithItem(inv, itemName, metadata, strict)
-```
-
-* inv: `table` or `string` or `number`
-* itemName: `string`
-* metadata?: `table`
-* strict?: `boolean`
-  * Strictly match metadata properties, otherwise use partial matching.
-
-Return:
-
-* slotsData: `table[]?`
-
-## GetEmptySlot [#getemptyslot]
-
-Get the first available empty slot in an inventory.
-
-```lua
-exports.ox_inventory:GetEmptySlot(inv)
-```
-
-* inv: `table` or `string` or `number`
-
-Return:
-
-* slotId: `number?`
-
-## GetContainerFromSlot [#getcontainerfromslot]
-
-Returns the inventory associated with the container linked in the slot of the given inventory.
-
-```lua
-exports.ox_inventory:GetContainerFromSlot(inv, slotId)
-```
-
-* inv: `table` or `string` or `number`
-* slotId: `number`
-
-Return:
-
-* containerData: `table?`
-
-## SetSlotCount [#setslotcount]
-
-Sets the number of slots available for an inventory.
-
-```lua
-exports.ox_inventory:SetSlotCount(inv, slots)
-```
-
-* inv: `table` or `string` or `number`
-* slots: `number`
-
-<br />
-
-<u>
-  **Example**
-</u>
-
-```lua
-local ox_inventory = exports.ox_inventory
-
--- Set the slot count for player 1's inventory to 10.
-ox_inventory:SetSlotCount(1, 10)
-```
-
-## GetInventory [#getinventory]
-
-Returns the inventory associated with the ID (and owner if defined). Otherwise returns null.
-
-```lua
-exports.ox_inventory:GetInventory(inv, owner)
-```
-
-* inv: `number` or `table`
-* owner?: `string` or `boolean`
-
-<br />
-
-<u>
-  **Example**
-</u>
-
-```lua
-local inventory = exports.ox_inventory:GetInventory('example_stash', false)
-print(json.encode(inventory, {indent = true}))
---[[
-    {
-        "id": "example_stash,
-        "label": "Police Stash",
-        "type": "stash,
-        "slots": 50,
-        "weight": 0,
-        "maxWeight": 100000,
-        "owner": false,
-        ...
-    }
-]]
-```
-
-## GetInventoryItems [#getinventoryitems]
-
-Returns all slots with items in a inventory.
-
-```lua
-exports.ox_inventory:GetInventoryItems(inv, owner)
-```
-
-* inv: `number` or `table`
-* owner?: `string` or `boolean`
-
-<br />
-
-<u>
-  **Example**
-</u>
-
-```lua
-local playerItems = exports.ox_inventory:GetInventoryItems(source)
-```
-
-## InspectInventory [#inspectinventory]
-
-Inspect the player their inventory. You will not be able to modify the inventory.
-
-```lua
-exports.ox_inventory:InspectInventory(target, source)
-```
-
-* target: `number`
-* source: `number`
-
-## ConfiscateInventory [#confiscateinventory]
-
-Clears a player's inventory and saves it to a stash.
-
-Use [ReturnInventory](#returninventory) to return the confiscated inventory back to
-the player.
-
-```lua
-exports.ox_inventory:ConfiscateInventory(source)
-```
-
-* source: `number`
-
-## ReturnInventory [#returninventory]
-
-Returns the confiscated inventory back to the player.
-
-Use it alongside [ConfiscateInventory](#confiscateinventory).
-
-```lua
-exports.ox_inventory:ReturnInventory(source)
-```
-
-* source: `number`
-
-## ClearInventory [#clearinventory]
-
-Clears the specified inventory. The `keep` argument is either a string or an array of strings containing the name(s) of the item(s) to keep in the inventory after clearing.
-
-```lua
-exports.ox_inventory:ClearInventory(inv, keep)
-```
-
-* inv: `table` or `string` or `number`
-* keep?: `string` or `string[]`
-
-## RemoveInventory [#removeinventory]
-
-Removes an inventory from runtime and save it if it's not a temporary stash, dumpster or drop.
-
-```lua
-exports.ox_inventory:RemoveInventory(inv)
-```
-
-* inv: `table` or `string` or `number`
-
-## Search [#search]
-
-Searches an inventory for a specified item.
-
-```lua
-exports.ox_inventory:Search(inv, search, item, metadata)
-```
-
-* inv: `table` or `string` or `number`
-* search: `string`
-* item: `table` or `string`
-* metadata?: `table` or `string`
-
-`search` can be either `'slots'` or `'count'`, where slots will return a table of data
-and count will return the found amount of the specified item.
-
-## RegisterStash [#registerstash]
-
-Creates a new custom stash.
-
-```lua
-exports.ox_inventory:RegisterStash(id, label, slots, maxWeight, owner, groups, coords)
-```
-
-* id: `string` or `number`
-  * Stash identifier when loading from the database.
-* label: `string`
-  * Display name when inventory is open.
-* slots: `number`
-* maxWeight: `number`
-* owner: `string` or `boolean` or `nil`
-  * `string`: Links the stash to an specific identifier in the database, used for lookups and deletion.
-  * `true`: Each player has a unique stash but can request other player's stashes (i.e. personal lockers).
-  * `nil`: Always shared.
-* groups: `table`
-  * Table of player groups (jobs) able to access the stash.
-  * Table of group names where the numeric value is the minimum grade required.
-  * `{['police'] = 0, ['ambulance'] = 2}`
-* coords?: `vector3` or `vector3[]`
-* instance?: `number` | `string`
-  * Restrict access to the stash based on the player's instance.
-
-<Callout>
-  This function needs to be triggered before a player can open the stash.
-</Callout>
-
-<Callout type="error">
-  The owner parameter is not for access control of the stash, use the
-  [`openInventory`](./Server/Hooks.mdx#openinventory) hook for access control.
-</Callout>
-
-<br />
-
-<u>
-  **Example**
-</u>
-
-<br />
-
-For a use case example on this function check out the written [Guide](../Guides/stashes) for it.
-
-## CreateTemporaryStash [#createtemporarystash]
-
-Creates a temporary stash which will be removed after some time.
-
-```lua
-exports.ox_inventory:CreateTemporaryStash(properties)
-```
-
-* properties: `table`
-  * label: `string`
-  * slots: `number`
-  * maxWeight: `number`
-  * owner?: `string` `number` or `boolean`
-    * `string`: Can only access the stash linked to the owner.
-    * `true`: Each player has a unique stash but can request other player's stashes.
-    * The inventory is always shared if `false` or `nil`.
-  * groups?: `table<string, number>`
-    * Table of group names (e.g. jobs) where the numeric value is the minimum grade required.
-    * `{['police'] = 0, ['ambulance'] = 2}`
-  * coords?: `vector3`
-    * Stash can only be accessed while nearby.
-  * items?: `{ [number]: string, [number]: number, [number]?: table }[]`
-    * An array of tables, containing a sequence of itemName, count, metadata.
-
-Return:
-
-* inventoryId: `string`
-
-<br />
-
-<u>
-  **Example**
-</u>
-
-```lua
-local mystash = exports.ox_inventory:CreateTemporaryStash({
-    label = 'mystash',
-    slots = 5,
-    maxWeight = 5000,
-    items = {
-        { 'WEAPON_MINISMG', 1 },
-        { 'ammo-9', 69 },
-        { 'water', 2, { label = 'Mineral water' } }
-    }
-})
-
-TriggerClientEvent('ox_inventory:openInventory', 1, 'stash', mystash)
-```
-
-## CustomDrop [#customdrop]
-
-Drops can be created from other resources, containing a variety of items and utilising a custom label (instead of 'Drop 32648').
-
-```lua
-exports.ox_inventory:CustomDrop(prefix, items, coords, slots, maxWeight, instance, model)
-```
-
-* prefix: `string`
-* items: `table`
-  * name: `string`
-  * count: `number`
-  * metadata?: `table`
-* coords: `vector3`
-* slots?: `number`
-* maxWeight?: `number`
-* instance?: `string` or `number`
-* model?: `number`
-
-```lua
--- Create a generic drop with a marker
-exports.ox_inventory:CustomDrop('Carcass', {
-    {'meat', 5, { grade = 2, type = 'deer' }},
-    {'hide', 5, { grade = 2, type = 'deer' }}
-}, coords)
-
--- Create a drop with an entity
-exports.ox_inventory:CustomDrop('SMG', {
-    { 'WEAPON_MINISMG', 1 },
-    { 'ammo-9', 69 },
-}, GetEntityCoords(GetPlayerPed(1)), 5, 10000, nil, `w_sb_minismg`)
-```
-
-## CreateDropFromPlayer [#createdropfromplayer]
-
-Creates a new drop with the contents of a player's inventory.
-
-```lua
-exports.ox_inventory:CreateDropFromPlayer(playerId)
-```
-
-* playerId: `number`
-
-Return:
-
-* dropId: `string`
-
-<br />
-
-<u>
-  **Example**
-</u>
-
-```lua
-local dropId = exports.ox_inventory:CreateDropFromPlayer(1)
-```
-
-## GetCurrentWeapon [#getcurrentweapon]
-
-Returns the player's currently equipped weapon as a table.
-
-```lua
--- inv: string or number
-exports.ox_inventory:GetCurrentWeapon(inv)
-```
-
-* inv: `table` or `string` or `number`
-
-## SetDurability [#setdurability]
-
-Sets durability onto the specified slot.
-
-Can be used for repairing weapons.
-
-```lua
-exports.ox_inventory:SetDurability(inv, slot, durability)
-```
-
-* inv: `table` or `string` or `number`
-* slot: `number`
-* durability: `number`
-
-<br />
-
-<u>
-  **Example**
-</u>
-
-```lua
-local ox_inventory = exports.ox_inventory
-
--- Set the durability of the item in slot 3 of source player's inventory to 100
-ox_inventory:SetDurability(source, 3, 100)
-
--- Set the durability of the source player's current weapon to 100
-local weapon = ox_inventory:GetCurrentWeapon(source)
-
-if weapon then
-    ox_inventory:SetDurability(source, weapon.slot, 100)
-end
-```
-
-## SetMetadata [#setmetadata]
-
-Sets metadata on the specified slot.
-
-```lua
-ox_inventory:SetMetadata(inv, slot, metadata)
-```
-
-* inv: `table` or `string` or `number`
-* slot: `number`
-* metadata: `table`
-
-<br />
-
-<u>
-  **Example**
-</u>
-
-```lua
-local ox_inventory = exports.ox_inventory
-
-local water = ox_inventory:Search(source, 1, 'water')
-for k, v in pairs(water) do
-    print('\n______________'..'\n- index '..k)
-    print(v.name, 'slot: '..v.slot, 'metadata: '..json.encode(v.metadata))
-    water = v
-    break
-end
-
-water.metadata.type = 'clean'
-ox_inventory:SetMetadata(source, water.slot, water.metadata)
-print(('modified %sx water in slot %s with new metadata'):format(water.count, water.slot))
-```
-
-## setContainerProperties [#setcontainerproperties]
-
-Defines the item as a container and sets its properties.
-
-```lua
-exports.ox_inventory:setContainerProperties(itemName, properties)
-```
-
-* itemName: `string`
-* properties: `table`
-  * slots: `number`
-    * Number of slots available in the container.
-  * maxWeight: `number`
-    * Maximum weight the container can hold.
-  * whitelist?: `table<string, true> | string[]`
-    * A table of item names that are allowed in the container.
-    * If not provided, all items are allowed except those blacklisted.
-  * blacklist?: `table<string, true> | string[]`
-    * A table of item names that are not allowed in the container.
-    * If not provided, no items are blacklisted unless whitelist is provided.
-
-<br />
-
-<u>
-  **Example**
-</u>
-
-```lua
--- Sets pizzabox as a container with 1 slot, maximum weight of 1000 grams and whitelists only the pizza item.
-exports.ox_inventory:setContainerProperties('pizzabox', {
-    slots = 1,
-    maxWeight = 1000,
-    whitelist = { 'pizza' },
-})
-```
-
-
 # Crafting (/docs/ox_inventory/Guides/crafting)
 
 
-
-# Crafting [#crafting]
 
 Crafting locations, items and their ingredients are defined in [data/crafting.lua](https://github.com/overextended/ox_inventory/blob/main/data/crafting.lua).
 
@@ -7169,8 +6287,6 @@ Crafting locations, items and their ingredients are defined in [data/crafting.lu
 # Creating Items (/docs/ox_inventory/Guides/creatingItems)
 
 
-
-# Creating Items [#creating-items]
 
 ## Defining item data [#defining-item-data]
 
@@ -7353,44 +6469,6 @@ exports('bandage', function(data, slot)
 end)
 ```
 
-### Server callbacks [#server-callbacks]
-
-A callback function can be defined on the server to handle several events (usingItem, usedItem, buyItem).
-This can either be an export (recommended), or added to the bottom of [items/server.lua](https://github.com/overextended/ox_inventory/blob/main/modules/items/server.lua).
-When defining [item data](https://github.com/overextended/ox_inventory/blob/main/data/items.lua#L14), adding server.export will trigger an event for the actions above.
-The correct formatting is `export = resourceName.exportName`.
-
-```lua
-exports('bandage', function(event, item, inventory, slot, data)
-    -- Player is attempting to use the item.
-    if event == 'usingItem' then
-        local playerPed = GetPlayerPed(inventory.id)
-        local maxHealth = GetEntityMaxHealth(playerPed)
-        local health = GetEntityHealth(playerPed)
-
-        -- Check if the player needs to be healed.
-        if health >= maxHealth then
-            TriggerClientEvent('ox_lib:notify', inventory.id, {type = 'error', description = 'You don\'t need a bandage right now'})
-
-            -- Returning 'false' will prevent the item from being used
-            return false
-        end
-
-        return
-    end
-
-    -- Player has finished using the item.
-    if event == 'usedItem' then
-        return TriggerClientEvent('ox_lib:notify', inventory.id, {description = 'You feel better already'})
-    end
-
-    -- Player is attempting to purchase the item.
-    if event == 'buying' then
-        return TriggerClientEvent('ox_lib:notify', inventory.id, {type = 'success', description = 'You bought a bandage'})
-    end
-end)
-```
-
 ## Creating container items [#creating-container-items]
 
 Like with other items the item must first be registered.
@@ -7438,8 +6516,6 @@ setContainerProperties('pizzabox', {
 # Metadata (/docs/ox_inventory/Guides/metadata)
 
 
-
-# Metadata [#metadata]
 
 Item metadata is a very powerful tool that can be used to create multiple different items out of a single item.
 
@@ -7577,8 +6653,6 @@ exports.ox_inventory:AddItem(inv, item, count, metadataExample, slot, cb)
 
 
 
-# Creating Shops [#creating-shops]
-
 Builtin shops are defined in [data/shops.lua](https://github.com/overextended/ox_inventory/blob/main/data/shops.lua), and more can be added here to benefit from the built-in markers or zones support.
 
 ## Shop definition [#shop-definition]
@@ -7686,8 +6760,6 @@ exports.ox_inventory:RegisterShop('TestShop', {
 
 
 
-
-# Custom Stashes [#custom-stashes]
 
 We can set up custom stashes from outside the resource utilising the exported RegisterStash function.
 
@@ -8872,6 +7944,29 @@ Return:
 * playerCoords?: `vector3`
 
 
+# Server (/docs/ox_lib/GetFilesInDirectory/Server)
+
+
+
+## lib.getFilesInDirectory [#libgetfilesindirectory]
+
+Gets a list of all files in a specified resource directory, along with the file count
+
+```lua
+lib.getFilesInDirectory(path, pattern)
+```
+
+* path: `string`
+  * The relative or absolute path to the directory where files should be listed.
+* pattern: `string`
+  * Pattern to check for when searching for files.
+
+Returns:
+
+* files: `string[]`
+* fileCount: `number`
+
+
 # Shared (/docs/ox_lib/GetClosestVehicle/Shared)
 
 
@@ -8897,29 +7992,6 @@ Return:
 
 * vehicle?: `number`
 * vehicleCoords?: `vector3`
-
-
-# Server (/docs/ox_lib/GetFilesInDirectory/Server)
-
-
-
-## lib.getFilesInDirectory [#libgetfilesindirectory]
-
-Gets a list of all files in a specified resource directory, along with the file count
-
-```lua
-lib.getFilesInDirectory(path, pattern)
-```
-
-* path: `string`
-  * The relative or absolute path to the directory where files should be listed.
-* pattern: `string`
-  * Pattern to check for when searching for files.
-
-Returns:
-
-* files: `string[]`
-* fileCount: `number`
 
 
 # Shared (/docs/ox_lib/GetNearbyObjects/Shared)
@@ -12003,8 +11075,6 @@ exports.ox_target:removeZone(id)
 
 
 
-# Insert [#insert]
-
 Inserts a new entry into the database and returns the insert id for the row, if valid.
 
 ## Promise [#promise]
@@ -12068,11 +11138,9 @@ Inserts a new entry into the database and returns the insert id for the row, if 
 * `exports.oxmysql.insert`
 
 
-# prepare (/docs/oxmysql/Functions/prepare)
+# Prepare (/docs/oxmysql/Functions/prepare)
 
 
-
-# Prepare [#prepare]
 
 Prepare can be used to execute frequently called queries faster and accepts multiple sets of parameters to be used with a single query.
 
@@ -12140,11 +11208,9 @@ Unlike [rawExecute](./rawExecute), the SELECT statement will return a column, ro
 * `exports.oxmysql.prepare`
 
 
-# query (/docs/oxmysql/Functions/query)
+# Query (/docs/oxmysql/Functions/query)
 
 
-
-# Query [#query]
 
 When selecting data, returns all matching rows and columns; otherwise, returns data like insertId, affectedRows, etc.
 
@@ -12227,11 +11293,9 @@ When selecting data, returns all matching rows and columns; otherwise, returns d
 * `exports.oxmysql.query`
 
 
-# rawExecute (/docs/oxmysql/Functions/rawExecute)
+# RawExecute (/docs/oxmysql/Functions/rawExecute)
 
 
-
-# RawExecute [#rawexecute]
 
 rawExecute can be used to execute frequently called queries faster and accepts multiple sets of parameters to be used with a single query.
 
@@ -12300,11 +11364,9 @@ When using SELECT, the return value will match `query`, `single`, or `scalar` de
 * `exports.oxmysql.rawExecute`
 
 
-# scalar (/docs/oxmysql/Functions/scalar)
+# Scalar (/docs/oxmysql/Functions/scalar)
 
 
-
-# Scalar [#scalar]
 
 Returns the first column for a single row.
 
@@ -12369,11 +11431,9 @@ Returns the first column for a single row.
 * `exports.oxmysql.scalar`
 
 
-# single (/docs/oxmysql/Functions/single)
+# Single (/docs/oxmysql/Functions/single)
 
 
-
-# Single [#single]
 
 Returns all selected columns for a single row.
 
@@ -12442,11 +11502,9 @@ Returns all selected columns for a single row.
 * `exports.oxmysql.single`
 
 
-# transaction (/docs/oxmysql/Functions/transaction)
+# Transaction (/docs/oxmysql/Functions/transaction)
 
 
-
-# Transaction [#transaction]
 
 A transaction executes multiple queries and commits them only if all succeed.\
 If one fails, none of the queries are committed.
@@ -12566,11 +11624,9 @@ The default value is 2.
 | 4            | Serializable     |
 
 
-# update (/docs/oxmysql/Functions/update)
+# Update (/docs/oxmysql/Functions/update)
 
 
-
-# Update [#update]
 
 Returns the number of rows affected by the query.
 
@@ -12633,66 +11689,6 @@ Returns the number of rows affected by the query.
 * `MySQL.Async.execute`
 * `exports.ghmattimysql.execute`
 * `exports.oxmysql.update`
-
-
-# Hooks (/docs/ox_doorlock/Server/functions/Hooks)
-
-
-
-Event hooks allow 3rd party resources to define new behaviour without modifying the doorlock system code directly.
-
-## registerHook [#registerhook]
-
-```lua
-exports.ox_doorlock:registerHook(eventName, function(payload) end, options)
-```
-
-* eventName: `string`
-* payload: `table`
-* options?: `table`
-  * print?: `boolean`
-    * Print to the console when triggering the event.
-  * nameFilter?: `string`
-    * The event will only trigger for specific doors
-
-Return:
-
-* hookId: `number`
-
-### doorAuthorization [#doorauthorization]
-
-Triggered when opening/closing door.\
-By returning `false`, you can override door authorization allowing to use your own logic.
-
-* Payload: `table`
-  * source: `number`
-  * door: `DoorData`
-  * lockpick: boolean
-  * authorised: boolean
-
-**Example**
-
-Allow hotel room's owner open/close door
-
-```lua
-local hookId = exports.ox_doorlock:registerHook('doorAuthorization', function(payload)
-    local hotel, apartment = payload.door.name:match("HotelDoor_(%w+)_([%d]+)")
-    return IsAuthorized(payload.source, hotel, apartment)
-end, {
-    nameFilter = "HotelDoor_%w+_[%d]+"
-})
-```
-
-## removeHooks [#removehooks]
-
-Removes a hook created by the invoking resource with the the specified id.\
-If no id is specified then all hooks registered by the resource are removed.
-
-```lua
-exports.ox_doorlock:removeHooks(id)
-```
-
-* id?: `number`
 
 
 # OxPlayer (/docs/ox_core/Classes/Client/OxPlayer)
@@ -13835,6 +12831,123 @@ vehicle.setStored(value, despawn)
 * despawn?: `boolean`
 
 
+# Hooks (/docs/ox_doorlock/Server/functions/Hooks)
+
+
+
+Event hooks allow 3rd party resources to define new behaviour without modifying the doorlock system code directly.
+
+## registerHook [#registerhook]
+
+```lua
+exports.ox_doorlock:registerHook(eventName, function(payload) end, options)
+```
+
+* eventName: `string`
+* payload: `table`
+* options?: `table`
+  * print?: `boolean`
+    * Print to the console when triggering the event.
+  * nameFilter?: `string`
+    * The event will only trigger for specific doors
+
+Return:
+
+* hookId: `number`
+
+### doorAuthorization [#doorauthorization]
+
+Triggered when opening/closing door.\
+By returning `false`, you can override door authorization allowing to use your own logic.
+
+* Payload: `table`
+  * source: `number`
+  * door: `DoorData`
+  * lockpick: boolean
+  * authorised: boolean
+
+**Example**
+
+Allow hotel room's owner open/close door
+
+```lua
+local hookId = exports.ox_doorlock:registerHook('doorAuthorization', function(payload)
+    local hotel, apartment = payload.door.name:match("HotelDoor_(%w+)_([%d]+)")
+    return IsAuthorized(payload.source, hotel, apartment)
+end, {
+    nameFilter = "HotelDoor_%w+_[%d]+"
+})
+```
+
+## removeHooks [#removehooks]
+
+Removes a hook created by the invoking resource with the the specified id.\
+If no id is specified then all hooks registered by the resource are removed.
+
+```lua
+exports.ox_doorlock:removeHooks(id)
+```
+
+* id?: `number`
+
+
+# Functions (/docs/ox_doorlock/Server/functions)
+
+
+
+Gets data for a door with the given id, matching the id for the database entry.
+
+## getDoor [#getdoor]
+
+```lua
+exports.ox_doorlock:getDoor(doorId)
+```
+
+Gets data for a door with the given `id`, matching the id for the database entry.
+
+* id: `number`
+
+Return:
+
+* door: `table`
+
+## getDoorFromName [#getdoorfromname]
+
+```lua
+exports.ox_doorlock:getDoorFromName(name)
+```
+
+Gets data for a door with the given `name`, matching the name for the database entry.
+
+* name: `string`
+
+Return:
+
+* door: `table`
+
+## editDoor [#editdoor]
+
+```lua
+exports.ox_doorlock:editDoor(doorId, data)
+```
+
+Edit configuration for the given doorId.
+
+* doorId: `number`
+* data: `table`
+
+## setDoorState [#setdoorstate]
+
+```lua
+exports.ox_doorlock:setDoorState(doorId, state)
+```
+
+Sets a door with the given doorId as locked if state is `true` or `1`.
+
+* doorId: `number`
+* state: `0` or `1` or `boolean`
+
+
 # Hooks (/docs/ox_inventory/Functions/Server/Hooks)
 
 
@@ -14159,6 +13272,1023 @@ AddEventHandler(hookId, function(success, payload)
     print(hookId, success)
     lib.print.info(payload)
 end)
+```
+
+
+# Server (/docs/ox_inventory/Functions/Server)
+
+
+
+## setPlayerInventory [#setplayerinventory]
+
+Creates and sets the player's inventory.
+
+```lua
+exports.ox_inventory:setPlayerInventory(player, data)
+```
+
+* player: `table`
+  * source: `number`
+  * identifier: `string`
+  * name: `string`
+  * groups?: `table`
+  * sex?: `string`
+  * dateofbirth?: `string`
+* data?: `table`
+  * If not provided will load player's inventory data from the db.
+
+## forceOpenInventory [#forceopeninventory]
+
+Opens an inventory using the passed data.
+Forces a player to open an inventory, without usual security checks (groups, coords).
+
+```lua
+exports.ox_inventory:forceOpenInventory(playerId, invType, data)
+```
+
+* playerId: `number`
+* invType: `string`
+  * `'player'`
+  * `'stash'`
+  * `'container'`
+  * `'drop'`
+  * `'glovebox'`
+  * `'trunk'`
+  * `'dumpster'`
+* data: `number` or `string` or `table`
+
+<Tabs items="[&#x22;Player&#x22;, &#x22;Stash&#x22;]">
+  <Tab>
+    Open the target player's inventory.
+
+    ```lua
+    exports.ox_inventory:forceOpenInventory(1, 'player', 3)
+    ```
+
+    Admin command to open a player's inventory.
+
+    ```lua
+    RegisterCommand('openplayerinv', function(source, args)
+        exports.ox_inventory:forceOpenInventory(source, 'player', tonumber(args[1]))
+    end, true)
+    ```
+  </Tab>
+
+  <Tab>
+    Open a custom stash (created on the server with RegisterStash).
+
+    ```lua
+    exports.ox_inventory:forceOpenInventory(1, 'stash', 'society_police')
+    ```
+
+    Open a stash with a specific owner.
+
+    ```lua
+    exports.ox_inventory:forceOpenInventory(1, 'stash', { id = 'police_locker', owner = 'license:xxxxxxxx' })
+    ```
+  </Tab>
+</Tabs>
+
+## UpdateVehicle [#updatevehicle]
+
+Update the internal reference to vehicle stashes, without triggering a save or updating the database.
+
+```lua
+exports.ox_inventory:UpdateVehicle(oldPlate, newPlate)
+```
+
+* oldPlate: `string`
+* newPlate: `string`
+
+## Items [#items]
+
+Returns a table of all registered items. The format is as defined in [data/items.lua](https://github.com/overextended/ox_inventory/blob/main/data/items.lua).
+
+Optionally takes the name of an item, returning only data for that item (getting all data is not recommended).
+
+```lua
+exports.ox_inventory:Items(itemName)
+```
+
+* itemName?: `string`
+
+The following snippet can be used in crafting resources such as okokCrafting or core\_crafting, rather than querying the database.
+
+```lua
+local itemNames
+
+ESX.RegisterServerCallback('crafting:itemNames', function(source, cb)
+    if not itemNames then
+        itemNames = {}
+        for item, data in pairs(exports.ox_inventory:Items()) do
+            itemNames[item] = data.label
+        end
+    end
+    cb(itemNames)
+end)
+```
+
+## AddItem [#additem]
+
+Adds an item into the specified inventory.
+
+Should be used alongside [CanCarryItem](#cancarryitem) otherwise, the maximum weight may be exceeded.
+
+```lua
+exports.ox_inventory:AddItem(inv, item, count, metadata, slot, cb)
+```
+
+* inv: `table` or `string` or `number`
+  * The inventory's unique id, or a table with the id and owner.
+    * playerId: `1`
+    * inventoryId: `gloveVGH283`
+    * `{ id = 'personallocker', owner = 'license:xxxxxx'}`
+* item: `string`
+  * The name of the item to add to the target.
+* count: `number`
+  * The number of items to add.
+* metadata?: `table` or `string`
+  * A table of unique data to attach to the item object. A string will create a table with the "type" field.
+* slot?: `number`
+  * A specific slot to add the item to. If the slot is invalid, the first available slot will be used instead.
+* cb?: function(success: `boolean`, response?: `string`)
+
+If used for glovebox, trunk or stash you must first check the inventory is loaded with [GetInventory](./GetInventory.md)
+
+Returns `success, response` if cb is undefined, otherwise they are used in the callback only.
+
+**Possible value of the "response" argument, on failure:**
+
+* "invalid\_item": the item doesn't exist
+* "invalid\_inventory": the inventory doesn't exist
+* "inventory\_full": no free slots
+
+<br />
+
+<u>
+  **Example**
+</u>
+
+```lua
+local success, response = exports.ox_inventory:AddItem('gloveVGH283', 'bread', 4)
+
+if not success then
+    -- if no slots are available, the value will be "inventory_full"
+    return print(response)
+end
+
+print(json.encode(response, {indent=true}))
+--[[
+    {
+        "metadata": [],
+        "label": "Bread",
+        "slot": 1,
+        "stack": true,
+        "close": true,
+        "name": "bread",
+        "count": 1,
+        "weight": 150
+    }
+]]
+```
+
+## RemoveItem [#removeitem]
+
+Removes the specified item from the specified inventory.
+
+```lua
+exports.ox_inventory:RemoveItem(inv, item, count, metadata, slot, ignoreTotal, strict)
+```
+
+* inv: `table` or `string` or `number`
+  * The inventory's unique id, or a table with the id and owner.
+    * playerId: `1`
+    * inventoryId: `gloveVGH283`
+    * `{ id = 'personallocker', owner = 'license:xxxxxx'}`
+* item: `string`
+  * The name of the item to remove from the target.
+* count: `number`
+  * The number of items to remove.
+* metadata?: `table` or `string`
+  * Only remove items with matching metadata properties.
+* slot?: `number`
+  * A specific slot to remove the item from. If the slot is invalid, the first available slot will be used instead.
+* ignoreTotal?: `boolean`
+  * Removes as many items as possible up to count.
+* strict?: `boolean`
+  * If true (default), requires an exact match on item + metadata; if false, allows looser/partial matches.
+
+Returns success: `boolean`, response: `string?`.
+
+**Possible values of "response" on failure:**
+
+* "invalid\_item": the item doesn't exist
+* "invalid\_inventory": the inventory doesn't exist
+* "not\_enough\_items": inventory did not contain enough of the given item
+
+<br />
+
+<u>
+  **Example**
+</u>
+
+```lua
+-- Removes 2 water from the glovebox for the given plate.
+local success = exports.ox_inventory:RemoveItem('gloveVGH283', 'water', 2)
+```
+
+## GetItem [#getitem]
+
+Returns *generic* item data from the specified inventory, with the total count.
+
+```lua
+exports.ox_inventory:GetItem(inv, item, metadata, returnsCount)
+```
+
+* inv: `table` or `string` or `number`
+* item: `table` or `string`
+  * Can be items array.
+* metadata?: `any`
+  * Only returns the count of items that strictly match the given metadata.
+* returnsCount?: `boolean`
+
+If `returnsCount` is set to true, the returned value will be the `count` based on
+how many times the item was found.
+Otherwise returns the data related to the item *and* its total count found in the inventory.
+
+<br />
+
+<u>
+  **Example**
+</u>
+
+```lua
+local item = ox_inventory:GetItem(source, 'water', nil, false)
+
+print(json.encode(item, {indent=true}))
+--[[
+    {
+        "consume": 1,
+        "count": 15,
+        "stack": true,
+        "name": "water",
+        "weight": 500,
+        "label": "Water",
+        "close": true
+    }
+]]
+```
+
+## ConvertItems [#convertitems]
+
+Takes traditional item data and updates it to support ox\_inventory.
+
+```lua
+exports.ox_inventory:ConvertItems(playerId, items)
+```
+
+* playerId: `number`
+* items: `table`
+
+<br />
+
+<u>
+  **Data Conversion Example**
+</u>
+
+```lua
+Old: [{"cola":1, "bread":3}]
+New: [{"slot":1,"name":"cola","count":1},
+{"slot":2,"name":"bread","count":3}]
+```
+
+## CanCarryItem [#cancarryitem]
+
+Returns true or false depending if the inventory can carry the specified item.
+
+The function checks for inventory weight and available slots.
+
+```lua
+exports.ox_inventory:CanCarryItem(inv, item, count, metadata)
+```
+
+* inv: `table` or `string` or `number`
+* item `table` or `string`
+  * Can be array of items.
+* count: `number`
+* metadata?: `table` or `string`
+  * If metadata is passed as string then `metadata.type` will be checked.
+
+<br />
+
+<u>
+  **Example**
+</u>
+
+```lua
+-- Checks if the player calling the event can carry 3 water items
+if exports.ox_inventory:CanCarryItem(source, 'water', 3) then
+    -- Do stuff if can carry
+else
+    -- Do stuff if can't carry
+end
+```
+
+## CanCarryAmount [#cancarryamount]
+
+Returns the amount a player can hold based on available weight.
+
+```lua
+exports.ox_inventory:CanCarryAmount(inv, item)
+```
+
+* inv: `table` or `string` or `number`
+* item: `table` or `string`
+  * Can be array to check multiple items.
+
+<br />
+
+<u>
+  **Example**
+</u>
+
+```lua
+-- Checks how much you can carry
+amountToAdd = exports.ox_inventory:CanCarryAmount(inv, 'stone')
+-- Adds the amount
+exports.ox_inventory:AddItem(inv, 'stone', amountToAdd)
+```
+
+## CanCarryWeight [#cancarryweight]
+
+Returns if inventory can carry specified weight and free inventory weight.
+
+```lua
+exports.ox_inventory:CanCarryWeight(inv, weight)
+```
+
+* inv: `table` or `string` or `number`
+* weight: `number`
+
+<br />
+
+<u>
+  **Example**
+</u>
+
+```lua
+-- Checks if player can carry 1000 grams.
+local fillAmount = 1000
+local canCarryWeight, freeWeight = ox_inventory:CanCarryWeight(playerId, fillAmount)
+
+if freeWeight == 0 then
+  -- Player can't carry weight.
+  return
+elseif not canCarryWeight then
+  -- Modify fillAmount, because inventory can't carry specified weight
+  fillAmount = freeWeight
+end
+
+-- Do something
+```
+
+## SetMaxWeight [#setmaxweight]
+
+Sets the maximum weight available for an inventory.
+
+```lua
+exports.ox_inventory:SetMaxWeight(inv, maxWeight)
+```
+
+* inv: `table` or `string` or `number`
+* maxWeight: `number`
+
+<br />
+
+<u>
+  **Example**
+</u>
+
+```lua
+local ox_inventory = exports.ox_inventory
+
+-- Set the max weight for player 1's inventory to 20kg.
+ox_inventory:SetMaxWeight(1, 20000)
+```
+
+## CanSwapItem [#canswapitem]
+
+Returns true if the item swap is possible based on inventory weight.
+
+```lua
+exports.ox_inventory:CanSwapItem(inv, firstItem, firstItemCount, testItem, testItemCount)
+```
+
+* inv: `table` or `string` or `number`
+* firstItem: `string`
+* firstItemCount: `number`
+* testItem: `string`
+* testItemCount: `number`
+
+## GetItemCount [#getitemcount]
+
+Get the total item count for all items in an inventory with the given name and metadata.
+
+```lua
+exports.ox_inventory:GetItemCount(inv, itemName, metadata, strict)
+```
+
+* inv: `table` or `string` or `number`
+* itemName: `string`
+* metadata?: `table`
+* strict?: `boolean`
+  * Strictly match metadata properties, otherwise use partial matching.
+
+Return:
+
+* itemCount: `number`
+
+## GetItemSlots [#getitemslots]
+
+Returns the number of slots the specified item is in, the item's total count and the remaining empty slots.
+
+```lua
+exports.ox_inventory:GetItemSlots(inv, item, metadata)
+```
+
+* inv: `table` or `string` or `number`
+* item: `table` or `string`
+* metadata?: `table`
+
+## GetSlot [#getslot]
+
+Returns the specified slot data as a table.
+
+```lua
+
+exports.ox_inventory:GetSlot(inv, slot)
+```
+
+* inv: `table` or `string` or `number`
+* slot: `number`
+
+<br />
+
+<u>
+  **Example**
+</u>
+
+```lua
+local slot = exports.ox_inventory:GetSlot(source, 1)
+
+print(json.encode(slot, {indent=true}))
+--[[
+    {
+        "weight": 2000,
+        "name": "water",
+        "metadata": [],
+        "slot": 1,
+        "label": "Water",
+        "close": true,
+        "stack": true,
+        "count: 4
+    }
+]]
+```
+
+## GetSlotForItem [#getslotforitem]
+
+Get the slot id of an existing item matching the given data, or an empty slot.
+
+```lua
+exports.ox_inventory:GetSlotForItem(inv, itemName, metadata)
+```
+
+* inv: `table` or `string` or `number`
+* itemName: `string`
+* metadata: `table?`
+
+Return:
+
+* slotId: `number?`
+
+## GetSlotIdWithItem [#getslotidwithitem]
+
+Get a slot id in an inventory matching the given item name and metadata.
+
+```lua
+exports.ox_inventory:GetSlotIdWithItem(inv, itemName, metadata, strict)
+```
+
+* inv: `table` or `string` or `number`
+* itemName: `string`
+* metadata?: `table`
+* strict?: `boolean`
+  * Strictly match metadata properties, otherwise use partial matching.
+
+Return:
+
+* slotId: `number?`
+
+## GetSlotIdsWithItem [#getslotidswithitem]
+
+Get all slot ids in an inventory matching the given name and metadata.
+
+```lua
+exports.ox_inventory:GetSlotIdsWithItem(inv, itemName, metadata, strict)
+```
+
+* inv: `table` or `string` or `number`
+* itemName: `string`
+* metadata?: `table`
+* strict?: `boolean`
+  * Strictly match metadata properties, otherwise use partial matching.
+
+Return:
+
+* slotIds: `number[]?`
+
+## GetSlotWithItem [#getslotwithitem]
+
+Get data for a slot in an inventory matching the given name and metadata.
+
+```lua
+exports.ox_inventory:GetSlotWithItem(inv, itemName, metadata, strict)
+```
+
+* inv: `table` or `string` or `number`
+* itemName: `string`
+* metadata?: `table`
+* strict?: `boolean`
+  * Strictly match metadata properties, otherwise use partial matching.
+
+Return:
+
+* slotData: `table?`
+
+## GetSlotsWithItem [#getslotswithitem]
+
+Get data all slots in an inventory matching the given name and metadata.
+
+```lua
+exports.ox_inventory:GetSlotsWithItem(inv, itemName, metadata, strict)
+```
+
+* inv: `table` or `string` or `number`
+* itemName: `string`
+* metadata?: `table`
+* strict?: `boolean`
+  * Strictly match metadata properties, otherwise use partial matching.
+
+Return:
+
+* slotsData: `table[]?`
+
+## GetEmptySlot [#getemptyslot]
+
+Get the first available empty slot in an inventory.
+
+```lua
+exports.ox_inventory:GetEmptySlot(inv)
+```
+
+* inv: `table` or `string` or `number`
+
+Return:
+
+* slotId: `number?`
+
+## GetContainerFromSlot [#getcontainerfromslot]
+
+Returns the inventory associated with the container linked in the slot of the given inventory.
+
+```lua
+exports.ox_inventory:GetContainerFromSlot(inv, slotId)
+```
+
+* inv: `table` or `string` or `number`
+* slotId: `number`
+
+Return:
+
+* containerData: `table?`
+
+## SetSlotCount [#setslotcount]
+
+Sets the number of slots available for an inventory.
+
+```lua
+exports.ox_inventory:SetSlotCount(inv, slots)
+```
+
+* inv: `table` or `string` or `number`
+* slots: `number`
+
+<br />
+
+<u>
+  **Example**
+</u>
+
+```lua
+local ox_inventory = exports.ox_inventory
+
+-- Set the slot count for player 1's inventory to 10.
+ox_inventory:SetSlotCount(1, 10)
+```
+
+## GetInventory [#getinventory]
+
+Returns the inventory associated with the ID (and owner if defined). Otherwise returns null.
+
+```lua
+exports.ox_inventory:GetInventory(inv, owner)
+```
+
+* inv: `number` or `table`
+* owner?: `string` or `boolean`
+
+<br />
+
+<u>
+  **Example**
+</u>
+
+```lua
+local inventory = exports.ox_inventory:GetInventory('example_stash', false)
+print(json.encode(inventory, {indent = true}))
+--[[
+    {
+        "id": "example_stash,
+        "label": "Police Stash",
+        "type": "stash,
+        "slots": 50,
+        "weight": 0,
+        "maxWeight": 100000,
+        "owner": false,
+        ...
+    }
+]]
+```
+
+## GetInventoryItems [#getinventoryitems]
+
+Returns all slots with items in a inventory.
+
+```lua
+exports.ox_inventory:GetInventoryItems(inv, owner)
+```
+
+* inv: `number` or `table`
+* owner?: `string` or `boolean`
+
+<br />
+
+<u>
+  **Example**
+</u>
+
+```lua
+local playerItems = exports.ox_inventory:GetInventoryItems(source)
+```
+
+## InspectInventory [#inspectinventory]
+
+Inspect the player their inventory. You will not be able to modify the inventory.
+
+```lua
+exports.ox_inventory:InspectInventory(target, source)
+```
+
+* target: `number`
+* source: `number`
+
+## ConfiscateInventory [#confiscateinventory]
+
+Clears a player's inventory and saves it to a stash.
+
+Use [ReturnInventory](#returninventory) to return the confiscated inventory back to
+the player.
+
+```lua
+exports.ox_inventory:ConfiscateInventory(source)
+```
+
+* source: `number`
+
+## ReturnInventory [#returninventory]
+
+Returns the confiscated inventory back to the player.
+
+Use it alongside [ConfiscateInventory](#confiscateinventory).
+
+```lua
+exports.ox_inventory:ReturnInventory(source)
+```
+
+* source: `number`
+
+## ClearInventory [#clearinventory]
+
+Clears the specified inventory. The `keep` argument is either a string or an array of strings containing the name(s) of the item(s) to keep in the inventory after clearing.
+
+```lua
+exports.ox_inventory:ClearInventory(inv, keep)
+```
+
+* inv: `table` or `string` or `number`
+* keep?: `string` or `string[]`
+
+## RemoveInventory [#removeinventory]
+
+Removes an inventory from runtime and save it if it's not a temporary stash, dumpster or drop.
+
+```lua
+exports.ox_inventory:RemoveInventory(inv)
+```
+
+* inv: `table` or `string` or `number`
+
+## Search [#search]
+
+Searches an inventory for a specified item.
+
+```lua
+exports.ox_inventory:Search(inv, search, item, metadata)
+```
+
+* inv: `table` or `string` or `number`
+* search: `string`
+* item: `table` or `string`
+* metadata?: `table` or `string`
+
+`search` can be either `'slots'` or `'count'`, where slots will return a table of data
+and count will return the found amount of the specified item.
+
+## RegisterStash [#registerstash]
+
+Creates a new custom stash.
+
+```lua
+exports.ox_inventory:RegisterStash(id, label, slots, maxWeight, owner, groups, coords)
+```
+
+* id: `string` or `number`
+  * Stash identifier when loading from the database.
+* label: `string`
+  * Display name when inventory is open.
+* slots: `number`
+* maxWeight: `number`
+* owner: `string` or `boolean` or `nil`
+  * `string`: Links the stash to an specific identifier in the database, used for lookups and deletion.
+  * `true`: Each player has a unique stash but can request other player's stashes (i.e. personal lockers).
+  * `nil`: Always shared.
+* groups: `table`
+  * Table of player groups (jobs) able to access the stash.
+  * Table of group names where the numeric value is the minimum grade required.
+  * `{['police'] = 0, ['ambulance'] = 2}`
+* coords?: `vector3` or `vector3[]`
+* instance?: `number` | `string`
+  * Restrict access to the stash based on the player's instance.
+
+<Callout>
+  This function needs to be triggered before a player can open the stash.
+</Callout>
+
+<Callout type="error">
+  The owner parameter is not for access control of the stash, use the
+  [`openInventory`](./Server/Hooks.mdx#openinventory) hook for access control.
+</Callout>
+
+<br />
+
+<u>
+  **Example**
+</u>
+
+<br />
+
+For a use case example on this function check out the written [Guide](../Guides/stashes) for it.
+
+## CreateTemporaryStash [#createtemporarystash]
+
+Creates a temporary stash which will be removed after some time.
+
+```lua
+exports.ox_inventory:CreateTemporaryStash(properties)
+```
+
+* properties: `table`
+  * label: `string`
+  * slots: `number`
+  * maxWeight: `number`
+  * owner?: `string` `number` or `boolean`
+    * `string`: Can only access the stash linked to the owner.
+    * `true`: Each player has a unique stash but can request other player's stashes.
+    * The inventory is always shared if `false` or `nil`.
+  * groups?: `table<string, number>`
+    * Table of group names (e.g. jobs) where the numeric value is the minimum grade required.
+    * `{['police'] = 0, ['ambulance'] = 2}`
+  * coords?: `vector3`
+    * Stash can only be accessed while nearby.
+  * items?: `{ [number]: string, [number]: number, [number]?: table }[]`
+    * An array of tables, containing a sequence of itemName, count, metadata.
+
+Return:
+
+* inventoryId: `string`
+
+<br />
+
+<u>
+  **Example**
+</u>
+
+```lua
+local mystash = exports.ox_inventory:CreateTemporaryStash({
+    label = 'mystash',
+    slots = 5,
+    maxWeight = 5000,
+    items = {
+        { 'WEAPON_MINISMG', 1 },
+        { 'ammo-9', 69 },
+        { 'water', 2, { label = 'Mineral water' } }
+    }
+})
+
+TriggerClientEvent('ox_inventory:openInventory', 1, 'stash', mystash)
+```
+
+## CustomDrop [#customdrop]
+
+Drops can be created from other resources, containing a variety of items and utilising a custom label (instead of 'Drop 32648').
+
+```lua
+exports.ox_inventory:CustomDrop(prefix, items, coords, slots, maxWeight, instance, model)
+```
+
+* prefix: `string`
+* items: `table`
+  * name: `string`
+  * count: `number`
+  * metadata?: `table`
+* coords: `vector3`
+* slots?: `number`
+* maxWeight?: `number`
+* instance?: `string` or `number`
+* model?: `number`
+
+```lua
+-- Create a generic drop with a marker
+exports.ox_inventory:CustomDrop('Carcass', {
+    {'meat', 5, { grade = 2, type = 'deer' }},
+    {'hide', 5, { grade = 2, type = 'deer' }}
+}, coords)
+
+-- Create a drop with an entity
+exports.ox_inventory:CustomDrop('SMG', {
+    { 'WEAPON_MINISMG', 1 },
+    { 'ammo-9', 69 },
+}, GetEntityCoords(GetPlayerPed(1)), 5, 10000, nil, `w_sb_minismg`)
+```
+
+## CreateDropFromPlayer [#createdropfromplayer]
+
+Creates a new drop with the contents of a player's inventory.
+
+```lua
+exports.ox_inventory:CreateDropFromPlayer(playerId)
+```
+
+* playerId: `number`
+
+Return:
+
+* dropId: `string`
+
+<br />
+
+<u>
+  **Example**
+</u>
+
+```lua
+local dropId = exports.ox_inventory:CreateDropFromPlayer(1)
+```
+
+## GetCurrentWeapon [#getcurrentweapon]
+
+Returns the player's currently equipped weapon as a table.
+
+```lua
+-- inv: string or number
+exports.ox_inventory:GetCurrentWeapon(inv)
+```
+
+* inv: `table` or `string` or `number`
+
+## SetDurability [#setdurability]
+
+Sets durability onto the specified slot.
+
+Can be used for repairing weapons.
+
+```lua
+exports.ox_inventory:SetDurability(inv, slot, durability)
+```
+
+* inv: `table` or `string` or `number`
+* slot: `number`
+* durability: `number`
+
+<br />
+
+<u>
+  **Example**
+</u>
+
+```lua
+local ox_inventory = exports.ox_inventory
+
+-- Set the durability of the item in slot 3 of source player's inventory to 100
+ox_inventory:SetDurability(source, 3, 100)
+
+-- Set the durability of the source player's current weapon to 100
+local weapon = ox_inventory:GetCurrentWeapon(source)
+
+if weapon then
+    ox_inventory:SetDurability(source, weapon.slot, 100)
+end
+```
+
+## SetMetadata [#setmetadata]
+
+Sets metadata on the specified slot.
+
+```lua
+ox_inventory:SetMetadata(inv, slot, metadata)
+```
+
+* inv: `table` or `string` or `number`
+* slot: `number`
+* metadata: `table`
+
+<br />
+
+<u>
+  **Example**
+</u>
+
+```lua
+local ox_inventory = exports.ox_inventory
+
+local water = ox_inventory:Search(source, 1, 'water')
+for k, v in pairs(water) do
+    print('\n______________'..'\n- index '..k)
+    print(v.name, 'slot: '..v.slot, 'metadata: '..json.encode(v.metadata))
+    water = v
+    break
+end
+
+water.metadata.type = 'clean'
+ox_inventory:SetMetadata(source, water.slot, water.metadata)
+print(('modified %sx water in slot %s with new metadata'):format(water.count, water.slot))
+```
+
+## setContainerProperties [#setcontainerproperties]
+
+Defines the item as a container and sets its properties.
+
+```lua
+exports.ox_inventory:setContainerProperties(itemName, properties)
+```
+
+* itemName: `string`
+* properties: `table`
+  * slots: `number`
+    * Number of slots available in the container.
+  * maxWeight: `number`
+    * Maximum weight the container can hold.
+  * whitelist?: `table<string, true> | string[]`
+    * A table of item names that are allowed in the container.
+    * If not provided, all items are allowed except those blacklisted.
+  * blacklist?: `table<string, true> | string[]`
+    * A table of item names that are not allowed in the container.
+    * If not provided, no items are blacklisted unless whitelist is provided.
+
+<br />
+
+<u>
+  **Example**
+</u>
+
+```lua
+-- Sets pizzabox as a container with 1 slot, maximum weight of 1000 grams and whitelists only the pizza item.
+exports.ox_inventory:setContainerProperties('pizzabox', {
+    slots = 1,
+    maxWeight = 1000,
+    whitelist = { 'pizza' },
+})
 ```
 
 
@@ -14591,8 +14721,6 @@ Return:
 
 
 
-# Alert Dialog [#alert-dialog]
-
 Simple alert dialog that can display a message to the player.\
 Returns whether the player pressed the confirm button or canceled the dialog.
 
@@ -14706,8 +14834,6 @@ Force closes the active alert dialog and sets its return data as `nil`
 
 
 
-# Clipboard [#clipboard]
-
 ## lib.setClipboard [#libsetclipboard]
 
 Sets the player's clipboard to the specified string value.
@@ -14750,8 +14876,6 @@ Sets the player's clipboard to the specified string value.
 # Context Menu (/docs/ox_lib/Interface/Client/context)
 
 
-
-# Context Menu [#context-menu]
 
 ## lib.registerContext [#libregistercontext]
 
@@ -15130,11 +15254,35 @@ By defining a `menu` param to be the id of the first menu we can get the back ar
 ![event\_menu](https://i.imgur.com/zjIiROj.png)
 
 
+# Interface (/docs/ox_lib/Interface/Client)
+
+
+
+If you wish to change the primary colour for the UI to better match your server's theme you can do so easily through the available convars.
+
+They don't require you to build the UI, just restart the resource.
+
+Convars:
+
+```yaml
+setr ox:primaryColor blue
+setr ox:primaryShade 8
+```
+
+Changing the primary colour will change the colour in elements such as the progress bar/circle, skill check, radial menu center button and hover,
+dialog confirm buttons, input field focus, and more.
+
+You can find the full list of preset colours and shades here:
+
+[https://v6.mantine.dev/theming/colors/#default-colors](https://v6.mantine.dev/theming/colors/#default-colors)
+
+If you wish to create your own pallete I suggest following the guide on that page.\
+Keep in mind doing so *will* require you to download the source code and build the UI.
+
+
 # Input Dialog (/docs/ox_lib/Interface/Client/input)
 
 
-
-# Input Dialog [#input-dialog]
 
 The input dialog window allows you to take data from the user by setting input fields.
 
@@ -15420,8 +15568,6 @@ Force closes the active input dialog and sets its return data as `nil`.
 # Menu (/docs/ox_lib/Interface/Client/menu)
 
 
-
-# Menu [#menu]
 
 Keyboard navigation menu with specific event functions.
 
@@ -15737,8 +15883,6 @@ First we register the menu with our specified options then we call the show func
 
 
 
-# Notifications [#notifications]
-
 ## lib.notify [#libnotify]
 
 Custom notifications with a lot of styling options.
@@ -15887,8 +16031,6 @@ Custom notifications with a lot of styling options.
 # Progress (/docs/ox_lib/Interface/Client/progress)
 
 
-
-# Progress [#progress]
 
 ## lib.progressBar [#libprogressbar]
 
@@ -16199,8 +16341,6 @@ progress bar can be cancelled then it cancels it.
 # Radial Menu (/docs/ox_lib/Interface/Client/radial)
 
 
-
-# Radial Menu [#radial-menu]
 
 * Radial menu has a global menu that's by default accessed with `z` and only displays when there is at least one item.
 * You can add and remove items from the global menu using `lib.addRadialItem` and `lib.removeRadialItem`.
@@ -16545,8 +16685,6 @@ Here's a use case example with some global options and an option utilising the l
 
 
 
-# Skill Check [#skill-check]
-
 ## lib.skillCheck [#libskillcheck]
 
 Runs a skill check with the defined difficulty.
@@ -16648,8 +16786,6 @@ Cancels the currently ongoing skill check.
 # TextUI (/docs/ox_lib/Interface/Client/textui)
 
 
-
-# TextUI [#textui]
 
 ## lib.showTextUI [#libshowtextui]
 

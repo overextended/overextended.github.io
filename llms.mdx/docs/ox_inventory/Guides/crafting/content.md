@@ -2,8 +2,6 @@
 
 
 
-# Crafting [#crafting]
-
 Crafting locations, items and their ingredients are defined in [data/crafting.lua](https://github.com/overextended/ox_inventory/blob/main/data/crafting.lua).
 
 ## Crafting definition [#crafting-definition]

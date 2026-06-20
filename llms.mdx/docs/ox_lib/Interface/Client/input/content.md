@@ -2,8 +2,6 @@
 
 
 
-# Input Dialog [#input-dialog]
-
 The input dialog window allows you to take data from the user by setting input fields.
 
 ## lib.inputDialog [#libinputdialog]

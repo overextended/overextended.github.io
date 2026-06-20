@@ -1,8 +1,6 @@
-# single (/docs/oxmysql/Functions/single)
+# Single (/docs/oxmysql/Functions/single)
 
 
-
-# Single [#single]
 
 Returns all selected columns for a single row.
 

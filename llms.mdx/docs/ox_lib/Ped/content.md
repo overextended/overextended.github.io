@@ -28,7 +28,47 @@ A class for ped entities implementing a custom statebag interface and common ent
 
 ## Methods [#methods]
 
-<section id="methods">
+<section id="pedmethods">
+  ### getArmour [#getarmour]
+
+  Gets the entity's current armour.
+
+  <Tabs groupId="language" items="['Lua', 'TypeScript']">
+    <Tab>
+      ```lua
+      entity:getArmour()
+      ```
+    </Tab>
+
+    <Tab>
+      ```ts
+      entity.getArmour()
+      ```
+    </Tab>
+  </Tabs>
+
+  **Returns:** `number`
+
+  ### setArmour [#setarmour]
+
+  Sets the entity's armour.
+
+  <Tabs groupId="language" items="['Lua', 'TypeScript']">
+    <Tab>
+      ```lua
+      entity:setArmour(amount)
+      ```
+    </Tab>
+
+    <Tab>
+      ```ts
+      entity.setArmour(amount)
+      ```
+    </Tab>
+  </Tabs>
+
+  * amount: `number`
+
   {/* 
     Internal class used by the GameEntity classes (Ped, Player, Prop, Vehicle).
     */}
@@ -358,44 +398,4 @@ A class for ped entities implementing a custom statebag interface and common ent
     </Tabs>
 
   * bucketId: `number`
-
-  ### getArmour [#getarmour]
-
-  Gets the entity's current armour.
-
-  <Tabs groupId="language" items="['Lua', 'TypeScript']">
-    <Tab>
-      ```lua
-      entity:getArmour()
-      ```
-    </Tab>
-
-    <Tab>
-      ```ts
-      entity.getArmour()
-      ```
-    </Tab>
-  </Tabs>
-
-  **Returns:** `number`
-
-  ### setArmour [#setarmour]
-
-  Sets the entity's armour.
-
-  <Tabs groupId="language" items="['Lua', 'TypeScript']">
-    <Tab>
-      ```lua
-      entity:setArmour(amount)
-      ```
-    </Tab>
-
-    <Tab>
-      ```ts
-      entity.setArmour(amount)
-      ```
-    </Tab>
-  </Tabs>
-
-  * amount: `number`
 </section>

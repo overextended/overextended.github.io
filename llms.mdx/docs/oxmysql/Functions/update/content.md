@@ -1,8 +1,6 @@
-# update (/docs/oxmysql/Functions/update)
+# Update (/docs/oxmysql/Functions/update)
 
 
-
-# Update [#update]
 
 Returns the number of rows affected by the query.
 

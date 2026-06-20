@@ -2,8 +2,6 @@
 
 
 
-# Progress [#progress]
-
 ## lib.progressBar [#libprogressbar]
 
 Displays a running progress bar.

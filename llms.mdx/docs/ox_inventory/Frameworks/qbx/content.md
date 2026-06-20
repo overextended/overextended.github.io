@@ -2,8 +2,6 @@
 
 
 
-# Qbox Project [#qbox-project]
-
 Qbox is a fork of QBCore being developed by a team of former contributors and developers on QBCore. The team is focused on improving performance and security, as well as converting resources to support our resources (mainly ox\_lib and ox\_inventory).
 
 We *strongly* advise using Qbox as an alternative to QBCore.

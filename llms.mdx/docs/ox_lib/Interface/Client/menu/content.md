@@ -2,8 +2,6 @@
 
 
 
-# Menu [#menu]
-
 Keyboard navigation menu with specific event functions.
 
 ## lib.registerMenu [#libregistermenu]

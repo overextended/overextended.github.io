@@ -28,6 +28,87 @@ A class for vehicle entities implementing a custom statebag interface and common
 
 ## Methods [#methods]
 
+### setOnGround [#setonground]
+
+Attempts to set the entity onto the ground.\
+On the server, this uses the `ox_entity_setonground` state and a [statebag change handler](https://github.com/overextended/ox_lib/blob/44796d362997f9d1b67a01b56ed5bcba1e73c2f4/resource/client.lua#L39-L74).
+
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    entity:setOnGround()
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    entity.setOnGround()
+    ```
+  </Tab>
+</Tabs>
+
+**Returns:** `boolean`
+
+### getType [#gettype]
+
+Gets the entity's vehicle type. See [GetVehicleType](https://docs.fivem.net/natives/?_0xA273060E).
+
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    entity:getType()
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    entity.getType()
+    ```
+  </Tab>
+</Tabs>
+
+**Returns:** `string`
+
+### getPlate [#getplate]
+
+Gets the entity's number plate text.
+
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    entity:getPlate()
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    entity.getPlate()
+    ```
+  </Tab>
+</Tabs>
+
+**Returns:** `string`
+
+### setPlate [#setplate]
+
+Sets the entity's number plate text.
+
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    entity:setPlate(plate)
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    entity.setPlate(plate)
+    ```
+  </Tab>
+</Tabs>
+
+* plate: `string`
+
 {/* 
   Internal class used by the GameEntity classes (Ped, Player, Prop, Vehicle).
   */}
@@ -357,84 +438,3 @@ Sets the entity's routing bucket to the given id. &#x2A;*Server only.**
 </Tabs>
 
 * bucketId: `number`
-
-### setOnGround [#setonground]
-
-Attempts to set the entity onto the ground.\
-On the server, this uses the `ox_entity_setonground` state and a [statebag change handler](https://github.com/overextended/ox_lib/blob/44796d362997f9d1b67a01b56ed5bcba1e73c2f4/resource/client.lua#L39-L74).
-
-<Tabs groupId="language" items="['Lua', 'TypeScript']">
-  <Tab>
-    ```lua
-    entity:setOnGround()
-    ```
-  </Tab>
-
-  <Tab>
-    ```ts
-    entity.setOnGround()
-    ```
-  </Tab>
-</Tabs>
-
-**Returns:** `boolean`
-
-### getType [#gettype]
-
-Gets the entity's vehicle type. See [GetVehicleType](https://docs.fivem.net/natives/?_0xA273060E).
-
-<Tabs groupId="language" items="['Lua', 'TypeScript']">
-  <Tab>
-    ```lua
-    entity:getType()
-    ```
-  </Tab>
-
-  <Tab>
-    ```ts
-    entity.getType()
-    ```
-  </Tab>
-</Tabs>
-
-**Returns:** `string`
-
-### getPlate [#getplate]
-
-Gets the entity's number plate text.
-
-<Tabs groupId="language" items="['Lua', 'TypeScript']">
-  <Tab>
-    ```lua
-    entity:getPlate()
-    ```
-  </Tab>
-
-  <Tab>
-    ```ts
-    entity.getPlate()
-    ```
-  </Tab>
-</Tabs>
-
-**Returns:** `string`
-
-### setPlate [#setplate]
-
-Sets the entity's number plate text.
-
-<Tabs groupId="language" items="['Lua', 'TypeScript']">
-  <Tab>
-    ```lua
-    entity:setPlate(plate)
-    ```
-  </Tab>
-
-  <Tab>
-    ```ts
-    entity.setPlate(plate)
-    ```
-  </Tab>
-</Tabs>
-
-* plate: `string`

@@ -2,8 +2,6 @@
 
 
 
-# Creating Items [#creating-items]
-
 ## Defining item data [#defining-item-data]
 
 Before being able to see or use an item in game it **must** first be defined.
@@ -181,44 +179,6 @@ exports('bandage', function(data, slot)
     else
         -- Don't use the item
         lib.notify({type = 'error', description = 'You don\'t need a bandage right now'})
-    end
-end)
-```
-
-### Server callbacks [#server-callbacks]
-
-A callback function can be defined on the server to handle several events (usingItem, usedItem, buyItem).
-This can either be an export (recommended), or added to the bottom of [items/server.lua](https://github.com/overextended/ox_inventory/blob/main/modules/items/server.lua).
-When defining [item data](https://github.com/overextended/ox_inventory/blob/main/data/items.lua#L14), adding server.export will trigger an event for the actions above.
-The correct formatting is `export = resourceName.exportName`.
-
-```lua
-exports('bandage', function(event, item, inventory, slot, data)
-    -- Player is attempting to use the item.
-    if event == 'usingItem' then
-        local playerPed = GetPlayerPed(inventory.id)
-        local maxHealth = GetEntityMaxHealth(playerPed)
-        local health = GetEntityHealth(playerPed)
-
-        -- Check if the player needs to be healed.
-        if health >= maxHealth then
-            TriggerClientEvent('ox_lib:notify', inventory.id, {type = 'error', description = 'You don\'t need a bandage right now'})
-
-            -- Returning 'false' will prevent the item from being used
-            return false
-        end
-
-        return
-    end
-
-    -- Player has finished using the item.
-    if event == 'usedItem' then
-        return TriggerClientEvent('ox_lib:notify', inventory.id, {description = 'You feel better already'})
-    end
-
-    -- Player is attempting to purchase the item.
-    if event == 'buying' then
-        return TriggerClientEvent('ox_lib:notify', inventory.id, {type = 'success', description = 'You bought a bandage'})
     end
 end)
 ```
