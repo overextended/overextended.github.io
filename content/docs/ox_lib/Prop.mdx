@@ -1,0 +1,49 @@
+---
+title: Prop
+---
+
+A class for object entities implementing a custom statebag interface and common entity operations.
+
+## Constructor
+
+<Tabs groupId="language" items={['Lua', 'TypeScript']}>
+<Tab>
+```lua
+lib.prop:new(handle)
+```
+</Tab>
+<Tab>
+```ts
+import { Prop } from "@overextended/ox_lib";
+
+new Prop(handle)
+```
+</Tab>
+</Tabs>
+
+- handle: `number` The entity's [script handle](https://docs.fivem.net/docs/scripting-manual/networking/ids/#entity-handle).
+
+**Returns:** `Prop`
+
+## Methods
+<include>GameEntity.mdx</include>
+
+### setOnGround
+
+Attempts to set the entity onto the ground.  
+On the server, this uses the `ox_entity_setonground` state and a [statebag change handler](https://github.com/overextended/ox_lib/blob/44796d362997f9d1b67a01b56ed5bcba1e73c2f4/resource/client.lua#L39-L74).
+
+<Tabs groupId="language" items={['Lua', 'TypeScript']}>
+<Tab>
+```lua
+entity:setOnGround()
+```
+</Tab>
+<Tab>
+```ts
+entity.setOnGround()
+```
+</Tab>
+</Tabs>
+
+**Returns:** `boolean`

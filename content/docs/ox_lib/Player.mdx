@@ -1,0 +1,47 @@
+---
+title: Player
+---
+
+A class that extends the [Ped](Ped) class with additional functionality for players.
+
+## Constructor
+
+<Tabs groupId="language" items={['Lua', 'TypeScript']}>
+<Tab>
+```lua
+lib.player:new(netId)
+```
+</Tab>
+<Tab>
+```ts
+import { Player } from "@overextended/ox_lib";
+
+new Player(netId)
+```
+</Tab>
+</Tabs>
+
+- netId: `number` The player's [server id](https://docs.fivem.net/docs/scripting-manual/networking/ids/#server-id).
+
+**Returns:** `Player`
+
+<include>Ped.mdx#methods</include>
+
+### setModel
+
+Creates a new ped and assigns it to the player. On the client, this invalidates the entity handle (see [setHandle](#sethandle)).
+
+<Tabs groupId="language" items={['Lua', 'TypeScript']}>
+<Tab>
+```lua
+entity:setModel(model)
+```
+</Tab>
+<Tab>
+```ts
+entity.setModel(model)
+```
+</Tab>
+</Tabs>
+
+- model: `string` | `number`

@@ -1,0 +1,69 @@
+---
+title: Ped
+---
+
+A class for ped entities implementing a custom statebag interface and common entity operations.
+
+## Constructor
+
+<Tabs groupId="language" items={['Lua', 'TypeScript']}>
+<Tab>
+```lua
+lib.ped:new(handle)
+```
+</Tab>
+<Tab>
+```ts
+import { Ped } from "@overextended/ox_lib";
+
+new Ped(handle)
+```
+</Tab>
+</Tabs>
+
+- handle: `number` The entity's [script handle](https://docs.fivem.net/docs/scripting-manual/networking/ids/#entity-handle).
+
+**Returns:** `Ped`
+
+## Methods
+<section id="methods">
+<include>GameEntity.mdx</include>
+
+### getArmour
+
+Gets the entity's current armour.
+
+<Tabs groupId="language" items={['Lua', 'TypeScript']}>
+<Tab>
+```lua
+entity:getArmour()
+```
+</Tab>
+<Tab>
+```ts
+entity.getArmour()
+```
+</Tab>
+</Tabs>
+
+**Returns:** `number`
+
+### setArmour
+
+Sets the entity's armour.
+
+<Tabs groupId="language" items={['Lua', 'TypeScript']}>
+<Tab>
+```lua
+entity:setArmour(amount)
+```
+</Tab>
+<Tab>
+```ts
+entity.setArmour(amount)
+```
+</Tab>
+</Tabs>
+
+- amount: `number`
+</section>
