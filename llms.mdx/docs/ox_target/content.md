@@ -4,7 +4,7 @@
 
 
 
-<ResourceLinks repo="https://github.com/overextended/ox_target" />
+<ResourceLinks repo="ox_target" />
 
 A performant and flexible standalone targeting resource or "third-eye", with additional functionality for ox\_inventory, ox\_core, qbx\_core, and es\_extended.
 

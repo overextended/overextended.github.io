@@ -4,7 +4,7 @@
 
 
 
-<ResourceLinks repo="https://github.com/overextended/oxmysql" />
+<ResourceLinks repo="oxmysql" />
 
 A replacement of mysql-async and ghmattimysql with expanded API and improved compatibility for MySQL 8.
 

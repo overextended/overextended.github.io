@@ -4,7 +4,7 @@
 
 
 
-<ResourceLinks repo="https://github.com/overextended/ox_core" />
+<ResourceLinks repo="ox_core" />
 
 A modern FiveM framework, designed to properly support features like OneSync, statebags, and server-side entities.
 

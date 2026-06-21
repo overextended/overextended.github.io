@@ -4,7 +4,7 @@
 
 
 
-<ResourceLinks repo="https://github.com/overextended/ox_fuel" />
+<ResourceLinks repo="ox_fuel" />
 
 A simple fuel resource meant to replace LegacyFuel or serve as a showcase for using petrol cans as an item.
 

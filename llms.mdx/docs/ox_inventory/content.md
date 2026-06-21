@@ -4,7 +4,7 @@
 
 
 
-<ResourceLinks repo="https://github.com/overextended/ox_inventory" />
+<ResourceLinks repo="ox_inventory" />
 
 A slot-based inventory with item metadata for "item uniqueness".
 

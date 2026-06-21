@@ -196,7 +196,7 @@ Contains information about the specified account role.
 
 
 
-<ResourceLinks repo="https://github.com/overextended/ox_core" />
+<ResourceLinks repo="ox_core" />
 
 A modern FiveM framework, designed to properly support features like OneSync, statebags, and server-side entities.
 
@@ -321,7 +321,7 @@ These convars should use the `setr` command to be read by clients.
 
 
 
-<ResourceLinks repo="https://github.com/overextended/ox_doorlock" />
+<ResourceLinks repo="ox_doorlock" />
 
 A door management resource that can be used standalone or alongside ox\_core, qbx\_core, and es\_extended.
 
@@ -475,7 +475,7 @@ Entity(vehicleId).state.fuel = fuelAmount
 
 
 
-<ResourceLinks repo="https://github.com/overextended/ox_fuel" />
+<ResourceLinks repo="ox_fuel" />
 
 A simple fuel resource meant to replace LegacyFuel or serve as a showcase for using petrol cans as an item.
 
@@ -515,7 +515,7 @@ A simple fuel resource meant to replace LegacyFuel or serve as a showcase for us
 
 
 
-<ResourceLinks repo="https://github.com/overextended/ox_inventory" />
+<ResourceLinks repo="ox_inventory" />
 
 A slot-based inventory with item metadata for "item uniqueness".
 
@@ -2939,7 +2939,7 @@ Sets the entity's routing bucket to the given id. &#x2A;*Server only.**
 
 A standalone library for providing easily reusable code as importable modules and exports.
 
-<ResourceLinks repo="https://github.com/overextended/ox_lib" />
+<ResourceLinks repo="ox_lib" />
 
 ## Installation [#installation]
 
@@ -3235,7 +3235,7 @@ end)
 
 
 
-<ResourceLinks repo="https://github.com/overextended/oxmysql" />
+<ResourceLinks repo="oxmysql" />
 
 A replacement of mysql-async and ghmattimysql with expanded API and improved compatibility for MySQL 8.
 
@@ -3509,7 +3509,7 @@ A selected option will trigger a single action, in order of priority:
 
 
 
-<ResourceLinks repo="https://github.com/overextended/ox_target" />
+<ResourceLinks repo="ox_target" />
 
 A performant and flexible standalone targeting resource or "third-eye", with additional functionality for ox\_inventory, ox\_core, qbx\_core, and es\_extended.
 
@@ -3715,677 +3715,6 @@ If you're looking to start creating resources with TypeScript but don't know wha
 * Fully configured for FiveM and FXServer.
 
 **[Browse repository](https://github.com/overextended/fivem-ts)**
-
-
-# Common (/docs/ox_core/Functions/common)
-
-
-
-## Ox.GetGroupPermissions [#oxgetgrouppermissions]
-
-Returns the `OxGroupPermissions` object for the group
-
-```lua
-Ox.GetGroupPermissions(groupName)
-```
-
-**Parameters**
-
-* groupName: `string`
-
-**Returns**
-
-* `OxGroupPermissions`
-
-## Ox.GetTopVehicleStats [#oxgettopvehiclestats]
-
-Returns an object containing the top vehicle stats, either overall or for a specific category (land, air, sea).
-
-```lua
-Ox.GetTopVehicleStats(category?)
-```
-
-**Parameters**
-
-* category?: `string`
-
-**Returns**
-
-* `VehicleStats` | `{ [string]: VehicleStats }`
-
-### VehicleStats [#vehiclestats]
-
-* `object`
-  * acceleration: `number`
-  * braking: `number`
-  * handling: `number`
-  * speed: `number`
-  * traction: `number`
-
-## Ox.GetVehicleData [#oxgetvehicledata]
-
-Returns VehicleData for all vehicles, or optionally a specific model or array of models.
-
-```lua
-Ox.GetVehicleData(filter?)
-```
-
-**Parameters**
-
-* filter?: `string` | `string[]`
-
-**Returns**
-
-* `{ [string]: VehicleData }` | `VehicleData`
-
-### VehicleData [#vehicledata]
-
-* `object`
-  * class: `VehicleClasses`
-  * doors: `number`
-  * make: `string`
-  * name: `string`
-  * price: `number`
-  * seats: `number`
-  * type: `string`
-  * weapons?: `true`
-
-## Ox.GetVehicleNetworkType [#oxgetvehiclenetworktype]
-
-Returns the netobj type of a vehicle model, which may differ from the vehicle type (e.g. blimp is networked as heli).
-
-```lua
-Ox.GetVehicleNetworkType(modelName)
-```
-
-**Parameters**
-
-* modelName: `string`
-
-**Returns**
-
-* `string`
-
-
-# Server (/docs/ox_core/Functions/server)
-
-
-
-## Ox.CreateAccount [#oxcreateaccount]
-
-Creates a new account for a character with the given charId or stateId.
-
-```lua
-Ox.CreateAccount(ownerId, label)
-```
-
-**Parameters**
-
-* ownerId: `number` | `string`
-* label: `string`
-
-**Returns**
-
-* [`OxAccount`](/ox_core/Classes/Server/OxAccount)
-
-## Ox.CreateGroup [#oxcreategroup]
-
-Creates a new group from the given data, handling all database interactions internally.
-
-```lua
-Ox.CreateGroup(data)
-```
-
-**Parameters**
-
-* data: `object`
-  * name: `string`
-  * label: `string`
-  * grades: `object[]`
-    * label: `string`
-    * accountRole?: `string`
-  * type?: `string`
-  * colour?: `number`
-  * hasAccount?: `boolean`
-
-## Ox.CreateVehicle [#oxcreatevehicle]
-
-Creates a new vehicle, which will be saved to the database if it has an assigned owner or group.
-
-```lua
-Ox.CreateVehicle(data, coords, heading)
-```
-
-**Parameters**
-
-* data: `string` | `object`
-  * model: `string`
-  * owner?: `number`
-  * group?: `string`
-  * stored?: `string`
-  * properties?: `object`
-* coords?: `vector3`
-* heading?: `number`
-
-**Returns**
-
-* [`OxVehicle`](/ox_core/Classes/Server/OxVehicle)
-
-## Ox.DeleteAccountInvoice [#oxdeleteaccountinvoice]
-
-Deletes the account invoice with the given invoiceId.
-
-```lua
-Ox.DeleteAccountInvoice(invoiceId)
-```
-
-**Parameters**
-
-* invoiceId: `number`
-
-**Returns**
-
-* `object`
-  * success: `boolean`
-  * message?: `string`
-
-## Ox.DeleteGroup [#oxdeletegroup]
-
-Deletes all data associated with the given group name, such as group grades, vehicles, etc.
-
-```lua
-Ox.DeleteGroup(groupName)
-```
-
-**Parameters**
-
-* groupName: `string`
-
-## Ox.GenerateVehiclePlate [#oxgeneratevehicleplate]
-
-Generate a unique vehicle plate that doesn't exist in database. Pattern defaults to `ox:plateFormat` if not provided.
-
-```lua
-Ox.GenerateVehiclePlate(pattern)
-```
-
-**Parameters**
-
-* pattern?: `string`
-
-**Returns**
-
-* `string`
-
-## Ox.GenerateVehicleVin [#oxgeneratevehiclevin]
-
-Generate a unique vehicle identification number that doesn't exist in database.
-
-```lua
-Ox.GenerateVehicleVin(modelName)
-```
-
-**Parameters**
-
-* modelName: `string`
-  * Vehicle information (i.e. model and make) are used as part of the VIN.
-
-**Returns**
-
-* `string`
-
-## Ox.GetAccount [#oxgetaccount]
-
-Get the `OxAccount` with the given accountId.
-
-```lua
-Ox.GetAccount(accountId)
-```
-
-**Parameters**
-
-* accountId: `number`
-
-**Returns**
-
-* [`OxAccount`](/ox_core/Classes/Server/OxAccount)
-
-## Ox.GetCharacterAccount [#oxgetcharacteraccount]
-
-Get the default `OxAccount` for a character by their charId or stateId.
-
-```lua
-Ox.GetCharacterAccount(id)
-```
-
-**Parameters**
-
-* id: `number` | `string`
-
-**Returns**
-
-* [`OxAccount`](/ox_core/Classes/Server/OxAccount)
-
-## Ox.GetCharIdFromStateId [#oxgetcharidfromstateid]
-
-Get a character's charId from their stateId.\
-*Note: This queries the database and shouldn't be used excessively*
-
-```lua
-Ox.GetCharIdFromStateId(stateId)
-```
-
-**Parameters**
-
-* stateId: `string`
-
-**Returns**
-
-* `number`
-
-## Ox.GetGroupAccount [#oxgetgroupaccount]
-
-Get the `OxAccount` for a group.
-
-```lua
-Ox.GetGroupAccount(groupName)
-```
-
-**Parameters**
-
-* groupName: `string`
-
-**Returns**
-
-* [`OxAccount`](/ox_core/Classes/Server/OxAccount)
-
-## Ox.GetGroupsByType [#oxgetgroupsbytype]
-
-Returns an array of group names which have the given group type.
-
-```lua
-Ox.GetGroupsByType(groupType)
-```
-
-**Parameters**
-
-* groupType: `string`
-
-**Returns**
-
-* `string[]`
-
-## Ox.GetGroup [#oxgetgroup]
-
-Get an `OxGroup` from its name.
-
-```lua
-Ox.GetGroup(name)
-```
-
-**Parameters**
-
-* name: `string`
-
-**Returns**
-
-* `OxGroup`
-
-## Ox.GetPlayer [#oxgetplayer]
-
-Get an `OxPlayer` from its player id.
-
-```lua
-Ox.GetPlayer(playerId)
-```
-
-**Parameters**
-
-* playerId: `number`
-
-**Returns**
-
-* [`OxPlayer`](/ox_core/Classes/Server/OxPlayer)
-
-## Ox.GetPlayerFromFilter [#oxgetplayerfromfilter]
-
-Get the first `OxPlayer` matching a filter.
-
-```lua
-Ox.GetPlayerFromFilter(filter)
-```
-
-**Parameters**
-
-* filter?: `{ [string]: any }`
-  * Compare player fields and metadata against the given key-value pairs.
-  * Groups can be given as a string or array of strings to match.
-
-**Returns**
-
-* [`OxPlayer`](/ox_core/Classes/Server/OxPlayer)
-
-## Ox.GetPlayerFromUserId [#oxgetplayerfromuserid]
-
-Get an `OxPlayer` from its user id.
-
-```lua
-Ox.GetPlayerFromUserId(userId)
-```
-
-**Parameters**
-
-* userId: `number`
-
-**Returns**
-
-* [`OxPlayer`](/ox_core/Classes/Server/OxPlayer)
-
-## Ox.GetPlayerFromCharId [#oxgetplayerfromcharid]
-
-Get an `OxPlayer` from its character id.
-
-```lua
-Ox.GetPlayerFromCharId(charId)
-```
-
-**Parameters**
-
-* charId: `number`
-
-**Returns**
-
-* [`OxPlayer`](/ox_core/Classes/Server/OxPlayer)
-
-## Ox.GetPlayers [#oxgetplayers]
-
-Get an array of containing `OxPlayer` for all players matching a filter, if given.
-
-```lua
-Ox.GetPlayers(filter)
-```
-
-**Parameters**
-
-* filter?: `{ [string]: any }`
-  * Compare player fields and metadata against the given key-value pairs.
-  * Groups can be given as a string or array of strings to match.
-
-**Returns**
-
-* [`OxPlayer[]`](/ox_core/Classes/Server/OxPlayer)
-
-## Ox.GetVehicle [#oxgetvehicle]
-
-Get an `OxVehicle` from its entity id.
-
-```lua
-Ox.GetVehicle(entityId)
-```
-
-**Parameters**
-
-* entityId: `number`
-
-**Returns**
-
-* [`OxVehicle`](/ox_core/Classes/Server/OxVehicle)
-
-## Ox.GetVehicleFromFilter [#oxgetvehiclefromfilter]
-
-Get the first `OxVehicle` matching a filter.
-
-```lua
-Ox.GetVehicleFromFilter(filter)
-```
-
-**Parameters**
-
-* filter?: `{ [string]: any }`
-  * Compare vehicle fields and metadata against the given key-value pairs.
-
-**Returns**
-
-* [`OxVehicle`](/ox_core/Classes/Server/OxVehicle)
-
-## Ox.GetVehicleFromNetId [#oxgetvehiclefromnetid]
-
-Get an `OxVehicle` from its network id.
-
-```lua
-Ox.GetVehicleFromNetId(netId)
-```
-
-**Parameters**
-
-* netId: `number`
-
-**Returns**
-
-* [`OxVehicle`](/ox_core/Classes/Server/OxVehicle)
-
-## Ox.GetVehicleFromVin [#oxgetvehiclefromvin]
-
-Get an `OxVehicle` from its VIN.
-
-```lua
-Ox.GetVehicleFromVin(vin)
-```
-
-**Parameters**
-
-* vin: `string`
-
-**Returns**
-
-* [`OxVehicle`](/ox_core/Classes/Server/OxVehicle)
-
-## Ox.GetVehicles [#oxgetvehicles]
-
-Get an array of containing `OxVehicle` for all vehicles matching a filter, if given.
-
-```lua
-Ox.GetVehicles(filter)
-```
-
-**Parameters**
-
-* filter?: `{ [string]: any }`
-  * Compare vehicle fields and metadata against the given key-value pairs.
-
-**Returns**
-
-* [`OxVehicle[]`](/ox_core/Classes/Server/OxVehicle)
-
-## Ox.RemoveGroupPermission [#oxremovegrouppermission]
-
-Removes a permission from a specified group and minimum grade.
-
-```lua
-Ox.RemoveGroupPermission(groupName, grade, permission)
-```
-
-**Parameters**
-
-* groupName: `string`
-* grade: `number`
-* permission: `string`
-
-## Ox.SaveAllPlayers [#oxsaveallplayers]
-
-Save all players to the database.
-
-```lua
-Ox.SaveAllPlayers()
-```
-
-## Ox.SaveAllVehicles [#oxsaveallvehicles]
-
-Save all vehicles to the database.
-
-```lua
-Ox.SaveAllVehicles()
-```
-
-## Ox.SetGroupPermission [#oxsetgrouppermission]
-
-Assigns a permission to a specified group and minimum grade, which will be inherited by higher grades.
-
-```lua
-Ox.SetGroupPermission(groupName, grade, permission, value)
-```
-
-**Parameters**
-
-* groupName: `string`
-* grade: `number`
-* permission: `string`
-* value: `allow` | `deny`
-
-**Example**
-
-```lua
--- Adding a permission to a group (server side)
-Ox.SetGroupPermission('police', 1, 'handcuff', 'allow')
-
--- Checking if a player has the 'handcuff' permission
-if player.hasPermission('group.police.handcuff') then
-    -- Do something
-end
-```
-
-## Ox.SpawnVehicle [#oxspawnvehicle]
-
-Spawns an `OxVehicle` with the given dbId, if it hasn't already been spawned.
-
-```lua
-Ox.SpawnVehicle(dbId, coords, heading)
-```
-
-**Parameters**
-
-* dbId: `number`
-* coords: `vector3`
-* heading?: `number`
-
-**Returns**
-
-* [`OxVehicle`](/ox_core/Classes/Server/OxVehicle)
-
-## Ox.GetLicense [#oxgetlicense]
-
-Get license data from its name.
-
-```lua
-Ox.GetLicense(name)
-```
-
-**Parameters**
-
-* name: `string`
-
-**Returns**
-
-* `OxLicense`
-
-## Ox.GetLicenses [#oxgetlicenses]
-
-Get all licenses' data.
-
-```lua
-Ox.GetLicenses()
-```
-
-**Returns**
-
-* `OxLicense[]`
-
-## Ox.GetGroupActivePlayers [#oxgetgroupactiveplayers]
-
-Returns an array of all active players in the specified group.
-
-```lua
-Ox.GetGroupActivePlayers(groupName)
-```
-
-**Parameters**
-
-* groupName: `string`
-
-**Returns**
-
-* `number[]`
-
-## Ox.GetGroupActivePlayersByType [#oxgetgroupactiveplayersbytype]
-
-Returns an array of all active players aggregated from groups matching the specified type.
-
-```lua
-Ox.GetGroupActivePlayers(groupType)
-```
-
-**Parameters**
-
-* groupType: `string`
-
-**Returns**
-
-* `number[]`
-
-## Ox.BanUser [#oxbanuser]
-
-Bans a user from the server.
-
-```lua
-Ox.BanUser(userId, reason, hours)
-```
-
-**Parameters**
-
-* userId: `number`
-* reason?: `string`
-* hours?: `number`
-
-**Returns**
-
-* `boolean`
-
-## Ox.IsUserBanned [#oxisuserbanned]
-
-Checks if a user is currently banned and returns ban details if they are.
-
-```lua
-Ox.IsUserBanned(userId)
-```
-
-**Parameters**
-
-* userId: `number`
-
-**Returns**
-
-* `BanDetails` | `nil`
-  * reason: `string`
-  * banned\_at: `string`
-  * unban\_at: `string`
-  * userId: `number`
-  * token: `string`
-
-## Ox.UnbanUser [#oxunbanuser]
-
-Removes a ban from a user.
-
-```lua
-Ox.UnbanUser(userId)
-```
-
-**Parameters**
-
-* userId: `number`
-
-**Returns**
-
-* `boolean`
 
 
 # Client Events (/docs/ox_core/Events/client)
@@ -5165,26 +4494,675 @@ When an invoice is paid.
 </Tabs>
 
 
-# Events (/docs/ox_doorlock/Server/events)
+# Common (/docs/ox_core/Functions/common)
 
 
 
-## Handlers [#handlers]
+## Ox.GetGroupPermissions [#oxgetgrouppermissions]
 
-These events **should not** be triggered by any other scripts.
-
-### ox\_doorlock:stateChanged [#ox_doorlockstatechanged]
-
-Triggered when a doors state is updated.
+Returns the `OxGroupPermissions` object for the group
 
 ```lua
-AddEventHandler('ox_doorlock:stateChanged', function(source, doorId, state, usedItem) end)
+Ox.GetGroupPermissions(groupName)
 ```
 
-* source: `number` or `nil`
-* doorId: `number`
-* state: `boolean`
-* usedItem: `string` or `false` or `nil`
+**Parameters**
+
+* groupName: `string`
+
+**Returns**
+
+* `OxGroupPermissions`
+
+## Ox.GetTopVehicleStats [#oxgettopvehiclestats]
+
+Returns an object containing the top vehicle stats, either overall or for a specific category (land, air, sea).
+
+```lua
+Ox.GetTopVehicleStats(category?)
+```
+
+**Parameters**
+
+* category?: `string`
+
+**Returns**
+
+* `VehicleStats` | `{ [string]: VehicleStats }`
+
+### VehicleStats [#vehiclestats]
+
+* `object`
+  * acceleration: `number`
+  * braking: `number`
+  * handling: `number`
+  * speed: `number`
+  * traction: `number`
+
+## Ox.GetVehicleData [#oxgetvehicledata]
+
+Returns VehicleData for all vehicles, or optionally a specific model or array of models.
+
+```lua
+Ox.GetVehicleData(filter?)
+```
+
+**Parameters**
+
+* filter?: `string` | `string[]`
+
+**Returns**
+
+* `{ [string]: VehicleData }` | `VehicleData`
+
+### VehicleData [#vehicledata]
+
+* `object`
+  * class: `VehicleClasses`
+  * doors: `number`
+  * make: `string`
+  * name: `string`
+  * price: `number`
+  * seats: `number`
+  * type: `string`
+  * weapons?: `true`
+
+## Ox.GetVehicleNetworkType [#oxgetvehiclenetworktype]
+
+Returns the netobj type of a vehicle model, which may differ from the vehicle type (e.g. blimp is networked as heli).
+
+```lua
+Ox.GetVehicleNetworkType(modelName)
+```
+
+**Parameters**
+
+* modelName: `string`
+
+**Returns**
+
+* `string`
+
+
+# Server (/docs/ox_core/Functions/server)
+
+
+
+## Ox.CreateAccount [#oxcreateaccount]
+
+Creates a new account for a character with the given charId or stateId.
+
+```lua
+Ox.CreateAccount(ownerId, label)
+```
+
+**Parameters**
+
+* ownerId: `number` | `string`
+* label: `string`
+
+**Returns**
+
+* [`OxAccount`](/ox_core/Classes/Server/OxAccount)
+
+## Ox.CreateGroup [#oxcreategroup]
+
+Creates a new group from the given data, handling all database interactions internally.
+
+```lua
+Ox.CreateGroup(data)
+```
+
+**Parameters**
+
+* data: `object`
+  * name: `string`
+  * label: `string`
+  * grades: `object[]`
+    * label: `string`
+    * accountRole?: `string`
+  * type?: `string`
+  * colour?: `number`
+  * hasAccount?: `boolean`
+
+## Ox.CreateVehicle [#oxcreatevehicle]
+
+Creates a new vehicle, which will be saved to the database if it has an assigned owner or group.
+
+```lua
+Ox.CreateVehicle(data, coords, heading)
+```
+
+**Parameters**
+
+* data: `string` | `object`
+  * model: `string`
+  * owner?: `number`
+  * group?: `string`
+  * stored?: `string`
+  * properties?: `object`
+* coords?: `vector3`
+* heading?: `number`
+
+**Returns**
+
+* [`OxVehicle`](/ox_core/Classes/Server/OxVehicle)
+
+## Ox.DeleteAccountInvoice [#oxdeleteaccountinvoice]
+
+Deletes the account invoice with the given invoiceId.
+
+```lua
+Ox.DeleteAccountInvoice(invoiceId)
+```
+
+**Parameters**
+
+* invoiceId: `number`
+
+**Returns**
+
+* `object`
+  * success: `boolean`
+  * message?: `string`
+
+## Ox.DeleteGroup [#oxdeletegroup]
+
+Deletes all data associated with the given group name, such as group grades, vehicles, etc.
+
+```lua
+Ox.DeleteGroup(groupName)
+```
+
+**Parameters**
+
+* groupName: `string`
+
+## Ox.GenerateVehiclePlate [#oxgeneratevehicleplate]
+
+Generate a unique vehicle plate that doesn't exist in database. Pattern defaults to `ox:plateFormat` if not provided.
+
+```lua
+Ox.GenerateVehiclePlate(pattern)
+```
+
+**Parameters**
+
+* pattern?: `string`
+
+**Returns**
+
+* `string`
+
+## Ox.GenerateVehicleVin [#oxgeneratevehiclevin]
+
+Generate a unique vehicle identification number that doesn't exist in database.
+
+```lua
+Ox.GenerateVehicleVin(modelName)
+```
+
+**Parameters**
+
+* modelName: `string`
+  * Vehicle information (i.e. model and make) are used as part of the VIN.
+
+**Returns**
+
+* `string`
+
+## Ox.GetAccount [#oxgetaccount]
+
+Get the `OxAccount` with the given accountId.
+
+```lua
+Ox.GetAccount(accountId)
+```
+
+**Parameters**
+
+* accountId: `number`
+
+**Returns**
+
+* [`OxAccount`](/ox_core/Classes/Server/OxAccount)
+
+## Ox.GetCharacterAccount [#oxgetcharacteraccount]
+
+Get the default `OxAccount` for a character by their charId or stateId.
+
+```lua
+Ox.GetCharacterAccount(id)
+```
+
+**Parameters**
+
+* id: `number` | `string`
+
+**Returns**
+
+* [`OxAccount`](/ox_core/Classes/Server/OxAccount)
+
+## Ox.GetCharIdFromStateId [#oxgetcharidfromstateid]
+
+Get a character's charId from their stateId.\
+*Note: This queries the database and shouldn't be used excessively*
+
+```lua
+Ox.GetCharIdFromStateId(stateId)
+```
+
+**Parameters**
+
+* stateId: `string`
+
+**Returns**
+
+* `number`
+
+## Ox.GetGroupAccount [#oxgetgroupaccount]
+
+Get the `OxAccount` for a group.
+
+```lua
+Ox.GetGroupAccount(groupName)
+```
+
+**Parameters**
+
+* groupName: `string`
+
+**Returns**
+
+* [`OxAccount`](/ox_core/Classes/Server/OxAccount)
+
+## Ox.GetGroupsByType [#oxgetgroupsbytype]
+
+Returns an array of group names which have the given group type.
+
+```lua
+Ox.GetGroupsByType(groupType)
+```
+
+**Parameters**
+
+* groupType: `string`
+
+**Returns**
+
+* `string[]`
+
+## Ox.GetGroup [#oxgetgroup]
+
+Get an `OxGroup` from its name.
+
+```lua
+Ox.GetGroup(name)
+```
+
+**Parameters**
+
+* name: `string`
+
+**Returns**
+
+* `OxGroup`
+
+## Ox.GetPlayer [#oxgetplayer]
+
+Get an `OxPlayer` from its player id.
+
+```lua
+Ox.GetPlayer(playerId)
+```
+
+**Parameters**
+
+* playerId: `number`
+
+**Returns**
+
+* [`OxPlayer`](/ox_core/Classes/Server/OxPlayer)
+
+## Ox.GetPlayerFromFilter [#oxgetplayerfromfilter]
+
+Get the first `OxPlayer` matching a filter.
+
+```lua
+Ox.GetPlayerFromFilter(filter)
+```
+
+**Parameters**
+
+* filter?: `{ [string]: any }`
+  * Compare player fields and metadata against the given key-value pairs.
+  * Groups can be given as a string or array of strings to match.
+
+**Returns**
+
+* [`OxPlayer`](/ox_core/Classes/Server/OxPlayer)
+
+## Ox.GetPlayerFromUserId [#oxgetplayerfromuserid]
+
+Get an `OxPlayer` from its user id.
+
+```lua
+Ox.GetPlayerFromUserId(userId)
+```
+
+**Parameters**
+
+* userId: `number`
+
+**Returns**
+
+* [`OxPlayer`](/ox_core/Classes/Server/OxPlayer)
+
+## Ox.GetPlayerFromCharId [#oxgetplayerfromcharid]
+
+Get an `OxPlayer` from its character id.
+
+```lua
+Ox.GetPlayerFromCharId(charId)
+```
+
+**Parameters**
+
+* charId: `number`
+
+**Returns**
+
+* [`OxPlayer`](/ox_core/Classes/Server/OxPlayer)
+
+## Ox.GetPlayers [#oxgetplayers]
+
+Get an array of containing `OxPlayer` for all players matching a filter, if given.
+
+```lua
+Ox.GetPlayers(filter)
+```
+
+**Parameters**
+
+* filter?: `{ [string]: any }`
+  * Compare player fields and metadata against the given key-value pairs.
+  * Groups can be given as a string or array of strings to match.
+
+**Returns**
+
+* [`OxPlayer[]`](/ox_core/Classes/Server/OxPlayer)
+
+## Ox.GetVehicle [#oxgetvehicle]
+
+Get an `OxVehicle` from its entity id.
+
+```lua
+Ox.GetVehicle(entityId)
+```
+
+**Parameters**
+
+* entityId: `number`
+
+**Returns**
+
+* [`OxVehicle`](/ox_core/Classes/Server/OxVehicle)
+
+## Ox.GetVehicleFromFilter [#oxgetvehiclefromfilter]
+
+Get the first `OxVehicle` matching a filter.
+
+```lua
+Ox.GetVehicleFromFilter(filter)
+```
+
+**Parameters**
+
+* filter?: `{ [string]: any }`
+  * Compare vehicle fields and metadata against the given key-value pairs.
+
+**Returns**
+
+* [`OxVehicle`](/ox_core/Classes/Server/OxVehicle)
+
+## Ox.GetVehicleFromNetId [#oxgetvehiclefromnetid]
+
+Get an `OxVehicle` from its network id.
+
+```lua
+Ox.GetVehicleFromNetId(netId)
+```
+
+**Parameters**
+
+* netId: `number`
+
+**Returns**
+
+* [`OxVehicle`](/ox_core/Classes/Server/OxVehicle)
+
+## Ox.GetVehicleFromVin [#oxgetvehiclefromvin]
+
+Get an `OxVehicle` from its VIN.
+
+```lua
+Ox.GetVehicleFromVin(vin)
+```
+
+**Parameters**
+
+* vin: `string`
+
+**Returns**
+
+* [`OxVehicle`](/ox_core/Classes/Server/OxVehicle)
+
+## Ox.GetVehicles [#oxgetvehicles]
+
+Get an array of containing `OxVehicle` for all vehicles matching a filter, if given.
+
+```lua
+Ox.GetVehicles(filter)
+```
+
+**Parameters**
+
+* filter?: `{ [string]: any }`
+  * Compare vehicle fields and metadata against the given key-value pairs.
+
+**Returns**
+
+* [`OxVehicle[]`](/ox_core/Classes/Server/OxVehicle)
+
+## Ox.RemoveGroupPermission [#oxremovegrouppermission]
+
+Removes a permission from a specified group and minimum grade.
+
+```lua
+Ox.RemoveGroupPermission(groupName, grade, permission)
+```
+
+**Parameters**
+
+* groupName: `string`
+* grade: `number`
+* permission: `string`
+
+## Ox.SaveAllPlayers [#oxsaveallplayers]
+
+Save all players to the database.
+
+```lua
+Ox.SaveAllPlayers()
+```
+
+## Ox.SaveAllVehicles [#oxsaveallvehicles]
+
+Save all vehicles to the database.
+
+```lua
+Ox.SaveAllVehicles()
+```
+
+## Ox.SetGroupPermission [#oxsetgrouppermission]
+
+Assigns a permission to a specified group and minimum grade, which will be inherited by higher grades.
+
+```lua
+Ox.SetGroupPermission(groupName, grade, permission, value)
+```
+
+**Parameters**
+
+* groupName: `string`
+* grade: `number`
+* permission: `string`
+* value: `allow` | `deny`
+
+**Example**
+
+```lua
+-- Adding a permission to a group (server side)
+Ox.SetGroupPermission('police', 1, 'handcuff', 'allow')
+
+-- Checking if a player has the 'handcuff' permission
+if player.hasPermission('group.police.handcuff') then
+    -- Do something
+end
+```
+
+## Ox.SpawnVehicle [#oxspawnvehicle]
+
+Spawns an `OxVehicle` with the given dbId, if it hasn't already been spawned.
+
+```lua
+Ox.SpawnVehicle(dbId, coords, heading)
+```
+
+**Parameters**
+
+* dbId: `number`
+* coords: `vector3`
+* heading?: `number`
+
+**Returns**
+
+* [`OxVehicle`](/ox_core/Classes/Server/OxVehicle)
+
+## Ox.GetLicense [#oxgetlicense]
+
+Get license data from its name.
+
+```lua
+Ox.GetLicense(name)
+```
+
+**Parameters**
+
+* name: `string`
+
+**Returns**
+
+* `OxLicense`
+
+## Ox.GetLicenses [#oxgetlicenses]
+
+Get all licenses' data.
+
+```lua
+Ox.GetLicenses()
+```
+
+**Returns**
+
+* `OxLicense[]`
+
+## Ox.GetGroupActivePlayers [#oxgetgroupactiveplayers]
+
+Returns an array of all active players in the specified group.
+
+```lua
+Ox.GetGroupActivePlayers(groupName)
+```
+
+**Parameters**
+
+* groupName: `string`
+
+**Returns**
+
+* `number[]`
+
+## Ox.GetGroupActivePlayersByType [#oxgetgroupactiveplayersbytype]
+
+Returns an array of all active players aggregated from groups matching the specified type.
+
+```lua
+Ox.GetGroupActivePlayers(groupType)
+```
+
+**Parameters**
+
+* groupType: `string`
+
+**Returns**
+
+* `number[]`
+
+## Ox.BanUser [#oxbanuser]
+
+Bans a user from the server.
+
+```lua
+Ox.BanUser(userId, reason, hours)
+```
+
+**Parameters**
+
+* userId: `number`
+* reason?: `string`
+* hours?: `number`
+
+**Returns**
+
+* `boolean`
+
+## Ox.IsUserBanned [#oxisuserbanned]
+
+Checks if a user is currently banned and returns ban details if they are.
+
+```lua
+Ox.IsUserBanned(userId)
+```
+
+**Parameters**
+
+* userId: `number`
+
+**Returns**
+
+* `BanDetails` | `nil`
+  * reason: `string`
+  * banned\_at: `string`
+  * unban\_at: `string`
+  * userId: `number`
+  * token: `string`
+
+## Ox.UnbanUser [#oxunbanuser]
+
+Removes a ban from a user.
+
+```lua
+Ox.UnbanUser(userId)
+```
+
+**Parameters**
+
+* userId: `number`
+
+**Returns**
+
+* `boolean`
 
 
 # Functions (/docs/ox_doorlock/Client/functions)
@@ -5218,6 +5196,28 @@ exports.ox_doorlock:getClosestDoor()
 Return:
 
 * door: `number`
+
+
+# Events (/docs/ox_doorlock/Server/events)
+
+
+
+## Handlers [#handlers]
+
+These events **should not** be triggered by any other scripts.
+
+### ox\_doorlock:stateChanged [#ox_doorlockstatechanged]
+
+Triggered when a doors state is updated.
+
+```lua
+AddEventHandler('ox_doorlock:stateChanged', function(source, doorId, state, usedItem) end)
+```
+
+* source: `number` or `nil`
+* doorId: `number`
+* state: `boolean`
+* usedItem: `string` or `false` or `nil`
 
 
 # Functions (/docs/ox_fuel/Client/functions)
@@ -7776,33 +7776,6 @@ Return:
 * coords?: `vector3`
 
 
-# Shared (/docs/ox_lib/GetClosestVehicle/Shared)
-
-
-
-## lib.getClosestVehicle [#libgetclosestvehicle]
-
-Get the vehicle handle and coords of the closest vehicle to a set of coordinates.
-
-```lua
-lib.getClosestVehicle(coords, maxDistance, includePlayerVehicle)
-```
-
-* coords: `vector3`
-  * The coords to check from.
-* maxDistance?: `number`
-  * The max distance to check.
-  * Default: `2.0`
-* includePlayerVehicle?: `boolean`
-  * Whether or not to include the player's current vehicle. Ignored on the server.
-  * Default: `false`
-
-Return:
-
-* vehicle?: `number`
-* vehicleCoords?: `vector3`
-
-
 # Client (/docs/ox_lib/GetClosestPlayer/Client)
 
 
@@ -7857,6 +7830,33 @@ Return:
 * playerId?: `number`
 * playerPed?: `number`
 * playerCoords?: `vector3`
+
+
+# Shared (/docs/ox_lib/GetClosestVehicle/Shared)
+
+
+
+## lib.getClosestVehicle [#libgetclosestvehicle]
+
+Get the vehicle handle and coords of the closest vehicle to a set of coordinates.
+
+```lua
+lib.getClosestVehicle(coords, maxDistance, includePlayerVehicle)
+```
+
+* coords: `vector3`
+  * The coords to check from.
+* maxDistance?: `number`
+  * The max distance to check.
+  * Default: `2.0`
+* includePlayerVehicle?: `boolean`
+  * Whether or not to include the player's current vehicle. Ignored on the server.
+  * Default: `false`
+
+Return:
+
+* vehicle?: `number`
+* vehicleCoords?: `vector3`
 
 
 # Server (/docs/ox_lib/GetFilesInDirectory/Server)
@@ -10415,27 +10415,49 @@ A function called when the player exits the zone. It can be attached to the zone
 
 Zones can be deleted by using the remove method.
 
-```lua
-local zone = lib.zones.box({...})
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    zone:remove()
+    ```
+  </Tab>
 
-zone:remove()
-```
+  <Tab>
+    ```ts
+    zone.remove()
+    // or
+    Zone.delete(zone.id)
+    ```
+  </Tab>
+</Tabs>
 
 ### contains [#contains]
 
-Tests if a point exists inside the zone, returning a `boolean`.
+Evaluates whether a point is within the zone.
 
-```lua
-local zone = lib.zones.box({...})
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    zone:contains(vec3(1, 1, 1))
+    ```
+  </Tab>
 
-if zone:contains(vec3(1, 1, 1)) then
-    print('point is inside zone!')
-end
-```
+  <Tab>
+    ```ts
+    import { Vector3 } from "@overextended/ox_lib";
+
+    zone.contains(new Vector3(1, 1, 1))
+    ```
+  </Tab>
+</Tabs>
+
+**Returns:** `boolean`
 
 ### setDebug [#setdebug]
 
 Enables or disables debug mode for a zone, optionally with custom colors.
+
+For JavaScript, set `zone.shouldDraw` or manually call `zone.draw(...args)`.
 
 ```lua
 local zone = lib.zones.box({...})
@@ -10452,29 +10474,80 @@ zone:setDebug(false)
 
 ## Utility Functions [#utility-functions]
 
-### lib.zones.getAllZones [#libzonesgetallzones]
+### getAllZones [#getallzones]
 
 Returns all registered zones.
 
-```lua
-local zones = lib.zones.getAllZones()
-```
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    lib.zones.getAllZones()
+    ```
 
-### lib.zones.getCurrentZones [#libzonesgetcurrentzones]
+    **Returns:** `CZone[]`
+  </Tab>
+
+  <Tab>
+    ```ts
+    import { Zone } from "@overextended/ox_lib";
+
+    Zone.getAll();
+    ```
+
+    **Returns:** `Set<Zone>`
+  </Tab>
+</Tabs>
+
+### getCurrentZones [#getcurrentzones]
 
 Returns all zones the player is currently inside.
 
-```lua
-local currentZones = lib.zones.getCurrentZones()
-```
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    lib.zones.getCurrentZones()
+    ```
 
-### lib.zones.getNearbyZones [#libzonesgetnearbyzones]
+    **Returns:** `CZone[]`
+  </Tab>
+
+  <Tab>
+    ```ts
+    import { Zone } from "@overextended/ox_lib";
+
+    Zone.getCurrent();
+    ```
+
+    **Returns:** `Set<Zone>`
+  </Tab>
+</Tabs>
+
+### getNearbyZones [#getnearbyzones]
 
 Returns all zones near the player.
 
-```lua
-local nearbyZones = lib.zones.getNearbyZones()
-```
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    lib.zones.getNearbyZones()
+    ```
+
+    **Returns:** `CZone[]`
+  </Tab>
+
+  <Tab>
+    ```ts
+    import { Zone } from "@overextended/ox_lib";
+
+    Zone.getNearby(point);
+    ```
+
+    * point?: `Vector2` | `Vector3`
+      * Defaults to the current player position.
+
+    **Returns:** `Set<Zone>`
+  </Tab>
+</Tabs>
 
 ## Examples [#examples]
 
@@ -11579,199 +11652,6 @@ exports.ox_target:removeZone(id)
   * The `string` name given to the zone.
 
 
-# OxPlayer (/docs/ox_core/Classes/Client/OxPlayer)
-
-
-
-## OxPlayer [#oxplayer]
-
-* state: `StateBagInterface`
-* userId: `number`
-* charId?: `number`
-* stateId?: `string`
-
-## OxPlayer.addStatus [#oxplayeraddstatus]
-
-Increases value of a status.
-
-```lua
-player.addStatus(statusName, value)
-```
-
-**Parameters**
-
-* statusName: `string`
-* value: `number`
-
-**Returns**
-
-* success: `boolean`
-
-## OxPlayer.get [#oxplayerget]
-
-Returns a value from the players metadata.
-
-```lua
-player.get(key)
-```
-
-**Parameters**
-
-* key: `string`
-
-**Returns**
-
-* `unknown`
-
-## OxPlayer.getCoords [#oxplayergetcoords]
-
-Returns the player's current coordinates.
-
-```lua
-player.getCoords()
-```
-
-**Parameters**
-
-* `vector3`
-
-## OxPlayer.getGroup [#oxplayergetgroup]
-
-Returns the player's grade of a given group name, or the first matched name and grade in a filter.
-
-```lua
-player.getGroup(filter)
-```
-
-**Parameters**
-
-* filter: `string`|`string[]`|`{ [string]: number }`
-
-**Returns**
-
-* `unknown`
-
-## OxPlayer.getGroupByType [#oxplayergetgroupbytype]
-
-Returns the player's name and grade of a group with a matching type.
-
-```lua
-player.getGroupByType(type)
-```
-
-**Parameters**
-
-* type: `string`
-
-**Returns**
-
-* `string`
-* `number`
-
-## OxPlayer.getGroups [#oxplayergetgroups]
-
-Returns an object of all groups the player is currently in, using the group name as a key.
-
-```lua
-player.getGroups()
-```
-
-**Returns**
-
-* `{ [string]: number }`
-
-## OxPlayer.getStatus [#oxplayergetstatus]
-
-Returns the value of the status.
-
-```lua
-player.getStatus(statusName)
-```
-
-**Parameters**
-
-* statusName: `string`
-
-**Returns**
-
-* `number`
-
-## OxPlayer.getStatuses [#oxplayergetstatuses]
-
-Returns an object containing all statuses, using the status name as the key.
-
-```lua
-player.getStatuses()
-```
-
-**Returns**
-
-* `{ [string]: number }`
-
-## OxPlayer.hasPermission [#oxplayerhaspermission]
-
-Checks if a user has a permission, given by one of their groups.
-
-```lua
-player.hasPermission(permission)
-```
-
-**Parameters**
-
-* permission: `string`
-
-**Returns**
-
-* `boolean`
-
-**Example**
-
-```lua
--- Adding a permission to a group (server side)
-Ox.SetGroupPermission('police', 1, 'handcuff', 'allow')
-
--- Checking if a player has the 'handcuff' permission
-if player.hasPermission('group.police.handcuff') then
-    -- Do something
-end
-```
-
-## OxPlayer.removeStatus [#oxplayerremovestatus]
-
-Reduces the value of a status.
-
-```lua
-player.removeStatus(statusName, value)
-```
-
-**Parameters**
-
-* statusName: `string`
-* value: `number`
-
-**Returns**
-
-* `boolean`
-
-## OxPlayer.on [#oxplayeron]
-
-Listens for changes to the players metadata, specified by a key.
-
-```lua
-player.on(key, cb(data))
-```
-
-**Parameters**
-
-* key: `string`
-* cb: `function`
-
-**Returns**
-
-* data: `unknown`
-  * new value of `key`
-
-
 # OxAccount (/docs/ox_core/Classes/Server/OxAccount)
 
 
@@ -12717,6 +12597,199 @@ vehicle.setStored(value, despawn)
 
 * value?: `string`
 * despawn?: `boolean`
+
+
+# OxPlayer (/docs/ox_core/Classes/Client/OxPlayer)
+
+
+
+## OxPlayer [#oxplayer]
+
+* state: `StateBagInterface`
+* userId: `number`
+* charId?: `number`
+* stateId?: `string`
+
+## OxPlayer.addStatus [#oxplayeraddstatus]
+
+Increases value of a status.
+
+```lua
+player.addStatus(statusName, value)
+```
+
+**Parameters**
+
+* statusName: `string`
+* value: `number`
+
+**Returns**
+
+* success: `boolean`
+
+## OxPlayer.get [#oxplayerget]
+
+Returns a value from the players metadata.
+
+```lua
+player.get(key)
+```
+
+**Parameters**
+
+* key: `string`
+
+**Returns**
+
+* `unknown`
+
+## OxPlayer.getCoords [#oxplayergetcoords]
+
+Returns the player's current coordinates.
+
+```lua
+player.getCoords()
+```
+
+**Parameters**
+
+* `vector3`
+
+## OxPlayer.getGroup [#oxplayergetgroup]
+
+Returns the player's grade of a given group name, or the first matched name and grade in a filter.
+
+```lua
+player.getGroup(filter)
+```
+
+**Parameters**
+
+* filter: `string`|`string[]`|`{ [string]: number }`
+
+**Returns**
+
+* `unknown`
+
+## OxPlayer.getGroupByType [#oxplayergetgroupbytype]
+
+Returns the player's name and grade of a group with a matching type.
+
+```lua
+player.getGroupByType(type)
+```
+
+**Parameters**
+
+* type: `string`
+
+**Returns**
+
+* `string`
+* `number`
+
+## OxPlayer.getGroups [#oxplayergetgroups]
+
+Returns an object of all groups the player is currently in, using the group name as a key.
+
+```lua
+player.getGroups()
+```
+
+**Returns**
+
+* `{ [string]: number }`
+
+## OxPlayer.getStatus [#oxplayergetstatus]
+
+Returns the value of the status.
+
+```lua
+player.getStatus(statusName)
+```
+
+**Parameters**
+
+* statusName: `string`
+
+**Returns**
+
+* `number`
+
+## OxPlayer.getStatuses [#oxplayergetstatuses]
+
+Returns an object containing all statuses, using the status name as the key.
+
+```lua
+player.getStatuses()
+```
+
+**Returns**
+
+* `{ [string]: number }`
+
+## OxPlayer.hasPermission [#oxplayerhaspermission]
+
+Checks if a user has a permission, given by one of their groups.
+
+```lua
+player.hasPermission(permission)
+```
+
+**Parameters**
+
+* permission: `string`
+
+**Returns**
+
+* `boolean`
+
+**Example**
+
+```lua
+-- Adding a permission to a group (server side)
+Ox.SetGroupPermission('police', 1, 'handcuff', 'allow')
+
+-- Checking if a player has the 'handcuff' permission
+if player.hasPermission('group.police.handcuff') then
+    -- Do something
+end
+```
+
+## OxPlayer.removeStatus [#oxplayerremovestatus]
+
+Reduces the value of a status.
+
+```lua
+player.removeStatus(statusName, value)
+```
+
+**Parameters**
+
+* statusName: `string`
+* value: `number`
+
+**Returns**
+
+* `boolean`
+
+## OxPlayer.on [#oxplayeron]
+
+Listens for changes to the players metadata, specified by a key.
+
+```lua
+player.on(key, cb(data))
+```
+
+**Parameters**
+
+* key: `string`
+* cb: `function`
+
+**Returns**
+
+* data: `unknown`
+  * new value of `key`
 
 
 # Hooks (/docs/ox_doorlock/Server/functions/Hooks)

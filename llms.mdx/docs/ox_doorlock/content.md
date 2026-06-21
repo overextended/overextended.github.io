@@ -4,7 +4,7 @@
 
 
 
-<ResourceLinks repo="https://github.com/overextended/ox_doorlock" />
+<ResourceLinks repo="ox_doorlock" />
 
 A door management resource that can be used standalone or alongside ox\_core, qbx\_core, and es\_extended.
 

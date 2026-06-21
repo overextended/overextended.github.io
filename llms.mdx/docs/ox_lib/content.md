@@ -6,7 +6,7 @@
 
 A standalone library for providing easily reusable code as importable modules and exports.
 
-<ResourceLinks repo="https://github.com/overextended/ox_lib" />
+<ResourceLinks repo="ox_lib" />
 
 ## Installation [#installation]
 

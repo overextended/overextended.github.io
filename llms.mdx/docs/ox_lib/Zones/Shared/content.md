@@ -191,27 +191,49 @@ A function called when the player exits the zone. It can be attached to the zone
 
 Zones can be deleted by using the remove method.
 
-```lua
-local zone = lib.zones.box({...})
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    zone:remove()
+    ```
+  </Tab>
 
-zone:remove()
-```
+  <Tab>
+    ```ts
+    zone.remove()
+    // or
+    Zone.delete(zone.id)
+    ```
+  </Tab>
+</Tabs>
 
 ### contains [#contains]
 
-Tests if a point exists inside the zone, returning a `boolean`.
+Evaluates whether a point is within the zone.
 
-```lua
-local zone = lib.zones.box({...})
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    zone:contains(vec3(1, 1, 1))
+    ```
+  </Tab>
 
-if zone:contains(vec3(1, 1, 1)) then
-    print('point is inside zone!')
-end
-```
+  <Tab>
+    ```ts
+    import { Vector3 } from "@overextended/ox_lib";
+
+    zone.contains(new Vector3(1, 1, 1))
+    ```
+  </Tab>
+</Tabs>
+
+**Returns:** `boolean`
 
 ### setDebug [#setdebug]
 
 Enables or disables debug mode for a zone, optionally with custom colors.
+
+For JavaScript, set `zone.shouldDraw` or manually call `zone.draw(...args)`.
 
 ```lua
 local zone = lib.zones.box({...})
@@ -228,29 +250,80 @@ zone:setDebug(false)
 
 ## Utility Functions [#utility-functions]
 
-### lib.zones.getAllZones [#libzonesgetallzones]
+### getAllZones [#getallzones]
 
 Returns all registered zones.
 
-```lua
-local zones = lib.zones.getAllZones()
-```
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    lib.zones.getAllZones()
+    ```
 
-### lib.zones.getCurrentZones [#libzonesgetcurrentzones]
+    **Returns:** `CZone[]`
+  </Tab>
+
+  <Tab>
+    ```ts
+    import { Zone } from "@overextended/ox_lib";
+
+    Zone.getAll();
+    ```
+
+    **Returns:** `Set<Zone>`
+  </Tab>
+</Tabs>
+
+### getCurrentZones [#getcurrentzones]
 
 Returns all zones the player is currently inside.
 
-```lua
-local currentZones = lib.zones.getCurrentZones()
-```
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    lib.zones.getCurrentZones()
+    ```
 
-### lib.zones.getNearbyZones [#libzonesgetnearbyzones]
+    **Returns:** `CZone[]`
+  </Tab>
+
+  <Tab>
+    ```ts
+    import { Zone } from "@overextended/ox_lib";
+
+    Zone.getCurrent();
+    ```
+
+    **Returns:** `Set<Zone>`
+  </Tab>
+</Tabs>
+
+### getNearbyZones [#getnearbyzones]
 
 Returns all zones near the player.
 
-```lua
-local nearbyZones = lib.zones.getNearbyZones()
-```
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    lib.zones.getNearbyZones()
+    ```
+
+    **Returns:** `CZone[]`
+  </Tab>
+
+  <Tab>
+    ```ts
+    import { Zone } from "@overextended/ox_lib";
+
+    Zone.getNearby(point);
+    ```
+
+    * point?: `Vector2` | `Vector3`
+      * Defaults to the current player position.
+
+    **Returns:** `Set<Zone>`
+  </Tab>
+</Tabs>
 
 ## Examples [#examples]
 
