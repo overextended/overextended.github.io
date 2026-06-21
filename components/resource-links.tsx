@@ -1,18 +1,22 @@
 import React from "react";
-import { GhButton, DocButton, ReleaseButton } from "./button";
+import { GhButton, DownloadButton, NpmButton } from "./button";
 
 interface Props {
   children?: React.ReactNode;
   repo: string;
-  docs?: string;
+  npm?: boolean;
 }
 
-const ResourceLinks = ({ repo, docs }: Props) => {
+const ResourceLinks = ({ repo, npm }: Props) => {
+  const github = `https://github.com/overextended/${repo}`;
+  const download = `${github}/releases/latest/download/${repo}.zip`;
+  const npmjs = `https://www.npmjs.com/package/@overextended/${repo}`;
+
   return (
-    <div className="flex flex-row gap-2 items-center">
-      <GhButton link={repo} />
-      <ReleaseButton link={`${repo}/releases`} />
-      {docs && <DocButton link={docs} />}
+    <div className="flex flex-row gap-2">
+      <GhButton link={github} />
+      <DownloadButton link={download} />
+      {npm && <NpmButton link={npmjs} />}
     </div>
   );
 };

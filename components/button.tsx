@@ -19,7 +19,7 @@ const Button = ({ side = "left", children, icon, link }: Props) => {
   return (
     <div className="h-fit w-fit">
       <a href={link}>
-        <div className="inline-flex items-center justify-center rounded-md p-2 font-medium transition-colors duration-100 disabled:pointer-events-none disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-fd-ring border bg-fd-secondary text-fd-secondary-foreground hover:bg-fd-accent hover:text-fd-accent-foreground px-2 py-1.5 text-xs gap-2 [&_svg]:size-3.5 [&_svg]:text-fd-muted-foreground">
+        <div className="inline-flex items-center justify-center rounded-md p-2 font-medium transition-colors duration-100 disabled:pointer-events-none disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-fd-ring border bg-fd-secondary text-fd-secondary-foreground hover:bg-fd-accent hover:text-fd-accent-foreground px-2.5 py-2 text-xs gap-2 [&_svg]:size-3.5 [&_svg]:text-fd-muted-foreground shadow-sm">
           {side === "left" && <div>{icon}</div>}
           {children}
           {side === "right" && <div>{icon}</div>}
@@ -34,7 +34,7 @@ export default Button;
 export function GhButton(props: Props) {
   return (
     <Button icon={<IconBrandGithub />} side={props.side} link={props.link}>
-      {props.label || "Github"}
+      {props.label || "Repository"}
     </Button>
   );
 }
