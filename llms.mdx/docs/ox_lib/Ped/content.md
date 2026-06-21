@@ -73,32 +73,7 @@ A class for ped entities implementing a custom statebag interface and common ent
     Internal class used by the GameEntity classes (Ped, Player, Prop, Vehicle).
     */}
 
-  {/* ## Properties
-
-    <TypeTable
-    type={{
-      handle: {
-        description: "The entity's script handle.",
-        type: 'number',
-        required: true
-      },
-      netId: {
-        description: "The entity's network id.",
-        type: 'number',
-        required: true
-      },
-      type: {
-        description: "The entity's type (i.e. Ped, Player, Prop, Vehicle).",
-        type: 'string',
-        required: true
-      },
-      statebag: {
-        description: "The entity's internal statebag name.",
-        type: 'string',
-        required: true
-      },
-    }}
-    /> */}
+  ## GameEntity Methods [#gameentity-methods]
 
   ### set [#set]
 
@@ -125,7 +100,8 @@ A class for ped entities implementing a custom statebag interface and common ent
 
   ### setr [#setr]
 
-  Writes a replicated value to the entity's statebag. Client-set values are validated by the server.
+  Writes a replicated value to the entity's statebag. Client-set values are validated by the server (see [Hooks](./Hooks#registered-hooks)).\
+  Replicated values are synced between the server and all relevant players.
 
     <Tabs groupId="language" items="['Lua', 'TypeScript']">
       <Tab>
@@ -148,7 +124,7 @@ A class for ped entities implementing a custom statebag interface and common ent
 
   ### sets [#sets]
 
-  Writes a synced value to the entity's statebag. Client-set values are validated by the server.\
+  Writes a synced value to the entity's statebag. Client-set values are validated by the server (see [Hooks](./Hooks#registered-hooks)).\
   Synced values are only replicated between the player and server, and cannot be set on non-player entities.
 
     <Tabs groupId="language" items="['Lua', 'TypeScript']">

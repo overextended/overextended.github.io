@@ -2,6 +2,12 @@
 
 
 
+Hooks allow resources to add custom logic to existing actions without modifying the original code. They work by running a set of callbacks (hook events) through a pipeline whenever a specific action occurs. Each hook can inspect the data and reject the action if needed.
+
+After the pipeline completes, a post-hook event can run to handle the final result, such as logging or cleanup, without affecting the outcome.
+
+This feature expands upon the idea of hooks introduced by [ox\_inventory](../ox_inventory/Functions/Server/Hooks).
+
 See our [internally registered hooks](https://github.com/overextended/ox_lib/blob/main/resource/state/server.lua) for examples.
 
 # HookPipeline [#hookpipeline]
@@ -34,7 +40,7 @@ Creates a hook pipeline for a specific event, which manages a collection of regi
 
 ### registerHook [#registerhook]
 
-Registers a new event handler into the hook pipeline.
+A hook is a registered callback executed during a hook pipeline. It can inspect the payload, perform validation, and optionally reject the operation.
 
 <Tabs groupId="language" items="['Lua', 'TypeScript']">
   <Tab>
@@ -103,7 +109,7 @@ The returned object acts as a finalisation handle and emits results to registere
 
 # EventHook [#eventhook]
 
-Allows resources to call [`pipeline.registerHook`](#registerHook) using exports.
+Allows resources to call [`pipeline.registerHook`](#registerhook) using exports.
 
 <Tabs groupId="language" items="['Lua', 'TypeScript']">
   <Tab>
@@ -129,7 +135,7 @@ Allows resources to call [`pipeline.registerHook`](#registerHook) using exports.
 
 ### on [#on]
 
-Attaches a post-execution event handler for this hook.
+Attaches an event handler to the hook which is executed after all hooks have been dispatched, allowing follow-up logic for successful or rejected events.
 
 <Tabs groupId="language" items="['Lua', 'TypeScript']">
   <Tab>
