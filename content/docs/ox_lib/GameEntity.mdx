@@ -56,7 +56,8 @@ entity.set(key, value)
 
 ### setr
 
-Writes a replicated value to the entity's statebag. Client-set values are validated by the server.
+Writes a replicated value to the entity's statebag. Client-set values are validated by the server (see [Hooks](./Hooks#registered-hooks)).  
+Replicated values are synced between the server and all relevant players.
 
 <Tabs groupId="language" items={['Lua', 'TypeScript']}>
 <Tab>
@@ -78,7 +79,7 @@ entity.setr(key, value)
 
 ### sets
 
-Writes a synced value to the entity's statebag. Client-set values are validated by the server.  
+Writes a synced value to the entity's statebag. Client-set values are validated by the server (see [Hooks](./Hooks#registered-hooks)).  
 Synced values are only replicated between the player and server, and cannot be set on non-player entities.
 
 <Tabs groupId="language" items={['Lua', 'TypeScript']}>
