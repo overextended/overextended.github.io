@@ -22,7 +22,7 @@
 :HL["/static/creators/randolio.png","image"]
 :HL["/static/creators/rcore.png","image"]
 :HL["/static/creators/renewed.png","image"]
+:HL["/static/creators/scuffedlabs.png","image"]
 :HL["/static/creators/steve.png","image"]
 :HL["/static/creators/teamsgg.png","image"]
-:HL["/static/creators/tam.png","image"]
-0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"docs","param":null,"prefetchHints":0,"slots":{"children":{"name":"slug","param":{"type":"oc","key":"resources/tebex-creators","siblings":null},"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}}}},"staleTime":300,"buildId":"V0LVKOxtz2Bf3_2EcF89g"}
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"docs","param":null,"prefetchHints":0,"slots":{"children":{"name":"slug","param":{"type":"oc","key":"resources/tebex-creators","siblings":null},"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}}}},"staleTime":300,"buildId":"blGRz-4clZCnhExD07Gcq"}

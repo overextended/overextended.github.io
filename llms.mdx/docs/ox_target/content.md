@@ -11,7 +11,7 @@ A performant and flexible standalone targeting resource or "third-eye", with add
 ## Installation [#installation]
 
 <Callout type="info">
-  We **strongly** recommend referring to [Guides](../guides) for setting up Git, Node.js, and bun.
+  We **strongly** recommend referring to [Guides](../docs/guides) for setting up Git, Node.js, and bun.
 </Callout>
 
 <div className="fd-steps">

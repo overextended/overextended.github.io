@@ -207,7 +207,7 @@ If you're looking to quickly install and setup ox\_core, try using [our recipe](
 ## Installation [#installation]
 
 <Callout type="info">
-  We **strongly** recommend referring to [Guides](../guides) to setup necessary development tools.
+  We **strongly** recommend referring to [Guides](../docs/guides) to setup necessary development tools.
 </Callout>
 
 <div className="fd-steps">
@@ -222,7 +222,7 @@ If you're looking to quickly install and setup ox\_core, try using [our recipe](
     ### Download a release or build the source code. [#download-a-release-or-build-the-source-code-step]
 
     * Download the [latest release](https://github.com/overextended/ox_core/releases/latest).
-    * Setup [Git](../guides/git), [Node.js](../guides/nodejs), and [bun](../guides/bun).
+    * Setup [Git](../docs/guides/git), [Node.js](../docs/guides/nodejs), and [bun](../docs/guides/bun).
     * Download and setup [MariaDB 11.4+](https://mariadb.com/downloads/community/community-server/).
     * Run the following commands in your CLI (e.g. Terminal, Command Prompt).
 
@@ -328,7 +328,7 @@ A door management resource that can be used standalone or alongside ox\_core, qb
 ## Installation [#installation]
 
 <Callout type="info">
-  We **strongly** recommend referring to [Guides](../guides) for setting up Git, Node.js, and bun.
+  We **strongly** recommend referring to [Guides](../docs/guides) for setting up Git, Node.js, and bun.
 </Callout>
 
 <div className="fd-steps">
@@ -527,7 +527,7 @@ A slot-based inventory with item metadata for "item uniqueness".
 ## Installation [#installation]
 
 <Callout type="info">
-  We **strongly** recommend referring to [Guides](../guides) for setting up Git, Node.js, and bun.
+  We **strongly** recommend referring to [Guides](../docs/guides) for setting up Git, Node.js, and bun.
 </Callout>
 
 <div className="fd-steps">
@@ -826,6 +826,633 @@ Stopping a server or "restarting" it does not trigger any events or allow for sa
 * txAdmin scheduled restarts and shutdowns will trigger a save.
 * The `saveinv` command can be used manually or triggered in the console.
 * All inventories are saved when the number of online players hits 0.
+
+
+# TargetOptions (/docs/ox_target/TargetOptions)
+
+
+
+All target actions are formated as an array containing objects with the following properties.
+
+## TargetOption [#targetoption]
+
+* label: `string`
+* name?: `string`
+  * An identifier used when removing an option.
+* icon?: `string`
+  * Name of a [Font Awesome](https://fontawesome.com/icons) icon.
+* iconColor?: `string`
+* distance?: `number`
+  * The max distance to display the option.
+* bones?: `string` or `string[]`
+  * A bone name or array of bone names (see [GetEntityBoneIndexByName](https://docs.fivem.net/natives/?_0xFB71170B7E76ACBA)).
+* offset?: `vector3`
+  * Offset the targetable area of an entity, relative to the model dimensions.
+* offsetAbsolute?: `vector3`
+  * Offset the targetable area of an entity, relative to the entity's world coords.
+* offsetSize?: `number`
+  * The radius of the targetable area for an entity offset.
+* groups?: `string` or `string[]` or `table<string, number>`
+  * A group, array of groups, or pairs of groups-grades required to show the option.
+  * Groups are framework dependent, and may refer to jobs, gangs, etc.
+* items?: `string` or `string[]` or `table<string, number>`
+  * An item, array of items, or pairs of items-count required to show the option.
+  * Items are framework dependent.
+* anyItem?: `boolean`
+  * Only require a single item from the items table to exist.
+* canInteract?: `function(entity, distance, coords, name, bone)`
+  * Options will always display if this is undefined.
+* menuName?: `string`
+  * The option is only displayed when a menu has been set with openMenu.
+* openMenu?: `string`
+  * Sets the current menu name, displaying only options for the menuName.
+* onSelect?: `function(data)`
+* export?: `string`
+* event?: `string`
+* serverEvent?: `string`
+* command?: `string`
+
+## Callback [#callback]
+
+This is the data returned to a registered callback or event for selected option.
+
+A selected option will trigger a single action, in order of priority:
+
+1. onSelect
+2. export
+3. event
+4. server event
+5. command
+
+* data: `table`
+  * entity: `number`
+    * The id of the entity hit by the shape test. If triggering a server event, this is the network id instead.
+  * coords: `vector3`
+    * The resulting coordinates where the shape test hit a collision.
+  * distance: `number`
+    * The player's distance from the coords.
+  * zone?: `number`
+    * The id of the selected zone, if applicable.
+
+
+# Ox Target (/docs/ox_target)
+
+
+
+
+
+<ResourceLinks repo="ox_target" />
+
+A performant and flexible standalone targeting resource or "third-eye", with additional functionality for ox\_inventory, ox\_core, qbx\_core, and es\_extended.
+
+## Installation [#installation]
+
+<Callout type="info">
+  We **strongly** recommend referring to [Guides](../docs/guides) for setting up Git, Node.js, and bun.
+</Callout>
+
+<div className="fd-steps">
+  <div className="fd-step">
+    ### Install all resource dependencies [#install-all-resource-dependencies-step]
+
+    * [ox\_lib](../ox_lib/)
+  </div>
+
+  <div className="fd-step">
+    ### Download a release or clone the source code. [#download-a-release-or-clone-the-source-code-step]
+
+    * Download the [latest release](https://github.com/overextended/ox_target/releases/latest).
+
+    ```bash
+    git clone https://github.com/overextended/ox_target.git
+    ```
+  </div>
+
+  <div className="fd-step">
+    ### Config [#config-step]
+
+    Resource configuration is handled using [convars](https://docs.fivem.net/docs/scripting-reference/convars/).
+
+    ```bash
+    # Toggle targeting when pressing the hotkey, instead of holding it down.
+    setr ox_target:toggleHotkey 0
+
+    # Change the key to enable targeting (https://docs.fivem.net/docs/game-references/input-mapper-parameter-ids/keyboard)
+    setr ox_target:defaultHotkey LMENU
+
+    # Draw a sprite (circle) at the centroid of a zone.
+    setr ox_target:drawSprite 1
+
+    # Enable built-in targeting options, e.g. toggling vehicle doors.
+    setr ox_target:defaults 1
+
+    # Enable debugging / testing options, entity outlines, and a raycast indicator.
+    setr ox_target:debug 0
+
+    # Enable / Disable leftclick to select options
+    setr ox_target:leftClick 1
+    ```
+  </div>
+</div>
+
+## Supported Frameworks [#supported-frameworks]
+
+These aren't necessary to run ox\_target, but they will add additional features.
+
+* [ox\_core](https://github.com/overextended/ox_core)
+* [esx](https://github.com/esx-framework/esx-legacy)
+* [qbx\_core](https://github.com/Qbox-project/qbx_core)
+
+
+# Benchmark (/docs/oxmysql/benchmark)
+
+
+
+Benchmarking is based on the time spent when to receive a response from exports.\
+Real query speeds will be reported in the debug UI and in the server console with mysql\_debug enabled.
+
+Speeds will vary greatly based on system hardware, database settings, database version, and the current workload.
+
+## Script [#script]
+
+This script tests export times when using the Lua 5.4 runtime with lib/MySQL.lua syntax.
+
+```lua
+local function execQuery(msg, fn, query, parameters)
+    local start = os.nanotime()
+    local result = fn(query, parameters)
+    local finish = os.nanotime()
+
+    print()
+    print(msg)
+    print('Executed ' .. (type(query) == 'string' and 1 or #query) .. ' queries in ' .. (finish - start) / 1e6 .. 'ms')
+
+    return result
+end
+
+CreateThread(function()
+    local initTable = {
+        'DROP TABLE `test_table`',
+        [[CREATE TABLE `test_table` (
+        `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+        `username` VARCHAR(50) NOT NULL DEFAULT '0',
+        `identifier` VARCHAR(50) NOT NULL DEFAULT '0',
+        PRIMARY KEY (`id`)
+        )]],
+        'TRUNCATE `test_table`',
+        'ALTER TABLE `test_table` AUTO_INCREMENT = 1',
+    }
+
+    execQuery('initialise test_table', MySQL.transaction.await, initTable)
+
+    -- You might rename "values" as "parameters" for mysql-async compatibility.
+    local queries = {
+        { query = 'INSERT INTO `test_table` (identifier) VALUES (?)', values = { 'abcdef1' }},
+        { query = 'UPDATE `test_table` SET `username` = ? WHERE `id` = LAST_INSERT_ID()', values = { 'bob1' }},
+    }
+
+    execQuery('{ query: string, values: string }[] transaction', MySQL.transaction.await, queries)
+
+    -- You can pass an array of arrays.
+    queries = {
+        { 'INSERT INTO `test_table` (identifier) VALUES (?)', { 'abcdef2' } },
+        { 'UPDATE `test_table` SET `username` = ? WHERE `id` = LAST_INSERT_ID()', { 'bob2' } },
+    }
+
+    execQuery('[string, any[]][] transaction', MySQL.transaction.await, queries)
+
+    -- You can pass an array of queries.
+    queries = {
+        'INSERT INTO `test_table` (identifier) VALUES ("abcdef3")',
+        'UPDATE `test_table` SET `username` = "bob3" WHERE `id` = LAST_INSERT_ID()',
+    }
+
+    execQuery('string[] transaction', MySQL.transaction.await, queries)
+
+    local insertUsers = {}
+
+    for i = 1, 10000 do
+        insertUsers[i] = { 'INSERT INTO `test_table` (username, identifier) VALUES (?, ?)',
+            { 'Testuser_' .. i, 'abcdef' .. i } }
+    end
+
+    execQuery('insert ' .. #insertUsers .. ' test users', MySQL.transaction.await, insertUsers)
+
+    local selectUserIds = {}
+
+    for i = 1, 10000 do
+        if i % 4 == 0 then
+            selectUserIds[math.tointeger(i / 4)] = { 'abcdef' .. i }
+        end
+    end
+
+    execQuery('select every 4th userid', MySQL.prepare.await, 'SELECT `id` FROM `test_table` WHERE `identifier` = ? LIMIT 1', selectUserIds)
+
+    local insertid = execQuery('insert', MySQL.insert.await, 'INSERT INTO `test_table` (identifier) VALUES (?)', { 'abcdef' })
+    local update = execQuery('update', MySQL.update.await, 'UPDATE `test_table` SET `username` = ? WHERE `id` = ?', { 'bobby', insertid })
+    local scalar = execQuery('scalar', MySQL.scalar.await, 'SELECT `username` FROM `test_table` WHERE `id` = ?', { insertid })
+    local single = execQuery('single', MySQL.single.await, 'SELECT * FROM `test_table` WHERE `id` = ?', { insertid })
+
+    print(json.encode(execQuery('prepare', MySQL.prepare.await, 'SELECT `username` FROM `test_table` WHERE `id` = ?', { insertid })))
+    print(insertid, update, scalar, json.encode(single))
+
+    execQuery('query', MySQL.query.await, 'SELECT `username` FROM `test_table` WHERE `id` = ? LIMIT 1', { 419 })
+end)
+```
+
+## Results [#results]
+
+```yaml
+[script:test] initialise test_table
+[script:test] Executed 4 queries in 42.7789ms
+[script:test]
+[script:test] { query: string, values: string }[] transaction
+[script:test] Executed 2 queries in 8.0145ms
+[script:test]
+[script:test] [string, any[]][] transaction
+[script:test] Executed 2 queries in 4.0278ms
+[script:test]
+[script:test] string[] transaction
+[script:test] Executed 2 queries in 3.4743ms
+[script:test]
+[script:test] insert 10000 test users
+[script:test] Executed 10000 queries in 2064.211ms
+[script:test]
+[script:test] select every 4th userid
+[script:test] Executed 1 queries in 2803.7134ms
+[script:test]
+[script:test] insert
+[script:test] Executed 1 queries in 2.8743ms
+[script:test]
+[script:test] update
+[script:test] Executed 1 queries in 2.8675ms
+[script:test]
+[script:test] scalar
+[script:test] Executed 1 queries in 1.5387ms
+[script:test]
+[script:test] single
+[script:test] Executed 1 queries in 1.3389ms
+[script:test]
+[script:test] prepare
+[script:test] Executed 1 queries in 1.6577ms
+[script:test] "bobby"
+[script:test] 10004    1       bobby   {"identifier":"abcdef","username":"bobby","id":10004}
+[script:test]
+[script:test] query
+[script:test] Executed 1 queries in 1.1588ms
+```
+
+
+# OxMySQL (/docs/oxmysql)
+
+
+
+
+
+<ResourceLinks repo="oxmysql" />
+
+A replacement of mysql-async and ghmattimysql with expanded API and improved compatibility for MySQL 8.
+
+## MySQL or MariaDB? [#mysql-or-mariadb]
+
+Most resources for FiveM were designed to be used with MySQL 5.7 and may hit compatibility issues when using MySQL 8, i.e.
+
+* More reserved keywords, like 'stored' and 'group'.
+* Longtext / JSON fields do not support default values.
+
+[MariaDB](https://mariadb.com/downloads/community/) is highly recommended for compatibility, and improved performance (over all versions of MySQL).
+
+## Should I use XAMPP? [#should-i-use-xampp]
+
+**No.** XAMPP is a *webserver stack* intended to be used for development, allowing easy local development and testing.\
+Do not setup XAMPP just to run your database, and install [MariaDB](https://mariadb.com/downloads/community/) directly instead.
+
+## Installation [#installation]
+
+<div className="fd-steps">
+  <div className="fd-step">
+    ### Download and install [MariaDB](https://mariadb.com/downloads/community/) [#download-and-install-mariadb-step]
+  </div>
+
+  <div className="fd-step">
+    ### Download the [latest release](https://github.com/overextended/oxmysql/releases/latest) of oxmysql [#download-the-latest-release-of-oxmysql-step]
+  </div>
+
+  <div className="fd-step">
+    ### Configure your server [#configure-your-server-step]
+
+    * Open your server [configuration file](https://docs.fivem.net/docs/server-manual/setting-up-a-server-vanilla/#servercfg).
+    * Add `start oxmysql` to the top of your resource list.
+    * Configure your mysql connection string and set it before starting any resources.
+
+    ```bash
+    # Use your preferred format. Make sure you only ever use set.
+    set mysql_connection_string "mysql://root:12345@localhost:3306/fivem"
+    set mysql_connection_string "user=root;password=12345;host=localhost;port=3306;database=fivem"
+    ```
+
+    <Callout type="info">
+      Certain special characters are reserved or unsupported depending on your connection string.\
+      Avoid using these characters `; , / ? : @ & = + $ #`, and try swapping connection string format.
+    </Callout>
+  </div>
+
+  <div className="fd-step">
+    ### Slow query warnings [#slow-query-warnings-step]
+
+    You will receive warnings if a query took a long time to complete, configurable with a convar.
+
+    * Query time may not be entirely accurate.
+    * Slow queries may not indicate a database issue (e.g. server hitches).
+    * Slow queries on server startup are not necessarily problematic.
+
+    ```bash
+    set mysql_slow_query_warning 150
+    ```
+  </div>
+
+  <div className="fd-step">
+    ### Debug [#debug-step]
+
+    Enabling the debug option will print all queries in the server console; you can also use an array to only print from a list of resources instead.
+
+    ```bash
+    set mysql_debug true
+    set mysql_debug [
+      "ox_core",
+      "ox_inventory"
+    ]
+    ```
+
+    You can temporarily modify the resource list with commands.
+
+    ```bash
+    oxmysql_debug remove ox_core
+    oxmysql_debug add ox_core
+    ```
+  </div>
+</div>
+
+## Compatibility [#compatibility]
+
+You can delete the following resources and allow oxmysql to provide their functionality.
+
+* mysql-async
+* ghmattimysql
+
+## Usage [#usage]
+
+Resources can import oxmysql methods by including our library, granting some type-checking and minor performance improvements over raw export calls.
+
+### Lua [#lua]
+
+Modify `fxmanifest.lua` for your resource, and add the following above any other script files.
+
+```lua
+server_script '@oxmysql/lib/MySQL.lua'
+```
+
+### JavaScript [#javascript]
+
+You can use raw exports, or install [our npm package](https://www.npmjs.com/package/@overextended/oxmysql) for intellisense and similar usage as Lua.
+
+```bash
+# With pnpm
+pnpm add @overextended/oxmysql
+
+# With Yarn
+yarn add @overextended/oxmysql
+
+# With npm
+npm install @overextended/oxmysql
+```
+
+Import the oxmysql object into your resource.
+
+```js
+import { oxmysql as MySQL } from "@overextended/oxmysql";
+```
+
+## Upserting [#upserting]
+
+When uncertain if a row should be inserted into the database, or an existing row should be updated, queries should check for duplicate keys.
+
+```lua
+MySQL.prepare('INSERT INTO ox_inventory (owner, name, data) VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE data = VALUES(data)', { owner, dbId, inventory })
+```
+
+This is preferred over checking the existence of a row, then inserting or updating depending on the result.\
+Furthermore, unlike using 'REPLACE INTO', the row is not deleted and re-inserted.
+
+
+# Placeholders (/docs/oxmysql/placeholders)
+
+
+
+Placeholders allow for query parameters to be safely executed, preventing [common SQL injection methods](https://bobby-tables.com/).
+
+Parameters can be passed an an array or object (referred to as named parameters).
+
+```lua
+local identifier = 'license:abc123'
+local group = 'admin'
+
+MySQL.scalar('SELECT `username` FROM `users` WHERE `identifier` = ? AND `group` = ?', { identifier, group })
+
+-- Named placeholders (deprecated)
+MySQL.scalar('SELECT `username` FROM `users` WHERE `identifier` = @identifier AND `group` = @group', {
+    group = group
+    identifier = identifier
+})
+```
+
+These are distinct from prepared statements which are handled by the MySQL server; you can use `MySQL.prepare` for more optimised and secure queries.
+
+
+# Using the Debug UI (/docs/oxmysql/ui)
+
+
+
+The debug UI lets you easily see all the queries that have been executed by resources, query response times, and per-resource statistics.
+You should only enable this during development, or with a small player count - for larger servers, look into builtin MySQL logging.
+
+Before using the UI first you have to make sure you have the `mysql_ui` convar set to true:
+
+```bash
+set mysql_ui true
+```
+
+Also make sure that you have `command` or `command.mysql` ace permission access, then you should be able to use the `mysql` command in game.
+
+<Callout type="info">
+  You *do not* need to have the `mysql_debug` enabled to use the debug ui.
+</Callout>
+
+## Main page [#main-page]
+
+The main page shows you the resources that ran queries where you can filter them through a search bar, your general data
+along side a pie chart which shows what resources took the most query time.
+
+![oxmysql\_ui\_main](https://i.imgur.com/iQqWELJ.png)
+
+## Resource page [#resource-page]
+
+The resource page shows you all the queries and their execution time inside a table that the resource previously ran,
+alongside the total amount of the queries, execution time and slow queries for the selected resource.
+
+Columns can be sorted by ascending and descending order, and hovering over a query will display the full query inside a tooltip.
+
+<Callout type="info">
+  Queries that exceed `mysql_slow_query_warning` (default 150ms) are displayed in orange.\
+  For demonstation purposes the `mysql_slow_query_warning` convar was set to 5 here.
+</Callout>
+
+![oxmysql\_ui\_queries](https://i.imgur.com/gZpJoIg.png)
+
+
+# Fivemanage (/docs/resources/fivemanage)
+
+
+
+<div
+  style="{
+  display: &#x22;grid&#x22;,
+  placeItems: &#x22;center&#x22;,
+}"
+>
+  <a
+    href="https://refer.fivemanage.com/overextended"
+    style="{
+    background: &#x22;no-repeat url('/static/fivemanage.png')&#x22;,
+    backgroundSize: &#x22;contain&#x22;,
+    fontSize: &#x22;3rem&#x22;,
+    fontWeight: &#x22;500&#x22;,
+    verticalAlign: &#x22;middle&#x22;,
+    paddingLeft: &#x22;2em&#x22;,
+  }"
+  >
+    {" "}
+
+    Fivemanage
+  </a>
+</div>
+
+Fivemanage is an all-in-one SaaS platform for communities looking to improve their workflow, offering a range of features to faciliate easier management
+and administration of your FiveM server. They offer fast and reliable content delivery - with full support for image, video, and audio files - and seamless
+logging to track player and server activity while ensuring dependable performance and security.
+
+Fivemanage integrates seamlessly into your FiveM server with native support via ox\_lib and oxmysql, or through their official FiveM SDK.
+
+They offer a generous free plan with enough storage to get you started, and a variety of paid plans designed for both small and large servers needing access to more storage and advanced feeatures.
+
+Get started with [Fivemanage](https://refer.fivemanage.com/overextended) today.
+
+
+# Resources (/docs/resources)
+
+
+
+
+
+<Cards>
+  {getPageTreePeers(source.getPageTree(), "/docs/resources").map((peer) => (
+      <Card key={peer.url} title={peer.name} href={peer.url}>
+        {peer.description}
+      </Card>
+    ))}
+</Cards>
+
+
+# Prism Host (/docs/resources/prism-host)
+
+
+
+<div
+  style="{
+  display: &#x22;grid&#x22;,
+  placeItems: &#x22;center&#x22;,
+}"
+>
+  <a
+    href="https://prism-host.com/overextended"
+    style="{
+    background: &#x22;no-repeat url('/static/prism.png') center&#x22;,
+    backgroundSize: &#x22;contain&#x22;,
+    fontWeight: &#x22;500&#x22;,
+    height: &#x22;4em&#x22;,
+    width: &#x22;100%&#x22;,
+  }"
+  />
+</div>
+
+Prism Host delivers performance-focused hosting without the inflated price tag. From game servers and VPS to dedicated hardware and web hosting, we build around fast hardware, practical pricing, and responsive support.
+
+Get started with [Prism Host](https://prism-host.com/overextended) today using the code `OVEREXTENDED` at checkout.
+
+
+# Tebex Creators (/docs/resources/tebex-creators)
+
+
+
+
+
+Creator codes allow Tebex stores to share revenue with other creators, giving a discount to the customer at the same time.
+We make these deals to advertise trusted creators who meet our criteria.
+
+* The creator is reputable and provides quality customer service.
+* The creator understands and respects [open source](https://opensource.org/) licenses.
+* Resources follow best practices and are highly configurable or source-available.
+
+{CreatorCodes([
+  ["Andyyy", "https://andyyy.tebex.io/", "ox20", 20 , "/static/creators/andy.png"],
+  ["Berkie's Workshop", "https://berkie.tebex.io/", "ox10", 10 , "/static/creators/berkie.png"],
+  ["Dolu Mods", "https://dolu.tebex.io/", "overextended", 25 , "/static/creators/dolu.png"],
+  ["Electus Scripts", "https://store.electus-scripts.com/", "ox10", 10 , "/static/creators/electus.png"],
+  ["Loaf Scripts", "https://store.loaf-scripts.com/", "ox10", 10 , "/static/creators/loaf.png"],
+  ["OT Studios", "https://store.otstudios.net/ox", "ox10", 10 , "/static/creators/otstudios.png"],
+  ["Randolio Scripts", "https://randolio.tebex.io/", "OVEREXTENDED", 20 , "/static/creators/randolio.png"],
+  ["rcore", "https://store.rcore.cz/", "ox10", 10 , "/static/creators/rcore.png"],
+  ["Artwork Inventory", "https://artwork-inventory.tebex.io/", "ox10", 10 , "/static/creators/artworkInventory.gif"],
+  ["Renewed Scripts", "https://renewed.tebex.io/ox", "ox15", 15 , "/static/creators/renewed.png"],
+  ["Scuffed Labs", "https://scuffedlabs.com/", "overextended", 10, "/static/creators/scuffedlabs.png"],
+  ["RAHE Development", "https://rahe.tebex.io/", "ox10", 10, "/static/creators/rahe.png"],
+  ["Qwaly Scripts", "https://qwaly.dev/", "ox10", 10, "/static/creators/qwaly.png"],
+  ["Ehbw Scripts", "https://ehbw.tebex.io/", "ox10", 10, "/static/creators/ehbw.png"],
+  ["Lation Scripts", "https://lationscripts.com/", "ox10", 10, "/static/creators/lation.png"],
+  ["Fuksus", "https://resources.fuksus.com/", "OX15", 15, "/static/creators/fuksus.png"],
+  ["TeamsGG", "https://teamsgg.dev/", "ox10", 10, "/static/creators/teamsgg.png"],
+  ["MadCap Scripts", "https://madcap-scripts.tebex.io/", "ox10", 10, "/static/creators/madcap.png"],
+  ["Stevo Scripts", "https://store.stevoscripts.com/", "overextended", 10, "/static/creators/steve.png"],
+  ["Inferno Collection", "https://store.inferno-collection.com/", "ox7", 7, "/static/creators/inferno.png"]
+  ])}
+
+You can apply a creator code at checkout under "Support A Creator".
+
+
+# Templates (/docs/resources/templates)
+
+
+
+We currently publish two templates for FiveM developers.
+
+## fxserver [#fxserver]
+
+This template is intended for developers looking to quickly install fxserver and create a monorepo for simple resource management.
+
+If you prefer to run fxserver in a container, look elsewhere.
+
+**[Browse repository](https://github.com/overextended/fxserver)**
+
+## fivem-ts [#fivem-ts]
+
+If you're looking to start creating resources with TypeScript but don't know what tools to use, settings to configure, or just hate having to setup new projects then we've got you covered.
+
+* Setup for working with our libraries (@overextended/core and @overextended/ox\_lib).
+* Uses [tsdown](https://tsdown.dev/) for fast build times and compatibility with a large [plugin](https://tsdown.dev/advanced/plugins) ecosystem.
+* Optionally scaffold a new webapp with [vite](https://vite.dev/guide/).
+* Fully configured for FiveM and FXServer.
+
+**[Browse repository](https://github.com/overextended/fivem-ts)**
 
 
 # GameEntity (/docs/ox_lib/GameEntity)
@@ -2944,7 +3571,7 @@ A standalone library for providing easily reusable code as importable modules an
 ## Installation [#installation]
 
 <Callout type="info">
-  We **strongly** recommend referring to [Guides](../guides) for setting up Git, Node.js, and bun.
+  We **strongly** recommend referring to [Guides](../docs/guides) for setting up Git, Node.js, and bun.
 </Callout>
 
 <div className="fd-steps">
@@ -3072,7 +3699,7 @@ If you wish to edit any of the UI elements you will need to download the *source
 </Callout>
 
 <Callout type="info">
-  We **strongly** recommend referring to [Guides](../guides) for setting up Git, Node.js, and bun.
+  We **strongly** recommend referring to [Guides](../docs/guides) for setting up Git, Node.js, and bun.
 </Callout>
 
 **Building the UI:**
@@ -3088,633 +3715,6 @@ If you wish to edit any of the UI elements you will need to download the *source
   If you want to work in game you can run `bun start:game` which writes changes to disk, so
   the only thing you have to do is restart the resource for it take affect.
 </Callout>
-
-
-# Benchmark (/docs/oxmysql/benchmark)
-
-
-
-Benchmarking is based on the time spent when to receive a response from exports.\
-Real query speeds will be reported in the debug UI and in the server console with mysql\_debug enabled.
-
-Speeds will vary greatly based on system hardware, database settings, database version, and the current workload.
-
-## Script [#script]
-
-This script tests export times when using the Lua 5.4 runtime with lib/MySQL.lua syntax.
-
-```lua
-local function execQuery(msg, fn, query, parameters)
-    local start = os.nanotime()
-    local result = fn(query, parameters)
-    local finish = os.nanotime()
-
-    print()
-    print(msg)
-    print('Executed ' .. (type(query) == 'string' and 1 or #query) .. ' queries in ' .. (finish - start) / 1e6 .. 'ms')
-
-    return result
-end
-
-CreateThread(function()
-    local initTable = {
-        'DROP TABLE `test_table`',
-        [[CREATE TABLE `test_table` (
-        `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
-        `username` VARCHAR(50) NOT NULL DEFAULT '0',
-        `identifier` VARCHAR(50) NOT NULL DEFAULT '0',
-        PRIMARY KEY (`id`)
-        )]],
-        'TRUNCATE `test_table`',
-        'ALTER TABLE `test_table` AUTO_INCREMENT = 1',
-    }
-
-    execQuery('initialise test_table', MySQL.transaction.await, initTable)
-
-    -- You might rename "values" as "parameters" for mysql-async compatibility.
-    local queries = {
-        { query = 'INSERT INTO `test_table` (identifier) VALUES (?)', values = { 'abcdef1' }},
-        { query = 'UPDATE `test_table` SET `username` = ? WHERE `id` = LAST_INSERT_ID()', values = { 'bob1' }},
-    }
-
-    execQuery('{ query: string, values: string }[] transaction', MySQL.transaction.await, queries)
-
-    -- You can pass an array of arrays.
-    queries = {
-        { 'INSERT INTO `test_table` (identifier) VALUES (?)', { 'abcdef2' } },
-        { 'UPDATE `test_table` SET `username` = ? WHERE `id` = LAST_INSERT_ID()', { 'bob2' } },
-    }
-
-    execQuery('[string, any[]][] transaction', MySQL.transaction.await, queries)
-
-    -- You can pass an array of queries.
-    queries = {
-        'INSERT INTO `test_table` (identifier) VALUES ("abcdef3")',
-        'UPDATE `test_table` SET `username` = "bob3" WHERE `id` = LAST_INSERT_ID()',
-    }
-
-    execQuery('string[] transaction', MySQL.transaction.await, queries)
-
-    local insertUsers = {}
-
-    for i = 1, 10000 do
-        insertUsers[i] = { 'INSERT INTO `test_table` (username, identifier) VALUES (?, ?)',
-            { 'Testuser_' .. i, 'abcdef' .. i } }
-    end
-
-    execQuery('insert ' .. #insertUsers .. ' test users', MySQL.transaction.await, insertUsers)
-
-    local selectUserIds = {}
-
-    for i = 1, 10000 do
-        if i % 4 == 0 then
-            selectUserIds[math.tointeger(i / 4)] = { 'abcdef' .. i }
-        end
-    end
-
-    execQuery('select every 4th userid', MySQL.prepare.await, 'SELECT `id` FROM `test_table` WHERE `identifier` = ? LIMIT 1', selectUserIds)
-
-    local insertid = execQuery('insert', MySQL.insert.await, 'INSERT INTO `test_table` (identifier) VALUES (?)', { 'abcdef' })
-    local update = execQuery('update', MySQL.update.await, 'UPDATE `test_table` SET `username` = ? WHERE `id` = ?', { 'bobby', insertid })
-    local scalar = execQuery('scalar', MySQL.scalar.await, 'SELECT `username` FROM `test_table` WHERE `id` = ?', { insertid })
-    local single = execQuery('single', MySQL.single.await, 'SELECT * FROM `test_table` WHERE `id` = ?', { insertid })
-
-    print(json.encode(execQuery('prepare', MySQL.prepare.await, 'SELECT `username` FROM `test_table` WHERE `id` = ?', { insertid })))
-    print(insertid, update, scalar, json.encode(single))
-
-    execQuery('query', MySQL.query.await, 'SELECT `username` FROM `test_table` WHERE `id` = ? LIMIT 1', { 419 })
-end)
-```
-
-## Results [#results]
-
-```yaml
-[script:test] initialise test_table
-[script:test] Executed 4 queries in 42.7789ms
-[script:test]
-[script:test] { query: string, values: string }[] transaction
-[script:test] Executed 2 queries in 8.0145ms
-[script:test]
-[script:test] [string, any[]][] transaction
-[script:test] Executed 2 queries in 4.0278ms
-[script:test]
-[script:test] string[] transaction
-[script:test] Executed 2 queries in 3.4743ms
-[script:test]
-[script:test] insert 10000 test users
-[script:test] Executed 10000 queries in 2064.211ms
-[script:test]
-[script:test] select every 4th userid
-[script:test] Executed 1 queries in 2803.7134ms
-[script:test]
-[script:test] insert
-[script:test] Executed 1 queries in 2.8743ms
-[script:test]
-[script:test] update
-[script:test] Executed 1 queries in 2.8675ms
-[script:test]
-[script:test] scalar
-[script:test] Executed 1 queries in 1.5387ms
-[script:test]
-[script:test] single
-[script:test] Executed 1 queries in 1.3389ms
-[script:test]
-[script:test] prepare
-[script:test] Executed 1 queries in 1.6577ms
-[script:test] "bobby"
-[script:test] 10004    1       bobby   {"identifier":"abcdef","username":"bobby","id":10004}
-[script:test]
-[script:test] query
-[script:test] Executed 1 queries in 1.1588ms
-```
-
-
-# OxMySQL (/docs/oxmysql)
-
-
-
-
-
-<ResourceLinks repo="oxmysql" />
-
-A replacement of mysql-async and ghmattimysql with expanded API and improved compatibility for MySQL 8.
-
-## MySQL or MariaDB? [#mysql-or-mariadb]
-
-Most resources for FiveM were designed to be used with MySQL 5.7 and may hit compatibility issues when using MySQL 8, i.e.
-
-* More reserved keywords, like 'stored' and 'group'.
-* Longtext / JSON fields do not support default values.
-
-[MariaDB](https://mariadb.com/downloads/community/) is highly recommended for compatibility, and improved performance (over all versions of MySQL).
-
-## Should I use XAMPP? [#should-i-use-xampp]
-
-**No.** XAMPP is a *webserver stack* intended to be used for development, allowing easy local development and testing.\
-Do not setup XAMPP just to run your database, and install [MariaDB](https://mariadb.com/downloads/community/) directly instead.
-
-## Installation [#installation]
-
-<div className="fd-steps">
-  <div className="fd-step">
-    ### Download and install [MariaDB](https://mariadb.com/downloads/community/) [#download-and-install-mariadb-step]
-  </div>
-
-  <div className="fd-step">
-    ### Download the [latest release](https://github.com/overextended/oxmysql/releases/latest) of oxmysql [#download-the-latest-release-of-oxmysql-step]
-  </div>
-
-  <div className="fd-step">
-    ### Configure your server [#configure-your-server-step]
-
-    * Open your server [configuration file](https://docs.fivem.net/docs/server-manual/setting-up-a-server-vanilla/#servercfg).
-    * Add `start oxmysql` to the top of your resource list.
-    * Configure your mysql connection string and set it before starting any resources.
-
-    ```bash
-    # Use your preferred format. Make sure you only ever use set.
-    set mysql_connection_string "mysql://root:12345@localhost:3306/fivem"
-    set mysql_connection_string "user=root;password=12345;host=localhost;port=3306;database=fivem"
-    ```
-
-    <Callout type="info">
-      Certain special characters are reserved or unsupported depending on your connection string.\
-      Avoid using these characters `; , / ? : @ & = + $ #`, and try swapping connection string format.
-    </Callout>
-  </div>
-
-  <div className="fd-step">
-    ### Slow query warnings [#slow-query-warnings-step]
-
-    You will receive warnings if a query took a long time to complete, configurable with a convar.
-
-    * Query time may not be entirely accurate.
-    * Slow queries may not indicate a database issue (e.g. server hitches).
-    * Slow queries on server startup are not necessarily problematic.
-
-    ```bash
-    set mysql_slow_query_warning 150
-    ```
-  </div>
-
-  <div className="fd-step">
-    ### Debug [#debug-step]
-
-    Enabling the debug option will print all queries in the server console; you can also use an array to only print from a list of resources instead.
-
-    ```bash
-    set mysql_debug true
-    set mysql_debug [
-      "ox_core",
-      "ox_inventory"
-    ]
-    ```
-
-    You can temporarily modify the resource list with commands.
-
-    ```bash
-    oxmysql_debug remove ox_core
-    oxmysql_debug add ox_core
-    ```
-  </div>
-</div>
-
-## Compatibility [#compatibility]
-
-You can delete the following resources and allow oxmysql to provide their functionality.
-
-* mysql-async
-* ghmattimysql
-
-## Usage [#usage]
-
-Resources can import oxmysql methods by including our library, granting some type-checking and minor performance improvements over raw export calls.
-
-### Lua [#lua]
-
-Modify `fxmanifest.lua` for your resource, and add the following above any other script files.
-
-```lua
-server_script '@oxmysql/lib/MySQL.lua'
-```
-
-### JavaScript [#javascript]
-
-You can use raw exports, or install [our npm package](https://www.npmjs.com/package/@overextended/oxmysql) for intellisense and similar usage as Lua.
-
-```bash
-# With pnpm
-pnpm add @overextended/oxmysql
-
-# With Yarn
-yarn add @overextended/oxmysql
-
-# With npm
-npm install @overextended/oxmysql
-```
-
-Import the oxmysql object into your resource.
-
-```js
-import { oxmysql as MySQL } from "@overextended/oxmysql";
-```
-
-## Upserting [#upserting]
-
-When uncertain if a row should be inserted into the database, or an existing row should be updated, queries should check for duplicate keys.
-
-```lua
-MySQL.prepare('INSERT INTO ox_inventory (owner, name, data) VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE data = VALUES(data)', { owner, dbId, inventory })
-```
-
-This is preferred over checking the existence of a row, then inserting or updating depending on the result.\
-Furthermore, unlike using 'REPLACE INTO', the row is not deleted and re-inserted.
-
-
-# Placeholders (/docs/oxmysql/placeholders)
-
-
-
-Placeholders allow for query parameters to be safely executed, preventing [common SQL injection methods](https://bobby-tables.com/).
-
-Parameters can be passed an an array or object (referred to as named parameters).
-
-```lua
-local identifier = 'license:abc123'
-local group = 'admin'
-
-MySQL.scalar('SELECT `username` FROM `users` WHERE `identifier` = ? AND `group` = ?', { identifier, group })
-
--- Named placeholders (deprecated)
-MySQL.scalar('SELECT `username` FROM `users` WHERE `identifier` = @identifier AND `group` = @group', {
-    group = group
-    identifier = identifier
-})
-```
-
-These are distinct from prepared statements which are handled by the MySQL server; you can use `MySQL.prepare` for more optimised and secure queries.
-
-
-# Using the Debug UI (/docs/oxmysql/ui)
-
-
-
-The debug UI lets you easily see all the queries that have been executed by resources, query response times, and per-resource statistics.
-You should only enable this during development, or with a small player count - for larger servers, look into builtin MySQL logging.
-
-Before using the UI first you have to make sure you have the `mysql_ui` convar set to true:
-
-```bash
-set mysql_ui true
-```
-
-Also make sure that you have `command` or `command.mysql` ace permission access, then you should be able to use the `mysql` command in game.
-
-<Callout type="info">
-  You *do not* need to have the `mysql_debug` enabled to use the debug ui.
-</Callout>
-
-## Main page [#main-page]
-
-The main page shows you the resources that ran queries where you can filter them through a search bar, your general data
-along side a pie chart which shows what resources took the most query time.
-
-![oxmysql\_ui\_main](https://i.imgur.com/iQqWELJ.png)
-
-## Resource page [#resource-page]
-
-The resource page shows you all the queries and their execution time inside a table that the resource previously ran,
-alongside the total amount of the queries, execution time and slow queries for the selected resource.
-
-Columns can be sorted by ascending and descending order, and hovering over a query will display the full query inside a tooltip.
-
-<Callout type="info">
-  Queries that exceed `mysql_slow_query_warning` (default 150ms) are displayed in orange.\
-  For demonstation purposes the `mysql_slow_query_warning` convar was set to 5 here.
-</Callout>
-
-![oxmysql\_ui\_queries](https://i.imgur.com/gZpJoIg.png)
-
-
-# TargetOptions (/docs/ox_target/TargetOptions)
-
-
-
-All target actions are formated as an array containing objects with the following properties.
-
-## TargetOption [#targetoption]
-
-* label: `string`
-* name?: `string`
-  * An identifier used when removing an option.
-* icon?: `string`
-  * Name of a [Font Awesome](https://fontawesome.com/icons) icon.
-* iconColor?: `string`
-* distance?: `number`
-  * The max distance to display the option.
-* bones?: `string` or `string[]`
-  * A bone name or array of bone names (see [GetEntityBoneIndexByName](https://docs.fivem.net/natives/?_0xFB71170B7E76ACBA)).
-* offset?: `vector3`
-  * Offset the targetable area of an entity, relative to the model dimensions.
-* offsetAbsolute?: `vector3`
-  * Offset the targetable area of an entity, relative to the entity's world coords.
-* offsetSize?: `number`
-  * The radius of the targetable area for an entity offset.
-* groups?: `string` or `string[]` or `table<string, number>`
-  * A group, array of groups, or pairs of groups-grades required to show the option.
-  * Groups are framework dependent, and may refer to jobs, gangs, etc.
-* items?: `string` or `string[]` or `table<string, number>`
-  * An item, array of items, or pairs of items-count required to show the option.
-  * Items are framework dependent.
-* anyItem?: `boolean`
-  * Only require a single item from the items table to exist.
-* canInteract?: `function(entity, distance, coords, name, bone)`
-  * Options will always display if this is undefined.
-* menuName?: `string`
-  * The option is only displayed when a menu has been set with openMenu.
-* openMenu?: `string`
-  * Sets the current menu name, displaying only options for the menuName.
-* onSelect?: `function(data)`
-* export?: `string`
-* event?: `string`
-* serverEvent?: `string`
-* command?: `string`
-
-## Callback [#callback]
-
-This is the data returned to a registered callback or event for selected option.
-
-A selected option will trigger a single action, in order of priority:
-
-1. onSelect
-2. export
-3. event
-4. server event
-5. command
-
-* data: `table`
-  * entity: `number`
-    * The id of the entity hit by the shape test. If triggering a server event, this is the network id instead.
-  * coords: `vector3`
-    * The resulting coordinates where the shape test hit a collision.
-  * distance: `number`
-    * The player's distance from the coords.
-  * zone?: `number`
-    * The id of the selected zone, if applicable.
-
-
-# Ox Target (/docs/ox_target)
-
-
-
-
-
-<ResourceLinks repo="ox_target" />
-
-A performant and flexible standalone targeting resource or "third-eye", with additional functionality for ox\_inventory, ox\_core, qbx\_core, and es\_extended.
-
-## Installation [#installation]
-
-<Callout type="info">
-  We **strongly** recommend referring to [Guides](../guides) for setting up Git, Node.js, and bun.
-</Callout>
-
-<div className="fd-steps">
-  <div className="fd-step">
-    ### Install all resource dependencies [#install-all-resource-dependencies-step]
-
-    * [ox\_lib](../ox_lib/)
-  </div>
-
-  <div className="fd-step">
-    ### Download a release or clone the source code. [#download-a-release-or-clone-the-source-code-step]
-
-    * Download the [latest release](https://github.com/overextended/ox_target/releases/latest).
-
-    ```bash
-    git clone https://github.com/overextended/ox_target.git
-    ```
-  </div>
-
-  <div className="fd-step">
-    ### Config [#config-step]
-
-    Resource configuration is handled using [convars](https://docs.fivem.net/docs/scripting-reference/convars/).
-
-    ```bash
-    # Toggle targeting when pressing the hotkey, instead of holding it down.
-    setr ox_target:toggleHotkey 0
-
-    # Change the key to enable targeting (https://docs.fivem.net/docs/game-references/input-mapper-parameter-ids/keyboard)
-    setr ox_target:defaultHotkey LMENU
-
-    # Draw a sprite (circle) at the centroid of a zone.
-    setr ox_target:drawSprite 1
-
-    # Enable built-in targeting options, e.g. toggling vehicle doors.
-    setr ox_target:defaults 1
-
-    # Enable debugging / testing options, entity outlines, and a raycast indicator.
-    setr ox_target:debug 0
-
-    # Enable / Disable leftclick to select options
-    setr ox_target:leftClick 1
-    ```
-  </div>
-</div>
-
-## Supported Frameworks [#supported-frameworks]
-
-These aren't necessary to run ox\_target, but they will add additional features.
-
-* [ox\_core](https://github.com/overextended/ox_core)
-* [esx](https://github.com/esx-framework/esx-legacy)
-* [qbx\_core](https://github.com/Qbox-project/qbx_core)
-
-
-# Fivemanage (/docs/resources/fivemanage)
-
-
-
-<div
-  style="{
-  display: &#x22;grid&#x22;,
-  placeItems: &#x22;center&#x22;,
-}"
->
-  <a
-    href="https://refer.fivemanage.com/overextended"
-    style="{
-    background: &#x22;no-repeat url('/static/fivemanage.png')&#x22;,
-    backgroundSize: &#x22;contain&#x22;,
-    fontSize: &#x22;3rem&#x22;,
-    fontWeight: &#x22;500&#x22;,
-    verticalAlign: &#x22;middle&#x22;,
-    paddingLeft: &#x22;2em&#x22;,
-  }"
-  >
-    {" "}
-
-    Fivemanage
-  </a>
-</div>
-
-Fivemanage is an all-in-one SaaS platform for communities looking to improve their workflow, offering a range of features to faciliate easier management
-and administration of your FiveM server. They offer fast and reliable content delivery - with full support for image, video, and audio files - and seamless
-logging to track player and server activity while ensuring dependable performance and security.
-
-Fivemanage integrates seamlessly into your FiveM server with native support via ox\_lib and oxmysql, or through their official FiveM SDK.
-
-They offer a generous free plan with enough storage to get you started, and a variety of paid plans designed for both small and large servers needing access to more storage and advanced feeatures.
-
-Get started with [Fivemanage](https://refer.fivemanage.com/overextended) today.
-
-
-# Resources (/docs/resources)
-
-
-
-
-
-<Cards>
-  {getPageTreePeers(source.getPageTree(), "/docs/resources").map((peer) => (
-      <Card key={peer.url} title={peer.name} href={peer.url}>
-        {peer.description}
-      </Card>
-    ))}
-</Cards>
-
-
-# Prism Host (/docs/resources/prism-host)
-
-
-
-<div
-  style="{
-  display: &#x22;grid&#x22;,
-  placeItems: &#x22;center&#x22;,
-}"
->
-  <a
-    href="https://prism-host.com/overextended"
-    style="{
-    background: &#x22;no-repeat url('/static/prism.png') center&#x22;,
-    backgroundSize: &#x22;contain&#x22;,
-    fontWeight: &#x22;500&#x22;,
-    height: &#x22;4em&#x22;,
-    width: &#x22;100%&#x22;,
-  }"
-  />
-</div>
-
-Prism Host delivers performance-focused hosting without the inflated price tag. From game servers and VPS to dedicated hardware and web hosting, we build around fast hardware, practical pricing, and responsive support.
-
-Get started with [Prism Host](https://prism-host.com/overextended) today using the code `OVEREXTENDED` at checkout.
-
-
-# Tebex Creators (/docs/resources/tebex-creators)
-
-
-
-
-
-Creator codes allow Tebex stores to share revenue with other creators, giving a discount to the customer at the same time.
-We make these deals to advertise trusted creators who meet our criteria.
-
-* The creator is reputable and provides quality customer service.
-* The creator understands and respects [open source](https://opensource.org/) licenses.
-* Resources follow best practices and are highly configurable or source-available.
-
-{CreatorCodes([
-  ["Andyyy", "https://andyyy.tebex.io/", "ox20", 20 , "/static/creators/andy.png"],
-  ["Berkie's Workshop", "https://berkie.tebex.io/", "ox10", 10 , "/static/creators/berkie.png"],
-  ["Dolu Mods", "https://dolu.tebex.io/", "overextended", 25 , "/static/creators/dolu.png"],
-  ["Electus Scripts", "https://store.electus-scripts.com/", "ox10", 10 , "/static/creators/electus.png"],
-  ["Loaf Scripts", "https://store.loaf-scripts.com/", "ox10", 10 , "/static/creators/loaf.png"],
-  ["OT Studios", "https://store.otstudios.net/ox", "ox10", 10 , "/static/creators/otstudios.png"],
-  ["Randolio Scripts", "https://randolio.tebex.io/", "OVEREXTENDED", 20 , "/static/creators/randolio.png"],
-  ["rcore", "https://store.rcore.cz/", "ox10", 10 , "/static/creators/rcore.png"],
-  ["Artwork Inventory", "https://artwork-inventory.tebex.io/", "ox10", 10 , "/static/creators/artworkInventory.gif"],
-  ["Renewed Scripts", "https://renewed.tebex.io/ox", "ox15", 15 , "/static/creators/renewed.png"],
-  ["Three Amigos Modding", "https://threeamigos.shop/", "overextended", 10, "/static/creators/tam.png"],
-  ["RAHE Development", "https://rahe.tebex.io/", "ox10", 10, "/static/creators/rahe.png"],
-  ["Qwaly Scripts", "https://qwaly.dev/", "ox10", 10, "/static/creators/qwaly.png"],
-  ["Ehbw Scripts", "https://ehbw.tebex.io/", "ox10", 10, "/static/creators/ehbw.png"],
-  ["Lation Scripts", "https://lationscripts.com/", "ox10", 10, "/static/creators/lation.png"],
-  ["Fuksus", "https://resources.fuksus.com/", "OX15", 15, "/static/creators/fuksus.png"],
-  ["TeamsGG", "https://teamsgg.dev/", "ox10", 10, "/static/creators/teamsgg.png"],
-  ["MadCap Scripts", "https://madcap-scripts.tebex.io/", "ox10", 10, "/static/creators/madcap.png"],
-  ["Stevo Scripts", "https://store.stevoscripts.com/", "overextended", 10, "/static/creators/steve.png"],
-  ["Inferno Collection", "https://store.inferno-collection.com/", "ox7", 7, "/static/creators/inferno.png"]
-  ])}
-
-You can apply a creator code at checkout under "Support A Creator".
-
-
-# Templates (/docs/resources/templates)
-
-
-
-We currently publish two templates for FiveM developers.
-
-## fxserver [#fxserver]
-
-This template is intended for developers looking to quickly install fxserver and create a monorepo for simple resource management.
-
-If you prefer to run fxserver in a container, look elsewhere.
-
-**[Browse repository](https://github.com/overextended/fxserver)**
-
-## fivem-ts [#fivem-ts]
-
-If you're looking to start creating resources with TypeScript but don't know what tools to use, settings to configure, or just hate having to setup new projects then we've got you covered.
-
-* Setup for working with our libraries (@overextended/core and @overextended/ox\_lib).
-* Uses [tsdown](https://tsdown.dev/) for fast build times and compatibility with a large [plugin](https://tsdown.dev/advanced/plugins) ecosystem.
-* Optionally scaffold a new webapp with [vite](https://vite.dev/guide/).
-* Fully configured for FiveM and FXServer.
-
-**[Browse repository](https://github.com/overextended/fivem-ts)**
 
 
 # Client Events (/docs/ox_core/Events/client)
@@ -5220,39 +5220,6 @@ AddEventHandler('ox_doorlock:stateChanged', function(source, doorId, state, used
 * usedItem: `string` or `false` or `nil`
 
 
-# Functions (/docs/ox_fuel/Client/functions)
-
-
-
-## setMoneyCheck [#setmoneycheck]
-
-Override the built-in money check.
-
-```lua
-exports.ox_fuel:setMoneyCheck(method)
-```
-
-### Parameters [#parameters]
-
-* method: `function(): number`
-
-### Example [#example]
-
-```lua
-exports.ox_fuel:setMoneyCheck(function()
-    local accounts = ESX.GetPlayerData().accounts
-
-    for i = 1, #accounts do
-        if accounts[i].name == 'bank' then
-            return accounts[i].money
-        end
-    end
-
-    return 0
-end)
-```
-
-
 # Functions (/docs/ox_fuel/Server/functions)
 
 
@@ -5285,6 +5252,39 @@ exports.ox_fuel:setPaymentMethod(function(playerId, amount)
         type = 'error',
         description = locale('not_enough_money', amount - bankAmount)
     })
+end)
+```
+
+
+# Functions (/docs/ox_fuel/Client/functions)
+
+
+
+## setMoneyCheck [#setmoneycheck]
+
+Override the built-in money check.
+
+```lua
+exports.ox_fuel:setMoneyCheck(method)
+```
+
+### Parameters [#parameters]
+
+* method: `function(): number`
+
+### Example [#example]
+
+```lua
+exports.ox_fuel:setMoneyCheck(function()
+    local accounts = ESX.GetPlayerData().accounts
+
+    for i = 1, #accounts do
+        if accounts[i].name == 'bank' then
+            return accounts[i].money
+        end
+    end
+
+    return 0
 end)
 ```
 
@@ -6733,6 +6733,943 @@ We put together an example resource showcasing how to properly utilise the stash
 <GhButton link="https://www.github.com/overextended/ox_inventory_examples" label="Ox Inventory Examples" />
 
 
+# Client (/docs/ox_target/Functions/Client)
+
+
+
+All exports with the `options` argument expect a table with the targeting properties [here](../TargetOptions).
+
+For some examples you can refer to [defaults.lua](https://github.com/overextended/ox_target/blob/main/client/defaults.lua) or [debug.lua](https://github.com/overextended/ox_target/blob/main/client/debug.lua).
+
+## disableTargeting [#disabletargeting]
+
+Toggle the availability of the targeting menu.
+
+```lua
+exports.ox_target:disableTargeting(state)
+```
+
+* state: `boolean`
+  * Setting `state` to `true` will turn off the targeting eye if it is active and prevent it from reopening until `state` is set to `false` again.
+
+## isActive [#isactive]
+
+Checks if the targeting system is currently active.
+
+```lua
+exports.ox_target:isActive()
+```
+
+Return:
+
+* `boolean` - Returns `true` if the targeting system is active, otherwise `false`.
+
+## getTargetOptions [#gettargetoptions]
+
+Retrieves targeting options for a specific entity.
+
+```lua
+exports.ox_target:getTargetOptions(entity, entityType, model)
+```
+
+* entity?: `number` - The entity handle
+* entityType?: `number` - The type of entity (1 for peds, 2 for vehicles, 3 for objects)
+* model?: `number` - The model hash of the entity
+
+Return:
+
+* `table` - Returns a table containing the target options for the entity:
+  * global: Options for the entity type (peds, vehicles, or objects)
+  * model: Options for the specific model
+  * entity: Options for the networked entity
+  * localEntity: Options for the local entity
+
+## addGlobalOption [#addglobaloption]
+
+Creates new targetable options which are displayed at all times.
+
+```lua
+exports.ox_target:addGlobalOption(options)
+```
+
+* options: `TargetOptions`
+
+## removeGlobalOption [#removeglobaloption]
+
+Removes all options from the global options list with the option names.
+
+```lua
+exports.ox_target:removeGlobalOption(optionNames)
+```
+
+* optionNames: `string` or `string[]`
+
+## addGlobalObject [#addglobalobject]
+
+Creates new targetable options for all Object entity types.
+
+```lua
+exports.ox_target:addGlobalObject(options)
+```
+
+* options: `TargetOptions`
+
+## removeGlobalObject [#removeglobalobject]
+
+Removes all options from the global Object list with the option names.
+
+```lua
+exports.ox_target:removeGlobalObject(optionNames)
+```
+
+* optionNames: `string` or `string[]`
+
+## addGlobalPed [#addglobalped]
+
+Creates new targetable options for all Ped entity types (excluding players).
+
+```lua
+exports.ox_target:addGlobalPed(options)
+```
+
+* options: `TargetOptions`
+
+## removeGlobalPed [#removeglobalped]
+
+Removes all options from the global Ped list with the option names.
+
+```lua
+exports.ox_target:removeGlobalPed(optionNames)
+```
+
+* optionNames: `string` or `string[]`
+
+## addGlobalPlayer [#addglobalplayer]
+
+Creates new targetable options for all Player entities.
+
+```lua
+exports.ox_target:addGlobalPlayer(options)
+```
+
+* options: `TargetOptions`
+
+## removeGlobalPlayer [#removeglobalplayer]
+
+Removes all options from the global Player list with the option names.
+
+```lua
+exports.ox_target:removeGlobalPlayer(optionNames)
+```
+
+* optionNames: `string` or `string[]`
+
+## addGlobalVehicle [#addglobalvehicle]
+
+Creates new targetable options for all Vehicle entity types.
+
+```lua
+exports.ox_target:addGlobalVehicle(options)
+```
+
+* options: `TargetOptions`
+
+## removeGlobalVehicle [#removeglobalvehicle]
+
+Removes all options from the global Vehicle list with the option names.
+
+```lua
+exports.ox_target:removeGlobalVehicle(optionNames)
+```
+
+* optionNames: `string` or `string[]`
+
+## addModel [#addmodel]
+
+Creates new targetable options for a specific model or list of models.
+
+```lua
+exports.ox_target:addModel(models, options)
+```
+
+* models: `number` or `string` or `Array<number | string>`
+* options: `TargetOptions`
+
+## removeModel [#removemodel]
+
+Removes all options from the models list with the option names.
+
+```lua
+exports.ox_target:removeModel(models, optionNames)
+```
+
+* models: `number` or `string` or `Array<number | string>`
+* optionNames: `string` or `string[]`
+
+## addEntity [#addentity]
+
+Creates new targetable options for a specific network id or list of network ids (see [NetworkGetNetworkIdFromEntity](https://docs.fivem.net/natives/?_0x9E35DAB6)).
+
+```lua
+exports.ox_target:addEntity(netIds, options)
+```
+
+* netIds: `number` or `number[]`
+* options: `TargetOptions`
+
+## removeEntity [#removeentity]
+
+Removes all options from the networked entities list with the option names.
+
+```lua
+exports.ox_target:removeEntity(netIds, optionNames)
+```
+
+* netIds: `number` or `number[]`
+* optionNames: `string` or `string[]`
+
+## addLocalEntity [#addlocalentity]
+
+Creates new targetable options for a specific entity handle or list of entity handles.
+
+```lua
+exports.ox_target:addLocalEntity(entities, options)
+```
+
+* entities: `number` or `number[]`
+* options: `TargetOptions`
+
+## removeLocalEntity [#removelocalentity]
+
+Removes all options from the entities list with the option names.
+
+```lua
+exports.ox_target:removeLocalEntity(entities, optionNames)
+```
+
+* entities: `number` or `number[]`
+* optionNames: `string` or `string[]`
+
+## addSphereZone [#addspherezone]
+
+Creates a new targetable [sphere zone](../../ox_lib/Modules/Zones/Shared#libzonessphere).
+
+```lua
+exports.ox_target:addSphereZone(parameters)
+```
+
+* parameters: `table`
+  * coords: `vector3`
+  * name?: `string`
+    * An optional name to refer to the zone instead of using the `id`.
+  * radius?: `number`
+  * debug?: `boolean`
+  * drawSprite?: `boolean`
+    * Draw a sprite at the centroid of the zone. Defaults to `true`.
+  * options: `TargetOptions`
+
+Return:
+
+* id: `number`
+
+## addBoxZone [#addboxzone]
+
+Creates a new targetable [box zone](../../ox_lib/Modules/Zones/Shared#libzonesbox).
+
+```lua
+exports.ox_target:addBoxZone(parameters)
+```
+
+* parameters: `table`
+  * coords: `vector3`
+  * name?: `string`
+    * An optional name to refer to the zone instead of using the `id`.
+  * size?: `vector3`
+  * rotation?: `number`
+  * debug?: `boolean`
+  * drawSprite?: `boolean`
+    * Draw a sprite at the centroid of the zone. Defaults to `true`.
+  * options: `TargetOptions`
+
+Return:
+
+* id: `number`
+
+## addPolyZone [#addpolyzone]
+
+Creates a new targetable [poly zone](../../ox_lib/Modules/Zones/Shared#libzonespoly).
+
+```lua
+exports.ox_target:addPolyZone(parameters)
+```
+
+* parameters: `table`
+  * points: `vector3[]`
+    * An array of 3d points defining the polygon's shape.
+  * name?: `string`
+    * An optional name to refer to the zone instead of using the `id`.
+  * thickness?: `number`
+    * The height of the polygon, defaulting to `4`.
+  * debug?: `boolean`
+  * drawSprite?: `boolean`
+    * Draw a sprite at the centroid of the zone. Defaults to `true`.
+  * options: `TargetOptions`
+
+Return:
+
+* id: `number`
+
+## zoneExists [#zoneexists]
+
+Checks if a zone with the given ID exists.
+
+```lua
+exports.ox_target:zoneExists(id)
+```
+
+* id: `number` or `string`
+  * The `number` id that is returned by [addSphereZone](#addspherezone), [addBoxZone](#addboxzone), or [addPolyZone](#addpolyzone)\
+    **OR**
+  * The `string` name given to the zone.
+
+Return:
+
+* `boolean` - Returns `true` if the zone exists, otherwise `false`.
+
+## removeZone [#removezone]
+
+Removes a targetable zone with the given id (returned by addBoxZone/addSphereZone).
+
+```lua
+exports.ox_target:removeZone(id)
+```
+
+* id: `number` or `string`
+  * The `number` id that is returned by [addSphereZone](#addspherezone), [addBoxZone](#addboxzone), or [addPolyZone](#addpolyzone)\
+    **OR**
+  * The `string` name given to the zone.
+
+
+# insert (/docs/oxmysql/Functions/insert)
+
+
+
+Inserts a new entry into the database and returns the insert id for the row, if valid.
+
+## Promise [#promise]
+
+<Tabs items="['Lua', 'JS']">
+  <Tab>
+    ```lua
+    local id = MySQL.insert.await('INSERT INTO `users` (identifier, firstname, lastname) VALUES (?, ?, ?)', {
+        identifier, firstName, lastName
+    })
+
+    print(id)
+    ```
+  </Tab>
+
+  <Tab>
+    ```js
+    const id = await MySQL.insert('INSERT INTO `users` (identifier, firstname, lastname) VALUES (?, ?, ?)', [
+      identifier, firstName, lastName
+    ])
+
+    console.log(id)
+    ```
+  </Tab>
+</Tabs>
+
+**Aliases**
+
+* `MySQL.Sync.insert`
+* `exports.ghmattimysql.executeSync`
+* `exports.oxmysql.insert_async`
+
+## Callback [#callback]
+
+<Tabs items="['Lua', 'JS']">
+  <Tab>
+    ```lua
+    MySQL.insert('INSERT INTO `users` (identifier, firstname, lastname) VALUES (?, ?, ?)', {
+        identifier, firstName, lastName
+    }, function(id)
+        print(id)
+    end)
+    ```
+  </Tab>
+
+  <Tab>
+    ```js
+    MySQL.insert('INSERT INTO `users` (identifier, firstname, lastname) VALUES (?, ?, ?)', [
+      identifier, firstName, lastName
+    ], (id) => {
+      console.log(id)
+    })
+    ```
+  </Tab>
+</Tabs>
+
+**Aliases**
+
+* `MySQL.Async.insert`
+* `exports.ghmattimysql.execute`
+* `exports.oxmysql.insert`
+
+
+# Prepare (/docs/oxmysql/Functions/prepare)
+
+
+
+Prepare can be used to execute frequently called queries faster and accepts multiple sets of parameters to be used with a single query.
+
+* Date will not return the datestring commonly used in FiveM
+* TINYINT 1 and BIT will not return a boolean
+* You can only use ? value placeholders, ?? column placeholders and named placeholders will throw an error
+
+Unlike [rawExecute](./rawExecute), the SELECT statement will return a column, row, or array of rows depending on the number of columns and rows selected.
+
+## Promise [#promise]
+
+<Tabs items="['Lua', 'JS']">
+  <Tab>
+    ```lua
+    local response = MySQL.prepare.await('SELECT `firstname`, `lastname` FROM `users` WHERE `identifier` = ?', {
+        identifier
+    })
+
+
+    print(json.encode(response, { indent = true, sort_keys = true }))
+    ```
+  </Tab>
+
+  <Tab>
+    ```js
+    const response = await MySQL.prepare('SELECT `firstname`, `lastname` FROM `users` WHERE `identifier` = ?', [
+      identifier
+    ])
+
+    console.log(JSON.stringify(response))
+    ```
+  </Tab>
+</Tabs>
+
+**Aliases**
+
+* `exports.oxmysql.prepare_async`
+
+## Callback [#callback]
+
+<Tabs items="['Lua', 'JS']">
+  <Tab>
+    ```lua
+    MySQL.prepare('SELECT `firstname`, `lastname` FROM `users` WHERE `identifier` = ?', {
+        identifier
+    }, function(response)
+        print(json.encode(response, { indent = true, sort_keys = true }))
+    end)
+    ```
+  </Tab>
+
+  <Tab>
+    ```js
+    MySQL.prepare('SELECT `firstname`, `lastname` FROM `users` WHERE `identifier` = ?', [
+      identifier
+    ], (response) => {
+      console.log(JSON.stringify(response))
+    })
+    ```
+  </Tab>
+</Tabs>
+
+**Aliases**
+
+* `exports.oxmysql.prepare`
+
+
+# Query (/docs/oxmysql/Functions/query)
+
+
+
+When selecting data, returns all matching rows and columns; otherwise, returns data like insertId, affectedRows, etc.
+
+## Promise [#promise]
+
+<Tabs items="['Lua', 'JS']">
+  <Tab>
+    ```lua
+    local response = MySQL.query.await('SELECT `firstname`, `lastname` FROM `users` WHERE `identifier` = ?', {
+        identifier
+    })
+
+    if response then
+        for i = 1, #response do
+            local row = response[i]
+            print(row.firstname, row.lastname)
+        end
+    end
+    ```
+  </Tab>
+
+  <Tab>
+    ```js
+    const response = await MySQL.query('SELECT `firstname`, `lastname` FROM `users` WHERE `identifier` = ?', [
+      identifier
+    ])
+
+    if (response) {
+      response.forEach((row) => {
+        console.log(row.identifier, row.firstname, row.lastname)
+      })
+    }
+    ```
+  </Tab>
+</Tabs>
+
+**Aliases**
+
+* `MySQL.Sync.fetchAll`
+* `exports.ghmattimysql.execute`
+* `exports.oxmysql.query_async`
+
+## Callback [#callback]
+
+<Tabs items="['Lua', 'JS']">
+  <Tab>
+    ```lua
+    MySQL.query('SELECT `firstname`, `lastname` FROM `users` WHERE `identifier` = ?', {
+        identifier
+    }, function(response)
+        if response then
+            for i = 1, #response do
+                local row = response[i]
+                print(row.firstname, row.lastname)
+            end
+        end
+    end)
+    ```
+  </Tab>
+
+  <Tab>
+    ```js
+    MySQL.query('SELECT `firstname`, `lastname` FROM `users` WHERE `identifier` = ?', [
+      identifier
+    ], (response) => {
+      if (response) {
+        response.forEach((row) => {
+          console.log(row.firstname, row.lastname)
+        })
+      }
+    })
+    ```
+  </Tab>
+</Tabs>
+
+**Aliases**
+
+* `MySQL.Async.fetchAll`
+* `exports.ghmattimysql.execute`
+* `exports.oxmysql.query`
+
+
+# RawExecute (/docs/oxmysql/Functions/rawExecute)
+
+
+
+rawExecute can be used to execute frequently called queries faster and accepts multiple sets of parameters to be used with a single query.
+
+* Date will not return the datestring commonly used in FiveM
+* TINYINT 1 and BIT will not return a boolean
+* You can only use ? value placeholders, ?? column placeholders and named placeholders will throw an error
+
+Unlike [prepare](./prepare), the SELECT statement will always return an array of rows.
+When using SELECT, the return value will match `query`, `single`, or `scalar` depending on the number of columns and rows selected.
+
+## Promise [#promise]
+
+<Tabs items="['Lua', 'JS']">
+  <Tab>
+    ```lua
+    local response = MySQL.rawExecute.await('SELECT `firstname`, `lastname` FROM `users` WHERE `identifier` = ?', {
+        identifier
+    })
+
+
+    print(json.encode(response, { indent = true, sort_keys = true }))
+    ```
+  </Tab>
+
+  <Tab>
+    ```js
+    const response = await MySQL.rawExecute('SELECT `firstname`, `lastname` FROM `users` WHERE `identifier` = ?', [
+      identifier
+    ])
+
+    console.log(JSON.stringify(response))
+    ```
+  </Tab>
+</Tabs>
+
+**Aliases**
+
+* `exports.oxmysql.rawExecute_async`
+
+## Callback [#callback]
+
+<Tabs items="['Lua', 'JS']">
+  <Tab>
+    ```lua
+    MySQL.rawExecute('SELECT `firstname`, `lastname` FROM `users` WHERE `identifier` = ?', {
+        identifier
+    }, function(response)
+        print(json.encode(response, { indent = true, sort_keys = true }))
+    end)
+    ```
+  </Tab>
+
+  <Tab>
+    ```js
+    MySQL.rawExecute('SELECT `firstname`, `lastname` FROM `users` WHERE `identifier` = ?', [
+      identifier
+    ], (response) => {
+      console.log(JSON.stringify(response))
+    })
+    ```
+  </Tab>
+</Tabs>
+
+**Aliases**
+
+* `exports.oxmysql.rawExecute`
+
+
+# Scalar (/docs/oxmysql/Functions/scalar)
+
+
+
+Returns the first column for a single row.
+
+## Promise [#promise]
+
+<Tabs items="['Lua', 'JS']">
+  <Tab>
+    ```lua
+    local firstName = MySQL.scalar.await('SELECT `firstname` FROM `users` WHERE `identifier` = ? LIMIT 1', {
+        identifier
+    })
+
+    print(firstName)
+    ```
+  </Tab>
+
+  <Tab>
+    ```js
+    const firstName = await MySQL.scalar('SELECT `firstname` FROM `users` WHERE `identifier` = ? LIMIT 1', [
+      identifier
+    ])
+
+    console.log(firstName)
+    ```
+  </Tab>
+</Tabs>
+
+**Aliases**
+
+* `MySQL.Sync.fetchScalar`
+* `exports.ghmattimysql.scalar`
+* `exports.oxmysql.scalar_async`
+
+## Callback [#callback]
+
+<Tabs items="['Lua', 'JS']">
+  <Tab>
+    ```lua
+    MySQL.scalar('SELECT `firstname` FROM `users` WHERE `identifier` = ? LIMIT 1', {
+        identifier
+    }, function(firstName)
+        print(firstName)
+    end)
+    ```
+  </Tab>
+
+  <Tab>
+    ```js
+    MySQL.scalar('SELECT `firstname` FROM `users` WHERE `identifier` = ? LIMIT 1', [
+      identifier
+    ], (firstName) => {
+      console.log(firstName)
+    })
+    ```
+  </Tab>
+</Tabs>
+
+**Aliases**
+
+* `MySQL.Async.fetchScalar`
+* `exports.ghmattimysql.scalar`
+* `exports.oxmysql.scalar`
+
+
+# Single (/docs/oxmysql/Functions/single)
+
+
+
+Returns all selected columns for a single row.
+
+## Promise [#promise]
+
+<Tabs items="['Lua', 'JS']">
+  <Tab>
+    ```lua
+    local row = MySQL.single.await('SELECT `firstname`, `lastname` FROM `users` WHERE `identifier` = ? LIMIT 1', {
+        identifier
+    })
+
+    if not row then return end
+
+    print(row.firstname, row.lastname)
+    ```
+  </Tab>
+
+  <Tab>
+    ```js
+    const row = await MySQL.single('SELECT `firstname`, `lastname` FROM `users` WHERE `identifier` = ? LIMIT 1', [
+      identifier
+    ])
+
+    if (!row) return;
+
+    console.log(row.firstname, row.lastname)
+    ```
+  </Tab>
+</Tabs>
+
+**Aliases**
+
+* `exports.oxmysql.single_async`
+
+## Callback [#callback]
+
+<Tabs items="['Lua', 'JS']">
+  <Tab>
+    ```lua
+    MySQL.single('SELECT `firstname`, `lastname` FROM `users` WHERE `identifier` = ? LIMIT 1', {
+        identifier
+    }, function(row)
+        if not row then return end
+
+        print(row.firstname, row.lastname)
+    end)
+    ```
+  </Tab>
+
+  <Tab>
+    ```js
+    MySQL.single('SELECT `firstname`, `lastname` FROM `users` WHERE `identifier` = ? LIMIT 1', [
+      identifier
+    ], (row) => {
+      if (!row) return;
+
+      console.log(row.firstname, row.lastname)
+    })
+    ```
+  </Tab>
+</Tabs>
+
+**Aliases**
+
+* `exports.oxmysql.single`
+
+
+# Transaction (/docs/oxmysql/Functions/transaction)
+
+
+
+A transaction executes multiple queries and commits them only if all succeed.\
+If one fails, none of the queries are committed.
+
+The return value is a boolean, which is the result of the transaction.
+
+## Specific format [#specific-format]
+
+When using this format, you must pass an array containing sets of queries and parameters to the transaction method.\
+In this case, your queries do not necessarily match and the values are unique to each query.
+
+```lua
+-- You might rename "values" as "parameters" for mysql-async compatibility.
+local queries = {
+    { query = 'INSERT INTO `test` (id) VALUES (?)', values = { 1 }},
+    { query = 'INSERT INTO `test` (id, name) VALUES (?, ?)', values = { 2, 'bob' }},
+}
+
+-- You can also pass an array of arrays.
+local queries = {
+  { 'INSERT INTO `test` (id) VALUES (?)', { 1 } },
+  { 'INSERT INTO `test` (id, name) VALUES (?, ?)', { 2, 'bob' } },
+}
+```
+
+## Shared format [#shared-format]
+
+When using this format, you must pass an array containing queries and a set containing shared parameters to the transaction method.\
+In this case, your queries do not necessarily match and the values are unique to each query.
+
+```lua
+-- You might rename "values" as "parameters" for mysql-async compatibility.
+local queries = {
+    'INSERT INTO `test` (id, name) VALUES (@someid, @somename)',
+    'SET `name` = @newname IN `test` WHERE `id` = @someid'
+}
+
+local values = {
+    someid = 2,
+    somename = 'John Doe',
+    newname = 'John Notdoe'
+}
+```
+
+## Promise [#promise]
+
+<Tabs items="['Lua', 'JS']">
+  <Tab>
+    ```lua
+    local success = MySQL.transaction.await(queries, values --[[leave nil for specific format]])
+    print(success)
+    ```
+  </Tab>
+
+  <Tab>
+    ```js
+    const success = await MySQL.transaction(queries, values /*leave nil for specific format*/)
+    console.log(success)
+    ```
+  </Tab>
+</Tabs>
+
+**Aliases**
+
+* `MySQL.Sync.transaction`
+* `exports.ghmattimysql.transaction`
+* `exports.oxmysql.transaction_async`
+
+## Callback [#callback]
+
+<Tabs items="['Lua', 'JS']">
+  <Tab>
+    ```lua
+    -- specific
+    MySQL.transaction(queries, values, function(success)
+        print(success)
+    end)
+
+    -- shared
+    MySQL.transaction(queries, function(success)
+        print(success)
+    end)
+    ```
+  </Tab>
+
+  <Tab>
+    ```js
+    // specific
+    MySQL.transaction(queries, (success) => {
+      console.log(success)
+    })
+
+    // shared
+    MySQL.transaction(queries, values, (success) => {
+      console.log(success)
+    })
+    ```
+  </Tab>
+</Tabs>
+
+**Aliases**
+
+* `MySQL.Async.transaction`
+* `exports.ghmattimysql.transaction`
+* `exports.oxmysql.transaction`
+
+## Transaction Isolation Level [#transaction-isolation-level]
+
+This can be set through the convar `mysql_transaction_isolation_level`, and is an integer ranging from `1-4`.\
+The default value is 2.
+
+| Convar Value | Result           |
+| ------------ | ---------------- |
+| 1            | Repeatable Read  |
+| 2            | Read Committed   |
+| 3            | Read Uncommitted |
+| 4            | Serializable     |
+
+
+# Update (/docs/oxmysql/Functions/update)
+
+
+
+Returns the number of rows affected by the query.
+
+## Promise [#promise]
+
+<Tabs items="['Lua', 'JS']">
+  <Tab>
+    ```lua
+    local affectedRows = MySQL.update.await('UPDATE users SET firstname = ? WHERE identifier = ?', {
+        newName, identifier
+    })
+
+    print(affectedRows)
+    ```
+  </Tab>
+
+  <Tab>
+    ```js
+    const affectedRows = await MySQL.update('UPDATE users SET firstname = ? WHERE identifier = ?', [
+      newName, identifier
+    ])
+
+    console.log(affectedRows)
+    ```
+  </Tab>
+</Tabs>
+
+**Aliases**
+
+* `MySQL.Sync.execute`
+* `exports.ghmattimysql.executeSync`
+* `exports.oxmysql.update_async`
+
+## Callback [#callback]
+
+<Tabs items="['Lua', 'JS']">
+  <Tab>
+    ```lua
+    MySQL.update('UPDATE users SET firstname = ? WHERE identifier = ?', {
+        newName, identifier
+    }, function(affectedRows)
+        print(affectedRows)
+    end)
+    ```
+  </Tab>
+
+  <Tab>
+    ```js
+    MySQL.update('UPDATE users SET firstname = ? WHERE identifier = ?', [
+      newName, identifier
+    ], (affectedRows) => {
+      console.log(affectedRows)
+    })
+    ```
+  </Tab>
+</Tabs>
+
+**Aliases**
+
+* `MySQL.Async.execute`
+* `exports.ghmattimysql.execute`
+* `exports.oxmysql.update`
+
+
 # Server (/docs/ox_lib/ACL/Server)
 
 
@@ -6851,63 +7788,6 @@ Removes a principal from a parent principal.
 * parent: `string`
 
 
-# Server (/docs/ox_lib/AddCommand/Server)
-
-
-
-Registers commands and simplifies argument validation, permissions, and chat suggestions.
-
-```lua
-lib.addCommand(commandName, properties, cb)
-```
-
-* commandName: `string` or `string[]`
-* properties: `table` or `false`
-  * help?: `string`
-  * restricted?: `boolean` or `string` or `string[]`
-  * params?: `table[]`
-    * name: `string`
-    * help?: `string`
-    * type?: `'number'` or `'playerId'` or `'string'` or `'longString'`
-    * optional?: `boolean`
-
-```lua
-lib.addCommand('giveitem', {
-    help = 'Gives an item to a player',
-    params = {
-        {
-            name = 'target',
-            type = 'playerId',
-            help = 'Target player\'s server id',
-        },
-        {
-            name = 'item',
-            type = 'string',
-            help = 'Name of the item to give',
-        },
-        {
-            name = 'count',
-            type = 'number',
-            help = 'Amount of the item to give, or blank to give 1',
-            optional = true,
-        },
-        {
-            name = 'metatype',
-            help = 'Sets the item\'s "metadata.type"',
-            optional = true,
-        },
-    },
-    restricted = 'group.admin'
-}, function(source, args, raw)
-    local item = Items(args.item)
-
-    if item then
-        Inventory.AddItem(args.target, item.name, args.count or 1, args.metatype)
-    end
-end)
-```
-
-
 # Client (/docs/ox_lib/AddKeybind/Client)
 
 
@@ -7009,6 +7889,63 @@ You can get the state with the following method
 
 ```lua
 local state = keybind:isControlPressed()
+```
+
+
+# Server (/docs/ox_lib/AddCommand/Server)
+
+
+
+Registers commands and simplifies argument validation, permissions, and chat suggestions.
+
+```lua
+lib.addCommand(commandName, properties, cb)
+```
+
+* commandName: `string` or `string[]`
+* properties: `table` or `false`
+  * help?: `string`
+  * restricted?: `boolean` or `string` or `string[]`
+  * params?: `table[]`
+    * name: `string`
+    * help?: `string`
+    * type?: `'number'` or `'playerId'` or `'string'` or `'longString'`
+    * optional?: `boolean`
+
+```lua
+lib.addCommand('giveitem', {
+    help = 'Gives an item to a player',
+    params = {
+        {
+            name = 'target',
+            type = 'playerId',
+            help = 'Target player\'s server id',
+        },
+        {
+            name = 'item',
+            type = 'string',
+            help = 'Name of the item to give',
+        },
+        {
+            name = 'count',
+            type = 'number',
+            help = 'Amount of the item to give, or blank to give 1',
+            optional = true,
+        },
+        {
+            name = 'metatype',
+            help = 'Sets the item\'s "metadata.type"',
+            optional = true,
+        },
+    },
+    restricted = 'group.admin'
+}, function(source, args, raw)
+    local item = Items(args.item)
+
+    if item then
+        Inventory.AddItem(args.target, item.name, args.count or 1, args.metatype)
+    end
+end)
 ```
 
 
@@ -7483,6 +8420,63 @@ end
 ```
 
 
+# Server (/docs/ox_lib/Cron/Server)
+
+
+
+A Lua implementation of cron, allowing tasks to be scheduled to run periodically at fixed times, dates, and intervals.
+
+## Cron expression [#cron-expression]
+
+A string containing five values separated by white spaces, representing a set of times to execute a task.
+
+| Field        | Valid values        |
+| ------------ | ------------------- |
+| Minutes      | `0-59`              |
+| Hours        | `0-23`              |
+| Day of month | `1-31`              |
+| Month        | `1-12` or `jan-dec` |
+| Day of week  | `1-7` or `sun-sat`  |
+
+**Note:** Day of the week is set to match `os.date` and starts at 1, unlike the cron-standard which starts at 0.
+
+### `*` Wildcards [#-wildcards]
+
+Represents all values, e.g. `* * * * *` will run every minute, or `* * * * 1` will run every minute on Sunday.
+
+### `,` Lists [#-lists]
+
+Commas can be used to create a list of values, e.g. `* * * * sun,mon,tue` will run every minute on Sunday, Monday, and Tuesday.
+
+### `-` Ranges [#--ranges]
+
+Dashes define a range of values, e.g. `10-30 * * * *` will start running the task at the 10th minute, and every minute until the 30th minute.
+
+### `/` Steps [#-steps]
+
+Slashes can be used for step values, e.g. `* */4 * * *` will run every 4 hours and is shorthand for `* 0,4,8,12,16,20 * * *`.
+
+## Functions [#functions]
+
+### lib.cron.new [#libcronnew]
+
+Creates a new [cronjob](https://en.wikipedia.org/wiki/Cron), scheduling a task to run at fixed times or intervals.
+
+```lua
+lib.cron.new(expression, job, options)
+```
+
+* expression: `string`
+  * A cron expression such as `* * * * *` representing minute, hour, day, month, and day of the week
+* job: `fun(task: OxTask, date: osdate)`
+* options?: `table`
+  * debug?: `boolean`
+
+Return:
+
+* task: `OxTask`
+
+
 # Shared (/docs/ox_lib/Class/Shared)
 
 
@@ -7619,63 +8613,6 @@ CreateThread(function()
     jesse.private.year = 4 -- error
 end)
 ```
-
-
-# Server (/docs/ox_lib/Cron/Server)
-
-
-
-A Lua implementation of cron, allowing tasks to be scheduled to run periodically at fixed times, dates, and intervals.
-
-## Cron expression [#cron-expression]
-
-A string containing five values separated by white spaces, representing a set of times to execute a task.
-
-| Field        | Valid values        |
-| ------------ | ------------------- |
-| Minutes      | `0-59`              |
-| Hours        | `0-23`              |
-| Day of month | `1-31`              |
-| Month        | `1-12` or `jan-dec` |
-| Day of week  | `1-7` or `sun-sat`  |
-
-**Note:** Day of the week is set to match `os.date` and starts at 1, unlike the cron-standard which starts at 0.
-
-### `*` Wildcards [#-wildcards]
-
-Represents all values, e.g. `* * * * *` will run every minute, or `* * * * 1` will run every minute on Sunday.
-
-### `,` Lists [#-lists]
-
-Commas can be used to create a list of values, e.g. `* * * * sun,mon,tue` will run every minute on Sunday, Monday, and Tuesday.
-
-### `-` Ranges [#--ranges]
-
-Dashes define a range of values, e.g. `10-30 * * * *` will start running the task at the 10th minute, and every minute until the 30th minute.
-
-### `/` Steps [#-steps]
-
-Slashes can be used for step values, e.g. `* */4 * * *` will run every 4 hours and is shorthand for `* 0,4,8,12,16,20 * * *`.
-
-## Functions [#functions]
-
-### lib.cron.new [#libcronnew]
-
-Creates a new [cronjob](https://en.wikipedia.org/wiki/Cron), scheduling a task to run at fixed times or intervals.
-
-```lua
-lib.cron.new(expression, job, options)
-```
-
-* expression: `string`
-  * A cron expression such as `* * * * *` representing minute, hour, day, month, and day of the week
-* job: `fun(task: OxTask, date: osdate)`
-* options?: `table`
-  * debug?: `boolean`
-
-Return:
-
-* task: `OxTask`
 
 
 # Client (/docs/ox_lib/DisableControls/Client)
@@ -8194,153 +9131,6 @@ lib.getLocale(resource, key)
 * key: `string`
 
 
-# Server (/docs/ox_lib/Logger/Server)
-
-
-
-## lib.logger [#liblogger]
-
-```lua
-lib.logger(source, event, message, ...)
-```
-
-* source: `number` or `string`
-  * Preferably an active player id, otherwise an identifier, or wherever else it originated from.
-* event: `string`
-  * A name for the log event (i.e. the trigerring event or a description)
-* message: `string`
-  * The content for the log.
-* vararg: `string`
-  * Additional arguments are converted to tags for additional filtering and searching.
-
-<br />
-
-<u>
-  **Example**
-</u>
-
-```lua
-local vehicle = Ox.CreateVehicle(false, `sultanrs`, vector4(-56.479122, -1116.870362, 26.432250, 0.000030517578))
-lib.logger(-1, 'CreateVehicle', json.encode(vehicle))
-```
-
-## Datadog [#datadog]
-
-<div className="fd-steps">
-  <div className="fd-step">
-    ### Create your [Datadog](https://www.datadoghq.com/) account [#create-your-datadog-account-step]
-
-    You will receive a free 14 day trial, otherwise refer to their [pricing](https://www.datadoghq.com/pricing/) guide.\
-    Free accounts are limited, however logs will still be retained for 14 days.
-  </div>
-
-  <div className="fd-step">
-    ### Create an [API key](https://app.datadoghq.com/organization-settings/api-keys) [#create-an-api-key-step]
-
-    This is a UUID used to submit logs to your Datadog organisation.
-  </div>
-
-  <div className="fd-step">
-    ### Config [#config-step]
-
-    Set your API key and [Datadog site](https://docs.datadoghq.com/getting_started/site/) using the following convars.
-
-    ```bash
-    set datadog:key "yourapikey"
-    set datadog:site "datadoghq.com"
-    ```
-  </div>
-</div>
-
-## Grafana Loki [#grafana-loki]
-
-Loki is a horizontally scalable, highly available, multi-tenant log aggregation system inspired by Prometheus.\
-It is designed to be very cost effective and easy to operate.
-
-<Tabs items="[&#x22;Cloud&#x22;, &#x22;Self-hosted&#x22;]">
-  <Tab>
-    * Has free tier with some restrictions
-    * Easy to manage
-    * Easier to setup
-    * Mostly managed by Grafana
-
-    <div className="fd-steps">
-      <div className="fd-step">
-        ### Create your [Grafana](https://grafana.com/) account [#create-your-grafana-account-step]
-      </div>
-
-      <div className="fd-step">
-        ### Head to [My Account](https://grafana.com/auth/sign-in/?plcmt=top-nav\&cta=myaccount) [#head-to-my-account-step]
-      </div>
-
-      <div className="fd-step">
-        ### Setup Loki [#setup-loki-step]
-
-        Find the Loki section in your account panel, and click "Details".
-        Generate a password and save the API key, as well as your `user` and `url`.
-      </div>
-    </div>
-  </Tab>
-
-  <Tab>
-    To setup a grafana instance you'll need docker, and knowledge on containers or kubernetes.\
-    Please find a guide to setup a grafana stack (min requirement grafana and grafana loki) and follow that.
-
-    Once done, setup authentication and use the username and password securing your endpoint.
-
-    * By default self-hosted loki instances do not provide any authentication layers and will require an external authentication layer such as NGINX basic auth or Cloudflare Access.
-  </Tab>
-</Tabs>
-
-### Config [#config]
-
-Use the following convars to set your logging service, endpoint, and authentication details.
-
-```bash
-set ox:logger "loki"
-set loki:user "<insert your user>"
-set loki:password "<insert the api key or password>"
-set loki:endpoint "<insert loki url without http:// or https://>"
-```
-
-## Fivemanage [#fivemanage]
-
-[Fivemanage](https://fivemanage.com/?ref=overextended) is an easy-to-use, all-in-one SaaS for game servers that provides logging.
-
-<div className="fd-steps">
-  <div className="fd-step">
-    ### Create an account [#create-an-account-step]
-
-    Sign up at [Fivemanage](https://fivemanage.com/?ref=overextended).
-
-    <div className="fd-steps">
-      <div className="fd-step">
-        #### Upgrading to `Hobby` or `Pro` tier (optional) [#upgrading-to-hobby-or-pro-tier-optional-step]
-
-        Logging is included in the free tier, but with limited storage and retention.
-
-        If you decide to upgrade, you'll get a 14-day free trial if you do not already have a subscription. You can find more information [here](https://fivemanage.com/profile/billing?ref=overextended) and on the [pricing](https://fivemanage.com/pricing?ref=overextended) page.
-      </div>
-    </div>
-  </div>
-
-  <div className="fd-step">
-    ### Create a new token [#create-a-new-token-step]
-
-    You'll need to create a new token with the type `Logs`.
-  </div>
-
-  <div className="fd-step">
-    ### Config [#config-step-1]
-
-    ```bash
-    set ox:logger "fivemanage"
-    set fivemanage:key "YOUR_API_KEY"
-    ```
-  </div>
-</div>
-
-
 # Client (/docs/ox_lib/Marker/Client)
 
 
@@ -8619,6 +9409,153 @@ math.lerp(start, finish, duration)
 Return:
 
 * iteratorFunction: `fun(): T, number`
+
+
+# Server (/docs/ox_lib/Logger/Server)
+
+
+
+## lib.logger [#liblogger]
+
+```lua
+lib.logger(source, event, message, ...)
+```
+
+* source: `number` or `string`
+  * Preferably an active player id, otherwise an identifier, or wherever else it originated from.
+* event: `string`
+  * A name for the log event (i.e. the trigerring event or a description)
+* message: `string`
+  * The content for the log.
+* vararg: `string`
+  * Additional arguments are converted to tags for additional filtering and searching.
+
+<br />
+
+<u>
+  **Example**
+</u>
+
+```lua
+local vehicle = Ox.CreateVehicle(false, `sultanrs`, vector4(-56.479122, -1116.870362, 26.432250, 0.000030517578))
+lib.logger(-1, 'CreateVehicle', json.encode(vehicle))
+```
+
+## Datadog [#datadog]
+
+<div className="fd-steps">
+  <div className="fd-step">
+    ### Create your [Datadog](https://www.datadoghq.com/) account [#create-your-datadog-account-step]
+
+    You will receive a free 14 day trial, otherwise refer to their [pricing](https://www.datadoghq.com/pricing/) guide.\
+    Free accounts are limited, however logs will still be retained for 14 days.
+  </div>
+
+  <div className="fd-step">
+    ### Create an [API key](https://app.datadoghq.com/organization-settings/api-keys) [#create-an-api-key-step]
+
+    This is a UUID used to submit logs to your Datadog organisation.
+  </div>
+
+  <div className="fd-step">
+    ### Config [#config-step]
+
+    Set your API key and [Datadog site](https://docs.datadoghq.com/getting_started/site/) using the following convars.
+
+    ```bash
+    set datadog:key "yourapikey"
+    set datadog:site "datadoghq.com"
+    ```
+  </div>
+</div>
+
+## Grafana Loki [#grafana-loki]
+
+Loki is a horizontally scalable, highly available, multi-tenant log aggregation system inspired by Prometheus.\
+It is designed to be very cost effective and easy to operate.
+
+<Tabs items="[&#x22;Cloud&#x22;, &#x22;Self-hosted&#x22;]">
+  <Tab>
+    * Has free tier with some restrictions
+    * Easy to manage
+    * Easier to setup
+    * Mostly managed by Grafana
+
+    <div className="fd-steps">
+      <div className="fd-step">
+        ### Create your [Grafana](https://grafana.com/) account [#create-your-grafana-account-step]
+      </div>
+
+      <div className="fd-step">
+        ### Head to [My Account](https://grafana.com/auth/sign-in/?plcmt=top-nav\&cta=myaccount) [#head-to-my-account-step]
+      </div>
+
+      <div className="fd-step">
+        ### Setup Loki [#setup-loki-step]
+
+        Find the Loki section in your account panel, and click "Details".
+        Generate a password and save the API key, as well as your `user` and `url`.
+      </div>
+    </div>
+  </Tab>
+
+  <Tab>
+    To setup a grafana instance you'll need docker, and knowledge on containers or kubernetes.\
+    Please find a guide to setup a grafana stack (min requirement grafana and grafana loki) and follow that.
+
+    Once done, setup authentication and use the username and password securing your endpoint.
+
+    * By default self-hosted loki instances do not provide any authentication layers and will require an external authentication layer such as NGINX basic auth or Cloudflare Access.
+  </Tab>
+</Tabs>
+
+### Config [#config]
+
+Use the following convars to set your logging service, endpoint, and authentication details.
+
+```bash
+set ox:logger "loki"
+set loki:user "<insert your user>"
+set loki:password "<insert the api key or password>"
+set loki:endpoint "<insert loki url without http:// or https://>"
+```
+
+## Fivemanage [#fivemanage]
+
+[Fivemanage](https://fivemanage.com/?ref=overextended) is an easy-to-use, all-in-one SaaS for game servers that provides logging.
+
+<div className="fd-steps">
+  <div className="fd-step">
+    ### Create an account [#create-an-account-step]
+
+    Sign up at [Fivemanage](https://fivemanage.com/?ref=overextended).
+
+    <div className="fd-steps">
+      <div className="fd-step">
+        #### Upgrading to `Hobby` or `Pro` tier (optional) [#upgrading-to-hobby-or-pro-tier-optional-step]
+
+        Logging is included in the free tier, but with limited storage and retention.
+
+        If you decide to upgrade, you'll get a 14-day free trial if you do not already have a subscription. You can find more information [here](https://fivemanage.com/profile/billing?ref=overextended) and on the [pricing](https://fivemanage.com/pricing?ref=overextended) page.
+      </div>
+    </div>
+  </div>
+
+  <div className="fd-step">
+    ### Create a new token [#create-a-new-token-step]
+
+    You'll need to create a new token with the type `Logs`.
+  </div>
+
+  <div className="fd-step">
+    ### Config [#config-step-1]
+
+    ```bash
+    set ox:logger "fivemanage"
+    set fivemanage:key "YOUR_API_KEY"
+    ```
+  </div>
+</div>
 
 
 # Client (/docs/ox_lib/PlayAnim/Client)
@@ -9793,6 +10730,166 @@ Return:
 * isFrozen: `boolean`
 
 
+# Client (/docs/ox_lib/VehicleProperties/Client)
+
+
+
+Mostly follows the format used by ESX and QBCore, with extra data such as damaged/missing props.\
+[https://github.com/overextended/ox\_lib/blob/master/resource/vehicleProperties/client.lua#L3](https://github.com/overextended/ox_lib/blob/master/resource/vehicleProperties/client.lua#L3)
+
+## lib.getVehicleProperties [#libgetvehicleproperties]
+
+```ts
+lib.getVehicleProperties(vehicle);
+```
+
+* vehicle: `number`
+  * vehicle handle of the vehicle to get the properties for
+
+<Tabs items="[&#x22;Lua&#x22;, &#x22;JS&#x22;]">
+  <Tab>
+    ```lua
+    lib.getVehicleProperties(GetVehiclePedIsUsing(PlayerPedId()))
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    import lib from '@overextended/ox_lib/client'
+
+    lib.getVehicleProperties(GetVehiclePedIsUsing(PlayerPedId()))
+    ```
+  </Tab>
+</Tabs>
+
+## lib.setVehicleProperties [#libsetvehicleproperties]
+
+Sets properties on a vehicle (i.e. mods, plate text, etc.) and returns true if the client owns the entity.
+
+```lua
+lib.setVehicleProperties(vehicle, props)
+```
+
+* vehicle: `entity`
+* props: `table`
+
+<Tabs items="[&#x22;Lua&#x22;, &#x22;JS&#x22;]">
+  <Tab>
+    ```lua
+    RegisterNetEvent('ox_lib:setVehicleProperties', function(netid, data)
+        lib.setVehicleProperties(NetToVeh(netid), data)
+    end)
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    import { setVehicleProperties } from '@overextended/ox_lib/client'
+
+    onNet('ox_lib:setVehicleProperties', (netid, data) => {
+      setVehicleProperties(NetToVeh(netid), data)
+    })
+    ```
+  </Tab>
+</Tabs>
+
+**Returns:**
+
+* isEntityOwner: `boolean`
+
+### Recommended Usage [#recommended-usage]
+
+The server should tell the owner of the entity to set properties, using the following trigger.
+
+```lua
+TriggerClientEvent('ox_lib:setVehicleProperties', entityOwner, vehNetId, data)
+```
+
+## Vehicle Properties [#vehicle-properties]
+
+* model?: `number`
+* plate?: `string`
+* plateIndex?: `number`
+* bodyHealth?: `number`
+* engineHealth?: `number`
+* tankHealth?: `number`
+* fuelLevel?: `number`
+* oilLevel?: `number`
+* dirtLevel?: `number`
+* color1?: `number` or `number[]`
+* color2?: `number` or `number[]`
+* pearlescentColor?: `number`
+* interiorColor?: `number`
+* dashboardColor?: `number`
+* wheelColor?: `number`
+* wheelWidth?: `number`
+* wheelSize?: `number`
+* wheels?: `number`
+* windowTint?: `number`
+* xenonColor?: `number`
+* neonEnabled?: `boolean[]`
+* neonColor?: `number` or `number[]`
+* extras?: `table<number | string, 0 | 1>`
+* tyreSmokeColor?: `number` or `number[]`
+* modSpoilers?: `number`
+* modFrontBumper?: `number`
+* modRearBumper?: `number`
+* modSideSkirt?: `number`
+* modExhaust?: `number`
+* modFrame?: `number`
+* modGrille?: `number`
+* modHood?: `number`
+* modFender?: `number`
+* modRightFender?: `number`
+* modRoof?: `number`
+* modEngine?: `number`
+* modBrakes?: `number`
+* modTransmission?: `number`
+* modHorns?: `number`
+* modSuspension?: `number`
+* modArmor?: `number`
+* modNitrous?: `number`
+* modTurbo?: `number`
+* modSubwoofer?: `boolean`
+* modSmokeEnabled?: `boolean`
+* modHydraulics?: `boolean`
+* modXenon?: `boolean`
+* modFrontWheels?: `number`
+* modBackWheels?: `number`
+* modCustomTiresF?: `boolean`
+* modCustomTiresR?: `boolean`
+* modPlateHolder?: `number`
+* modVanityPlate?: `number`
+* modTrimA?: `number`
+* modOrnaments?: `number`
+* modDashboard?: `number`
+* modDial?: `number`
+* modDoorSpeaker?: `number`
+* modSeats?: `number`
+* modSteeringWheel?: `number`
+* modShifterLeavers?: `number`
+* modAPlate?: `number`
+* modSpeakers?: `number`
+* modTrunk?: `number`
+* modHydrolic?: `number`
+* modEngineBlock?: `number`
+* modAirFilter?: `number`
+* modStruts?: `number`
+* modArchCover?: `number`
+* modAerials?: `number`
+* modTrimB?: `number`
+* modTank?: `number`
+* modWindows?: `number`
+* modDoorR?: `number`
+* modLivery?: `number`
+* modRoofLivery?: `number`
+* modLightbar?: `number`
+* windows?: `number[]`
+* doors?: `number[]`
+* tyres?: `table<number | string, 1 | 2>`
+* bulletProofTyres?: `boolean`
+
+
 # Shared (/docs/ox_lib/Timer/Shared)
 
 
@@ -9968,166 +11065,6 @@ timer = lib.timer(5000, function()
 end, true)
 
 ```
-
-
-# Client (/docs/ox_lib/VehicleProperties/Client)
-
-
-
-Mostly follows the format used by ESX and QBCore, with extra data such as damaged/missing props.\
-[https://github.com/overextended/ox\_lib/blob/master/resource/vehicleProperties/client.lua#L3](https://github.com/overextended/ox_lib/blob/master/resource/vehicleProperties/client.lua#L3)
-
-## lib.getVehicleProperties [#libgetvehicleproperties]
-
-```ts
-lib.getVehicleProperties(vehicle);
-```
-
-* vehicle: `number`
-  * vehicle handle of the vehicle to get the properties for
-
-<Tabs items="[&#x22;Lua&#x22;, &#x22;JS&#x22;]">
-  <Tab>
-    ```lua
-    lib.getVehicleProperties(GetVehiclePedIsUsing(PlayerPedId()))
-    ```
-  </Tab>
-
-  <Tab>
-    ```ts
-    import lib from '@overextended/ox_lib/client'
-
-    lib.getVehicleProperties(GetVehiclePedIsUsing(PlayerPedId()))
-    ```
-  </Tab>
-</Tabs>
-
-## lib.setVehicleProperties [#libsetvehicleproperties]
-
-Sets properties on a vehicle (i.e. mods, plate text, etc.) and returns true if the client owns the entity.
-
-```lua
-lib.setVehicleProperties(vehicle, props)
-```
-
-* vehicle: `entity`
-* props: `table`
-
-<Tabs items="[&#x22;Lua&#x22;, &#x22;JS&#x22;]">
-  <Tab>
-    ```lua
-    RegisterNetEvent('ox_lib:setVehicleProperties', function(netid, data)
-        lib.setVehicleProperties(NetToVeh(netid), data)
-    end)
-    ```
-  </Tab>
-
-  <Tab>
-    ```ts
-    import { setVehicleProperties } from '@overextended/ox_lib/client'
-
-    onNet('ox_lib:setVehicleProperties', (netid, data) => {
-      setVehicleProperties(NetToVeh(netid), data)
-    })
-    ```
-  </Tab>
-</Tabs>
-
-**Returns:**
-
-* isEntityOwner: `boolean`
-
-### Recommended Usage [#recommended-usage]
-
-The server should tell the owner of the entity to set properties, using the following trigger.
-
-```lua
-TriggerClientEvent('ox_lib:setVehicleProperties', entityOwner, vehNetId, data)
-```
-
-## Vehicle Properties [#vehicle-properties]
-
-* model?: `number`
-* plate?: `string`
-* plateIndex?: `number`
-* bodyHealth?: `number`
-* engineHealth?: `number`
-* tankHealth?: `number`
-* fuelLevel?: `number`
-* oilLevel?: `number`
-* dirtLevel?: `number`
-* color1?: `number` or `number[]`
-* color2?: `number` or `number[]`
-* pearlescentColor?: `number`
-* interiorColor?: `number`
-* dashboardColor?: `number`
-* wheelColor?: `number`
-* wheelWidth?: `number`
-* wheelSize?: `number`
-* wheels?: `number`
-* windowTint?: `number`
-* xenonColor?: `number`
-* neonEnabled?: `boolean[]`
-* neonColor?: `number` or `number[]`
-* extras?: `table<number | string, 0 | 1>`
-* tyreSmokeColor?: `number` or `number[]`
-* modSpoilers?: `number`
-* modFrontBumper?: `number`
-* modRearBumper?: `number`
-* modSideSkirt?: `number`
-* modExhaust?: `number`
-* modFrame?: `number`
-* modGrille?: `number`
-* modHood?: `number`
-* modFender?: `number`
-* modRightFender?: `number`
-* modRoof?: `number`
-* modEngine?: `number`
-* modBrakes?: `number`
-* modTransmission?: `number`
-* modHorns?: `number`
-* modSuspension?: `number`
-* modArmor?: `number`
-* modNitrous?: `number`
-* modTurbo?: `number`
-* modSubwoofer?: `boolean`
-* modSmokeEnabled?: `boolean`
-* modHydraulics?: `boolean`
-* modXenon?: `boolean`
-* modFrontWheels?: `number`
-* modBackWheels?: `number`
-* modCustomTiresF?: `boolean`
-* modCustomTiresR?: `boolean`
-* modPlateHolder?: `number`
-* modVanityPlate?: `number`
-* modTrimA?: `number`
-* modOrnaments?: `number`
-* modDashboard?: `number`
-* modDial?: `number`
-* modDoorSpeaker?: `number`
-* modSeats?: `number`
-* modSteeringWheel?: `number`
-* modShifterLeavers?: `number`
-* modAPlate?: `number`
-* modSpeakers?: `number`
-* modTrunk?: `number`
-* modHydrolic?: `number`
-* modEngineBlock?: `number`
-* modAirFilter?: `number`
-* modStruts?: `number`
-* modArchCover?: `number`
-* modAerials?: `number`
-* modTrimB?: `number`
-* modTank?: `number`
-* modWindows?: `number`
-* modDoorR?: `number`
-* modLivery?: `number`
-* modRoofLivery?: `number`
-* modLightbar?: `number`
-* windows?: `number[]`
-* doors?: `number[]`
-* tyres?: `table<number | string, 1 | 2>`
-* bulletProofTyres?: `boolean`
 
 
 # Server (/docs/ox_lib/Version/Server)
@@ -10715,941 +11652,197 @@ Zones will be saved to `ox_lib/created_zones.lua` with your chosen format.
 </Tabs>
 
 
-# insert (/docs/oxmysql/Functions/insert)
+# OxPlayer (/docs/ox_core/Classes/Client/OxPlayer)
 
 
 
-Inserts a new entry into the database and returns the insert id for the row, if valid.
+## OxPlayer [#oxplayer]
 
-## Promise [#promise]
+* state: `StateBagInterface`
+* userId: `number`
+* charId?: `number`
+* stateId?: `string`
 
-<Tabs items="['Lua', 'JS']">
-  <Tab>
-    ```lua
-    local id = MySQL.insert.await('INSERT INTO `users` (identifier, firstname, lastname) VALUES (?, ?, ?)', {
-        identifier, firstName, lastName
-    })
+## OxPlayer.addStatus [#oxplayeraddstatus]
 
-    print(id)
-    ```
-  </Tab>
-
-  <Tab>
-    ```js
-    const id = await MySQL.insert('INSERT INTO `users` (identifier, firstname, lastname) VALUES (?, ?, ?)', [
-      identifier, firstName, lastName
-    ])
-
-    console.log(id)
-    ```
-  </Tab>
-</Tabs>
-
-**Aliases**
-
-* `MySQL.Sync.insert`
-* `exports.ghmattimysql.executeSync`
-* `exports.oxmysql.insert_async`
-
-## Callback [#callback]
-
-<Tabs items="['Lua', 'JS']">
-  <Tab>
-    ```lua
-    MySQL.insert('INSERT INTO `users` (identifier, firstname, lastname) VALUES (?, ?, ?)', {
-        identifier, firstName, lastName
-    }, function(id)
-        print(id)
-    end)
-    ```
-  </Tab>
-
-  <Tab>
-    ```js
-    MySQL.insert('INSERT INTO `users` (identifier, firstname, lastname) VALUES (?, ?, ?)', [
-      identifier, firstName, lastName
-    ], (id) => {
-      console.log(id)
-    })
-    ```
-  </Tab>
-</Tabs>
-
-**Aliases**
-
-* `MySQL.Async.insert`
-* `exports.ghmattimysql.execute`
-* `exports.oxmysql.insert`
-
-
-# Prepare (/docs/oxmysql/Functions/prepare)
-
-
-
-Prepare can be used to execute frequently called queries faster and accepts multiple sets of parameters to be used with a single query.
-
-* Date will not return the datestring commonly used in FiveM
-* TINYINT 1 and BIT will not return a boolean
-* You can only use ? value placeholders, ?? column placeholders and named placeholders will throw an error
-
-Unlike [rawExecute](./rawExecute), the SELECT statement will return a column, row, or array of rows depending on the number of columns and rows selected.
-
-## Promise [#promise]
-
-<Tabs items="['Lua', 'JS']">
-  <Tab>
-    ```lua
-    local response = MySQL.prepare.await('SELECT `firstname`, `lastname` FROM `users` WHERE `identifier` = ?', {
-        identifier
-    })
-
-
-    print(json.encode(response, { indent = true, sort_keys = true }))
-    ```
-  </Tab>
-
-  <Tab>
-    ```js
-    const response = await MySQL.prepare('SELECT `firstname`, `lastname` FROM `users` WHERE `identifier` = ?', [
-      identifier
-    ])
-
-    console.log(JSON.stringify(response))
-    ```
-  </Tab>
-</Tabs>
-
-**Aliases**
-
-* `exports.oxmysql.prepare_async`
-
-## Callback [#callback]
-
-<Tabs items="['Lua', 'JS']">
-  <Tab>
-    ```lua
-    MySQL.prepare('SELECT `firstname`, `lastname` FROM `users` WHERE `identifier` = ?', {
-        identifier
-    }, function(response)
-        print(json.encode(response, { indent = true, sort_keys = true }))
-    end)
-    ```
-  </Tab>
-
-  <Tab>
-    ```js
-    MySQL.prepare('SELECT `firstname`, `lastname` FROM `users` WHERE `identifier` = ?', [
-      identifier
-    ], (response) => {
-      console.log(JSON.stringify(response))
-    })
-    ```
-  </Tab>
-</Tabs>
-
-**Aliases**
-
-* `exports.oxmysql.prepare`
-
-
-# Query (/docs/oxmysql/Functions/query)
-
-
-
-When selecting data, returns all matching rows and columns; otherwise, returns data like insertId, affectedRows, etc.
-
-## Promise [#promise]
-
-<Tabs items="['Lua', 'JS']">
-  <Tab>
-    ```lua
-    local response = MySQL.query.await('SELECT `firstname`, `lastname` FROM `users` WHERE `identifier` = ?', {
-        identifier
-    })
-
-    if response then
-        for i = 1, #response do
-            local row = response[i]
-            print(row.firstname, row.lastname)
-        end
-    end
-    ```
-  </Tab>
-
-  <Tab>
-    ```js
-    const response = await MySQL.query('SELECT `firstname`, `lastname` FROM `users` WHERE `identifier` = ?', [
-      identifier
-    ])
-
-    if (response) {
-      response.forEach((row) => {
-        console.log(row.identifier, row.firstname, row.lastname)
-      })
-    }
-    ```
-  </Tab>
-</Tabs>
-
-**Aliases**
-
-* `MySQL.Sync.fetchAll`
-* `exports.ghmattimysql.execute`
-* `exports.oxmysql.query_async`
-
-## Callback [#callback]
-
-<Tabs items="['Lua', 'JS']">
-  <Tab>
-    ```lua
-    MySQL.query('SELECT `firstname`, `lastname` FROM `users` WHERE `identifier` = ?', {
-        identifier
-    }, function(response)
-        if response then
-            for i = 1, #response do
-                local row = response[i]
-                print(row.firstname, row.lastname)
-            end
-        end
-    end)
-    ```
-  </Tab>
-
-  <Tab>
-    ```js
-    MySQL.query('SELECT `firstname`, `lastname` FROM `users` WHERE `identifier` = ?', [
-      identifier
-    ], (response) => {
-      if (response) {
-        response.forEach((row) => {
-          console.log(row.firstname, row.lastname)
-        })
-      }
-    })
-    ```
-  </Tab>
-</Tabs>
-
-**Aliases**
-
-* `MySQL.Async.fetchAll`
-* `exports.ghmattimysql.execute`
-* `exports.oxmysql.query`
-
-
-# RawExecute (/docs/oxmysql/Functions/rawExecute)
-
-
-
-rawExecute can be used to execute frequently called queries faster and accepts multiple sets of parameters to be used with a single query.
-
-* Date will not return the datestring commonly used in FiveM
-* TINYINT 1 and BIT will not return a boolean
-* You can only use ? value placeholders, ?? column placeholders and named placeholders will throw an error
-
-Unlike [prepare](./prepare), the SELECT statement will always return an array of rows.
-When using SELECT, the return value will match `query`, `single`, or `scalar` depending on the number of columns and rows selected.
-
-## Promise [#promise]
-
-<Tabs items="['Lua', 'JS']">
-  <Tab>
-    ```lua
-    local response = MySQL.rawExecute.await('SELECT `firstname`, `lastname` FROM `users` WHERE `identifier` = ?', {
-        identifier
-    })
-
-
-    print(json.encode(response, { indent = true, sort_keys = true }))
-    ```
-  </Tab>
-
-  <Tab>
-    ```js
-    const response = await MySQL.rawExecute('SELECT `firstname`, `lastname` FROM `users` WHERE `identifier` = ?', [
-      identifier
-    ])
-
-    console.log(JSON.stringify(response))
-    ```
-  </Tab>
-</Tabs>
-
-**Aliases**
-
-* `exports.oxmysql.rawExecute_async`
-
-## Callback [#callback]
-
-<Tabs items="['Lua', 'JS']">
-  <Tab>
-    ```lua
-    MySQL.rawExecute('SELECT `firstname`, `lastname` FROM `users` WHERE `identifier` = ?', {
-        identifier
-    }, function(response)
-        print(json.encode(response, { indent = true, sort_keys = true }))
-    end)
-    ```
-  </Tab>
-
-  <Tab>
-    ```js
-    MySQL.rawExecute('SELECT `firstname`, `lastname` FROM `users` WHERE `identifier` = ?', [
-      identifier
-    ], (response) => {
-      console.log(JSON.stringify(response))
-    })
-    ```
-  </Tab>
-</Tabs>
-
-**Aliases**
-
-* `exports.oxmysql.rawExecute`
-
-
-# Scalar (/docs/oxmysql/Functions/scalar)
-
-
-
-Returns the first column for a single row.
-
-## Promise [#promise]
-
-<Tabs items="['Lua', 'JS']">
-  <Tab>
-    ```lua
-    local firstName = MySQL.scalar.await('SELECT `firstname` FROM `users` WHERE `identifier` = ? LIMIT 1', {
-        identifier
-    })
-
-    print(firstName)
-    ```
-  </Tab>
-
-  <Tab>
-    ```js
-    const firstName = await MySQL.scalar('SELECT `firstname` FROM `users` WHERE `identifier` = ? LIMIT 1', [
-      identifier
-    ])
-
-    console.log(firstName)
-    ```
-  </Tab>
-</Tabs>
-
-**Aliases**
-
-* `MySQL.Sync.fetchScalar`
-* `exports.ghmattimysql.scalar`
-* `exports.oxmysql.scalar_async`
-
-## Callback [#callback]
-
-<Tabs items="['Lua', 'JS']">
-  <Tab>
-    ```lua
-    MySQL.scalar('SELECT `firstname` FROM `users` WHERE `identifier` = ? LIMIT 1', {
-        identifier
-    }, function(firstName)
-        print(firstName)
-    end)
-    ```
-  </Tab>
-
-  <Tab>
-    ```js
-    MySQL.scalar('SELECT `firstname` FROM `users` WHERE `identifier` = ? LIMIT 1', [
-      identifier
-    ], (firstName) => {
-      console.log(firstName)
-    })
-    ```
-  </Tab>
-</Tabs>
-
-**Aliases**
-
-* `MySQL.Async.fetchScalar`
-* `exports.ghmattimysql.scalar`
-* `exports.oxmysql.scalar`
-
-
-# Single (/docs/oxmysql/Functions/single)
-
-
-
-Returns all selected columns for a single row.
-
-## Promise [#promise]
-
-<Tabs items="['Lua', 'JS']">
-  <Tab>
-    ```lua
-    local row = MySQL.single.await('SELECT `firstname`, `lastname` FROM `users` WHERE `identifier` = ? LIMIT 1', {
-        identifier
-    })
-
-    if not row then return end
-
-    print(row.firstname, row.lastname)
-    ```
-  </Tab>
-
-  <Tab>
-    ```js
-    const row = await MySQL.single('SELECT `firstname`, `lastname` FROM `users` WHERE `identifier` = ? LIMIT 1', [
-      identifier
-    ])
-
-    if (!row) return;
-
-    console.log(row.firstname, row.lastname)
-    ```
-  </Tab>
-</Tabs>
-
-**Aliases**
-
-* `exports.oxmysql.single_async`
-
-## Callback [#callback]
-
-<Tabs items="['Lua', 'JS']">
-  <Tab>
-    ```lua
-    MySQL.single('SELECT `firstname`, `lastname` FROM `users` WHERE `identifier` = ? LIMIT 1', {
-        identifier
-    }, function(row)
-        if not row then return end
-
-        print(row.firstname, row.lastname)
-    end)
-    ```
-  </Tab>
-
-  <Tab>
-    ```js
-    MySQL.single('SELECT `firstname`, `lastname` FROM `users` WHERE `identifier` = ? LIMIT 1', [
-      identifier
-    ], (row) => {
-      if (!row) return;
-
-      console.log(row.firstname, row.lastname)
-    })
-    ```
-  </Tab>
-</Tabs>
-
-**Aliases**
-
-* `exports.oxmysql.single`
-
-
-# Transaction (/docs/oxmysql/Functions/transaction)
-
-
-
-A transaction executes multiple queries and commits them only if all succeed.\
-If one fails, none of the queries are committed.
-
-The return value is a boolean, which is the result of the transaction.
-
-## Specific format [#specific-format]
-
-When using this format, you must pass an array containing sets of queries and parameters to the transaction method.\
-In this case, your queries do not necessarily match and the values are unique to each query.
+Increases value of a status.
 
 ```lua
--- You might rename "values" as "parameters" for mysql-async compatibility.
-local queries = {
-    { query = 'INSERT INTO `test` (id) VALUES (?)', values = { 1 }},
-    { query = 'INSERT INTO `test` (id, name) VALUES (?, ?)', values = { 2, 'bob' }},
-}
-
--- You can also pass an array of arrays.
-local queries = {
-  { 'INSERT INTO `test` (id) VALUES (?)', { 1 } },
-  { 'INSERT INTO `test` (id, name) VALUES (?, ?)', { 2, 'bob' } },
-}
+player.addStatus(statusName, value)
 ```
 
-## Shared format [#shared-format]
+**Parameters**
 
-When using this format, you must pass an array containing queries and a set containing shared parameters to the transaction method.\
-In this case, your queries do not necessarily match and the values are unique to each query.
+* statusName: `string`
+* value: `number`
+
+**Returns**
+
+* success: `boolean`
+
+## OxPlayer.get [#oxplayerget]
+
+Returns a value from the players metadata.
 
 ```lua
--- You might rename "values" as "parameters" for mysql-async compatibility.
-local queries = {
-    'INSERT INTO `test` (id, name) VALUES (@someid, @somename)',
-    'SET `name` = @newname IN `test` WHERE `id` = @someid'
-}
-
-local values = {
-    someid = 2,
-    somename = 'John Doe',
-    newname = 'John Notdoe'
-}
+player.get(key)
 ```
 
-## Promise [#promise]
+**Parameters**
 
-<Tabs items="['Lua', 'JS']">
-  <Tab>
-    ```lua
-    local success = MySQL.transaction.await(queries, values --[[leave nil for specific format]])
-    print(success)
-    ```
-  </Tab>
+* key: `string`
 
-  <Tab>
-    ```js
-    const success = await MySQL.transaction(queries, values /*leave nil for specific format*/)
-    console.log(success)
-    ```
-  </Tab>
-</Tabs>
+**Returns**
 
-**Aliases**
+* `unknown`
 
-* `MySQL.Sync.transaction`
-* `exports.ghmattimysql.transaction`
-* `exports.oxmysql.transaction_async`
+## OxPlayer.getCoords [#oxplayergetcoords]
 
-## Callback [#callback]
-
-<Tabs items="['Lua', 'JS']">
-  <Tab>
-    ```lua
-    -- specific
-    MySQL.transaction(queries, values, function(success)
-        print(success)
-    end)
-
-    -- shared
-    MySQL.transaction(queries, function(success)
-        print(success)
-    end)
-    ```
-  </Tab>
-
-  <Tab>
-    ```js
-    // specific
-    MySQL.transaction(queries, (success) => {
-      console.log(success)
-    })
-
-    // shared
-    MySQL.transaction(queries, values, (success) => {
-      console.log(success)
-    })
-    ```
-  </Tab>
-</Tabs>
-
-**Aliases**
-
-* `MySQL.Async.transaction`
-* `exports.ghmattimysql.transaction`
-* `exports.oxmysql.transaction`
-
-## Transaction Isolation Level [#transaction-isolation-level]
-
-This can be set through the convar `mysql_transaction_isolation_level`, and is an integer ranging from `1-4`.\
-The default value is 2.
-
-| Convar Value | Result           |
-| ------------ | ---------------- |
-| 1            | Repeatable Read  |
-| 2            | Read Committed   |
-| 3            | Read Uncommitted |
-| 4            | Serializable     |
-
-
-# Update (/docs/oxmysql/Functions/update)
-
-
-
-Returns the number of rows affected by the query.
-
-## Promise [#promise]
-
-<Tabs items="['Lua', 'JS']">
-  <Tab>
-    ```lua
-    local affectedRows = MySQL.update.await('UPDATE users SET firstname = ? WHERE identifier = ?', {
-        newName, identifier
-    })
-
-    print(affectedRows)
-    ```
-  </Tab>
-
-  <Tab>
-    ```js
-    const affectedRows = await MySQL.update('UPDATE users SET firstname = ? WHERE identifier = ?', [
-      newName, identifier
-    ])
-
-    console.log(affectedRows)
-    ```
-  </Tab>
-</Tabs>
-
-**Aliases**
-
-* `MySQL.Sync.execute`
-* `exports.ghmattimysql.executeSync`
-* `exports.oxmysql.update_async`
-
-## Callback [#callback]
-
-<Tabs items="['Lua', 'JS']">
-  <Tab>
-    ```lua
-    MySQL.update('UPDATE users SET firstname = ? WHERE identifier = ?', {
-        newName, identifier
-    }, function(affectedRows)
-        print(affectedRows)
-    end)
-    ```
-  </Tab>
-
-  <Tab>
-    ```js
-    MySQL.update('UPDATE users SET firstname = ? WHERE identifier = ?', [
-      newName, identifier
-    ], (affectedRows) => {
-      console.log(affectedRows)
-    })
-    ```
-  </Tab>
-</Tabs>
-
-**Aliases**
-
-* `MySQL.Async.execute`
-* `exports.ghmattimysql.execute`
-* `exports.oxmysql.update`
-
-
-# Client (/docs/ox_target/Functions/Client)
-
-
-
-All exports with the `options` argument expect a table with the targeting properties [here](../TargetOptions).
-
-For some examples you can refer to [defaults.lua](https://github.com/overextended/ox_target/blob/main/client/defaults.lua) or [debug.lua](https://github.com/overextended/ox_target/blob/main/client/debug.lua).
-
-## disableTargeting [#disabletargeting]
-
-Toggle the availability of the targeting menu.
+Returns the player's current coordinates.
 
 ```lua
-exports.ox_target:disableTargeting(state)
+player.getCoords()
 ```
 
-* state: `boolean`
-  * Setting `state` to `true` will turn off the targeting eye if it is active and prevent it from reopening until `state` is set to `false` again.
+**Parameters**
 
-## isActive [#isactive]
+* `vector3`
 
-Checks if the targeting system is currently active.
+## OxPlayer.getGroup [#oxplayergetgroup]
+
+Returns the player's grade of a given group name, or the first matched name and grade in a filter.
 
 ```lua
-exports.ox_target:isActive()
+player.getGroup(filter)
 ```
 
-Return:
+**Parameters**
 
-* `boolean` - Returns `true` if the targeting system is active, otherwise `false`.
+* filter: `string`|`string[]`|`{ [string]: number }`
 
-## getTargetOptions [#gettargetoptions]
+**Returns**
 
-Retrieves targeting options for a specific entity.
+* `unknown`
+
+## OxPlayer.getGroupByType [#oxplayergetgroupbytype]
+
+Returns the player's name and grade of a group with a matching type.
 
 ```lua
-exports.ox_target:getTargetOptions(entity, entityType, model)
+player.getGroupByType(type)
 ```
 
-* entity?: `number` - The entity handle
-* entityType?: `number` - The type of entity (1 for peds, 2 for vehicles, 3 for objects)
-* model?: `number` - The model hash of the entity
+**Parameters**
 
-Return:
+* type: `string`
 
-* `table` - Returns a table containing the target options for the entity:
-  * global: Options for the entity type (peds, vehicles, or objects)
-  * model: Options for the specific model
-  * entity: Options for the networked entity
-  * localEntity: Options for the local entity
+**Returns**
 
-## addGlobalOption [#addglobaloption]
+* `string`
+* `number`
 
-Creates new targetable options which are displayed at all times.
+## OxPlayer.getGroups [#oxplayergetgroups]
+
+Returns an object of all groups the player is currently in, using the group name as a key.
 
 ```lua
-exports.ox_target:addGlobalOption(options)
+player.getGroups()
 ```
 
-* options: `TargetOptions`
+**Returns**
 
-## removeGlobalOption [#removeglobaloption]
+* `{ [string]: number }`
 
-Removes all options from the global options list with the option names.
+## OxPlayer.getStatus [#oxplayergetstatus]
+
+Returns the value of the status.
 
 ```lua
-exports.ox_target:removeGlobalOption(optionNames)
+player.getStatus(statusName)
 ```
 
-* optionNames: `string` or `string[]`
+**Parameters**
 
-## addGlobalObject [#addglobalobject]
+* statusName: `string`
 
-Creates new targetable options for all Object entity types.
+**Returns**
+
+* `number`
+
+## OxPlayer.getStatuses [#oxplayergetstatuses]
+
+Returns an object containing all statuses, using the status name as the key.
 
 ```lua
-exports.ox_target:addGlobalObject(options)
+player.getStatuses()
 ```
 
-* options: `TargetOptions`
+**Returns**
 
-## removeGlobalObject [#removeglobalobject]
+* `{ [string]: number }`
 
-Removes all options from the global Object list with the option names.
+## OxPlayer.hasPermission [#oxplayerhaspermission]
+
+Checks if a user has a permission, given by one of their groups.
 
 ```lua
-exports.ox_target:removeGlobalObject(optionNames)
+player.hasPermission(permission)
 ```
 
-* optionNames: `string` or `string[]`
+**Parameters**
 
-## addGlobalPed [#addglobalped]
+* permission: `string`
 
-Creates new targetable options for all Ped entity types (excluding players).
+**Returns**
+
+* `boolean`
+
+**Example**
 
 ```lua
-exports.ox_target:addGlobalPed(options)
+-- Adding a permission to a group (server side)
+Ox.SetGroupPermission('police', 1, 'handcuff', 'allow')
+
+-- Checking if a player has the 'handcuff' permission
+if player.hasPermission('group.police.handcuff') then
+    -- Do something
+end
 ```
 
-* options: `TargetOptions`
+## OxPlayer.removeStatus [#oxplayerremovestatus]
 
-## removeGlobalPed [#removeglobalped]
-
-Removes all options from the global Ped list with the option names.
+Reduces the value of a status.
 
 ```lua
-exports.ox_target:removeGlobalPed(optionNames)
+player.removeStatus(statusName, value)
 ```
 
-* optionNames: `string` or `string[]`
+**Parameters**
 
-## addGlobalPlayer [#addglobalplayer]
+* statusName: `string`
+* value: `number`
 
-Creates new targetable options for all Player entities.
+**Returns**
+
+* `boolean`
+
+## OxPlayer.on [#oxplayeron]
+
+Listens for changes to the players metadata, specified by a key.
 
 ```lua
-exports.ox_target:addGlobalPlayer(options)
+player.on(key, cb(data))
 ```
 
-* options: `TargetOptions`
+**Parameters**
 
-## removeGlobalPlayer [#removeglobalplayer]
+* key: `string`
+* cb: `function`
 
-Removes all options from the global Player list with the option names.
+**Returns**
 
-```lua
-exports.ox_target:removeGlobalPlayer(optionNames)
-```
-
-* optionNames: `string` or `string[]`
-
-## addGlobalVehicle [#addglobalvehicle]
-
-Creates new targetable options for all Vehicle entity types.
-
-```lua
-exports.ox_target:addGlobalVehicle(options)
-```
-
-* options: `TargetOptions`
-
-## removeGlobalVehicle [#removeglobalvehicle]
-
-Removes all options from the global Vehicle list with the option names.
-
-```lua
-exports.ox_target:removeGlobalVehicle(optionNames)
-```
-
-* optionNames: `string` or `string[]`
-
-## addModel [#addmodel]
-
-Creates new targetable options for a specific model or list of models.
-
-```lua
-exports.ox_target:addModel(models, options)
-```
-
-* models: `number` or `string` or `Array<number | string>`
-* options: `TargetOptions`
-
-## removeModel [#removemodel]
-
-Removes all options from the models list with the option names.
-
-```lua
-exports.ox_target:removeModel(models, optionNames)
-```
-
-* models: `number` or `string` or `Array<number | string>`
-* optionNames: `string` or `string[]`
-
-## addEntity [#addentity]
-
-Creates new targetable options for a specific network id or list of network ids (see [NetworkGetNetworkIdFromEntity](https://docs.fivem.net/natives/?_0x9E35DAB6)).
-
-```lua
-exports.ox_target:addEntity(netIds, options)
-```
-
-* netIds: `number` or `number[]`
-* options: `TargetOptions`
-
-## removeEntity [#removeentity]
-
-Removes all options from the networked entities list with the option names.
-
-```lua
-exports.ox_target:removeEntity(netIds, optionNames)
-```
-
-* netIds: `number` or `number[]`
-* optionNames: `string` or `string[]`
-
-## addLocalEntity [#addlocalentity]
-
-Creates new targetable options for a specific entity handle or list of entity handles.
-
-```lua
-exports.ox_target:addLocalEntity(entities, options)
-```
-
-* entities: `number` or `number[]`
-* options: `TargetOptions`
-
-## removeLocalEntity [#removelocalentity]
-
-Removes all options from the entities list with the option names.
-
-```lua
-exports.ox_target:removeLocalEntity(entities, optionNames)
-```
-
-* entities: `number` or `number[]`
-* optionNames: `string` or `string[]`
-
-## addSphereZone [#addspherezone]
-
-Creates a new targetable [sphere zone](../../ox_lib/Modules/Zones/Shared#libzonessphere).
-
-```lua
-exports.ox_target:addSphereZone(parameters)
-```
-
-* parameters: `table`
-  * coords: `vector3`
-  * name?: `string`
-    * An optional name to refer to the zone instead of using the `id`.
-  * radius?: `number`
-  * debug?: `boolean`
-  * drawSprite?: `boolean`
-    * Draw a sprite at the centroid of the zone. Defaults to `true`.
-  * options: `TargetOptions`
-
-Return:
-
-* id: `number`
-
-## addBoxZone [#addboxzone]
-
-Creates a new targetable [box zone](../../ox_lib/Modules/Zones/Shared#libzonesbox).
-
-```lua
-exports.ox_target:addBoxZone(parameters)
-```
-
-* parameters: `table`
-  * coords: `vector3`
-  * name?: `string`
-    * An optional name to refer to the zone instead of using the `id`.
-  * size?: `vector3`
-  * rotation?: `number`
-  * debug?: `boolean`
-  * drawSprite?: `boolean`
-    * Draw a sprite at the centroid of the zone. Defaults to `true`.
-  * options: `TargetOptions`
-
-Return:
-
-* id: `number`
-
-## addPolyZone [#addpolyzone]
-
-Creates a new targetable [poly zone](../../ox_lib/Modules/Zones/Shared#libzonespoly).
-
-```lua
-exports.ox_target:addPolyZone(parameters)
-```
-
-* parameters: `table`
-  * points: `vector3[]`
-    * An array of 3d points defining the polygon's shape.
-  * name?: `string`
-    * An optional name to refer to the zone instead of using the `id`.
-  * thickness?: `number`
-    * The height of the polygon, defaulting to `4`.
-  * debug?: `boolean`
-  * drawSprite?: `boolean`
-    * Draw a sprite at the centroid of the zone. Defaults to `true`.
-  * options: `TargetOptions`
-
-Return:
-
-* id: `number`
-
-## zoneExists [#zoneexists]
-
-Checks if a zone with the given ID exists.
-
-```lua
-exports.ox_target:zoneExists(id)
-```
-
-* id: `number` or `string`
-  * The `number` id that is returned by [addSphereZone](#addspherezone), [addBoxZone](#addboxzone), or [addPolyZone](#addpolyzone)\
-    **OR**
-  * The `string` name given to the zone.
-
-Return:
-
-* `boolean` - Returns `true` if the zone exists, otherwise `false`.
-
-## removeZone [#removezone]
-
-Removes a targetable zone with the given id (returned by addBoxZone/addSphereZone).
-
-```lua
-exports.ox_target:removeZone(id)
-```
-
-* id: `number` or `string`
-  * The `number` id that is returned by [addSphereZone](#addspherezone), [addBoxZone](#addboxzone), or [addPolyZone](#addpolyzone)\
-    **OR**
-  * The `string` name given to the zone.
+* data: `unknown`
+  * new value of `key`
 
 
 # OxAccount (/docs/ox_core/Classes/Server/OxAccount)
@@ -12597,199 +12790,6 @@ vehicle.setStored(value, despawn)
 
 * value?: `string`
 * despawn?: `boolean`
-
-
-# OxPlayer (/docs/ox_core/Classes/Client/OxPlayer)
-
-
-
-## OxPlayer [#oxplayer]
-
-* state: `StateBagInterface`
-* userId: `number`
-* charId?: `number`
-* stateId?: `string`
-
-## OxPlayer.addStatus [#oxplayeraddstatus]
-
-Increases value of a status.
-
-```lua
-player.addStatus(statusName, value)
-```
-
-**Parameters**
-
-* statusName: `string`
-* value: `number`
-
-**Returns**
-
-* success: `boolean`
-
-## OxPlayer.get [#oxplayerget]
-
-Returns a value from the players metadata.
-
-```lua
-player.get(key)
-```
-
-**Parameters**
-
-* key: `string`
-
-**Returns**
-
-* `unknown`
-
-## OxPlayer.getCoords [#oxplayergetcoords]
-
-Returns the player's current coordinates.
-
-```lua
-player.getCoords()
-```
-
-**Parameters**
-
-* `vector3`
-
-## OxPlayer.getGroup [#oxplayergetgroup]
-
-Returns the player's grade of a given group name, or the first matched name and grade in a filter.
-
-```lua
-player.getGroup(filter)
-```
-
-**Parameters**
-
-* filter: `string`|`string[]`|`{ [string]: number }`
-
-**Returns**
-
-* `unknown`
-
-## OxPlayer.getGroupByType [#oxplayergetgroupbytype]
-
-Returns the player's name and grade of a group with a matching type.
-
-```lua
-player.getGroupByType(type)
-```
-
-**Parameters**
-
-* type: `string`
-
-**Returns**
-
-* `string`
-* `number`
-
-## OxPlayer.getGroups [#oxplayergetgroups]
-
-Returns an object of all groups the player is currently in, using the group name as a key.
-
-```lua
-player.getGroups()
-```
-
-**Returns**
-
-* `{ [string]: number }`
-
-## OxPlayer.getStatus [#oxplayergetstatus]
-
-Returns the value of the status.
-
-```lua
-player.getStatus(statusName)
-```
-
-**Parameters**
-
-* statusName: `string`
-
-**Returns**
-
-* `number`
-
-## OxPlayer.getStatuses [#oxplayergetstatuses]
-
-Returns an object containing all statuses, using the status name as the key.
-
-```lua
-player.getStatuses()
-```
-
-**Returns**
-
-* `{ [string]: number }`
-
-## OxPlayer.hasPermission [#oxplayerhaspermission]
-
-Checks if a user has a permission, given by one of their groups.
-
-```lua
-player.hasPermission(permission)
-```
-
-**Parameters**
-
-* permission: `string`
-
-**Returns**
-
-* `boolean`
-
-**Example**
-
-```lua
--- Adding a permission to a group (server side)
-Ox.SetGroupPermission('police', 1, 'handcuff', 'allow')
-
--- Checking if a player has the 'handcuff' permission
-if player.hasPermission('group.police.handcuff') then
-    -- Do something
-end
-```
-
-## OxPlayer.removeStatus [#oxplayerremovestatus]
-
-Reduces the value of a status.
-
-```lua
-player.removeStatus(statusName, value)
-```
-
-**Parameters**
-
-* statusName: `string`
-* value: `number`
-
-**Returns**
-
-* `boolean`
-
-## OxPlayer.on [#oxplayeron]
-
-Listens for changes to the players metadata, specified by a key.
-
-```lua
-player.on(key, cb(data))
-```
-
-**Parameters**
-
-* key: `string`
-* cb: `function`
-
-**Returns**
-
-* data: `unknown`
-  * new value of `key`
 
 
 # Hooks (/docs/ox_doorlock/Server/functions/Hooks)
@@ -16420,6 +16420,29 @@ Registers a radial sub menu with predefined options.
       * Id of a menu to open.
     * onSelect?: `function(currentMenu: string | nil, itemIndex: number)` | `string`
       * Function that's ran when a user clicks the item.
+
+## lib.showRadialMenu [#libshowradialmenu]
+
+Opens a registered radial menu as the root radial menu.
+
+<Tabs items="[&#x22;Lua&#x22;, &#x22;JS&#x22;]">
+  <Tab>
+    ```lua
+    lib.showRadialMenu(id)
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    import lib from '@overextended/ox_lib/client';
+
+    lib.showRadialMenu(id);
+    ```
+  </Tab>
+</Tabs>
+
+* id: string
+  * Unique menu id from registered radial menus.
 
 ## lib.hideRadial [#libhideradial]
 

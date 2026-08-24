@@ -15,7 +15,7 @@ If you're looking to quickly install and setup ox\_core, try using [our recipe](
 ## Installation [#installation]
 
 <Callout type="info">
-  We **strongly** recommend referring to [Guides](../guides) to setup necessary development tools.
+  We **strongly** recommend referring to [Guides](../docs/guides) to setup necessary development tools.
 </Callout>
 
 <div className="fd-steps">
@@ -30,7 +30,7 @@ If you're looking to quickly install and setup ox\_core, try using [our recipe](
     ### Download a release or build the source code. [#download-a-release-or-build-the-source-code-step]
 
     * Download the [latest release](https://github.com/overextended/ox_core/releases/latest).
-    * Setup [Git](../guides/git), [Node.js](../guides/nodejs), and [bun](../guides/bun).
+    * Setup [Git](../docs/guides/git), [Node.js](../docs/guides/nodejs), and [bun](../docs/guides/bun).
     * Download and setup [MariaDB 11.4+](https://mariadb.com/downloads/community/community-server/).
     * Run the following commands in your CLI (e.g. Terminal, Command Prompt).
 

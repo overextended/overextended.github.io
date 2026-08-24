@@ -22,7 +22,7 @@ We make these deals to advertise trusted creators who meet our criteria.
   ["rcore", "https://store.rcore.cz/", "ox10", 10 , "/static/creators/rcore.png"],
   ["Artwork Inventory", "https://artwork-inventory.tebex.io/", "ox10", 10 , "/static/creators/artworkInventory.gif"],
   ["Renewed Scripts", "https://renewed.tebex.io/ox", "ox15", 15 , "/static/creators/renewed.png"],
-  ["Three Amigos Modding", "https://threeamigos.shop/", "overextended", 10, "/static/creators/tam.png"],
+  ["Scuffed Labs", "https://scuffedlabs.com/", "overextended", 10, "/static/creators/scuffedlabs.png"],
   ["RAHE Development", "https://rahe.tebex.io/", "ox10", 10, "/static/creators/rahe.png"],
   ["Qwaly Scripts", "https://qwaly.dev/", "ox10", 10, "/static/creators/qwaly.png"],
   ["Ehbw Scripts", "https://ehbw.tebex.io/", "ox10", 10, "/static/creators/ehbw.png"],

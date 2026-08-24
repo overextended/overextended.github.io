@@ -120,6 +120,29 @@ Registers a radial sub menu with predefined options.
     * onSelect?: `function(currentMenu: string | nil, itemIndex: number)` | `string`
       * Function that's ran when a user clicks the item.
 
+## lib.showRadialMenu [#libshowradialmenu]
+
+Opens a registered radial menu as the root radial menu.
+
+<Tabs items="[&#x22;Lua&#x22;, &#x22;JS&#x22;]">
+  <Tab>
+    ```lua
+    lib.showRadialMenu(id)
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    import lib from '@overextended/ox_lib/client';
+
+    lib.showRadialMenu(id);
+    ```
+  </Tab>
+</Tabs>
+
+* id: string
+  * Unique menu id from registered radial menus.
+
 ## lib.hideRadial [#libhideradial]
 
 Hides the radial menu if one is open.

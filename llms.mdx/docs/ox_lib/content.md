@@ -11,7 +11,7 @@ A standalone library for providing easily reusable code as importable modules an
 ## Installation [#installation]
 
 <Callout type="info">
-  We **strongly** recommend referring to [Guides](../guides) for setting up Git, Node.js, and bun.
+  We **strongly** recommend referring to [Guides](../docs/guides) for setting up Git, Node.js, and bun.
 </Callout>
 
 <div className="fd-steps">
@@ -139,7 +139,7 @@ If you wish to edit any of the UI elements you will need to download the *source
 </Callout>
 
 <Callout type="info">
-  We **strongly** recommend referring to [Guides](../guides) for setting up Git, Node.js, and bun.
+  We **strongly** recommend referring to [Guides](../docs/guides) for setting up Git, Node.js, and bun.
 </Callout>
 
 **Building the UI:**

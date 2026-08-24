@@ -11,7 +11,7 @@ A door management resource that can be used standalone or alongside ox\_core, qb
 ## Installation [#installation]
 
 <Callout type="info">
-  We **strongly** recommend referring to [Guides](../guides) for setting up Git, Node.js, and bun.
+  We **strongly** recommend referring to [Guides](../docs/guides) for setting up Git, Node.js, and bun.
 </Callout>
 
 <div className="fd-steps">
