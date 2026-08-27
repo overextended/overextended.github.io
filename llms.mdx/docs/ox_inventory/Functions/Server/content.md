@@ -654,6 +654,101 @@ print(json.encode(inventory, {indent = true}))
 ]]
 ```
 
+## GetInventories [#getinventories]
+
+Returns the IDs of all loaded inventories matching the given type. If `detailed` is `true`, returns the full inventory data instead.
+
+```lua
+exports.ox_inventory:GetInventories(invType, detailed)
+```
+
+* invType: `string`
+* detailed?: `boolean` returns the full inventory data instead of only the inventory ID
+
+<br />
+
+<u>
+  **Example**
+</u>
+
+```lua
+local inventories = exports.ox_inventory:GetInventories('glovebox')
+
+print(json.encode(inventories, {indent = true}))
+
+--[[
+    [
+        "gloveK7M2Q9X4",
+        "gloveP3L8V1ZN"
+    ]
+]]
+```
+
+With `detailed` enabled, the function returns the full inventory data:
+
+```lua
+local inventories = exports.ox_inventory:GetInventories('glovebox', true)
+
+print(json.encode(inventories, {indent = true}))
+
+--[[
+    [
+        {
+            "entityId": 184732,
+            "weight": 12500,
+            "netid": 73421,
+            "get": {
+                "__cfx_functionReference": "ox_inventory:48291:127"
+            },
+            "maxWeight": 88000,
+            "slots": 11,
+            "open": false,
+            "openedBy": [],
+            "id": "gloveK7M2Q9X4",
+            "dbId": "K7M2Q9X4",
+            "type": "glovebox",
+            "label": "K7M2Q9X4",
+            "owner": false,
+            "minimal": {
+                "__cfx_functionReference": "ox_inventory:48291:126"
+            },
+            "changed": false,
+            "set": {
+                "__cfx_functionReference": "ox_inventory:48291:125"
+            },
+            "items": [],
+            "time": 1787604127
+        },
+        {
+            "entityId": 192845,
+            "weight": 3200,
+            "netid": 73435,
+            "get": {
+                "__cfx_functionReference": "ox_inventory:48291:130"
+            },
+            "maxWeight": 88000,
+            "slots": 11,
+            "open": true,
+            "openedBy": [12],
+            "id": "gloveP3L8V1ZN",
+            "dbId": "P3L8V1ZN",
+            "type": "glovebox",
+            "label": "P3L8V1ZN",
+            "owner": false,
+            "minimal": {
+                "__cfx_functionReference": "ox_inventory:48291:129"
+            },
+            "changed": true,
+            "set": {
+                "__cfx_functionReference": "ox_inventory:48291:128"
+            },
+            "items": [],
+            "time": 1787603984
+        }
+    ]
+]]
+```
+
 ## GetInventoryItems [#getinventoryitems]
 
 Returns all slots with items in a inventory.

@@ -5220,6 +5220,39 @@ AddEventHandler('ox_doorlock:stateChanged', function(source, doorId, state, used
 * usedItem: `string` or `false` or `nil`
 
 
+# Functions (/docs/ox_fuel/Client/functions)
+
+
+
+## setMoneyCheck [#setmoneycheck]
+
+Override the built-in money check.
+
+```lua
+exports.ox_fuel:setMoneyCheck(method)
+```
+
+### Parameters [#parameters]
+
+* method: `function(): number`
+
+### Example [#example]
+
+```lua
+exports.ox_fuel:setMoneyCheck(function()
+    local accounts = ESX.GetPlayerData().accounts
+
+    for i = 1, #accounts do
+        if accounts[i].name == 'bank' then
+            return accounts[i].money
+        end
+    end
+
+    return 0
+end)
+```
+
+
 # Functions (/docs/ox_fuel/Server/functions)
 
 
@@ -5252,39 +5285,6 @@ exports.ox_fuel:setPaymentMethod(function(playerId, amount)
         type = 'error',
         description = locale('not_enough_money', amount - bankAmount)
     })
-end)
-```
-
-
-# Functions (/docs/ox_fuel/Client/functions)
-
-
-
-## setMoneyCheck [#setmoneycheck]
-
-Override the built-in money check.
-
-```lua
-exports.ox_fuel:setMoneyCheck(method)
-```
-
-### Parameters [#parameters]
-
-* method: `function(): number`
-
-### Example [#example]
-
-```lua
-exports.ox_fuel:setMoneyCheck(function()
-    local accounts = ESX.GetPlayerData().accounts
-
-    for i = 1, #accounts do
-        if accounts[i].name == 'bank' then
-            return accounts[i].money
-        end
-    end
-
-    return 0
 end)
 ```
 
@@ -7788,6 +7788,63 @@ Removes a principal from a parent principal.
 * parent: `string`
 
 
+# Server (/docs/ox_lib/AddCommand/Server)
+
+
+
+Registers commands and simplifies argument validation, permissions, and chat suggestions.
+
+```lua
+lib.addCommand(commandName, properties, cb)
+```
+
+* commandName: `string` or `string[]`
+* properties: `table` or `false`
+  * help?: `string`
+  * restricted?: `boolean` or `string` or `string[]`
+  * params?: `table[]`
+    * name: `string`
+    * help?: `string`
+    * type?: `'number'` or `'playerId'` or `'string'` or `'longString'`
+    * optional?: `boolean`
+
+```lua
+lib.addCommand('giveitem', {
+    help = 'Gives an item to a player',
+    params = {
+        {
+            name = 'target',
+            type = 'playerId',
+            help = 'Target player\'s server id',
+        },
+        {
+            name = 'item',
+            type = 'string',
+            help = 'Name of the item to give',
+        },
+        {
+            name = 'count',
+            type = 'number',
+            help = 'Amount of the item to give, or blank to give 1',
+            optional = true,
+        },
+        {
+            name = 'metatype',
+            help = 'Sets the item\'s "metadata.type"',
+            optional = true,
+        },
+    },
+    restricted = 'group.admin'
+}, function(source, args, raw)
+    local item = Items(args.item)
+
+    if item then
+        Inventory.AddItem(args.target, item.name, args.count or 1, args.metatype)
+    end
+end)
+```
+
+
 # Client (/docs/ox_lib/AddKeybind/Client)
 
 
@@ -7889,63 +7946,6 @@ You can get the state with the following method
 
 ```lua
 local state = keybind:isControlPressed()
-```
-
-
-# Server (/docs/ox_lib/AddCommand/Server)
-
-
-
-Registers commands and simplifies argument validation, permissions, and chat suggestions.
-
-```lua
-lib.addCommand(commandName, properties, cb)
-```
-
-* commandName: `string` or `string[]`
-* properties: `table` or `false`
-  * help?: `string`
-  * restricted?: `boolean` or `string` or `string[]`
-  * params?: `table[]`
-    * name: `string`
-    * help?: `string`
-    * type?: `'number'` or `'playerId'` or `'string'` or `'longString'`
-    * optional?: `boolean`
-
-```lua
-lib.addCommand('giveitem', {
-    help = 'Gives an item to a player',
-    params = {
-        {
-            name = 'target',
-            type = 'playerId',
-            help = 'Target player\'s server id',
-        },
-        {
-            name = 'item',
-            type = 'string',
-            help = 'Name of the item to give',
-        },
-        {
-            name = 'count',
-            type = 'number',
-            help = 'Amount of the item to give, or blank to give 1',
-            optional = true,
-        },
-        {
-            name = 'metatype',
-            help = 'Sets the item\'s "metadata.type"',
-            optional = true,
-        },
-    },
-    restricted = 'group.admin'
-}, function(source, args, raw)
-    local item = Items(args.item)
-
-    if item then
-        Inventory.AddItem(args.target, item.name, args.count or 1, args.metatype)
-    end
-end)
 ```
 
 
@@ -8420,63 +8420,6 @@ end
 ```
 
 
-# Server (/docs/ox_lib/Cron/Server)
-
-
-
-A Lua implementation of cron, allowing tasks to be scheduled to run periodically at fixed times, dates, and intervals.
-
-## Cron expression [#cron-expression]
-
-A string containing five values separated by white spaces, representing a set of times to execute a task.
-
-| Field        | Valid values        |
-| ------------ | ------------------- |
-| Minutes      | `0-59`              |
-| Hours        | `0-23`              |
-| Day of month | `1-31`              |
-| Month        | `1-12` or `jan-dec` |
-| Day of week  | `1-7` or `sun-sat`  |
-
-**Note:** Day of the week is set to match `os.date` and starts at 1, unlike the cron-standard which starts at 0.
-
-### `*` Wildcards [#-wildcards]
-
-Represents all values, e.g. `* * * * *` will run every minute, or `* * * * 1` will run every minute on Sunday.
-
-### `,` Lists [#-lists]
-
-Commas can be used to create a list of values, e.g. `* * * * sun,mon,tue` will run every minute on Sunday, Monday, and Tuesday.
-
-### `-` Ranges [#--ranges]
-
-Dashes define a range of values, e.g. `10-30 * * * *` will start running the task at the 10th minute, and every minute until the 30th minute.
-
-### `/` Steps [#-steps]
-
-Slashes can be used for step values, e.g. `* */4 * * *` will run every 4 hours and is shorthand for `* 0,4,8,12,16,20 * * *`.
-
-## Functions [#functions]
-
-### lib.cron.new [#libcronnew]
-
-Creates a new [cronjob](https://en.wikipedia.org/wiki/Cron), scheduling a task to run at fixed times or intervals.
-
-```lua
-lib.cron.new(expression, job, options)
-```
-
-* expression: `string`
-  * A cron expression such as `* * * * *` representing minute, hour, day, month, and day of the week
-* job: `fun(task: OxTask, date: osdate)`
-* options?: `table`
-  * debug?: `boolean`
-
-Return:
-
-* task: `OxTask`
-
-
 # Shared (/docs/ox_lib/Class/Shared)
 
 
@@ -8663,6 +8606,63 @@ lib.disableControls:Clear(...)
 
 * vararg: `number` or `number[]`
   * Control(s) to clear out from being tracked
+
+
+# Server (/docs/ox_lib/Cron/Server)
+
+
+
+A Lua implementation of cron, allowing tasks to be scheduled to run periodically at fixed times, dates, and intervals.
+
+## Cron expression [#cron-expression]
+
+A string containing five values separated by white spaces, representing a set of times to execute a task.
+
+| Field        | Valid values        |
+| ------------ | ------------------- |
+| Minutes      | `0-59`              |
+| Hours        | `0-23`              |
+| Day of month | `1-31`              |
+| Month        | `1-12` or `jan-dec` |
+| Day of week  | `1-7` or `sun-sat`  |
+
+**Note:** Day of the week is set to match `os.date` and starts at 1, unlike the cron-standard which starts at 0.
+
+### `*` Wildcards [#-wildcards]
+
+Represents all values, e.g. `* * * * *` will run every minute, or `* * * * 1` will run every minute on Sunday.
+
+### `,` Lists [#-lists]
+
+Commas can be used to create a list of values, e.g. `* * * * sun,mon,tue` will run every minute on Sunday, Monday, and Tuesday.
+
+### `-` Ranges [#--ranges]
+
+Dashes define a range of values, e.g. `10-30 * * * *` will start running the task at the 10th minute, and every minute until the 30th minute.
+
+### `/` Steps [#-steps]
+
+Slashes can be used for step values, e.g. `* */4 * * *` will run every 4 hours and is shorthand for `* 0,4,8,12,16,20 * * *`.
+
+## Functions [#functions]
+
+### lib.cron.new [#libcronnew]
+
+Creates a new [cronjob](https://en.wikipedia.org/wiki/Cron), scheduling a task to run at fixed times or intervals.
+
+```lua
+lib.cron.new(expression, job, options)
+```
+
+* expression: `string`
+  * A cron expression such as `* * * * *` representing minute, hour, day, month, and day of the week
+* job: `fun(task: OxTask, date: osdate)`
+* options?: `table`
+  * debug?: `boolean`
+
+Return:
+
+* task: `OxTask`
 
 
 # Shared (/docs/ox_lib/GetClosestObject/Shared)
@@ -9131,6 +9131,153 @@ lib.getLocale(resource, key)
 * key: `string`
 
 
+# Server (/docs/ox_lib/Logger/Server)
+
+
+
+## lib.logger [#liblogger]
+
+```lua
+lib.logger(source, event, message, ...)
+```
+
+* source: `number` or `string`
+  * Preferably an active player id, otherwise an identifier, or wherever else it originated from.
+* event: `string`
+  * A name for the log event (i.e. the trigerring event or a description)
+* message: `string`
+  * The content for the log.
+* vararg: `string`
+  * Additional arguments are converted to tags for additional filtering and searching.
+
+<br />
+
+<u>
+  **Example**
+</u>
+
+```lua
+local vehicle = Ox.CreateVehicle(false, `sultanrs`, vector4(-56.479122, -1116.870362, 26.432250, 0.000030517578))
+lib.logger(-1, 'CreateVehicle', json.encode(vehicle))
+```
+
+## Datadog [#datadog]
+
+<div className="fd-steps">
+  <div className="fd-step">
+    ### Create your [Datadog](https://www.datadoghq.com/) account [#create-your-datadog-account-step]
+
+    You will receive a free 14 day trial, otherwise refer to their [pricing](https://www.datadoghq.com/pricing/) guide.\
+    Free accounts are limited, however logs will still be retained for 14 days.
+  </div>
+
+  <div className="fd-step">
+    ### Create an [API key](https://app.datadoghq.com/organization-settings/api-keys) [#create-an-api-key-step]
+
+    This is a UUID used to submit logs to your Datadog organisation.
+  </div>
+
+  <div className="fd-step">
+    ### Config [#config-step]
+
+    Set your API key and [Datadog site](https://docs.datadoghq.com/getting_started/site/) using the following convars.
+
+    ```bash
+    set datadog:key "yourapikey"
+    set datadog:site "datadoghq.com"
+    ```
+  </div>
+</div>
+
+## Grafana Loki [#grafana-loki]
+
+Loki is a horizontally scalable, highly available, multi-tenant log aggregation system inspired by Prometheus.\
+It is designed to be very cost effective and easy to operate.
+
+<Tabs items="[&#x22;Cloud&#x22;, &#x22;Self-hosted&#x22;]">
+  <Tab>
+    * Has free tier with some restrictions
+    * Easy to manage
+    * Easier to setup
+    * Mostly managed by Grafana
+
+    <div className="fd-steps">
+      <div className="fd-step">
+        ### Create your [Grafana](https://grafana.com/) account [#create-your-grafana-account-step]
+      </div>
+
+      <div className="fd-step">
+        ### Head to [My Account](https://grafana.com/auth/sign-in/?plcmt=top-nav\&cta=myaccount) [#head-to-my-account-step]
+      </div>
+
+      <div className="fd-step">
+        ### Setup Loki [#setup-loki-step]
+
+        Find the Loki section in your account panel, and click "Details".
+        Generate a password and save the API key, as well as your `user` and `url`.
+      </div>
+    </div>
+  </Tab>
+
+  <Tab>
+    To setup a grafana instance you'll need docker, and knowledge on containers or kubernetes.\
+    Please find a guide to setup a grafana stack (min requirement grafana and grafana loki) and follow that.
+
+    Once done, setup authentication and use the username and password securing your endpoint.
+
+    * By default self-hosted loki instances do not provide any authentication layers and will require an external authentication layer such as NGINX basic auth or Cloudflare Access.
+  </Tab>
+</Tabs>
+
+### Config [#config]
+
+Use the following convars to set your logging service, endpoint, and authentication details.
+
+```bash
+set ox:logger "loki"
+set loki:user "<insert your user>"
+set loki:password "<insert the api key or password>"
+set loki:endpoint "<insert loki url without http:// or https://>"
+```
+
+## Fivemanage [#fivemanage]
+
+[Fivemanage](https://fivemanage.com/?ref=overextended) is an easy-to-use, all-in-one SaaS for game servers that provides logging.
+
+<div className="fd-steps">
+  <div className="fd-step">
+    ### Create an account [#create-an-account-step]
+
+    Sign up at [Fivemanage](https://fivemanage.com/?ref=overextended).
+
+    <div className="fd-steps">
+      <div className="fd-step">
+        #### Upgrading to `Hobby` or `Pro` tier (optional) [#upgrading-to-hobby-or-pro-tier-optional-step]
+
+        Logging is included in the free tier, but with limited storage and retention.
+
+        If you decide to upgrade, you'll get a 14-day free trial if you do not already have a subscription. You can find more information [here](https://fivemanage.com/profile/billing?ref=overextended) and on the [pricing](https://fivemanage.com/pricing?ref=overextended) page.
+      </div>
+    </div>
+  </div>
+
+  <div className="fd-step">
+    ### Create a new token [#create-a-new-token-step]
+
+    You'll need to create a new token with the type `Logs`.
+  </div>
+
+  <div className="fd-step">
+    ### Config [#config-step-1]
+
+    ```bash
+    set ox:logger "fivemanage"
+    set fivemanage:key "YOUR_API_KEY"
+    ```
+  </div>
+</div>
+
+
 # Client (/docs/ox_lib/Marker/Client)
 
 
@@ -9409,153 +9556,6 @@ math.lerp(start, finish, duration)
 Return:
 
 * iteratorFunction: `fun(): T, number`
-
-
-# Server (/docs/ox_lib/Logger/Server)
-
-
-
-## lib.logger [#liblogger]
-
-```lua
-lib.logger(source, event, message, ...)
-```
-
-* source: `number` or `string`
-  * Preferably an active player id, otherwise an identifier, or wherever else it originated from.
-* event: `string`
-  * A name for the log event (i.e. the trigerring event or a description)
-* message: `string`
-  * The content for the log.
-* vararg: `string`
-  * Additional arguments are converted to tags for additional filtering and searching.
-
-<br />
-
-<u>
-  **Example**
-</u>
-
-```lua
-local vehicle = Ox.CreateVehicle(false, `sultanrs`, vector4(-56.479122, -1116.870362, 26.432250, 0.000030517578))
-lib.logger(-1, 'CreateVehicle', json.encode(vehicle))
-```
-
-## Datadog [#datadog]
-
-<div className="fd-steps">
-  <div className="fd-step">
-    ### Create your [Datadog](https://www.datadoghq.com/) account [#create-your-datadog-account-step]
-
-    You will receive a free 14 day trial, otherwise refer to their [pricing](https://www.datadoghq.com/pricing/) guide.\
-    Free accounts are limited, however logs will still be retained for 14 days.
-  </div>
-
-  <div className="fd-step">
-    ### Create an [API key](https://app.datadoghq.com/organization-settings/api-keys) [#create-an-api-key-step]
-
-    This is a UUID used to submit logs to your Datadog organisation.
-  </div>
-
-  <div className="fd-step">
-    ### Config [#config-step]
-
-    Set your API key and [Datadog site](https://docs.datadoghq.com/getting_started/site/) using the following convars.
-
-    ```bash
-    set datadog:key "yourapikey"
-    set datadog:site "datadoghq.com"
-    ```
-  </div>
-</div>
-
-## Grafana Loki [#grafana-loki]
-
-Loki is a horizontally scalable, highly available, multi-tenant log aggregation system inspired by Prometheus.\
-It is designed to be very cost effective and easy to operate.
-
-<Tabs items="[&#x22;Cloud&#x22;, &#x22;Self-hosted&#x22;]">
-  <Tab>
-    * Has free tier with some restrictions
-    * Easy to manage
-    * Easier to setup
-    * Mostly managed by Grafana
-
-    <div className="fd-steps">
-      <div className="fd-step">
-        ### Create your [Grafana](https://grafana.com/) account [#create-your-grafana-account-step]
-      </div>
-
-      <div className="fd-step">
-        ### Head to [My Account](https://grafana.com/auth/sign-in/?plcmt=top-nav\&cta=myaccount) [#head-to-my-account-step]
-      </div>
-
-      <div className="fd-step">
-        ### Setup Loki [#setup-loki-step]
-
-        Find the Loki section in your account panel, and click "Details".
-        Generate a password and save the API key, as well as your `user` and `url`.
-      </div>
-    </div>
-  </Tab>
-
-  <Tab>
-    To setup a grafana instance you'll need docker, and knowledge on containers or kubernetes.\
-    Please find a guide to setup a grafana stack (min requirement grafana and grafana loki) and follow that.
-
-    Once done, setup authentication and use the username and password securing your endpoint.
-
-    * By default self-hosted loki instances do not provide any authentication layers and will require an external authentication layer such as NGINX basic auth or Cloudflare Access.
-  </Tab>
-</Tabs>
-
-### Config [#config]
-
-Use the following convars to set your logging service, endpoint, and authentication details.
-
-```bash
-set ox:logger "loki"
-set loki:user "<insert your user>"
-set loki:password "<insert the api key or password>"
-set loki:endpoint "<insert loki url without http:// or https://>"
-```
-
-## Fivemanage [#fivemanage]
-
-[Fivemanage](https://fivemanage.com/?ref=overextended) is an easy-to-use, all-in-one SaaS for game servers that provides logging.
-
-<div className="fd-steps">
-  <div className="fd-step">
-    ### Create an account [#create-an-account-step]
-
-    Sign up at [Fivemanage](https://fivemanage.com/?ref=overextended).
-
-    <div className="fd-steps">
-      <div className="fd-step">
-        #### Upgrading to `Hobby` or `Pro` tier (optional) [#upgrading-to-hobby-or-pro-tier-optional-step]
-
-        Logging is included in the free tier, but with limited storage and retention.
-
-        If you decide to upgrade, you'll get a 14-day free trial if you do not already have a subscription. You can find more information [here](https://fivemanage.com/profile/billing?ref=overextended) and on the [pricing](https://fivemanage.com/pricing?ref=overextended) page.
-      </div>
-    </div>
-  </div>
-
-  <div className="fd-step">
-    ### Create a new token [#create-a-new-token-step]
-
-    You'll need to create a new token with the type `Logs`.
-  </div>
-
-  <div className="fd-step">
-    ### Config [#config-step-1]
-
-    ```bash
-    set ox:logger "fivemanage"
-    set fivemanage:key "YOUR_API_KEY"
-    ```
-  </div>
-</div>
 
 
 # Client (/docs/ox_lib/PlayAnim/Client)
@@ -10730,166 +10730,6 @@ Return:
 * isFrozen: `boolean`
 
 
-# Client (/docs/ox_lib/VehicleProperties/Client)
-
-
-
-Mostly follows the format used by ESX and QBCore, with extra data such as damaged/missing props.\
-[https://github.com/overextended/ox\_lib/blob/master/resource/vehicleProperties/client.lua#L3](https://github.com/overextended/ox_lib/blob/master/resource/vehicleProperties/client.lua#L3)
-
-## lib.getVehicleProperties [#libgetvehicleproperties]
-
-```ts
-lib.getVehicleProperties(vehicle);
-```
-
-* vehicle: `number`
-  * vehicle handle of the vehicle to get the properties for
-
-<Tabs items="[&#x22;Lua&#x22;, &#x22;JS&#x22;]">
-  <Tab>
-    ```lua
-    lib.getVehicleProperties(GetVehiclePedIsUsing(PlayerPedId()))
-    ```
-  </Tab>
-
-  <Tab>
-    ```ts
-    import lib from '@overextended/ox_lib/client'
-
-    lib.getVehicleProperties(GetVehiclePedIsUsing(PlayerPedId()))
-    ```
-  </Tab>
-</Tabs>
-
-## lib.setVehicleProperties [#libsetvehicleproperties]
-
-Sets properties on a vehicle (i.e. mods, plate text, etc.) and returns true if the client owns the entity.
-
-```lua
-lib.setVehicleProperties(vehicle, props)
-```
-
-* vehicle: `entity`
-* props: `table`
-
-<Tabs items="[&#x22;Lua&#x22;, &#x22;JS&#x22;]">
-  <Tab>
-    ```lua
-    RegisterNetEvent('ox_lib:setVehicleProperties', function(netid, data)
-        lib.setVehicleProperties(NetToVeh(netid), data)
-    end)
-    ```
-  </Tab>
-
-  <Tab>
-    ```ts
-    import { setVehicleProperties } from '@overextended/ox_lib/client'
-
-    onNet('ox_lib:setVehicleProperties', (netid, data) => {
-      setVehicleProperties(NetToVeh(netid), data)
-    })
-    ```
-  </Tab>
-</Tabs>
-
-**Returns:**
-
-* isEntityOwner: `boolean`
-
-### Recommended Usage [#recommended-usage]
-
-The server should tell the owner of the entity to set properties, using the following trigger.
-
-```lua
-TriggerClientEvent('ox_lib:setVehicleProperties', entityOwner, vehNetId, data)
-```
-
-## Vehicle Properties [#vehicle-properties]
-
-* model?: `number`
-* plate?: `string`
-* plateIndex?: `number`
-* bodyHealth?: `number`
-* engineHealth?: `number`
-* tankHealth?: `number`
-* fuelLevel?: `number`
-* oilLevel?: `number`
-* dirtLevel?: `number`
-* color1?: `number` or `number[]`
-* color2?: `number` or `number[]`
-* pearlescentColor?: `number`
-* interiorColor?: `number`
-* dashboardColor?: `number`
-* wheelColor?: `number`
-* wheelWidth?: `number`
-* wheelSize?: `number`
-* wheels?: `number`
-* windowTint?: `number`
-* xenonColor?: `number`
-* neonEnabled?: `boolean[]`
-* neonColor?: `number` or `number[]`
-* extras?: `table<number | string, 0 | 1>`
-* tyreSmokeColor?: `number` or `number[]`
-* modSpoilers?: `number`
-* modFrontBumper?: `number`
-* modRearBumper?: `number`
-* modSideSkirt?: `number`
-* modExhaust?: `number`
-* modFrame?: `number`
-* modGrille?: `number`
-* modHood?: `number`
-* modFender?: `number`
-* modRightFender?: `number`
-* modRoof?: `number`
-* modEngine?: `number`
-* modBrakes?: `number`
-* modTransmission?: `number`
-* modHorns?: `number`
-* modSuspension?: `number`
-* modArmor?: `number`
-* modNitrous?: `number`
-* modTurbo?: `number`
-* modSubwoofer?: `boolean`
-* modSmokeEnabled?: `boolean`
-* modHydraulics?: `boolean`
-* modXenon?: `boolean`
-* modFrontWheels?: `number`
-* modBackWheels?: `number`
-* modCustomTiresF?: `boolean`
-* modCustomTiresR?: `boolean`
-* modPlateHolder?: `number`
-* modVanityPlate?: `number`
-* modTrimA?: `number`
-* modOrnaments?: `number`
-* modDashboard?: `number`
-* modDial?: `number`
-* modDoorSpeaker?: `number`
-* modSeats?: `number`
-* modSteeringWheel?: `number`
-* modShifterLeavers?: `number`
-* modAPlate?: `number`
-* modSpeakers?: `number`
-* modTrunk?: `number`
-* modHydrolic?: `number`
-* modEngineBlock?: `number`
-* modAirFilter?: `number`
-* modStruts?: `number`
-* modArchCover?: `number`
-* modAerials?: `number`
-* modTrimB?: `number`
-* modTank?: `number`
-* modWindows?: `number`
-* modDoorR?: `number`
-* modLivery?: `number`
-* modRoofLivery?: `number`
-* modLightbar?: `number`
-* windows?: `number[]`
-* doors?: `number[]`
-* tyres?: `table<number | string, 1 | 2>`
-* bulletProofTyres?: `boolean`
-
-
 # Shared (/docs/ox_lib/Timer/Shared)
 
 
@@ -11065,6 +10905,166 @@ timer = lib.timer(5000, function()
 end, true)
 
 ```
+
+
+# Client (/docs/ox_lib/VehicleProperties/Client)
+
+
+
+Mostly follows the format used by ESX and QBCore, with extra data such as damaged/missing props.\
+[https://github.com/overextended/ox\_lib/blob/master/resource/vehicleProperties/client.lua#L3](https://github.com/overextended/ox_lib/blob/master/resource/vehicleProperties/client.lua#L3)
+
+## lib.getVehicleProperties [#libgetvehicleproperties]
+
+```ts
+lib.getVehicleProperties(vehicle);
+```
+
+* vehicle: `number`
+  * vehicle handle of the vehicle to get the properties for
+
+<Tabs items="[&#x22;Lua&#x22;, &#x22;JS&#x22;]">
+  <Tab>
+    ```lua
+    lib.getVehicleProperties(GetVehiclePedIsUsing(PlayerPedId()))
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    import lib from '@overextended/ox_lib/client'
+
+    lib.getVehicleProperties(GetVehiclePedIsUsing(PlayerPedId()))
+    ```
+  </Tab>
+</Tabs>
+
+## lib.setVehicleProperties [#libsetvehicleproperties]
+
+Sets properties on a vehicle (i.e. mods, plate text, etc.) and returns true if the client owns the entity.
+
+```lua
+lib.setVehicleProperties(vehicle, props)
+```
+
+* vehicle: `entity`
+* props: `table`
+
+<Tabs items="[&#x22;Lua&#x22;, &#x22;JS&#x22;]">
+  <Tab>
+    ```lua
+    RegisterNetEvent('ox_lib:setVehicleProperties', function(netid, data)
+        lib.setVehicleProperties(NetToVeh(netid), data)
+    end)
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    import { setVehicleProperties } from '@overextended/ox_lib/client'
+
+    onNet('ox_lib:setVehicleProperties', (netid, data) => {
+      setVehicleProperties(NetToVeh(netid), data)
+    })
+    ```
+  </Tab>
+</Tabs>
+
+**Returns:**
+
+* isEntityOwner: `boolean`
+
+### Recommended Usage [#recommended-usage]
+
+The server should tell the owner of the entity to set properties, using the following trigger.
+
+```lua
+TriggerClientEvent('ox_lib:setVehicleProperties', entityOwner, vehNetId, data)
+```
+
+## Vehicle Properties [#vehicle-properties]
+
+* model?: `number`
+* plate?: `string`
+* plateIndex?: `number`
+* bodyHealth?: `number`
+* engineHealth?: `number`
+* tankHealth?: `number`
+* fuelLevel?: `number`
+* oilLevel?: `number`
+* dirtLevel?: `number`
+* color1?: `number` or `number[]`
+* color2?: `number` or `number[]`
+* pearlescentColor?: `number`
+* interiorColor?: `number`
+* dashboardColor?: `number`
+* wheelColor?: `number`
+* wheelWidth?: `number`
+* wheelSize?: `number`
+* wheels?: `number`
+* windowTint?: `number`
+* xenonColor?: `number`
+* neonEnabled?: `boolean[]`
+* neonColor?: `number` or `number[]`
+* extras?: `table<number | string, 0 | 1>`
+* tyreSmokeColor?: `number` or `number[]`
+* modSpoilers?: `number`
+* modFrontBumper?: `number`
+* modRearBumper?: `number`
+* modSideSkirt?: `number`
+* modExhaust?: `number`
+* modFrame?: `number`
+* modGrille?: `number`
+* modHood?: `number`
+* modFender?: `number`
+* modRightFender?: `number`
+* modRoof?: `number`
+* modEngine?: `number`
+* modBrakes?: `number`
+* modTransmission?: `number`
+* modHorns?: `number`
+* modSuspension?: `number`
+* modArmor?: `number`
+* modNitrous?: `number`
+* modTurbo?: `number`
+* modSubwoofer?: `boolean`
+* modSmokeEnabled?: `boolean`
+* modHydraulics?: `boolean`
+* modXenon?: `boolean`
+* modFrontWheels?: `number`
+* modBackWheels?: `number`
+* modCustomTiresF?: `boolean`
+* modCustomTiresR?: `boolean`
+* modPlateHolder?: `number`
+* modVanityPlate?: `number`
+* modTrimA?: `number`
+* modOrnaments?: `number`
+* modDashboard?: `number`
+* modDial?: `number`
+* modDoorSpeaker?: `number`
+* modSeats?: `number`
+* modSteeringWheel?: `number`
+* modShifterLeavers?: `number`
+* modAPlate?: `number`
+* modSpeakers?: `number`
+* modTrunk?: `number`
+* modHydrolic?: `number`
+* modEngineBlock?: `number`
+* modAirFilter?: `number`
+* modStruts?: `number`
+* modArchCover?: `number`
+* modAerials?: `number`
+* modTrimB?: `number`
+* modTank?: `number`
+* modWindows?: `number`
+* modDoorR?: `number`
+* modLivery?: `number`
+* modRoofLivery?: `number`
+* modLightbar?: `number`
+* windows?: `number[]`
+* doors?: `number[]`
+* tyres?: `table<number | string, 1 | 2>`
+* bulletProofTyres?: `boolean`
 
 
 # Server (/docs/ox_lib/Version/Server)
@@ -13889,6 +13889,101 @@ print(json.encode(inventory, {indent = true}))
         "owner": false,
         ...
     }
+]]
+```
+
+## GetInventories [#getinventories]
+
+Returns the IDs of all loaded inventories matching the given type. If `detailed` is `true`, returns the full inventory data instead.
+
+```lua
+exports.ox_inventory:GetInventories(invType, detailed)
+```
+
+* invType: `string`
+* detailed?: `boolean` returns the full inventory data instead of only the inventory ID
+
+<br />
+
+<u>
+  **Example**
+</u>
+
+```lua
+local inventories = exports.ox_inventory:GetInventories('glovebox')
+
+print(json.encode(inventories, {indent = true}))
+
+--[[
+    [
+        "gloveK7M2Q9X4",
+        "gloveP3L8V1ZN"
+    ]
+]]
+```
+
+With `detailed` enabled, the function returns the full inventory data:
+
+```lua
+local inventories = exports.ox_inventory:GetInventories('glovebox', true)
+
+print(json.encode(inventories, {indent = true}))
+
+--[[
+    [
+        {
+            "entityId": 184732,
+            "weight": 12500,
+            "netid": 73421,
+            "get": {
+                "__cfx_functionReference": "ox_inventory:48291:127"
+            },
+            "maxWeight": 88000,
+            "slots": 11,
+            "open": false,
+            "openedBy": [],
+            "id": "gloveK7M2Q9X4",
+            "dbId": "K7M2Q9X4",
+            "type": "glovebox",
+            "label": "K7M2Q9X4",
+            "owner": false,
+            "minimal": {
+                "__cfx_functionReference": "ox_inventory:48291:126"
+            },
+            "changed": false,
+            "set": {
+                "__cfx_functionReference": "ox_inventory:48291:125"
+            },
+            "items": [],
+            "time": 1787604127
+        },
+        {
+            "entityId": 192845,
+            "weight": 3200,
+            "netid": 73435,
+            "get": {
+                "__cfx_functionReference": "ox_inventory:48291:130"
+            },
+            "maxWeight": 88000,
+            "slots": 11,
+            "open": true,
+            "openedBy": [12],
+            "id": "gloveP3L8V1ZN",
+            "dbId": "P3L8V1ZN",
+            "type": "glovebox",
+            "label": "P3L8V1ZN",
+            "owner": false,
+            "minimal": {
+                "__cfx_functionReference": "ox_inventory:48291:129"
+            },
+            "changed": true,
+            "set": {
+                "__cfx_functionReference": "ox_inventory:48291:128"
+            },
+            "items": [],
+            "time": 1787603984
+        }
+    ]
 ]]
 ```
 
