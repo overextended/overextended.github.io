@@ -20,14 +20,14 @@ export function baseOptions(): BaseLayoutProps {
         text: "Documentation",
         url: "/docs",
         icon: <BookIcon />,
-        on: "nav",
+        on: "all",
       },
       {
         type: "main",
         text: "Resources",
         url: "/docs/resources",
         icon: <PackageSearch />,
-        on: "all",
+        on: "nav",
       },
       {
         type: "main",

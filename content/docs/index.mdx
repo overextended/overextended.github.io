@@ -1,11 +1,22 @@
 ---
-title: Introduction
+title: Documentation
 ---
 
-<div>
-    Established in 2021, Overextended began as a collaborative effort to develop high-quality, secure, free, and open-source resources for FiveM. While the project was officially discontinued in 2025, several community members continued maintaining key resources such as oxmysql, ox_lib, ox_inventory, and ox_core to ensure their stability and usability.
 
-    Development resumed in 2026 with a renewed focus on collaboration with the community. This shift is intended to provide ongoing support and deliver critical security updates in a timely manner.
+import { getPageTreePeers } from "fumadocs-core/page-tree";
+import { source } from "@/lib/source";
 
-    If you feel like our documentation is lacking, please let us know or suggest improvements by using the links in the sidebar.
-</div>
+## Developer Resources
+
+<Cards>
+  {getPageTreePeers(source.getPageTree(), "/docs/resources").filter((peer) => (peer.name !== "Tebex Creators")).map((peer) => (
+    <Card key={peer.url} title={peer.name} href={peer.url}>
+      {peer.description}
+    </Card>
+  ))}
+</Cards>
+
+
+## Creator Codes
+
+<include>resources/tebex-creators.mdx</include>
