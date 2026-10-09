@@ -5209,6 +5209,28 @@ Ox.UnbanUser(userId)
 * `boolean`
 
 
+# Events (/docs/ox_doorlock/Server/events)
+
+
+
+## Handlers [#handlers]
+
+These events **should not** be triggered by any other scripts.
+
+### ox\_doorlock:stateChanged [#ox_doorlockstatechanged]
+
+Triggered when a doors state is updated.
+
+```lua
+AddEventHandler('ox_doorlock:stateChanged', function(source, doorId, state, usedItem) end)
+```
+
+* source: `number` or `nil`
+* doorId: `number`
+* state: `boolean`
+* usedItem: `string` or `false` or `nil`
+
+
 # Functions (/docs/ox_doorlock/Client/functions)
 
 
@@ -5240,28 +5262,6 @@ exports.ox_doorlock:getClosestDoor()
 Return:
 
 * door: `number`
-
-
-# Events (/docs/ox_doorlock/Server/events)
-
-
-
-## Handlers [#handlers]
-
-These events **should not** be triggered by any other scripts.
-
-### ox\_doorlock:stateChanged [#ox_doorlockstatechanged]
-
-Triggered when a doors state is updated.
-
-```lua
-AddEventHandler('ox_doorlock:stateChanged', function(source, doorId, state, usedItem) end)
-```
-
-* source: `number` or `nil`
-* doorId: `number`
-* state: `boolean`
-* usedItem: `string` or `false` or `nil`
 
 
 # Functions (/docs/ox_fuel/Client/functions)
@@ -5481,6 +5481,101 @@ AddEventHandler('ox_inventory:usedItem', function(playerId, name, slotId, metada
 * name: `string`
 * slotId: `number`
 * metadata?: `table`
+
+
+# ESX (/docs/ox_inventory/Frameworks/esx)
+
+
+
+* You will need a [compatible version of ESX Legacy](https://github.com/esx-framework/esx_core) (1.6.0 or higher).
+* You can convert player inventories with `convertinventory esx`.
+* All items in the database will be migrated to the internal item data.
+  * Always restart the resource when items are migrated!
+
+## Compatibility [#compatibility]
+
+Ox Inventory is a complete replacement for existing item, inventory, and weapon systems; it is inherently incompatible with ESX and any resources that rely on default behaviour.
+
+* Loadouts do not exist and weapons are treated as items.
+* Standard shops and stashes (i.e. esx\_shops, esx\_weaponshop, and esx\_policejob).
+* Resources that alter the default esx inventory or provide a ui (i.e. esx\_trunkinventory, esx\_inventoryhud).
+
+## Installation [#installation]
+
+* Use a compatible version of [ESX Legacy](https://github.com/esx-framework/esx-legacy) (1.6.0+).
+* Modify your `server.cfg`, starting ox\_inventory immediately after es\_extended.
+
+```yaml
+start oxmysql
+start ox_lib
+start es_extended
+start qtarget
+start ox_inventory
+```
+
+## Convert ESX inventory data [#convert-esx-inventory-data]
+
+* Start the server and type `convertinventory esx` into the server console.
+* Optionally, type `convertinventory esxproperty` into the server console.
+* Restart the server once conversion is complete.
+
+## Optional Optimisation [#optional-optimisation]
+
+All item related functions from xPlayer, such as `xPlayer.getInventoryItem`, have been modified for compatibility purposes; however they are considered deprecated.
+
+The reasoning is fairly simple - there's now additional function references and overhead to consider. Fortunately, the new Inventory functions can be used directly and offer a great deal of improvements over the old ones.
+
+You should read through the functions section for further information, but the following should give you a decent idea.
+
+<Tabs items="[&#x22;ESX&#x22;, &#x22;Ox Inventory&#x22;]">
+  <Tab>
+    ```lua
+    if xPlayer.getInventoryItem('acetone').count > 2 and xPlayer.getInventoryItem('antifreeze').count > 4 and xPlayer.getInventoryItem('sudo').count > 9 then
+        xPlayer.removeInventoryItem("acetone", 3)
+        xPlayer.removeInventoryItem("antifreeze", 5)
+        xPlayer.removeInventoryItem("sudo", 10)
+    end
+    ```
+  </Tab>
+
+  <Tab>
+    Add the following code somewhere in your resource to cache the exports metatable.
+
+    ```lua
+    local ox_inventory = exports.ox_inventory
+    ```
+
+    You will be able to reference any functions exposed through the export.
+
+    ```lua
+    local items = ox_inventory:Search(source, 'count', {'acetone', 'antifreeze', 'sudo'})
+    if items and items.acetone > 2 and items.antifreeze > 4 and items.sudo > 9 then
+        ox_inventory:RemoveItem(source, 'acetone', 3)
+        ox_inventory:RemoveItem(source, 'antifreeze', 5)
+        ox_inventory:RemoveItem(source, 'sudo', 10)
+    end
+    ```
+  </Tab>
+</Tabs>
+
+
+# Qbox (/docs/ox_inventory/Frameworks/qbx)
+
+
+
+Qbox is a fork of QBCore being developed by a team of former contributors and developers on QBCore. The team is focused on improving performance and security, as well as converting resources to support our resources (mainly ox\_lib and ox\_inventory).
+
+We *strongly* advise using Qbox as an alternative to QBCore.
+
+* [Qbox Project GitHub](https://github.com/Qbox-project/)
+* [Qbox Project Discord](https://discord.gg/AtbwBuJHN5)
+
+## Installation [#installation]
+
+* Setup [qbox](https://github.com/Qbox-project/qbx_core).
+* Edit your `server.cfg`.
+  * Add `setr inventory:framework "qbx"` before starting your resources.
+  * Start ox\_inventory immediately after qbx\_core.
 
 
 # Client (/docs/ox_inventory/Functions/Client)
@@ -6035,101 +6130,6 @@ Allows you to enable/disable the use of weapons for a player.
 ```lua
 LocalPlayer.state.canUseWeapons = false
 ```
-
-
-# ESX (/docs/ox_inventory/Frameworks/esx)
-
-
-
-* You will need a [compatible version of ESX Legacy](https://github.com/esx-framework/esx_core) (1.6.0 or higher).
-* You can convert player inventories with `convertinventory esx`.
-* All items in the database will be migrated to the internal item data.
-  * Always restart the resource when items are migrated!
-
-## Compatibility [#compatibility]
-
-Ox Inventory is a complete replacement for existing item, inventory, and weapon systems; it is inherently incompatible with ESX and any resources that rely on default behaviour.
-
-* Loadouts do not exist and weapons are treated as items.
-* Standard shops and stashes (i.e. esx\_shops, esx\_weaponshop, and esx\_policejob).
-* Resources that alter the default esx inventory or provide a ui (i.e. esx\_trunkinventory, esx\_inventoryhud).
-
-## Installation [#installation]
-
-* Use a compatible version of [ESX Legacy](https://github.com/esx-framework/esx-legacy) (1.6.0+).
-* Modify your `server.cfg`, starting ox\_inventory immediately after es\_extended.
-
-```yaml
-start oxmysql
-start ox_lib
-start es_extended
-start qtarget
-start ox_inventory
-```
-
-## Convert ESX inventory data [#convert-esx-inventory-data]
-
-* Start the server and type `convertinventory esx` into the server console.
-* Optionally, type `convertinventory esxproperty` into the server console.
-* Restart the server once conversion is complete.
-
-## Optional Optimisation [#optional-optimisation]
-
-All item related functions from xPlayer, such as `xPlayer.getInventoryItem`, have been modified for compatibility purposes; however they are considered deprecated.
-
-The reasoning is fairly simple - there's now additional function references and overhead to consider. Fortunately, the new Inventory functions can be used directly and offer a great deal of improvements over the old ones.
-
-You should read through the functions section for further information, but the following should give you a decent idea.
-
-<Tabs items="[&#x22;ESX&#x22;, &#x22;Ox Inventory&#x22;]">
-  <Tab>
-    ```lua
-    if xPlayer.getInventoryItem('acetone').count > 2 and xPlayer.getInventoryItem('antifreeze').count > 4 and xPlayer.getInventoryItem('sudo').count > 9 then
-        xPlayer.removeInventoryItem("acetone", 3)
-        xPlayer.removeInventoryItem("antifreeze", 5)
-        xPlayer.removeInventoryItem("sudo", 10)
-    end
-    ```
-  </Tab>
-
-  <Tab>
-    Add the following code somewhere in your resource to cache the exports metatable.
-
-    ```lua
-    local ox_inventory = exports.ox_inventory
-    ```
-
-    You will be able to reference any functions exposed through the export.
-
-    ```lua
-    local items = ox_inventory:Search(source, 'count', {'acetone', 'antifreeze', 'sudo'})
-    if items and items.acetone > 2 and items.antifreeze > 4 and items.sudo > 9 then
-        ox_inventory:RemoveItem(source, 'acetone', 3)
-        ox_inventory:RemoveItem(source, 'antifreeze', 5)
-        ox_inventory:RemoveItem(source, 'sudo', 10)
-    end
-    ```
-  </Tab>
-</Tabs>
-
-
-# Qbox (/docs/ox_inventory/Frameworks/qbx)
-
-
-
-Qbox is a fork of QBCore being developed by a team of former contributors and developers on QBCore. The team is focused on improving performance and security, as well as converting resources to support our resources (mainly ox\_lib and ox\_inventory).
-
-We *strongly* advise using Qbox as an alternative to QBCore.
-
-* [Qbox Project GitHub](https://github.com/Qbox-project/)
-* [Qbox Project Discord](https://discord.gg/AtbwBuJHN5)
-
-## Installation [#installation]
-
-* Setup [qbox](https://github.com/Qbox-project/qbx_core).
-* Edit your `server.cfg`.
-  * Add `setr inventory:framework "qbx"` before starting your resources.
-  * Start ox\_inventory immediately after qbx\_core.
 
 
 # Crafting (/docs/ox_inventory/Guides/crafting)
@@ -7714,6 +7714,63 @@ Returns the number of rows affected by the query.
 * `exports.oxmysql.update`
 
 
+# Server (/docs/ox_lib/AddCommand/Server)
+
+
+
+Registers commands and simplifies argument validation, permissions, and chat suggestions.
+
+```lua
+lib.addCommand(commandName, properties, cb)
+```
+
+* commandName: `string` or `string[]`
+* properties: `table` or `false`
+  * help?: `string`
+  * restricted?: `boolean` or `string` or `string[]`
+  * params?: `table[]`
+    * name: `string`
+    * help?: `string`
+    * type?: `'number'` or `'playerId'` or `'string'` or `'longString'`
+    * optional?: `boolean`
+
+```lua
+lib.addCommand('giveitem', {
+    help = 'Gives an item to a player',
+    params = {
+        {
+            name = 'target',
+            type = 'playerId',
+            help = 'Target player\'s server id',
+        },
+        {
+            name = 'item',
+            type = 'string',
+            help = 'Name of the item to give',
+        },
+        {
+            name = 'count',
+            type = 'number',
+            help = 'Amount of the item to give, or blank to give 1',
+            optional = true,
+        },
+        {
+            name = 'metatype',
+            help = 'Sets the item\'s "metadata.type"',
+            optional = true,
+        },
+    },
+    restricted = 'group.admin'
+}, function(source, args, raw)
+    local item = Items(args.item)
+
+    if item then
+        Inventory.AddItem(args.target, item.name, args.count or 1, args.metatype)
+    end
+end)
+```
+
+
 # Server (/docs/ox_lib/ACL/Server)
 
 
@@ -7830,6 +7887,110 @@ Removes a principal from a parent principal.
 
 * child: `string`
 * parent: `string`
+
+
+# Client (/docs/ox_lib/AddKeybind/Client)
+
+
+
+Registers keybinds and simplifies interactions of the keybinds.
+
+## CKeybind Class [#ckeybind-class]
+
+A table representing a keybind with the following properties.
+
+* name: `string`
+* description: `string`
+* currentKey: `string`
+  * Key that the current user has this keybind set to
+* disabled: `boolean`
+  * Whether or not the keybind is currently disabled
+* isPressed: `boolean`
+  * "A state indicating whether the keybind is pressed or not
+* hash: `number`
+  * Internal hash of the keybind that is used to reference it within the game itself
+* defaultKey?: `string`
+  * Default key to set the keybind to for new players
+  * NOTE: Changing this will not change the key for existing players
+* defaultMapper?: `string`
+  * See [Input Mapper Ids](https://docs.fivem.net/docs/game-references/input-mapper-parameter-ids/) for more information
+* secondaryKey?: `string`
+  * An optional secondary keybind.
+* secondaryMapper?: `string`
+  * An optional mapper for the secondary key, otherwise using the default mapper.
+* allowInPauseMenu?: `boolean`
+  * Allows the keybind to trigger while the pause menu/frontend is active.
+  * Default: `false`
+* disable: `function(self: CKeybind, disable: boolean)`
+  * Built-in function to enable / disable a keybind
+* isControlPressed: `function(self: CKeybind)`
+  * Built-in function to get the current pressed state for the keybind
+* onPressed?: `function(self: CKeybind)`
+  * User-defined function triggered on keybind press
+* onReleased?: `function(self: CKeybind)`
+  * User-defined function triggered on keybind release
+
+## lib.addKeybind [#libaddkeybind]
+
+```lua
+lib.addKeybind(data)
+```
+
+* data: `table`
+  * name: `string`
+    * Name of the command created for RegisterKeyMap
+    * Must not contain whitespace
+  * description: `string`
+    * The name shown in 'Settings' -> 'Key Bindings' -> 'FiveM'
+  * defaultKey?: `string`
+    * Default: `None`
+  * defaultMapper?: `string`
+    * Default: `keyboard`
+  * secondaryKey?: `string`
+  * secondaryMapper?: `string`
+  * allowInPauseMenu?: `boolean`
+    * Default: `false`
+    * If true, keybind callbacks can run while `IsPauseMenuActive()` is true
+  * disabled?: `boolean`
+    * Whether or not the keybind should be disabled by default
+  * onPressed?: `function(self: CKeybind)`
+    * Function triggered on keybind press
+  * onReleased?: `function(self: CKeybind)`
+    * Function triggered on keybind release
+
+```lua
+local keybind = lib.addKeybind({
+    name = 'respects',
+    description = 'press F to pay respects',
+    defaultKey = 'F',
+    allowInPauseMenu = true,
+    onPressed = function(self)
+        print(('pressed %s (%s)'):format(self.currentKey, self.name))
+    end,
+    onReleased = function(self)
+        print(('released %s (%s)'):format(self.currentKey, self.name))
+    end
+})
+```
+
+### Enable / Disable Keybinds [#enable--disable-keybinds]
+
+Keybinds can be enabled / disabled by using the disable method.
+
+```lua
+keybind:disable(true) -- disables the keybind
+keybind:disable(false) -- enables the keybind
+```
+
+### Keybind pressed states [#keybind-pressed-states]
+
+All keybinds registered with `lib.addKeybind()` gets a boolean state, that shows if its pressed or not.
+
+You can get the state with the following method
+
+```lua
+local state = keybind:isControlPressed()
+```
 
 
 # Shared (/docs/ox_lib/Array/Shared)
@@ -8173,110 +8334,6 @@ lib.array.isArray(tbl)
 * isArray: `boolean`
 
 
-# Client (/docs/ox_lib/AddKeybind/Client)
-
-
-
-Registers keybinds and simplifies interactions of the keybinds.
-
-## CKeybind Class [#ckeybind-class]
-
-A table representing a keybind with the following properties.
-
-* name: `string`
-* description: `string`
-* currentKey: `string`
-  * Key that the current user has this keybind set to
-* disabled: `boolean`
-  * Whether or not the keybind is currently disabled
-* isPressed: `boolean`
-  * "A state indicating whether the keybind is pressed or not
-* hash: `number`
-  * Internal hash of the keybind that is used to reference it within the game itself
-* defaultKey?: `string`
-  * Default key to set the keybind to for new players
-  * NOTE: Changing this will not change the key for existing players
-* defaultMapper?: `string`
-  * See [Input Mapper Ids](https://docs.fivem.net/docs/game-references/input-mapper-parameter-ids/) for more information
-* secondaryKey?: `string`
-  * An optional secondary keybind.
-* secondaryMapper?: `string`
-  * An optional mapper for the secondary key, otherwise using the default mapper.
-* allowInPauseMenu?: `boolean`
-  * Allows the keybind to trigger while the pause menu/frontend is active.
-  * Default: `false`
-* disable: `function(self: CKeybind, disable: boolean)`
-  * Built-in function to enable / disable a keybind
-* isControlPressed: `function(self: CKeybind)`
-  * Built-in function to get the current pressed state for the keybind
-* onPressed?: `function(self: CKeybind)`
-  * User-defined function triggered on keybind press
-* onReleased?: `function(self: CKeybind)`
-  * User-defined function triggered on keybind release
-
-## lib.addKeybind [#libaddkeybind]
-
-```lua
-lib.addKeybind(data)
-```
-
-* data: `table`
-  * name: `string`
-    * Name of the command created for RegisterKeyMap
-    * Must not contain whitespace
-  * description: `string`
-    * The name shown in 'Settings' -> 'Key Bindings' -> 'FiveM'
-  * defaultKey?: `string`
-    * Default: `None`
-  * defaultMapper?: `string`
-    * Default: `keyboard`
-  * secondaryKey?: `string`
-  * secondaryMapper?: `string`
-  * allowInPauseMenu?: `boolean`
-    * Default: `false`
-    * If true, keybind callbacks can run while `IsPauseMenuActive()` is true
-  * disabled?: `boolean`
-    * Whether or not the keybind should be disabled by default
-  * onPressed?: `function(self: CKeybind)`
-    * Function triggered on keybind press
-  * onReleased?: `function(self: CKeybind)`
-    * Function triggered on keybind release
-
-```lua
-local keybind = lib.addKeybind({
-    name = 'respects',
-    description = 'press F to pay respects',
-    defaultKey = 'F',
-    allowInPauseMenu = true,
-    onPressed = function(self)
-        print(('pressed %s (%s)'):format(self.currentKey, self.name))
-    end,
-    onReleased = function(self)
-        print(('released %s (%s)'):format(self.currentKey, self.name))
-    end
-})
-```
-
-### Enable / Disable Keybinds [#enable--disable-keybinds]
-
-Keybinds can be enabled / disabled by using the disable method.
-
-```lua
-keybind:disable(true) -- disables the keybind
-keybind:disable(false) -- enables the keybind
-```
-
-### Keybind pressed states [#keybind-pressed-states]
-
-All keybinds registered with `lib.addKeybind()` gets a boolean state, that shows if its pressed or not.
-
-You can get the state with the following method
-
-```lua
-local state = keybind:isControlPressed()
-```
-
-
 # Client (/docs/ox_lib/Cache/Client)
 
 
@@ -8404,63 +8461,6 @@ end
 > 6
 > 6
 > 6
-```
-
-
-# Server (/docs/ox_lib/AddCommand/Server)
-
-
-
-Registers commands and simplifies argument validation, permissions, and chat suggestions.
-
-```lua
-lib.addCommand(commandName, properties, cb)
-```
-
-* commandName: `string` or `string[]`
-* properties: `table` or `false`
-  * help?: `string`
-  * restricted?: `boolean` or `string` or `string[]`
-  * params?: `table[]`
-    * name: `string`
-    * help?: `string`
-    * type?: `'number'` or `'playerId'` or `'string'` or `'longString'`
-    * optional?: `boolean`
-
-```lua
-lib.addCommand('giveitem', {
-    help = 'Gives an item to a player',
-    params = {
-        {
-            name = 'target',
-            type = 'playerId',
-            help = 'Target player\'s server id',
-        },
-        {
-            name = 'item',
-            type = 'string',
-            help = 'Name of the item to give',
-        },
-        {
-            name = 'count',
-            type = 'number',
-            help = 'Amount of the item to give, or blank to give 1',
-            optional = true,
-        },
-        {
-            name = 'metatype',
-            help = 'Sets the item\'s "metadata.type"',
-            optional = true,
-        },
-    },
-    restricted = 'group.admin'
-}, function(source, args, raw)
-    local item = Items(args.item)
-
-    if item then
-        Inventory.AddItem(args.target, item.name, args.count or 1, args.metatype)
-    end
-end)
 ```
 
 
@@ -8757,6 +8757,33 @@ Return:
 * coords?: `vector3`
 
 
+# Shared (/docs/ox_lib/GetClosestVehicle/Shared)
+
+
+
+## lib.getClosestVehicle [#libgetclosestvehicle]
+
+Get the vehicle handle and coords of the closest vehicle to a set of coordinates.
+
+```lua
+lib.getClosestVehicle(coords, maxDistance, includePlayerVehicle)
+```
+
+* coords: `vector3`
+  * The coords to check from.
+* maxDistance?: `number`
+  * The max distance to check.
+  * Default: `2.0`
+* includePlayerVehicle?: `boolean`
+  * Whether or not to include the player's current vehicle. Ignored on the server.
+  * Default: `false`
+
+Return:
+
+* vehicle?: `number`
+* vehicleCoords?: `vector3`
+
+
 # Client (/docs/ox_lib/GetClosestPlayer/Client)
 
 
@@ -8813,31 +8840,27 @@ Return:
 * playerCoords?: `vector3`
 
 
-# Shared (/docs/ox_lib/GetClosestVehicle/Shared)
+# Server (/docs/ox_lib/GetFilesInDirectory/Server)
 
 
 
-## lib.getClosestVehicle [#libgetclosestvehicle]
+## lib.getFilesInDirectory [#libgetfilesindirectory]
 
-Get the vehicle handle and coords of the closest vehicle to a set of coordinates.
+Gets a list of all files in a specified resource directory, along with the file count
 
 ```lua
-lib.getClosestVehicle(coords, maxDistance, includePlayerVehicle)
+lib.getFilesInDirectory(path, pattern)
 ```
 
-* coords: `vector3`
-  * The coords to check from.
-* maxDistance?: `number`
-  * The max distance to check.
-  * Default: `2.0`
-* includePlayerVehicle?: `boolean`
-  * Whether or not to include the player's current vehicle. Ignored on the server.
-  * Default: `false`
+* path: `string`
+  * The relative or absolute path to the directory where files should be listed.
+* pattern: `string`
+  * Pattern to check for when searching for files.
 
-Return:
+Returns:
 
-* vehicle?: `number`
-* vehicleCoords?: `vector3`
+* files: `string[]`
+* fileCount: `number`
 
 
 # Shared (/docs/ox_lib/GetNearbyObjects/Shared)
@@ -8910,29 +8933,6 @@ lib.getNearbyPlayers(coords, maxDistance, includePlayer)
 Return:
 
 * players: `{ id: number, ped: number, coords: vector3 }[]`
-
-
-# Server (/docs/ox_lib/GetFilesInDirectory/Server)
-
-
-
-## lib.getFilesInDirectory [#libgetfilesindirectory]
-
-Gets a list of all files in a specified resource directory, along with the file count
-
-```lua
-lib.getFilesInDirectory(path, pattern)
-```
-
-* path: `string`
-  * The relative or absolute path to the directory where files should be listed.
-* pattern: `string`
-  * Pattern to check for when searching for files.
-
-Returns:
-
-* files: `string[]`
-* fileCount: `number`
 
 
 # Shared (/docs/ox_lib/Grid/Shared)
@@ -10380,41 +10380,6 @@ end)
 ```
 
 
-# Shared (/docs/ox_lib/String/Shared)
-
-
-
-## lib.string [#libstring]
-
-Extends the standard Lua string table with extra functions.
-
-```
-string = lib.string
-```
-
-### string.random [#stringrandom]
-
-Outputs a random string based on a given pattern.
-
-```lua
-string.random(pattern, length)
-```
-
-* pattern: `string`
-* `1` will output a random number from 0-9.
-* `A` will output a random letter from A-Z.
-* `a` will output a random letter from a-z.
-* `.` will output a random letter or number.
-* `^` will output the following character literally.
-* Any other character will output said character.
-* length?: `number`
-  * Sets the length of the returned string, either padding it or omitting characters.
-
-Return:
-
-* string: `string`
-
-
 # Client (/docs/ox_lib/Streaming/Client)
 
 
@@ -10676,6 +10641,41 @@ lib.requestAudioBank(audioBank, timeout)
 8 WEAPON_COMPONENT_SCLIP2
 16 WEAPON_COMPONENT_GRIP
 ```
+
+
+# Shared (/docs/ox_lib/String/Shared)
+
+
+
+## lib.string [#libstring]
+
+Extends the standard Lua string table with extra functions.
+
+```
+string = lib.string
+```
+
+### string.random [#stringrandom]
+
+Outputs a random string based on a given pattern.
+
+```lua
+string.random(pattern, length)
+```
+
+* pattern: `string`
+* `1` will output a random number from 0-9.
+* `A` will output a random letter from A-Z.
+* `a` will output a random letter from a-z.
+* `.` will output a random letter or number.
+* `^` will output the following character literally.
+* Any other character will output said character.
+* length?: `number`
+  * Sets the length of the returned string, either padding it or omitting characters.
+
+Return:
+
+* string: `string`
 
 
 # Shared (/docs/ox_lib/Table/Shared)
@@ -14392,122 +14392,6 @@ exports.ox_inventory:setContainerProperties('pizzabox', {
 ```
 
 
-# Client (/docs/ox_lib/Callback/JavaScript/Client)
-
-
-
-## Trigger Server Callback [#trigger-server-callback]
-
-### triggerServerCallback [#triggerservercallback]
-
-```ts
-triggerServerCallback(eventName, delay, ...args);
-```
-
-* eventName: `string`
-* delay: `number` or `null`
-  * Amount of time until this callback can be triggered again
-* ..args: `any`
-
-## Register Client Callback [#register-client-callback]
-
-### onServerCallback [#onservercallback]
-
-```ts
-onServerCallback(eventName, cb);
-```
-
-* eventName: `string`
-* cb: `function`(...args: `any`)
-
-## Usage Example [#usage-example]
-
-For this example to fully make sense take a look at the example on the [server](./Server#usage-example) page for the callbacks.
-
-```ts
-import { onServerCallback, triggerServerCallback } from "@overextended/ox_lib/client";
-```
-
-```ts
-onServerCallback("test:client", (...args: [number, number, string]) => {
-  console.log(args);
-  return {
-    clientValue: "Value from the client",
-  };
-});
-```
-
-```ts
-setTimeout(async () => {
-  const args = [1, null, 3, null, null, 6];
-  const response = await triggerServerCallback<{ serverValue: number }>("test:server", 1, args);
-  if (!response) return;
-  console.log("Response from server", response);
-}, 100);
-```
-
-
-# Server (/docs/ox_lib/Callback/JavaScript/Server)
-
-
-
-## Trigger Client Callback [#trigger-client-callback]
-
-### triggerClientCallback [#triggerclientcallback]
-
-```ts
-triggerClientCallback(eventName, playerId, ...args);
-```
-
-* eventName: `string`
-* playerId: `number`
-* ...args: `any`
-
-## Register Server Callback [#register-server-callback]
-
-### onClientCallback [#onclientcallback]
-
-```ts
-onClientCallback(eventName, cb);
-```
-
-* eventName: `string`
-* cb: `function`(playerId: `number`, ...args: `any`)
-
-## Usage Example [#usage-example]
-
-For this example to fully make sense take a look at the example on the [client](./Client#usage-example) page for the callbacks.
-
-```ts
-import { onClientCallback, triggerClientCallback } from "@overextended/ox_lib/server";
-```
-
-```ts
-onClientCallback("test:server", (playerId, ...args: [number, null, number, null, null, number]) => {
-  console.log("onClientCallback", playerId, ...args);
-  return {
-    serverValue: 3000,
-  };
-});
-```
-
-```ts
-setTimeout(async () => {
-  const response = await triggerClientCallback<{ clientValue: string }>("test:client", 1, [
-    1,
-    null,
-    3,
-    null,
-    null,
-    6,
-  ]);
-  if (!response) return;
-  console.log(response.clientValue);
-  console.log("Response from client", response);
-}, 100);
-```
-
-
 # Client (/docs/ox_lib/Callback/Lua/Client)
 
 
@@ -14641,61 +14525,119 @@ end)
 ```
 
 
-# Client (/docs/ox_lib/Dui/Lua/Client)
+# Client (/docs/ox_lib/Callback/JavaScript/Client)
 
 
 
-Simple and centralised dui creation, supporting sending message, change url and deletion
+## Trigger Server Callback [#trigger-server-callback]
 
-## lib.dui:new [#libduinew]
+### triggerServerCallback [#triggerservercallback]
 
-Constructs instance of Dui.
-
-```lua
-lib.dui:new(data)
+```ts
+triggerServerCallback(eventName, delay, ...args);
 ```
 
-* data: `table`
-  * url: `string`
-  * width: `number`
-  * height: `number`
-  * debug?: `boolean`
+* eventName: `string`
+* delay: `number` or `null`
+  * Amount of time until this callback can be triggered again
+* ..args: `any`
 
-Returns:
+## Register Client Callback [#register-client-callback]
 
-* dui: `Dui`
-  * url: `string`
-  * duiObject: `number`
-  * duiHandle: `string`
-  * runtimeTxd: `number`
-  * txdObject: `number`
-  * dictName: `string`
-  * txtName: `string`
-  * setUrl: `function`(url: `string`)
-  * sendMessage: `function`(data: `table`)
-  * remove: `function`
+### onServerCallback [#onservercallback]
 
-### Usage Example [#usage-example]
+```ts
+onServerCallback(eventName, cb);
+```
 
-```lua
-local dui = lib.dui:new({
-	url = ("nui://%s/web/index.html"):format(cache.resource),
-	width = 1920,
-	height = 1080,
-	debug = true
-})
+* eventName: `string`
+* cb: `function`(...args: `any`)
 
--- Change url
-dui:setUrl("https://google.com")
+## Usage Example [#usage-example]
 
--- Send a message
-dui:sendMessage({
-	action = "display",
-	value = true
-})
+For this example to fully make sense take a look at the example on the [server](./Server#usage-example) page for the callbacks.
 
--- Destroy
-dui:remove()
+```ts
+import { onServerCallback, triggerServerCallback } from "@overextended/ox_lib/client";
+```
+
+```ts
+onServerCallback("test:client", (...args: [number, number, string]) => {
+  console.log(args);
+  return {
+    clientValue: "Value from the client",
+  };
+});
+```
+
+```ts
+setTimeout(async () => {
+  const args = [1, null, 3, null, null, 6];
+  const response = await triggerServerCallback<{ serverValue: number }>("test:server", 1, args);
+  if (!response) return;
+  console.log("Response from server", response);
+}, 100);
+```
+
+
+# Server (/docs/ox_lib/Callback/JavaScript/Server)
+
+
+
+## Trigger Client Callback [#trigger-client-callback]
+
+### triggerClientCallback [#triggerclientcallback]
+
+```ts
+triggerClientCallback(eventName, playerId, ...args);
+```
+
+* eventName: `string`
+* playerId: `number`
+* ...args: `any`
+
+## Register Server Callback [#register-server-callback]
+
+### onClientCallback [#onclientcallback]
+
+```ts
+onClientCallback(eventName, cb);
+```
+
+* eventName: `string`
+* cb: `function`(playerId: `number`, ...args: `any`)
+
+## Usage Example [#usage-example]
+
+For this example to fully make sense take a look at the example on the [client](./Client#usage-example) page for the callbacks.
+
+```ts
+import { onClientCallback, triggerClientCallback } from "@overextended/ox_lib/server";
+```
+
+```ts
+onClientCallback("test:server", (playerId, ...args: [number, null, number, null, null, number]) => {
+  console.log("onClientCallback", playerId, ...args);
+  return {
+    serverValue: 3000,
+  };
+});
+```
+
+```ts
+setTimeout(async () => {
+  const response = await triggerClientCallback<{ clientValue: string }>("test:client", 1, [
+    1,
+    null,
+    3,
+    null,
+    null,
+    6,
+  ]);
+  if (!response) return;
+  console.log(response.clientValue);
+  console.log("Response from client", response);
+}, 100);
 ```
 
 
@@ -14752,6 +14694,64 @@ dui.sendMessage({
 
 // Destroy
 dui.remove();
+```
+
+
+# Client (/docs/ox_lib/Dui/Lua/Client)
+
+
+
+Simple and centralised dui creation, supporting sending message, change url and deletion
+
+## lib.dui:new [#libduinew]
+
+Constructs instance of Dui.
+
+```lua
+lib.dui:new(data)
+```
+
+* data: `table`
+  * url: `string`
+  * width: `number`
+  * height: `number`
+  * debug?: `boolean`
+
+Returns:
+
+* dui: `Dui`
+  * url: `string`
+  * duiObject: `number`
+  * duiHandle: `string`
+  * runtimeTxd: `number`
+  * txdObject: `number`
+  * dictName: `string`
+  * txtName: `string`
+  * setUrl: `function`(url: `string`)
+  * sendMessage: `function`(data: `table`)
+  * remove: `function`
+
+### Usage Example [#usage-example]
+
+```lua
+local dui = lib.dui:new({
+	url = ("nui://%s/web/index.html"):format(cache.resource),
+	width = 1920,
+	height = 1080,
+	debug = true
+})
+
+-- Change url
+dui:setUrl("https://google.com")
+
+-- Send a message
+dui:sendMessage({
+	action = "display",
+	value = true
+})
+
+-- Destroy
+dui:remove()
 ```
 
 
