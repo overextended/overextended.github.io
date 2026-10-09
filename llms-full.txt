@@ -25,6 +25,8 @@ We make these deals to advertise trusted creators who meet our criteria.
 * The creator understands and respects [open source](https://opensource.org/) licenses.
 * Resources follow best practices and are highly configurable or source-available.
 
+You can apply a creator code at checkout under "Support A Creator".
+
 {CreatorCodes([
   ["Andyyy", "https://andyyy.tebex.io/", "ox20", 20 , "/static/creators/andy.png"],
   ["Berkie's Workshop", "https://berkie.tebex.io/", "ox10", 10 , "/static/creators/berkie.png"],
@@ -47,8 +49,6 @@ We make these deals to advertise trusted creators who meet our criteria.
   ["Stevo Scripts", "https://store.stevoscripts.com/", "overextended", 10, "/static/creators/steve.png"],
   ["Inferno Collection", "https://store.inferno-collection.com/", "ox7", 7, "/static/creators/inferno.png"]
   ])}
-
-You can apply a creator code at checkout under "Support A Creator".
 
 
 # Bun (/docs/guides/bun)
@@ -559,9 +559,8 @@ A simple fuel resource meant to replace LegacyFuel or serve as a showcase for us
 
 A slot-based inventory with item metadata for "item uniqueness".
 
-<Callout type="warning">
-  If you are replacing a built-in framework inventory there will be compatibility errors.\
-  If you are unwilling or incapable of resolving incompatibilities, do not install this resource.
+<Callout type="info">
+  Explore over 24,000 stylised, lore-accurate images at [Artwork Inventory](https://artwork-inventory.tebex.io/) and use code `ox10` for a 10% discount.
 </Callout>
 
 ## Installation [#installation]
@@ -791,6 +790,11 @@ A slot-based inventory with item metadata for "item uniqueness".
 
 ## Framework incompatibilities [#framework-incompatibilities]
 
+<Callout type="warning">
+  If you are replacing a built-in framework inventory there will be compatibility errors.\
+  If you are unwilling or incapable of resolving incompatibilities, do not install this resource.
+</Callout>
+
 * Any frameworks with their own built-in inventory, item, or weapon systems are expected to have compatibility issues.
 * Money as an item may conflict with banking/account systems.
   * You can sync these values with [server.syncInventory](https://github.com/overextended/ox_inventory/blob/aff8ef9e9ee3f93f177ce03b3f37895ff5781800/modules/bridge/nd/server.lua#L64-L77).
@@ -1002,151 +1006,6 @@ These aren't necessary to run ox\_target, but they will add additional features.
 * [ox\_core](https://github.com/overextended/ox_core)
 * [esx](https://github.com/esx-framework/esx-legacy)
 * [qbx\_core](https://github.com/Qbox-project/qbx_core)
-
-
-# Fivemanage (/docs/resources/fivemanage)
-
-
-
-<div
-  style="{
-  display: &#x22;grid&#x22;,
-  placeItems: &#x22;center&#x22;,
-}"
->
-  <a
-    href="https://refer.fivemanage.com/overextended"
-    style="{
-    background: &#x22;no-repeat url('/static/fivemanage.png')&#x22;,
-    backgroundSize: &#x22;contain&#x22;,
-    fontSize: &#x22;3rem&#x22;,
-    fontWeight: &#x22;500&#x22;,
-    verticalAlign: &#x22;middle&#x22;,
-    paddingLeft: &#x22;2em&#x22;,
-  }"
-  >
-    {" "}
-
-    Fivemanage
-  </a>
-</div>
-
-Fivemanage is an all-in-one SaaS platform for communities looking to improve their workflow, offering a range of features to faciliate easier management
-and administration of your FiveM server. They offer fast and reliable content delivery - with full support for image, video, and audio files - and seamless
-logging to track player and server activity while ensuring dependable performance and security.
-
-Fivemanage integrates seamlessly into your FiveM server with native support via ox\_lib and oxmysql, or through their official FiveM SDK.
-
-They offer a generous free plan with enough storage to get you started, and a variety of paid plans designed for both small and large servers needing access to more storage and advanced feeatures.
-
-Get started with [Fivemanage](https://refer.fivemanage.com/overextended) today.
-
-
-# Resources (/docs/resources)
-
-
-
-
-
-<Cards>
-  {getPageTreePeers(source.getPageTree(), "/docs/resources").map((peer) => (
-      <Card key={peer.url} title={peer.name} href={peer.url}>
-        {peer.description}
-      </Card>
-    ))}
-</Cards>
-
-
-# Prism Host (/docs/resources/prism-host)
-
-
-
-<div
-  style="{
-  display: &#x22;grid&#x22;,
-  placeItems: &#x22;center&#x22;,
-}"
->
-  <a
-    href="https://prism-host.com/overextended"
-    style="{
-    background: &#x22;no-repeat url('/static/prism.png') center&#x22;,
-    backgroundSize: &#x22;contain&#x22;,
-    fontWeight: &#x22;500&#x22;,
-    height: &#x22;4em&#x22;,
-    width: &#x22;100%&#x22;,
-  }"
-  />
-</div>
-
-Prism Host delivers performance-focused hosting without the inflated price tag. From game servers and VPS to dedicated hardware and web hosting, we build around fast hardware, practical pricing, and responsive support.
-
-Get started with [Prism Host](https://prism-host.com/overextended) today using the code `OVEREXTENDED` at checkout.
-
-
-# Tebex Creators (/docs/resources/tebex-creators)
-
-
-
-
-
-Creator codes allow Tebex stores to share revenue with other creators, giving a discount to the customer at the same time.
-We make these deals to advertise trusted creators who meet our criteria.
-
-* The creator is reputable and provides quality customer service.
-* The creator understands and respects [open source](https://opensource.org/) licenses.
-* Resources follow best practices and are highly configurable or source-available.
-
-{CreatorCodes([
-  ["Andyyy", "https://andyyy.tebex.io/", "ox20", 20 , "/static/creators/andy.png"],
-  ["Berkie's Workshop", "https://berkie.tebex.io/", "ox10", 10 , "/static/creators/berkie.png"],
-  ["Dolu Mods", "https://dolu.tebex.io/", "overextended", 25 , "/static/creators/dolu.png"],
-  ["Electus Scripts", "https://store.electus-scripts.com/", "ox10", 10 , "/static/creators/electus.png"],
-  ["Loaf Scripts", "https://store.loaf-scripts.com/", "ox10", 10 , "/static/creators/loaf.png"],
-  ["OT Studios", "https://store.otstudios.net/ox", "ox10", 10 , "/static/creators/otstudios.png"],
-  ["Randolio Scripts", "https://randolio.tebex.io/", "OVEREXTENDED", 20 , "/static/creators/randolio.png"],
-  ["rcore", "https://store.rcore.cz/", "ox10", 10 , "/static/creators/rcore.png"],
-  ["Artwork Inventory", "https://artwork-inventory.tebex.io/", "ox10", 10 , "/static/creators/artworkInventory.gif"],
-  ["Renewed Scripts", "https://renewed.tebex.io/ox", "ox15", 15 , "/static/creators/renewed.png"],
-  ["Scuffed Labs", "https://scuffedlabs.com/", "overextended", 10, "/static/creators/scuffedlabs.png"],
-  ["RAHE Development", "https://rahe.tebex.io/", "ox10", 10, "/static/creators/rahe.png"],
-  ["Qwaly Scripts", "https://qwaly.dev/", "ox10", 10, "/static/creators/qwaly.png"],
-  ["Ehbw Scripts", "https://ehbw.tebex.io/", "ox10", 10, "/static/creators/ehbw.png"],
-  ["Lation Scripts", "https://lationscripts.com/", "ox10", 10, "/static/creators/lation.png"],
-  ["Fuksus", "https://resources.fuksus.com/", "OX15", 15, "/static/creators/fuksus.png"],
-  ["TeamsGG", "https://teamsgg.dev/", "ox10", 10, "/static/creators/teamsgg.png"],
-  ["MadCap Scripts", "https://madcap-scripts.tebex.io/", "ox10", 10, "/static/creators/madcap.png"],
-  ["Stevo Scripts", "https://store.stevoscripts.com/", "overextended", 10, "/static/creators/steve.png"],
-  ["Inferno Collection", "https://store.inferno-collection.com/", "ox7", 7, "/static/creators/inferno.png"]
-  ])}
-
-You can apply a creator code at checkout under "Support A Creator".
-
-
-# Templates (/docs/resources/templates)
-
-
-
-We currently publish two templates for FiveM developers.
-
-## fxserver [#fxserver]
-
-This template is intended for developers looking to quickly install fxserver and create a monorepo for simple resource management.
-
-If you prefer to run fxserver in a container, look elsewhere.
-
-**[Browse repository](https://github.com/overextended/fxserver)**
-
-## fivem-ts [#fivem-ts]
-
-If you're looking to start creating resources with TypeScript but don't know what tools to use, settings to configure, or just hate having to setup new projects then we've got you covered.
-
-* Setup for working with our libraries (@overextended/core and @overextended/ox\_lib).
-* Uses [tsdown](https://tsdown.dev/) for fast build times and compatibility with a large [plugin](https://tsdown.dev/advanced/plugins) ecosystem.
-* Optionally scaffold a new webapp with [vite](https://vite.dev/guide/).
-* Fully configured for FiveM and FXServer.
-
-**[Browse repository](https://github.com/overextended/fivem-ts)**
 
 
 # Benchmark (/docs/oxmysql/benchmark)
@@ -1493,6 +1352,151 @@ Columns can be sorted by ascending and descending order, and hovering over a que
 </Callout>
 
 ![oxmysql\_ui\_queries](https://i.imgur.com/gZpJoIg.png)
+
+
+# Fivemanage (/docs/resources/fivemanage)
+
+
+
+<div
+  style="{
+  display: &#x22;grid&#x22;,
+  placeItems: &#x22;center&#x22;,
+}"
+>
+  <a
+    href="https://refer.fivemanage.com/overextended"
+    style="{
+    background: &#x22;no-repeat url('/static/fivemanage.png')&#x22;,
+    backgroundSize: &#x22;contain&#x22;,
+    fontSize: &#x22;3rem&#x22;,
+    fontWeight: &#x22;500&#x22;,
+    verticalAlign: &#x22;middle&#x22;,
+    paddingLeft: &#x22;2em&#x22;,
+  }"
+  >
+    {" "}
+
+    Fivemanage
+  </a>
+</div>
+
+Fivemanage is an all-in-one SaaS platform for communities looking to improve their workflow, offering a range of features to faciliate easier management
+and administration of your FiveM server. They offer fast and reliable content delivery - with full support for image, video, and audio files - and seamless
+logging to track player and server activity while ensuring dependable performance and security.
+
+Fivemanage integrates seamlessly into your FiveM server with native support via ox\_lib and oxmysql, or through their official FiveM SDK.
+
+They offer a generous free plan with enough storage to get you started, and a variety of paid plans designed for both small and large servers needing access to more storage and advanced feeatures.
+
+Get started with [Fivemanage](https://refer.fivemanage.com/overextended) today.
+
+
+# Resources (/docs/resources)
+
+
+
+
+
+<Cards>
+  {getPageTreePeers(source.getPageTree(), "/docs/resources").map((peer) => (
+      <Card key={peer.url} title={peer.name} href={peer.url}>
+        {peer.description}
+      </Card>
+    ))}
+</Cards>
+
+
+# Prism Host (/docs/resources/prism-host)
+
+
+
+<div
+  style="{
+  display: &#x22;grid&#x22;,
+  placeItems: &#x22;center&#x22;,
+}"
+>
+  <a
+    href="https://prism-host.com/overextended"
+    style="{
+    background: &#x22;no-repeat url('/static/prism.png') center&#x22;,
+    backgroundSize: &#x22;contain&#x22;,
+    fontWeight: &#x22;500&#x22;,
+    height: &#x22;4em&#x22;,
+    width: &#x22;100%&#x22;,
+  }"
+  />
+</div>
+
+Prism Host delivers performance-focused hosting without the inflated price tag. From game servers and VPS to dedicated hardware and web hosting, we build around fast hardware, practical pricing, and responsive support.
+
+Get started with [Prism Host](https://prism-host.com/overextended) today using the code `OVEREXTENDED` at checkout.
+
+
+# Tebex Creators (/docs/resources/tebex-creators)
+
+
+
+
+
+Creator codes allow Tebex stores to share revenue with other creators, giving a discount to the customer at the same time.
+We make these deals to advertise trusted creators who meet our criteria.
+
+* The creator is reputable and provides quality customer service.
+* The creator understands and respects [open source](https://opensource.org/) licenses.
+* Resources follow best practices and are highly configurable or source-available.
+
+You can apply a creator code at checkout under "Support A Creator".
+
+{CreatorCodes([
+  ["Andyyy", "https://andyyy.tebex.io/", "ox20", 20 , "/static/creators/andy.png"],
+  ["Berkie's Workshop", "https://berkie.tebex.io/", "ox10", 10 , "/static/creators/berkie.png"],
+  ["Dolu Mods", "https://dolu.tebex.io/", "overextended", 25 , "/static/creators/dolu.png"],
+  ["Electus Scripts", "https://store.electus-scripts.com/", "ox10", 10 , "/static/creators/electus.png"],
+  ["Loaf Scripts", "https://store.loaf-scripts.com/", "ox10", 10 , "/static/creators/loaf.png"],
+  ["OT Studios", "https://store.otstudios.net/ox", "ox10", 10 , "/static/creators/otstudios.png"],
+  ["Randolio Scripts", "https://randolio.tebex.io/", "OVEREXTENDED", 20 , "/static/creators/randolio.png"],
+  ["rcore", "https://store.rcore.cz/", "ox10", 10 , "/static/creators/rcore.png"],
+  ["Artwork Inventory", "https://artwork-inventory.tebex.io/", "ox10", 10 , "/static/creators/artworkInventory.gif"],
+  ["Renewed Scripts", "https://renewed.tebex.io/ox", "ox15", 15 , "/static/creators/renewed.png"],
+  ["Scuffed Labs", "https://scuffedlabs.com/", "overextended", 10, "/static/creators/scuffedlabs.png"],
+  ["RAHE Development", "https://rahe.tebex.io/", "ox10", 10, "/static/creators/rahe.png"],
+  ["Qwaly Scripts", "https://qwaly.dev/", "ox10", 10, "/static/creators/qwaly.png"],
+  ["Ehbw Scripts", "https://ehbw.tebex.io/", "ox10", 10, "/static/creators/ehbw.png"],
+  ["Lation Scripts", "https://lationscripts.com/", "ox10", 10, "/static/creators/lation.png"],
+  ["Fuksus", "https://resources.fuksus.com/", "OX15", 15, "/static/creators/fuksus.png"],
+  ["TeamsGG", "https://teamsgg.dev/", "ox10", 10, "/static/creators/teamsgg.png"],
+  ["MadCap Scripts", "https://madcap-scripts.tebex.io/", "ox10", 10, "/static/creators/madcap.png"],
+  ["Stevo Scripts", "https://store.stevoscripts.com/", "overextended", 10, "/static/creators/steve.png"],
+  ["Inferno Collection", "https://store.inferno-collection.com/", "ox7", 7, "/static/creators/inferno.png"]
+  ])}
+
+
+# Templates (/docs/resources/templates)
+
+
+
+We currently publish two templates for FiveM developers.
+
+## fxserver [#fxserver]
+
+This template is intended for developers looking to quickly install fxserver and create a monorepo for simple resource management.
+
+If you prefer to run fxserver in a container, look elsewhere.
+
+**[Browse repository](https://github.com/overextended/fxserver)**
+
+## fivem-ts [#fivem-ts]
+
+If you're looking to start creating resources with TypeScript but don't know what tools to use, settings to configure, or just hate having to setup new projects then we've got you covered.
+
+* Setup for working with our libraries (@overextended/core and @overextended/ox\_lib).
+* Uses [tsdown](https://tsdown.dev/) for fast build times and compatibility with a large [plugin](https://tsdown.dev/advanced/plugins) ecosystem.
+* Optionally scaffold a new webapp with [vite](https://vite.dev/guide/).
+* Fully configured for FiveM and FXServer.
+
+**[Browse repository](https://github.com/overextended/fivem-ts)**
 
 
 # GameEntity (/docs/ox_lib/GameEntity)
@@ -3757,677 +3761,6 @@ If you wish to edit any of the UI elements you will need to download the *source
 </Callout>
 
 
-# Common (/docs/ox_core/Functions/common)
-
-
-
-## Ox.GetGroupPermissions [#oxgetgrouppermissions]
-
-Returns the `OxGroupPermissions` object for the group
-
-```lua
-Ox.GetGroupPermissions(groupName)
-```
-
-**Parameters**
-
-* groupName: `string`
-
-**Returns**
-
-* `OxGroupPermissions`
-
-## Ox.GetTopVehicleStats [#oxgettopvehiclestats]
-
-Returns an object containing the top vehicle stats, either overall or for a specific category (land, air, sea).
-
-```lua
-Ox.GetTopVehicleStats(category?)
-```
-
-**Parameters**
-
-* category?: `string`
-
-**Returns**
-
-* `VehicleStats` | `{ [string]: VehicleStats }`
-
-### VehicleStats [#vehiclestats]
-
-* `object`
-  * acceleration: `number`
-  * braking: `number`
-  * handling: `number`
-  * speed: `number`
-  * traction: `number`
-
-## Ox.GetVehicleData [#oxgetvehicledata]
-
-Returns VehicleData for all vehicles, or optionally a specific model or array of models.
-
-```lua
-Ox.GetVehicleData(filter?)
-```
-
-**Parameters**
-
-* filter?: `string` | `string[]`
-
-**Returns**
-
-* `{ [string]: VehicleData }` | `VehicleData`
-
-### VehicleData [#vehicledata]
-
-* `object`
-  * class: `VehicleClasses`
-  * doors: `number`
-  * make: `string`
-  * name: `string`
-  * price: `number`
-  * seats: `number`
-  * type: `string`
-  * weapons?: `true`
-
-## Ox.GetVehicleNetworkType [#oxgetvehiclenetworktype]
-
-Returns the netobj type of a vehicle model, which may differ from the vehicle type (e.g. blimp is networked as heli).
-
-```lua
-Ox.GetVehicleNetworkType(modelName)
-```
-
-**Parameters**
-
-* modelName: `string`
-
-**Returns**
-
-* `string`
-
-
-# Server (/docs/ox_core/Functions/server)
-
-
-
-## Ox.CreateAccount [#oxcreateaccount]
-
-Creates a new account for a character with the given charId or stateId.
-
-```lua
-Ox.CreateAccount(ownerId, label)
-```
-
-**Parameters**
-
-* ownerId: `number` | `string`
-* label: `string`
-
-**Returns**
-
-* [`OxAccount`](/ox_core/Classes/Server/OxAccount)
-
-## Ox.CreateGroup [#oxcreategroup]
-
-Creates a new group from the given data, handling all database interactions internally.
-
-```lua
-Ox.CreateGroup(data)
-```
-
-**Parameters**
-
-* data: `object`
-  * name: `string`
-  * label: `string`
-  * grades: `object[]`
-    * label: `string`
-    * accountRole?: `string`
-  * type?: `string`
-  * colour?: `number`
-  * hasAccount?: `boolean`
-
-## Ox.CreateVehicle [#oxcreatevehicle]
-
-Creates a new vehicle, which will be saved to the database if it has an assigned owner or group.
-
-```lua
-Ox.CreateVehicle(data, coords, heading)
-```
-
-**Parameters**
-
-* data: `string` | `object`
-  * model: `string`
-  * owner?: `number`
-  * group?: `string`
-  * stored?: `string`
-  * properties?: `object`
-* coords?: `vector3`
-* heading?: `number`
-
-**Returns**
-
-* [`OxVehicle`](/ox_core/Classes/Server/OxVehicle)
-
-## Ox.DeleteAccountInvoice [#oxdeleteaccountinvoice]
-
-Deletes the account invoice with the given invoiceId.
-
-```lua
-Ox.DeleteAccountInvoice(invoiceId)
-```
-
-**Parameters**
-
-* invoiceId: `number`
-
-**Returns**
-
-* `object`
-  * success: `boolean`
-  * message?: `string`
-
-## Ox.DeleteGroup [#oxdeletegroup]
-
-Deletes all data associated with the given group name, such as group grades, vehicles, etc.
-
-```lua
-Ox.DeleteGroup(groupName)
-```
-
-**Parameters**
-
-* groupName: `string`
-
-## Ox.GenerateVehiclePlate [#oxgeneratevehicleplate]
-
-Generate a unique vehicle plate that doesn't exist in database. Pattern defaults to `ox:plateFormat` if not provided.
-
-```lua
-Ox.GenerateVehiclePlate(pattern)
-```
-
-**Parameters**
-
-* pattern?: `string`
-
-**Returns**
-
-* `string`
-
-## Ox.GenerateVehicleVin [#oxgeneratevehiclevin]
-
-Generate a unique vehicle identification number that doesn't exist in database.
-
-```lua
-Ox.GenerateVehicleVin(modelName)
-```
-
-**Parameters**
-
-* modelName: `string`
-  * Vehicle information (i.e. model and make) are used as part of the VIN.
-
-**Returns**
-
-* `string`
-
-## Ox.GetAccount [#oxgetaccount]
-
-Get the `OxAccount` with the given accountId.
-
-```lua
-Ox.GetAccount(accountId)
-```
-
-**Parameters**
-
-* accountId: `number`
-
-**Returns**
-
-* [`OxAccount`](/ox_core/Classes/Server/OxAccount)
-
-## Ox.GetCharacterAccount [#oxgetcharacteraccount]
-
-Get the default `OxAccount` for a character by their charId or stateId.
-
-```lua
-Ox.GetCharacterAccount(id)
-```
-
-**Parameters**
-
-* id: `number` | `string`
-
-**Returns**
-
-* [`OxAccount`](/ox_core/Classes/Server/OxAccount)
-
-## Ox.GetCharIdFromStateId [#oxgetcharidfromstateid]
-
-Get a character's charId from their stateId.\
-*Note: This queries the database and shouldn't be used excessively*
-
-```lua
-Ox.GetCharIdFromStateId(stateId)
-```
-
-**Parameters**
-
-* stateId: `string`
-
-**Returns**
-
-* `number`
-
-## Ox.GetGroupAccount [#oxgetgroupaccount]
-
-Get the `OxAccount` for a group.
-
-```lua
-Ox.GetGroupAccount(groupName)
-```
-
-**Parameters**
-
-* groupName: `string`
-
-**Returns**
-
-* [`OxAccount`](/ox_core/Classes/Server/OxAccount)
-
-## Ox.GetGroupsByType [#oxgetgroupsbytype]
-
-Returns an array of group names which have the given group type.
-
-```lua
-Ox.GetGroupsByType(groupType)
-```
-
-**Parameters**
-
-* groupType: `string`
-
-**Returns**
-
-* `string[]`
-
-## Ox.GetGroup [#oxgetgroup]
-
-Get an `OxGroup` from its name.
-
-```lua
-Ox.GetGroup(name)
-```
-
-**Parameters**
-
-* name: `string`
-
-**Returns**
-
-* `OxGroup`
-
-## Ox.GetPlayer [#oxgetplayer]
-
-Get an `OxPlayer` from its player id.
-
-```lua
-Ox.GetPlayer(playerId)
-```
-
-**Parameters**
-
-* playerId: `number`
-
-**Returns**
-
-* [`OxPlayer`](/ox_core/Classes/Server/OxPlayer)
-
-## Ox.GetPlayerFromFilter [#oxgetplayerfromfilter]
-
-Get the first `OxPlayer` matching a filter.
-
-```lua
-Ox.GetPlayerFromFilter(filter)
-```
-
-**Parameters**
-
-* filter?: `{ [string]: any }`
-  * Compare player fields and metadata against the given key-value pairs.
-  * Groups can be given as a string or array of strings to match.
-
-**Returns**
-
-* [`OxPlayer`](/ox_core/Classes/Server/OxPlayer)
-
-## Ox.GetPlayerFromUserId [#oxgetplayerfromuserid]
-
-Get an `OxPlayer` from its user id.
-
-```lua
-Ox.GetPlayerFromUserId(userId)
-```
-
-**Parameters**
-
-* userId: `number`
-
-**Returns**
-
-* [`OxPlayer`](/ox_core/Classes/Server/OxPlayer)
-
-## Ox.GetPlayerFromCharId [#oxgetplayerfromcharid]
-
-Get an `OxPlayer` from its character id.
-
-```lua
-Ox.GetPlayerFromCharId(charId)
-```
-
-**Parameters**
-
-* charId: `number`
-
-**Returns**
-
-* [`OxPlayer`](/ox_core/Classes/Server/OxPlayer)
-
-## Ox.GetPlayers [#oxgetplayers]
-
-Get an array of containing `OxPlayer` for all players matching a filter, if given.
-
-```lua
-Ox.GetPlayers(filter)
-```
-
-**Parameters**
-
-* filter?: `{ [string]: any }`
-  * Compare player fields and metadata against the given key-value pairs.
-  * Groups can be given as a string or array of strings to match.
-
-**Returns**
-
-* [`OxPlayer[]`](/ox_core/Classes/Server/OxPlayer)
-
-## Ox.GetVehicle [#oxgetvehicle]
-
-Get an `OxVehicle` from its entity id.
-
-```lua
-Ox.GetVehicle(entityId)
-```
-
-**Parameters**
-
-* entityId: `number`
-
-**Returns**
-
-* [`OxVehicle`](/ox_core/Classes/Server/OxVehicle)
-
-## Ox.GetVehicleFromFilter [#oxgetvehiclefromfilter]
-
-Get the first `OxVehicle` matching a filter.
-
-```lua
-Ox.GetVehicleFromFilter(filter)
-```
-
-**Parameters**
-
-* filter?: `{ [string]: any }`
-  * Compare vehicle fields and metadata against the given key-value pairs.
-
-**Returns**
-
-* [`OxVehicle`](/ox_core/Classes/Server/OxVehicle)
-
-## Ox.GetVehicleFromNetId [#oxgetvehiclefromnetid]
-
-Get an `OxVehicle` from its network id.
-
-```lua
-Ox.GetVehicleFromNetId(netId)
-```
-
-**Parameters**
-
-* netId: `number`
-
-**Returns**
-
-* [`OxVehicle`](/ox_core/Classes/Server/OxVehicle)
-
-## Ox.GetVehicleFromVin [#oxgetvehiclefromvin]
-
-Get an `OxVehicle` from its VIN.
-
-```lua
-Ox.GetVehicleFromVin(vin)
-```
-
-**Parameters**
-
-* vin: `string`
-
-**Returns**
-
-* [`OxVehicle`](/ox_core/Classes/Server/OxVehicle)
-
-## Ox.GetVehicles [#oxgetvehicles]
-
-Get an array of containing `OxVehicle` for all vehicles matching a filter, if given.
-
-```lua
-Ox.GetVehicles(filter)
-```
-
-**Parameters**
-
-* filter?: `{ [string]: any }`
-  * Compare vehicle fields and metadata against the given key-value pairs.
-
-**Returns**
-
-* [`OxVehicle[]`](/ox_core/Classes/Server/OxVehicle)
-
-## Ox.RemoveGroupPermission [#oxremovegrouppermission]
-
-Removes a permission from a specified group and minimum grade.
-
-```lua
-Ox.RemoveGroupPermission(groupName, grade, permission)
-```
-
-**Parameters**
-
-* groupName: `string`
-* grade: `number`
-* permission: `string`
-
-## Ox.SaveAllPlayers [#oxsaveallplayers]
-
-Save all players to the database.
-
-```lua
-Ox.SaveAllPlayers()
-```
-
-## Ox.SaveAllVehicles [#oxsaveallvehicles]
-
-Save all vehicles to the database.
-
-```lua
-Ox.SaveAllVehicles()
-```
-
-## Ox.SetGroupPermission [#oxsetgrouppermission]
-
-Assigns a permission to a specified group and minimum grade, which will be inherited by higher grades.
-
-```lua
-Ox.SetGroupPermission(groupName, grade, permission, value)
-```
-
-**Parameters**
-
-* groupName: `string`
-* grade: `number`
-* permission: `string`
-* value: `allow` | `deny`
-
-**Example**
-
-```lua
--- Adding a permission to a group (server side)
-Ox.SetGroupPermission('police', 1, 'handcuff', 'allow')
-
--- Checking if a player has the 'handcuff' permission
-if player.hasPermission('group.police.handcuff') then
-    -- Do something
-end
-```
-
-## Ox.SpawnVehicle [#oxspawnvehicle]
-
-Spawns an `OxVehicle` with the given dbId, if it hasn't already been spawned.
-
-```lua
-Ox.SpawnVehicle(dbId, coords, heading)
-```
-
-**Parameters**
-
-* dbId: `number`
-* coords: `vector3`
-* heading?: `number`
-
-**Returns**
-
-* [`OxVehicle`](/ox_core/Classes/Server/OxVehicle)
-
-## Ox.GetLicense [#oxgetlicense]
-
-Get license data from its name.
-
-```lua
-Ox.GetLicense(name)
-```
-
-**Parameters**
-
-* name: `string`
-
-**Returns**
-
-* `OxLicense`
-
-## Ox.GetLicenses [#oxgetlicenses]
-
-Get all licenses' data.
-
-```lua
-Ox.GetLicenses()
-```
-
-**Returns**
-
-* `OxLicense[]`
-
-## Ox.GetGroupActivePlayers [#oxgetgroupactiveplayers]
-
-Returns an array of all active players in the specified group.
-
-```lua
-Ox.GetGroupActivePlayers(groupName)
-```
-
-**Parameters**
-
-* groupName: `string`
-
-**Returns**
-
-* `number[]`
-
-## Ox.GetGroupActivePlayersByType [#oxgetgroupactiveplayersbytype]
-
-Returns an array of all active players aggregated from groups matching the specified type.
-
-```lua
-Ox.GetGroupActivePlayers(groupType)
-```
-
-**Parameters**
-
-* groupType: `string`
-
-**Returns**
-
-* `number[]`
-
-## Ox.BanUser [#oxbanuser]
-
-Bans a user from the server.
-
-```lua
-Ox.BanUser(userId, reason, hours)
-```
-
-**Parameters**
-
-* userId: `number`
-* reason?: `string`
-* hours?: `number`
-
-**Returns**
-
-* `boolean`
-
-## Ox.IsUserBanned [#oxisuserbanned]
-
-Checks if a user is currently banned and returns ban details if they are.
-
-```lua
-Ox.IsUserBanned(userId)
-```
-
-**Parameters**
-
-* userId: `number`
-
-**Returns**
-
-* `BanDetails` | `nil`
-  * reason: `string`
-  * banned\_at: `string`
-  * unban\_at: `string`
-  * userId: `number`
-  * token: `string`
-
-## Ox.UnbanUser [#oxunbanuser]
-
-Removes a ban from a user.
-
-```lua
-Ox.UnbanUser(userId)
-```
-
-**Parameters**
-
-* userId: `number`
-
-**Returns**
-
-* `boolean`
-
-
 # Client Events (/docs/ox_core/Events/client)
 
 
@@ -5205,6 +4538,677 @@ When an invoice is paid.
 </Tabs>
 
 
+# Common (/docs/ox_core/Functions/common)
+
+
+
+## Ox.GetGroupPermissions [#oxgetgrouppermissions]
+
+Returns the `OxGroupPermissions` object for the group
+
+```lua
+Ox.GetGroupPermissions(groupName)
+```
+
+**Parameters**
+
+* groupName: `string`
+
+**Returns**
+
+* `OxGroupPermissions`
+
+## Ox.GetTopVehicleStats [#oxgettopvehiclestats]
+
+Returns an object containing the top vehicle stats, either overall or for a specific category (land, air, sea).
+
+```lua
+Ox.GetTopVehicleStats(category?)
+```
+
+**Parameters**
+
+* category?: `string`
+
+**Returns**
+
+* `VehicleStats` | `{ [string]: VehicleStats }`
+
+### VehicleStats [#vehiclestats]
+
+* `object`
+  * acceleration: `number`
+  * braking: `number`
+  * handling: `number`
+  * speed: `number`
+  * traction: `number`
+
+## Ox.GetVehicleData [#oxgetvehicledata]
+
+Returns VehicleData for all vehicles, or optionally a specific model or array of models.
+
+```lua
+Ox.GetVehicleData(filter?)
+```
+
+**Parameters**
+
+* filter?: `string` | `string[]`
+
+**Returns**
+
+* `{ [string]: VehicleData }` | `VehicleData`
+
+### VehicleData [#vehicledata]
+
+* `object`
+  * class: `VehicleClasses`
+  * doors: `number`
+  * make: `string`
+  * name: `string`
+  * price: `number`
+  * seats: `number`
+  * type: `string`
+  * weapons?: `true`
+
+## Ox.GetVehicleNetworkType [#oxgetvehiclenetworktype]
+
+Returns the netobj type of a vehicle model, which may differ from the vehicle type (e.g. blimp is networked as heli).
+
+```lua
+Ox.GetVehicleNetworkType(modelName)
+```
+
+**Parameters**
+
+* modelName: `string`
+
+**Returns**
+
+* `string`
+
+
+# Server (/docs/ox_core/Functions/server)
+
+
+
+## Ox.CreateAccount [#oxcreateaccount]
+
+Creates a new account for a character with the given charId or stateId.
+
+```lua
+Ox.CreateAccount(ownerId, label)
+```
+
+**Parameters**
+
+* ownerId: `number` | `string`
+* label: `string`
+
+**Returns**
+
+* [`OxAccount`](/ox_core/Classes/Server/OxAccount)
+
+## Ox.CreateGroup [#oxcreategroup]
+
+Creates a new group from the given data, handling all database interactions internally.
+
+```lua
+Ox.CreateGroup(data)
+```
+
+**Parameters**
+
+* data: `object`
+  * name: `string`
+  * label: `string`
+  * grades: `object[]`
+    * label: `string`
+    * accountRole?: `string`
+  * type?: `string`
+  * colour?: `number`
+  * hasAccount?: `boolean`
+
+## Ox.CreateVehicle [#oxcreatevehicle]
+
+Creates a new vehicle, which will be saved to the database if it has an assigned owner or group.
+
+```lua
+Ox.CreateVehicle(data, coords, heading)
+```
+
+**Parameters**
+
+* data: `string` | `object`
+  * model: `string`
+  * owner?: `number`
+  * group?: `string`
+  * stored?: `string`
+  * properties?: `object`
+* coords?: `vector3`
+* heading?: `number`
+
+**Returns**
+
+* [`OxVehicle`](/ox_core/Classes/Server/OxVehicle)
+
+## Ox.DeleteAccountInvoice [#oxdeleteaccountinvoice]
+
+Deletes the account invoice with the given invoiceId.
+
+```lua
+Ox.DeleteAccountInvoice(invoiceId)
+```
+
+**Parameters**
+
+* invoiceId: `number`
+
+**Returns**
+
+* `object`
+  * success: `boolean`
+  * message?: `string`
+
+## Ox.DeleteGroup [#oxdeletegroup]
+
+Deletes all data associated with the given group name, such as group grades, vehicles, etc.
+
+```lua
+Ox.DeleteGroup(groupName)
+```
+
+**Parameters**
+
+* groupName: `string`
+
+## Ox.GenerateVehiclePlate [#oxgeneratevehicleplate]
+
+Generate a unique vehicle plate that doesn't exist in database. Pattern defaults to `ox:plateFormat` if not provided.
+
+```lua
+Ox.GenerateVehiclePlate(pattern)
+```
+
+**Parameters**
+
+* pattern?: `string`
+
+**Returns**
+
+* `string`
+
+## Ox.GenerateVehicleVin [#oxgeneratevehiclevin]
+
+Generate a unique vehicle identification number that doesn't exist in database.
+
+```lua
+Ox.GenerateVehicleVin(modelName)
+```
+
+**Parameters**
+
+* modelName: `string`
+  * Vehicle information (i.e. model and make) are used as part of the VIN.
+
+**Returns**
+
+* `string`
+
+## Ox.GetAccount [#oxgetaccount]
+
+Get the `OxAccount` with the given accountId.
+
+```lua
+Ox.GetAccount(accountId)
+```
+
+**Parameters**
+
+* accountId: `number`
+
+**Returns**
+
+* [`OxAccount`](/ox_core/Classes/Server/OxAccount)
+
+## Ox.GetCharacterAccount [#oxgetcharacteraccount]
+
+Get the default `OxAccount` for a character by their charId or stateId.
+
+```lua
+Ox.GetCharacterAccount(id)
+```
+
+**Parameters**
+
+* id: `number` | `string`
+
+**Returns**
+
+* [`OxAccount`](/ox_core/Classes/Server/OxAccount)
+
+## Ox.GetCharIdFromStateId [#oxgetcharidfromstateid]
+
+Get a character's charId from their stateId.\
+*Note: This queries the database and shouldn't be used excessively*
+
+```lua
+Ox.GetCharIdFromStateId(stateId)
+```
+
+**Parameters**
+
+* stateId: `string`
+
+**Returns**
+
+* `number`
+
+## Ox.GetGroupAccount [#oxgetgroupaccount]
+
+Get the `OxAccount` for a group.
+
+```lua
+Ox.GetGroupAccount(groupName)
+```
+
+**Parameters**
+
+* groupName: `string`
+
+**Returns**
+
+* [`OxAccount`](/ox_core/Classes/Server/OxAccount)
+
+## Ox.GetGroupsByType [#oxgetgroupsbytype]
+
+Returns an array of group names which have the given group type.
+
+```lua
+Ox.GetGroupsByType(groupType)
+```
+
+**Parameters**
+
+* groupType: `string`
+
+**Returns**
+
+* `string[]`
+
+## Ox.GetGroup [#oxgetgroup]
+
+Get an `OxGroup` from its name.
+
+```lua
+Ox.GetGroup(name)
+```
+
+**Parameters**
+
+* name: `string`
+
+**Returns**
+
+* `OxGroup`
+
+## Ox.GetPlayer [#oxgetplayer]
+
+Get an `OxPlayer` from its player id.
+
+```lua
+Ox.GetPlayer(playerId)
+```
+
+**Parameters**
+
+* playerId: `number`
+
+**Returns**
+
+* [`OxPlayer`](/ox_core/Classes/Server/OxPlayer)
+
+## Ox.GetPlayerFromFilter [#oxgetplayerfromfilter]
+
+Get the first `OxPlayer` matching a filter.
+
+```lua
+Ox.GetPlayerFromFilter(filter)
+```
+
+**Parameters**
+
+* filter?: `{ [string]: any }`
+  * Compare player fields and metadata against the given key-value pairs.
+  * Groups can be given as a string or array of strings to match.
+
+**Returns**
+
+* [`OxPlayer`](/ox_core/Classes/Server/OxPlayer)
+
+## Ox.GetPlayerFromUserId [#oxgetplayerfromuserid]
+
+Get an `OxPlayer` from its user id.
+
+```lua
+Ox.GetPlayerFromUserId(userId)
+```
+
+**Parameters**
+
+* userId: `number`
+
+**Returns**
+
+* [`OxPlayer`](/ox_core/Classes/Server/OxPlayer)
+
+## Ox.GetPlayerFromCharId [#oxgetplayerfromcharid]
+
+Get an `OxPlayer` from its character id.
+
+```lua
+Ox.GetPlayerFromCharId(charId)
+```
+
+**Parameters**
+
+* charId: `number`
+
+**Returns**
+
+* [`OxPlayer`](/ox_core/Classes/Server/OxPlayer)
+
+## Ox.GetPlayers [#oxgetplayers]
+
+Get an array of containing `OxPlayer` for all players matching a filter, if given.
+
+```lua
+Ox.GetPlayers(filter)
+```
+
+**Parameters**
+
+* filter?: `{ [string]: any }`
+  * Compare player fields and metadata against the given key-value pairs.
+  * Groups can be given as a string or array of strings to match.
+
+**Returns**
+
+* [`OxPlayer[]`](/ox_core/Classes/Server/OxPlayer)
+
+## Ox.GetVehicle [#oxgetvehicle]
+
+Get an `OxVehicle` from its entity id.
+
+```lua
+Ox.GetVehicle(entityId)
+```
+
+**Parameters**
+
+* entityId: `number`
+
+**Returns**
+
+* [`OxVehicle`](/ox_core/Classes/Server/OxVehicle)
+
+## Ox.GetVehicleFromFilter [#oxgetvehiclefromfilter]
+
+Get the first `OxVehicle` matching a filter.
+
+```lua
+Ox.GetVehicleFromFilter(filter)
+```
+
+**Parameters**
+
+* filter?: `{ [string]: any }`
+  * Compare vehicle fields and metadata against the given key-value pairs.
+
+**Returns**
+
+* [`OxVehicle`](/ox_core/Classes/Server/OxVehicle)
+
+## Ox.GetVehicleFromNetId [#oxgetvehiclefromnetid]
+
+Get an `OxVehicle` from its network id.
+
+```lua
+Ox.GetVehicleFromNetId(netId)
+```
+
+**Parameters**
+
+* netId: `number`
+
+**Returns**
+
+* [`OxVehicle`](/ox_core/Classes/Server/OxVehicle)
+
+## Ox.GetVehicleFromVin [#oxgetvehiclefromvin]
+
+Get an `OxVehicle` from its VIN.
+
+```lua
+Ox.GetVehicleFromVin(vin)
+```
+
+**Parameters**
+
+* vin: `string`
+
+**Returns**
+
+* [`OxVehicle`](/ox_core/Classes/Server/OxVehicle)
+
+## Ox.GetVehicles [#oxgetvehicles]
+
+Get an array of containing `OxVehicle` for all vehicles matching a filter, if given.
+
+```lua
+Ox.GetVehicles(filter)
+```
+
+**Parameters**
+
+* filter?: `{ [string]: any }`
+  * Compare vehicle fields and metadata against the given key-value pairs.
+
+**Returns**
+
+* [`OxVehicle[]`](/ox_core/Classes/Server/OxVehicle)
+
+## Ox.RemoveGroupPermission [#oxremovegrouppermission]
+
+Removes a permission from a specified group and minimum grade.
+
+```lua
+Ox.RemoveGroupPermission(groupName, grade, permission)
+```
+
+**Parameters**
+
+* groupName: `string`
+* grade: `number`
+* permission: `string`
+
+## Ox.SaveAllPlayers [#oxsaveallplayers]
+
+Save all players to the database.
+
+```lua
+Ox.SaveAllPlayers()
+```
+
+## Ox.SaveAllVehicles [#oxsaveallvehicles]
+
+Save all vehicles to the database.
+
+```lua
+Ox.SaveAllVehicles()
+```
+
+## Ox.SetGroupPermission [#oxsetgrouppermission]
+
+Assigns a permission to a specified group and minimum grade, which will be inherited by higher grades.
+
+```lua
+Ox.SetGroupPermission(groupName, grade, permission, value)
+```
+
+**Parameters**
+
+* groupName: `string`
+* grade: `number`
+* permission: `string`
+* value: `allow` | `deny`
+
+**Example**
+
+```lua
+-- Adding a permission to a group (server side)
+Ox.SetGroupPermission('police', 1, 'handcuff', 'allow')
+
+-- Checking if a player has the 'handcuff' permission
+if player.hasPermission('group.police.handcuff') then
+    -- Do something
+end
+```
+
+## Ox.SpawnVehicle [#oxspawnvehicle]
+
+Spawns an `OxVehicle` with the given dbId, if it hasn't already been spawned.
+
+```lua
+Ox.SpawnVehicle(dbId, coords, heading)
+```
+
+**Parameters**
+
+* dbId: `number`
+* coords: `vector3`
+* heading?: `number`
+
+**Returns**
+
+* [`OxVehicle`](/ox_core/Classes/Server/OxVehicle)
+
+## Ox.GetLicense [#oxgetlicense]
+
+Get license data from its name.
+
+```lua
+Ox.GetLicense(name)
+```
+
+**Parameters**
+
+* name: `string`
+
+**Returns**
+
+* `OxLicense`
+
+## Ox.GetLicenses [#oxgetlicenses]
+
+Get all licenses' data.
+
+```lua
+Ox.GetLicenses()
+```
+
+**Returns**
+
+* `OxLicense[]`
+
+## Ox.GetGroupActivePlayers [#oxgetgroupactiveplayers]
+
+Returns an array of all active players in the specified group.
+
+```lua
+Ox.GetGroupActivePlayers(groupName)
+```
+
+**Parameters**
+
+* groupName: `string`
+
+**Returns**
+
+* `number[]`
+
+## Ox.GetGroupActivePlayersByType [#oxgetgroupactiveplayersbytype]
+
+Returns an array of all active players aggregated from groups matching the specified type.
+
+```lua
+Ox.GetGroupActivePlayers(groupType)
+```
+
+**Parameters**
+
+* groupType: `string`
+
+**Returns**
+
+* `number[]`
+
+## Ox.BanUser [#oxbanuser]
+
+Bans a user from the server.
+
+```lua
+Ox.BanUser(userId, reason, hours)
+```
+
+**Parameters**
+
+* userId: `number`
+* reason?: `string`
+* hours?: `number`
+
+**Returns**
+
+* `boolean`
+
+## Ox.IsUserBanned [#oxisuserbanned]
+
+Checks if a user is currently banned and returns ban details if they are.
+
+```lua
+Ox.IsUserBanned(userId)
+```
+
+**Parameters**
+
+* userId: `number`
+
+**Returns**
+
+* `BanDetails` | `nil`
+  * reason: `string`
+  * banned\_at: `string`
+  * unban\_at: `string`
+  * userId: `number`
+  * token: `string`
+
+## Ox.UnbanUser [#oxunbanuser]
+
+Removes a ban from a user.
+
+```lua
+Ox.UnbanUser(userId)
+```
+
+**Parameters**
+
+* userId: `number`
+
+**Returns**
+
+* `boolean`
+
+
 # Functions (/docs/ox_doorlock/Client/functions)
 
 
@@ -5477,101 +5481,6 @@ AddEventHandler('ox_inventory:usedItem', function(playerId, name, slotId, metada
 * name: `string`
 * slotId: `number`
 * metadata?: `table`
-
-
-# ESX (/docs/ox_inventory/Frameworks/esx)
-
-
-
-* You will need a [compatible version of ESX Legacy](https://github.com/esx-framework/esx_core) (1.6.0 or higher).
-* You can convert player inventories with `convertinventory esx`.
-* All items in the database will be migrated to the internal item data.
-  * Always restart the resource when items are migrated!
-
-## Compatibility [#compatibility]
-
-Ox Inventory is a complete replacement for existing item, inventory, and weapon systems; it is inherently incompatible with ESX and any resources that rely on default behaviour.
-
-* Loadouts do not exist and weapons are treated as items.
-* Standard shops and stashes (i.e. esx\_shops, esx\_weaponshop, and esx\_policejob).
-* Resources that alter the default esx inventory or provide a ui (i.e. esx\_trunkinventory, esx\_inventoryhud).
-
-## Installation [#installation]
-
-* Use a compatible version of [ESX Legacy](https://github.com/esx-framework/esx-legacy) (1.6.0+).
-* Modify your `server.cfg`, starting ox\_inventory immediately after es\_extended.
-
-```yaml
-start oxmysql
-start ox_lib
-start es_extended
-start qtarget
-start ox_inventory
-```
-
-## Convert ESX inventory data [#convert-esx-inventory-data]
-
-* Start the server and type `convertinventory esx` into the server console.
-* Optionally, type `convertinventory esxproperty` into the server console.
-* Restart the server once conversion is complete.
-
-## Optional Optimisation [#optional-optimisation]
-
-All item related functions from xPlayer, such as `xPlayer.getInventoryItem`, have been modified for compatibility purposes; however they are considered deprecated.
-
-The reasoning is fairly simple - there's now additional function references and overhead to consider. Fortunately, the new Inventory functions can be used directly and offer a great deal of improvements over the old ones.
-
-You should read through the functions section for further information, but the following should give you a decent idea.
-
-<Tabs items="[&#x22;ESX&#x22;, &#x22;Ox Inventory&#x22;]">
-  <Tab>
-    ```lua
-    if xPlayer.getInventoryItem('acetone').count > 2 and xPlayer.getInventoryItem('antifreeze').count > 4 and xPlayer.getInventoryItem('sudo').count > 9 then
-        xPlayer.removeInventoryItem("acetone", 3)
-        xPlayer.removeInventoryItem("antifreeze", 5)
-        xPlayer.removeInventoryItem("sudo", 10)
-    end
-    ```
-  </Tab>
-
-  <Tab>
-    Add the following code somewhere in your resource to cache the exports metatable.
-
-    ```lua
-    local ox_inventory = exports.ox_inventory
-    ```
-
-    You will be able to reference any functions exposed through the export.
-
-    ```lua
-    local items = ox_inventory:Search(source, 'count', {'acetone', 'antifreeze', 'sudo'})
-    if items and items.acetone > 2 and items.antifreeze > 4 and items.sudo > 9 then
-        ox_inventory:RemoveItem(source, 'acetone', 3)
-        ox_inventory:RemoveItem(source, 'antifreeze', 5)
-        ox_inventory:RemoveItem(source, 'sudo', 10)
-    end
-    ```
-  </Tab>
-</Tabs>
-
-
-# Qbox (/docs/ox_inventory/Frameworks/qbx)
-
-
-
-Qbox is a fork of QBCore being developed by a team of former contributors and developers on QBCore. The team is focused on improving performance and security, as well as converting resources to support our resources (mainly ox\_lib and ox\_inventory).
-
-We *strongly* advise using Qbox as an alternative to QBCore.
-
-* [Qbox Project GitHub](https://github.com/Qbox-project/)
-* [Qbox Project Discord](https://discord.gg/AtbwBuJHN5)
-
-## Installation [#installation]
-
-* Setup [qbox](https://github.com/Qbox-project/qbx_core).
-* Edit your `server.cfg`.
-  * Add `setr inventory:framework "qbx"` before starting your resources.
-  * Start ox\_inventory immediately after qbx\_core.
 
 
 # Client (/docs/ox_inventory/Functions/Client)
@@ -6126,6 +6035,101 @@ Allows you to enable/disable the use of weapons for a player.
 ```lua
 LocalPlayer.state.canUseWeapons = false
 ```
+
+
+# ESX (/docs/ox_inventory/Frameworks/esx)
+
+
+
+* You will need a [compatible version of ESX Legacy](https://github.com/esx-framework/esx_core) (1.6.0 or higher).
+* You can convert player inventories with `convertinventory esx`.
+* All items in the database will be migrated to the internal item data.
+  * Always restart the resource when items are migrated!
+
+## Compatibility [#compatibility]
+
+Ox Inventory is a complete replacement for existing item, inventory, and weapon systems; it is inherently incompatible with ESX and any resources that rely on default behaviour.
+
+* Loadouts do not exist and weapons are treated as items.
+* Standard shops and stashes (i.e. esx\_shops, esx\_weaponshop, and esx\_policejob).
+* Resources that alter the default esx inventory or provide a ui (i.e. esx\_trunkinventory, esx\_inventoryhud).
+
+## Installation [#installation]
+
+* Use a compatible version of [ESX Legacy](https://github.com/esx-framework/esx-legacy) (1.6.0+).
+* Modify your `server.cfg`, starting ox\_inventory immediately after es\_extended.
+
+```yaml
+start oxmysql
+start ox_lib
+start es_extended
+start qtarget
+start ox_inventory
+```
+
+## Convert ESX inventory data [#convert-esx-inventory-data]
+
+* Start the server and type `convertinventory esx` into the server console.
+* Optionally, type `convertinventory esxproperty` into the server console.
+* Restart the server once conversion is complete.
+
+## Optional Optimisation [#optional-optimisation]
+
+All item related functions from xPlayer, such as `xPlayer.getInventoryItem`, have been modified for compatibility purposes; however they are considered deprecated.
+
+The reasoning is fairly simple - there's now additional function references and overhead to consider. Fortunately, the new Inventory functions can be used directly and offer a great deal of improvements over the old ones.
+
+You should read through the functions section for further information, but the following should give you a decent idea.
+
+<Tabs items="[&#x22;ESX&#x22;, &#x22;Ox Inventory&#x22;]">
+  <Tab>
+    ```lua
+    if xPlayer.getInventoryItem('acetone').count > 2 and xPlayer.getInventoryItem('antifreeze').count > 4 and xPlayer.getInventoryItem('sudo').count > 9 then
+        xPlayer.removeInventoryItem("acetone", 3)
+        xPlayer.removeInventoryItem("antifreeze", 5)
+        xPlayer.removeInventoryItem("sudo", 10)
+    end
+    ```
+  </Tab>
+
+  <Tab>
+    Add the following code somewhere in your resource to cache the exports metatable.
+
+    ```lua
+    local ox_inventory = exports.ox_inventory
+    ```
+
+    You will be able to reference any functions exposed through the export.
+
+    ```lua
+    local items = ox_inventory:Search(source, 'count', {'acetone', 'antifreeze', 'sudo'})
+    if items and items.acetone > 2 and items.antifreeze > 4 and items.sudo > 9 then
+        ox_inventory:RemoveItem(source, 'acetone', 3)
+        ox_inventory:RemoveItem(source, 'antifreeze', 5)
+        ox_inventory:RemoveItem(source, 'sudo', 10)
+    end
+    ```
+  </Tab>
+</Tabs>
+
+
+# Qbox (/docs/ox_inventory/Frameworks/qbx)
+
+
+
+Qbox is a fork of QBCore being developed by a team of former contributors and developers on QBCore. The team is focused on improving performance and security, as well as converting resources to support our resources (mainly ox\_lib and ox\_inventory).
+
+We *strongly* advise using Qbox as an alternative to QBCore.
+
+* [Qbox Project GitHub](https://github.com/Qbox-project/)
+* [Qbox Project Discord](https://discord.gg/AtbwBuJHN5)
+
+## Installation [#installation]
+
+* Setup [qbox](https://github.com/Qbox-project/qbx_core).
+* Edit your `server.cfg`.
+  * Add `setr inventory:framework "qbx"` before starting your resources.
+  * Start ox\_inventory immediately after qbx\_core.
 
 
 # Crafting (/docs/ox_inventory/Guides/crafting)
@@ -7828,167 +7832,6 @@ Removes a principal from a parent principal.
 * parent: `string`
 
 
-# Client (/docs/ox_lib/AddKeybind/Client)
-
-
-
-Registers keybinds and simplifies interactions of the keybinds.
-
-## CKeybind Class [#ckeybind-class]
-
-A table representing a keybind with the following properties.
-
-* name: `string`
-* description: `string`
-* currentKey: `string`
-  * Key that the current user has this keybind set to
-* disabled: `boolean`
-  * Whether or not the keybind is currently disabled
-* isPressed: `boolean`
-  * "A state indicating whether the keybind is pressed or not
-* hash: `number`
-  * Internal hash of the keybind that is used to reference it within the game itself
-* defaultKey?: `string`
-  * Default key to set the keybind to for new players
-  * NOTE: Changing this will not change the key for existing players
-* defaultMapper?: `string`
-  * See [Input Mapper Ids](https://docs.fivem.net/docs/game-references/input-mapper-parameter-ids/) for more information
-* secondaryKey?: `string`
-  * An optional secondary keybind.
-* secondaryMapper?: `string`
-  * An optional mapper for the secondary key, otherwise using the default mapper.
-* allowInPauseMenu?: `boolean`
-  * Allows the keybind to trigger while the pause menu/frontend is active.
-  * Default: `false`
-* disable: `function(self: CKeybind, disable: boolean)`
-  * Built-in function to enable / disable a keybind
-* isControlPressed: `function(self: CKeybind)`
-  * Built-in function to get the current pressed state for the keybind
-* onPressed?: `function(self: CKeybind)`
-  * User-defined function triggered on keybind press
-* onReleased?: `function(self: CKeybind)`
-  * User-defined function triggered on keybind release
-
-## lib.addKeybind [#libaddkeybind]
-
-```lua
-lib.addKeybind(data)
-```
-
-* data: `table`
-  * name: `string`
-    * Name of the command created for RegisterKeyMap
-    * Must not contain whitespace
-  * description: `string`
-    * The name shown in 'Settings' -> 'Key Bindings' -> 'FiveM'
-  * defaultKey?: `string`
-    * Default: `None`
-  * defaultMapper?: `string`
-    * Default: `keyboard`
-  * secondaryKey?: `string`
-  * secondaryMapper?: `string`
-  * allowInPauseMenu?: `boolean`
-    * Default: `false`
-    * If true, keybind callbacks can run while `IsPauseMenuActive()` is true
-  * disabled?: `boolean`
-    * Whether or not the keybind should be disabled by default
-  * onPressed?: `function(self: CKeybind)`
-    * Function triggered on keybind press
-  * onReleased?: `function(self: CKeybind)`
-    * Function triggered on keybind release
-
-```lua
-local keybind = lib.addKeybind({
-    name = 'respects',
-    description = 'press F to pay respects',
-    defaultKey = 'F',
-    allowInPauseMenu = true,
-    onPressed = function(self)
-        print(('pressed %s (%s)'):format(self.currentKey, self.name))
-    end,
-    onReleased = function(self)
-        print(('released %s (%s)'):format(self.currentKey, self.name))
-    end
-})
-```
-
-### Enable / Disable Keybinds [#enable--disable-keybinds]
-
-Keybinds can be enabled / disabled by using the disable method.
-
-```lua
-keybind:disable(true) -- disables the keybind
-keybind:disable(false) -- enables the keybind
-```
-
-### Keybind pressed states [#keybind-pressed-states]
-
-All keybinds registered with `lib.addKeybind()` gets a boolean state, that shows if its pressed or not.
-
-You can get the state with the following method
-
-```lua
-local state = keybind:isControlPressed()
-```
-
-
-# Server (/docs/ox_lib/AddCommand/Server)
-
-
-
-Registers commands and simplifies argument validation, permissions, and chat suggestions.
-
-```lua
-lib.addCommand(commandName, properties, cb)
-```
-
-* commandName: `string` or `string[]`
-* properties: `table` or `false`
-  * help?: `string`
-  * restricted?: `boolean` or `string` or `string[]`
-  * params?: `table[]`
-    * name: `string`
-    * help?: `string`
-    * type?: `'number'` or `'playerId'` or `'string'` or `'longString'`
-    * optional?: `boolean`
-
-```lua
-lib.addCommand('giveitem', {
-    help = 'Gives an item to a player',
-    params = {
-        {
-            name = 'target',
-            type = 'playerId',
-            help = 'Target player\'s server id',
-        },
-        {
-            name = 'item',
-            type = 'string',
-            help = 'Name of the item to give',
-        },
-        {
-            name = 'count',
-            type = 'number',
-            help = 'Amount of the item to give, or blank to give 1',
-            optional = true,
-        },
-        {
-            name = 'metatype',
-            help = 'Sets the item\'s "metadata.type"',
-            optional = true,
-        },
-    },
-    restricted = 'group.admin'
-}, function(source, args, raw)
-    local item = Items(args.item)
-
-    if item then
-        Inventory.AddItem(args.target, item.name, args.count or 1, args.metatype)
-    end
-end)
-```
-
-
 # Shared (/docs/ox_lib/Array/Shared)
 
 
@@ -8330,6 +8173,110 @@ lib.array.isArray(tbl)
 * isArray: `boolean`
 
 
+# Client (/docs/ox_lib/AddKeybind/Client)
+
+
+
+Registers keybinds and simplifies interactions of the keybinds.
+
+## CKeybind Class [#ckeybind-class]
+
+A table representing a keybind with the following properties.
+
+* name: `string`
+* description: `string`
+* currentKey: `string`
+  * Key that the current user has this keybind set to
+* disabled: `boolean`
+  * Whether or not the keybind is currently disabled
+* isPressed: `boolean`
+  * "A state indicating whether the keybind is pressed or not
+* hash: `number`
+  * Internal hash of the keybind that is used to reference it within the game itself
+* defaultKey?: `string`
+  * Default key to set the keybind to for new players
+  * NOTE: Changing this will not change the key for existing players
+* defaultMapper?: `string`
+  * See [Input Mapper Ids](https://docs.fivem.net/docs/game-references/input-mapper-parameter-ids/) for more information
+* secondaryKey?: `string`
+  * An optional secondary keybind.
+* secondaryMapper?: `string`
+  * An optional mapper for the secondary key, otherwise using the default mapper.
+* allowInPauseMenu?: `boolean`
+  * Allows the keybind to trigger while the pause menu/frontend is active.
+  * Default: `false`
+* disable: `function(self: CKeybind, disable: boolean)`
+  * Built-in function to enable / disable a keybind
+* isControlPressed: `function(self: CKeybind)`
+  * Built-in function to get the current pressed state for the keybind
+* onPressed?: `function(self: CKeybind)`
+  * User-defined function triggered on keybind press
+* onReleased?: `function(self: CKeybind)`
+  * User-defined function triggered on keybind release
+
+## lib.addKeybind [#libaddkeybind]
+
+```lua
+lib.addKeybind(data)
+```
+
+* data: `table`
+  * name: `string`
+    * Name of the command created for RegisterKeyMap
+    * Must not contain whitespace
+  * description: `string`
+    * The name shown in 'Settings' -> 'Key Bindings' -> 'FiveM'
+  * defaultKey?: `string`
+    * Default: `None`
+  * defaultMapper?: `string`
+    * Default: `keyboard`
+  * secondaryKey?: `string`
+  * secondaryMapper?: `string`
+  * allowInPauseMenu?: `boolean`
+    * Default: `false`
+    * If true, keybind callbacks can run while `IsPauseMenuActive()` is true
+  * disabled?: `boolean`
+    * Whether or not the keybind should be disabled by default
+  * onPressed?: `function(self: CKeybind)`
+    * Function triggered on keybind press
+  * onReleased?: `function(self: CKeybind)`
+    * Function triggered on keybind release
+
+```lua
+local keybind = lib.addKeybind({
+    name = 'respects',
+    description = 'press F to pay respects',
+    defaultKey = 'F',
+    allowInPauseMenu = true,
+    onPressed = function(self)
+        print(('pressed %s (%s)'):format(self.currentKey, self.name))
+    end,
+    onReleased = function(self)
+        print(('released %s (%s)'):format(self.currentKey, self.name))
+    end
+})
+```
+
+### Enable / Disable Keybinds [#enable--disable-keybinds]
+
+Keybinds can be enabled / disabled by using the disable method.
+
+```lua
+keybind:disable(true) -- disables the keybind
+keybind:disable(false) -- enables the keybind
+```
+
+### Keybind pressed states [#keybind-pressed-states]
+
+All keybinds registered with `lib.addKeybind()` gets a boolean state, that shows if its pressed or not.
+
+You can get the state with the following method
+
+```lua
+local state = keybind:isControlPressed()
+```
+
+
 # Client (/docs/ox_lib/Cache/Client)
 
 
@@ -8457,6 +8404,63 @@ end
 > 6
 > 6
 > 6
+```
+
+
+# Server (/docs/ox_lib/AddCommand/Server)
+
+
+
+Registers commands and simplifies argument validation, permissions, and chat suggestions.
+
+```lua
+lib.addCommand(commandName, properties, cb)
+```
+
+* commandName: `string` or `string[]`
+* properties: `table` or `false`
+  * help?: `string`
+  * restricted?: `boolean` or `string` or `string[]`
+  * params?: `table[]`
+    * name: `string`
+    * help?: `string`
+    * type?: `'number'` or `'playerId'` or `'string'` or `'longString'`
+    * optional?: `boolean`
+
+```lua
+lib.addCommand('giveitem', {
+    help = 'Gives an item to a player',
+    params = {
+        {
+            name = 'target',
+            type = 'playerId',
+            help = 'Target player\'s server id',
+        },
+        {
+            name = 'item',
+            type = 'string',
+            help = 'Name of the item to give',
+        },
+        {
+            name = 'count',
+            type = 'number',
+            help = 'Amount of the item to give, or blank to give 1',
+            optional = true,
+        },
+        {
+            name = 'metatype',
+            help = 'Sets the item\'s "metadata.type"',
+            optional = true,
+        },
+    },
+    restricted = 'group.admin'
+}, function(source, args, raw)
+    local item = Items(args.item)
+
+    if item then
+        Inventory.AddItem(args.target, item.name, args.count or 1, args.metatype)
+    end
+end)
 ```
 
 
@@ -8836,29 +8840,6 @@ Return:
 * vehicleCoords?: `vector3`
 
 
-# Server (/docs/ox_lib/GetFilesInDirectory/Server)
-
-
-
-## lib.getFilesInDirectory [#libgetfilesindirectory]
-
-Gets a list of all files in a specified resource directory, along with the file count
-
-```lua
-lib.getFilesInDirectory(path, pattern)
-```
-
-* path: `string`
-  * The relative or absolute path to the directory where files should be listed.
-* pattern: `string`
-  * Pattern to check for when searching for files.
-
-Returns:
-
-* files: `string[]`
-* fileCount: `number`
-
-
 # Shared (/docs/ox_lib/GetNearbyObjects/Shared)
 
 
@@ -8929,6 +8910,29 @@ lib.getNearbyPlayers(coords, maxDistance, includePlayer)
 Return:
 
 * players: `{ id: number, ped: number, coords: vector3 }[]`
+
+
+# Server (/docs/ox_lib/GetFilesInDirectory/Server)
+
+
+
+## lib.getFilesInDirectory [#libgetfilesindirectory]
+
+Gets a list of all files in a specified resource directory, along with the file count
+
+```lua
+lib.getFilesInDirectory(path, pattern)
+```
+
+* path: `string`
+  * The relative or absolute path to the directory where files should be listed.
+* pattern: `string`
+  * Pattern to check for when searching for files.
+
+Returns:
+
+* files: `string[]`
+* fileCount: `number`
 
 
 # Shared (/docs/ox_lib/Grid/Shared)
@@ -9889,6 +9893,97 @@ print('Loaded events')
 ```
 
 
+# Client (/docs/ox_lib/Scaleform/Client)
+
+
+
+## lib.scaleform:new [#libscaleformnew]
+
+Constructs a new instance of the scaleform class.
+
+```lua
+lib.scaleform:new(data)
+```
+
+* data: `table | string`
+  * name: `string`
+  * fullScreen?: `boolean`
+  * x?: `number`
+  * y?: `number`
+  * width?: `number`
+  * height?: `number`
+  * renderTarget?: `table`
+    * name: `string`
+    * model: `string | number`
+
+Returns:
+
+* scaleform: `Scaleform`
+
+  * scaleform: `number`
+  * draw: `boolean`
+  * target: `number`
+  * targetName: `string`
+  * sfHandle?: `number`
+  * fullScreen: `boolean`
+
+  Methods:
+
+  * callMethod: `function`(name: `string`, args: `(number | string | boolean)[]`, returnValue?: `string`)
+  * setFullScreen: `function`(isFullscreen: `boolean`)
+  * setProperties: `function`(x: `number`, y: `number`, width: `number`, height: `number`)
+  * setRenderTarget: `function`(name: `string`, model: `string | number`)
+  * isDrawing: `function`
+  * draw: `function`
+  * startDrawing: `function`
+  * stopDrawing: `function`
+  * dispose: `function`
+
+### Usage Example [#usage-example]
+
+```lua
+local scaleform = lib.scaleform:new({
+  name = 'scaleform',
+  fullScreen = boolean,
+  x = 1.0,
+  y = 1.0,
+  width = 2.0,
+  height = 2.0,
+  renderTarget = {
+    name = 'target',
+    model = `model_name`
+  }
+})
+
+-- Call a Scaleform Method
+scaleform:callMethod('method', { 1, 2, 3 })
+
+-- Set Fullscreen Scaleform
+scaleform:setFullScreen(false)
+
+-- Set Scaleform Properties (x, y, width, height)
+scaleform:setProperties(1.0, 1.0, 2.0, 2.0)
+
+-- Set Scaleform Render Target
+scaleform:setRenderTarget('target', `model_name`)
+
+-- Get Drawing State
+local state = scaleform:isDrawing()
+
+-- Draw
+scaleform:draw()
+
+-- Start Drawing
+scaleform:startDrawing()
+
+-- Stop Drawing
+scaleform:stopDrawing()
+
+-- Dispose of Scaleform
+scaleform:dispose()
+```
+
+
 # Shared (/docs/ox_lib/Selector/Shared)
 
 
@@ -10285,95 +10380,39 @@ end)
 ```
 
 
-# Client (/docs/ox_lib/Scaleform/Client)
+# Shared (/docs/ox_lib/String/Shared)
 
 
 
-## lib.scaleform:new [#libscaleformnew]
+## lib.string [#libstring]
 
-Constructs a new instance of the scaleform class.
+Extends the standard Lua string table with extra functions.
 
-```lua
-lib.scaleform:new(data)
+```
+string = lib.string
 ```
 
-* data: `table | string`
-  * name: `string`
-  * fullScreen?: `boolean`
-  * x?: `number`
-  * y?: `number`
-  * width?: `number`
-  * height?: `number`
-  * renderTarget?: `table`
-    * name: `string`
-    * model: `string | number`
+### string.random [#stringrandom]
 
-Returns:
-
-* scaleform: `Scaleform`
-
-  * scaleform: `number`
-  * draw: `boolean`
-  * target: `number`
-  * targetName: `string`
-  * sfHandle?: `number`
-  * fullScreen: `boolean`
-
-  Methods:
-
-  * callMethod: `function`(name: `string`, args: `(number | string | boolean)[]`, returnValue?: `string`)
-  * setFullScreen: `function`(isFullscreen: `boolean`)
-  * setProperties: `function`(x: `number`, y: `number`, width: `number`, height: `number`)
-  * setRenderTarget: `function`(name: `string`, model: `string | number`)
-  * isDrawing: `function`
-  * draw: `function`
-  * startDrawing: `function`
-  * stopDrawing: `function`
-  * dispose: `function`
-
-### Usage Example [#usage-example]
+Outputs a random string based on a given pattern.
 
 ```lua
-local scaleform = lib.scaleform:new({
-  name = 'scaleform',
-  fullScreen = boolean,
-  x = 1.0,
-  y = 1.0,
-  width = 2.0,
-  height = 2.0,
-  renderTarget = {
-    name = 'target',
-    model = `model_name`
-  }
-})
-
--- Call a Scaleform Method
-scaleform:callMethod('method', { 1, 2, 3 })
-
--- Set Fullscreen Scaleform
-scaleform:setFullScreen(false)
-
--- Set Scaleform Properties (x, y, width, height)
-scaleform:setProperties(1.0, 1.0, 2.0, 2.0)
-
--- Set Scaleform Render Target
-scaleform:setRenderTarget('target', `model_name`)
-
--- Get Drawing State
-local state = scaleform:isDrawing()
-
--- Draw
-scaleform:draw()
-
--- Start Drawing
-scaleform:startDrawing()
-
--- Stop Drawing
-scaleform:stopDrawing()
-
--- Dispose of Scaleform
-scaleform:dispose()
+string.random(pattern, length)
 ```
+
+* pattern: `string`
+* `1` will output a random number from 0-9.
+* `A` will output a random letter from A-Z.
+* `a` will output a random letter from a-z.
+* `.` will output a random letter or number.
+* `^` will output the following character literally.
+* Any other character will output said character.
+* length?: `number`
+  * Sets the length of the returned string, either padding it or omitting characters.
+
+Return:
+
+* string: `string`
 
 
 # Client (/docs/ox_lib/Streaming/Client)
@@ -10637,41 +10676,6 @@ lib.requestAudioBank(audioBank, timeout)
 8 WEAPON_COMPONENT_SCLIP2
 16 WEAPON_COMPONENT_GRIP
 ```
-
-
-# Shared (/docs/ox_lib/String/Shared)
-
-
-
-## lib.string [#libstring]
-
-Extends the standard Lua string table with extra functions.
-
-```
-string = lib.string
-```
-
-### string.random [#stringrandom]
-
-Outputs a random string based on a given pattern.
-
-```lua
-string.random(pattern, length)
-```
-
-* pattern: `string`
-* `1` will output a random number from 0-9.
-* `A` will output a random letter from A-Z.
-* `a` will output a random letter from a-z.
-* `.` will output a random letter or number.
-* `^` will output the following character literally.
-* Any other character will output said character.
-* length?: `number`
-  * Sets the length of the returned string, either padding it or omitting characters.
-
-Return:
-
-* string: `string`
 
 
 # Shared (/docs/ox_lib/Table/Shared)
@@ -14637,62 +14641,6 @@ end)
 ```
 
 
-# Client (/docs/ox_lib/Dui/Javascript/Client)
-
-
-
-Simple and centralised dui creation, supporting sending message, change url and deletion
-
-```js
-Dui(data);
-```
-
-* data: `object`
-  * url: `string`
-  * width: `number`
-  * height: `number`
-  * debug?: `boolean`
-
-Returns:
-
-* dui: `Dui`
-  * url: `string`
-  * duiObject: `number`
-  * duiHandle: `string`
-  * runtimeTxd: `number`
-  * txdObject: `number`
-  * dictName: `string`
-  * txtName: `string`
-  * setUrl: `function`(url: `string`)
-  * sendMessage: `function`(data: `object`)
-  * remove: `function`
-
-### Usage Example [#usage-example]
-
-```js
-import { Dui, cache } from "@overextended/ox_lib/client";
-
-const dui = new Dui({
-  url: `nui://${cache.resource}/web/index.html`,
-  width: 1920,
-  height: 1080,
-  debug: true,
-});
-
-// Change url
-dui.setUrl("https://google.com");
-
-// Send a message
-dui.sendMessage({
-  action: "display",
-  value: true,
-});
-
-// Destroy
-dui.remove();
-```
-
-
 # Client (/docs/ox_lib/Dui/Lua/Client)
 
 
@@ -14748,6 +14696,62 @@ dui:sendMessage({
 
 -- Destroy
 dui:remove()
+```
+
+
+# Client (/docs/ox_lib/Dui/Javascript/Client)
+
+
+
+Simple and centralised dui creation, supporting sending message, change url and deletion
+
+```js
+Dui(data);
+```
+
+* data: `object`
+  * url: `string`
+  * width: `number`
+  * height: `number`
+  * debug?: `boolean`
+
+Returns:
+
+* dui: `Dui`
+  * url: `string`
+  * duiObject: `number`
+  * duiHandle: `string`
+  * runtimeTxd: `number`
+  * txdObject: `number`
+  * dictName: `string`
+  * txtName: `string`
+  * setUrl: `function`(url: `string`)
+  * sendMessage: `function`(data: `object`)
+  * remove: `function`
+
+### Usage Example [#usage-example]
+
+```js
+import { Dui, cache } from "@overextended/ox_lib/client";
+
+const dui = new Dui({
+  url: `nui://${cache.resource}/web/index.html`,
+  width: 1920,
+  height: 1080,
+  debug: true,
+});
+
+// Change url
+dui.setUrl("https://google.com");
+
+// Send a message
+dui.sendMessage({
+  action: "display",
+  value: true,
+});
+
+// Destroy
+dui.remove();
 ```
 
 

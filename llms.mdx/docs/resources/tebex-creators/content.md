@@ -11,6 +11,8 @@ We make these deals to advertise trusted creators who meet our criteria.
 * The creator understands and respects [open source](https://opensource.org/) licenses.
 * Resources follow best practices and are highly configurable or source-available.
 
+You can apply a creator code at checkout under "Support A Creator".
+
 {CreatorCodes([
   ["Andyyy", "https://andyyy.tebex.io/", "ox20", 20 , "/static/creators/andy.png"],
   ["Berkie's Workshop", "https://berkie.tebex.io/", "ox10", 10 , "/static/creators/berkie.png"],
@@ -33,5 +35,3 @@ We make these deals to advertise trusted creators who meet our criteria.
   ["Stevo Scripts", "https://store.stevoscripts.com/", "overextended", 10, "/static/creators/steve.png"],
   ["Inferno Collection", "https://store.inferno-collection.com/", "ox7", 7, "/static/creators/inferno.png"]
   ])}
-
-You can apply a creator code at checkout under "Support A Creator".

@@ -8,9 +8,8 @@
 
 A slot-based inventory with item metadata for "item uniqueness".
 
-<Callout type="warning">
-  If you are replacing a built-in framework inventory there will be compatibility errors.\
-  If you are unwilling or incapable of resolving incompatibilities, do not install this resource.
+<Callout type="info">
+  Explore over 24,000 stylised, lore-accurate images at [Artwork Inventory](https://artwork-inventory.tebex.io/) and use code `ox10` for a 10% discount.
 </Callout>
 
 ## Installation [#installation]
@@ -239,6 +238,11 @@ A slot-based inventory with item metadata for "item uniqueness".
 </div>
 
 ## Framework incompatibilities [#framework-incompatibilities]
+
+<Callout type="warning">
+  If you are replacing a built-in framework inventory there will be compatibility errors.\
+  If you are unwilling or incapable of resolving incompatibilities, do not install this resource.
+</Callout>
 
 * Any frameworks with their own built-in inventory, item, or weapon systems are expected to have compatibility issues.
 * Money as an item may conflict with banking/account systems.
