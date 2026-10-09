@@ -1,4 +1,4 @@
-import { BookIcon, FileQuestion, PackageSearch } from "lucide-react";
+import { BookText, Library, PackageSearch, MessagesSquare } from "lucide-react";
 import type { BaseLayoutProps } from "fumadocs-ui/layouts/shared";
 import { appName, gitConfig } from "./shared";
 
@@ -19,8 +19,16 @@ export function baseOptions(): BaseLayoutProps {
         type: "main",
         text: "Documentation",
         url: "/docs",
-        icon: <BookIcon />,
+        icon: <BookText />,
         on: "all",
+      },
+      {
+        type: "main",
+        text: "Discussions",
+        url: "https://github.com/orgs/overextended/discussions",
+        icon: <MessagesSquare />,
+        on: "all",
+        external: true,
       },
       {
         type: "main",
@@ -33,20 +41,21 @@ export function baseOptions(): BaseLayoutProps {
         type: "main",
         text: "Guides",
         url: "/docs/guides",
-        icon: <FileQuestion />,
+        icon: <Library />,
         on: "all",
+        external: true
       },
       {
         type: "icon",
         label: "Support me",
-        icon: <img src="/static/kofi-small.png" width={22} className="opacity-75 hover:opacity-100"/>,
+        icon: <img src="/static/kofi-small.png" width={22} className="opacity-75 hover:opacity-100" />,
         text: "Support me",
         url: "https://ko-fi.com/thelindat",
       },
       {
         type: "icon",
         label: "Discord",
-        icon: <img src="/static/discord.png" width={22} className="opacity-75 hover:opacity-100"/>,
+        icon: <img src="/static/discord.png" width={22} className="opacity-75 hover:opacity-100" />,
         text: "Discord",
         url: "https://discord.overextended.dev",
       },
