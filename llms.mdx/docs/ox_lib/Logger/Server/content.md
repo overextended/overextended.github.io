@@ -2,33 +2,100 @@
 
 
 
-## lib.logger [#liblogger]
+# Ox.Logger [#oxlogger]
+
+A structured logging interface for recording messages, tracking events, and debugging issues. Supports multiple severity levels and optional metadata to provide additional context, including player information.
+
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    local logger = require 'Ox.Logger'
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    import { logger } from '@overextended/ox_lib/server
+    ```
+  </Tab>
+</Tabs>
 
 ```lua
-lib.logger(source, event, message, ...)
+logger.error(message, metadata)
+logger.warn(message, metadata)
+logger.info(message, metadata)
+logger.debug(message, metadata)
+logger.verbose(message, metadata)
 ```
 
-* source: `number` or `string`
-  * Preferably an active player id, otherwise an identifier, or wherever else it originated from.
-* event: `string`
-  * A name for the log event (i.e. the trigerring event or a description)
 * message: `string`
-  * The content for the log.
-* vararg: `string`
-  * Additional arguments are converted to tags for additional filtering and searching.
+* metadata?: `{ [key: string], value: any }`
+  * players?: `number[]` | `object<string, number>`
+    * Player IDs to provide additional information about alongside logs, including their username and identifiers.
+
+Metadata can contain arbitrary key-value pairs to provide additional context; for example you may want to log a transaction between players.
+
+```lua
+logger.info('Player interaction', {
+    players = { fromPlayer = 6, toPlayer = 7 },
+    action = 'transferItem',
+})
+```
 
 <br />
 
-<u>
-  **Example**
-</u>
+# Providers [#providers]
 
-```lua
-local vehicle = Ox.CreateVehicle(false, `sultanrs`, vector4(-56.479122, -1116.870362, 26.432250, 0.000030517578))
-lib.logger(-1, 'CreateVehicle', json.encode(vehicle))
-```
+Configure and manage logging providers to control where logs are sent and how they're processed. Providers allow logs to be forwarded to external services while maintaining a consistent logging interface throughout your application.
+
+Missing a provider? You can recommend or even provide a new one [here](https://github.com/overextended/ox_lib/tree/main/resource/logger).
+
+## Fivemanage [#fivemanage]
+
+[Fivemanage](https://refer.fivemanage.com/overextended) is an easy-to-use, all-in-one SaaS for game servers that provides logging.
+
+<div className="fd-steps">
+  <div className="fd-step">
+    ### Create an account [#create-an-account-step]
+
+    Sign up at [Fivemanage](https://refer.fivemanage.com/overextended).
+
+    <div className="fd-steps">
+      <div className="fd-step">
+        #### Upgrading to `Hobby` or `Pro` tier (optional) [#upgrading-to-hobby-or-pro-tier-optional-step]
+
+        Logging is included in the free tier, but with limited storage and retention.
+
+        If you decide to upgrade, you'll get a 14-day free trial if you do not already have a subscription.
+      </div>
+    </div>
+  </div>
+
+  <div className="fd-step">
+    ### Create a new token [#create-a-new-token-step]
+
+    You'll need to create a new token with the type `Logs`.
+  </div>
+
+  <div className="fd-step">
+    ### Config [#config-step]
+
+    ```bash
+    set ox:logger "fivemanage"
+    set FIVEMANAGE_LOGS_API_KEY "YOUR_API_KEY"
+
+    # deprecated (used with lib.logger only)
+    set fivemanage:key "YOUR_API_KEY"
+    ```
+  </div>
+</div>
 
 ## Datadog [#datadog]
+
+<Callout type="error">
+  Does not currently support `Ox.Logger`, but is supported by the deprecated `lib.logger` function.
+  This section will be updated once a new DataDog provider is created!
+</Callout>
 
 <div className="fd-steps">
   <div className="fd-step">
@@ -45,7 +112,7 @@ lib.logger(-1, 'CreateVehicle', json.encode(vehicle))
   </div>
 
   <div className="fd-step">
-    ### Config [#config-step]
+    ### Config [#config-step-1]
 
     Set your API key and [Datadog site](https://docs.datadoghq.com/getting_started/site/) using the following convars.
 
@@ -57,6 +124,11 @@ lib.logger(-1, 'CreateVehicle', json.encode(vehicle))
 </div>
 
 ## Grafana Loki [#grafana-loki]
+
+<Callout type="error">
+  Does not currently support `Ox.Logger`, but is supported by the deprecated `lib.logger` function.
+  This section will be updated once a new Loki provider is created!
+</Callout>
 
 Loki is a horizontally scalable, highly available, multi-tenant log aggregation system inspired by Prometheus.\
 It is designed to be very cost effective and easy to operate.
@@ -106,40 +178,3 @@ set loki:user "<insert your user>"
 set loki:password "<insert the api key or password>"
 set loki:endpoint "<insert loki url without http:// or https://>"
 ```
-
-## Fivemanage [#fivemanage]
-
-[Fivemanage](https://fivemanage.com/?ref=overextended) is an easy-to-use, all-in-one SaaS for game servers that provides logging.
-
-<div className="fd-steps">
-  <div className="fd-step">
-    ### Create an account [#create-an-account-step]
-
-    Sign up at [Fivemanage](https://fivemanage.com/?ref=overextended).
-
-    <div className="fd-steps">
-      <div className="fd-step">
-        #### Upgrading to `Hobby` or `Pro` tier (optional) [#upgrading-to-hobby-or-pro-tier-optional-step]
-
-        Logging is included in the free tier, but with limited storage and retention.
-
-        If you decide to upgrade, you'll get a 14-day free trial if you do not already have a subscription. You can find more information [here](https://fivemanage.com/profile/billing?ref=overextended) and on the [pricing](https://fivemanage.com/pricing?ref=overextended) page.
-      </div>
-    </div>
-  </div>
-
-  <div className="fd-step">
-    ### Create a new token [#create-a-new-token-step]
-
-    You'll need to create a new token with the type `Logs`.
-  </div>
-
-  <div className="fd-step">
-    ### Config [#config-step-1]
-
-    ```bash
-    set ox:logger "fivemanage"
-    set fivemanage:key "YOUR_API_KEY"
-    ```
-  </div>
-</div>

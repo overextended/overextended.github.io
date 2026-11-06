@@ -5483,6 +5483,101 @@ AddEventHandler('ox_inventory:usedItem', function(playerId, name, slotId, metada
 * metadata?: `table`
 
 
+# ESX (/docs/ox_inventory/Frameworks/esx)
+
+
+
+* You will need a [compatible version of ESX Legacy](https://github.com/esx-framework/esx_core) (1.6.0 or higher).
+* You can convert player inventories with `convertinventory esx`.
+* All items in the database will be migrated to the internal item data.
+  * Always restart the resource when items are migrated!
+
+## Compatibility [#compatibility]
+
+Ox Inventory is a complete replacement for existing item, inventory, and weapon systems; it is inherently incompatible with ESX and any resources that rely on default behaviour.
+
+* Loadouts do not exist and weapons are treated as items.
+* Standard shops and stashes (i.e. esx\_shops, esx\_weaponshop, and esx\_policejob).
+* Resources that alter the default esx inventory or provide a ui (i.e. esx\_trunkinventory, esx\_inventoryhud).
+
+## Installation [#installation]
+
+* Use a compatible version of [ESX Legacy](https://github.com/esx-framework/esx-legacy) (1.6.0+).
+* Modify your `server.cfg`, starting ox\_inventory immediately after es\_extended.
+
+```yaml
+start oxmysql
+start ox_lib
+start es_extended
+start qtarget
+start ox_inventory
+```
+
+## Convert ESX inventory data [#convert-esx-inventory-data]
+
+* Start the server and type `convertinventory esx` into the server console.
+* Optionally, type `convertinventory esxproperty` into the server console.
+* Restart the server once conversion is complete.
+
+## Optional Optimisation [#optional-optimisation]
+
+All item related functions from xPlayer, such as `xPlayer.getInventoryItem`, have been modified for compatibility purposes; however they are considered deprecated.
+
+The reasoning is fairly simple - there's now additional function references and overhead to consider. Fortunately, the new Inventory functions can be used directly and offer a great deal of improvements over the old ones.
+
+You should read through the functions section for further information, but the following should give you a decent idea.
+
+<Tabs items="[&#x22;ESX&#x22;, &#x22;Ox Inventory&#x22;]">
+  <Tab>
+    ```lua
+    if xPlayer.getInventoryItem('acetone').count > 2 and xPlayer.getInventoryItem('antifreeze').count > 4 and xPlayer.getInventoryItem('sudo').count > 9 then
+        xPlayer.removeInventoryItem("acetone", 3)
+        xPlayer.removeInventoryItem("antifreeze", 5)
+        xPlayer.removeInventoryItem("sudo", 10)
+    end
+    ```
+  </Tab>
+
+  <Tab>
+    Add the following code somewhere in your resource to cache the exports metatable.
+
+    ```lua
+    local ox_inventory = exports.ox_inventory
+    ```
+
+    You will be able to reference any functions exposed through the export.
+
+    ```lua
+    local items = ox_inventory:Search(source, 'count', {'acetone', 'antifreeze', 'sudo'})
+    if items and items.acetone > 2 and items.antifreeze > 4 and items.sudo > 9 then
+        ox_inventory:RemoveItem(source, 'acetone', 3)
+        ox_inventory:RemoveItem(source, 'antifreeze', 5)
+        ox_inventory:RemoveItem(source, 'sudo', 10)
+    end
+    ```
+  </Tab>
+</Tabs>
+
+
+# Qbox (/docs/ox_inventory/Frameworks/qbx)
+
+
+
+Qbox is a fork of QBCore being developed by a team of former contributors and developers on QBCore. The team is focused on improving performance and security, as well as converting resources to support our resources (mainly ox\_lib and ox\_inventory).
+
+We *strongly* advise using Qbox as an alternative to QBCore.
+
+* [Qbox Project GitHub](https://github.com/Qbox-project/)
+* [Qbox Project Discord](https://discord.gg/AtbwBuJHN5)
+
+## Installation [#installation]
+
+* Setup [qbox](https://github.com/Qbox-project/qbx_core).
+* Edit your `server.cfg`.
+  * Add `setr inventory:framework "qbx"` before starting your resources.
+  * Start ox\_inventory immediately after qbx\_core.
+
+
 # Client (/docs/ox_inventory/Functions/Client)
 
 
@@ -6035,101 +6130,6 @@ Allows you to enable/disable the use of weapons for a player.
 ```lua
 LocalPlayer.state.canUseWeapons = false
 ```
-
-
-# ESX (/docs/ox_inventory/Frameworks/esx)
-
-
-
-* You will need a [compatible version of ESX Legacy](https://github.com/esx-framework/esx_core) (1.6.0 or higher).
-* You can convert player inventories with `convertinventory esx`.
-* All items in the database will be migrated to the internal item data.
-  * Always restart the resource when items are migrated!
-
-## Compatibility [#compatibility]
-
-Ox Inventory is a complete replacement for existing item, inventory, and weapon systems; it is inherently incompatible with ESX and any resources that rely on default behaviour.
-
-* Loadouts do not exist and weapons are treated as items.
-* Standard shops and stashes (i.e. esx\_shops, esx\_weaponshop, and esx\_policejob).
-* Resources that alter the default esx inventory or provide a ui (i.e. esx\_trunkinventory, esx\_inventoryhud).
-
-## Installation [#installation]
-
-* Use a compatible version of [ESX Legacy](https://github.com/esx-framework/esx-legacy) (1.6.0+).
-* Modify your `server.cfg`, starting ox\_inventory immediately after es\_extended.
-
-```yaml
-start oxmysql
-start ox_lib
-start es_extended
-start qtarget
-start ox_inventory
-```
-
-## Convert ESX inventory data [#convert-esx-inventory-data]
-
-* Start the server and type `convertinventory esx` into the server console.
-* Optionally, type `convertinventory esxproperty` into the server console.
-* Restart the server once conversion is complete.
-
-## Optional Optimisation [#optional-optimisation]
-
-All item related functions from xPlayer, such as `xPlayer.getInventoryItem`, have been modified for compatibility purposes; however they are considered deprecated.
-
-The reasoning is fairly simple - there's now additional function references and overhead to consider. Fortunately, the new Inventory functions can be used directly and offer a great deal of improvements over the old ones.
-
-You should read through the functions section for further information, but the following should give you a decent idea.
-
-<Tabs items="[&#x22;ESX&#x22;, &#x22;Ox Inventory&#x22;]">
-  <Tab>
-    ```lua
-    if xPlayer.getInventoryItem('acetone').count > 2 and xPlayer.getInventoryItem('antifreeze').count > 4 and xPlayer.getInventoryItem('sudo').count > 9 then
-        xPlayer.removeInventoryItem("acetone", 3)
-        xPlayer.removeInventoryItem("antifreeze", 5)
-        xPlayer.removeInventoryItem("sudo", 10)
-    end
-    ```
-  </Tab>
-
-  <Tab>
-    Add the following code somewhere in your resource to cache the exports metatable.
-
-    ```lua
-    local ox_inventory = exports.ox_inventory
-    ```
-
-    You will be able to reference any functions exposed through the export.
-
-    ```lua
-    local items = ox_inventory:Search(source, 'count', {'acetone', 'antifreeze', 'sudo'})
-    if items and items.acetone > 2 and items.antifreeze > 4 and items.sudo > 9 then
-        ox_inventory:RemoveItem(source, 'acetone', 3)
-        ox_inventory:RemoveItem(source, 'antifreeze', 5)
-        ox_inventory:RemoveItem(source, 'sudo', 10)
-    end
-    ```
-  </Tab>
-</Tabs>
-
-
-# Qbox (/docs/ox_inventory/Frameworks/qbx)
-
-
-
-Qbox is a fork of QBCore being developed by a team of former contributors and developers on QBCore. The team is focused on improving performance and security, as well as converting resources to support our resources (mainly ox\_lib and ox\_inventory).
-
-We *strongly* advise using Qbox as an alternative to QBCore.
-
-* [Qbox Project GitHub](https://github.com/Qbox-project/)
-* [Qbox Project Discord](https://discord.gg/AtbwBuJHN5)
-
-## Installation [#installation]
-
-* Setup [qbox](https://github.com/Qbox-project/qbx_core).
-* Edit your `server.cfg`.
-  * Add `setr inventory:framework "qbx"` before starting your resources.
-  * Start ox\_inventory immediately after qbx\_core.
 
 
 # Crafting (/docs/ox_inventory/Guides/crafting)
@@ -6777,6 +6777,124 @@ We put together an example resource showcasing how to properly utilise the stash
 <GhButton link="https://www.github.com/overextended/ox_inventory_examples" label="Ox Inventory Examples" />
 
 
+# Server (/docs/ox_lib/ACL/Server)
+
+
+
+Wrapper around the built-in ACL system. Handles lib.addCommand and ox\_groups permissions.\
+Refer to [Basic Aces & Principals overview/guide](https://forum.cfx.re/t/basic-aces-principals-overview-guide/90917) for more information.
+
+## lib.addAce [#libaddace]
+
+Assigns the ace permission to a principal. Third parameter defaults to 'allow', while passing `false` sets the permission to 'deny'.
+
+<Tabs items="[&#x22;Lua&#x22;, &#x22;JS&#x22;]">
+  <Tab>
+    ```lua
+    lib.addAce(principal, ace, allow)
+
+    lib.addAce('group.admin', 'command.say')
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    import lib from '@overextended/ox_lib/server'
+
+    lib.addAce(principal, ace, allow)
+
+    lib.addAce('group.admin', 'command.say')
+    ```
+  </Tab>
+</Tabs>
+
+* principal: `string`
+* ace: `string`
+* allow: `boolean`
+
+## lib.removeAce [#libremoveace]
+
+Removes the ace permission from a principal. Third parameter defaults to 'allow', while passing `false` sets the permission to 'deny'.
+
+<Tabs items="[&#x22;Lua&#x22;, &#x22;JS&#x22;]">
+  <Tab>
+    ```lua
+    lib.removeAce(principal, ace, allow)
+
+    lib.removeAce('group.admin', 'command.say')
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    import lib from '@overextended/ox_lib/server'
+
+    lib.removeAce(principal, ace, allow)
+
+    lib.removeAce('group.admin', 'command.say')
+    ```
+  </Tab>
+</Tabs>
+
+* principal: `string`
+* ace: `string`
+* allow: `boolean`
+
+## lib.addPrincipal [#libaddprincipal]
+
+Assigns a principal to a parent principal. Children inherit permissions from the parent.
+
+<Tabs items="[&#x22;Lua&#x22;, &#x22;JS&#x22;]">
+  <Tab>
+    ```lua
+    lib.addPrincipal(child, parent)
+
+    lib.addPrincipal('player.1', 'group.moderator')
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    import lib from '@overextended/ox_lib/server'
+
+    lib.addPrincipal(child, parent)
+
+    lib.addPrincipal('player.1', 'group.moderator')
+    ```
+  </Tab>
+</Tabs>
+
+* child: `string`
+* parent: `string`
+
+## lib.removePrincipal [#libremoveprincipal]
+
+Removes a principal from a parent principal.
+
+<Tabs items="[&#x22;Lua&#x22;, &#x22;JS&#x22;]">
+  <Tab>
+    ```lua
+    lib.removePrincipal(child, parent)
+
+    lib.removePrincipal('player.1', 'group.moderator')
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    import lib from '@overextended/ox_lib/server'
+
+    lib.removePrincipal(child, parent)
+
+    lib.removePrincipal('player.1', 'group.moderator')
+    ```
+  </Tab>
+</Tabs>
+
+* child: `string`
+* parent: `string`
+
+
 # Server (/docs/ox_lib/AddCommand/Server)
 
 
@@ -6936,124 +7054,6 @@ You can get the state with the following method
 ```lua
 local state = keybind:isControlPressed()
 ```
-
-
-# Server (/docs/ox_lib/ACL/Server)
-
-
-
-Wrapper around the built-in ACL system. Handles lib.addCommand and ox\_groups permissions.\
-Refer to [Basic Aces & Principals overview/guide](https://forum.cfx.re/t/basic-aces-principals-overview-guide/90917) for more information.
-
-## lib.addAce [#libaddace]
-
-Assigns the ace permission to a principal. Third parameter defaults to 'allow', while passing `false` sets the permission to 'deny'.
-
-<Tabs items="[&#x22;Lua&#x22;, &#x22;JS&#x22;]">
-  <Tab>
-    ```lua
-    lib.addAce(principal, ace, allow)
-
-    lib.addAce('group.admin', 'command.say')
-    ```
-  </Tab>
-
-  <Tab>
-    ```ts
-    import lib from '@overextended/ox_lib/server'
-
-    lib.addAce(principal, ace, allow)
-
-    lib.addAce('group.admin', 'command.say')
-    ```
-  </Tab>
-</Tabs>
-
-* principal: `string`
-* ace: `string`
-* allow: `boolean`
-
-## lib.removeAce [#libremoveace]
-
-Removes the ace permission from a principal. Third parameter defaults to 'allow', while passing `false` sets the permission to 'deny'.
-
-<Tabs items="[&#x22;Lua&#x22;, &#x22;JS&#x22;]">
-  <Tab>
-    ```lua
-    lib.removeAce(principal, ace, allow)
-
-    lib.removeAce('group.admin', 'command.say')
-    ```
-  </Tab>
-
-  <Tab>
-    ```ts
-    import lib from '@overextended/ox_lib/server'
-
-    lib.removeAce(principal, ace, allow)
-
-    lib.removeAce('group.admin', 'command.say')
-    ```
-  </Tab>
-</Tabs>
-
-* principal: `string`
-* ace: `string`
-* allow: `boolean`
-
-## lib.addPrincipal [#libaddprincipal]
-
-Assigns a principal to a parent principal. Children inherit permissions from the parent.
-
-<Tabs items="[&#x22;Lua&#x22;, &#x22;JS&#x22;]">
-  <Tab>
-    ```lua
-    lib.addPrincipal(child, parent)
-
-    lib.addPrincipal('player.1', 'group.moderator')
-    ```
-  </Tab>
-
-  <Tab>
-    ```ts
-    import lib from '@overextended/ox_lib/server'
-
-    lib.addPrincipal(child, parent)
-
-    lib.addPrincipal('player.1', 'group.moderator')
-    ```
-  </Tab>
-</Tabs>
-
-* child: `string`
-* parent: `string`
-
-## lib.removePrincipal [#libremoveprincipal]
-
-Removes a principal from a parent principal.
-
-<Tabs items="[&#x22;Lua&#x22;, &#x22;JS&#x22;]">
-  <Tab>
-    ```lua
-    lib.removePrincipal(child, parent)
-
-    lib.removePrincipal('player.1', 'group.moderator')
-    ```
-  </Tab>
-
-  <Tab>
-    ```ts
-    import lib from '@overextended/ox_lib/server'
-
-    lib.removePrincipal(child, parent)
-
-    lib.removePrincipal('player.1', 'group.moderator')
-    ```
-  </Tab>
-</Tabs>
-
-* child: `string`
-* parent: `string`
 
 
 # Shared (/docs/ox_lib/Array/Shared)
@@ -7820,79 +7820,6 @@ Return:
 * coords?: `vector3`
 
 
-# Shared (/docs/ox_lib/GetClosestVehicle/Shared)
-
-
-
-## lib.getClosestVehicle [#libgetclosestvehicle]
-
-Get the vehicle handle and coords of the closest vehicle to a set of coordinates.
-
-```lua
-lib.getClosestVehicle(coords, maxDistance, includePlayerVehicle)
-```
-
-* coords: `vector3`
-  * The coords to check from.
-* maxDistance?: `number`
-  * The max distance to check.
-  * Default: `2.0`
-* includePlayerVehicle?: `boolean`
-  * Whether or not to include the player's current vehicle. Ignored on the server.
-  * Default: `false`
-
-Return:
-
-* vehicle?: `number`
-* vehicleCoords?: `vector3`
-
-
-# Server (/docs/ox_lib/GetFilesInDirectory/Server)
-
-
-
-## lib.getFilesInDirectory [#libgetfilesindirectory]
-
-Gets a list of all files in a specified resource directory, along with the file count
-
-```lua
-lib.getFilesInDirectory(path, pattern)
-```
-
-* path: `string`
-  * The relative or absolute path to the directory where files should be listed.
-* pattern: `string`
-  * Pattern to check for when searching for files.
-
-Returns:
-
-* files: `string[]`
-* fileCount: `number`
-
-
-# Shared (/docs/ox_lib/GetNearbyObjects/Shared)
-
-
-
-## lib.getNearbyObjects [#libgetnearbyobjects]
-
-Get the object handle and coords of all objects within range of a set of coordinates.
-
-```lua
-lib.getNearbyObjects(coords, maxDistance)
-```
-
-* coords: `vector3`
-  * The coords to check from.
-* maxDistance?: `number`
-  * The max distance to check.
-  * Default: `2.0`
-
-Return:
-
-* objects: `{ object: number, coords: vector3 }[]`
-
-
 # Client (/docs/ox_lib/GetClosestPlayer/Client)
 
 
@@ -7949,16 +7876,16 @@ Return:
 * playerCoords?: `vector3`
 
 
-# Shared (/docs/ox_lib/GetNearbyPeds/Shared)
+# Shared (/docs/ox_lib/GetClosestVehicle/Shared)
 
 
 
-## lib.getNearbyPeds [#libgetnearbypeds]
+## lib.getClosestVehicle [#libgetclosestvehicle]
 
-Get the ped handle and coords of all peds within range of a set of coordinates.
+Get the vehicle handle and coords of the closest vehicle to a set of coordinates.
 
 ```lua
-lib.getNearbyPeds(coords, maxDistance)
+lib.getClosestVehicle(coords, maxDistance, includePlayerVehicle)
 ```
 
 * coords: `vector3`
@@ -7966,10 +7893,37 @@ lib.getNearbyPeds(coords, maxDistance)
 * maxDistance?: `number`
   * The max distance to check.
   * Default: `2.0`
+* includePlayerVehicle?: `boolean`
+  * Whether or not to include the player's current vehicle. Ignored on the server.
+  * Default: `false`
 
 Return:
 
-* peds: `{ ped: number, coords: vector3 }[]`
+* vehicle?: `number`
+* vehicleCoords?: `vector3`
+
+
+# Server (/docs/ox_lib/GetFilesInDirectory/Server)
+
+
+
+## lib.getFilesInDirectory [#libgetfilesindirectory]
+
+Gets a list of all files in a specified resource directory, along with the file count
+
+```lua
+lib.getFilesInDirectory(path, pattern)
+```
+
+* path: `string`
+  * The relative or absolute path to the directory where files should be listed.
+* pattern: `string`
+  * Pattern to check for when searching for files.
+
+Returns:
+
+* files: `string[]`
+* fileCount: `number`
 
 
 # Shared (/docs/ox_lib/GetNearbyPlayers/Shared)
@@ -7996,6 +7950,29 @@ lib.getNearbyPlayers(coords, maxDistance, includePlayer)
 Return:
 
 * players: `{ id: number, ped: number, coords: vector3 }[]`
+
+
+# Shared (/docs/ox_lib/GetNearbyObjects/Shared)
+
+
+
+## lib.getNearbyObjects [#libgetnearbyobjects]
+
+Get the object handle and coords of all objects within range of a set of coordinates.
+
+```lua
+lib.getNearbyObjects(coords, maxDistance)
+```
+
+* coords: `vector3`
+  * The coords to check from.
+* maxDistance?: `number`
+  * The max distance to check.
+  * Default: `2.0`
+
+Return:
+
+* objects: `{ object: number, coords: vector3 }[]`
 
 
 # Shared (/docs/ox_lib/Grid/Shared)
@@ -8080,6 +8057,29 @@ lib.grid.removeEntry(entry)
 **Returns:**
 
 * success: `boolean`
+
+
+# Shared (/docs/ox_lib/GetNearbyPeds/Shared)
+
+
+
+## lib.getNearbyPeds [#libgetnearbypeds]
+
+Get the ped handle and coords of all peds within range of a set of coordinates.
+
+```lua
+lib.getNearbyPeds(coords, maxDistance)
+```
+
+* coords: `vector3`
+  * The coords to check from.
+* maxDistance?: `number`
+  * The max distance to check.
+  * Default: `2.0`
+
+Return:
+
+* peds: `{ ped: number, coords: vector3 }[]`
 
 
 # Shared (/docs/ox_lib/Locale/Shared)
@@ -8242,33 +8242,100 @@ lib.getLocale(resource, key)
 
 
 
-## lib.logger [#liblogger]
+# Ox.Logger [#oxlogger]
+
+A structured logging interface for recording messages, tracking events, and debugging issues. Supports multiple severity levels and optional metadata to provide additional context, including player information.
+
+<Tabs groupId="language" items="['Lua', 'TypeScript']">
+  <Tab>
+    ```lua
+    local logger = require 'Ox.Logger'
+    ```
+  </Tab>
+
+  <Tab>
+    ```ts
+    import { logger } from '@overextended/ox_lib/server
+    ```
+  </Tab>
+</Tabs>
 
 ```lua
-lib.logger(source, event, message, ...)
+logger.error(message, metadata)
+logger.warn(message, metadata)
+logger.info(message, metadata)
+logger.debug(message, metadata)
+logger.verbose(message, metadata)
 ```
 
-* source: `number` or `string`
-  * Preferably an active player id, otherwise an identifier, or wherever else it originated from.
-* event: `string`
-  * A name for the log event (i.e. the trigerring event or a description)
 * message: `string`
-  * The content for the log.
-* vararg: `string`
-  * Additional arguments are converted to tags for additional filtering and searching.
+* metadata?: `{ [key: string], value: any }`
+  * players?: `number[]` | `object<string, number>`
+    * Player IDs to provide additional information about alongside logs, including their username and identifiers.
+
+Metadata can contain arbitrary key-value pairs to provide additional context; for example you may want to log a transaction between players.
+
+```lua
+logger.info('Player interaction', {
+    players = { fromPlayer = 6, toPlayer = 7 },
+    action = 'transferItem',
+})
+```
 
 <br />
 
-<u>
-  **Example**
-</u>
+# Providers [#providers]
 
-```lua
-local vehicle = Ox.CreateVehicle(false, `sultanrs`, vector4(-56.479122, -1116.870362, 26.432250, 0.000030517578))
-lib.logger(-1, 'CreateVehicle', json.encode(vehicle))
-```
+Configure and manage logging providers to control where logs are sent and how they're processed. Providers allow logs to be forwarded to external services while maintaining a consistent logging interface throughout your application.
+
+Missing a provider? You can recommend or even provide a new one [here](https://github.com/overextended/ox_lib/tree/main/resource/logger).
+
+## Fivemanage [#fivemanage]
+
+[Fivemanage](https://refer.fivemanage.com/overextended) is an easy-to-use, all-in-one SaaS for game servers that provides logging.
+
+<div className="fd-steps">
+  <div className="fd-step">
+    ### Create an account [#create-an-account-step]
+
+    Sign up at [Fivemanage](https://refer.fivemanage.com/overextended).
+
+    <div className="fd-steps">
+      <div className="fd-step">
+        #### Upgrading to `Hobby` or `Pro` tier (optional) [#upgrading-to-hobby-or-pro-tier-optional-step]
+
+        Logging is included in the free tier, but with limited storage and retention.
+
+        If you decide to upgrade, you'll get a 14-day free trial if you do not already have a subscription.
+      </div>
+    </div>
+  </div>
+
+  <div className="fd-step">
+    ### Create a new token [#create-a-new-token-step]
+
+    You'll need to create a new token with the type `Logs`.
+  </div>
+
+  <div className="fd-step">
+    ### Config [#config-step]
+
+    ```bash
+    set ox:logger "fivemanage"
+    set FIVEMANAGE_LOGS_API_KEY "YOUR_API_KEY"
+
+    # deprecated (used with lib.logger only)
+    set fivemanage:key "YOUR_API_KEY"
+    ```
+  </div>
+</div>
 
 ## Datadog [#datadog]
+
+<Callout type="error">
+  Does not currently support `Ox.Logger`, but is supported by the deprecated `lib.logger` function.
+  This section will be updated once a new DataDog provider is created!
+</Callout>
 
 <div className="fd-steps">
   <div className="fd-step">
@@ -8285,7 +8352,7 @@ lib.logger(-1, 'CreateVehicle', json.encode(vehicle))
   </div>
 
   <div className="fd-step">
-    ### Config [#config-step]
+    ### Config [#config-step-1]
 
     Set your API key and [Datadog site](https://docs.datadoghq.com/getting_started/site/) using the following convars.
 
@@ -8297,6 +8364,11 @@ lib.logger(-1, 'CreateVehicle', json.encode(vehicle))
 </div>
 
 ## Grafana Loki [#grafana-loki]
+
+<Callout type="error">
+  Does not currently support `Ox.Logger`, but is supported by the deprecated `lib.logger` function.
+  This section will be updated once a new Loki provider is created!
+</Callout>
 
 Loki is a horizontally scalable, highly available, multi-tenant log aggregation system inspired by Prometheus.\
 It is designed to be very cost effective and easy to operate.
@@ -8345,130 +8417,6 @@ set ox:logger "loki"
 set loki:user "<insert your user>"
 set loki:password "<insert the api key or password>"
 set loki:endpoint "<insert loki url without http:// or https://>"
-```
-
-## Fivemanage [#fivemanage]
-
-[Fivemanage](https://fivemanage.com/?ref=overextended) is an easy-to-use, all-in-one SaaS for game servers that provides logging.
-
-<div className="fd-steps">
-  <div className="fd-step">
-    ### Create an account [#create-an-account-step]
-
-    Sign up at [Fivemanage](https://fivemanage.com/?ref=overextended).
-
-    <div className="fd-steps">
-      <div className="fd-step">
-        #### Upgrading to `Hobby` or `Pro` tier (optional) [#upgrading-to-hobby-or-pro-tier-optional-step]
-
-        Logging is included in the free tier, but with limited storage and retention.
-
-        If you decide to upgrade, you'll get a 14-day free trial if you do not already have a subscription. You can find more information [here](https://fivemanage.com/profile/billing?ref=overextended) and on the [pricing](https://fivemanage.com/pricing?ref=overextended) page.
-      </div>
-    </div>
-  </div>
-
-  <div className="fd-step">
-    ### Create a new token [#create-a-new-token-step]
-
-    You'll need to create a new token with the type `Logs`.
-  </div>
-
-  <div className="fd-step">
-    ### Config [#config-step-1]
-
-    ```bash
-    set ox:logger "fivemanage"
-    set fivemanage:key "YOUR_API_KEY"
-    ```
-  </div>
-</div>
-
-
-# Client (/docs/ox_lib/Marker/Client)
-
-
-
-## lib.marker [#libmarker]
-
-Simple way to create markers
-
-## Marker Class [#marker-class]
-
-A table representing a marker with the following properties.
-
-* type: `number` or `string`
-  * This field accepts either a numerical value representing the marker ID or a string containing the name of a marker as documented on [FiveM Docs](https://docs.fivem.net/docs/game-references/markers/).
-* coords?: `vector3`
-* width?: `number`
-* height?: `number`
-* color?: `{ r: number, g: number, b: number, a: number}`
-* direction?: `vector3`
-* rotation?: `vector3`
-
-## lib.marker.new [#libmarkernew]
-
-```lua
-lib.marker.new(options)
-```
-
-* Returns: `Marker`
-
-### Usage Example [#usage-example]
-
-```lua
-local marker = lib.marker.new({
-	type = 1,
-	coords = GetEntityCoords(cache.ped),
-	color = { r = 255, g = 0, b = 0, a = 200 },
-})
-
-Citizen.CreateThread(function()
-	while true do
-		marker:draw()
-
-		Citizen.Wait(1)
-	end
-end)
-```
-
-### Interactive Example [#interactive-example]
-
-```lua
-
-local center = vec3(430.452759, -1026.108032, 27.846140)
-local uiText = "Press [E] to get notified"
-
-local point = lib.points.new({
-  coords = center,
-  distance = 20,
-})
-
-local marker = lib.marker.new({
-  coords = center,
-  type = 1,
-})
-
-function point:nearby()
-  marker:draw()
-
-  if self.currentDistance < 1.5 then
-    if not lib.isTextUIOpen() then
-      lib.showTextUI("Press [E] to get notified")
-    end
-
-    if IsControlJustPressed(0, 51) then
-      lib.notify({
-        description = "Hello, World!"
-      })
-    end
-  else
-  local isOpen, currentText = lib.isTextUIOpen()
-    if isOpen and currentText == uiText then
-      lib.hideTextUI()
-    end
-  end
-end
 ```
 
 
@@ -8710,6 +8658,93 @@ lib.playAnim(ped, animDictionary, animationName, blendInSpeed, blendOutSpeed, du
   * Default: `false`
 
 
+# Client (/docs/ox_lib/Marker/Client)
+
+
+
+## lib.marker [#libmarker]
+
+Simple way to create markers
+
+## Marker Class [#marker-class]
+
+A table representing a marker with the following properties.
+
+* type: `number` or `string`
+  * This field accepts either a numerical value representing the marker ID or a string containing the name of a marker as documented on [FiveM Docs](https://docs.fivem.net/docs/game-references/markers/).
+* coords?: `vector3`
+* width?: `number`
+* height?: `number`
+* color?: `{ r: number, g: number, b: number, a: number}`
+* direction?: `vector3`
+* rotation?: `vector3`
+
+## lib.marker.new [#libmarkernew]
+
+```lua
+lib.marker.new(options)
+```
+
+* Returns: `Marker`
+
+### Usage Example [#usage-example]
+
+```lua
+local marker = lib.marker.new({
+	type = 1,
+	coords = GetEntityCoords(cache.ped),
+	color = { r = 255, g = 0, b = 0, a = 200 },
+})
+
+Citizen.CreateThread(function()
+	while true do
+		marker:draw()
+
+		Citizen.Wait(1)
+	end
+end)
+```
+
+### Interactive Example [#interactive-example]
+
+```lua
+
+local center = vec3(430.452759, -1026.108032, 27.846140)
+local uiText = "Press [E] to get notified"
+
+local point = lib.points.new({
+  coords = center,
+  distance = 20,
+})
+
+local marker = lib.marker.new({
+  coords = center,
+  type = 1,
+})
+
+function point:nearby()
+  marker:draw()
+
+  if self.currentDistance < 1.5 then
+    if not lib.isTextUIOpen() then
+      lib.showTextUI("Press [E] to get notified")
+    end
+
+    if IsControlJustPressed(0, 51) then
+      lib.notify({
+        description = "Hello, World!"
+      })
+    end
+  else
+  local isOpen, currentText = lib.isTextUIOpen()
+    if isOpen and currentText == uiText then
+      lib.hideTextUI()
+    end
+  end
+end
+```
+
+
 # Shared (/docs/ox_lib/Print/Shared)
 
 
@@ -8765,6 +8800,78 @@ set ox:printlevel "info"
 set ox:printlevel:ox_inventory "warn"
 set ox:printlevel:<resourceName> "<level>"
 ```
+
+
+# Client (/docs/ox_lib/Raycast/Client)
+
+
+
+## lib.raycast.fromCoords [#libraycastfromcoords]
+
+Starts a shapetest originating from starting coordinates and ending at destination coordinates.
+
+```lua
+lib.raycast.fromCoords(coords, destination, flags, ignore)
+```
+
+* coords: `vector3`
+  * Starting coords for raycast
+* destination: `vector3`
+  * Destination coords for raycast
+* flags?: `number`
+  * See: [https://docs.fivem.net/natives/?\_0x377906D8A31E5586](https://docs.fivem.net/natives/?_0x377906D8A31E5586)
+  * Default: `511`
+* ignore?: `number`
+  * A bit mask with bits 1, 2, 4, or 7 relating to collider types. 4 and 7 are usually used.
+  * Default: `4`
+
+Return:
+
+* hit: `boolean`
+  * Whether or not an entity was hit
+* entityHit: `number`
+  * Entity handle of hit entity
+* endCoords: `vector3`
+  * Closest coords to where the raycast hit
+* surfaceNormal: `vector3`
+  * Normal to the surface that was hit
+* materialHash: `number`
+
+## lib.raycast.fromCamera [#libraycastfromcamera]
+
+Starts a shapetest originating from the camera, extending to \~10m by default.
+
+```lua
+lib.raycast.fromCamera(flags, ignore, distance)
+```
+
+* flags?: `number`
+  * See: [https://docs.fivem.net/natives/?\_0x377906D8A31E5586](https://docs.fivem.net/natives/?_0x377906D8A31E5586)
+  * Default: `511`
+* ignore?: `number`
+  * A bit mask with bits 1, 2, 4, or 7 relating to collider types. 4 and 7 are usually used.
+  * Default: `4`
+* distance?: `number`
+  * Default: `10`
+
+Return:
+
+* hit: `boolean`
+  * Whether or not an entity was hit
+* entityHit: `number`
+  * Entity handle of hit entity
+* endCoords: `vector3`
+  * Closest coords to where the raycast hit
+* surfaceNormal: `vector3`
+  * Normal to the surface that was hit
+* materialHash: `number`
+
+## lib.raycast.cam [#libraycastcam]
+
+<Callout type="warning">
+  lib.raycast.cam is depreciated alias for lib.raycast.fromCamera and may be removed at any time.
+  Use lib.raycast.fromCamera instead!
+</Callout>
 
 
 # Shared (/docs/ox_lib/Require/Shared)
@@ -8881,97 +8988,6 @@ print('Loaded events')
 {
   "disconnect": "onPlayerDropped"
 }
-```
-
-
-# Client (/docs/ox_lib/Scaleform/Client)
-
-
-
-## lib.scaleform:new [#libscaleformnew]
-
-Constructs a new instance of the scaleform class.
-
-```lua
-lib.scaleform:new(data)
-```
-
-* data: `table | string`
-  * name: `string`
-  * fullScreen?: `boolean`
-  * x?: `number`
-  * y?: `number`
-  * width?: `number`
-  * height?: `number`
-  * renderTarget?: `table`
-    * name: `string`
-    * model: `string | number`
-
-Returns:
-
-* scaleform: `Scaleform`
-
-  * scaleform: `number`
-  * draw: `boolean`
-  * target: `number`
-  * targetName: `string`
-  * sfHandle?: `number`
-  * fullScreen: `boolean`
-
-  Methods:
-
-  * callMethod: `function`(name: `string`, args: `(number | string | boolean)[]`, returnValue?: `string`)
-  * setFullScreen: `function`(isFullscreen: `boolean`)
-  * setProperties: `function`(x: `number`, y: `number`, width: `number`, height: `number`)
-  * setRenderTarget: `function`(name: `string`, model: `string | number`)
-  * isDrawing: `function`
-  * draw: `function`
-  * startDrawing: `function`
-  * stopDrawing: `function`
-  * dispose: `function`
-
-### Usage Example [#usage-example]
-
-```lua
-local scaleform = lib.scaleform:new({
-  name = 'scaleform',
-  fullScreen = boolean,
-  x = 1.0,
-  y = 1.0,
-  width = 2.0,
-  height = 2.0,
-  renderTarget = {
-    name = 'target',
-    model = `model_name`
-  }
-})
-
--- Call a Scaleform Method
-scaleform:callMethod('method', { 1, 2, 3 })
-
--- Set Fullscreen Scaleform
-scaleform:setFullScreen(false)
-
--- Set Scaleform Properties (x, y, width, height)
-scaleform:setProperties(1.0, 1.0, 2.0, 2.0)
-
--- Set Scaleform Render Target
-scaleform:setRenderTarget('target', `model_name`)
-
--- Get Drawing State
-local state = scaleform:isDrawing()
-
--- Draw
-scaleform:draw()
-
--- Start Drawing
-scaleform:startDrawing()
-
--- Stop Drawing
-scaleform:stopDrawing()
-
--- Dispose of Scaleform
-scaleform:dispose()
 ```
 
 
@@ -9634,78 +9650,6 @@ lib.requestAudioBank(audioBank, timeout)
 ```
 
 
-# Client (/docs/ox_lib/Raycast/Client)
-
-
-
-## lib.raycast.fromCoords [#libraycastfromcoords]
-
-Starts a shapetest originating from starting coordinates and ending at destination coordinates.
-
-```lua
-lib.raycast.fromCoords(coords, destination, flags, ignore)
-```
-
-* coords: `vector3`
-  * Starting coords for raycast
-* destination: `vector3`
-  * Destination coords for raycast
-* flags?: `number`
-  * See: [https://docs.fivem.net/natives/?\_0x377906D8A31E5586](https://docs.fivem.net/natives/?_0x377906D8A31E5586)
-  * Default: `511`
-* ignore?: `number`
-  * A bit mask with bits 1, 2, 4, or 7 relating to collider types. 4 and 7 are usually used.
-  * Default: `4`
-
-Return:
-
-* hit: `boolean`
-  * Whether or not an entity was hit
-* entityHit: `number`
-  * Entity handle of hit entity
-* endCoords: `vector3`
-  * Closest coords to where the raycast hit
-* surfaceNormal: `vector3`
-  * Normal to the surface that was hit
-* materialHash: `number`
-
-## lib.raycast.fromCamera [#libraycastfromcamera]
-
-Starts a shapetest originating from the camera, extending to \~10m by default.
-
-```lua
-lib.raycast.fromCamera(flags, ignore, distance)
-```
-
-* flags?: `number`
-  * See: [https://docs.fivem.net/natives/?\_0x377906D8A31E5586](https://docs.fivem.net/natives/?_0x377906D8A31E5586)
-  * Default: `511`
-* ignore?: `number`
-  * A bit mask with bits 1, 2, 4, or 7 relating to collider types. 4 and 7 are usually used.
-  * Default: `4`
-* distance?: `number`
-  * Default: `10`
-
-Return:
-
-* hit: `boolean`
-  * Whether or not an entity was hit
-* entityHit: `number`
-  * Entity handle of hit entity
-* endCoords: `vector3`
-  * Closest coords to where the raycast hit
-* surfaceNormal: `vector3`
-  * Normal to the surface that was hit
-* materialHash: `number`
-
-## lib.raycast.cam [#libraycastcam]
-
-<Callout type="warning">
-  lib.raycast.cam is depreciated alias for lib.raycast.fromCamera and may be removed at any time.
-  Use lib.raycast.fromCamera instead!
-</Callout>
-
-
 # Shared (/docs/ox_lib/String/Shared)
 
 
@@ -9835,6 +9779,97 @@ lib.table.isFrozen(tbl)
 Return:
 
 * isFrozen: `boolean`
+
+
+# Client (/docs/ox_lib/Scaleform/Client)
+
+
+
+## lib.scaleform:new [#libscaleformnew]
+
+Constructs a new instance of the scaleform class.
+
+```lua
+lib.scaleform:new(data)
+```
+
+* data: `table | string`
+  * name: `string`
+  * fullScreen?: `boolean`
+  * x?: `number`
+  * y?: `number`
+  * width?: `number`
+  * height?: `number`
+  * renderTarget?: `table`
+    * name: `string`
+    * model: `string | number`
+
+Returns:
+
+* scaleform: `Scaleform`
+
+  * scaleform: `number`
+  * draw: `boolean`
+  * target: `number`
+  * targetName: `string`
+  * sfHandle?: `number`
+  * fullScreen: `boolean`
+
+  Methods:
+
+  * callMethod: `function`(name: `string`, args: `(number | string | boolean)[]`, returnValue?: `string`)
+  * setFullScreen: `function`(isFullscreen: `boolean`)
+  * setProperties: `function`(x: `number`, y: `number`, width: `number`, height: `number`)
+  * setRenderTarget: `function`(name: `string`, model: `string | number`)
+  * isDrawing: `function`
+  * draw: `function`
+  * startDrawing: `function`
+  * stopDrawing: `function`
+  * dispose: `function`
+
+### Usage Example [#usage-example]
+
+```lua
+local scaleform = lib.scaleform:new({
+  name = 'scaleform',
+  fullScreen = boolean,
+  x = 1.0,
+  y = 1.0,
+  width = 2.0,
+  height = 2.0,
+  renderTarget = {
+    name = 'target',
+    model = `model_name`
+  }
+})
+
+-- Call a Scaleform Method
+scaleform:callMethod('method', { 1, 2, 3 })
+
+-- Set Fullscreen Scaleform
+scaleform:setFullScreen(false)
+
+-- Set Scaleform Properties (x, y, width, height)
+scaleform:setProperties(1.0, 1.0, 2.0, 2.0)
+
+-- Set Scaleform Render Target
+scaleform:setRenderTarget('target', `model_name`)
+
+-- Get Drawing State
+local state = scaleform:isDrawing()
+
+-- Draw
+scaleform:draw()
+
+-- Start Drawing
+scaleform:startDrawing()
+
+-- Stop Drawing
+scaleform:stopDrawing()
+
+-- Dispose of Scaleform
+scaleform:dispose()
+```
 
 
 # Shared (/docs/ox_lib/Timer/Shared)
@@ -10174,6 +10209,33 @@ TriggerClientEvent('ox_lib:setVehicleProperties', entityOwner, vehNetId, data)
 * bulletProofTyres?: `boolean`
 
 
+# Shared (/docs/ox_lib/WaitFor/Shared)
+
+
+
+## lib.waitFor [#libwaitfor]
+
+Calls a function repeatedly until it receives a non-nil value, or it times out.\
+The function result is then returned.
+
+```lua
+lib.waitFor(cb, errMessage, timeout)
+```
+
+* cb: `function`
+  * A function to call each frame.
+* errMessage?: `string`
+  * The error message to display if the function times out.
+* timeout?: `number | false`
+  * The duration to run the function for, defaulting to 1000ms, unless set to `false`.
+
+```lua
+local value --[['abc']] = lib.waitFor(function()
+    if math.random(0, 1) == 1 then return 'abc' end
+end)
+```
+
+
 # Server (/docs/ox_lib/Version/Server)
 
 
@@ -10237,33 +10299,6 @@ lib.checkDependency(resource, version)
     ```
   </Tab>
 </Tabs>
-
-
-# Shared (/docs/ox_lib/WaitFor/Shared)
-
-
-
-## lib.waitFor [#libwaitfor]
-
-Calls a function repeatedly until it receives a non-nil value, or it times out.\
-The function result is then returned.
-
-```lua
-lib.waitFor(cb, errMessage, timeout)
-```
-
-* cb: `function`
-  * A function to call each frame.
-* errMessage?: `string`
-  * The error message to display if the function times out.
-* timeout?: `number | false`
-  * The duration to run the function for, defaulting to 1000ms, unless set to `false`.
-
-```lua
-local value --[['abc']] = lib.waitFor(function()
-    if math.random(0, 1) == 1 then return 'abc' end
-end)
-```
 
 
 # Shared (/docs/ox_lib/Zones/Shared)
@@ -14492,117 +14527,119 @@ exports.ox_inventory:setContainerProperties('pizzabox', {
 ```
 
 
-# Client (/docs/ox_lib/Dui/Javascript/Client)
+# Client (/docs/ox_lib/Callback/JavaScript/Client)
 
 
 
-Simple and centralised dui creation, supporting sending message, change url and deletion
+## Trigger Server Callback [#trigger-server-callback]
 
-```js
-Dui(data);
+### triggerServerCallback [#triggerservercallback]
+
+```ts
+triggerServerCallback(eventName, delay, ...args);
 ```
 
-* data: `object`
-  * url: `string`
-  * width: `number`
-  * height: `number`
-  * debug?: `boolean`
+* eventName: `string`
+* delay: `number` or `null`
+  * Amount of time until this callback can be triggered again
+* ..args: `any`
 
-Returns:
+## Register Client Callback [#register-client-callback]
 
-* dui: `Dui`
-  * url: `string`
-  * duiObject: `number`
-  * duiHandle: `string`
-  * runtimeTxd: `number`
-  * txdObject: `number`
-  * dictName: `string`
-  * txtName: `string`
-  * setUrl: `function`(url: `string`)
-  * sendMessage: `function`(data: `object`)
-  * remove: `function`
+### onServerCallback [#onservercallback]
 
-### Usage Example [#usage-example]
+```ts
+onServerCallback(eventName, cb);
+```
 
-```js
-import { Dui, cache } from "@overextended/ox_lib/client";
+* eventName: `string`
+* cb: `function`(...args: `any`)
 
-const dui = new Dui({
-  url: `nui://${cache.resource}/web/index.html`,
-  width: 1920,
-  height: 1080,
-  debug: true,
+## Usage Example [#usage-example]
+
+For this example to fully make sense take a look at the example on the [server](./Server#usage-example) page for the callbacks.
+
+```ts
+import { onServerCallback, triggerServerCallback } from "@overextended/ox_lib/client";
+```
+
+```ts
+onServerCallback("test:client", (...args: [number, number, string]) => {
+  console.log(args);
+  return {
+    clientValue: "Value from the client",
+  };
 });
+```
 
-// Change url
-dui.setUrl("https://google.com");
+```ts
+setTimeout(async () => {
+  const args = [1, null, 3, null, null, 6];
+  const response = await triggerServerCallback<{ serverValue: number }>("test:server", 1, args);
+  if (!response) return;
+  console.log("Response from server", response);
+}, 100);
+```
 
-// Send a message
-dui.sendMessage({
-  action: "display",
-  value: true,
+
+# Server (/docs/ox_lib/Callback/JavaScript/Server)
+
+
+
+## Trigger Client Callback [#trigger-client-callback]
+
+### triggerClientCallback [#triggerclientcallback]
+
+```ts
+triggerClientCallback(eventName, playerId, ...args);
+```
+
+* eventName: `string`
+* playerId: `number`
+* ...args: `any`
+
+## Register Server Callback [#register-server-callback]
+
+### onClientCallback [#onclientcallback]
+
+```ts
+onClientCallback(eventName, cb);
+```
+
+* eventName: `string`
+* cb: `function`(playerId: `number`, ...args: `any`)
+
+## Usage Example [#usage-example]
+
+For this example to fully make sense take a look at the example on the [client](./Client#usage-example) page for the callbacks.
+
+```ts
+import { onClientCallback, triggerClientCallback } from "@overextended/ox_lib/server";
+```
+
+```ts
+onClientCallback("test:server", (playerId, ...args: [number, null, number, null, null, number]) => {
+  console.log("onClientCallback", playerId, ...args);
+  return {
+    serverValue: 3000,
+  };
 });
-
-// Destroy
-dui.remove();
 ```
 
-
-# Client (/docs/ox_lib/Dui/Lua/Client)
-
-
-
-Simple and centralised dui creation, supporting sending message, change url and deletion
-
-## lib.dui:new [#libduinew]
-
-Constructs instance of Dui.
-
-```lua
-lib.dui:new(data)
-```
-
-* data: `table`
-  * url: `string`
-  * width: `number`
-  * height: `number`
-  * debug?: `boolean`
-
-Returns:
-
-* dui: `Dui`
-  * url: `string`
-  * duiObject: `number`
-  * duiHandle: `string`
-  * runtimeTxd: `number`
-  * txdObject: `number`
-  * dictName: `string`
-  * txtName: `string`
-  * setUrl: `function`(url: `string`)
-  * sendMessage: `function`(data: `table`)
-  * remove: `function`
-
-### Usage Example [#usage-example]
-
-```lua
-local dui = lib.dui:new({
-	url = ("nui://%s/web/index.html"):format(cache.resource),
-	width = 1920,
-	height = 1080,
-	debug = true
-})
-
--- Change url
-dui:setUrl("https://google.com")
-
--- Send a message
-dui:sendMessage({
-	action = "display",
-	value = true
-})
-
--- Destroy
-dui:remove()
+```ts
+setTimeout(async () => {
+  const response = await triggerClientCallback<{ clientValue: string }>("test:client", 1, [
+    1,
+    null,
+    3,
+    null,
+    null,
+    6,
+  ]);
+  if (!response) return;
+  console.log(response.clientValue);
+  console.log("Response from client", response);
+}, 100);
 ```
 
 
@@ -14739,119 +14776,117 @@ end)
 ```
 
 
-# Client (/docs/ox_lib/Callback/JavaScript/Client)
+# Client (/docs/ox_lib/Dui/Javascript/Client)
 
 
 
-## Trigger Server Callback [#trigger-server-callback]
+Simple and centralised dui creation, supporting sending message, change url and deletion
 
-### triggerServerCallback [#triggerservercallback]
-
-```ts
-triggerServerCallback(eventName, delay, ...args);
+```js
+Dui(data);
 ```
 
-* eventName: `string`
-* delay: `number` or `null`
-  * Amount of time until this callback can be triggered again
-* ..args: `any`
+* data: `object`
+  * url: `string`
+  * width: `number`
+  * height: `number`
+  * debug?: `boolean`
 
-## Register Client Callback [#register-client-callback]
+Returns:
 
-### onServerCallback [#onservercallback]
+* dui: `Dui`
+  * url: `string`
+  * duiObject: `number`
+  * duiHandle: `string`
+  * runtimeTxd: `number`
+  * txdObject: `number`
+  * dictName: `string`
+  * txtName: `string`
+  * setUrl: `function`(url: `string`)
+  * sendMessage: `function`(data: `object`)
+  * remove: `function`
 
-```ts
-onServerCallback(eventName, cb);
-```
+### Usage Example [#usage-example]
 
-* eventName: `string`
-* cb: `function`(...args: `any`)
+```js
+import { Dui, cache } from "@overextended/ox_lib/client";
 
-## Usage Example [#usage-example]
-
-For this example to fully make sense take a look at the example on the [server](./Server#usage-example) page for the callbacks.
-
-```ts
-import { onServerCallback, triggerServerCallback } from "@overextended/ox_lib/client";
-```
-
-```ts
-onServerCallback("test:client", (...args: [number, number, string]) => {
-  console.log(args);
-  return {
-    clientValue: "Value from the client",
-  };
+const dui = new Dui({
+  url: `nui://${cache.resource}/web/index.html`,
+  width: 1920,
+  height: 1080,
+  debug: true,
 });
-```
 
-```ts
-setTimeout(async () => {
-  const args = [1, null, 3, null, null, 6];
-  const response = await triggerServerCallback<{ serverValue: number }>("test:server", 1, args);
-  if (!response) return;
-  console.log("Response from server", response);
-}, 100);
-```
+// Change url
+dui.setUrl("https://google.com");
 
-
-# Server (/docs/ox_lib/Callback/JavaScript/Server)
-
-
-
-## Trigger Client Callback [#trigger-client-callback]
-
-### triggerClientCallback [#triggerclientcallback]
-
-```ts
-triggerClientCallback(eventName, playerId, ...args);
-```
-
-* eventName: `string`
-* playerId: `number`
-* ...args: `any`
-
-## Register Server Callback [#register-server-callback]
-
-### onClientCallback [#onclientcallback]
-
-```ts
-onClientCallback(eventName, cb);
-```
-
-* eventName: `string`
-* cb: `function`(playerId: `number`, ...args: `any`)
-
-## Usage Example [#usage-example]
-
-For this example to fully make sense take a look at the example on the [client](./Client#usage-example) page for the callbacks.
-
-```ts
-import { onClientCallback, triggerClientCallback } from "@overextended/ox_lib/server";
-```
-
-```ts
-onClientCallback("test:server", (playerId, ...args: [number, null, number, null, null, number]) => {
-  console.log("onClientCallback", playerId, ...args);
-  return {
-    serverValue: 3000,
-  };
+// Send a message
+dui.sendMessage({
+  action: "display",
+  value: true,
 });
+
+// Destroy
+dui.remove();
 ```
 
-```ts
-setTimeout(async () => {
-  const response = await triggerClientCallback<{ clientValue: string }>("test:client", 1, [
-    1,
-    null,
-    3,
-    null,
-    null,
-    6,
-  ]);
-  if (!response) return;
-  console.log(response.clientValue);
-  console.log("Response from client", response);
-}, 100);
+
+# Client (/docs/ox_lib/Dui/Lua/Client)
+
+
+
+Simple and centralised dui creation, supporting sending message, change url and deletion
+
+## lib.dui:new [#libduinew]
+
+Constructs instance of Dui.
+
+```lua
+lib.dui:new(data)
+```
+
+* data: `table`
+  * url: `string`
+  * width: `number`
+  * height: `number`
+  * debug?: `boolean`
+
+Returns:
+
+* dui: `Dui`
+  * url: `string`
+  * duiObject: `number`
+  * duiHandle: `string`
+  * runtimeTxd: `number`
+  * txdObject: `number`
+  * dictName: `string`
+  * txtName: `string`
+  * setUrl: `function`(url: `string`)
+  * sendMessage: `function`(data: `table`)
+  * remove: `function`
+
+### Usage Example [#usage-example]
+
+```lua
+local dui = lib.dui:new({
+	url = ("nui://%s/web/index.html"):format(cache.resource),
+	width = 1920,
+	height = 1080,
+	debug = true
+})
+
+-- Change url
+dui:setUrl("https://google.com")
+
+-- Send a message
+dui:sendMessage({
+	action = "display",
+	value = true
+})
+
+-- Destroy
+dui:remove()
 ```
 
 
